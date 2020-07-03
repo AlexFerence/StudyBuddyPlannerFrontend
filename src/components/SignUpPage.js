@@ -15,7 +15,7 @@ const FormPage = (props) => {
 
   //function to redirect to home
   const redirectToHome = () => {
-    props.history.push("/home")
+    props.history.push("/dashboard")
   }
 
   //TODO implement this later
