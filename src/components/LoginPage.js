@@ -16,7 +16,7 @@ const LoginPage = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:5000/api/userProfile/authenticate',
+            const res = await axios.post('http://localhost:52880/api/userprofiles/authenticate',
                 {
                     Email: email,
                     Password: password
