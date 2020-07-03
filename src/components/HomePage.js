@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
-import Header from './Header'
 import { connect } from 'react-redux'
 import { setProfile, setEmail } from '../actions/profileActions'
 
 const HomePage = (props) => {
-
-
     useEffect(() => {
         try {
             //make autenticated call to get data for home page
@@ -22,7 +19,6 @@ const HomePage = (props) => {
 
     return (
         <div>
-            <Header />
             <h3>Home Page</h3>
             <p>
                 <button onClick={buttonAction}>Go Back To Home</button>

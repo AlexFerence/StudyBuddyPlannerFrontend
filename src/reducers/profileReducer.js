@@ -8,6 +8,7 @@ const profileReducerDefaultState = {
     isAuth: false
 }
 
+
 const profileReducer = (state = profileReducerDefaultState, action) => {
     switch(action.type) {
         case 'ADD_PROFILE':
