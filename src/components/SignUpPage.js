@@ -28,14 +28,14 @@ const FormPage = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:5000/api/userProfile/create',
+      const res = await axios.post('http://localhost:52880/api/userprofiles/create',
         { firstName,
           lastName,
           email1: email,
           password
         }) 
       if (res.status === 200) {
-        const loginRes = await axios.post('http://localhost:5000/api/userProfile/authenticate',
+        const loginRes = await axios.post('http://localhost:52880/api/userprofiles/authenticate',
         { 
           Email: email,
           Password: password
