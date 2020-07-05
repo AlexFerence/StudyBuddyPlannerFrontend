@@ -5,19 +5,19 @@ import { NavLink, Link } from 'react-router-dom'
 
 const Header = (props) => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg">
             <Navbar.Brand href="#home">Planner</Navbar.Brand>
-            { props.isAuth && <Navbar.Toggle aria-controls="basic-navbar-nav" /> }
-            <Navbar.Collapse id="basic-navbar-nav">
+            { true && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" /> }
+            <Navbar.Collapse id="">
                 <Nav className="mr-auto">
                 </Nav>
     
                 <Nav inline>
                 { true && <Nav.Link> <NavLink to="/dashboard">Dashboard</NavLink></Nav.Link> } 
                 { true && <Nav.Link> <NavLink to="/calendar">Calendar</NavLink> </Nav.Link> }
-                { props.isAuth && <Nav.Link> <NavLink to="/tasks">Tasks</NavLink></Nav.Link> }
-                { props.isAuth && <Nav.Link> <NavLink to="/analytics">Analytics</NavLink></Nav.Link> }
-                { props.isAuth && <Nav.Link> <NavLink to="/settings">Settings</NavLink></Nav.Link> }
+                { true && <Nav.Link> <NavLink to="/tasks">Tasks</NavLink></Nav.Link> }
+                { true && <Nav.Link> <NavLink to="/analytics">Analytics</NavLink></Nav.Link> }
+                { true && <Nav.Link> <NavLink to="/settings">Settings</NavLink></Nav.Link> }
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

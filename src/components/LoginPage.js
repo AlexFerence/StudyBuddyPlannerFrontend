@@ -60,6 +60,7 @@ const LoginPage = (props) => {
                     Dont have an acount? <Link to="/signup">Sign Up</Link>
                 </p>
             </form>
+            <Link to="/dashboard">dashboard</Link>
         </div>
     )
 }
