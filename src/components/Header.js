@@ -13,8 +13,8 @@ const Header = (props) => {
                 </Nav>
     
                 <Nav inline>
-                { props.isAuth && <Nav.Link> <NavLink to="/dashboard">Dashboard</NavLink></Nav.Link> } 
-                { props.isAuth && <Nav.Link> <NavLink to="/calendar">Calendar</NavLink> </Nav.Link> }
+                { true && <Nav.Link> <NavLink to="/dashboard">Dashboard</NavLink></Nav.Link> } 
+                { true && <Nav.Link> <NavLink to="/calendar">Calendar</NavLink> </Nav.Link> }
                 { props.isAuth && <Nav.Link> <NavLink to="/tasks">Tasks</NavLink></Nav.Link> }
                 { props.isAuth && <Nav.Link> <NavLink to="/analytics">Analytics</NavLink></Nav.Link> }
                 { props.isAuth && <Nav.Link> <NavLink to="/settings">Settings</NavLink></Nav.Link> }

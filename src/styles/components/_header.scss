@@ -1,15 +1,12 @@
-.navbar { background-color: #222; }
+// .navbar-nav { 
+//   background-color: $light; 
+//   color: red;
+// }
   
 a, .navbar-nav, .navbar-light .nav-link {
-    color: black;
+    color: $dark;
     &:hover { color: gray;
     text-decoration: none; }
   }
   
-  
-// .navbar-brand {
-//     font-size: 1.4em;
-//     color: black;
-//     &:hover { color: white; }
-// }
 
