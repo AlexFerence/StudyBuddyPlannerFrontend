@@ -1,0 +1,34 @@
+.settings label {
+    width: 100%;
+}
+
+.settings input {
+    width: 75%;
+    border: none;
+    outline: none;
+    padding-bottom: 3px;;
+    border-bottom: 1px solid black;
+}
+
+.settings .inp {
+    margin-bottom: 20px;
+}
+
+.settings button {
+    outline: none;
+   
+    border: none;
+    height: 40px;
+    width: 80px;
+    border: 1px solid $dark;
+    background-color: $white;
+    color: $dark;
+    
+}
+
+.settings button:hover {
+    border: 1px solid $white;
+    background-color: $dark;
+    color: $white;
+
+}

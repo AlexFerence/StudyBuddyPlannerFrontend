@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { setProfile } from '../actions/profileActions'
+import url from '../environment/url'
 
 const LoginPage = (props) => {
 
@@ -16,7 +17,7 @@ const LoginPage = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:52880/api/userprofiles/authenticate',
+            const res = await axios.post(url + '/api/userprofiles/authenticate',
                 {
                     Email: email,
                     Password: password

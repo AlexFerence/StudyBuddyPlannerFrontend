@@ -15,24 +15,25 @@ const Dashboard = (props) => {
     }
 
     return (
-        <div className="container">
-            <form onSubmit={true}>
-                <h3>Settings</h3>
-                <div className="form-group">
-                    <label>Email</label>
-                    <input value={props.email} onChange={(e) => true} type="email" 
-                    className="form-control" />
+        <div className="container settings">
+            <form>
+                <div className="inp">
+                    <label for="first">First Name</label>
+                    <input type="text" name="last" value={props.firstName}></input>
                 </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input value={props.password} onChange={(e) => true}
-                        type="password"
-                        className="form-control"/>
+                <div className="inp">
+                    <label for="last">Last Name</label>
+                    <input type="text" name="last" value={props.lastName}></input>
                 </div>
-                <button type="submit" className="btn btn-primary btn-block">Submit Changes</button>
-                <p className="forgot-password text-right">
-                    
-                </p>
+                <div className="inp">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value={props.email}></input>
+                </div>
+                <div className="inp">
+                    <label for="email">Password</label>
+                    <input type="password" name="password" value={props.password}></input>
+                </div>
+                <button>Submit</button>
             </form>
         </div>
     )
@@ -42,6 +43,7 @@ const Dashboard = (props) => {
 const mapStateToProps = (state) => {
     return {
         firstName: state.profile.firstName,
+        lastName: state.profile.lastName,
         email: state.profile.email,
         password: state.profile.password,
         token: state.profile.token,
