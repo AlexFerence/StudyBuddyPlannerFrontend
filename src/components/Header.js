@@ -6,13 +6,13 @@ import { NavLink, Link } from 'react-router-dom'
 const Header = (props) => {
     return (
         <Navbar expand="lg">
-            <Navbar.Brand href="#home">Planner</Navbar.Brand>
+            <Navbar.Brand href="/">Planner</Navbar.Brand>
             { props.isAuth && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" /> }
             <Navbar.Collapse id="">
                 <Nav className="mr-auto">
                 </Nav>
     
-                <Nav inline>
+                <Nav inline="true">
                 { props.isAuth && <NavLink style={{padding: 5 }} to="/dashboard">Dashboard</NavLink> } 
                 { props.isAuth && <NavLink style={{padding: 5 }} to="/calendar">Calendar</NavLink>}
                 { props.isAuth && <NavLink style={{padding: 5 }} to="/tasks">Tasks</NavLink> }

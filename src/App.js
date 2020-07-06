@@ -26,7 +26,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route path='/signup' component={FormPage} exact />
-        <Route path='/' exact component={LoginPage} />
+        <Route path='/login' exact component={LoginPage} />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/calendar' component={Calendar} />
         <Route path='/analytics' component={Analytics} />

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { setProfile } from '../actions/profileActions'
 import axios from 'axios'
+import url from '../environment/url'
 
 
 const FormPage = (props) => {
@@ -28,14 +29,14 @@ const FormPage = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:52880/api/userprofiles/create',
+      const res = await axios.post(url + '/api/userprofiles/create',
         { firstName,
           lastName,
           email1: email,
           password
         }) 
       if (res.status === 200) {
-        const loginRes = await axios.post('http://localhost:52880/api/userprofiles/authenticate',
+        const loginRes = await axios.post(url + '/api/userprofiles/authenticate',
         { 
           Email: email,
           Password: password
