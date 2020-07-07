@@ -11,6 +11,7 @@ import Calendar from './components/Calendar'
 import Tasks from './components/Tasks'
 import Analytics from './components/Analytics'
 import Settings from './components/Settings'
+import SubjectsPage from './components/Subjects'
 import './styles/styles.scss'
 
 const store = configureStore()
@@ -32,6 +33,7 @@ const App = () => {
         <Route path='/analytics' component={Analytics} />
         <Route path='/tasks' component={Tasks} />
         <Route path='/settings' component={Settings} />
+        <Route path='/subjects' component={SubjectsPage} />
       </Switch>
     </Provider>
   )
