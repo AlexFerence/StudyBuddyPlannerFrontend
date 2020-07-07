@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -6,6 +6,11 @@ import { setProfile } from '../actions/profileActions'
 import url from '../environment/url'
 
 const LoginPage = (props) => {
+
+    useEffect(() => {
+        setEmail('akaufman2000@gmail.com')
+        setPassword('securePassword')
+    }, [])
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

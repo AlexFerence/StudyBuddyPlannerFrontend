@@ -14,11 +14,24 @@ const Settings = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post(url + '/api/userprofiles/authenticate',
-                {
-                    Email: email,
-                    Password: password
-                })
+            console.log(props.token)
+            const res = await axios.put(url + '/api/userprofiles/' + props.id,
+                {   
+                    firstName: fname,
+                    lastName: lname,
+                    email1: email,
+                    Password: password,
+                }, {
+                    headers: {
+                        'Authorization': 'bearer ' + props.token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                        
+                    }
+                }
+            )
+            console.log(res.status)
+            console.log(res.data)
         } catch (e) {
             console.log(e)
         }

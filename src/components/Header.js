@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { NavLink, Link } from 'react-router-dom'
 
 const Header = (props) => {
+
     return (
         <Navbar expand="lg">
             <Navbar.Brand href="/">Planner</Navbar.Brand>
