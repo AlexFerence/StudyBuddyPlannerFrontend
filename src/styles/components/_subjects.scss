@@ -3,15 +3,29 @@
 }
 
 .subjects .scroller {
-    background-color: blue;
+    background-color: $white;
     width: 30vw;
-    height: 50vh;
+    max-width: 275px;;
+    height: calc(100vh - #{$navbar-height} );
     float:left;
+    overflow: scroll;
+    border-right: 1px solid $dark;
+}
+.subjects .scroller button {
+    background-color: $light;
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid $dark;
 }
 
+.subjects .scroller button:focus { outline:0; }
+
 .subjects .display {
-    background-color: red;
-    width: 60vw;
-    height: 99vh;
+    background-color: $white;
+    width: 70vw;
+    height: calc(100vh - #{$navbar-height} );
     float:left;
+    padding: 25px;
 }
