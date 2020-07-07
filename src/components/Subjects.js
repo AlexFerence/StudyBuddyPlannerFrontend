@@ -3,10 +3,12 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
 
+const list = ['button1', 'button2', 'button3']
 
 const SubjectsPage = (props) => {
 
-    const [classes, setClasses] = useState([])
+    var [classes, setClasses] = useState([])
+    var [classSelection, setClassSelection] = useState({})
 
     useEffect(() => {
         const getClasses = async () => {
@@ -21,8 +23,8 @@ const SubjectsPage = (props) => {
                         'Content-Type': 'application/json'
                     }
                 })
-                console.log(res.data)
-                classes = res.data
+                const list = res.data
+                setClasses(list)
 
                 if (res.status === 401) {
                     console.log('didnt work')
@@ -39,15 +41,20 @@ const SubjectsPage = (props) => {
         console.log(props.id)
 
     }, [])
-
     return (
         <div className="subjects">
             <div className="scroller">
-
+            <div>{classes.map((item) => {
+                return(
+                    <button 
+                    key={item.id}
+                    onClick={() => setClassSelection(item)}
+                    >{item.name}</button>)
+            })}</div>
 
             </div>
             <div className="display">
-            Please select a class
+            {!classSelection.name && <p>Please select a class</p>}
             </div>
         </div>
     )
