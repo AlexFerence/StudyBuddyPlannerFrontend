@@ -24,6 +24,7 @@ const SubjectsPage = (props) => {
                     }
                 })
                 const list = res.data
+                console.log(list)
                 setClasses(list)
 
                 if (res.status === 401) {
@@ -55,6 +56,7 @@ const SubjectsPage = (props) => {
             </div>
             <div className="display">
             {!classSelection.name && <p>Please select a class</p>}
+            {classSelection.name && <h3>{classSelection.name} {classSelection.classCode}</h3>}
             </div>
         </div>
     )
