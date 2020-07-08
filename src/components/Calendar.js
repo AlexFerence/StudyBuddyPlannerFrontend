@@ -6,7 +6,9 @@ const Dashboard = () => {
     return (
         <div>
         Calendar page
-        <WeekCalendar />
+        <WeekCalendar
+        
+        />
         </div>
         
         
