@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
+import SubjectButton from './SubjectButton'
 
 const list = ['button1', 'button2', 'button3']
 
@@ -34,29 +35,41 @@ const SubjectsPage = (props) => {
             }
             catch (e) {
                 console.log(e)
-            
+
             }
-            
+
         }
         getClasses()
         console.log(props.id)
 
     }, [])
+
     return (
         <div className="subjects">
             <div className="scroller">
-            <div>{classes.map((item) => {
-                return(
-                    <button 
-                    key={item.id}
-                    onClick={() => setClassSelection(item)}
-                    >{item.name}</button>)
-            })}</div>
+                <div className="classHeader">
+                    <div className="left">
+                        <div className="title">Subjects</div>
+                    </div>
+                    <div className="right">
+                        <button>+ Add Subject</button>
+                    </div>
+                </div>
+                <div className="listClasses">{classes.map((item) => {
+                    return (<div onClick={() => setClassSelection(item)} key={item.id}>
+                        <SubjectButton
+                            className="button"
+                            item={item}
+                            setClassSelection={setClassSelection}
+                        /> </div>
+                    )
+                })}</div>
+               
 
             </div>
             <div className="display">
-            {!classSelection.name && <p>Please select a class</p>}
-            {classSelection.name && <h3>{classSelection.name} {classSelection.classCode}</h3>}
+                {!classSelection.name && <p>Please select a class</p>}
+                {classSelection.name && <h3>{classSelection.name} {classSelection.classCode}</h3>}
             </div>
         </div>
     )
