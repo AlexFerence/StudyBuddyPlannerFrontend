@@ -6,7 +6,7 @@
     width: 45vw;
     height: calc(100vh - #{$navbar-height} );
     float:left;
-    border-right: 1px solid $dark;
+    border-right: 1px solid lighten($color: $grey, $amount: 20%);
 }
 .subjects .scroller .subjectButton {
     background-color: $white;
