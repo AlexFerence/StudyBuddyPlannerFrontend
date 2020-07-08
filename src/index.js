@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -7,9 +7,9 @@ import * as serviceWorker from './serviceWorker';
 //new commit
 
 ReactDOM.render(
-  <BrowserRouter>
+  <div>
     <App />
-  </BrowserRouter>,
+  </div>,
   document.getElementById('root')
 );
 
