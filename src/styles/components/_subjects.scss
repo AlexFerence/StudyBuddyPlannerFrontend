@@ -6,7 +6,6 @@
     width: 45vw;
     height: calc(100vh - #{$navbar-height} );
     float:left;
-    overflow: scroll;
     border-right: 1px solid $dark;
 }
 .subjects .scroller .subjectButton {
