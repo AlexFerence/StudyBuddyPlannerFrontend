@@ -19,13 +19,6 @@ const FormPage = (props) => {
     props.history.push("/dashboard")
   }
 
-  //TODO implement this later
-  const saveToLocalStorage = () => {
-    console.log('saving login details')
-    localStorage.setItem("email", email)
-    localStorage.setItem("password", email)
-  }
-
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -42,11 +35,8 @@ const FormPage = (props) => {
           Password: password
         })
         if (loginRes.status === 200) {
-          // TODO implement auto login later
-          //saveToLocalStorage()
           redirectToHome()
           props.dispatch(setProfile({
-            //TODO check what fields come back from res.data.email
             email,
             password,
             id: loginRes.data.id,

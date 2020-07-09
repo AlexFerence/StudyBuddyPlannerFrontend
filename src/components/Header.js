@@ -1,7 +1,7 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Header = (props) => {
     return (
