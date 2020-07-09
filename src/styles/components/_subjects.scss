@@ -101,22 +101,42 @@ h3 {
 }
 
 .subjects .display .innerDisplay .topBar {
-    width: 100%;
-    background-color: $grey;
-    padding: 15px 25px;
 }
-.subjects .display .innerDisplay h4 {
-    float: left;
-}
-.subjects .display .innerDisplay button {
-    text-align: right;
 
+.subjects .display .innerDisplay .topBar .left {
+    width: 50%;
+    float: left;
+    background-color: $grey;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.subjects .display .innerDisplay .topBar .right {
+    padding: 15px;
+    background-color: $grey;
+    width: 50%;
+    text-align: right;
+    float: left;
+    margin-bottom: 15px;
+
+}
+.subjects .display .innerDisplay .topBar .right button {
+    padding: 0;
+    border: none;
+    font-size: 19px;
+    background-color: $grey;
+    margin-right: 5px;
+}
+
+h4 {
+    margin: 0;
+    padding: none;
 }
 
 .subjects .display .innerDisplay .mainSection {
     width: 100%;
     background-color: $white;
     padding: 25px;
+    padding-top: 55px;
 }
 
 
@@ -126,4 +146,56 @@ h3 {
 
 .ReactModal__Content {
     background-color: blueviolet;
+}
+
+.module-header {
+    color: red;
+}
+
+.modal {
+    color: red;
+}
+.modal-main {
+    color: $dark-grey;
+    background-color: $white;
+    width: 100%;
+    padding: 20px;
+}
+
+.modal-main input {
+    width: 80%;
+    border: none;
+    outline: none;
+    padding-bottom: 3px;;
+    border-bottom: 1px solid black;
+}
+
+.modal-main .inp {
+    margin-bottom: 20px;
+}
+
+.modal-main label {
+    width: 100%;
+}
+
+.modal-header {
+    background-color: $dark-grey;
+    color: $white;
+    text-transform: uppercase;
+    
+}
+
+.modal-header h3 {
+    font-size: 20px;
+}
+
+.modal-main button {
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    height: 40px;
+    width: 80px;
+    border: 1px solid $dark;
+    background-color: $white;
+    color: $dark;
 }

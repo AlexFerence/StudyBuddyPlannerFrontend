@@ -3,24 +3,17 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
 import SubjectButton from './SubjectButton'
-import Modal from 'react-modal';
+import { fillSubjects } from '../actions/subjectActions'
+import { deleteSubject } from '../actions/subjectActions'
 
-import { FaTrash } from 'react-icons/fa'
+import { FaTrashAlt, FaBlackTie, FaBorderNone } from 'react-icons/fa'
+import SubjectModal from './SubjectModal'
 
-const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
-    }
-  };
 
-const SubjectsPage = (props) => {
+
+const SubjectsPage = ( props ) => {
     var [openModal, setOpenModal] = useState(false)
-    var [classes, setClasses] = useState([])
+    //var [classes, setClasses] = useState([])
     var [classSelection, setClassSelection] = useState({})
 
     useEffect(() => {
@@ -38,71 +31,44 @@ const SubjectsPage = (props) => {
                 })
                 const list = res.data
                 console.log(list)
-                setClasses(list)
 
-                if (res.status === 401) {
-                    console.log('didnt work')
-                    props.history.push("/login")
-                }
+                props.dispatch(fillSubjects(list))
             }
             catch (e) {
                 console.log(e)
-
             }
-
         }
         getClasses()
         console.log(props.id)
-
     }, [])
 
-    const deleteSubject = async (id) => {
-        try {
+    const callDelete = async (id) => {
+        try { 
             const res = await axios.delete(url + '/api/subjects/' + id,
                 {
-                headers: {
-                    'Authorization': 'bearer ' + props.token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-
+                    headers: {
+                        'Authorization': 'bearer ' + props.token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
             if (res.data === true) {
-                setClasses(classes.filter((c) => c.id !== id))
+                console.log('should delete in redux')
+                props.dispatch(deleteSubject(id))
                 setClassSelection({})
             }
-            console.log(res)
-            console.log(res.data)
         } catch (e) {
-
+            console.log(e)
         }
     }
 
-    function openModal() {
-        setOpenModal(true);
-      }
-     
-      function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-
-      }
-     
-      function closeModal(){
-        setOpenModal(false);
-      }
+    const closeModal = () => {
+        setOpenModal(false)
+    }
 
     return (
-        <div className="subjects">  
-            <Modal
-                isOpen={openModal}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-            >Hello</Modal>
-
-
-
+        <div className="subjects">
+            <SubjectModal isOpen={openModal} closeModal={closeModal} />           
             <div className="scroller">
                 <div className="classHeader">
                     <div className="left">
@@ -112,7 +78,7 @@ const SubjectsPage = (props) => {
                         <button onClick={() => setOpenModal(true)}>+ Add Subject</button>
                     </div>
                 </div>
-                <div className="listClasses">{classes.map((item) => {
+                <div className="listClasses">{props.subjects.map((item) => {
                     return (<div onClick={() => setClassSelection(item)} key={item.id}>
                         <SubjectButton
                             className="button"
@@ -128,22 +94,24 @@ const SubjectsPage = (props) => {
                 <div className="innerDisplay">
                     {classSelection.name && 
                         <div className="topBar">
-                            <h4>{classSelection.name} {classSelection.classCode}</h4>
+                            <div className="left">
+                                <h4>{classSelection.name} {classSelection.classCode}</h4>
+                            </div>
+                            <div className="right">
                             <button 
                             className="icon"
                             onClick={() => {
-                                deleteSubject(classSelection.id)
-                                //input function to delete the subject
+                                callDelete(classSelection.id)
                             }}
-                            >Delete</button>
+                            ><FaTrashAlt /></button>
+                            </div>
                         </div>
                     }
                     {classSelection.professor && 
                         <div className="mainSection">
-                            Professor: <span>{classSelection.professor}</span> <br/>
                             Credits: <span>{classSelection.credits}</span> <br/>
-                            TimeSlot: MWF 2:00 - 3:00<br/>
-                            Average Mark: B+
+                            Average Mark: B+ <br/>
+                            Professor: <span>{classSelection.professor}</span> <br/>
                         </div>}
                 </div>
             </div>
@@ -159,6 +127,7 @@ const mapStateToProps = (state) => {
         password: state.profile.password,
         token: state.profile.token,
         id: state.profile.id,
+        subjects: state.subjects
     }
 }
 

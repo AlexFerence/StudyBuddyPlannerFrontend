@@ -1,3 +1,5 @@
+import { ADD_PROFILE, SET_FIELDS } from '../actions/profileActions'
+
 const profileReducerDefaultState = {
     email: '',
     password: '',
@@ -11,11 +13,11 @@ const profileReducerDefaultState = {
 
 const profileReducer = (state = profileReducerDefaultState, action) => {
     switch(action.type) {
-        case 'ADD_PROFILE':
+        case ADD_PROFILE:
             console.log('save user!!!!!!')
             return action.profile
 
-        case 'SET_FIELDS':
+        case SET_FIELDS:
             return {
                 ...state,
                 email: action.email
