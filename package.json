@@ -13,6 +13,7 @@
     "persist": "^0.2.7",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
+    "react-countdown-circle-timer": "^2.2.2",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
     "react-icons": "^3.10.0",

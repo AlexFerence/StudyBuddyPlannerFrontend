@@ -71,18 +71,20 @@ h3 {
 .subjects .scroller .classHeader .right button {
     padding: 5px 10px;
     margin: 7.5px;
-    border: none;
-    background-color: $light-grey;
-    border: 1px solid $grey;
-    color: $dark-grey;
+
+    background-color: $white;
+    border: 1px solid $brand;
+    color: $brand;
+
+    
     border-radius: 3px;
 }
 .subjects .scroller .classHeader .right button:focus {
     outline: none;
 }
 .subjects .scroller .classHeader .right button:hover {
-    background-color: $grey;
-    border: 1px solid $grey;
+    background-color: $brand;
+    border: 1px solid $brand;
     color: $light-grey;
 }
 
@@ -106,13 +108,14 @@ h3 {
 .subjects .display .innerDisplay .topBar .left {
     width: 50%;
     float: left;
-    background-color: $grey;
+    background-color: $brand-complement;
     padding: 15px;
     margin-bottom: 15px;
+    color: $white;
 }
 .subjects .display .innerDisplay .topBar .right {
     padding: 15px;
-    background-color: $grey;
+    background-color: $brand-complement;
     width: 50%;
     text-align: right;
     float: left;
@@ -123,8 +126,9 @@ h3 {
     padding: 0;
     border: none;
     font-size: 19px;
-    background-color: $grey;
+    background-color: $brand-complement;
     margin-right: 5px;
+    color: $white;
 }
 
 h4 {
