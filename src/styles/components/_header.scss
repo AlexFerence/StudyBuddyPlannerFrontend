@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.navbar .title {
+  text-transform: none;
+}
+
 .navbar a,
 .navbar a:after,
 .navbar a:before {

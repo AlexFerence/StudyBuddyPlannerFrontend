@@ -7,9 +7,7 @@ const timerProps = {
   isPlaying: true,
   size: 300,
   strokeWidth: 6,
-  duration: 0,
-  
-
+  duration: 0
 };
 
 export default function App() {

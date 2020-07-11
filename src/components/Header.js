@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 const Header = (props) => {
     return (
         <Navbar expand="lg">
-            <Navbar.Brand href="/">Planner</Navbar.Brand>
+            <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
             { props.isAuth && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" /> }
             <Navbar.Collapse id="">
                 <Nav className="mr-auto">
