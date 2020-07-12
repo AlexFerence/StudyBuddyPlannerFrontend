@@ -36,7 +36,7 @@ const SubjectModal = (props,) => {
                     "ClassCode": classCode,
                     "Description": description.trim(),
                     "Professor": professor.trim(),
-                    "Credits": 3,
+                    "Credits": credits,
                     "UserId": props.id
                 },
                 {
@@ -85,7 +85,11 @@ const SubjectModal = (props,) => {
                         required
                         type="text"
                         value={subTitle}
-                        onChange={(e) => setSubTitle(e.target.value)}
+                        onChange={(e) => {
+                            if (e.target.value.length < 5) {
+                                setSubTitle(e.target.value)
+                            }
+                        }}
                     ></input>
                 </div>
                 <div className="inp">
@@ -95,7 +99,7 @@ const SubjectModal = (props,) => {
                         type="text"
                         value={classCode}
                         onChange={(e) => {
-                            if (!isNaN(e.target.value) && e.target.value < 999999) {
+                            if (!isNaN(e.target.value) && e.target.value < 9999) {
                                 setClassCode(e.target.value)
                             }
                         }

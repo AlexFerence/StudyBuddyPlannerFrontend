@@ -129,6 +129,10 @@ h3 {
     background-color: $brand-complement;
     margin-right: 5px;
     color: $white;
+    margin-right: 5px;
+}
+.subjects .display .innerDisplay .topBar .right button:focus {
+    outline: none;
 }
 
 h4 {
@@ -202,4 +206,5 @@ h4 {
     border: 1px solid $dark;
     background-color: $white;
     color: $dark;
+
 }

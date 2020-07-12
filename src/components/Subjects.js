@@ -6,17 +6,23 @@ import SubjectButton from './SubjectButton'
 import { fillSubjects } from '../actions/subjectActions'
 import { deleteSubject } from '../actions/subjectActions'
 
-import { FaTrashAlt, FaBlackTie, FaBorderNone } from 'react-icons/fa'
+import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import SubjectModal from './SubjectModal'
 
 
 
-const SubjectsPage = ( props ) => {
+const SubjectsPage = (props) => {
     var [openModal, setOpenModal] = useState(false)
     //var [classes, setClasses] = useState([])
     var [classSelection, setClassSelection] = useState({})
+    var [newChanges, setNewChanges] = useState({})
+
+    var [editMode, setEditMode] = useState(false)
+
+    
 
     useEffect(() => {
+
         const getClasses = async () => {
             try {
                 const res = await axios.post(url + '/api/subjects/list',
@@ -31,10 +37,11 @@ const SubjectsPage = ( props ) => {
                 })
                 const list = res.data
                 console.log(list)
-
+    
                 props.dispatch(fillSubjects(list))
             }
             catch (e) {
+                console.log('caught errors')
                 console.log(e)
             }
         }
@@ -66,6 +73,40 @@ const SubjectsPage = ( props ) => {
         setOpenModal(false)
     }
 
+    const submitEdits = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.put(url + '/api/subjects/' + classSelection.id,
+                {
+                    "Name": classSelection.name.toUpperCase().trim(),
+                    "ClassCode": classSelection.classCode,
+                    "Description": classSelection.description.trim(),
+                    "Professor": classSelection.professor.trim(),
+                    "Credits": classSelection.credits,
+                    "UserId": props.id
+                },
+                {
+                    headers: {
+                        'Authorization': 'bearer ' + props.token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+            if (res.status == 200) {
+                //getClasses()
+                setEditMode(false)
+            }
+            
+
+        } catch (e) {
+            console.log(e)
+        }
+        // axios post to edit
+        // reset redux
+        // turn off editing mode
+    }
+
     return (
         <div className="subjects">
             <SubjectModal isOpen={openModal} closeModal={closeModal} />           
@@ -90,29 +131,75 @@ const SubjectsPage = ( props ) => {
 
             </div>
             <div className="display">
-                {!classSelection.name && <p>Please select a class</p>}
+                {!classSelection.id && <p>Please select a class</p>}
                 <div className="innerDisplay">
-                    {classSelection.name && 
+                    { (classSelection.id) && 
                         <div className="topBar">
                             <div className="left">
-                                <h4>{classSelection.name} {classSelection.classCode}</h4>
+                                { !editMode && <h4>{classSelection.name} {classSelection.classCode}</h4> }
+                                { editMode && <h4>EDIT</h4>}
                             </div>
                             <div className="right">
+                            <button 
+                            className="icon"
+                            onClick={() => {
+                                setEditMode(!editMode)
+                            }}
+                            ><FaEdit /></button>
                             <button 
                             className="icon"
                             onClick={() => {
                                 callDelete(classSelection.id)
                             }}
                             ><FaTrashAlt /></button>
+                            
                             </div>
                         </div>
                     }
-                    {classSelection.professor && 
+                    {classSelection.id && !editMode &&
                         <div className="mainSection">
                             Credits: <span>{classSelection.credits}</span> <br/>
-                            Average Mark: B+ <br/>
                             Professor: <span>{classSelection.professor}</span> <br/>
-                        </div>}
+                            Description: <span>{classSelection.description}</span> <br/>
+                            
+                        </div>
+                    }
+                    {( classSelection.id) && editMode && 
+                        <div className="mainSection">
+                            <form onSubmit={submitEdits}>
+                                Name: <input 
+                                    type="text" 
+                                    value={classSelection.name}
+                                    onChange={(e) => {
+                                        if (true) {
+                                            setClassSelection({...classSelection, name: e.target.value.toUpperCase()})
+                                        }
+                                        }} 
+                                    /> <br/>
+                                Class Code: <input type="text" value={classSelection.classCode} 
+                                onChange={(e) => {
+                                    if (!isNaN(e.target.value) && e.target.value < 999) {
+                                        setClassSelection({...classSelection, classCode: e.target.value})
+                                    }}}
+                                /> <br/>
+                                Description: <input type="text" value={classSelection.description} 
+                                    onChange={(e) => setClassSelection({...classSelection, description: e.target.value})}
+                                /> <br/>
+                                Prof: <input type="text" value={classSelection.professor} 
+                                    onChange={(e) => {
+                                        setClassSelection({...classSelection, professor: e.target.value })
+                                    }} /> <br />
+                                Credits: <input type="text" value={classSelection.credits}
+                                    onChange={(e) => {
+                                        if (!isNaN(e.target.value) && e.target.value < 10) {
+                                            setClassSelection({...classSelection, credits: e.target.value })
+                                        }
+                                    }} /> 
+                                    <br />
+                                <button>Submit</button>
+                            </form>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

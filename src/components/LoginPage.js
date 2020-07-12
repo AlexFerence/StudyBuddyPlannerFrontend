@@ -41,11 +41,12 @@ const LoginPage = (props) => {
                     isAuth: true
                 }))
             }
+
         } catch (e) {
             console.log(e)
         }
     }
-
+    
     return (
         <div className="container">
             <form onSubmit={onSubmit}>
