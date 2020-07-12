@@ -1,11 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import url from '../environment/url'
 import { connect } from 'react-redux'
 import { fillTasks } from '../actions/taskActions'
 import TaskList from './TaskList'
+import TaskModal from './TaskModal'
 
 const TasksPage = (props) => {
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const setOpenModal = () => {
+        setIsOpen(true)
+    }
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
     const loadTasks = async () => {
         try {
             console.log('getting tasks')
@@ -36,8 +48,9 @@ const TasksPage = (props) => {
 
     return (
         <div className="tasks">
+            <TaskModal isOpen={isOpen} closeModal={closeModal} />
             <div className="scroller">
-                <TaskList tasks={props.tasks} />
+                <TaskList tasks={props.tasks} setOpenModal={setOpenModal} />
             </div>
             <div className="main-right">there</div>
         </div>

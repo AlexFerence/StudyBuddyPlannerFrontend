@@ -54,7 +54,10 @@
 .bottom-bar {
     display: flex;
     justify-content: space-between;
-
+}
+.due {
+    font-size: 12px;
+    color: $grey-text;
 }
 
 

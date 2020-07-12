@@ -19,8 +19,7 @@ const customStyles = {
     }
 };
 
-const SubjectModal = (props,) => {
-
+const SubjectModal = (props) => {
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')
     const [professor, setProfessor] = useState('')
