@@ -16,7 +16,6 @@ const SubjectsPage = (props) => {
     //var [classes, setClasses] = useState([])
     var [classSelection, setClassSelection] = useState({})
     var [newChanges, setNewChanges] = useState({})
-
     var [editMode, setEditMode] = useState(false)
 
     

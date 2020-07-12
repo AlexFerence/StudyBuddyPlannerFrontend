@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 const customStyles = {
     content: {
-        top: '35%',
+        top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',

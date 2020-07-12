@@ -13,3 +13,98 @@
     float:left;
     padding: 25px;
 }
+
+.tasks .scroller {
+    background-color: $white;
+    width: 45vw;
+    height: calc(100vh - #{$navbar-height} );
+    float:left;
+    border-right: 1px solid lighten($color: $grey, $amount: 20%);
+}
+
+.tasks .scroller .task-button {
+    background-color: $white;
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    border: none;
+    border-left: 5px solid $grey;
+    border-bottom: .1px solid lighten($color: $grey, $amount: 20%);
+    display: inline-block;
+}
+.tasks .scroller .task-button:hover {
+    background-color: $light-grey;
+}
+
+.tasks .scroller .task-button .subjTitle {
+    color: $dark-grey;
+    //width: 100%;
+}
+
+.tasks .scroller .task-button .subjDesc {
+    //width: 100%;
+    font-size: 12px;
+    color: $grey-text;
+}
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+
+}
+.bottom-bar {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+.tasks .scroller .classHeader {
+    width: 100%;
+    
+}
+
+.tasks .scroller .classHeader .left {
+    width: 50%;
+    background-color: $light-grey;
+    float: left;
+    border-bottom: .1px solid lighten($color: $grey, $amount: 20%);
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.tasks .scroller .classHeader .title {
+    padding: 5px 10px;
+    margin: 7.5px;
+    border: none;
+    color: $dark-grey;
+    border-radius: 3px;
+}
+
+.tasks .scroller .classHeader .right {
+    margin-bottom: 5px;
+    width: 50%;
+    background-color: $light-grey;
+    float: left;
+    border-bottom: .1px solid lighten($color: $grey, $amount: 20%);
+    text-align: right;
+}
+.tasks .scroller .classHeader .right button {
+    padding: 5px 10px;
+    margin: 7.5px;
+
+    background-color: $white;
+    border: 1px solid $brand;
+    color: $brand;
+
+    
+    border-radius: 3px;
+}
+.tasks .scroller .classHeader .right button:focus {
+    outline: none;
+}
+.tasks .scroller .classHeader .right button:hover {
+    background-color: $brand;
+    border: 1px solid $brand;
+    color: $light-grey;
+}

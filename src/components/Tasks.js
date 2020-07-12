@@ -3,12 +3,9 @@ import axios from 'axios'
 import url from '../environment/url'
 import { connect } from 'react-redux'
 import { fillTasks } from '../actions/taskActions'
+import TaskList from './TaskList'
 
 const TasksPage = (props) => {
-
-    
-
-
     const loadTasks = async () => {
         try {
             console.log('getting tasks')
@@ -39,12 +36,8 @@ const TasksPage = (props) => {
 
     return (
         <div className="tasks">
-            <div className="main-left">
-                {
-                    props.tasks.map((t) => (
-                        <p>{t.description}</p>
-                    ))
-                }
+            <div className="scroller">
+                <TaskList tasks={props.tasks} />
             </div>
             <div className="main-right">there</div>
         </div>
