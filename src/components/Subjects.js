@@ -20,31 +20,30 @@ const SubjectsPage = (props) => {
     var [editMode, setEditMode] = useState(false)
 
     
+    const getClasses = async () => {
+        try {
+            const res = await axios.post(url + '/api/subjects/list',
+                {
+                    UserId: props.id
+                }, {
+                headers: {
+                    'Authorization': 'bearer ' + props.token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            const list = res.data
+            console.log(list)
+
+            props.dispatch(fillSubjects(list))
+        }
+        catch (e) {
+            console.log('caught errors')
+            console.log(e)
+        }
+    }
 
     useEffect(() => {
-
-        const getClasses = async () => {
-            try {
-                const res = await axios.post(url + '/api/subjects/list',
-                    {
-                        UserId: props.id
-                    }, {
-                    headers: {
-                        'Authorization': 'bearer ' + props.token,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                const list = res.data
-                console.log(list)
-    
-                props.dispatch(fillSubjects(list))
-            }
-            catch (e) {
-                console.log('caught errors')
-                console.log(e)
-            }
-        }
         getClasses()
         console.log(props.id)
     }, [])
@@ -78,11 +77,11 @@ const SubjectsPage = (props) => {
         try {
             const res = await axios.put(url + '/api/subjects/' + classSelection.id,
                 {
-                    "Name": classSelection.name.toUpperCase().trim(),
-                    "ClassCode": classSelection.classCode,
-                    "Description": classSelection.description.trim(),
-                    "Professor": classSelection.professor.trim(),
-                    "Credits": classSelection.credits,
+                    "Name": newChanges.name.toUpperCase().trim(),
+                    "ClassCode": newChanges.classCode,
+                    "Description": newChanges.description.trim(),
+                    "Professor": newChanges.professor.trim(),
+                    "Credits": newChanges.credits,
                     "UserId": props.id
                 },
                 {
@@ -93,10 +92,13 @@ const SubjectsPage = (props) => {
                     }
                 }
             )
-            if (res.status == 200) {
-                //getClasses()
-                setEditMode(false)
+            if (res.status === 200) {
+                setClassSelection(newChanges)
             }
+
+            setEditMode(false)
+            getClasses()
+            
             
 
         } catch (e) {
@@ -120,7 +122,10 @@ const SubjectsPage = (props) => {
                     </div>
                 </div>
                 <div className="listClasses">{props.subjects.map((item) => {
-                    return (<div onClick={() => setClassSelection(item)} key={item.id}>
+                    return (<div onClick={() => {
+                        setEditMode(false)
+                        setClassSelection(item)
+                    }} key={item.id}>
                         <SubjectButton
                             className="button"
                             item={item}
@@ -144,6 +149,7 @@ const SubjectsPage = (props) => {
                             className="icon"
                             onClick={() => {
                                 setEditMode(!editMode)
+                                setNewChanges(classSelection)
                             }}
                             ><FaEdit /></button>
                             <button 
@@ -166,37 +172,37 @@ const SubjectsPage = (props) => {
                     }
                     {( classSelection.id) && editMode && 
                         <div className="mainSection">
-                            <form onSubmit={submitEdits}>
+                            <form className="edits" onSubmit={submitEdits}>
                                 Name: <input 
                                     type="text" 
-                                    value={classSelection.name}
+                                    value={newChanges.name}
                                     onChange={(e) => {
                                         if (true) {
-                                            setClassSelection({...classSelection, name: e.target.value.toUpperCase()})
+                                            setNewChanges({...newChanges, name: e.target.value.toUpperCase()})
                                         }
                                         }} 
                                     /> <br/>
-                                Class Code: <input type="text" value={classSelection.classCode} 
+                                Class Code: <input type="text" value={newChanges.classCode} 
                                 onChange={(e) => {
                                     if (!isNaN(e.target.value) && e.target.value < 999) {
-                                        setClassSelection({...classSelection, classCode: e.target.value})
+                                        setNewChanges({...newChanges, classCode: e.target.value})
                                     }}}
                                 /> <br/>
-                                Description: <input type="text" value={classSelection.description} 
-                                    onChange={(e) => setClassSelection({...classSelection, description: e.target.value})}
+                                Description: <input type="text" value={newChanges.description} 
+                                    onChange={(e) => setNewChanges({...newChanges, description: e.target.value})}
                                 /> <br/>
-                                Prof: <input type="text" value={classSelection.professor} 
+                                Prof: <input type="text" value={newChanges.professor} 
                                     onChange={(e) => {
-                                        setClassSelection({...classSelection, professor: e.target.value })
+                                        setNewChanges({...newChanges, professor: e.target.value })
                                     }} /> <br />
-                                Credits: <input type="text" value={classSelection.credits}
+                                Credits: <input type="text" value={newChanges.credits}
                                     onChange={(e) => {
                                         if (!isNaN(e.target.value) && e.target.value < 10) {
-                                            setClassSelection({...classSelection, credits: e.target.value })
+                                            setNewChanges({...newChanges, credits: e.target.value })
                                         }
                                     }} /> 
                                     <br />
-                                <button>Submit</button>
+                                <button className="button">Submit</button>
                             </form>
                         </div>
                     }
