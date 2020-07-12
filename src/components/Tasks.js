@@ -4,18 +4,20 @@ import url from '../environment/url'
 import { connect } from 'react-redux'
 import { fillTasks } from '../actions/taskActions'
 import TaskList from './TaskList'
-import TaskModal from './TaskModal'
+import AddTask from './AddTask'
 
 const TasksPage = (props) => {
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [currentTask, setCurrentTask] = useState({})
 
-    const setOpenModal = () => {
-        setIsOpen(true)
+    const [isAddingTask, setIsAddingTask] = useState(false)
+
+    const turnOnAdding = () => {
+        setIsAddingTask(true)
     }
-
-    const closeModal = () => {
-        setIsOpen(false)
+    
+    const turnOffAdding = () => {
+        setIsAddingTask(false)
     }
 
     const loadTasks = async () => {
@@ -48,11 +50,12 @@ const TasksPage = (props) => {
 
     return (
         <div className="tasks">
-            <TaskModal isOpen={isOpen} closeModal={closeModal} />
             <div className="scroller">
-                <TaskList tasks={props.tasks} setOpenModal={setOpenModal} />
+                <TaskList tasks={props.tasks} turnOnAdding={turnOnAdding} />
             </div>
-            <div className="main-right">there</div>
+            <div className="main-right">
+            { isAddingTask && <AddTask turnOffAdding={turnOffAdding} /> }
+            </div>
         </div>
     )
 }

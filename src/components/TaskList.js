@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const TaskList = ({ tasks, subjects, setOpenModal}) => {
+const TaskList = ({ tasks, subjects, turnOnAdding }) => {
 
     const getClassName = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
@@ -20,7 +20,7 @@ const TaskList = ({ tasks, subjects, setOpenModal}) => {
                         <div className="title">Tasks</div>
                     </div>
                     <div className="right">
-                        <button onClick={setOpenModal}>+ Add Task</button>
+                        <button onClick={turnOnAdding}>+ Add Task</button>
                     </div>
                 </div>
             {
