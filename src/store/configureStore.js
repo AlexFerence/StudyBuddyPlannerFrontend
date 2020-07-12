@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from 'redux'
 import profileReducer from '../reducers/profileReducer'
 import subjectReducer from '../reducers/subjectReducer'
+import taskReducer from '../reducers/taskReducer'
 
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
@@ -8,7 +9,8 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 
 const reducers = {
     profile: profileReducer,
-    subjects: subjectReducer
+    subjects: subjectReducer,
+    tasks: taskReducer
 };
 
 const persistConfig ={

@@ -33,7 +33,6 @@ const SubjectsPage = (props) => {
                 }
             })
             const list = res.data
-            console.log(list)
 
             props.dispatch(fillSubjects(list))
         }
@@ -45,7 +44,6 @@ const SubjectsPage = (props) => {
 
     useEffect(() => {
         getClasses()
-        console.log(props.id)
     }, [])
 
     const callDelete = async (id) => {
@@ -214,10 +212,6 @@ const SubjectsPage = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        firstName: state.profile.firstName,
-        lastName: state.profile.lastName,
-        email: state.profile.email,
-        password: state.profile.password,
         token: state.profile.token,
         id: state.profile.id,
         subjects: state.subjects

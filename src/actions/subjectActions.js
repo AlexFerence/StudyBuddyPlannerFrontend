@@ -15,3 +15,9 @@ export const fillSubjects = (subjects) => ({
     type: FILL_SUBJECTS,
     subjects
 })
+
+export const FIND_SUBJECTS = 'FIND_SUBJECT'
+export const findSubject = (subjects) => ({
+    type: FILL_SUBJECTS,
+    subjects
+})
