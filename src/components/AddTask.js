@@ -30,7 +30,6 @@ const TaskModal = ({ subjects, turnOffAdding }) => {
             subjectID: currentSubjectID,
 
         })
-
         // TODO
         // ADD DUE DATE
     }

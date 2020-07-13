@@ -2,6 +2,8 @@ import React from 'react'
 import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { FaTachometerAlt, FaCheckSquare, FaChalkboard, FaCog } from 'react-icons/fa'
+
 
 const Header = (props) => {
     return (
@@ -12,12 +14,10 @@ const Header = (props) => {
                 <Nav className="mr-auto">
                 </Nav>
                 <Nav inline="true">
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/dashboard">Dashboard</NavLink> } 
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/calendar">Calendar</NavLink>}
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/tasks">Tasks</NavLink> }
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/subjects">Subjects</NavLink> }
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/analytics">Analytics</NavLink> }
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/settings">Settings</NavLink> }
+                { props.isAuth && <NavLink style={{padding: 5 }} to="/dashboard"><FaTachometerAlt /></NavLink> } 
+                { props.isAuth && <NavLink style={{padding: 5 }} to="/tasks"><FaCheckSquare /></NavLink> }
+                { props.isAuth && <NavLink style={{padding: 5 }} to="/subjects"><FaChalkboard /></NavLink> }
+                { props.isAuth && <NavLink style={{padding: 5 }} to="/settings"><FaCog /></NavLink> }
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
