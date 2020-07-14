@@ -156,7 +156,6 @@ const SubjectsPage = (props) => {
 
             </div>
             <div className="display">
-                <h1>Hello</h1>
                 {!classSelection.id && <p>Please select a class</p>}
                 <div className="innerDisplay">
                     { classSelection.id && 
