@@ -144,6 +144,7 @@ const SubjectsPage = (props) => {
                         setClassSelection(item)
                         console.log('clicked')
                         console.log(item)
+                        console.log(classSelection)
                     }} key={item.id}>
                         <SubjectButton
                             className="button"
@@ -155,9 +156,10 @@ const SubjectsPage = (props) => {
 
             </div>
             <div className="display">
+                <h1>Hello</h1>
                 {!classSelection.id && <p>Please select a class</p>}
                 <div className="innerDisplay">
-                    { (classSelection.id) && 
+                    { classSelection.id && 
                         <div className="topBar">
                             <div className="left">
                                 { !editMode && <h4>{classSelection.name} {classSelection.classCode}</h4> }
