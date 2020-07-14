@@ -43,7 +43,6 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
                             </div>
                         </div>
                     )
-
                 })
 
             }
