@@ -24,7 +24,10 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
         <div className="task-list">
             <div className="classHeader">
                     <div className="left">
-                        <div className="title">Tasks</div>
+                        <div className="title">
+                        Tasks
+                        
+                        </div>
                     </div>
                     <div className="right">
                         <button onClick={() => {

@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+import axios from 'axios'
+import url from '../environment/url'
+import { connect } from 'react-redux'
 
-const TaskEdit = ({ currentTaskCopy }) => {
+const TaskEdit = ({ currentTaskCopy, token, id }) => {
 
     const [title, setTitle ] = useState(currentTaskCopy.title)
     const [description, setDescription ] = useState(currentTaskCopy.description)
@@ -14,13 +17,42 @@ const TaskEdit = ({ currentTaskCopy }) => {
     const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
     const [calendarFocused, setCalendarFocused] = useState(null)
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+
+        try {
+            const res = axios.post(url + '/api/Tasks/' + currentTaskCopy.id, {
+                ...currentTaskCopy,
+                title,
+                description,
+                className,
+                taskType,
+                isDone
+            }, {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+            )
+        } catch (e) {
+            console.log(e)
+        }
+
+        //make update axios call
+        //turn off editing
+        //set current slection to the response from http
+
+    }
+
     return (
         <div className="edit-task">
             <div className="edit-task-header">
             <h4>Edit Task</h4>
             </div>
             <div className="edit-task-body">
-                <form>
+                <form onSubmit={onSubmit}>
 
                     {/* TITLE */}
 
@@ -29,7 +61,7 @@ const TaskEdit = ({ currentTaskCopy }) => {
                     value={title} 
                     onChange={(e) => {
                         setTitle(e.target.value)
-                    }} />
+                    }} /> <br />
 
                     {/* NOTES */}
 
@@ -64,8 +96,15 @@ const TaskEdit = ({ currentTaskCopy }) => {
                         <option value="Test">Test</option>
                         <option value="Exam">Exam</option>
                     </select><br />
-                    
 
+                    {/* TASK TYPE */}
+                    Is Completed: <input 
+                    type="checkbox"
+                    checked={isDone}
+                    onChange={() => {
+                        setIsDone(!isDone)
+                    }}
+                    /><br />
 
                     <button type="submit">Submit</button>
                     <button>Cancel</button>
@@ -75,4 +114,13 @@ const TaskEdit = ({ currentTaskCopy }) => {
     )
 }
 
-export default TaskEdit
+const mapStateToProps = (state) => {
+    return {
+        tasks: state.tasks,
+        token: state.profile.token,
+        id: state.profile.id,
+        subjects: state.subjects
+    }
+}
+
+export default connect(mapStateToProps)(TaskEdit)
