@@ -48,6 +48,7 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                 })
 
                 loadTasks()
+                turnOffAdding()
 
 
         } catch (e) {

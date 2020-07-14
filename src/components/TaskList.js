@@ -35,7 +35,7 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
                         }} className="task-button" key={t.id}>
                             <div className="top-bar">
                                 <div className="subjTitle">{t.title}</div>
-                                <div className="due">Jan 2</div>
+                                <div className="due">{t.dueDate}</div>
                             </div>
                             <div className="bottom-bar">
                                 <div className="subjDesc">{getClassName(t.subjectId)}</div>
