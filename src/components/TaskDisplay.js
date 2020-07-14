@@ -12,9 +12,11 @@ const timerProps = {
 const TaskDisplay = ({ task, subjects }) => {
 
     const [isPlaying, setIsPlaying] = useState(false)
+    const [pomOn, setPomOn] = useState(true)
 
     const startTime = Date.now() / 1000; // use UNIX timestamp in seconds
-    const endTime = startTime + 243240; // use UNIX timestamp in seconds
+    const endTime = startTime + 2432401; // use UNIX timestamp in seconds
+
     const remainingTime = endTime - startTime;
 
     return (
@@ -26,13 +28,17 @@ const TaskDisplay = ({ task, subjects }) => {
             </div>
             <div className="display-task-body">
                 
-                <h3>Add Time</h3>
-                Input Type: <select disabled={isPlaying}>
-                    <option>Pomodoro Timer</option>
-                    <option>Log Time</option>
+                <h5>Add Time:</h5>
+                Input Type: <select
+                onChange={(e) => setPomOn(e.target.value)}
+                disabled={isPlaying}>
+                    <option value={true}>Pomodoro Timer</option>
+                    <option value={true}>Log Time</option>
                 </select>
                 <span>  --- </span>
-                 Minutes: <select disabled={isPlaying}>
+                 Minutes: <select
+                 hidden={!pomOn} 
+                 disabled={isPlaying}>
                     <option value={15}>15</option>
                     <option value={20}>20</option>
                     <option value={25}>25</option>
@@ -49,13 +55,13 @@ const TaskDisplay = ({ task, subjects }) => {
                 
                 <br />
 
-                <div>
+                <div className="timer">
                     <CountdownCircleTimer
                         {...timerProps}
-                        colors={[["#555555"]]}
+                        colors={[["#A30000"]]}
                         duration={minuteSeconds}
                         isPlaying={isPlaying}
-                        initialRemainingTime={60 - (remainingTime % minuteSeconds)}
+                        initialRemainingTime={60}
                         onComplete={() => {
                             //totalElapsedTime => [remainingTime - totalElapsedTime > 0]
                             console.log('finished')
@@ -66,20 +72,20 @@ const TaskDisplay = ({ task, subjects }) => {
                             ({ elapsedTime }) => <h3>{parseInt(elapsedTime)}</h3>
                         }
                     </CountdownCircleTimer>
-                    {
-                        isPlaying ?
-                        <button onClick={() => setIsPlaying(!isPlaying)}>
-                            Pause
-                        </button>
-                        :
-                        <button onClick={() => setIsPlaying(!isPlaying)}>
-                            Start
-                        </button>
-
-
-                    }
-
-                    <p>- {task.description}</p>
+                    
+                </div>
+                <div>
+                {
+                    isPlaying ?
+                    <button onClick={() => setIsPlaying(!isPlaying)}>
+                        Pause
+                    </button>
+                    :
+                    <button onClick={() => setIsPlaying(!isPlaying)}>
+                        Start
+                    </button>
+                }
+                <p>- {task.description}</p>
                 </div>
             </div>
         </div>
