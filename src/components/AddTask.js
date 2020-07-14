@@ -20,8 +20,6 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
         if (subjects[0]) {
             setCurrentSubjectID(subjects[0].id)
         }
-
-
     },[])
 
     const onSubmit = async (e) => {

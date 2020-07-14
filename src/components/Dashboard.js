@@ -18,24 +18,6 @@ export default function App() {
 
   return (
     <div className="App">
-      <CountdownCircleTimer
-        {...timerProps}
-        colors={[["#218380"]]}
-        duration={minuteSeconds}
-        colors={[[ '#FB275D' ]]}
-        
-
-        initialRemainingTime={ 60- (remainingTime % minuteSeconds)}
-        onComplete={() => {
-            //totalElapsedTime => [remainingTime - totalElapsedTime > 0]
-            console.log('finished')
-
-        } }
-      >
-        {
-            ({ elapsedTime }) => <h3>{parseInt(elapsedTime)}</h3>
-        }
-      </CountdownCircleTimer>
     </div>
   );
 }

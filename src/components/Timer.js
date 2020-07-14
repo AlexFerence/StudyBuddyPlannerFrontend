@@ -1,0 +1,75 @@
+import React, { useState, useEffect, useRef } from "react";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+
+function Counter() {
+    const [count, setCount] = useState(0);
+    const [delay, setDelay] = useState(1000);
+    const [isRunning, setIsRunning] = useState(false);
+    const [interval, setInterval] = useState(10)
+
+    useInterval(() => {
+        // Your custom logic here
+        setCount(count + 1);
+        console.log(interval)
+
+        if (percent >= 1) {
+            setIsRunning(false)
+        }
+
+    }, isRunning ? delay : null);
+
+    var percent = count / interval
+
+    const resetCount = () => {
+        setCount(0)
+        setIsRunning(false)
+    }
+
+    const startTimer = () => {
+        setIsRunning(true)
+    }
+
+    function handleIsRunningChange(e) {
+        setIsRunning(e.target.checked);
+    }
+
+    return (
+        <div>
+            <h1>{count}</h1>
+            <input type="checkbox" checked={isRunning} onChange={handleIsRunningChange} /> Running
+            <CircularProgressbar
+                value={ percent * 100 }
+                text={`${(interval - count) > 0 ? interval-count : 0 }`}
+                styles={buildStyles({
+                    pathTransitionDuration: 0.15,
+                    strokeLinecap: "butt"
+                })}
+            />
+            <button onClick={resetCount}>Reset</button>
+            <button onClick={startTimer}>Start</button>
+
+        </div>
+    );
+}
+
+function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    // Remember the latest function.
+    useEffect(() => {
+        savedCallback.current = callback;
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+        function tick() {
+            savedCallback.current();
+        }
+        if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+        }
+    }, [delay]);
+}
+
+export default Counter

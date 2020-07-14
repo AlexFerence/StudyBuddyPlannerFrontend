@@ -5,37 +5,50 @@ import axios from 'axios'
 import url from '../environment/url'
 import { connect } from 'react-redux'
 
-const TaskEdit = ({ currentTaskCopy, token, id }) => {
+const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask }) => {
 
     const [title, setTitle ] = useState(currentTaskCopy.title)
     const [description, setDescription ] = useState(currentTaskCopy.description)
-
-    const [className, setClassName] = useState(currentTaskCopy.className)
+    const [subjectID, setSubjectID] = useState(currentTaskCopy.className)
     const [taskType, setTaskType] = useState(currentTaskCopy.taskType)
     const [isDone, setIsDone] = useState(currentTaskCopy.isDone)
-
     const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
     const [calendarFocused, setCalendarFocused] = useState(null)
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
 
         try {
-            const res = axios.post(url + '/api/Tasks/' + currentTaskCopy.id, {
+            const res = await axios.put(url + '/api/Tasks/' + currentTaskCopy.id, {
                 ...currentTaskCopy,
                 title,
                 description,
-                className,
+                subjectID,
                 taskType,
-                isDone
+                dueDate: selectedDate,
+                isDone: isDone ? 1 : 0
             }, {
                 headers: {
                     'Authorization': 'bearer ' + token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
+            })
+
+            if (res.status === 200) {
+                setCurrentTask({
+                    ...currentTaskCopy,
+                title,
+                description,
+                subjectID,
+                taskType,
+                isDone: isDone ? 1 : 0
+                })
+                loadTasks()
+                setIsEditing(false)
+
             }
-            )
+
         } catch (e) {
             console.log(e)
         }
@@ -66,7 +79,7 @@ const TaskEdit = ({ currentTaskCopy, token, id }) => {
                     {/* NOTES */}
 
                     <label>Notes: </label>
-                    <input onChange={(e) => {
+                    <input value={description} onChange={(e) => {
                         setDescription(e.target.value)
                     }} />
 
@@ -85,10 +98,19 @@ const TaskEdit = ({ currentTaskCopy, token, id }) => {
                     />
 
                     {/* TASK TYPE */}
-                    
-                    <label>Task Type:</label>
-                    <select name="choose type" required onChange={(e) => {
-                        console.log(e.target.value)
+
+                    <label>Class Type</label>
+                    <select required onChange={(e) => setSubjectID(e.target.value) }>
+                        {
+                            subjects.map((subject) => {
+                                return (<option value={subject.id} key={subject.id}>{subject.name} {subject.classCode}</option>)
+                            })
+                        }
+                    </select>
+
+                    {/* COMPLETED CHECKBOX */}
+
+                    <select onChange={(e) => {
                         setTaskType(e.target.value)
                     }}> 
                         <option value="Assignment">Assignment</option>
@@ -97,7 +119,9 @@ const TaskEdit = ({ currentTaskCopy, token, id }) => {
                         <option value="Exam">Exam</option>
                     </select><br />
 
-                    {/* TASK TYPE */}
+
+                    {/* COMPLETED CHECKBOX */}
+
                     Is Completed: <input 
                     type="checkbox"
                     checked={isDone}
