@@ -9,7 +9,7 @@ const timerProps = {
     duration: 0
 };
 
-const TaskDisplay = ({ task, subjects }) => {
+const TaskDisplay = ({ task, subjects, turnOnEditing }) => {
 
     const [isPlaying, setIsPlaying] = useState(false)
     const [pomOn, setPomOn] = useState(true)
@@ -24,10 +24,15 @@ const TaskDisplay = ({ task, subjects }) => {
             <div className="display-task-header">
                 <span>{task.title}</span>
                 <div>
+                    <button 
+                    className="edit"
+                    onClick={() => {
+                        turnOnEditing()
+                    }}
+                    >Edit</button>
                 </div>
             </div>
             <div className="display-task-body">
-                
                 <h5>Add Time:</h5>
                 Input Type: <select
                 onChange={(e) => setPomOn(e.target.value)}

@@ -54,6 +54,7 @@
 .bottom-bar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .due {
     font-size: 12px;
@@ -111,3 +112,27 @@
     border: 1px solid $brand;
     color: $light-grey;
 }
+
+.tasks .scroller .task-button .bottom-bar button {
+    background-color:$light-grey;
+    outline: none;
+    padding: 0px 4px;
+    border: 1px solid lighten($color: $grey, $amount: 15);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.tasks .scroller .task-button .bottom-bar svg {
+    color: $grey;
+}
+
+.tasks .scroller .task-button .bottom-bar button:hover {
+    background-color: $green;
+    transition: 0.5s;
+    color: white;
+    border: 1px solid $green;
+    svg {
+        color: white;
+    }
+}
+

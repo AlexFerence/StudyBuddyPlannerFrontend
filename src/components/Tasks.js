@@ -6,13 +6,24 @@ import { fillTasks } from '../actions/taskActions'
 import TaskList from './TaskList'
 import AddTask from './AddTask'
 import TaskDisplay from './TaskDisplay'
+import TaskEdit from './TaskEdit'
+
+var currentTaskCopy = {}
 
 const TasksPage = (props) => {
     const [currentTask, setCurrentTask] = useState({})
     const [isAddingTask, setIsAddingTask] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
+
+    const turnOnEditing = () => {
+        currentTaskCopy = currentTask
+        setCurrentTask({})
+        setIsEditing(true)
+    }
 
     const turnOnAdding = () => {
         setIsAddingTask(true)
+        setIsEditing(false)
     }
     
     const turnOffAdding = () => {
@@ -54,11 +65,13 @@ const TasksPage = (props) => {
                 turnOnAdding={turnOnAdding} 
                 setIsAddingTask={setIsAddingTask}
                 setCurrentT={setCurrentTask}
+                setIsEditing={setIsEditing}
                 />
             </div>
             <div className="main-right">
             { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
-            { currentTask.id && <TaskDisplay task={currentTask} />}
+            { currentTask.id && <TaskDisplay task={currentTask} turnOnEditing={turnOnEditing} />}
+            { isEditing && <TaskEdit currentTaskCopy={currentTaskCopy} />}
             </div>
         </div>
     )
