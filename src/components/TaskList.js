@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const TaskList = ({ tasks, subjects, turnOnAdding }) => {
+const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTask, setCurrentT }) => {
 
     const getClassName = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
@@ -20,15 +20,21 @@ const TaskList = ({ tasks, subjects, turnOnAdding }) => {
                         <div className="title">Tasks</div>
                     </div>
                     <div className="right">
-                        <button onClick={turnOnAdding}>+ Add Task</button>
+                        <button onClick={() => {
+                            turnOnAdding()
+                            setCurrentTask({})
+                        }}>+ Add Task</button>
                     </div>
                 </div>
             {
                 tasks.map((t) => {
                     return (
-                        <div className="task-button" key={t.id}>
+                        <div onClick={() => {
+                            setCurrentTask(t)
+                            setIsAddingTask(false)
+                        }} className="task-button" key={t.id}>
                             <div className="top-bar">
-                                <div className="subjTitle">{t.description}</div>
+                                <div className="subjTitle">{t.title}</div>
                                 <div className="due">Jan 2</div>
                             </div>
                             <div className="bottom-bar">

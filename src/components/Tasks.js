@@ -5,11 +5,10 @@ import { connect } from 'react-redux'
 import { fillTasks } from '../actions/taskActions'
 import TaskList from './TaskList'
 import AddTask from './AddTask'
+import TaskDisplay from './TaskDisplay'
 
 const TasksPage = (props) => {
-
     const [currentTask, setCurrentTask] = useState({})
-
     const [isAddingTask, setIsAddingTask] = useState(false)
 
     const turnOnAdding = () => {
@@ -42,19 +41,24 @@ const TasksPage = (props) => {
             console.log(e)
         }
     }
-
     useEffect(() => {
         console.log('loading')
         loadTasks()
     }, [])
-
     return (
         <div className="tasks">
             <div className="scroller">
-                <TaskList tasks={props.tasks} turnOnAdding={turnOnAdding} />
+                <TaskList 
+                setCurrentTask={setCurrentTask} 
+                tasks={props.tasks} 
+                turnOnAdding={turnOnAdding} 
+                setIsAddingTask={setIsAddingTask}
+                setCurrentT={setCurrentTask}
+                />
             </div>
             <div className="main-right">
-            { isAddingTask && <AddTask turnOffAdding={turnOffAdding} /> }
+            { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
+            { currentTask.id && <TaskDisplay task={currentTask} />}
             </div>
         </div>
     )

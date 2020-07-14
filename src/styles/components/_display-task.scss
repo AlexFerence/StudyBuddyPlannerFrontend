@@ -1,0 +1,33 @@
+.display-task {
+    background-color: $white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.display-task-header {
+    width: 100%;
+    background-color: $brand;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.display-task-header span {
+    margin: auto 10px;
+    font-size: large;
+    font-weight: 900;
+    color: $white;
+}
+
+.display-task-body {
+    padding: 15px;
+}
+
+.display-task-body label {
+    width: 100%;
+}
+
+.display-task-body input {
+    width: 100%;
+}
+
+.display-task-body textarea {
+    width: 100%;
+}

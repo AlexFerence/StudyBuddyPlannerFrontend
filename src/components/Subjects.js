@@ -5,7 +5,6 @@ import url from '../environment/url'
 import SubjectButton from './SubjectButton'
 import { fillSubjects } from '../actions/subjectActions'
 import { deleteSubject } from '../actions/subjectActions'
-
 import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import SubjectModal from './SubjectModal'
 

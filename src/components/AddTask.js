@@ -2,34 +2,64 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
+import moment from 'moment'
+import { SingleDatePicker } from 'react-dates'
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css';
 
-const TaskModal = ({ subjects, turnOffAdding }) => {
+const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
 
     const [currentSubjectID, setCurrentSubjectID] = useState('')
-    const [taskType, setTaskType] = useState('')
+    const [taskType, setTaskType] = useState('Assignment')
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
+    const [selectedDate, setSelectedDate] = useState(moment())
+    const [calendarFocused, setCalendarFocused] = useState(null)
 
     useEffect(() => {
         if (subjects[0]) {
             setCurrentSubjectID(subjects[0].id)
         }
 
+
     },[])
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
+
+        try {
+            const res = await axios.post(url + '/api/Tasks/create',
+                {
+                    "id": 0,
+                    "taskType": taskType,
+                    "title": taskTitle,
+                    "description": taskDesc,
+                    "hours": 0,
+                    "subjectId": currentSubjectID,
+                    "dueDate": selectedDate.format("YYYY-MM-DD"),
+                    "userId": id,
+                },
+                {
+                    headers: {
+                        'Authorization': 'bearer ' + token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                loadTasks()
+
+
+        } catch (e) {
+            console.log(e)
+        }
+
+
         console.log(currentSubjectID)
         console.log(taskType)
         console.log(taskTitle)
-        console.log(taskDesc)
-        axios.post(url + "/api/Tasks/create", {
-            taskType,
-            description: taskDesc,
-            hours: 0,
-            subjectID: currentSubjectID,
-
-        })
+        console.log(taskDesc) 
+        console.log(selectedDate)
         // TODO
         // ADD DUE DATE
     }
@@ -39,7 +69,6 @@ const TaskModal = ({ subjects, turnOffAdding }) => {
             <div className="add-task-header">
                 <span>Add Task</span>
                 <div>
-                    <button>edit</button><button>Delete</button>
                 </div>
             </div>
             <div className="add-task-body">
@@ -48,7 +77,6 @@ const TaskModal = ({ subjects, turnOffAdding }) => {
                     </div>
                 Class:
                 <select required onChange={(e) => setCurrentSubjectID(e.target.value) }>
-                    <option>Choose Class</option>
                         {
                             subjects.map((subject) => {
                                 return (<option value={subject.id} key={subject.id}>{subject.name} {subject.classCode}</option>)
@@ -67,8 +95,19 @@ const TaskModal = ({ subjects, turnOffAdding }) => {
                         <option value="Exam">Exam</option>
                     </select> <br />
 
+                    <SingleDatePicker
+                        date={selectedDate} // momentPropTypes.momentObj or null
+                        onDateChange={date => {
+                            console.log(date)
+                            setSelectedDate(date)
+                        }} // PropTypes.func.isRequired
+                        focused={calendarFocused} // PropTypes.bool
+                        onFocusChange={({ focused }) => setCalendarFocused( focused )} // PropTypes.func.isRequired
+                        id="your_unique_id" // PropTypes.string.isRequired,
+                        numberOfMonths={1}
+                    />
 
-                    <label>Title: </label><input value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+                    <label>Title: </label><input required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
                     <label>Description: </label><textarea onChange={(e) => {
                         setTaskDesc(e.target.value)
                     }} />
@@ -93,4 +132,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(TaskModal)
+export default connect(mapStateToProps)(AddTask)
