@@ -142,6 +142,8 @@ const SubjectsPage = (props) => {
                     return (<div onClick={() => {
                         setEditMode(false)
                         setClassSelection(item)
+                        console.log('clicked')
+                        console.log(item)
                     }} key={item.id}>
                         <SubjectButton
                             className="button"
