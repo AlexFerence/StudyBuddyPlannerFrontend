@@ -49,30 +49,7 @@ const TaskDisplay = ({ task, subjects, turnOnEditing }) => {
                     <option value={true}>Log Time</option>
                 </select>
                 <span>  --- </span>
-                 Minutes: <select
-                    hidden={!pomOn}
-                    disabled={isPlaying}
-                    onChange={(e) => {
-                        console.log(typeof (e.target.value))
-                        const intDuration = parseInt(e.target.value)
-                        console.log(intDuration)
-                        console.log(timerDuration)
-                    }}
-                >
-                    <option value={1}>1</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="25">25</option>
-                    <option value="30">30</option>
-                    <option value="35">35</option>
-                    <option value="40">40</option>
-                    <option value="45">45</option>
-                    <option value="50">50</option>
-                    <option value="55">55</option>
-                    <option value="60">60</option>
-                    <option value="90">90</option>
-                    <option value={120}>120</option>
-                </select>
+                
 
                 <br />
 
