@@ -9,6 +9,7 @@ import Tasks from './components/Tasks'
 import Analytics from './components/Analytics'
 import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
+import './styles.css'
 import './styles/styles.scss'
 
 const ConfigureApp = () => {
