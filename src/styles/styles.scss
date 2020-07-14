@@ -1,4 +1,6 @@
 @import '../../node_modules/normalize-scss/sass/normalize/import-now';
+@import './components/reset';
+
 @import './base/settings';
 @import './base/base';
 @import './components/container';
