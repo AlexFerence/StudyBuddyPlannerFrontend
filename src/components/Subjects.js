@@ -41,7 +41,28 @@ const SubjectsPage = (props) => {
     }
 
     useEffect(() => {
-        getClasses()
+        const getClassesi = async () => {
+            try {
+                const res = await axios.post(url + '/api/subjects/list',
+                    {
+                        UserId: props.id
+                    }, {
+                    headers: {
+                        'Authorization': 'bearer ' + props.token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const list = res.data
+    
+                props.dispatch(fillSubjects(list))
+            }
+            catch (e) {
+                console.log('caught errors')
+                console.log(e)
+            }
+        }
+        getClassesi()
     }, [])
 
     const callDelete = async (id) => {
