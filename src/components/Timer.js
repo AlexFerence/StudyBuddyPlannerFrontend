@@ -18,6 +18,36 @@ function Counter() {
 
     }, isRunning ? delay : null);
 
+    const timeDisplay = (n) => {
+        var hours = Math.floor(n / 3600)
+        console.log(hours)
+        console.log(n)
+        var mins = Math.floor((n - (hours * 3600)) / 60)
+        var seconds = n % 60
+
+        if (seconds < 10) {
+            seconds = "0" + seconds 
+        }
+        if (mins < 10) {
+            mins = "0" + mins
+        }
+        
+        if (n < 60) {
+            return(`${n}`)
+        }
+        else if (n >= 3600) {
+            return(`${hours}:${mins}:${seconds}`)
+        }
+        else if (n >= 60) {
+            return(`${mins}:${seconds}`)
+        }
+        else {
+            return(`${seconds}`)
+        }
+        
+        
+    }
+
     var percent = count / interval
 
     const resetCount = () => {
@@ -36,7 +66,7 @@ function Counter() {
     return (
         <div>
             <select disabled={isRunning} onChange={(e) => {
-                setInterval(parseInt(e.target.value))
+                setInterval(parseInt(e.target.value) * 60)
             }}>
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -56,11 +86,13 @@ function Counter() {
             <div className="timer">
                 <CircularProgressbar
                     value={percent * 100}
-                    text={`${(interval - count) > 0 ? interval - count : 0}`}
+                    text={(interval - count) > 0 ? timeDisplay(interval - count) : 0 }
                     styles={buildStyles({
                         pathTransitionDuration: 0.15,
-                        strokeLinecap: "butt"
+                        strokeLinecap: "butt",
+                        textColor: "black",
                     })}
+                    
                 />
             </div>
 

@@ -8,19 +8,19 @@ import {IoIosSpeedometer} from 'react-icons/io'
 
 const Header = (props) => {
     return (
-        <Navbar expand="lg">
+        <Navbar expand="true">
             <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
-            { props.isAuth && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" /> }
-            <Navbar.Collapse id="">
+            { false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" /> }
+            <Navbar id="">
                 <Nav className="mr-auto">
                 </Nav>
                 <Nav inline="true">
-                { props.isAuth && <NavLink style={{padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink> } 
+                { props.isAuth && <NavLink style={{padding: '5px 20px' }} to="/dashboard"><IoIosSpeedometer /></NavLink> } 
                 { props.isAuth && <NavLink style={{padding: 5 }} to="/tasks"><FaCheckSquare /></NavLink> }
                 { props.isAuth && <NavLink style={{padding: 5 }} to="/subjects"><FaChalkboard /></NavLink> }
                 { props.isAuth && <NavLink style={{padding: 5 }} to="/settings"><FaCog /></NavLink> }
                 </Nav>
-            </Navbar.Collapse>
+            </Navbar>
         </Navbar>
     )
 }

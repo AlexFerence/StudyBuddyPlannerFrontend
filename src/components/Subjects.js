@@ -135,7 +135,7 @@ const SubjectsPage = (props) => {
                         <div className="title">Subjects</div>
                     </div>
                     <div className="right">
-                        <button onClick={() => setOpenModal(true)}>+ Add Subject</button>
+                        <button onClick={() => setOpenModal(true)}>+ Add</button>
                     </div>
                 </div>
                 <div className="listClasses">{props.subjects.map((item) => {

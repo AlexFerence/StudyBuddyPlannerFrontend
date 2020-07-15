@@ -49,11 +49,11 @@ h3 {
     float: left;
     border-bottom: .1px solid lighten($color: $grey, $amount: 20%);
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .subjects .scroller .classHeader .title {
-    padding: 5px 10px;
+    padding: 7px 10px;
     margin: 7.5px;
     border: none;
     color: $dark-grey;
@@ -61,7 +61,7 @@ h3 {
 }
 
 .subjects .scroller .classHeader .right {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     width: 50%;
     background-color: $light-grey;
     float: left;
@@ -109,7 +109,7 @@ h3 {
     width: 50%;
     float: left;
     background-color: $brand-complement;
-    padding: 15px;
+    padding: 18px 15px;
     margin-bottom: 15px;
     color: $white;
 }
@@ -127,9 +127,9 @@ h3 {
     border: none;
     font-size: 19px;
     background-color: $brand-complement;
-    margin-right: 5px;
+    margin-right: 10px;
     color: $white;
-    margin-right: 5px;
+    height: 22px;
 }
 .subjects .display .innerDisplay .topBar .right button:focus {
     outline: none;
