@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import ChangingProgressProvider from "./ChangingProgressProvider";
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
 
 
-
-
-
 const percentage = 66
-
 const minuteSeconds = 60;
 const timerProps = {
     size: 250,
@@ -41,19 +36,7 @@ const TaskDisplay = ({ task, subjects, turnOnEditing }) => {
                 </div>
             </div>
             <div className="display-task-body">
-                <h5>Add Time:</h5>
-                Input Type: <select
-                    onChange={(e) => setPomOn(e.target.value)}
-                    disabled={isPlaying}>
-                    <option value={true}>Pomodoro Timer</option>
-                    <option value={true}>Log Time</option>
-                </select>
-                <span>  --- </span>
-                
-
-                <br />
-
-                <div className="timer">
+                <div className="">
                     <Counter />
                 </div>
                 <div>

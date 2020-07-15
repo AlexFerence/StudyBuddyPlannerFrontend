@@ -5,7 +5,7 @@ function Counter() {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
-    const [interval, setInterval] = useState(10)
+    const [interval, setInterval] = useState(15)
 
     useInterval(() => {
         // Your custom logic here
@@ -35,11 +35,9 @@ function Counter() {
 
     return (
         <div>
-            <h1>{count}</h1>
-            <select onChange={(e) => {
+            <select disabled={isRunning} onChange={(e) => {
                 setInterval(parseInt(e.target.value))
             }}>
-                <option value={1}>1</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
                 <option value="25">25</option>
@@ -51,18 +49,21 @@ function Counter() {
                 <option value="55">55</option>
                 <option value="60">60</option>
                 <option value="90">90</option>
-                <option value={120}>120</option>
+                <option value="120">120</option>
             </select>
 
-            <input type="checkbox" checked={isRunning} onChange={handleIsRunningChange} /> Running
-            <CircularProgressbar
-                value={ percent * 100 }
-                text={`${(interval - count) > 0 ? interval-count : 0 }`}
-                styles={buildStyles({
-                    pathTransitionDuration: 0.15,
-                    strokeLinecap: "butt"
-                })}
-            />
+            { false && <input type="checkbox" checked={isRunning} onChange={handleIsRunningChange} />}
+            <div className="timer">
+                <CircularProgressbar
+                    value={percent * 100}
+                    text={`${(interval - count) > 0 ? interval - count : 0}`}
+                    styles={buildStyles({
+                        pathTransitionDuration: 0.15,
+                        strokeLinecap: "butt"
+                    })}
+                />
+            </div>
+
             <button onClick={resetCount}>Reset</button>
             <button onClick={startTimer}>Start</button>
 
