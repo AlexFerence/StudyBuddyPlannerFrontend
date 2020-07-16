@@ -4,23 +4,46 @@ import axios from 'axios'
 import url from '../environment/url'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+
+import Select from 'react-select';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
 
+
+const subjReduce = (list ,item) => {
+    list.push({value: item, label: item.name + " " + item.classCode })
+    return list
+}
+
+
 const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
 
+
+
     const [currentSubjectID, setCurrentSubjectID] = useState('')
-    const [taskType, setTaskType] = useState('Assignment')
+
+    const [currentClass, setCurrentClass] = useState('')
+    const [taskType, setTaskType] = useState('')
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
     const [selectedDate, setSelectedDate] = useState(moment())
     const [calendarFocused, setCalendarFocused] = useState(null)
+    const [selectedOption, setSelectedOption] = useState('')
+
+
 
     useEffect(() => {
         if (subjects[0]) {
             setCurrentSubjectID(subjects[0].id)
         }
     },[])
+
+    useEffect(() => {
+        console.log(taskType)
+    }, [taskType])
+    useEffect(() => {
+        console.log(currentClass)
+    }, [currentClass])
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -33,7 +56,7 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                     "title": taskTitle,
                     "description": taskDesc,
                     "hours": 0,
-                    "subjectId": currentSubjectID,
+                    "subjectId": currentClass.value.id,
                     "dueDate": selectedDate.format("YYYY-MM-DD"),
                     "userId": id,
                 },
@@ -72,28 +95,29 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
             </div>
             <div className="add-task-body">
                 <form onSubmit={onSubmit}>
-                    <div className="top-row">
-                    </div>
-                Class:
-                <select required onChange={(e) => setCurrentSubjectID(e.target.value) }>
-                        {
-                            subjects.map((subject) => {
-                                return (<option value={subject.id} key={subject.id}>{subject.name} {subject.classCode}</option>)
-                            })
-                        }
-                    </select>
-                Type:
-                    <select name="choose type" required onChange={(e) => {
-                        console.log(e.target.value)
-                        setTaskType(e.target.value)
-                    }}>
-                        
-                        <option value="Assignment">Assignment</option>
-                        <option value="Quiz">Quiz</option>
-                        <option value="Test">Test</option>
-                        <option value="Exam">Exam</option>
-                    </select> <br />
-
+                    <label className="inpLabel">Title:</label>
+                    <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+                    
+                    <label className="inpLabel">Class:</label>
+                    <Select
+                        value={currentClass}
+                        onChange={val => setCurrentClass(val)}
+                        placeholder="Class..."
+                        options={subjects.reduce(subjReduce, [])}
+                    />
+                    <label className="inpLabel">Type:</label>
+                    <Select
+                        value={taskType}
+                        onChange={val => setTaskType(val)}
+                        placeholder="Type..."
+                        options={[
+                            { value: 'Assignment', label: 'Assignment' },
+                            { value: 'Quiz', label: 'Quiz' },
+                            { value: 'Test', label: 'Test' },
+                            { value: 'Exam', label: 'Exam'}
+                        ]}
+                    />
+                <label className="inpLabel">Date:</label>
                     <SingleDatePicker
                         date={selectedDate} // momentPropTypes.momentObj or null
                         onDateChange={date => {
@@ -104,11 +128,12 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                         onFocusChange={({ focused }) => setCalendarFocused( focused )} // PropTypes.func.isRequired
                         id="your_unique_id" // PropTypes.string.isRequired,
                         numberOfMonths={1}
+                        hideKeyboardShortcutsPanel={true}
+                        
                     />
 
-                    <label>Title: </label>
-                    <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
-                    <label>Description: </label><textarea onChange={(e) => {
+                    <label className="inpLabel">Description: </label>
+                    <textarea className="inpArea" rows="3" onChange={(e) => {
                         setTaskDesc(e.target.value)
                     }} />
                     <button type="submit">Submit</button>

@@ -23,27 +23,29 @@ html {
     background-color: none;
     border: none;
     border-bottom: 1px solid $grey ;
-    margin: 15px 0px;
+    margin: 10px 0px;
+    transition: .2s;
+    width: 100%;
   }
 
   .inp:focus {
-    transition: .3s;
+    transition: .2s;
     outline: none;
     padding: 5px;
     border-bottom: 1px solid black;
-    margin: 10px 0px;
+    margin: 5px 0px;
   }
 
-  select {
-    border: none;
+  .inpArea {
+    width: 100%;
+    border: 1px solid $grey;
+    margin: 5px 0px;
     padding: 7.5px;
-    border:1px solid $grey;
+    line-height: 20px;
   }
 
-  select:focus {
+  .inpArea:focus {
     outline: none;
+    
   }
 
-  option {
-    background-color: red;
-  }

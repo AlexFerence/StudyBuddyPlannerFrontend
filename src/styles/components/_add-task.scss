@@ -4,7 +4,7 @@
 }
 .add-task-header {
     width: 100%;
-    background-color: red;
+    background-color: darken($color: $grey, $amount: 10);
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -30,4 +30,9 @@
 
 .add-task-body textarea {
     width: 100%;
+}
+
+.inpLabel {
+    color: $dark-grey;
+    margin: 5px 0px 5px 0px;
 }

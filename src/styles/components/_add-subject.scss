@@ -1,0 +1,53 @@
+
+
+.module-header {
+    color: red;
+}
+
+.modal {
+    color: red;
+}
+.modal-main {
+    color: $dark-grey;
+    background-color: $white;
+    width: 100%;
+    padding: 20px;
+}
+
+.modal-main label {
+    width: 100%;
+}
+
+.modal-header {
+    background-color: #607d8b;
+    color: $white;
+    text-transform: uppercase;
+    
+}
+
+.modal-header h3 {
+    font-size: 20px;
+}
+
+.modal-main button {
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    height: 40px;
+    width: 80px;
+    border: 1px solid $dark;
+    background-color: $white;
+    color: $dark;
+
+}
+
+input {
+    border: none;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}

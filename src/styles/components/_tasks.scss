@@ -12,7 +12,7 @@
     height: calc(100vh - #{$navbar-height} );
     float:left;
     padding: 25px;
-}
+} 
 
 .tasks .scroller {
     background-color: $white;
@@ -136,3 +136,13 @@
     }
 }
 
+.CalendarDay__selected {
+    background: $grey;
+    color: white;
+    outline: none;
+    border: none;
+}
+.CalendarDay__selected:hover {
+    background: $dark-grey;
+    color: white;
+  }
