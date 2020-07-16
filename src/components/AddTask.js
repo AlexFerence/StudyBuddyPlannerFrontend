@@ -106,7 +106,8 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                         numberOfMonths={1}
                     />
 
-                    <label>Title: </label><input required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+                    <label>Title: </label>
+                    <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
                     <label>Description: </label><textarea onChange={(e) => {
                         setTaskDesc(e.target.value)
                     }} />

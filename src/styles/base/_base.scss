@@ -18,3 +18,32 @@ html {
   ul {
     list-style: none;
   }
+
+  .inp {
+    background-color: none;
+    border: none;
+    border-bottom: 1px solid $grey ;
+    margin: 15px 0px;
+  }
+
+  .inp:focus {
+    transition: .3s;
+    outline: none;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    margin: 10px 0px;
+  }
+
+  select {
+    border: none;
+    padding: 7.5px;
+    border:1px solid $grey;
+  }
+
+  select:focus {
+    outline: none;
+  }
+
+  option {
+    background-color: red;
+  }
