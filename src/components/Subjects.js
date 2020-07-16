@@ -129,6 +129,7 @@ const SubjectsPage = (props) => {
 
     return (
         <Row className="subjects">
+            <SubjectModal isOpen={openModal} closeModal={closeModal} />
             <Col className="scroller">
             <div className="classHeader">
                     <div className="left">
