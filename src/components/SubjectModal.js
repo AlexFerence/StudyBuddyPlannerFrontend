@@ -42,7 +42,8 @@ const SubjectModal = (props) => {
                     "Description": description.trim(),
                     "Professor": professor.trim(),
                     "Credits": credits,
-                    "UserId": props.id
+                    "UserId": props.id,
+                    "color": color.hex
                 },
                 {
                     headers: {
