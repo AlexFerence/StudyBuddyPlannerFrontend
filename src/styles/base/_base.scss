@@ -46,6 +46,33 @@ html {
 
   .inpArea:focus {
     outline: none;
-    
   }
 
+  .but {
+    padding: 5px 10px;
+    margin: 7.5px;
+
+    background-color: $white;
+    border: 1px solid $brand;
+    color: $brand;
+    border-radius: 3px;
+}
+.but:focus {
+    outline: none;
+}
+
+.but:hover {
+    background-color: $brand;
+    border: 1px solid $brand;
+    color: $light-grey;
+}
+
+.row {
+  width: 100%;
+  margin: 0;
+}
+
+.col {
+  margin: 0;
+  padding: 0;
+}

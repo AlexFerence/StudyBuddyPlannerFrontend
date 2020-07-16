@@ -136,8 +136,8 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                     <textarea className="inpArea" rows="3" onChange={(e) => {
                         setTaskDesc(e.target.value)
                     }} />
-                    <button type="submit">Submit</button>
-                    <button onClick={(e) => {
+                    <button className="but" type="submit">Submit</button>
+                    <button className="but" onClick={(e) => {
                         e.preventDefault()
                         turnOffAdding()
                     }}>Cancel</button>

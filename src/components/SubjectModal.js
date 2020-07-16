@@ -157,7 +157,7 @@ const SubjectModal = (props) => {
                                 onChange={(e) => setDescription(e.target.value)}
                             ></textarea>
                         </div>
-                        <button>Submit</button>
+                        <button className="but">Submit</button>
                     </form>
                 </div>
             </div>
