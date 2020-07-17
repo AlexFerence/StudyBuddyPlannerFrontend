@@ -10,8 +10,8 @@ import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
 
 
-const subjReduce = (list ,item) => {
-    list.push({value: item, label: item.name + " " + item.classCode })
+const subjReduce = (list, item) => {
+    list.push({ value: item, label: item.name + " " + item.classCode })
     return list
 }
 
@@ -31,12 +31,11 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
     const [selectedOption, setSelectedOption] = useState('')
 
 
-
     useEffect(() => {
         if (subjects[0]) {
             setCurrentSubjectID(subjects[0].id)
         }
-    },[])
+    }, [])
 
     useEffect(() => {
         console.log(taskType)
@@ -68,38 +67,26 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                     }
                 })
 
-                console.log(res)
+            console.log(res)
 
-                loadTasks()
-                turnOffAdding()
+            loadTasks()
+            turnOffAdding()
 
 
         } catch (e) {
             console.log(e)
         }
-
-
-        console.log(currentSubjectID)
-        console.log(taskType)
-        console.log(taskTitle)
-        console.log(taskDesc) 
-        console.log(selectedDate)
-        // TODO
-        // ADD DUE DATE
     }
 
     return (
         <div className="add-task">
-            <div className="add-task-header">
+            <div className="add-task-header" style={currentClass.value && { backgroundColor: currentClass.value.color }}>
                 <span>Add Task</span>
                 <div>
                 </div>
             </div>
             <div className="add-task-body">
                 <form onSubmit={onSubmit}>
-                    <label className="inpLabel">Title:</label>
-                    <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
-                    
                     <label className="inpLabel">Class:</label>
                     <Select
                         value={currentClass}
@@ -116,10 +103,14 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                             { value: 'Assignment', label: 'Assignment' },
                             { value: 'Quiz', label: 'Quiz' },
                             { value: 'Test', label: 'Test' },
-                            { value: 'Exam', label: 'Exam'}
+                            { value: 'Exam', label: 'Exam' }
                         ]}
                     />
-                <label className="inpLabel">Date:</label>
+                    <label className="inpLabel">Title:</label>
+                    <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
+
+
+                    <label className="inpLabel">Date:</label>
                     <SingleDatePicker
                         date={selectedDate} // momentPropTypes.momentObj or null
                         onDateChange={date => {
@@ -127,11 +118,11 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                             setSelectedDate(date)
                         }} // PropTypes.func.isRequired
                         focused={calendarFocused} // PropTypes.bool
-                        onFocusChange={({ focused }) => setCalendarFocused( focused )} // PropTypes.func.isRequired
+                        onFocusChange={({ focused }) => setCalendarFocused(focused)} // PropTypes.func.isRequired
                         id="your_unique_id" // PropTypes.string.isRequired,
                         numberOfMonths={1}
                         hideKeyboardShortcutsPanel={true}
-                        
+
                     />
 
                     <label className="inpLabel">Description: </label>

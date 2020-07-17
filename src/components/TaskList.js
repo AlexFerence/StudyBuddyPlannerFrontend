@@ -26,7 +26,6 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
         else {
             return(undefined)
         }
-
     }
 
     const returnParsedMoment = (date) => {

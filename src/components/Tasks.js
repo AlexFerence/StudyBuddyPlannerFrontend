@@ -15,6 +15,17 @@ const TasksPage = (props) => {
     const [isAddingTask, setIsAddingTask] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
 
+    const getClassColor = (subjectId) => {
+        const subj = props.subjects.find((subject) => subject.id === subjectId)
+
+        if (subj) {
+            return(subj.color)
+        }
+        else {
+            return(undefined)
+        }
+    }
+
     const turnOnEditing = () => {
         currentTaskCopy = currentTask
         setCurrentTask({})
@@ -70,7 +81,7 @@ const TasksPage = (props) => {
             </div>
             <div className="main-right">
             { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
-            { currentTask.id && <TaskDisplay task={currentTask} turnOnEditing={turnOnEditing} />}
+            { currentTask.id && <TaskDisplay getClassColor={getClassColor} task={currentTask} turnOnEditing={turnOnEditing} />}
             { isEditing && <TaskEdit 
                 currentTaskCopy={currentTaskCopy} 
                 loadTasks={loadTasks}
