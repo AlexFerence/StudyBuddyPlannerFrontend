@@ -96,6 +96,7 @@ h3 {
     padding: 0px;
 }
 .subjects .display .innerDisplay {
+    margin: 20px;
     background-color: $white;
     border-radius: 2px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -108,14 +109,14 @@ h3 {
 .subjects .display .innerDisplay .topBar .left {
     width: 50%;
     float: left;
-    background-color: $brand-complement;
+    background-color: $grey;
     padding: 18px 15px;
     margin-bottom: 15px;
     color: $white;
 }
 .subjects .display .innerDisplay .topBar .right {
     padding: 15px;
-    background-color: $brand-complement;
+    background-color: $grey;
     width: 50%;
     text-align: right;
     float: left;
@@ -126,7 +127,7 @@ h3 {
     padding: 0;
     border: none;
     font-size: 19px;
-    background-color: $brand-complement;
+    background-color: transparent;
     margin-right: 10px;
     color: $white;
     height: 22px;
@@ -147,8 +148,10 @@ h4 {
     padding-top: 55px;
 }
 
-.button {
-    margin-top: 10px;
-    background-color: $white;
-    border: 1px solid $brand-complement;
+
+.circlePickerDisplay {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
 }

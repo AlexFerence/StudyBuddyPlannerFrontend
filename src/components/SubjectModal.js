@@ -5,7 +5,7 @@ import url from '../environment/url'
 import { Row, Col } from 'react-bootstrap'
 import { addSubject } from '../actions/subjectActions'
 import { connect } from 'react-redux'
-import { BlockPicker, CirclePicker } from 'react-color'
+import { CirclePicker } from 'react-color'
 
 const customStyles = {
     content: {

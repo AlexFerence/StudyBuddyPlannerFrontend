@@ -8,6 +8,7 @@ import { deleteSubject } from '../actions/subjectActions'
 import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import SubjectModal from './SubjectModal'
 import { Row, Col } from 'react-bootstrap'
+import { CirclePicker } from 'react-color'
 
 
 
@@ -100,7 +101,8 @@ const SubjectsPage = (props) => {
                     "Description": newChanges.description.trim(),
                     "Professor": newChanges.professor.trim(),
                     "Credits": newChanges.credits,
-                    "UserId": props.id
+                    "UserId": props.id,
+                    "color": newChanges.color
                 },
                 {
                     headers: {
@@ -143,9 +145,6 @@ const SubjectsPage = (props) => {
                     return (<div onClick={() => {
                         setEditMode(false)
                         setClassSelection(item)
-                        console.log('clicked')
-                        console.log(item)
-                        console.log(classSelection)
                     }} key={item.id}>
                         <SubjectButton
                             className="button"
@@ -156,72 +155,103 @@ const SubjectsPage = (props) => {
                 })}</div>
             </Col>
             <Col className="display">
-
-            {!classSelection.id && <p>Please select a class</p>}
+                {!classSelection.id && <p>Please select a class</p>}
                 <div className="innerDisplay">
-                    { classSelection.id && 
+                    {classSelection.id &&
                         <div className="topBar">
-                            <div className="left">
-                                { !editMode && <h4>{classSelection.name} {classSelection.classCode}</h4> }
-                                { editMode && <h4>EDIT</h4>}
+                            <div className="left" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color )}}>
+                                {!editMode && <h4>{classSelection.name} {classSelection.classCode}</h4>}
+                                {editMode && <h4>EDIT</h4>}
                             </div>
-                            <div className="right">
-                            <button 
-                            className="icon"
-                            onClick={() => {
-                                setEditMode(!editMode)
-                                setNewChanges(classSelection)
-                            }}
-                            ><FaEdit /></button>
-                            <button 
-                            className="icon"
-                            onClick={() => {
-                                callDelete(classSelection.id)
-                            }}
-                            ><FaTrashAlt /></button>
-                            
+                            <div className="right" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color )}}>
+                                <button
+                                    className="icon"
+                                    onClick={() => {
+                                        setEditMode(!editMode)
+                                        setNewChanges(classSelection)
+                                    }}
+                                ><FaEdit /></button>
+                                <button
+                                    className="icon"
+                                    onClick={() => {
+                                        callDelete(classSelection.id)
+                                    }}
+                                ><FaTrashAlt /></button>
+
                             </div>
                         </div>
                     }
                     {classSelection.id && !editMode &&
                         <div className="mainSection">
-                            Credits: <span>{classSelection.credits}</span> <br/>
-                            Professor: <span>{classSelection.professor}</span> <br/>
-                            Description: <span>{classSelection.description}</span> <br/>
-                            
+                            Credits: <span>{classSelection.credits}</span> <br />
+                            Professor: <span>{classSelection.professor}</span> <br />
+                            Description: <span>{classSelection.description}</span> <br />
+
                         </div>
                     }
-                    {( classSelection.id) && editMode && 
+                    {(classSelection.id) && editMode &&
                         <div className="mainSection">
                             <form className="edits" onSubmit={submitEdits}>
-                                Name: <input 
-                                    type="text" 
-                                    value={newChanges.name}
-                                    onChange={(e) => {
-                                        if (true) {
-                                            setNewChanges({...newChanges, name: e.target.value.toUpperCase()})
-                                        }
-                                        }} 
-                                    /> <br/>
-                                Class Code: <input type="text" value={newChanges.classCode} 
+                                <Row>
+                                    <Col>
+                                        <label>Name:</label>
+                                        <input
+                                            className="inp"
+                                            type="text"
+                                            value={newChanges.name}
+                                            onChange={(e) => {
+                                                if (true) {
+                                                    setNewChanges({ ...newChanges, name: e.target.value.toUpperCase() })
+                                                }
+                                            }}
+                                        />
+                                        <label className="inpLabel">Class Code: </label>
+                                        <input
+                                            className="inp"
+                                            type="text"
+                                            value={newChanges.classCode}
+                                            onChange={(e) => {
+                                                if (!isNaN(e.target.value) && e.target.value < 999) {
+                                                    setNewChanges({ ...newChanges, classCode: e.target.value })
+                                                }
+                                            }}
+                                        />
+                                        <label className="inpLabel">Credits:</label>
+                                        <input
+                                            className="inp"
+                                            type="text" value={newChanges.credits}
+                                            onChange={(e) => {
+                                                if (!isNaN(e.target.value) && e.target.value < 10) {
+                                                    setNewChanges({ ...newChanges, credits: e.target.value })
+                                                }
+                                            }} />
+                                    </Col>
+                                    <Col className="circlePickerDisplay">
+                                        <CirclePicker
+                                            width="210px"
+                                            height="30px"
+                                            color={newChanges.color}
+                                            onChangeComplete={(c) => setNewChanges({ ...newChanges, color: c.hex })}
+                                            circleSpacing={14}
+                                        />
+                                    </Col>
+                                </Row>
+
+                                <label className="inpLabel">Description:</label>
+                                <input
+                                    className="inp"
+                                    type="text"
+                                    value={newChanges.description}
+                                    onChange={(e) => setNewChanges({ ...newChanges, description: e.target.value })}
+                                /> <br />
+                                <label className="inpLabel">Prof:</label>
+                                <input
+                                    className="inp"    
+                                type="text" value={newChanges.professor} 
                                 onChange={(e) => {
-                                    if (!isNaN(e.target.value) && e.target.value < 999) {
-                                        setNewChanges({...newChanges, classCode: e.target.value})
-                                    }}}
-                                /> <br/>
-                                Description: <input type="text" value={newChanges.description} 
-                                    onChange={(e) => setNewChanges({...newChanges, description: e.target.value})}
-                                /> <br/>
-                                Prof: <input type="text" value={newChanges.professor} 
-                                    onChange={(e) => {
                                         setNewChanges({...newChanges, professor: e.target.value })
-                                    }} /> <br />
-                                Credits: <input type="text" value={newChanges.credits}
-                                    onChange={(e) => {
-                                        if (!isNaN(e.target.value) && e.target.value < 10) {
-                                            setNewChanges({...newChanges, credits: e.target.value })
-                                        }
-                                    }} /> 
+                                    }}/> <br />
+                                
                                     <br />
                                 <button className="button">Submit</button>
                             </form>

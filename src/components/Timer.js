@@ -10,7 +10,7 @@ function Counter() {
     useInterval(() => {
         // Your custom logic here
         setCount(count + 1);
-        console.log(interval)
+
 
         if (percent >= 1) {
             setIsRunning(false)
@@ -20,8 +20,7 @@ function Counter() {
 
     const timeDisplay = (n) => {
         var hours = Math.floor(n / 3600)
-        console.log(hours)
-        console.log(n)
+
         var mins = Math.floor((n - (hours * 3600)) / 60)
         var seconds = n % 60
 
