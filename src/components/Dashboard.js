@@ -5,7 +5,7 @@ import { Row, Col } from 'react-bootstrap'
 
 const Dashboard = () => {
   return (
-    <div >
+    <div className="dashboard">
       <Row>
         <Col>
           <ReactEcharts

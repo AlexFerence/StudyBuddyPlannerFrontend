@@ -114,6 +114,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                         onFocusChange={({ focused }) => setCalendarFocused( focused )} // PropTypes.func.isRequired
                         id="your_unique_id" // PropTypes.string.isRequired,
                         numberOfMonths={1}
+                        hideKeyboardShortcutsPanel={true}
                     />
 
                     {/* TASK TYPE */}

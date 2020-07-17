@@ -1,3 +1,8 @@
+.dashboard {
+  background-color: $light-grey;
+  height: 100vh;
+}
+
 .App {
     display: flex;
     justify-content: space-around;
@@ -9,4 +14,5 @@
   .time {
     font-size: 32px;
   }
+
   
