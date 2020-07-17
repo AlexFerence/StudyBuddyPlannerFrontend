@@ -1,23 +1,42 @@
-import React from "react";
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import React from 'react';
+import ReactEcharts from 'echarts-for-react'
 
-const minuteSeconds = 60;
 
-const timerProps = {
-  isPlaying: true,
-  size: 300,
-  strokeWidth: 6,
-  duration: 0
-};
-
-export default function App() {
-  const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
-  const endTime = stratTime + 243240; // use UNIX timestamp in seconds
-
-  const remainingTime = endTime - stratTime;
-
+const Dashboard = () => {
   return (
-    <div className="App">
+    <div >
+      <ReactEcharts
+        option={{
+          xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{ 
+            data: [820, 932, 901, 934, 1290, 1330, 1320], 
+            type: 'line'
+          }]
+        }}
+      />
+      <ReactEcharts
+        option={{
+          xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{ 
+            data: [820, 932, 901, 934, 1290, 1330, 1320], 
+            type: 'bar'
+          }]
+        }}
+      />
     </div>
   );
 }
+
+export default Dashboard
