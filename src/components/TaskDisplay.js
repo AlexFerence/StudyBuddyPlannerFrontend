@@ -15,13 +15,6 @@ const timerProps = {
 
 const TaskDisplay = ({ task, subjects, turnOnEditing, getClassColor }) => {
 
-    const [seconds, setSeconds] = useState(1);
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [pomOn, setPomOn] = useState(true)
-    const [timerDuration, setTimerDuration] = useState(5)
-
-
-
     return (
         <div className="display-task">
             <div className="display-task-header" style={{ backgroundColor: getClassColor(task.subjectId)}}>

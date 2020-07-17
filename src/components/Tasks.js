@@ -82,7 +82,8 @@ const TasksPage = (props) => {
             <div className="main-right">
             { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
             { currentTask.id && <TaskDisplay getClassColor={getClassColor} task={currentTask} turnOnEditing={turnOnEditing} />}
-            { isEditing && <TaskEdit 
+            { isEditing && <TaskEdit
+                getClassColor={getClassColor} 
                 currentTaskCopy={currentTaskCopy} 
                 loadTasks={loadTasks}
                 setCurrentTask={setCurrentTask}

@@ -1,34 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 import axios from 'axios'
 import url from '../environment/url'
 import { connect } from 'react-redux'
-import {} from 'react-icons'
+import { IoMdClose } from 'react-icons/io'
+import Select from 'react-select';
 
 
-const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask }) => {
+const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask, getClassColor }) => {
+
+    const getSubject = (id) => {
+        return subjects.find((subject) => subject.id === id)
+    }
 
     const [title, setTitle ] = useState(currentTaskCopy.title)
     const [description, setDescription ] = useState(currentTaskCopy.description)
-    const [subjectID, setSubjectID] = useState(currentTaskCopy.className)
+    const [subjectID, setSubjectID] = useState(currentTaskCopy.subjectId)
     const [taskType, setTaskType] = useState(currentTaskCopy.taskType)
     const [isDone, setIsDone] = useState(currentTaskCopy.isDone)
     const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
     const [calendarFocused, setCalendarFocused] = useState(null)
 
+    const [currentClass, setCurrentClass] = useState({ value: getSubject(currentTaskCopy.subjectId), label: 'class' })
+
+    
+
+    const subjReduce = (list, item) => {
+        list.push({ value: item, label: item.name + " " + item.classCode })
+        return list
+    }
+
+    useEffect(() => {
+        console.log(currentClass)
+        console.log(currentClass.value.color)
+    }, [currentClass])
+
     const onSubmit = async (e) => {
         e.preventDefault()
-
         try {
             const res = await axios.put(url + '/api/Tasks/' + currentTaskCopy.id, {
                 ...currentTaskCopy,
                 title,
                 description,
-                subjectID,
+                subjectID: currentClass.value.id,
                 taskType,
                 dueDate: selectedDate,
-                isDone: isDone ? 1 : 0
+                isDone: isDone ? 1 : 0,
             }, {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -36,36 +54,33 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                     'Content-Type': 'application/json'
                 }
             })
-
             if (res.status === 200) {
                 setCurrentTask({
-                    ...currentTaskCopy,
+                ...currentTaskCopy,
                 title,
                 description,
-                subjectID,
+                subjectId: currentClass.value.id,
                 taskType,
-                isDone: isDone ? 1 : 0
+                isDone: isDone ? 1 : 0,
+                color: currentClass.value.color
                 })
                 loadTasks()
                 setIsEditing(false)
-
             }
-
         } catch (e) {
             console.log(e)
         }
-
-        //make update axios call
-        //turn off editing
-        //set current slection to the response from http
-
     }
+
+    useEffect(() => {
+        console.log(subjectID)
+    }, [subjectID])
 
     return (
         <div className="edit-task">
-            <div className="edit-task-header">
+            <div className="edit-task-header" style={{ backgroundColor: currentClass.value.color}}>
             <span>Edit Task</span>
-            <FaCancel />
+            <button><IoMdClose /></button>
             </div>
             <div className="edit-task-body">
                 <form onSubmit={onSubmit}>
@@ -80,13 +95,15 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
 
                     {/* NOTES */}
 
-                    <label>Notes: </label>
-                    <input value={description} onChange={(e) => {
+                    <label className="inpLabel">Notes: </label>
+                    <input 
+                    className="inp"
+                    value={description} onChange={(e) => {
                         setDescription(e.target.value)
                     }} />
 
                     {/* CALENDAR */}
-
+                    <label className="inpLabel">Due Date:</label>
                     <SingleDatePicker
                         date={selectedDate} // momentPropTypes.momentObj or null
                         onDateChange={date => {
@@ -100,14 +117,15 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                     />
 
                     {/* TASK TYPE */}
-                    <label>Class Type</label>
-                    <select required onChange={(e) => setSubjectID(e.target.value) }>
-                        {
-                            subjects.map((subject) => {
-                                return (<option value={subject.id} key={subject.id}>{subject.name} {subject.classCode}</option>)
-                            })
-                        }
-                    </select>
+                    <label className="inpLabel">Class Type</label>
+                    <Select
+                        value={currentClass}
+                        onChange={val => setCurrentClass(val)}
+                        placeholder="Class..."
+                        options={subjects.reduce(subjReduce, [])}
+                    />
+
+                    <label className="inpLabel">Task Type: </label>
 
                     {/* COMPLETED CHECKBOX */}
 
