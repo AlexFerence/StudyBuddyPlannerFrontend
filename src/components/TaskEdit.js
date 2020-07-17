@@ -4,6 +4,8 @@ import { SingleDatePicker } from 'react-dates'
 import axios from 'axios'
 import url from '../environment/url'
 import { connect } from 'react-redux'
+import {} from 'react-icons'
+
 
 const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask }) => {
 
@@ -62,15 +64,15 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
     return (
         <div className="edit-task">
             <div className="edit-task-header">
-            <h4>Edit Task</h4>
+            <span>Edit Task</span>
+            <FaCancel />
             </div>
             <div className="edit-task-body">
                 <form onSubmit={onSubmit}>
-
                     {/* TITLE */}
-
-                    <label>Title: </label>
+                    <label className="inpLabel">Title: </label>
                     <input
+                    className="inp"
                     value={title} 
                     onChange={(e) => {
                         setTitle(e.target.value)
@@ -98,7 +100,6 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                     />
 
                     {/* TASK TYPE */}
-
                     <label>Class Type</label>
                     <select required onChange={(e) => setSubjectID(e.target.value) }>
                         {
