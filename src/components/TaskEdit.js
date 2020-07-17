@@ -17,7 +17,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
     const [title, setTitle ] = useState(currentTaskCopy.title)
     const [description, setDescription ] = useState(currentTaskCopy.description)
     const [subjectID, setSubjectID] = useState(currentTaskCopy.subjectId)
-    const [taskType, setTaskType] = useState(currentTaskCopy.taskType)
+    const [taskType, setTaskType] = useState({ value: currentTaskCopy.taskType, label: currentTaskCopy.taskType})
     const [isDone, setIsDone] = useState(currentTaskCopy.isDone)
     const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
     const [calendarFocused, setCalendarFocused] = useState(null)
@@ -44,7 +44,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                 title,
                 description,
                 subjectID: currentClass.value.id,
-                taskType,
+                taskType: taskType.value,
                 dueDate: selectedDate,
                 isDone: isDone ? 1 : 0,
             }, {
@@ -60,7 +60,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                 title,
                 description,
                 subjectId: currentClass.value.id,
-                taskType,
+                taskType: taskType.value,
                 isDone: isDone ? 1 : 0,
                 color: currentClass.value.color
                 })
@@ -117,7 +117,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                         hideKeyboardShortcutsPanel={true}
                     />
 
-                    {/* TASK TYPE */}
+                    {/* CLASS TYPE */}
                     <label className="inpLabel">Class Type</label>
                     <Select
                         value={currentClass}
@@ -126,30 +126,32 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                         options={subjects.reduce(subjReduce, [])}
                     />
 
+                    {/* TASK TYPE */}
+
                     <label className="inpLabel">Task Type: </label>
+                    <Select
+                        value={taskType}
+                        onChange={val => setTaskType(val)}
+                        placeholder="Type..."
+                        options={[
+                            { value: 'Assignment', label: 'Assignment' },
+                            { value: 'Quiz', label: 'Quiz' },
+                            { value: 'Test', label: 'Test' },
+                            { value: 'Exam', label: 'Exam' }
+                        ]}
+                    />
+
 
                     {/* COMPLETED CHECKBOX */}
 
-                    <select onChange={(e) => {
-                        setTaskType(e.target.value)
-                    }}> 
-                        <option value="Assignment">Assignment</option>
-                        <option value="Quiz">Quiz</option>
-                        <option value="Test">Test</option>
-                        <option value="Exam">Exam</option>
-                    </select><br />
-
-
-                    {/* COMPLETED CHECKBOX */}
-
-                    Is Completed: <input 
+                    <div className="isComplete">Is Completed:  <input 
                     type="checkbox"
                     checked={isDone}
                     onChange={() => {
                         setIsDone(!isDone)
                     }}
-                    /><br />
-
+                    />
+                    </div>
                     <button type="submit">Submit</button>
                     <button>Cancel</button>
                 </form>

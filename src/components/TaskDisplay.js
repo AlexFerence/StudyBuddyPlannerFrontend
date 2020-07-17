@@ -14,7 +14,6 @@ const timerProps = {
 };
 
 const TaskDisplay = ({ task, subjects, turnOnEditing, getClassColor }) => {
-
     return (
         <div className="display-task">
             <div className="display-task-header" style={{ backgroundColor: getClassColor(task.subjectId)}}>
