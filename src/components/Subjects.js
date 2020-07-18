@@ -253,7 +253,7 @@ const SubjectsPage = (props) => {
                                     }}/> <br />
                                 
                                     <br />
-                                <button className="button">Submit</button>
+                                <button className="but">Submit</button>
                             </form>
                         </div>
                     }

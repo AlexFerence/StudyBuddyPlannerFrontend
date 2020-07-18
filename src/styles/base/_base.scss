@@ -53,8 +53,8 @@ html {
     margin: 7.5px;
 
     background-color: $white;
-    border: 1px solid $brand;
-    color: $brand;
+    border: 1px solid $grey;
+    color: $dark-grey;
     border-radius: 3px;
 }
 .but:focus {
@@ -62,9 +62,10 @@ html {
 }
 
 .but:hover {
-    background-color: $brand;
-    border: 1px solid $brand;
-    color: $light-grey;
+    // background-color: $dark-grey;
+    // border: 1px solid $dark-grey;
+    // color: $light-grey;
+    transition: .5s;
 }
 
 .row {

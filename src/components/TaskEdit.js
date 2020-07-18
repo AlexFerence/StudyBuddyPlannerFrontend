@@ -80,7 +80,10 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
         <div className="edit-task">
             <div className="edit-task-header" style={{ backgroundColor: currentClass.value.color}}>
             <span>Edit Task</span>
-            <button><IoMdClose /></button>
+            <button onClick={() => {
+                setIsEditing(false)
+                setCurrentTask(currentTaskCopy)
+            }}><IoMdClose /></button>
             </div>
             <div className="edit-task-body">
                 <form onSubmit={onSubmit}>
@@ -152,8 +155,8 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                     }}
                     />
                     </div>
-                    <button type="submit">Submit</button>
-                    <button>Cancel</button>
+                    <button type="submit" className="but">Submit</button>
+                    <button className="but">Cancel</button>
                 </form>
             </div>
         </div>

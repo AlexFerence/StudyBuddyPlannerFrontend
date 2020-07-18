@@ -25,6 +25,10 @@
     border: none;
     padding: 2px 0;
 }
+.edit-task-header button:focus {
+    outline: none;
+    border: none;
+}
 
 .edit-task-body {
     padding: 15px;
