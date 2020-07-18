@@ -8,7 +8,8 @@ const Dashboard = () => {
     <div className="dashboard">
       <Row>
         <Col>
-          <ReactEcharts
+        <div className="graph-box">
+        <ReactEcharts
             option={{
               xAxis: {
                 type: 'category',
@@ -44,6 +45,10 @@ const Dashboard = () => {
               ]
             }}
           />
+        
+        
+        </div>
+          
         </Col>
         <Col>
           <ReactEcharts
