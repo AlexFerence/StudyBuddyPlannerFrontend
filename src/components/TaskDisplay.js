@@ -2,9 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
-import { FaEdit } from 'react-icons/fa'
+import { FaEdit, FaCalendarAlt } from 'react-icons/fa'
+import { Row, Col } from 'react-bootstrap'
+import moment from 'moment'
 
 const TaskDisplay = ({ task, turnOnEditing, getClassColor }) => {
+
+    const returnParsedMoment = (date) => {
+        var momentDay = moment(date)
+        return momentDay.format("MMM D")
+    }
+
+
     return (
         <div className="display-task">
             <div className="display-task-header" style={{ backgroundColor: getClassColor(task.subjectId)}}>
@@ -19,9 +28,17 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor }) => {
                 </div>
             </div>
             <div className="display-task-body">
-                <div className="">
+                <Row>
+                    <Col>
+                    <div>
+                    <FaCalendarAlt /> Due: {returnParsedMoment(task.dueDate)}
+                    </div>
+                    </Col>
+                    <Col>
                     <Counter />
-                </div>
+                    </Col>
+                    
+                </Row>
                 <div>
                     <div className="multiLine">{task.description}</div>
                 </div>
