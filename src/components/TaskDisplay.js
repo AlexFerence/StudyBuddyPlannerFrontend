@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
 import { FaEdit } from 'react-icons/fa'
 
-
-const percentage = 66
-const minuteSeconds = 60;
-const timerProps = {
-    size: 250,
-    strokeWidth: 6,
-    duration: 0
-};
-
-const TaskDisplay = ({ task, subjects, turnOnEditing, getClassColor }) => {
+const TaskDisplay = ({ task, turnOnEditing, getClassColor }) => {
     return (
         <div className="display-task">
             <div className="display-task-header" style={{ backgroundColor: getClassColor(task.subjectId)}}>
@@ -33,7 +23,7 @@ const TaskDisplay = ({ task, subjects, turnOnEditing, getClassColor }) => {
                     <Counter />
                 </div>
                 <div>
-                    <p>- {task.description}</p>
+                    <div className="multiLine">{task.description}</div>
                 </div>
             </div>
         </div>
@@ -45,6 +35,5 @@ const mapStateToProps = (state) => {
         subjects: state.subjects
     }
 }
-
 
 export default connect(mapStateToProps)(TaskDisplay)

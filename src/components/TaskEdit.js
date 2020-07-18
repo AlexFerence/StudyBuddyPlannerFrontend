@@ -87,39 +87,6 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
             </div>
             <div className="edit-task-body">
                 <form onSubmit={onSubmit}>
-                    {/* TITLE */}
-                    <label className="inpLabel">Title: </label>
-                    <input
-                    className="inp"
-                    value={title} 
-                    onChange={(e) => {
-                        setTitle(e.target.value)
-                    }} /> <br />
-
-                    {/* NOTES */}
-
-                    <label className="inpLabel">Notes: </label>
-                    <input 
-                    className="inp"
-                    value={description} onChange={(e) => {
-                        setDescription(e.target.value)
-                    }} />
-
-                    {/* CALENDAR */}
-                    <label className="inpLabel">Due Date:</label>
-                    <SingleDatePicker
-                        date={selectedDate} // momentPropTypes.momentObj or null
-                        onDateChange={date => {
-                            console.log(date)
-                            setSelectedDate(date)
-                        }} // PropTypes.func.isRequired
-                        focused={calendarFocused} // PropTypes.bool
-                        onFocusChange={({ focused }) => setCalendarFocused( focused )} // PropTypes.func.isRequired
-                        id="your_unique_id" // PropTypes.string.isRequired,
-                        numberOfMonths={1}
-                        hideKeyboardShortcutsPanel={true}
-                    />
-
                     {/* CLASS TYPE */}
                     <label className="inpLabel">Class Type</label>
                     <Select
@@ -145,6 +112,42 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                     />
 
 
+                    {/* TITLE */}
+                    <label className="inpLabel">Title: </label>
+                    <input
+                    className="inp"
+                    value={title} 
+                    onChange={(e) => {
+                        setTitle(e.target.value)
+                    }} /> <br />
+
+                    
+
+                    {/* CALENDAR */}
+                    <label className="inpLabel">Due Date:</label>
+                    <SingleDatePicker
+                        date={selectedDate} // momentPropTypes.momentObj or null
+                        onDateChange={date => {
+                            console.log(date)
+                            setSelectedDate(date)
+                        }} // PropTypes.func.isRequired
+                        focused={calendarFocused} // PropTypes.bool
+                        onFocusChange={({ focused }) => setCalendarFocused( focused )} // PropTypes.func.isRequired
+                        id="your_unique_id" // PropTypes.string.isRequired,
+                        numberOfMonths={1}
+                        hideKeyboardShortcutsPanel={true}
+                    />
+
+                    {/* NOTES */}
+
+                    <label className="inpLabel">Description: </label>
+                    <textarea 
+                    className="inpArea"
+                    value={description} onChange={(e) => {
+                        setDescription(e.target.value)
+                    }} />
+
+                    
                     {/* COMPLETED CHECKBOX */}
 
                     <div className="isComplete">Is Completed:  <input 
