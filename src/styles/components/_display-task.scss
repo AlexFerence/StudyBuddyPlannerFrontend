@@ -29,7 +29,7 @@
 }
 
 .display-task-body {
-    padding: 15px;
+    padding: 10px;
 }
 
 .display-task-body label {
@@ -47,9 +47,20 @@
     display: flex;
     justify-content: center;
     margin: 20px auto;
-    width: 50%;
+    width: 90%;
 }
 
 .multiLine {
     height: 100px;
+    white-space: pre-wrap;
+    margin-left: 21px;
+}
+
+.calendarIcon {
+    padding: 0px 5px 2px 0px;
+    color: $dark-grey;
+}
+
+.info {
+    padding: 6px 0px;
 }

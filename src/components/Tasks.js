@@ -9,6 +9,8 @@ import TaskDisplay from './TaskDisplay'
 import TaskEdit from './TaskEdit'
 import { Row, Col } from 'react-bootstrap'
 
+
+
 var currentTaskCopy = {}
 
 const TasksPage = (props) => {
@@ -24,6 +26,17 @@ const TasksPage = (props) => {
         }
         else {
             return(undefined)
+        }
+    }
+
+    const getClassName = (subjectId) => {
+        console.log(subjectId)
+        const subj = props.subjects.find((subject) => subject.id === subjectId)
+        if (subj) {
+            return(subj.name + " " + subj.classCode)
+        }
+        else {
+            return("no class found")
         }
     }
 
@@ -82,7 +95,10 @@ const TasksPage = (props) => {
             </Col>
             <Col className="main-right">
             { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
-            { currentTask.id && <TaskDisplay getClassColor={getClassColor} task={currentTask} turnOnEditing={turnOnEditing} />}
+            { currentTask.id && <TaskDisplay
+                getClassName={getClassName} 
+                getClassColor={getClassColor} 
+                task={currentTask} turnOnEditing={turnOnEditing} />}
             { isEditing && <TaskEdit
                 getClassColor={getClassColor} 
                 currentTaskCopy={currentTaskCopy} 

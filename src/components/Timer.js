@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-function Counter() {
+const Counter = ({ task }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
@@ -43,8 +43,6 @@ function Counter() {
         else {
             return(`${seconds}`)
         }
-        
-        
     }
 
     var percent = count / interval
@@ -94,7 +92,6 @@ function Counter() {
                     
                 />
             </div>
-
             <button onClick={resetCount}>Reset</button>
             <button onClick={startTimer}>Start</button>
 

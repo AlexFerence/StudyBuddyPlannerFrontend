@@ -1,16 +1,22 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import profileReducer from '../reducers/profileReducer'
 import subjectReducer from '../reducers/subjectReducer'
 import taskReducer from '../reducers/taskReducer'
+import isRunningReducer from '../reducers/isRunningReducer'
 
 import { persistReducer } from 'redux-persist'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 
 const reducers = {
     profile: profileReducer,
     subjects: subjectReducer,
-    tasks: taskReducer
+    tasks: taskReducer,
+    running: isRunningReducer
 };
 
 const persistConfig ={
@@ -24,5 +30,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const configureStore = () => createStore(
     persistedReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    );
+    composeWithDevTools(
+        applyMiddleware(thunk)
+));

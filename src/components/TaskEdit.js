@@ -62,7 +62,8 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                 subjectId: currentClass.value.id,
                 taskType: taskType.value,
                 isDone: isDone ? 1 : 0,
-                color: currentClass.value.color
+                color: currentClass.value.color,
+                dueDate: selectedDate
                 })
                 loadTasks()
                 setIsEditing(false)

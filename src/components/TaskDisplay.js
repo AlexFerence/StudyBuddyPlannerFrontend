@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
-import { FaEdit, FaCalendarAlt } from 'react-icons/fa'
+import { FaEdit, FaCalendarAlt, FaGraduationCap, FaPencilAlt } from 'react-icons/fa'
+import { IoMdtime, IoMdTime } from 'react-icons/io'
 import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
 
-const TaskDisplay = ({ task, turnOnEditing, getClassColor }) => {
+const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName }) => {
 
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
@@ -30,17 +31,30 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor }) => {
             <div className="display-task-body">
                 <Row>
                     <Col>
-                    <div>
-                    <FaCalendarAlt /> Due: {returnParsedMoment(task.dueDate)}
+                    <div className="d-flex align-items-end info">
+                    <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {returnParsedMoment(task.dueDate)}
                     </div>
+                    <div className="d-flex align-items-end info">
+                    <span className="calendarIcon"><FaGraduationCap /></span>  Class: {getClassName(task.subjectId)}
+                    </div>
+                    <div className="d-flex align-items-end info">
+                    <span className="calendarIcon"><IoMdTime /></span>  Total: {task.totalTime}mins
+                    </div>
+                    <div className="d-flex align-items-end info">
+                    <span className="calendarIcon"><FaPencilAlt /></span>  Notes:
+                    </div>
+                    <p>
+                    <div className="multiLine">{task.description}</div>
+                    </p>
+                    
                     </Col>
                     <Col>
-                    <Counter />
+                    <Counter task={task} />
                     </Col>
                     
                 </Row>
                 <div>
-                    <div className="multiLine">{task.description}</div>
+                    
                 </div>
             </div>
         </div>

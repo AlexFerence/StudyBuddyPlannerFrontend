@@ -9,6 +9,7 @@ import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import SubjectModal from './SubjectModal'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
+import { loadSubjects } from '../thunks/thunk'
 
 
 
