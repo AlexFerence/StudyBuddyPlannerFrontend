@@ -7,6 +7,7 @@ import TaskList from './TaskList'
 import AddTask from './AddTask'
 import TaskDisplay from './TaskDisplay'
 import TaskEdit from './TaskEdit'
+import { Row, Col } from 'react-bootstrap'
 
 var currentTaskCopy = {}
 
@@ -68,8 +69,8 @@ const TasksPage = (props) => {
         loadTasks()
     }, [])
     return (
-        <div className="tasks">
-            <div className="scroller">
+        <Row className="tasks">
+            <Col className="scroller">
                 <TaskList 
                 setCurrentTask={setCurrentTask} 
                 tasks={props.tasks} 
@@ -78,8 +79,8 @@ const TasksPage = (props) => {
                 setCurrentT={setCurrentTask}
                 setIsEditing={setIsEditing}
                 />
-            </div>
-            <div className="main-right">
+            </Col>
+            <Col className="main-right">
             { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
             { currentTask.id && <TaskDisplay getClassColor={getClassColor} task={currentTask} turnOnEditing={turnOnEditing} />}
             { isEditing && <TaskEdit
@@ -89,8 +90,8 @@ const TasksPage = (props) => {
                 setCurrentTask={setCurrentTask}
                 setIsEditing={setIsEditing} 
                 />}
-            </div>
-        </div>
+            </Col>
+        </Row>
     )
 }
 

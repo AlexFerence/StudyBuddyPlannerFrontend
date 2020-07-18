@@ -18,6 +18,16 @@
     color: $white;
 }
 
+.display-task-header button {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+.display-task-header button:focus {
+    outline: none;
+}
+
 .display-task-body {
     padding: 15px;
 }

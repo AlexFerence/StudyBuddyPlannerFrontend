@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
+import { FaEdit } from 'react-icons/fa'
 
 
 const percentage = 66
@@ -24,7 +25,7 @@ const TaskDisplay = ({ task, subjects, turnOnEditing, getClassColor }) => {
                         onClick={() => {
                             turnOnEditing()
                         }}
-                    >Edit</button>
+                    ><FaEdit /></button>
                 </div>
             </div>
             <div className="display-task-body">
