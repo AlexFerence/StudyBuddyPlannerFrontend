@@ -27,3 +27,4 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
         console.log(e)
     }
 }
+//thunks should be working
