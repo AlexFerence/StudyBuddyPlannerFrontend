@@ -10,7 +10,7 @@ export const runningOnThunk = (taskId) => async (dispatch, getState) => {
 
     console.log('running on thunk')
     try {
-        const res = await axios.post(url + '/api/subjects/list',
+        const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
                 active: 1
@@ -32,7 +32,7 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
     const { id, token } = profile
     dispatch(runningReduxOff(taskId))
     try {
-        const res = await axios.post(url + '/api/subjects/list',
+        const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
                 active: 0
