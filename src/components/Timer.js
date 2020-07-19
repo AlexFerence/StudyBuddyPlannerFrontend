@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-const Counter = ({ task }) => {
+import { connect } from 'react-redux'
+import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
+import { postSessionThunk } from '../thunks/sessionsThunk'
+
+const Counter = ({ task, dispatch, id }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
@@ -10,39 +14,29 @@ const Counter = ({ task }) => {
     useInterval(() => {
         // Your custom logic here
         setCount(count + 1);
-
-
         if (percent >= 1) {
             setIsRunning(false)
+        }
+        if (percent === 1) {
+            timerDone()
         }
 
     }, isRunning ? delay : null);
 
-    const timeDisplay = (n) => {
-        var hours = Math.floor(n / 3600)
 
-        var mins = Math.floor((n - (hours * 3600)) / 60)
-        var seconds = n % 60
+    const startTimer = () => {
+        setIsRunning(true)
+        dispatch(runningOnThunk(task.id))
+    }
 
-        if (seconds < 10) {
-            seconds = "0" + seconds 
-        }
-        if (mins < 10) {
-            mins = "0" + mins
-        }
-        
-        if (n < 60) {
-            return(`${n}`)
-        }
-        else if (n >= 3600) {
-            return(`${hours}:${mins}:${seconds}`)
-        }
-        else if (n >= 60) {
-            return(`${mins}:${seconds}`)
-        }
-        else {
-            return(`${seconds}`)
-        }
+    const timerDone = () => {
+        console.log('done')
+        resetCount()
+        dispatch(runningOffThunk(task.id))
+        dispatch(postSessionThunk({ 
+            taskId: task.id, 
+            minutes: interval,
+        }))
     }
 
     var percent = count / interval
@@ -52,13 +46,11 @@ const Counter = ({ task }) => {
         setIsRunning(false)
     }
 
-    const startTimer = () => {
-        setIsRunning(true)
-    }
+    
 
-    function handleIsRunningChange(e) {
-        setIsRunning(e.target.checked);
-    }
+    // function handleIsRunningChange(e) {
+    //     setIsRunning(e.target.checked);
+    // }
 
     return (
         <div>
@@ -78,18 +70,15 @@ const Counter = ({ task }) => {
                 <option value="90">90</option>
                 <option value="120">120</option>
             </select>
-
-            { false && <input type="checkbox" checked={isRunning} onChange={handleIsRunningChange} />}
             <div className="timer">
                 <CircularProgressbar
                     value={percent * 100}
-                    text={(interval - count) > 0 ? timeDisplay(interval - count) : 0 }
+                    text={(interval - count) > 0 ? timeDisplay(interval - count) : "0"}
                     styles={buildStyles({
                         pathTransitionDuration: 0.15,
                         strokeLinecap: "butt",
                         textColor: "black",
                     })}
-                    
                 />
             </div>
             <button onClick={resetCount}>Reset</button>
@@ -119,4 +108,34 @@ function useInterval(callback, delay) {
     }, [delay]);
 }
 
-export default Counter
+const mapStateToProps = (state) => {
+    return {
+        tasks: state.tasks,
+        token: state.profile.token,
+        id: state.profile.id,
+        subjects: state.subjects
+    }
+}
+
+
+
+const timeDisplay = (n) => {
+    var hours = Math.floor(n / 3600)
+    var mins = Math.floor((n - (hours * 3600)) / 60)
+    var seconds = n % 60
+    if (seconds < 10) {
+        seconds = "0" + seconds 
+    } if (mins < 10) {
+        mins = "0" + mins
+    } if (n < 60) {
+        return(`${n}`)
+    } else if (n >= 3600) {
+        return(`${hours}:${mins}:${seconds}`)
+    } else if (n >= 60) {
+        return(`${mins}:${seconds}`)
+    } else {
+        return(`${seconds}`)
+    }
+}
+
+export default connect(mapStateToProps)(Counter)

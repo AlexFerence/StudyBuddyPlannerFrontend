@@ -12,8 +12,7 @@ const profileReducer = (state = isRunningDefaultState, action) => {
             //CAN I SAVE HEre
             return {
                 isRunning: false,
-                taskId: 0,
-                classId: 0
+                taskId: 0
             }
 
         case RUNNING_ON:
@@ -21,7 +20,6 @@ const profileReducer = (state = isRunningDefaultState, action) => {
                 ...state,
                 isRunning: true,
                 taskId: action.taskId,
-                classId: action.classId
             }
         default: 
             return state

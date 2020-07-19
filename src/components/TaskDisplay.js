@@ -43,9 +43,9 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName }) => {
                     <div className="d-flex align-items-end info">
                     <span className="calendarIcon"><FaPencilAlt /></span>  Notes:
                     </div>
-                    <p>
+                    <div>
                     <div className="multiLine">{task.description}</div>
-                    </p>
+                    </div>
                     
                     </Col>
                     <Col>
@@ -54,7 +54,7 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName }) => {
                     
                 </Row>
                 <div>
-                    
+                 
                 </div>
             </div>
         </div>
