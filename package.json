@@ -15,6 +15,8 @@
     "normalize-scss": "^7.0.1",
     "persist": "^0.2.7",
     "react": "^16.13.1",
+    "react-autocomplete": "^1.8.1",
+    "react-autosuggest": "^10.0.2",
     "react-bootstrap": "^1.0.1",
     "react-circular-progressbar": "^2.0.3",
     "react-color": "^2.18.1",
