@@ -8,7 +8,6 @@ import url from '../environment/url'
 
 
 const FormPage = (props) => {
-
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -58,27 +57,26 @@ const FormPage = (props) => {
   return (
     <div className="container">
       <form onSubmit={onSubmit}>
-        <h3>Sign Up</h3>
         <div className="form-group">
-          <label>First Name</label>
-          <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="form-control" placeholder="First name" />
+          <label className="inpLabel">First Name</label>
+          <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="inp" placeholder="First name" />
         </div>
         <div className="form-group">
-          <label>Last Name</label>
-          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="form-control" placeholder="First name" />
+          <label className="inpLabel">Last Name</label>
+          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="inp" placeholder="First name" />
         </div>
         <div className="form-group">
-          <label>Email Address</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder="Enter email" />
+          <label className="inpLabel">Email Address</label>
+          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="inp" placeholder="Enter email" />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label className="inpLabel">Password</label>
           <input value={password} onChange={(e) => setPassword(e.target.value)} 
           type="password" 
-          className="form-control" 
+          className="inp" 
           placeholder="Enter password" />
         </div>
-        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+        <button type="submit" className="btn btn-secondary btn-block">Sign Up</button>
         <p className="forgot-password text-right">
           Already registered <Link to="/login">Log In</Link>
         </p>
