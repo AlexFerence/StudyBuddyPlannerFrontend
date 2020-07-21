@@ -10,7 +10,6 @@ export const updateProfileThunk = ({ school, major, minor, faculty}) => async (d
     try {
         const res = await axios.put(url + '/api/UserProfiles/' + id,
             {
-                ...profile,
                 school,
                 faculty,
                 major,
@@ -22,6 +21,7 @@ export const updateProfileThunk = ({ school, major, minor, faculty}) => async (d
                 'Content-Type': 'application/json'
             }
         })
+        console.log(res.data)
         dispatch(setProfile(res.data))
 
     } catch (e) {
