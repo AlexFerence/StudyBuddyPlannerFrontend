@@ -10,6 +10,7 @@ import Analytics from './components/Analytics'
 import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
 import SecondarySignUp from './components/SignUpSecondary'
+import Landing from './components/Landing'
 //import '../node_modules/normalize-scss/sass/normalize.scss'
 
 import './styles/styles.scss'
@@ -19,6 +20,7 @@ const ConfigureApp = () => {
     <BrowserRouter>
       <Header />
       <Switch>
+        <Route path='/' component={Landing} exact />
         <Route path='/signup' component={FormPage} exact />
         <Route path='/signupSecondary' component={SecondarySignUp} />
         <Route path='/login' exact component={LoginPage} />
