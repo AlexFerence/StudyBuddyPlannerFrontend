@@ -1,22 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Autosuggest from 'react-autosuggest';
+import { connect } from 'react-redux'
+import { updateProfileThunk } from '../thunks/profileThunk'
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 const languages = [
-  {
-    name: 'Montreal University'
-  },
-  {
-    name: 'McMaster University'
-  },
-  {
-      name: 'McGill University'
-  }
+  { name: 'Montreal University' },
+  { name: 'McMaster University' },
+  { name: 'McGill University' }
 ];
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
+const getSuggestions = val => {
+  const inputValue = val.trim().toLowerCase();
   const inputLength = inputValue.length;
 
   return inputLength === 0 ? [] : languages.filter(lang =>
@@ -36,66 +32,69 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
-class Example extends React.Component {
-  constructor() {
-    super();
+const SignUpSecondary = ({ dispatch, history }) => {
+  const [school, setSchool] = useState('')
+  const [faculty, setFaculty] = useState('')
+  const [major, setMajor] = useState('')
+  const [minor, setMinor] = useState('')
 
-    // Autosuggest is a controlled component.
-    // This means that you need to provide an input value
-    // and an onChange handler that updates this value (see below).
-    // Suggestions also need to be provided to the Autosuggest,
-    // and they are initially empty because the Autosuggest is closed.
-    this.state = {
-      value: '',
-      suggestions: []
-    };
+  const onChangeFaculty = (e) => {
+    setFaculty(e.target.value)
+  }
+  const onChangeMajor = (e) => {
+    setMajor(e.target.value)
+  }
+  const onChangeMinor = (e) => {
+    setMinor(e.target.value)
   }
 
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue
-    });
+
+
+  const [suggestions, setSuggestions] = useState([])
+
+  const onChange = (event, { newValue }) => {
+    setSchool(newValue)
+  }
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value))
+  }
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([])
   };
 
-  // Autosuggest will call this function every time you need to update suggestions.
-  // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
+  const inputProps = {
+    placeholder: '',
+    value: school,
+    onChange
   };
 
-  // Autosuggest will call this function every time you need to clear suggestions.
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
-  };
+  const updateProfile = (e) => {
+    e.preventDefault()
+    dispatch(updateProfileThunk({school, faculty, major, minor}))
+    history.push('/dashboard')
+  }
 
-  render() {
-    const { value, suggestions } = this.state;
+  return (
+    <div className="container SignUpSecond">
+        <label className="inpLabel">School</label>
+        <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps}
+        />
+        <label className="inpLabel">Faculty</label>
+        <input className="inp" onChange={onChangeFaculty} value={faculty}/>
+        <label className="inpLabel" >Major</label>
+        <input className="inp" onChange={onChangeMajor} value={major} />
+        <label className="inpLabel">Minor</label>
+        <input className="inp" onChange={onChangeMinor} value={minor} />
+        <button id="secondarySignUp" onClick={updateProfile} className="but">Get Started</button>
+    </div>
+    )
+  }
 
-        // Autosuggest will pass through all these props to the input.
-        const inputProps = {
-            placeholder: 'Type a programming language',
-            value,
-            onChange: this.onChange
-        };
-        return (
-            <div>
-                <h1>Hello</h1>
-                <Autosuggest
-                    suggestions={suggestions}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    getSuggestionValue={getSuggestionValue}
-                    renderSuggestion={renderSuggestion}
-                    inputProps={inputProps}
-                />
-            </div>
-
-        );
-    }
-}
-
-export default Example
+export default connect()(SignUpSecondary)
