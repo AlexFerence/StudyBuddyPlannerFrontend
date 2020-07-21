@@ -11,9 +11,3 @@ export const setEmail = (email) => ({
     email
 })
 
-export const UPDATE_FIELDS = 'UPDATE_FIELDS'
-export const updateFields = (email) => ({
-    type: UPDATE_FIELDS,
-    email
-})
-

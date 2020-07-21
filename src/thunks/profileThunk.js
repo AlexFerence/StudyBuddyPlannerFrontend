@@ -1,6 +1,5 @@
 import axios from 'axios'
 import url from '../environment/url'
-import moment from 'moment'
 import { setProfile } from '../actions/profileActions'
 
 export const loginThunk = ({ email, password }) => async (dispatch, getState) => {
@@ -88,7 +87,6 @@ export const updateProfileThunk = ({ school, major, minor, faculty}) => async (d
         })
         console.log(res)
         dispatch(setProfile({
-            ...profile,
             ...res.data
         }))
 
