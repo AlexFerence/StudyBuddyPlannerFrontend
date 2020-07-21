@@ -21,31 +21,7 @@ const LoginPage = (props) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const res = await axios.post(url + '/api/userprofiles/authenticate',
-                {
-                    Email: email,
-                    Password: password
-                })
-            if (res.status === 200) {
-                redirectToHome()
-                console.log(res.data)
-                props.dispatch(setProfile({
-                    //TODO check what fields come back from res.data.email
-                    email,
-                    password,
-                    id: res.data.id,
-                    firstName: res.data.firstName,
-                    lastName: res.data.lastName,
-                    token: res.data.token,
-                    isAuth: true
-                }))
-            }
-
-        } catch (e) {
-            console.log(e)
-            console.log(e.message)
-        }
+        redirectToHome()
     }
     
     return (
