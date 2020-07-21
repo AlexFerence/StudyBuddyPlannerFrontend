@@ -2,56 +2,36 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { signupThunk } from '../thunks/profileThunk'
+
 import { setProfile } from '../actions/profileActions'
 import axios from 'axios'
 import url from '../environment/url'
 
 
-const FormPage = (props) => {
+const FormPage = ({ history, dispatch }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   //function to redirect to home
   const redirectToHome = () => {
-    props.history.push("/signupSecondary")
+    history.push("/signupSecondary")
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    try {
-      const res = await axios.post(url + '/api/userprofiles/create',
-        { firstName,
-          lastName,
-          email1: email,
-          password
-        }) 
-      if (res.status === 200) {
-        const loginRes = await axios.post(url + '/api/userprofiles/authenticate',
-        { 
-          Email: email,
-          Password: password
-        })
-        if (loginRes.status === 200) {
-          redirectToHome()
-          props.dispatch(setProfile({
-            email,
-            password,
-            id: loginRes.data.id,
-            firstName: loginRes.data.firstName,
-            lastName: loginRes.data.lastName,
-            token: loginRes.data.token,
-            isAuth: true
-        }))
-
-          console.log(loginRes.data)
-        }
-      }
-    } catch (e) {
-      console.log(e)
+    const auth = dispatch(signupThunk({ firstName, lastName, email, password }))
+    if (!auth.error) {
+      redirectToHome()
     }
-    //clear text
+    else {
+      setError(auth)
+    }
+    
+
   }
 
   return (
