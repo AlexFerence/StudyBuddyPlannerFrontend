@@ -15,7 +15,7 @@ const FormPage = (props) => {
 
   //function to redirect to home
   const redirectToHome = () => {
-    props.history.push("/dashboard")
+    props.history.push("/signupSecondary")
   }
 
   const onSubmit = async (e) => {

@@ -1,0 +1,20 @@
+.container { 
+    padding: 5px;
+    background-color: red;
+}
+.input { 
+    padding: 5px;
+    background-color: blue;
+}
+.suggestionsContainer { 
+    padding: 5px;
+    background-color: yellow;
+}
+.suggestion { 
+    padding: 5px;
+    background-color:pink;
+}
+.suggestionHighlighted { 
+    background-color: green;
+    padding: 5px;
+}

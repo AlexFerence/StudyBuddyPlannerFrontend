@@ -1,0 +1,64 @@
+.react-autosuggest__container {
+
+}
+
+.react-autosuggest__input {
+    padding: 7.5px;
+    border-bottom: 1px solid grey;
+    background-color: $white;
+    transition: .2s;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.react-autosuggest__input--focused {
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    outline: none; 
+    border-bottom: 1px solid $dark-grey;
+    margin-bottom: 0px;
+}
+
+
+.react-autosuggest__suggestions-container {
+    background-color: blue;
+    width: 100%;
+}
+
+.react-autosuggest__suggestions-list {
+    
+
+}
+
+.react-autosuggest__suggestion {
+    padding: 7.5px;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    background-color: $white;
+    transition: .2s;
+    color: $dark-grey;
+}
+
+.react-autosuggest__suggestion--highlighted {
+    background-color: $light-grey;
+}
+
+#secondarySignUp {
+    margin: 10px 0px;
+    width: 100%;
+    margin: 10px 0px;
+    background-color: $brand;
+    color: $white;
+    padding: 10px;
+    border: none;
+}
+
+#secondarySignUp:hover {
+    background-color: lighten($brand, 5);
+}
+
+.SignUpSecond {
+    background-color: $light-grey;
+}
