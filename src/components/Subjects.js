@@ -10,6 +10,7 @@ import SubjectModal from './SubjectModal'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
 import { loadSubjects } from '../thunks/userActivityThunk'
+import { editSubjectThunk } from '../thunks/subjectThunk'
 
 
 
@@ -94,40 +95,18 @@ const SubjectsPage = (props) => {
 
     const submitEdits = async (e) => {
         e.preventDefault()
-        try {
-            const res = await axios.put(url + '/api/subjects/' + classSelection.id,
-                {
-                    "Name": newChanges.name.toUpperCase().trim(),
-                    "ClassCode": newChanges.classCode,
-                    "Description": newChanges.description.trim(),
-                    "Professor": newChanges.professor.trim(),
-                    "Credits": newChanges.credits,
-                    "UserId": props.id,
-                    "color": newChanges.color
-                },
-                {
-                    headers: {
-                        'Authorization': 'bearer ' + props.token,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            if (res.status === 200) {
-                setClassSelection(newChanges)
-            }
-
+        props.dispatch(editSubjectThunk({
+            Name: newChanges.name.toUpperCase().trim(),
+            ClassCode: newChanges.classCode,
+            Description: newChanges.description.trim(),
+            Professor: newChanges.professor.trim(),
+            Credits: newChanges.credits,
+            UserId: props.id,
+            color: newChanges.color,
+        }, classSelection))
+            setClassSelection(newChanges)
             setEditMode(false)
-            getClasses()
-            
-            
-
-        } catch (e) {
-            console.log(e)
-        }
-        // axios post to edit
-        // reset redux
-        // turn off editing mode
+        
     }
 
     return (
