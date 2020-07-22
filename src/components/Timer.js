@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 
 import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
@@ -65,15 +65,19 @@ const Counter = ({ task, dispatch, id }) => {
                 <option value="120">120</option>
             </select>
             <div className="timer">
-                <CircularProgressbar
+                <CircularProgressbarWithChildren
                     value={percent * 100}
-                    text={(interval - count) > 0 ? timeDisplay(interval - count) : "0"}
+                    //text={(interval - count) > 0 ? timeDisplay(interval - count) : "0"}
                     styles={buildStyles({
                         pathTransitionDuration: 0.15,
                         strokeLinecap: "butt",
                         textColor: "black",
                     })}
-                />
+                >
+                <div>
+                <input className="inp" type="number"></input>  
+                </div>
+                </CircularProgressbarWithChildren>
             </div>
             <button onClick={resetCount}>Reset</button>
             <button onClick={startTimer}>Start</button>

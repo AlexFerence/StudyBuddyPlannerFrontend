@@ -50,6 +50,7 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
                     <div>
                     <div className="multiLine">{task.description}</div>
                     </div>
+                    <button>Mark as Complete</button>
                     
                     </Col>
                     <Col>
