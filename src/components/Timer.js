@@ -74,9 +74,11 @@ const Counter = ({ task, dispatch, id }) => {
                         textColor: "black",
                     })}
                 >
-                <div>
-                <input className="inp" type="number"></input>  
+                <div className="inside d-flex justify-content-center align-items-center">
+                <input className="inp" type="number" />
+                <div className="minlab">min</div>
                 </div>
+                <button>Start</button>
                 </CircularProgressbarWithChildren>
             </div>
             <button onClick={resetCount}>Reset</button>
