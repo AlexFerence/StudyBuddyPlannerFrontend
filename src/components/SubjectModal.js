@@ -6,7 +6,7 @@ import { Row, Col } from 'react-bootstrap'
 import { addSubject } from '../actions/subjectActions'
 import { connect } from 'react-redux'
 import { CirclePicker } from 'react-color'
-import { makeSemesterThunk } from '../thunks/semesterThunk'
+import { addSubjectThunk } from '../thunks/subjectThunk'
 
 const customStyles = {
     content: {
@@ -36,7 +36,7 @@ const SubjectModal = (props) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         props.closeModal()
-        props.dispatch(makeSemesterThunk({ subTitle, classCode, description, professor, credits, color }))
+        props.dispatch(addSubjectThunk({ subTitle, classCode, description, professor, credits, color }))
         setSubTitle('')
         setClassCode('')
         setDescription('')

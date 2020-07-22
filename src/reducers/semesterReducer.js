@@ -7,7 +7,9 @@ const semesterDefaultState = {
 const semesterReducer = (state = semesterDefaultState, action) => {
     switch(action.type) {
         case SET_SEMESTERID:
-            return action.semesterId
+            return {
+                semesterId: action.semesterId
+            }
         default: 
             return state
     }

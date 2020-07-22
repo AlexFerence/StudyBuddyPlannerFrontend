@@ -1,4 +1,7 @@
-import semesterReducer from "../reducers/semesterReducer"
+
+import axios from 'axios'
+import url from '../environment/url'
+import { addSubject } from '../actions/subjectActions'
 
 export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits, color }) => async (dispatch, getState) => {
     const state = getState()
@@ -19,7 +22,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
             },
             {
                 headers: {
-                    'Authorization': 'bearer ' + props.token,
+                    'Authorization': 'bearer ' + token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }

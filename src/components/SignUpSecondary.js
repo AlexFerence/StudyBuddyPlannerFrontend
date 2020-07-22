@@ -50,9 +50,7 @@ const SignUpSecondary = ({ dispatch, history }) => {
       setGpa(e.target.value)
     }
   }
-
-
-
+  
   const [suggestions, setSuggestions] = useState([])
 
   const onChange = (event, { newValue }) => {
