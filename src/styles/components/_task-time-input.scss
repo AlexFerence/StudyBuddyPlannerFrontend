@@ -1,0 +1,26 @@
+.TimeInput {
+    padding: 10px;
+}
+
+.TimeRow {
+    display: flex;
+    align-items: end;
+}
+
+.timeLabel {
+    padding: 0px 7.5px;
+}
+
+.timeSubmit {
+    margin-top: 10px;
+    width: 100%;
+    padding: 6px;
+    border: none;
+    color: white;
+    background-color: $grey;
+    border-radius: 3px;
+}
+
+.timeSubmit:focus {
+    outline: none;
+}

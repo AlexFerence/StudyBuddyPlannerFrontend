@@ -11,18 +11,12 @@ const Counter = ({ task, dispatch, id }) => {
     const [isRunning, setIsRunning] = useState(false);
     const [interval, setInterval] = useState(15)
 
+    //interval for timer to tick
     useInterval(() => {
-        // Your custom logic here
         setCount(count + 1);
-        if (percent >= 1) {
-            setIsRunning(false)
-        }
-        if (percent === 1) {
-            timerDone()
-        }
-
+        if (percent >= 1) { setIsRunning(false) }
+        if (percent === 1) { timerDone() }
     }, isRunning ? delay : null);
-
 
     const startTimer = () => {
         setIsRunning(true)

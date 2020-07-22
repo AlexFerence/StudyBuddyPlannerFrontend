@@ -122,7 +122,6 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                         id="your_unique_id" // PropTypes.string.isRequired,
                         numberOfMonths={1}
                         hideKeyboardShortcutsPanel={true}
-
                     />
 
                     <label className="inpLabel">Description: </label>

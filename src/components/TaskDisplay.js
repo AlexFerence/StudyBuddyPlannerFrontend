@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
 import { FaEdit, FaCalendarAlt, FaGraduationCap, FaPencilAlt } from 'react-icons/fa'
-import { IoMdtime, IoMdTime } from 'react-icons/io'
+import { IoMdTime } from 'react-icons/io'
 import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
+import Select from 'react-select';
+import TimeInput from './TaskTimeInput'
 
-const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName }) => {
+const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunning }) => {
+
+    const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
 
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
@@ -49,12 +53,24 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName }) => {
                     
                     </Col>
                     <Col>
-                    <Counter task={task} />
+                    <Select
+                    className="timerSelect"
+                    value={timerSetting}
+                    onChange={val => setTimerSetting(val)}
+                    placeholder="Type..."
+                    isDisabled={isRunning}
+                    options={[
+                        { value: 'Timer', label: 'Timer' },
+                        { value: 'Stopwatch', label: 'Stopwatch' },
+                        { value: 'Time Input', label: 'Time Input' },
+                    ]}
+                    />
+                    { timerSetting.value === 'Timer' && <Counter task={task} />}
+                    { timerSetting.value === 'Stopwatch'}
+                    { timerSetting.value === 'Time Input' && <TimeInput color={getClassColor(task.subjectId)} /> }
                     </Col>
-                    
                 </Row>
                 <div>
-                 
                 </div>
             </div>
         </div>
@@ -63,7 +79,8 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName }) => {
 
 const mapStateToProps = (state) => {
     return {
-        subjects: state.subjects
+        subjects: state.subjects,
+        isRunning: state.running.isRunning
     }
 }
 
