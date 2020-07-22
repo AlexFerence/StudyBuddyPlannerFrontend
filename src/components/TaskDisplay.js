@@ -9,7 +9,7 @@ import moment from 'moment'
 import Select from 'react-select';
 import TimeInput from './TaskTimeInput'
 
-const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunning }) => {
+const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunning, paused }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
 
@@ -17,7 +17,6 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
         var momentDay = moment(date)
         return momentDay.format("MMM D")
     }
-
 
     return (
         <div className="display-task">
@@ -59,14 +58,14 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
                     value={timerSetting}
                     onChange={val => setTimerSetting(val)}
                     placeholder="Type..."
-                    isDisabled={isRunning}
+                    isDisabled={isRunning || paused }
                     options={[
                         { value: 'Timer', label: 'Timer' },
                         { value: 'Stopwatch', label: 'Stopwatch' },
                         { value: 'Time Input', label: 'Time Input' },
                     ]}
                     />
-                    { timerSetting.value === 'Timer' && <Counter task={task} />}
+                    { timerSetting.value === 'Timer' && <Counter color={getClassColor(task.subjectId)} task={task} />}
                     { timerSetting.value === 'Stopwatch'}
                     { timerSetting.value === 'Time Input' && <TimeInput color={getClassColor(task.subjectId)} /> }
                     </Col>
@@ -81,7 +80,8 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
 const mapStateToProps = (state) => {
     return {
         subjects: state.subjects,
-        isRunning: state.running.isRunning
+        isRunning: state.running.isRunning,
+        paused: state.running.paused
     }
 }
 

@@ -1,7 +1,8 @@
-import { RUNNING_OFF, RUNNING_ON } from '../actions/isRunningActions'
+import { RUNNING_OFF, RUNNING_ON, PAUSED_ON, PAUSED_OFF } from '../actions/isRunningActions'
 
 const isRunningDefaultState = {
     isRunning: false,
+    paused: false,
     taskId: 0,
     classId: 0
 }
@@ -11,6 +12,7 @@ const profileReducer = (state = isRunningDefaultState, action) => {
         case RUNNING_OFF:
             //CAN I SAVE HEre
             return {
+                ...state,
                 isRunning: false,
                 taskId: 0
             }
@@ -21,7 +23,17 @@ const profileReducer = (state = isRunningDefaultState, action) => {
                 isRunning: true,
                 taskId: action.taskId,
             }
-        default: 
+        case PAUSED_ON:
+            return {
+                ...state,
+                paused: true
+            }
+        case PAUSED_OFF:
+            return {
+                ...state,
+                paused: false
+            }
+        default:
             return state
     }
 }

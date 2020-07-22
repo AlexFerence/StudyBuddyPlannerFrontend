@@ -4,11 +4,14 @@ import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-pro
 import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk } from '../thunks/sessionsThunk'
+import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
+import { IoMdPause } from 'react-icons/io'
 
-const Counter = ({ task, dispatch, id }) => {
+const Counter = ({ task, dispatch, id, color }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
+    const [paused, setPaused] = useState(false);
     const [interval, setInterval] = useState(15)
 
     //interval for timer to tick
@@ -21,14 +24,23 @@ const Counter = ({ task, dispatch, id }) => {
     const startTimer = () => {
         setIsRunning(true)
         dispatch(runningOnThunk(task.id))
+        dispatch(pausedReduxOff())
+    }
+
+    const pauseTimer = () => {
+        setIsRunning(false)
+        dispatch(runningOffThunk(task.id))
+        setPaused(true)
+        dispatch(pausedReduxOn())
     }
 
     const timerDone = () => {
         console.log('done')
         resetCount()
         dispatch(runningOffThunk(task.id))
-        dispatch(postSessionThunk({ 
-            taskId: task.id, 
+        dispatch(pausedReduxOff())
+        dispatch(postSessionThunk({
+            taskId: task.id,
             minutes: interval,
         }))
     }
@@ -40,30 +52,25 @@ const Counter = ({ task, dispatch, id }) => {
         setIsRunning(false)
     }
 
-    
+    const timeChanged = (e) => {
+        if (e.target.value >= 0 && !isNaN(e.target.value)) {
+            setInterval(parseInt(e.target.value))
+        }
+    }
 
-    // function handleIsRunningChange(e) {
-    //     setIsRunning(e.target.checked);
-    // }
+    useEffect(() => {
+        dispatch(runningOffThunk())
+        dispatch(pausedReduxOff())
+
+        return () => {
+            setIsRunning(true)
+            dispatch(runningOffThunk(task.id))
+
+        }
+    }, [])
 
     return (
         <div>
-            <select disabled={isRunning} onChange={(e) => {
-                setInterval(parseInt(e.target.value) * 60)
-            }}>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="30">30</option>
-                <option value="35">35</option>
-                <option value="40">40</option>
-                <option value="45">45</option>
-                <option value="50">50</option>
-                <option value="55">55</option>
-                <option value="60">60</option>
-                <option value="90">90</option>
-                <option value="120">120</option>
-            </select>
             <div className="timer">
                 <CircularProgressbarWithChildren
                     value={percent * 100}
@@ -71,18 +78,33 @@ const Counter = ({ task, dispatch, id }) => {
                     styles={buildStyles({
                         pathTransitionDuration: 0.15,
                         strokeLinecap: "butt",
-                        textColor: "black",
+                        pathColor: color,
                     })}
                 >
-                <div className="inside d-flex justify-content-center align-items-center">
-                <input className="inp" type="number" />
-                <div className="minlab">min</div>
-                </div>
-                <button>Start</button>
+                    
+                        {!isRunning && !paused &&
+                            <div className="inside d-flex justify-content-center align-items-center">
+                            <input className="inp" type="number"
+                            value={interval}
+                            onChange={timeChanged}
+                            />
+                            <div className="minlab">min</div>
+                            </div>
+                        }
+                        {(isRunning || paused) &&
+                        <div className="inside d-flex justify-content-center align-items-center">
+                            <span className="timeDisplay">{timeDisplay(interval - count)}</span>
+                        </div>
+
+
+                    }
+                    {!isRunning && <button className="but" onClick={startTimer}>Start</button>}
+                    {isRunning && <button className="but" onClick={pauseTimer}><IoMdPause /></button>}
+
+
+
                 </CircularProgressbarWithChildren>
             </div>
-            <button onClick={resetCount}>Reset</button>
-            <button onClick={startTimer}>Start</button>
 
         </div>
     );
@@ -125,7 +147,7 @@ const timeDisplay = (n) => {
     var seconds = n % 60
     if (seconds < 10) {
         seconds = "0" + seconds 
-    } if (mins < 10) {
+    } if (mins < 10 && hours > 0) {
         mins = "0" + mins
     } if (n < 60) {
         return(`${n}`)
