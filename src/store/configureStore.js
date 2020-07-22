@@ -3,6 +3,7 @@ import profileReducer from '../reducers/profileReducer'
 import subjectReducer from '../reducers/subjectReducer'
 import taskReducer from '../reducers/taskReducer'
 import isRunningReducer from '../reducers/isRunningReducer'
+import semesterReducer from '../reducers/semesterReducer'
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
@@ -16,7 +17,8 @@ const reducers = {
     profile: profileReducer,
     subjects: subjectReducer,
     tasks: taskReducer,
-    running: isRunningReducer
+    running: isRunningReducer,
+    semester: semesterReducer
 };
 
 const persistConfig ={

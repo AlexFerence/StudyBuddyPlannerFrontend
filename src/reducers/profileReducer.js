@@ -1,4 +1,4 @@
-import { ADD_PROFILE, SET_FIELDS } from '../actions/profileActions'
+import { ADD_PROFILE, SET_FIELDS, UPDATE } from '../actions/profileActions'
 
 const profileReducerDefaultState = {
     email: '',
@@ -22,7 +22,13 @@ const profileReducer = (state = profileReducerDefaultState, action) => {
                 ...state,
                 email: action.email
             }
-        default: 
+        case UPDATE:
+            return {
+                ...state,
+                ...action.updates
+
+            }
+        default:
             return state
     }
 }

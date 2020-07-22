@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { signupThunk } from '../thunks/profileThunk'
 
+
 import { setProfile } from '../actions/profileActions'
 import axios from 'axios'
 import url from '../environment/url'
@@ -26,6 +27,7 @@ const FormPage = ({ history, dispatch }) => {
     const auth = dispatch(signupThunk({ firstName, lastName, email, password }))
     if (!auth.error) {
       redirectToHome()
+      
     }
     else {
       setError(auth)

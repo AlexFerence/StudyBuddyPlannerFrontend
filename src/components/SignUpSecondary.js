@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Autosuggest from 'react-autosuggest';
 import { connect } from 'react-redux'
 import { updateProfileThunk } from '../thunks/profileThunk'
+import { makeSemesterThunk } from '../thunks/semesterThunk'
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 const languages = [
@@ -36,7 +37,7 @@ const SignUpSecondary = ({ dispatch, history }) => {
   const [school, setSchool] = useState('')
   const [faculty, setFaculty] = useState('')
   const [major, setMajor] = useState('')
-  const [minor, setMinor] = useState('')
+  const [gpa, setGpa] = useState('')
 
   const onChangeFaculty = (e) => {
     setFaculty(e.target.value)
@@ -44,8 +45,10 @@ const SignUpSecondary = ({ dispatch, history }) => {
   const onChangeMajor = (e) => {
     setMajor(e.target.value)
   }
-  const onChangeMinor = (e) => {
-    setMinor(e.target.value)
+  const onChangeGpa = (e) => {
+    if (!isNaN(e.target.value) && e.target.value < 4.3) {
+      setGpa(e.target.value)
+    }
   }
 
 
@@ -70,9 +73,15 @@ const SignUpSecondary = ({ dispatch, history }) => {
   };
 
   const updateProfile = (e) => {
-    e.preventDefault()
-    dispatch(updateProfileThunk({school, faculty, major, minor}))
-    history.push('/dashboard')
+    if (!school) {
+      console.log("please fill out school")
+    }
+    else {
+      e.preventDefault()
+      dispatch(updateProfileThunk({ school, faculty, major, gpa }))
+      history.push('/dashboard')
+      dispatch(makeSemesterThunk(gpa))
+    }
   }
 
   return (
@@ -90,8 +99,8 @@ const SignUpSecondary = ({ dispatch, history }) => {
         <input className="inp" onChange={onChangeFaculty} value={faculty}/>
         <label className="inpLabel" >Major</label>
         <input className="inp" onChange={onChangeMajor} value={major} />
-        <label className="inpLabel">Minor</label>
-        <input className="inp" onChange={onChangeMinor} value={minor} />
+        <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
+        <input className="inp" onChange={onChangeGpa} value={gpa} />
         <button id="secondarySignUp" onClick={updateProfile} className="but">Get Started</button>
     </div>
     )

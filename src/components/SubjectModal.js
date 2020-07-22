@@ -6,6 +6,7 @@ import { Row, Col } from 'react-bootstrap'
 import { addSubject } from '../actions/subjectActions'
 import { connect } from 'react-redux'
 import { CirclePicker } from 'react-color'
+import { makeSemesterThunk } from '../thunks/semesterThunk'
 
 const customStyles = {
     content: {
@@ -34,40 +35,12 @@ const SubjectModal = (props) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const res = await axios.post(url + '/api/subjects/create',
-                {
-                    "Name": subTitle.toUpperCase().trim(),
-                    "ClassCode": classCode,
-                    "Description": description.trim(),
-                    "Professor": professor.trim(),
-                    "Credits": credits,
-                    "UserId": props.id,
-                    "color": color.hex
-                },
-                {
-                    headers: {
-                        'Authorization': 'bearer ' + props.token,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            if (res.status === 200) {
-                props.dispatch(addSubject(res.data))
-                props.closeModal()
-                setSubTitle('')
-                setClassCode('')
-                setDescription('')
-                setCredits(3)
-            }
-
-        } catch (e) {
-            console.log(e)
-        }
-        // call api
-        // update redux
-        // close modal
+        props.closeModal()
+        props.dispatch(makeSemesterThunk({ subTitle, classCode, description, professor, credits, color }))
+        setSubTitle('')
+        setClassCode('')
+        setDescription('')
+        setCredits(3)
     }
 
     useEffect(() => {

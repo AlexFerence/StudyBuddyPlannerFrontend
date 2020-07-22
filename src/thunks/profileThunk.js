@@ -1,6 +1,6 @@
 import axios from 'axios'
 import url from '../environment/url'
-import { setProfile } from '../actions/profileActions'
+import { setProfile, update } from '../actions/profileActions'
 
 export const loginThunk = ({ email, password }) => async (dispatch, getState) => {
     try {
@@ -85,8 +85,9 @@ export const updateProfileThunk = ({ school, major, minor, faculty}) => async (d
                 'Content-Type': 'application/json'
             }
         })
-        console.log(res)
-        dispatch(setProfile({
+        console.log('put update recieved data')
+        console.log(res.data)
+        dispatch(update({
             ...res.data
         }))
 
