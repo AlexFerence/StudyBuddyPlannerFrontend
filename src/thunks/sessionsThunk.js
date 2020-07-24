@@ -32,7 +32,7 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
 }
 //thunks should be working
 
-export const getSessionsThunk = (taskId) => async (dispatch, getState) => {
+export const getSessionsThunk = (taskId, setCurrentTask) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -46,7 +46,7 @@ export const getSessionsThunk = (taskId) => async (dispatch, getState) => {
             }   
         })
         console.log(res.data)
-
+        setCurrentTask(res.data)
     } catch (e) {
         console.log(e)
     }

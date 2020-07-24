@@ -51,9 +51,9 @@
 }
 
 .multiLine {
-    height: 100px;
     white-space: pre-wrap;
     margin-left: 21px;
+    margin-bottom: 10px;
 }
 
 .calendarIcon {
@@ -63,4 +63,62 @@
 
 .info {
     padding: 6px 0px;
+}
+
+// .display-task-body .complete {
+//     border: 1px solid $brand;
+//     background-color: $brand;
+//     color: $white;
+// }
+
+.sessionsTable {
+    margin: 10px;
+    width: 100%;
+    max-height: 150px;
+   // overflow: scroll;
+    overflow: scroll;
+
+}
+
+
+.sessionsTable table {
+    border-collapse: collapse;
+    width: 90%;
+
+}
+
+
+.sessionsTable tr {
+    border: 1px solid $grey;
+}
+
+.sessionsTable th {
+    position: sticky; 
+    top: 0;
+    color: white;
+    background-color: $grey;
+
+}
+
+.sessionsTable td, th {
+    padding: 7.5px;
+}
+
+.bold {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.display-right {
+    text-align: right;
+}
+
+#anchor {
+    /* allow the final child to be selected as an anchor node */
+    overflow-anchor: auto;
+
+    /* anchor nodes are required to have non-zero area */
+    height: 1px;
 }

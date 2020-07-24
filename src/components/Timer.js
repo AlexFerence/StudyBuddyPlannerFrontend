@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
-import { postSessionThunk } from '../thunks/sessionsThunk'
+import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import moment from 'moment'
 import swal from 'sweetalert'
 
-const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
+const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
@@ -55,7 +55,7 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
         dispatch(pausedReduxOn())
     }
 
-    const timerDone = () => {
+    const timerDone = async () => {
         console.log('done')
         
         dispatch(pausedReduxOff())
@@ -63,7 +63,14 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
             taskId: task.id,
             minutes: interval,
         }))
-        swal("Good job!", "study session complete", "success");
+        const t = dispatch(getSessionsThunk(task.id ,setCurrentTask))
+        swal({
+            title: "Complete!",
+            text: "Your row has been deleted.",
+            type: "success",
+            timer: 1500
+         });
+        //swal("Good job!", "study session complete", "success");
         resetCount()
     }
 
