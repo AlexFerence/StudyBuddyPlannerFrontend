@@ -1,8 +1,9 @@
-import { RUNNING_OFF, RUNNING_ON, PAUSED_ON, PAUSED_OFF } from '../actions/isRunningActions'
+import { RUNNING_OFF, RUNNING_ON, PAUSED_ON, PAUSED_OFF, SET_COUNT } from '../actions/isRunningActions'
 
 const isRunningDefaultState = {
     isRunning: false,
     paused: false,
+    countRedux: 0,
     taskId: 0,
     classId: 0
 }
@@ -32,6 +33,11 @@ const profileReducer = (state = isRunningDefaultState, action) => {
             return {
                 ...state,
                 paused: false
+            }
+        case SET_COUNT:
+            return {
+                ...state,
+                count: action.count
             }
         default:
             return state

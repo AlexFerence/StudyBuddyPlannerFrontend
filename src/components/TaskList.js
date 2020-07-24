@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { FaCheck } from 'react-icons/fa'
+import swal from 'sweetalert'
+import { pausedReduxOn, pausedReduxOff, runningReduxOff, setCount } from '../actions/isRunningActions'
 
-const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTask, setCurrentT,  setIsEditing }) => {
+import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
+
+
+const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTask, setCurrentT,  
+    setIsEditing, running, paused, dispatch }) => {
 
     const getClassName = (subjectId) => {
         console.log(subjectId)
@@ -16,6 +22,11 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
             return("no class found")
         }
     }
+
+    useEffect(() => {
+        dispatch(runningOffThunk())
+        dispatch(pausedReduxOff())
+    }, [])
 
     const getClassColor = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
@@ -31,6 +42,40 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
         return momentDay.format("MMM D")
+    }
+
+    const taskClicked = (t) => {
+        if (running || paused) {
+            swal({
+                title: "Are you sure you want to Give Up your timer?",
+                text: "All progress for the study session will be lost",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        console.log('should delete')
+                        dispatch(pausedReduxOff())
+                        dispatch(runningReduxOff())
+                        setCurrentTask(t)
+                        setIsAddingTask(false)
+                        setIsEditing(false)
+
+                    } else {
+                        swal("crisis avoided")
+
+                    }
+                });
+        }
+        else {
+            setCurrentTask(t)
+            setIsAddingTask(false)
+            setIsEditing(false)
+
+        }
+
+
     }
 
     return (
@@ -56,13 +101,7 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
                         style={{borderLeft: '5px solid ' + getClassColor(t.subjectId)}}
                         className="task-button"
                         key={t.id}
-                        onClick={() => {
-                            setCurrentTask(t)
-                            setIsAddingTask(false)
-                            setIsEditing(false)
-                            console.log(t)
-                            console.log(t.color)
-                        }}>
+                        onClick={() => taskClicked(t)}>
                             <div className="top-bar">
                                 <div className="subjTitle">{t.title}</div>
                                 <div className="due">{returnParsedMoment(t.dueDate)}</div>
@@ -83,7 +122,9 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
 
 const mapStateToProps = (state) => {
     return {
-        subjects: state.subjects
+        subjects: state.subjects,
+        running: state.running.isRunning,
+        paused: state.running.paused
     }
 }
 

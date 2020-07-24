@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
-import { IoMdPause } from 'react-icons/io'
+import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import moment from 'moment'
+import swal from 'sweetalert'
 
 const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
     const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
     useEffect(() => {
         dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
+
 
         return () => {
             setIsRunning(false)
@@ -49,25 +51,49 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
     const pauseTimer = () => {
         setIsRunning(false)
         dispatch(pausedReduxOn())
-
     }
 
     const timerDone = () => {
         console.log('done')
-        resetCount()
+        
         dispatch(pausedReduxOff())
         dispatch(postSessionThunk({
             taskId: task.id,
             minutes: interval,
             date: moment().format("YYYY-DD-MM")
         }))
+        swal("Good job!", "study session complete", "success");
+        resetCount()
     }
 
     var percent = count / interval
 
     const resetCount = () => {
-        setCount(0)
-        setIsRunning(false)
+        if (paused) {
+            swal({
+                title: "Are you sure you want to Give Up?",
+                text: "All progress for the study session will be lost",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    setCount(0)
+                    setIsRunning(false)
+                    dispatch(pausedReduxOff())
+                } else {
+
+                }
+              });
+        }
+        else {
+            setCount(0)
+            setIsRunning(false)
+            dispatch(pausedReduxOff())
+        }
+        
+        
     }
 
     const timeChanged = (e) => {
@@ -107,7 +133,15 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
 
 
                     }
-                    {!isRunning && <button className="but" onClick={startTimer}>Start</button>}
+                    <div>
+                    {!isRunning &&
+                        <button className="but" onClick={startTimer}><IoMdPlay /></button>   
+                    }
+                    {!isRunning && paused &&
+                        <button className="but" onClick={resetCount}><IoMdClose /></button>   
+                        
+                    }
+                    </div>
                     {isRunning && <button className="but" onClick={pauseTimer}><IoMdPause /></button>}
 
 

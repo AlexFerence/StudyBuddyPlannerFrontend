@@ -4,6 +4,7 @@ import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 import { connect } from 'react-redux'
 import { postSessionThunk } from '../thunks/sessionsThunk'
+import swal from 'sweetalert'
 
 
 
@@ -28,11 +29,16 @@ const TimeInput = ({ color, task, dispatch }) => {
     const submitTime = () => {
         console.log('submitting time ')
         const totalMins = mins + (hrs * 60)
-        dispatch(postSessionThunk({
-            taskId: task.id,
-            minutes: totalMins,
-            date: moment(selectedDate).format("YYYY-MM-DD")
-        }))
+        if (totalMins > 0) {
+            swal("Good job!", "You clicked the button!", "success");
+            setMins(0)
+            setHrs(0)
+            dispatch(postSessionThunk({
+                taskId: task.id,
+                minutes: totalMins,
+                date: moment(selectedDate).format("YYYY-MM-DD")
+            }))
+        }
     }
 
     return (

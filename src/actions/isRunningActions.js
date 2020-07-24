@@ -18,7 +18,12 @@ export const pausedReduxOff = () => ({
 export const PAUSED_ON = 'PAUSED_ON'
 export const pausedReduxOn = () => ({
     type: PAUSED_ON
+})
 
+export const SET_COUNT = 'SET_COUNT'
+export const setCount = (count) => ({
+    type: SET_COUNT,
+    count
 })
 
 
