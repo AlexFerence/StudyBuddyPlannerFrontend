@@ -23,8 +23,30 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
                 'Content-Type': 'application/json'
             }
         })
+        console.log('getting sessions')
+        dispatch(getSessionsThunk())
     } catch (e) {
         console.log(e)
     }
 }
 //thunks should be working
+
+export const getSessionsThunk = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.get(url + '/api/Tasks/' + id,
+            {}, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        console.log(res.data)
+
+    } catch (e) {
+        console.log(e)
+    }
+}

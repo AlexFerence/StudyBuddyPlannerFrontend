@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+import { connect } from 'react-redux'
+import { postSessionThunk } from '../thunks/sessionsThunk'
 
 
-const TimeInput = ({ color }) => {
+
+const TimeInput = ({ color, task, dispatch }) => {
     const [mins, setMins] = useState(0)
     const [hrs, setHrs] = useState(0)
     const [selectedDate, setSelectedDate] = useState(moment())
@@ -20,6 +23,16 @@ const TimeInput = ({ color }) => {
         if (e.target.value < 5 && e.target.value >= 0) {
             setHrs(e.target.value)
         }
+    }
+
+    const submitTime = () => {
+        console.log('submitting time ')
+        const totalMins = mins + (hrs * 60)
+        dispatch(postSessionThunk({
+            taskId: task.id,
+            minutes: totalMins,
+            date: moment(selectedDate).format("YYYY-MM-DD")
+        }))
     }
 
     return (
@@ -57,11 +70,16 @@ const TimeInput = ({ color }) => {
             
             <Row>
                 <Col>
-                    <button className="timeSubmit" style={{ backgroundColor: color }}>Submit Time</button>
+                    <button 
+                    className="timeSubmit" 
+                    style={{ backgroundColor: color }}
+                    onClick={() => submitTime()}
+                    >Submit Time</button>
                 </Col>
             </Row>
         </div>
     )
 }
 
-export default TimeInput
+
+export default connect()(TimeInput)

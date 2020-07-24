@@ -1,19 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
-
 import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause } from 'react-icons/io'
+import moment from 'moment'
 
-const Counter = ({ task, dispatch, id, color }) => {
+const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
-    const [paused, setPaused] = useState(false);
     const [interval, setInterval] = useState(15)
 
+    useEffect(() => {
+        dispatch(runningOffThunk())
+        dispatch(pausedReduxOff())
+
+        return () => {
+            setIsRunning(false)
+            dispatch(runningOffThunk(task.id))
+
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isRunning) {
+
+            dispatch(runningOnThunk(task.id))
+        }
+        else {
+            dispatch(runningOffThunk(task.id))
+        }
+    }, [isRunning])
+    
     //interval for timer to tick
     useInterval(() => {
         setCount(count + 1);
@@ -23,25 +43,23 @@ const Counter = ({ task, dispatch, id, color }) => {
 
     const startTimer = () => {
         setIsRunning(true)
-        dispatch(runningOnThunk(task.id))
         dispatch(pausedReduxOff())
     }
 
     const pauseTimer = () => {
         setIsRunning(false)
-        dispatch(runningOffThunk(task.id))
-        setPaused(true)
         dispatch(pausedReduxOn())
+
     }
 
     const timerDone = () => {
         console.log('done')
         resetCount()
-        dispatch(runningOffThunk(task.id))
         dispatch(pausedReduxOff())
         dispatch(postSessionThunk({
             taskId: task.id,
             minutes: interval,
+            date: moment().format("YYYY-DD-MM")
         }))
     }
 
@@ -58,16 +76,7 @@ const Counter = ({ task, dispatch, id, color }) => {
         }
     }
 
-    useEffect(() => {
-        dispatch(runningOffThunk())
-        dispatch(pausedReduxOff())
-
-        return () => {
-            setIsRunning(true)
-            dispatch(runningOffThunk(task.id))
-
-        }
-    }, [])
+    
 
     return (
         <div>
@@ -82,7 +91,7 @@ const Counter = ({ task, dispatch, id, color }) => {
                     })}
                 >
                     
-                        {!isRunning && !paused &&
+                        {(!isRunning && !paused) &&
                             <div className="inside d-flex justify-content-center align-items-center">
                             <input className="inp" type="number"
                             value={interval}
@@ -135,7 +144,9 @@ const mapStateToProps = (state) => {
         tasks: state.tasks,
         token: state.profile.token,
         id: state.profile.id,
-        subjects: state.subjects
+        subjects: state.subjects,
+        running: state.running.isRunning,
+        paused: state.running.paused
     }
 }
 

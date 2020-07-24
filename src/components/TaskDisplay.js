@@ -65,9 +65,13 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
                         { value: 'Time Input', label: 'Time Input' },
                     ]}
                     />
-                    { timerSetting.value === 'Timer' && <Counter color={getClassColor(task.subjectId)} task={task} />}
+                    { timerSetting.value === 'Timer' && <Counter color={getClassColor(task.subjectId)} task={task}  />}
                     { timerSetting.value === 'Stopwatch'}
-                    { timerSetting.value === 'Time Input' && <TimeInput color={getClassColor(task.subjectId)} /> }
+                    { timerSetting.value === 'Time Input' && 
+                    <TimeInput 
+                    color={getClassColor(task.subjectId)} 
+                    task={task}
+                    />}
                     </Col>
                 </Row>
                 <div>
