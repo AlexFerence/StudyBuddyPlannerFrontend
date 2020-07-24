@@ -11,7 +11,7 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
         date = moment().format("YYYY-MM-DD")
     }
     try {
-        const res = await axios.post(url + '/api/subjects/list',
+        const res = await axios.post(url + '/api/TaskSessions/create',
             {
                 minutes,
                 taskId,
@@ -38,12 +38,12 @@ export const getSessionsThunk = (taskId) => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.get(url + '/api/Tasks/' + taskId,
-            {}, {
+        {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            }   
         })
         console.log(res.data)
 

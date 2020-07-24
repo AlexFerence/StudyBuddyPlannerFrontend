@@ -44,8 +44,10 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
     }, isRunning ? delay : null);
 
     const startTimer = () => {
-        setIsRunning(true)
-        dispatch(pausedReduxOff())
+        if (interval > 0) {
+            setIsRunning(true)
+            dispatch(pausedReduxOff())
+        }
     }
 
     const pauseTimer = () => {
@@ -60,7 +62,6 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused }) => {
         dispatch(postSessionThunk({
             taskId: task.id,
             minutes: interval,
-            date: moment().format("YYYY-DD-MM")
         }))
         swal("Good job!", "study session complete", "success");
         resetCount()
