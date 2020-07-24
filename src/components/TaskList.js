@@ -8,13 +8,12 @@ import { pausedReduxOn, pausedReduxOff, runningReduxOff, setCount } from '../act
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 
 
-const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTask, setCurrentT,  
+const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTask, setCurrentT,  
     setIsEditing, running, paused, dispatch }) => {
 
     const getClassName = (subjectId) => {
         console.log(subjectId)
         const subj = subjects.find((subject) => subject.id === subjectId)
-
         if (subj) {
             return(subj.name + " " + subj.classCode)
         }
@@ -45,28 +44,13 @@ const TaskList = ({ tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTa
     }
 
     const taskClicked = (t) => {
-        if (running || paused) {
+        if ((running || paused) && (t.id !== currentTask.id)) {
             swal({
-                title: "Are you sure you want to Give Up your timer?",
-                text: "All progress for the study session will be lost",
-                icon: "warning",
+                title: "Can't switch tasks during study session",
+                icon: "info",
                 buttons: true,
                 dangerMode: true,
             })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        console.log('should delete')
-                        dispatch(pausedReduxOff())
-                        dispatch(runningReduxOff())
-                        setCurrentTask(t)
-                        setIsAddingTask(false)
-                        setIsEditing(false)
-
-                    } else {
-                        swal("crisis avoided")
-
-                    }
-                });
         }
         else {
             setCurrentTask(t)

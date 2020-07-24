@@ -85,6 +85,7 @@ const TasksPage = (props) => {
         <Row className="tasks">
             <Col className="scroller">
                 <TaskList 
+                currentTask={currentTask}
                 setCurrentTask={setCurrentTask} 
                 tasks={props.tasks} 
                 turnOnAdding={turnOnAdding} 

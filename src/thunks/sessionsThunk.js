@@ -1,6 +1,7 @@
 import axios from 'axios'
 import url from '../environment/url'
 import moment from 'moment'
+import TaskDisplay from '../components/TaskDisplay'
 
 export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dispatch, getState) => {
     const state = getState()
@@ -24,19 +25,19 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
             }
         })
         console.log('getting sessions')
-        dispatch(getSessionsThunk())
+        dispatch(getSessionsThunk(taskId))
     } catch (e) {
         console.log(e)
     }
 }
 //thunks should be working
 
-export const getSessionsThunk = () => async (dispatch, getState) => {
+export const getSessionsThunk = (taskId) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.get(url + '/api/Tasks/' + id,
+        const res = await axios.get(url + '/api/Tasks/' + taskId,
             {}, {
             headers: {
                 'Authorization': 'bearer ' + token,
