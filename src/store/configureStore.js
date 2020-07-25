@@ -5,6 +5,7 @@ import taskReducer from '../reducers/taskReducer'
 import isRunningReducer from '../reducers/isRunningReducer'
 import semesterReducer from '../reducers/semesterReducer'
 import schoolsReducer from '../reducers/schoolsReducer'
+import facultiesReducer from '../reducers/facultyReducer'
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
@@ -21,6 +22,7 @@ const reducers = {
     running: isRunningReducer,
     semester: semesterReducer,
     schools: schoolsReducer,
+    faculties: facultiesReducer
 };
 
 const persistConfig ={

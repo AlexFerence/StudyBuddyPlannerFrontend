@@ -3,14 +3,14 @@ import Autosuggest from 'react-autosuggest';
 import { connect } from 'react-redux'
 import { updateProfileThunk } from '../thunks/profileThunk'
 import { makeSemesterThunk } from '../thunks/semesterThunk'
-import Select from 'react-dropdown-select'
-import { loadSchools } from '../thunks/schoolsThunk'
+import Select from 'react-select'
+import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 var languages = [
-  { name: 'Montreal University' },
-  { name: 'McMaster University' },
-  { name: 'McGill University' }
+  { label: 'Montreal University', id: 1 },
+  { label: 'McMaster University', id: 2},
+  { label: 'McGill University', id: 3}
 ];
 
 var options = []
@@ -38,17 +38,16 @@ const renderSuggestion = suggestion => (
 );
 
 
-const SignUpSecondary = ({ dispatch, history, schools }) => {
-  const [school, setSchool] = useState('')
-  const [faculty, setFaculty] = useState('')
+const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
+  const [school, setSchool] = useState({})
+  const [faculty, setFaculty] = useState({})
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
+  const [schoolsList, setSchools] = useState(schools)
 
   useEffect(() => {
-    dispatch(loadSchools)
-    //languages = schools
-    options = schools
-    console.log(typeof(languages))
+    dispatch(loadSchools())
+    dispatch(loadFaculties())
   }, [])
 
   const onChangeFaculty = (e) => {
@@ -88,7 +87,7 @@ const SignUpSecondary = ({ dispatch, history, schools }) => {
     }
     else {
       e.preventDefault()
-      dispatch(updateProfileThunk({ school, faculty, major, gpa }))
+      dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa }))
       history.push('/dashboard')
       dispatch(makeSemesterThunk(gpa))
     }
@@ -98,12 +97,16 @@ const SignUpSecondary = ({ dispatch, history, schools }) => {
     <div className="container SignUpSecond">
       <label className="inpLabel">School</label>
       <Select
-        options={languages}
+        options={schools}
         values={[]}
-        onChange={(value) => console.log(value)}
+        onChange={(value) => setSchool(value)}
       />
       <label className="inpLabel">Faculty</label>
-      <input className="inp" onChange={onChangeFaculty} value={faculty} />
+      <Select
+        options={faculties}
+        values={[]}
+        onChange={(value) => setFaculty(value)}
+      />
       <label className="inpLabel" >Major</label>
       <input className="inp" onChange={onChangeMajor} value={major} />
       <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
@@ -119,7 +122,8 @@ const mapStateToProps = (state) => {
     token: state.profile.token,
     id: state.profile.id,
     subjects: state.subjects,
-    schools: state.schools
+    schools: state.schools,
+    faculties: state.faculties
   }
 }
 
