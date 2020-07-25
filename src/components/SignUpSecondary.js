@@ -3,6 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import { connect } from 'react-redux'
 import { updateProfileThunk } from '../thunks/profileThunk'
 import { makeSemesterThunk } from '../thunks/semesterThunk'
+import Select from 'react-dropdown-select'
 import { loadSchools } from '../thunks/schoolsThunk'
 
 // Imagine you have a list of languages that you'd like to autosuggest.
@@ -11,6 +12,8 @@ var languages = [
   { name: 'McMaster University' },
   { name: 'McGill University' }
 ];
+
+var options = []
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = val => {
@@ -42,7 +45,9 @@ const SignUpSecondary = ({ dispatch, history, schools }) => {
   const [gpa, setGpa] = useState('')
 
   useEffect(() => {
-    languages = schools
+    dispatch(loadSchools)
+    //languages = schools
+    options = schools
     console.log(typeof(languages))
   }, [])
 
@@ -91,21 +96,18 @@ const SignUpSecondary = ({ dispatch, history, schools }) => {
 
   return (
     <div className="container SignUpSecond">
-        <label className="inpLabel">School</label>
-        <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps}
-        />
-        <label className="inpLabel">Faculty</label>
-        <input className="inp" onChange={onChangeFaculty} value={faculty}/>
-        <label className="inpLabel" >Major</label>
-        <input className="inp" onChange={onChangeMajor} value={major} />
-        <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
-        <input className="inp" onChange={onChangeGpa} value={gpa} />
+      <label className="inpLabel">School</label>
+      <Select
+        options={languages}
+        values={[]}
+        onChange={(value) => console.log(value)}
+      />
+      <label className="inpLabel">Faculty</label>
+      <input className="inp" onChange={onChangeFaculty} value={faculty} />
+      <label className="inpLabel" >Major</label>
+      <input className="inp" onChange={onChangeMajor} value={major} />
+      <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
+      <input className="inp" onChange={onChangeGpa} value={gpa} />
         <button id="secondarySignUp" onClick={updateProfile} className="but">Get Started</button>
     </div>
     )
