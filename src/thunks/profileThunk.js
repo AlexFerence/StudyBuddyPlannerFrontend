@@ -74,8 +74,8 @@ export const updateProfileThunk = ({ school, major, minor, faculty}) => async (d
         const res = await axios.put(url + '/api/UserProfiles/' + id,
             {  
                 ...profile,
-                school,
-                faculty,
+                schoolID: school,
+                facultyID: faculty,
                 major,
                 minor
             }, {
