@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -8,6 +8,7 @@ import { signupThunk } from '../thunks/profileThunk'
 import { setProfile } from '../actions/profileActions'
 import axios from 'axios'
 import url from '../environment/url'
+import { loadSchools } from '../thunks/schoolsThunk';
 
 
 const FormPage = ({ history, dispatch }) => {
@@ -21,6 +22,11 @@ const FormPage = ({ history, dispatch }) => {
   const redirectToHome = () => {
     history.push("/signupSecondary")
   }
+
+  useEffect(() => {
+    dispatch(loadSchools())
+    
+  }, [])
 
   const onSubmit = async (e) => {
     e.preventDefault()

@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import Autosuggest from 'react-autosuggest';
 import { connect } from 'react-redux'
 import { updateProfileThunk } from '../thunks/profileThunk'
 import { makeSemesterThunk } from '../thunks/semesterThunk'
+import { loadSchools } from '../thunks/schoolsThunk'
 
 // Imagine you have a list of languages that you'd like to autosuggest.
-const languages = [
+var languages = [
   { name: 'Montreal University' },
   { name: 'McMaster University' },
   { name: 'McGill University' }
@@ -33,11 +34,17 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
-const SignUpSecondary = ({ dispatch, history }) => {
+
+const SignUpSecondary = ({ dispatch, history, schools }) => {
   const [school, setSchool] = useState('')
   const [faculty, setFaculty] = useState('')
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
+
+  useEffect(() => {
+    languages = schools
+    console.log(typeof(languages))
+  }, [])
 
   const onChangeFaculty = (e) => {
     setFaculty(e.target.value)
@@ -104,4 +111,15 @@ const SignUpSecondary = ({ dispatch, history }) => {
     )
   }
 
-export default connect()(SignUpSecondary)
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+    token: state.profile.token,
+    id: state.profile.id,
+    subjects: state.subjects,
+    schools: state.schools
+  }
+}
+
+
+export default connect(mapStateToProps)(SignUpSecondary)
