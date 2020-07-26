@@ -45,8 +45,6 @@ const LoginPage = ({ dispatch, history }) => {
                 
             })
         }
-
-
         e.preventDefault()
     }
     
