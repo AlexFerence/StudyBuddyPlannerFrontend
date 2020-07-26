@@ -20,30 +20,32 @@ const FormPage = ({ history, dispatch }) => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
-  //function to redirect to home
-  const redirectToHome = () => {
-    history.push("/signupSecondary")
-  }
-
   useEffect(() => {
-
     dispatch(loadSchools())
-    
   }, [])
 
   const onSubmit = async (e) => {
+    var clean = true;
     e.preventDefault()
     if (!email) {
       setEmailError('email is required')
+      clean = false
     }
-    else if (!password) {
+    else {
+      setEmailError('')
+    }
+    if (!password) {
       setPasswordError('password is required')
+      clean = false
     }
     else if (password.length < 6) {
       setPasswordError('password must be at least 6 characters long')
+      clean = false
     }
     else {
-
+      setPasswordError('')
+    }
+    if (clean) {
       dispatch(signupThunk({ firstName, lastName, email, password })).then((status) => {
         console.log(status)
         if (status === 200) {
@@ -55,7 +57,6 @@ const FormPage = ({ history, dispatch }) => {
       }).catch((e) => {
         setEmailError('email address already in use')
       })
-
     }
   }
 

@@ -6,8 +6,8 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
     try {
         const res = await axios.post(url + '/api/userprofiles/authenticate',
             {
-                Email: email,
-                Password: password
+                email,
+                password
             })
         if (res.status === 200) {
             console.log(res.data)
@@ -22,8 +22,9 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 isAuth: true
             }))
         }
-
+        return(res.status)
     } catch (e) {
+        return(e)
         console.log(e)
         console.log(e.message)
     }
