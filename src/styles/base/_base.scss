@@ -77,3 +77,51 @@ html {
   margin: 0;
   padding: 0;
 }
+
+.preAuth {
+  font-size: 20px;
+  background-color: transparent;
+  color: $brand;
+  border: 2px solid $brand;
+  margin-bottom: 10px;
+
+}
+.preAuth:hover {
+  background-color:$brand;
+  border: 2px solid $brand;
+}
+
+.preAuth:focus {
+  background-color:$brand;
+  border: 2px solid $brand;
+  outline: none;
+}
+
+.linkAuth {
+  color: $brand;
+  padding: 5px;
+}
+
+.linkAuth:hover {
+  color: $brand;
+  text-decoration: none;
+  border-bottom: 1px solid $brand;
+}
+
+
+.authContainer {
+  padding: 30px 80px;
+}
+
+.preHeader {
+  font-size: 20px;
+  //text-align: center;
+  padding-bottom: 15px;
+  font-weight: 700;
+}
+
+.error {
+  color: $brand;
+  font-size: 10px;
+
+}

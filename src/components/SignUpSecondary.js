@@ -114,7 +114,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       <input className="inp" onChange={onChangeMajor} value={major} />
       <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
       <input className="inp" onChange={onChangeGpa} value={gpa} />
-        <button id="secondarySignUp" onClick={updateProfile} className="but">Get Started</button>
+        <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
     </div>
     )
   }

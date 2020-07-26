@@ -58,7 +58,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
                     isAuth: true
                 }))
             }
-            return true
+            return res.status
         }
     } catch (e) {
         console.log(e)

@@ -25,27 +25,29 @@ const LoginPage = (props) => {
     }
     
     return (
-        <div className="container">
-            <form onSubmit={onSubmit}>
-                <h3>Login</h3>
+      
+        
+        <div className="container authContainer">
+            <div className="preHeader">Log In</div>
+            <form onSubmit={onSubmit}> 
                 <div className="form-group">
-                    <label>Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" placeholder="Enter email" />
+                    <label className="inpLabel">Email</label>
+                    <input className="inp" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
                 </div>
                 <div className="form-group">
-                    <label>Password</label>
+                    <label className="inpLabel">Password</label>
                     <input value={password} onChange={(e) => setPassword(e.target.value)}
                         type="password"
-                        className="form-control"
+                        className="inp"
                         placeholder="Enter password" />
                 </div>
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                <button type="submit" className="btn btn-secondary btn-block preAuth">Log In</button>
                 <p className="forgot-password text-right">
-                    Dont have an acount? <Link to="/signup">Sign Up</Link>
+                    Don't have an acount? <Link className="linkAuth" to="/signup">Sign Up</Link>
                 </p>
             </form>
-            <Link to="/dashboard">dashboard</Link>
         </div>
+
     )
 }
 
