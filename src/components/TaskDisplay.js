@@ -129,6 +129,7 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
                         {timerSetting.value === 'Stopwatch'}
                         {timerSetting.value === 'Time Input' &&
                             <TimeInput
+                                setCurrentTask={setCurrentTask}
                                 color={getClassColor(task.subjectId)}
                                 task={task}
                             />}

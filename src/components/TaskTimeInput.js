@@ -3,12 +3,12 @@ import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 import { connect } from 'react-redux'
-import { postSessionThunk } from '../thunks/sessionsThunk'
+import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import swal from 'sweetalert'
 
 
 
-const TimeInput = ({ color, task, dispatch }) => {
+const TimeInput = ({ color, task, dispatch, setCurrentTask }) => {
     const [mins, setMins] = useState(0)
     const [hrs, setHrs] = useState(0)
     const [selectedDate, setSelectedDate] = useState(moment())
@@ -36,8 +36,9 @@ const TimeInput = ({ color, task, dispatch }) => {
             dispatch(postSessionThunk({
                 taskId: task.id,
                 minutes: totalMins,
-                date: moment(selectedDate).format("YYYY-MM-DD")
+                date: moment(selectedDate).format("YYYY-MM-DD"),
             }))
+            dispatch(getSessionsThunk(task.id ,setCurrentTask))
         }
     }
 

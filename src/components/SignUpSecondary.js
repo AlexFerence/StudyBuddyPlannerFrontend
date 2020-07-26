@@ -82,8 +82,11 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   };
 
   const updateProfile = (e) => {
-    if (!school) {
-      console.log("please fill out school")
+    console.log(school)
+    console.log(faculty)
+    console.log(gpa)
+    if (!school.id || !faculty.id || !gpa) {
+      console.log('must enter all fields')
     }
     else {
       e.preventDefault()
