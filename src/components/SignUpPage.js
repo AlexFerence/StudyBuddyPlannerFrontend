@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { signupThunk } from '../thunks/profileThunk'
-
+import isEmail from 'validator/lib/isEmail';
 
 import { setProfile } from '../actions/profileActions'
 import axios from 'axios'
@@ -29,6 +29,10 @@ const FormPage = ({ history, dispatch }) => {
     e.preventDefault()
     if (!email) {
       setEmailError('email is required')
+      clean = false
+    }
+    else if (!isEmail(email)) {
+      setEmailError('not a valid email')
       clean = false
     }
     else {
@@ -75,7 +79,7 @@ const FormPage = ({ history, dispatch }) => {
         </div>
         <div className="form-group">
           <div className="inpLabel">Email Address { emailError && <span className="error">* {emailError}</span>}</div>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="inp" placeholder="Enter email" />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="inp" placeholder="Enter email" />
         </div>
         <div className="form-group">
           <label className="inpLabel">Password {passwordError && <span className="error">* {passwordError}</span>}</label>

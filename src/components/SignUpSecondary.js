@@ -43,16 +43,16 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const [faculty, setFaculty] = useState({})
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
-  const [schoolsList, setSchools] = useState(schools)
+  
+  const [schoolError, setSchoolError] = useState('')
+  const [facultyError, setFacultyError] = useState('')
+  const [gpaError, setGpaError] = useState('')
 
   useEffect(() => {
     dispatch(loadSchools())
     dispatch(loadFaculties())
   }, [])
 
-  const onChangeFaculty = (e) => {
-    setFaculty(e.target.value)
-  }
   const onChangeMajor = (e) => {
     setMajor(e.target.value)
   }
@@ -61,19 +61,10 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       setGpa(e.target.value)
     }
   }
-  
-  const [suggestions, setSuggestions] = useState([])
 
   const onChange = (event, { newValue }) => {
     setSchool(newValue)
   }
-
-  const onSuggestionsFetchRequested = ({ value }) => {
-    setSuggestions(getSuggestions(value))
-  }
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([])
-  };
 
   const inputProps = {
     placeholder: '',
@@ -82,8 +73,22 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   };
 
   const updateProfile = (e) => {
-    console.log(school)
-    console.log(faculty)
+    var clean = true
+    if (!school.id) {
+      setSchoolError('School is required')
+      clean = false
+    }
+    else {
+      setSchoolError('')
+    }
+    if (!faculty.id) {
+      setSchoolError('Faculty is required')
+      clean = false
+    }
+    else {
+      setSchoolError('')
+    }
+
     console.log(gpa)
     if (!school.id || !faculty.id || !gpa) {
       console.log('must enter all fields')
@@ -98,17 +103,23 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
 
   return (
     <div className="container SignUpSecond">
-      <label className="inpLabel">School</label>
+      <label className="inpLabel">School { schoolError && <span className="error">* {schoolError}</span>}</label>
       <Select
+        placeholder="school ..."
+        className="selectedInp"
         options={schools}
         values={[]}
         onChange={(value) => setSchool(value)}
+        components={{ DropdownIndicator:() => null }}
       />
-      <label className="inpLabel">Faculty</label>
+      <label className="inpLabel">Faculty { schoolError && <span className="error">* {schoolError}</span>} </label>
       <Select
+        placeholder="faculty ..."
+        className="selectedInp"
         options={faculties}
         values={[]}
         onChange={(value) => setFaculty(value)}
+        components={{ DropdownIndicator:() => null }}
       />
       <label className="inpLabel" >Major</label>
       <input className="inp" onChange={onChangeMajor} value={major} />
