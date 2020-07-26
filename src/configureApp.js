@@ -10,7 +10,7 @@ import Analytics from './components/Analytics'
 import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
-import Landing from './components/Landing'
+import Landing from './components/landing'
 
 //import '../node_modules/normalize-scss/sass/normalize.scss'
 
