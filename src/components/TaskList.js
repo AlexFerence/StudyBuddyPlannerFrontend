@@ -4,15 +4,14 @@ import moment from 'moment'
 import { FaCheck } from 'react-icons/fa'
 import swal from 'sweetalert'
 import { pausedReduxOn, pausedReduxOff, runningReduxOff, setCount } from '../actions/isRunningActions'
-
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
+import { setCurrentTask } from '../actions/currentTaskActions'
 
 
-const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, setCurrentTask, setIsAddingTask, setCurrentT,  
-    setIsEditing, running, paused, dispatch }) => {
+const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, addingOn, 
+    addingOff, running, paused, dispatch }) => {
 
     const getClassName = (subjectId) => {
-        console.log(subjectId)
         const subj = subjects.find((subject) => subject.id === subjectId)
         if (subj) {
             return(subj.name + " " + subj.classCode)
@@ -44,6 +43,7 @@ const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, setCurrentTask, 
     }
 
     const taskClicked = (t) => {
+        addingOff()
         if ((running || paused) && (t.id !== currentTask.id)) {
             swal({
                 title: "Can't switch tasks during study session",
@@ -53,13 +53,14 @@ const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, setCurrentTask, 
             })
         }
         else {
-            setCurrentTask(t)
-            setIsAddingTask(false)
-            setIsEditing(false)
-
+            dispatch(setCurrentTask({
+                ...t,
+                color: getClassColor(t.subjectId),
+                subjectTitle: getClassName(t.subjectId)
+            }))
+            //setIsAddingTask(false)
+            //setIsEditing(false)
         }
-
-
     }
 
     return (
@@ -72,10 +73,7 @@ const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, setCurrentTask, 
                         </div>
                     </div>
                     <div className="right">
-                        <button onClick={() => {
-                            turnOnAdding()
-                            setCurrentTask({})
-                        }}>+ Add Task</button>
+                        <button onClick={() => addingOn()}>+ Add Task</button>
                     </div>
                 </div>
             {
@@ -108,7 +106,8 @@ const mapStateToProps = (state) => {
     return {
         subjects: state.subjects,
         running: state.running.isRunning,
-        paused: state.running.paused
+        paused: state.running.paused,
+        tasks: state.tasks
     }
 }
 

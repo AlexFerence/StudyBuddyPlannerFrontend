@@ -9,8 +9,11 @@ import moment from 'moment'
 import Select from 'react-select';
 import TimeInput from './TaskTimeInput'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { getSessionsThunk } from '../thunks/sessionsThunk'
+import { getClassColor, getClassName } from '../thunks/subjectThunk'
+import { getTask } from '../thunks/taskThunk';
 
-const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunning, paused, setCurrentTask }) => {
+const TaskDisplay = ({ currentTask, turnOnEditing, isRunning, paused, setCurrentTask, dispatch }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
 
@@ -20,32 +23,60 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
 
-    useEffect(scrollToBottom, [task.taskSessions]);
+    const makeColor = async (subjId) => {
+        try {
+            var color = await dispatch(getClassColor(subjId))
+            console.log(color)
+            return color
+        } catch (e) {
+            console.log(e)
+        }
+    } 
+
+    const getTitle = async (subjId) => {
+        try {
+            var title = await dispatch(getClassName(subjId))
+            return title
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
+    useEffect(scrollToBottom, [currentTask.taskSessions]);
 
     useEffect(() => {
-        scrollToBottom()
-    }, [task.taskSessions])
+        // console.log(task.taskSessions)
+        // scrollToBottom()
+        // dispatch(getSessionsThunk(task.id)).then((currentTask) => {
+        //     setCurrentTask(currentTask)
+        // }).catch((e) => {
+        //     console.log(e)
+        // })
+    }, [currentTask])
 
     //scrolls to bottom
-    
+
 
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
         return momentDay.format("MMM D")
     }
 
-    const renderTooltipDone = (props, display) => {
-        return (
-            <Tooltip id="button-tooltip" {...props}>
-                Done
-            </Tooltip>
-        );
-    }
+
+
+    // const renderTooltipDone = (props, display) => {
+    //     return (
+    //         <Tooltip id="button-tooltip" {...props}>
+    //             Done
+    //         </Tooltip>
+    //     );
+    // }
 
     return (
         <div className="display-task">
-            <div className="display-task-header" style={{ backgroundColor: getClassColor(task.subjectId) }}>
-                <span>{task.title}</span>
+            <div className="display-task-header" style={{ backgroundColor: currentTask.color }}>
+                <span>{currentTask.title}</span>
                 <div>
                     <button
                         className="edit"
@@ -59,51 +90,23 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
                 <Row>
                     <Col>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {returnParsedMoment(task.dueDate)}
+                            <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {currentTask.dueDate}
                         </div>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><FaGraduationCap /></span>  Class: {getClassName(task.subjectId)}
+                            <span className="calendarIcon"><FaGraduationCap /></span>  Class: {currentTask.subjectTitle}
                         </div>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><IoMdTime /></span>  Total: {task.totalTime}mins
+                            <span className="calendarIcon"><IoMdTime /></span>  Total: {currentTask.totalTime}mins
                     </div>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaPencilAlt /></span>  Notes:
                     </div>
                         <div>
-                            <div className="multiLine">{task.description}</div>
-                        </div>
-                        <span className="bold">Sessions:</span>
-                        <div className="sessionsTable">
-                        <table>
-                        <tr>
-                            <th>Minutes</th>
-                            <th>Date</th>
-                        </tr>
-                        
-                        {
-                            task.taskSessions.map((session) => {
-                                return (
-                                    <tr key={session.id}>
-                                        <td>{session.minutes}</td>
-                                        <td className="">{moment(session.dateCompleted).format("MMM D")}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                        <div ref={messagesEndRef} />
-                    </table>   
-
+                            <div className="multiLine">{currentTask.description}</div>
                         </div>
 
+                        <button className="but complete"><FaCheck className="green" /> Completed</button>
 
-                        <OverlayTrigger
-                            placement="bottom"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltipDone}
-                        >
-                            <button className="but complete"><FaCheck /> Completed</button>
-                        </OverlayTrigger>
 
 
                     </Col>
@@ -120,23 +123,45 @@ const TaskDisplay = ({ task, turnOnEditing, getClassColor, getClassName, isRunni
                                 { value: 'Time Input', label: 'Time Input' },
                             ]}
                         />
-                        {timerSetting.value === 'Timer' && 
-                        <Counter 
-                        color={getClassColor(task.subjectId)} 
-                        task={task} 
-                        setCurrentTask={setCurrentTask}
-                        />}
+                        {timerSetting.value === 'Timer' && false &&
+                            <Counter
+                                color={getClassColor(currentTask.subjectId)}
+                                currentTask={currentTask}
+                                
+                            />}
                         {timerSetting.value === 'Stopwatch'}
-                        {timerSetting.value === 'Time Input' &&
+                        {timerSetting.value === 'Time Input' && false &&
                             <TimeInput
-                                setCurrentTask={setCurrentTask}
-                                color={getClassColor(task.subjectId)}
-                                task={task}
+                                //color={getClassColor(task.subjectId)}
                             />}
                     </Col>
                 </Row>
                 <div>
-                    
+                    <span className="bold">Sessions:</span>
+                    <div className="sessionsTable">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Minutes</th>
+                                <th>Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                currentTask.taskSessions.map((session) => {
+                                    return (
+                                        <tr key={session.id}>
+                                            <td>{session.minutes}</td>
+                                            <td className="">{moment(session.dateCompleted).format("MMM D")}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                            <tr ref={messagesEndRef}>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,7 +172,8 @@ const mapStateToProps = (state) => {
     return {
         subjects: state.subjects,
         isRunning: state.running.isRunning,
-        paused: state.running.paused
+        paused: state.running.paused,
+        currentTask: state.currentTask
     }
 }
 

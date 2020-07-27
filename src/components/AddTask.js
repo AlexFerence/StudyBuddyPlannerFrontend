@@ -4,6 +4,7 @@ import axios from 'axios'
 import url from '../environment/url'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+import { loadTasks } from '../thunks/taskThunk'
 
 import Select from 'react-select';
 import 'react-dates/initialize'
@@ -16,12 +17,8 @@ const subjReduce = (list, item) => {
 }
 
 
-const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
-
-
-
+const AddTask = ({ subjects, addingOff, token, id, dispatch }) => {
     const [currentSubjectID, setCurrentSubjectID] = useState('')
-
     const [currentClass, setCurrentClass] = useState('')
     const [taskType, setTaskType] = useState('')
     const [taskTitle, setTaskTitle] = useState('')
@@ -38,10 +35,10 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
     }, [])
 
     useEffect(() => {
-        console.log(taskType)
+        //console.log(taskType)
     }, [taskType])
     useEffect(() => {
-        console.log(currentClass)
+        //console.log(currentClass)
     }, [currentClass])
 
     const onSubmit = async (e) => {
@@ -69,8 +66,8 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
 
             console.log(res)
 
-            loadTasks()
-            turnOffAdding()
+            dispatch(loadTasks())
+            addingOff()
 
 
         } catch (e) {
@@ -131,7 +128,7 @@ const AddTask = ({ subjects, turnOffAdding, loadTasks, token, id }) => {
                     <button className="but" type="submit">Submit</button>
                     <button className="but" onClick={(e) => {
                         e.preventDefault()
-                        turnOffAdding()
+                        addingOff()
                     }}>Cancel</button>
                 </form>
             </div>

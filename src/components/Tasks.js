@@ -1,112 +1,70 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import url from '../environment/url'
 import { connect } from 'react-redux'
-import { fillTasks } from '../actions/taskActions'
 import TaskList from './TaskList'
 import AddTask from './AddTask'
 import TaskDisplay from './TaskDisplay'
 import TaskEdit from './TaskEdit'
 import { Row, Col } from 'react-bootstrap'
+import { loadTasks } from '../thunks/taskThunk'
+import { setCurrentTask } from '../actions/currentTaskActions'
 
-
-
-var currentTaskCopy = {}
-
-const TasksPage = (props) => {
-    const [currentTask, setCurrentTask] = useState({})
-    const [isAddingTask, setIsAddingTask] = useState(false)
+const TasksPage = ({ subjects, currentTask, dispatch }) => {
+    const [isAdding, setIsAdding] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
 
-    const getClassColor = (subjectId) => {
-        const subj = props.subjects.find((subject) => subject.id === subjectId)
-
-        if (subj) {
-            return(subj.color)
-        }
-        else {
-            return(undefined)
-        }
-    }
-
-    const getClassName = (subjectId) => {
-        console.log(subjectId)
-        const subj = props.subjects.find((subject) => subject.id === subjectId)
-        if (subj) {
-            return(subj.name + " " + subj.classCode)
-        }
-        else {
-            return("no class found")
-        }
-    }
-
-    const turnOnEditing = () => {
-        currentTaskCopy = currentTask
-        setCurrentTask({})
-        setIsEditing(true)
-    }
-
-    const turnOnAdding = () => {
-        setIsAddingTask(true)
+    const addingOn = () => {
+        dispatch(setCurrentTask({}))
         setIsEditing(false)
+        setIsAdding(true)
     }
+    const addingOff = () => {
+        setIsAdding(false)
+    }
+
+    // const turnOnEditing = () => {
+    //     //currentTaskCopy = currentTask
+    //     dispatch(setCurrentTask({}))
+    //     setIsEditing(true)
+    // }
+
+    // const turnOnAdding = () => {
+    //     setIsAddingTask(true)
+    //     setIsEditing(false)
+    // }
     
-    const turnOffAdding = () => {
-        setIsAddingTask(false)
-    }
+    // const turnOffAdding = () => {
+    //     setIsAddingTask(false)
+    // }
 
-    const loadTasks = async () => {
-        try {
-            console.log('getting tasks')
-            const res = await axios.post(url + '/api/tasks/list',
-                {
-                    UserId: props.id
-                }, {
-                headers: {
-                    'Authorization': 'bearer ' + props.token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-
-            if (res.status === 200) {
-                props.dispatch(fillTasks(res.data))
-            }
-
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    
     useEffect(() => {
-        console.log('loading')
         loadTasks()
     }, [])
+
     return (
         <Row className="tasks">
             <Col className="scroller">
-                <TaskList 
-                currentTask={currentTask}
-                setCurrentTask={setCurrentTask} 
-                tasks={props.tasks} 
-                turnOnAdding={turnOnAdding} 
-                setIsAddingTask={setIsAddingTask}
-                setCurrentT={setCurrentTask}
-                setIsEditing={setIsEditing}
+                <TaskList
+                addingOn={addingOn}
+                addingOff={addingOff}
                 />
             </Col>
             <Col className="main-right">
-            { isAddingTask && <AddTask loadTasks={loadTasks} turnOffAdding={turnOffAdding} /> }
+            {isAdding && <AddTask 
+                addingOff={addingOff}
+                /> }
             { currentTask.id && <TaskDisplay
-                setCurrentTask={setCurrentTask}
-                getClassName={getClassName} 
-                getClassColor={getClassColor} 
-                task={currentTask} turnOnEditing={turnOnEditing} />}
-            { isEditing && <TaskEdit
-                getClassColor={getClassColor} 
-                currentTaskCopy={currentTaskCopy} 
-                loadTasks={loadTasks}
-                setCurrentTask={setCurrentTask}
-                setIsEditing={setIsEditing} 
+                //setCurrentTask={setCurrentTask}
+                //getClassName={getClassName} 
+                //getClassColor={getClassColor} 
+                //task={currentTask} turnOnEditing={turnOnEditing} 
+                />}
+            { false && <TaskEdit
+
+                //currentTaskCopy={currentTaskCopy} 
+                //loadTasks={loadTasks}
+                //setCurrentTask={setCurrentTask}
+                //setIsEditing={setIsEditing} 
                 />}
             </Col>
         </Row>
@@ -118,7 +76,8 @@ const mapStateToProps = (state) => {
         tasks: state.tasks,
         token: state.profile.token,
         id: state.profile.id,
-        subjects: state.subjects
+        subjects: state.subjects,
+        currentTask: state.currentTask
     }
 }
 

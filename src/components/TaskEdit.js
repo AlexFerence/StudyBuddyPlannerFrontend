@@ -8,7 +8,7 @@ import { IoMdClose } from 'react-icons/io'
 import Select from 'react-select';
 
 
-const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask, getClassColor }) => {
+const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask}) => {
 
     const getSubject = (id) => {
         return subjects.find((subject) => subject.id === id)
@@ -23,7 +23,6 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
     const [calendarFocused, setCalendarFocused] = useState(null)
 
     const [currentClass, setCurrentClass] = useState({ value: getSubject(currentTaskCopy.subjectId), label: 'class' })
-
     
 
     const subjReduce = (list, item) => {

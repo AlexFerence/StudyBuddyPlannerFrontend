@@ -124,3 +124,8 @@ html {
   color: $brand;
   font-size: 10px;
 }
+
+
+.green {
+  color: lighten($color: green, $amount: 5); 
+}

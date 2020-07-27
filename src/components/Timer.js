@@ -63,13 +63,17 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrent
             taskId: task.id,
             minutes: interval,
         }))
-        const t = dispatch(getSessionsThunk(task.id ,setCurrentTask))
-        swal({
-            title: "Complete!",
-            text: "Your row has been deleted.",
-            type: "success",
-            timer: 1500
-         });
+        dispatch(getSessionsThunk(task.id)).then((currentTask) => {
+            setCurrentTask(currentTask)
+        }).catch((e) => {
+            console.log(e)
+        })
+        // swal({
+        //     title: "Complete!",
+        //     text: "Your row has been deleted.",
+        //     type: "success",
+        //     timer: 1500
+        //  });
         //swal("Good job!", "study session complete", "success");
         resetCount()
     }
