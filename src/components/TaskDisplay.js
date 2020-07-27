@@ -13,7 +13,7 @@ import { getSessionsThunk } from '../thunks/sessionsThunk'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
 import { getTask } from '../thunks/taskThunk';
 
-const TaskDisplay = ({ currentTask, turnOnEditing, isRunning, paused, setCurrentTask, dispatch }) => {
+const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
 
@@ -81,7 +81,7 @@ const TaskDisplay = ({ currentTask, turnOnEditing, isRunning, paused, setCurrent
                     <button
                         className="edit"
                         onClick={() => {
-                            turnOnEditing()
+                            editingOn()
                         }}
                     ><FaEdit /></button>
                 </div>
@@ -132,8 +132,8 @@ const TaskDisplay = ({ currentTask, turnOnEditing, isRunning, paused, setCurrent
                         {timerSetting.value === 'Stopwatch'}
                         {timerSetting.value === 'Time Input' && false &&
                             <TimeInput
-                                //color={getClassColor(task.subjectId)}
-                            />}
+                            />
+                        }
                     </Col>
                 </Row>
                 <div>

@@ -9,33 +9,19 @@ import { loadTasks } from '../thunks/taskThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
 
 const TasksPage = ({ subjects, currentTask, dispatch }) => {
-    const [isAdding, setIsAdding] = useState(false)
-    const [isEditing, setIsEditing] = useState(false)
+    const [displayType, setDisplayType] = useState('display')
 
     const addingOn = () => {
-        dispatch(setCurrentTask({}))
-        setIsEditing(false)
-        setIsAdding(true)
-    }
-    const addingOff = () => {
-        setIsAdding(false)
+        setDisplayType('adding')
     }
 
-    // const turnOnEditing = () => {
-    //     //currentTaskCopy = currentTask
-    //     dispatch(setCurrentTask({}))
-    //     setIsEditing(true)
-    // }
-
-    // const turnOnAdding = () => {
-    //     setIsAddingTask(true)
-    //     setIsEditing(false)
-    // }
+    const editingOn = () => {
+        setDisplayType('editing')
+    }
     
-    // const turnOffAdding = () => {
-    //     setIsAddingTask(false)
-    // }
-
+    const displayOn = () => {
+        setDisplayType('display')
+    }
     
     useEffect(() => {
         loadTasks()
@@ -45,21 +31,21 @@ const TasksPage = ({ subjects, currentTask, dispatch }) => {
         <Row className="tasks">
             <Col className="scroller">
                 <TaskList
+                displayOn={displayOn}
                 addingOn={addingOn}
-                addingOff={addingOff}
                 />
             </Col>
             <Col className="main-right">
-            {isAdding && <AddTask 
-                addingOff={addingOff}
+            {displayType === 'adding' && <AddTask 
+                displayOn={displayOn}
                 /> }
-            { currentTask.id && <TaskDisplay
-                //setCurrentTask={setCurrentTask}
-                //getClassName={getClassName} 
-                //getClassColor={getClassColor} 
-                //task={currentTask} turnOnEditing={turnOnEditing} 
+            { displayType === 'display' && <TaskDisplay
+                editingOn={editingOn}
+                displayOn={displayOn} 
                 />}
-            { false && <TaskEdit
+            { displayType === 'editing' && <TaskEdit
+                displayOn={displayOn}
+                currentTaskCopy={currentTask}
 
                 //currentTaskCopy={currentTaskCopy} 
                 //loadTasks={loadTasks}

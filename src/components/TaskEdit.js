@@ -6,23 +6,23 @@ import url from '../environment/url'
 import { connect } from 'react-redux'
 import { IoMdClose } from 'react-icons/io'
 import Select from 'react-select';
+import { setCurrentTask } from '../actions/currentTaskActions'
+import { loadTasks } from '../thunks/taskThunk'
 
-
-const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditing, setCurrentTask}) => {
-
+const TaskEdit = ({ currentTaskCopy, token, id, subjects, dispatch, displayOn }) => {
     const getSubject = (id) => {
         return subjects.find((subject) => subject.id === id)
     }
 
-    const [title, setTitle ] = useState(currentTaskCopy.title)
-    const [description, setDescription ] = useState(currentTaskCopy.description)
-    const [subjectID, setSubjectID] = useState(currentTaskCopy.subjectId)
-    const [taskType, setTaskType] = useState({ value: currentTaskCopy.taskType, label: currentTaskCopy.taskType})
-    const [isDone, setIsDone] = useState(currentTaskCopy.isDone)
-    const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
-    const [calendarFocused, setCalendarFocused] = useState(null)
+    // const [title, setTitle ] = useState(currentTaskCopy.title)
+    // const [description, setDescription ] = useState(currentTaskCopy.description)
+    // const [subjectID, setSubjectID] = useState(currentTaskCopy.subjectId)
+    // const [taskType, setTaskType] = useState({ value: currentTaskCopy.taskType, label: currentTaskCopy.taskType})
+    // const [isDone, setIsDone] = useState(currentTaskCopy.isDone)
+    // const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
+    // const [calendarFocused, setCalendarFocused] = useState(null)
 
-    const [currentClass, setCurrentClass] = useState({ value: getSubject(currentTaskCopy.subjectId), label: 'class' })
+    // const [currentClass, setCurrentClass] = useState({ value: getSubject(currentTaskCopy.subjectId), label: 'class' })
     
 
     const subjReduce = (list, item) => {
@@ -31,9 +31,8 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
     }
 
     useEffect(() => {
-        console.log(currentClass)
-        console.log(currentClass.value.color)
-    }, [currentClass])
+        
+    }, [])
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -54,7 +53,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                 }
             })
             if (res.status === 200) {
-                setCurrentTask({
+                dispatch(setCurrentTask({
                 ...currentTaskCopy,
                 title,
                 description,
@@ -63,9 +62,9 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
                 isDone: isDone ? 1 : 0,
                 color: currentClass.value.color,
                 dueDate: selectedDate
-                })
-                loadTasks()
-                setIsEditing(false)
+                }))
+                dispatch(loadTasks())
+                displayOn()
             }
         } catch (e) {
             console.log(e)
@@ -81,8 +80,7 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, loadTasks, setIsEditin
             <div className="edit-task-header" style={{ backgroundColor: currentClass.value.color}}>
             <span>Edit Task</span>
             <button onClick={() => {
-                setIsEditing(false)
-                setCurrentTask(currentTaskCopy)
+                displayOn()
             }}><IoMdClose /></button>
             </div>
             <div className="edit-task-body">

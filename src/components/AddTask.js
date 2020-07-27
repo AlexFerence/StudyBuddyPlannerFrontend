@@ -17,7 +17,7 @@ const subjReduce = (list, item) => {
 }
 
 
-const AddTask = ({ subjects, addingOff, token, id, dispatch }) => {
+const AddTask = ({ subjects, displayOn, token, id, dispatch }) => {
     const [currentSubjectID, setCurrentSubjectID] = useState('')
     const [currentClass, setCurrentClass] = useState('')
     const [taskType, setTaskType] = useState('')
@@ -65,10 +65,9 @@ const AddTask = ({ subjects, addingOff, token, id, dispatch }) => {
                 })
 
             console.log(res)
-
             dispatch(loadTasks())
-            addingOff()
-
+            displayOn()
+            
 
         } catch (e) {
             console.log(e)
@@ -128,7 +127,7 @@ const AddTask = ({ subjects, addingOff, token, id, dispatch }) => {
                     <button className="but" type="submit">Submit</button>
                     <button className="but" onClick={(e) => {
                         e.preventDefault()
-                        addingOff()
+                        displayOn()
                     }}>Cancel</button>
                 </form>
             </div>

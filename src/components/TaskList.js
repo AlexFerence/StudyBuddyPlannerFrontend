@@ -8,8 +8,8 @@ import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
 
 
-const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, addingOn, 
-    addingOff, running, paused, dispatch }) => {
+const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
+    running, paused, dispatch }) => {
 
     const getClassName = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
@@ -43,7 +43,7 @@ const TaskList = ({ currentTask, tasks, subjects, turnOnAdding, addingOn,
     }
 
     const taskClicked = (t) => {
-        addingOff()
+        displayOn()
         if ((running || paused) && (t.id !== currentTask.id)) {
             swal({
                 title: "Can't switch tasks during study session",
