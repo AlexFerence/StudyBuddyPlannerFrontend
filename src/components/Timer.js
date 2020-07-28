@@ -8,7 +8,7 @@ import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import moment from 'moment'
 import swal from 'sweetalert'
 
-const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
+const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
@@ -21,7 +21,7 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrent
 
         return () => {
             setIsRunning(false)
-            dispatch(runningOffThunk(task.id))
+            dispatch(runningOffThunk(currentTask.id))
 
         }
     }, [])
@@ -29,10 +29,10 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrent
     useEffect(() => {
         if (isRunning) {
 
-            dispatch(runningOnThunk(task.id))
+            dispatch(runningOnThunk(currentTask.id))
         }
         else {
-            dispatch(runningOffThunk(task.id))
+            dispatch(runningOffThunk(currentTask.id))
         }
     }, [isRunning])
     
@@ -60,11 +60,11 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrent
         
         dispatch(pausedReduxOff())
         dispatch(postSessionThunk({
-            taskId: task.id,
+            taskId: currentTask.id,
             minutes: interval,
         }))
-        dispatch(getSessionsThunk(task.id)).then((currentTask) => {
-            setCurrentTask(currentTask)
+        dispatch(getSessionsThunk(currentTask.id)).then((currentT) => {
+            setCurrentTask(currentT)
         }).catch((e) => {
             console.log(e)
         })
@@ -125,7 +125,7 @@ const Counter = ({ task, dispatch, id, color, isRunningRedux, paused, setCurrent
                     styles={buildStyles({
                         pathTransitionDuration: 0.15,
                         strokeLinecap: "butt",
-                        pathColor: color,
+                        pathColor: currentTask.color,
                     })}
                 >
                     

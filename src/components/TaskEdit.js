@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { IoMdClose } from 'react-icons/io'
 import Select from 'react-select';
 import { setCurrentTask } from '../actions/currentTaskActions'
-import { loadTasks, updateTask } from '../thunks/taskThunk'
+import { loadTasks, updateTask, setCurrentTaskById } from '../thunks/taskThunk'
 
 const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
 
@@ -45,7 +45,7 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         console.log(currentClass.value.id)
-        dispatch(updateTask({
+        const s = await dispatch(updateTask({
             ...currentTaskCopy,
             subjectId: currentClass.value.id,
             taskType: taskType.value,
@@ -55,16 +55,21 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
             dueDate: moment(selectedDate)
         }
         ))
-        console.log({
-            ...currentTaskCopy,
-            subjectId: currentClass.value.subjectId,
-            taskType: taskType.value,
-            isDone: isDone ? 1 : 0,
-            description,
-            title,
-            dueDate: moment(selectedDate).format("YYYY-MM-DD")
-        })
+        // console.log({
+        //     ...currentTaskCopy,
+        //     subjectId: currentClass.value.subjectId,
+        //     taskType: taskType.value,
+        //     isDone: isDone ? 1 : 0,
+        //     description,
+        //     title,
+        //     dueDate: moment(selectedDate).format("YYYY-MM-DD")
+        // })
         displayOn()
+        //console.log('dispatching')
+        //console.log('setting current task' + currentTaskCopy.id)
+        dispatch(setCurrentTaskById(currentTaskCopy.id))
+        
+        
     }
 
 

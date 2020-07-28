@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
@@ -123,14 +123,14 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                 { value: 'Time Input', label: 'Time Input' },
                             ]}
                         />
-                        {timerSetting.value === 'Timer' && false &&
+                        {timerSetting.value === 'Timer' &&
                             <Counter
                                 color={getClassColor(currentTask.subjectId)}
                                 currentTask={currentTask}
                                 
                             />}
                         {timerSetting.value === 'Stopwatch'}
-                        {timerSetting.value === 'Time Input' && false &&
+                        {timerSetting.value === 'Time Input' &&
                             <TimeInput
                             />
                         }

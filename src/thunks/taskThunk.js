@@ -67,10 +67,56 @@ export const updateTask = (updatedTask) => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(res.data)
-        dispatch(loadTasks())
+        const wait = await dispatch(loadTasks())
+        // if (wait) {
+        //     await dispatch(setCurrentTaskById(res.data.id))
+        // }
+        
     } catch (e) {
         console.log(e)
     }
- 
+}
+
+export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
+    const { profile, subjects, currentTask, tasks } = getState()
+    const { id, token } = profile
+
+    const getClassName = (subjectId) => {
+        const subj = subjects.find((subject) => subject.id === subjectId)
+        if (subj) {
+            return(subj.name + " " + subj.classCode)
+        }
+        else {
+            return("no class found")
+        }
+    }
+
+    const getClassColor = (subjectId) => {
+        const subj = subjects.find((subject) => subject.id === subjectId)
+
+        if (subj) {
+            return(subj.color)
+        }
+        else {
+            return(undefined)
+        }
+    }
+
+    const task = tasks.find((t) => t.id === taskId)
+    console.log('about to set currentTask')
+    console.log(taskId)
+
+
+    if (task) {
+        dispatch(setCurrentTask({
+            ...task, 
+            color: getClassColor(task.subjectId), 
+            subjectTitle: getClassName(task.subjectId)
+        }))   
+        console.log({
+            ...task, 
+            color: getClassColor(task.subjectId), 
+            subjectTitle: getClassName(task.subjectId)
+        })
+    }
 }
