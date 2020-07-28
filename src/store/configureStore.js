@@ -7,11 +7,11 @@ import semesterReducer from '../reducers/semesterReducer'
 import schoolsReducer from '../reducers/schoolsReducer'
 import facultiesReducer from '../reducers/facultyReducer'
 import currentTaskReducer from '../reducers/currentTaskReducer'
+import chartsReducer from '../reducers/chartsReducer'
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-
 
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
@@ -24,7 +24,8 @@ const reducers = {
     semester: semesterReducer,
     schools: schoolsReducer,
     faculties: facultiesReducer,
-    currentTask: currentTaskReducer
+    currentTask: currentTaskReducer,
+    charts: chartsReducer
 };
 
 const persistConfig ={

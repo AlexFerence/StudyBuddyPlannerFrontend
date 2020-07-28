@@ -23,6 +23,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         return () => {
             setIsRunning(false)
             dispatch(runningOffThunk(currentTask.id))
+            submitTime()
 
         }
     }, [])
