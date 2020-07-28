@@ -15,56 +15,38 @@ const Dashboard = ({ dispatch, charts }) => {
   return (
     <div className="dashboard">
       <Row>
-        <Col>
-        <div className="graph-box">
-        <ReactEcharts
+      <Col md={6} lg={4}>
+      <div className="graph-box">
+      <ReactEcharts
             option={{
-              title: {
-                top: 30,
-                left: 'center',
-                text: 'Title'
-            },
+             
             tooltip: {},
-              xAxis: {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-              },
-              yAxis: {
-                type: 'value'
-              },
-              series: [{
-                name: 'four',
-                type: 'line',
-                stack: 'four',
-                data: [120, 132, 101, 134, 90, 230, 210]
-              },
-              {
-                name: 'three',
-                type: 'line',
-                stack: 'three',
-                data: [220, 182, 191, 234, 290, 330, 310]
-              },
-              {
-                name: 'two',
-                type: 'line',
-                stack: 'two',
-                data: [150, 232, 201, 154, 190, 330, 410]
-              },
-              {
-                name: 'one',
-                type: 'line',
-                stack: 'one',
-                data: [320, 332, 301, 334, 390, 330, 320]
-              },
+              series: [
+                {
+                    type: 'pie',
+                    radius: '65%',
+                    center: ['50%', '50%'],
+                    selectedMode: 'single',
+                    data: 
+                        charts.pieData
+                    ,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
               ]
+              
             }}
           />
+          </div>
+      </Col>
         
-        
-        </div>
-          
-        </Col>
-        <Col>
+        <Col md={6} lg={4}>
+        <div className="graph-box">
           <ReactEcharts
             option={{
               xAxis: {
@@ -80,10 +62,10 @@ const Dashboard = ({ dispatch, charts }) => {
               }]
             }}
           />
+          </div>
         </Col>
-      </Row>
-      <Row>
-      <Col>
+        <Col md={6} lg={4}>
+      <div className="graph-box">
       <ReactEcharts
       option = {{
         xAxis: {
@@ -157,8 +139,63 @@ const Dashboard = ({ dispatch, charts }) => {
         }]
     }} 
     />
+    </div>
       </Col>
-      <Col>
+      </Row>
+      
+      <Row>
+      
+      <Col md={8}>
+        <div className="graph-box">
+        <ReactEcharts
+            option={{
+              title: {
+                top: 30,
+                left: 'center',
+                text: 'Title'
+            },
+            tooltip: {},
+              xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+              },
+              yAxis: {
+                type: 'value'
+              },
+              series: [{
+                name: 'four',
+                type: 'line',
+                stack: 'four',
+                data: [120, 132, 101, 134, 90, 230, 210]
+              },
+              {
+                name: 'three',
+                type: 'line',
+                stack: 'three',
+                data: [220, 182, 191, 234, 290, 330, 310]
+              },
+              {
+                name: 'two',
+                type: 'line',
+                stack: 'two',
+                data: [150, 232, 201, 154, 190, 330, 410]
+              },
+              {
+                name: 'one',
+                type: 'line',
+                stack: 'one',
+                data: [320, 332, 301, 334, 390, 330, 320]
+              },
+              ]
+            }}
+          />
+        
+        
+        </div>
+          
+        </Col>
+        <Col md={4}>
+      <div className="graph-box">
       <ReactEcharts
             option={{
              
@@ -184,7 +221,9 @@ const Dashboard = ({ dispatch, charts }) => {
               
             }}
           />
+          </div>
       </Col>
+      
       </Row>
     </div>
   );
