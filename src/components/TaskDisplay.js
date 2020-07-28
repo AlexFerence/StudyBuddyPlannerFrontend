@@ -47,6 +47,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
     useEffect(scrollToBottom, [currentTask.taskSessions]);
 
     useEffect(() => {
+        console.log(currentTask)
         // console.log(task.taskSessions)
         // scrollToBottom()
         // dispatch(getSessionsThunk(task.id)).then((currentTask) => {
@@ -54,7 +55,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         // }).catch((e) => {
         //     console.log(e)
         // })
-    }, [currentTask])
+    }, [])
 
     //scrolls to bottom
 
@@ -151,15 +152,15 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             </thead>
                             <tbody>
                             { 
-                                currentTask && 
-                                currentTask.taskSessions.map((session) => {
-                                    return (
-                                        <tr key={session.id}>
-                                            <td>{session.minutes}</td>
-                                            <td className="">{moment(session.dateCompleted).format("MMM D")}</td>
-                                        </tr>
-                                    )
-                                })
+                                currentTask &&
+                                    currentTask.taskSessions.map((session) => {
+                                        return (
+                                            <tr key={session.id}>
+                                                <td>{session.minutes}</td>
+                                                <td className="">{moment(session.dateCompleted).format("MMM D")}</td>
+                                            </tr>
+                                        )
+                                    })
                             }
                             <tr ref={messagesEndRef}>
                             </tr>
