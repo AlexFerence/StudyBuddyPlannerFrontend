@@ -9,10 +9,10 @@ import moment from 'moment'
 import Select from 'react-select';
 import TimeInput from './TaskTimeInput'
 import Stopwatch from './Stopwatch'
-import { OverlayTrigger, Tooltip } from 'react-bootstrap'
-import { getSessionsThunk } from '../thunks/sessionsThunk'
+//import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+//import { getSessionsThunk } from '../thunks/sessionsThunk'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
-import { getTask } from '../thunks/taskThunk';
+//import { getTask } from '../thunks/taskThunk';
 
 const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch }) => {
 
@@ -176,7 +176,8 @@ const mapStateToProps = (state) => {
         subjects: state.subjects,
         isRunning: state.running.isRunning,
         paused: state.running.paused,
-        currentTask: state.currentTask
+        currentTask: state.currentTask,
+        
     }
 }
 

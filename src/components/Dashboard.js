@@ -11,6 +11,12 @@ const Dashboard = () => {
         <div className="graph-box">
         <ReactEcharts
             option={{
+              title: {
+                top: 30,
+                left: 'center',
+                text: 'Title'
+            },
+            tooltip: {},
               xAxis: {
                 type: 'category',
                 data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -147,6 +153,8 @@ const Dashboard = () => {
       <Col>
       <ReactEcharts
             option={{
+             
+            tooltip: {},
               series: [
                 {
                     type: 'pie',
