@@ -9,11 +9,11 @@ import moment from 'moment'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 
-const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
+const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
-    const [interval, setInterval] = useState(15)
+    const [interval, setInterval] = useState(100000)
 
     useEffect(() => {
         dispatch(runningOffThunk())
@@ -102,9 +102,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
             setCount(0)
             setIsRunning(false)
             dispatch(pausedReduxOff())
-        }
-        
-        
+        }        
     }
 
     const timeChanged = (e) => {
@@ -113,55 +111,36 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         }
     }
 
+    const submitTime = async () => {
+        if (count > 1) {
+            dispatch(postSessionThunk({
+                taskId: currentTask.id,
+                minutes: parseInt(count),
+            }))
+            await dispatch(loadTasks()) 
+            dispatch(setCurrentTaskById(currentTask.id))
+        }
+        resetCount()
+    }
     
-
     return (
         <div>
-            <div className="timer">
-                <CircularProgressbarWithChildren
-                    value={percent * 100}
-                    //text={(interval - count) > 0 ? timeDisplay(interval - count) : "0"}
-                    styles={buildStyles({
-                        pathTransitionDuration: 0.15,
-                        strokeLinecap: "butt",
-                        pathColor: currentTask.color,
-                    })}
-                >
+            <div className="stopwatch">
+                <div className="inside d-flex justify-content-center align-items-center">
+                    <span className="timeDisplay">{timeDisplay(count)}</span>
+                </div>
+
+
                     
-                        {(!isRunning && !paused) &&
-                            <div className="inside d-flex justify-content-center align-items-center">
-                            <input className="inp" type="number"
-                            value={interval}
-                            onChange={timeChanged}
-                            />
-                            <div className="minlab">min</div>
-                            </div>
-                        }
-                        {(isRunning || paused) &&
-                        <div className="inside d-flex justify-content-center align-items-center">
-                            <span className="timeDisplay">{timeDisplay(interval - count)}</span>
-                        </div>
-
-
-                    }
                     <div>
-                    {!isRunning &&
-                        <button className="but" onClick={startTimer}><IoMdPlay /></button>   
-                    }
-                    {!isRunning && paused &&
-                        <button className="but" onClick={resetCount}><IoMdClose /></button>   
-                        
-                    }
-                    </div>
-                    {isRunning && <button className="but" onClick={pauseTimer}><IoMdPause /></button>}
-
-
-
-                </CircularProgressbarWithChildren>
+                
+                        { !isRunning && <button className="but" onClick={startTimer}><IoMdPlay /></button>}
+                        { isRunning && <button className="but" onClick={submitTime}>Done</button> }
+                    
+                </div>
             </div>
-
         </div>
-    );
+    )
 }
 
 function useInterval(callback, delay) {
@@ -197,7 +176,6 @@ const mapStateToProps = (state) => {
 }
 
 
-
 const timeDisplay = (n) => {
     var hours = Math.floor(n / 3600)
     var mins = Math.floor((n - (hours * 3600)) / 60)
@@ -217,4 +195,4 @@ const timeDisplay = (n) => {
     }
 }
 
-export default connect(mapStateToProps)(Counter)
+export default connect(mapStateToProps)(Stopwatch)

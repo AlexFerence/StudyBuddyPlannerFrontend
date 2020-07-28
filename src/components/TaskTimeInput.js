@@ -29,7 +29,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
 
     const submitTime = async () => {
         console.log('submitting time ')
-        const totalMins = mins + (hrs * 60)
+        const totalMins = ((parseInt(hrs) * 60) + parseInt(mins))
         if (totalMins > 0) {
             //swal("Good job!", "You clicked the button!", "success");
             setMins(0)
@@ -86,7 +86,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                 <Col>
                     <button 
                     className="timeSubmit" 
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: currentTask.color }}
                     onClick={() => submitTime()}
                     >Submit Time</button>
                 </Col>

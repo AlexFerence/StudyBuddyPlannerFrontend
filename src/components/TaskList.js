@@ -107,7 +107,8 @@ const mapStateToProps = (state) => {
         subjects: state.subjects,
         running: state.running.isRunning,
         paused: state.running.paused,
-        tasks: state.tasks
+        tasks: state.tasks,
+        currentTask: state.currentTask
     }
 }
 

@@ -8,6 +8,7 @@ import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
 import Select from 'react-select';
 import TimeInput from './TaskTimeInput'
+import Stopwatch from './Stopwatch'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { getSessionsThunk } from '../thunks/sessionsThunk'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
@@ -126,10 +127,12 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         {timerSetting.value === 'Timer' &&
                             <Counter
                                 color={getClassColor(currentTask.subjectId)}
-                                currentTask={currentTask}
+                                //currentTask={currentTask}
                                 
                             />}
-                        {timerSetting.value === 'Stopwatch'}
+                        {timerSetting.value === 'Stopwatch' && 
+                            <Stopwatch />    
+                        }
                         {timerSetting.value === 'Time Input' &&
                             <TimeInput
                             />
