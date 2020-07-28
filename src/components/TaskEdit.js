@@ -1,87 +1,78 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
-import axios from 'axios'
-import url from '../environment/url'
 import { connect } from 'react-redux'
 import { IoMdClose } from 'react-icons/io'
 import Select from 'react-select';
 import { setCurrentTask } from '../actions/currentTaskActions'
-import { loadTasks } from '../thunks/taskThunk'
+import { loadTasks, updateTask } from '../thunks/taskThunk'
 
-const TaskEdit = ({ currentTaskCopy, token, id, subjects, dispatch, displayOn }) => {
-    const getSubject = (id) => {
+const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
+
+    const getClassString = (id) => { 
+        const subj = subjects.find((subject) => subject.id === id)
+        if (subj) {
+            return(subj.name + " " + subj.classCode)
+        }
+        return undefined
+    }
+    const getClass = (id) => {
         return subjects.find((subject) => subject.id === id)
     }
+        
+    var [currentTaskCopy, setCurrentTaskCopy] = useState({...currentTask})
+    var [currentClass, setCurrentClass] = useState({ value: getClass(currentTask.subjectId), label: getClassString(currentTask.subjectId) })
+    var [taskType, setTaskType] = useState({ value: currentTask.taskType, label: currentTask.taskType })
+    var [selectedDate, setSelectedDate] = useState(moment(currentTask.dueDate))
+    var [title, setTitle] = useState(currentTask.title)
+    var [isDone, setIsDone] = useState(currentTask.isDone)
+    var [calendarFocused, setCalendarFocused] = useState(null)
+    var [description, setDescription] = useState(currentTask.description)
 
-    // const [title, setTitle ] = useState(currentTaskCopy.title)
-    // const [description, setDescription ] = useState(currentTaskCopy.description)
-    // const [subjectID, setSubjectID] = useState(currentTaskCopy.subjectId)
-    // const [taskType, setTaskType] = useState({ value: currentTaskCopy.taskType, label: currentTaskCopy.taskType})
-    // const [isDone, setIsDone] = useState(currentTaskCopy.isDone)
-    // const [selectedDate, setSelectedDate] = useState(moment(currentTaskCopy.dueDate))
-    // const [calendarFocused, setCalendarFocused] = useState(null)
 
-    // const [currentClass, setCurrentClass] = useState({ value: getSubject(currentTaskCopy.subjectId), label: 'class' })
-    
+    useEffect(() => {
+        //may not need this
+        currentTaskCopy = {...currentTask}
+    }, [])
 
     const subjReduce = (list, item) => {
         list.push({ value: item, label: item.name + " " + item.classCode })
         return list
     }
 
-    useEffect(() => {
-        
-    }, [])
+    
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const res = await axios.put(url + '/api/Tasks/' + currentTaskCopy.id, {
-                ...currentTaskCopy,
-                title,
-                description,
-                subjectID: currentClass.value.id,
-                taskType: taskType.value,
-                dueDate: selectedDate,
-                isDone: isDone ? 1 : 0,
-            }, {
-                headers: {
-                    'Authorization': 'bearer ' + token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            if (res.status === 200) {
-                dispatch(setCurrentTask({
-                ...currentTaskCopy,
-                title,
-                description,
-                subjectId: currentClass.value.id,
-                taskType: taskType.value,
-                isDone: isDone ? 1 : 0,
-                color: currentClass.value.color,
-                dueDate: selectedDate
-                }))
-                dispatch(loadTasks())
-                displayOn()
-            }
-        } catch (e) {
-            console.log(e)
+        console.log(currentClass.value.id)
+        dispatch(updateTask({
+            ...currentTaskCopy,
+            subjectId: currentClass.value.id,
+            taskType: taskType.value,
+            isDone: isDone ? 1 : 0,
+            description,
+            title,
+            dueDate: moment(selectedDate)
         }
+        ))
+        console.log({
+            ...currentTaskCopy,
+            subjectId: currentClass.value.subjectId,
+            taskType: taskType.value,
+            isDone: isDone ? 1 : 0,
+            description,
+            title,
+            dueDate: moment(selectedDate).format("YYYY-MM-DD")
+        })
+        displayOn()
     }
 
-    useEffect(() => {
-        console.log(subjectID)
-    }, [subjectID])
 
     return (
         <div className="edit-task">
             <div className="edit-task-header" style={{ backgroundColor: currentClass.value.color}}>
             <span>Edit Task</span>
-            <button onClick={() => {
-                displayOn()
-            }}><IoMdClose /></button>
+            <button onClick={() => {displayOn() }}><IoMdClose /></button>
             </div>
             <div className="edit-task-body">
                 <form onSubmit={onSubmit}>
@@ -118,7 +109,6 @@ const TaskEdit = ({ currentTaskCopy, token, id, subjects, dispatch, displayOn })
                     onChange={(e) => {
                         setTitle(e.target.value)
                     }} /> <br />
-
                     
 
                     {/* CALENDAR */}
@@ -169,7 +159,8 @@ const mapStateToProps = (state) => {
         tasks: state.tasks,
         token: state.profile.token,
         id: state.profile.id,
-        subjects: state.subjects
+        subjects: state.subjects,
+        currentTask: state.currentTask
     }
 }
 
