@@ -151,6 +151,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             </thead>
                             <tbody>
                             { 
+                                currentTask.taskSessions.length > 0 && 
                                 currentTask.taskSessions.map((session) => {
                                     return (
                                         <tr key={session.id}>
