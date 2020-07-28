@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react'
 import { Row, Col } from 'react-bootstrap'
+import { loadChartsThunk } from '../thunks/chartThunk'
+import { connect } from 'react-redux'
 
 
-const Dashboard = () => {
+const Dashboard = ({ dispatch, charts }) => {
+
+  useEffect(() => {
+    console.log('dispatching')
+    dispatch(loadChartsThunk())
+  }, [])
+
   return (
     <div className="dashboard">
       <Row>
@@ -161,13 +169,9 @@ const Dashboard = () => {
                     radius: '65%',
                     center: ['50%', '50%'],
                     selectedMode: 'single',
-                    data: [
-                        {value: 1555, name: 'MATH 240'},
-                        {value: 669, name: 'CHEM 400'},
-                        {value: 510, name: 'COMP 202'},
-                        {value: 634, name: 'MATH 133'},
-                        {value: 735, name: 'BIOL 200'}
-                    ],
+                    data: 
+                        charts.pieData
+                    ,
                     emphasis: {
                         itemStyle: {
                             shadowBlur: 10,
@@ -186,6 +190,13 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard
+const mapStateToProps = (state) => {
+  return {
+      charts: state.charts
+  }
+}
+
+
+export default connect(mapStateToProps)(Dashboard)
 
 
