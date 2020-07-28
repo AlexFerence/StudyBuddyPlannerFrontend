@@ -5,10 +5,11 @@ import { SingleDatePicker } from 'react-dates'
 import { connect } from 'react-redux'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import swal from 'sweetalert'
+import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 
 
 
-const TimeInput = ({ color, task, dispatch, setCurrentTask }) => {
+const TimeInput = ({ color, dispatch, currentTask }) => {
     const [mins, setMins] = useState(0)
     const [hrs, setHrs] = useState(0)
     const [selectedDate, setSelectedDate] = useState(moment())
@@ -26,19 +27,25 @@ const TimeInput = ({ color, task, dispatch, setCurrentTask }) => {
         }
     }
 
-    const submitTime = () => {
+    const submitTime = async () => {
         console.log('submitting time ')
         const totalMins = mins + (hrs * 60)
         if (totalMins > 0) {
-            swal("Good job!", "You clicked the button!", "success");
+            //swal("Good job!", "You clicked the button!", "success");
             setMins(0)
             setHrs(0)
-            dispatch(postSessionThunk({
-                taskId: task.id,
+            await dispatch(postSessionThunk({
+                taskId: currentTask.id,
                 minutes: totalMins,
                 date: moment(selectedDate).format("YYYY-MM-DD"),
             }))
-            dispatch(getSessionsThunk(task.id ,setCurrentTask))
+
+            await dispatch(loadTasks())
+            
+            dispatch(setCurrentTaskById(currentTask.id))
+            
+            //dispatch(getSessionsThunk(currentTask.id))
+
         }
     }
 
@@ -87,6 +94,12 @@ const TimeInput = ({ color, task, dispatch, setCurrentTask }) => {
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        currentTask: state.currentTask
+    }
+}
 
 
-export default connect()(TimeInput)
+
+export default connect(mapStateToProps)(TimeInput)

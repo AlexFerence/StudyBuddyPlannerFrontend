@@ -7,6 +7,7 @@ import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import moment from 'moment'
 import swal from 'sweetalert'
+import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 
 const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -63,18 +64,16 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
             taskId: currentTask.id,
             minutes: interval,
         }))
-        dispatch(getSessionsThunk(currentTask.id)).then((currentT) => {
-            setCurrentTask(currentT)
-        }).catch((e) => {
-            console.log(e)
-        })
-        // swal({
-        //     title: "Complete!",
-        //     text: "Your row has been deleted.",
-        //     type: "success",
-        //     timer: 1500
-        //  });
-        //swal("Good job!", "study session complete", "success");
+        // dispatch(getSessionsThunk(currentTask.id)).then((currentT) => {
+        //     setCurrentTask(currentT)
+        // }).catch((e) => {
+        //     console.log(e)
+        // })
+
+        await dispatch(loadTasks())
+            
+        dispatch(setCurrentTaskById(currentTask.id))
+        
         resetCount()
     }
 
