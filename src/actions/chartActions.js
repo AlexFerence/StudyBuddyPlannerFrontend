@@ -9,3 +9,9 @@ export const setSubjectBreakdownChart = (breakdownChart) => ({
     type: SET_SUBJECT_BREAKDOWN_CHART,
     breakdownChart
 });
+
+export const SET_HOURS_WEEK = 'SET_HOURS_WEEK'
+export const setHoursWeek = (hoursWeekData) => ({
+    type: SET_HOURS_WEEK,
+    hoursWeekData
+});

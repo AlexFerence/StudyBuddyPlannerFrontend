@@ -1,6 +1,6 @@
 .dashboard {
   background-color: $light-grey;
-  height: 100vh;
+  height: calc(100vh - #{$navbar-height} );
   //overflow-y: scroll;
 }
 
@@ -21,4 +21,13 @@
    //border: 1px solid $grey;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background-color: white;
+}
+
+.toggleButton {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $grey;
+}
+.toggleButton:focus {
+  outline: none;
 }

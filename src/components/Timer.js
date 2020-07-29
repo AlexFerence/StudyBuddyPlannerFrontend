@@ -8,6 +8,7 @@ import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import moment from 'moment'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
+import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek } from '../thunks/chartThunk'
 
 const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -75,6 +76,10 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         dispatch(setCurrentTaskById(currentTask.id))
         
         resetCount()
+
+        dispatch(loadChartsThunk())
+        dispatch(loadSubjectBreakdown())
+        dispatch(loadHoursWeek())
     }
 
     var percent = count / interval

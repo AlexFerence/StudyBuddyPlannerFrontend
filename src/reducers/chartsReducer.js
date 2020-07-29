@@ -1,4 +1,4 @@
-import { SET_PIE_CHART, SET_SUBJECT_BREAKDOWN_CHART } from '../actions/chartActions'
+import { SET_PIE_CHART, SET_SUBJECT_BREAKDOWN_CHART, SET_HOURS_WEEK } from '../actions/chartActions'
 
 const chartsReducer = (state = {}, action) => {
     switch(action.type) {
@@ -12,6 +12,12 @@ const chartsReducer = (state = {}, action) => {
             return {
                 ...state,
                 breakdownChart: action.breakdownChart
+            }
+        case SET_HOURS_WEEK:
+            console.log('hours per week set')
+            return {
+                ...state,
+                hoursWeekData: action.hoursWeekData
             }
 
         default: 
