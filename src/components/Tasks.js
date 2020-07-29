@@ -9,7 +9,7 @@ import { loadTasks } from '../thunks/taskThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
 
 const TasksPage = ({ subjects, currentTask, dispatch }) => {
-    const [displayType, setDisplayType] = useState('display')
+    const [displayType, setDisplayType] = useState('')
 
     const addingOn = () => {
         setDisplayType('adding')
