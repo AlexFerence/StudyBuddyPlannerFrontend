@@ -97,17 +97,7 @@ const Header = (props) => {
                     <Nav className="mr-auto">
                     </Nav>
                     <Nav  inline="true">
-                        {props.isAuth &&
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipDash}
-                            >
-                                <NavLink style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
-                                </NavLink>
-                            </OverlayTrigger>
-    
-                        }
+                        
                         {props.isAuth &&
                             <OverlayTrigger
                                 placement="bottom"
@@ -118,31 +108,12 @@ const Header = (props) => {
                                 </NavLink>
                             </OverlayTrigger>
                         }
-                        {props.isAuth &&
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipSubj}
-                            >
-                            <NavLink style={{ padding: 5 }} to="/subjects"><FaList />
-                            </NavLink>
-                            </OverlayTrigger>
-                        }
-                        {props.isAuth &&
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipSet}
-                            >
-                            <NavLink style={{ padding: 5 }} to="/settings"><FaCog />
-                            </NavLink>
-                            </OverlayTrigger>
-                        }
+                        
+                        
                     </Nav>
                 </Navbar>
             </Navbar>
             </div>
-
         )
     }
     else {

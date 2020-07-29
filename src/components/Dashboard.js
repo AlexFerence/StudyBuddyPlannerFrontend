@@ -3,6 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import { Row, Col } from 'react-bootstrap'
 import { loadChartsThunk, loadSubjectBreakdown } from '../thunks/chartThunk'
 import { connect } from 'react-redux'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 
 const Dashboard = ({ dispatch, charts }) => {
@@ -14,7 +15,9 @@ const Dashboard = ({ dispatch, charts }) => {
   }, [])
 
   return (
+    
     <div className="dashboard">
+      <PerfectScrollbar>
       <Row>
       <Col md={6} lg={4}>
       <div className="graph-box">
@@ -226,6 +229,7 @@ const Dashboard = ({ dispatch, charts }) => {
       </Col>
       
       </Row>
+      </PerfectScrollbar>
     </div>
   );
 }
