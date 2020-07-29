@@ -9,7 +9,7 @@ import moment from 'moment'
 import Select from 'react-select';
 import TimeInput from './TaskTimeInput'
 import Stopwatch from './Stopwatch'
-import 'react-perfect-scrollbar/dist/css/styles.css';
+//import 'react-perfect-scrollbar/dist/css/styles.css';
 //import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 //import { getSessionsThunk } from '../thunks/sessionsThunk'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
@@ -145,7 +145,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 <div>
                     <span className="bold">Sessions:</span>
                     <div className="sessionsTable">
-                    <PerfectScrollbar>
+                    
                         <table>
                             <thead>
                             <tr>
@@ -166,12 +166,10 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                         )
                                     })
                             }
-                            
                             <tr ref={messagesEndRef}>
                             </tr>
                             </tbody>
                         </table>
-                        </PerfectScrollbar>
                     </div>
                 </div>
             </div>
