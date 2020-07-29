@@ -9,6 +9,7 @@ import moment from 'moment'
 import Select from 'react-select';
 import TimeInput from './TaskTimeInput'
 import Stopwatch from './Stopwatch'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 //import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 //import { getSessionsThunk } from '../thunks/sessionsThunk'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
