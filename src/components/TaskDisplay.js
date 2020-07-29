@@ -13,6 +13,7 @@ import Stopwatch from './Stopwatch'
 //import { getSessionsThunk } from '../thunks/sessionsThunk'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
 //import { getTask } from '../thunks/taskThunk';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 
 const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch }) => {
 
@@ -143,6 +144,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 <div>
                     <span className="bold">Sessions:</span>
                     <div className="sessionsTable">
+                    <PerfectScrollbar>
                         <table>
                             <thead>
                             <tr>
@@ -151,6 +153,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             </tr>
                             </thead>
                             <tbody>
+                            
                             { 
                                 currentTask &&
                                     currentTask.taskSessions.map((session) => {
@@ -162,10 +165,12 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                         )
                                     })
                             }
+                            
                             <tr ref={messagesEndRef}>
                             </tr>
                             </tbody>
                         </table>
+                        </PerfectScrollbar>
                     </div>
                 </div>
             </div>
