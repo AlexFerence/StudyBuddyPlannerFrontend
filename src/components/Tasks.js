@@ -22,6 +22,10 @@ const TasksPage = ({ subjects, currentTask, dispatch }) => {
     const displayOn = () => {
         setDisplayType('display')
     }
+
+    const blankOn = () => {
+        setDisplayType('')
+    }
     
     useEffect(() => {
         dispatch(loadTasks())
@@ -44,6 +48,7 @@ const TasksPage = ({ subjects, currentTask, dispatch }) => {
             { displayType === 'display' && <TaskDisplay
                 editingOn={editingOn}
                 displayOn={displayOn} 
+                blankOn={blankOn}
                 />}
             { displayType === 'editing' && <TaskEdit
                 displayOn={displayOn}

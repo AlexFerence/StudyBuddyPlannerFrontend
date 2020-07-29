@@ -10,6 +10,7 @@ export const loadTasks = () => async (dispatch, getState) => {
     try {
         const res = await axios.post(url + '/api/tasks/list',
             {
+                isDone: 0,
                 UserId: id
             }, {
             headers: {
@@ -119,4 +120,29 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
             subjectTitle: getClassName(task.subjectId)
         })
     }
+}
+
+export const markTaskAsDone = (taskId) => async (dispatch, getState) => {
+    const { profile, subjects, currentTask, tasks } = getState()
+    const { id, token } = profile
+    try {
+        const res = await axios.put(url + '/api/Tasks/' + taskId, {
+            ...currentTask,
+            isDone: 1
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        console.log(res.data)
+        dispatch(loadTasks())
+        dispatch(setCurrentTask({}))
+
+
+    } catch (e) {
+
+    }
+
 }

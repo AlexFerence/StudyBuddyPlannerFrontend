@@ -5,12 +5,18 @@ import { updateProfileThunk } from '../thunks/profileThunk'
 import { makeSemesterThunk } from '../thunks/semesterThunk'
 import Select from 'react-select'
 import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
+import { ButtonGroup, ToggleButton } from 'react-bootstrap'
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 var languages = [
   { label: 'Montreal University', id: 1 },
-  { label: 'McMaster University', id: 2},
-  { label: 'McGill University', id: 3}
+  { label: 'McMaster University', id: 2 },
+  { label: 'McGill University', id: 3 }
+];
+
+const radios = [
+  { name: 'GPA (4.0 scale)', value: 'gpa' },
+  { name: '% Percentage', value: 'percentage' },
 ];
 
 var options = []
@@ -43,10 +49,14 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const [faculty, setFaculty] = useState({})
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
-  
+
   const [schoolError, setSchoolError] = useState('')
   const [facultyError, setFacultyError] = useState('')
   const [gpaError, setGpaError] = useState('')
+
+  const [checked, setChecked] = useState(false);
+  const [radioValue, setRadioValue] = useState({ name: 'GPA (4.0 scale)', value: 'gpa' });
+
 
   useEffect(() => {
     dispatch(loadSchools())
@@ -103,32 +113,35 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
 
   return (
     <div className="container SignUpSecond">
-      <label className="inpLabel">School { schoolError && <span className="error">* {schoolError}</span>}</label>
+      <label className="inpLabel">School {schoolError && <span className="error">* {schoolError}</span>}</label>
       <Select
         placeholder="school ..."
         className="selectedInp"
         options={schools}
         values={[]}
         onChange={(value) => setSchool(value)}
-        components={{ DropdownIndicator:() => null }}
+        components={{ DropdownIndicator: () => null }}
       />
-      <label className="inpLabel">Faculty { schoolError && <span className="error">* {schoolError}</span>} </label>
+      <label className="inpLabel">Faculty {schoolError && <span className="error">* {schoolError}</span>} </label>
       <Select
         placeholder="faculty ..."
         className="selectedInp"
         options={faculties}
         values={[]}
         onChange={(value) => setFaculty(value)}
-        components={{ DropdownIndicator:() => null }}
+        components={{ DropdownIndicator: () => null }}
       />
       <label className="inpLabel" >Major</label>
       <input className="inp" onChange={onChangeMajor} value={major} />
       <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
+
+     
+
       <input className="inp" onChange={onChangeGpa} value={gpa} />
-        <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
+      <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
     </div>
-    )
-  }
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -143,3 +156,19 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(SignUpSecondary)
+
+// <ButtonGroup toggle>
+// {radios.map((radio, idx) => (
+//   <ToggleButton
+//     key={idx}
+//     type="radio"
+//     variant="secondary"
+//     name="radio"
+//     value={radio.value}
+//     checked={radioValue === radio.value}
+//     onChange={(e) => setRadioValue(e.currentTarget.value)}
+//   >
+//     {radio.name}
+//   </ToggleButton>
+// ))}
+// </ButtonGroup>

@@ -75,7 +75,7 @@ const Dashboard = ({ dispatch, charts }) => {
                   center: ['50%', '50%'],
                   selectedMode: 'single',
                   data:
-                    charts.pieData
+                    charts.pieChart.pieData
                   ,
                   emphasis: {
                     itemStyle: {
