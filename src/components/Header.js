@@ -36,60 +36,67 @@ const Header = (props) => {
             </Tooltip>
         );
     }
-
-    return (
-        <Navbar expand="true">
-            <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
-            {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
-            <Navbar id="">
-                <Nav className="mr-auto">
-                </Nav>
-                <Nav inline="true">
-                    {props.isAuth &&
-                        <OverlayTrigger
-                            placement="bottom"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltipDash}
-                        >
-                            <NavLink style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
+    if (props.profile.isAuth) {
+        return (
+        
+            <Navbar expand="true">
+                <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
+                {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
+                <Navbar id="">
+                    <Nav className="mr-auto">
+                    </Nav>
+                    <Nav inline="true">
+                        {props.isAuth &&
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltipDash}
+                            >
+                                <NavLink style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
+                                </NavLink>
+                            </OverlayTrigger>
+    
+                        }
+                        {props.isAuth &&
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltipTask}
+                            >
+                                <NavLink style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                </NavLink>
+                            </OverlayTrigger>
+                        }
+                        {props.isAuth &&
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltipSubj}
+                            >
+                            <NavLink style={{ padding: 5 }} to="/subjects"><FaList />
                             </NavLink>
-                        </OverlayTrigger>
-
-                    }
-                    {props.isAuth &&
-                        <OverlayTrigger
-                            placement="bottom"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltipTask}
-                        >
-                            <NavLink style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                            </OverlayTrigger>
+                        }
+                        {props.isAuth &&
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltipSet}
+                            >
+                            <NavLink style={{ padding: 5 }} to="/settings"><FaCog />
                             </NavLink>
-                        </OverlayTrigger>
-                    }
-                    {props.isAuth &&
-                        <OverlayTrigger
-                            placement="bottom"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltipSubj}
-                        >
-                        <NavLink style={{ padding: 5 }} to="/subjects"><FaList />
-                        </NavLink>
-                        </OverlayTrigger>
-                    }
-                    {props.isAuth &&
-                        <OverlayTrigger
-                            placement="bottom"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={renderTooltipSet}
-                        >
-                        <NavLink style={{ padding: 5 }} to="/settings"><FaCog />
-                        </NavLink>
-                        </OverlayTrigger>
-                    }
-                </Nav>
+                            </OverlayTrigger>
+                        }
+                    </Nav>
+                </Navbar>
             </Navbar>
-        </Navbar>
-    )
+
+        )
+    }
+    else {
+        return undefined
+    }
+    
 }
 const mapStateToProps = (state) => {
     return {
