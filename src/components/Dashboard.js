@@ -222,7 +222,6 @@ const Dashboard = ({ dispatch, charts }) => {
                     }
                 }
               ]
-              
             }}
           />
           </div>
