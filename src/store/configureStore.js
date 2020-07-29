@@ -13,6 +13,8 @@ import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
+import { DESTROY_SESSION } from '../actions/profileActions'
+
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 
@@ -34,8 +36,19 @@ const persistConfig ={
     stateReconciler: autoMergeLevel2
 }
 
-const rootReducer = combineReducers(reducers);
+const appReducer = combineReducers(reducers);
+
+const rootReducer = (state, action) => {   
+    // Clear all data in redux store to initial.
+    if(action.type === DESTROY_SESSION)
+       state = undefined;
+    
+    return appReducer(state, action);
+ };
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+
 
 export const configureStore = () => createStore(
     persistedReducer,

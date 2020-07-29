@@ -2,13 +2,18 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
+import { logout } from '../actions/profileActions'
 
 const Settings = (props) => {
-
     const [fname, setfname] = useState(props.firstName)
     const [lname, setlname] = useState(props.lastName)
     const [email, setEmail] = useState(props.email)
     const [password, setPassword] = useState(props.password)
+
+    const logOutCalled = () => {
+        props.dispatch(logout())
+        props.history.push("/login")
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -78,6 +83,7 @@ const Settings = (props) => {
                 </div>
                 <button>Submit</button>
             </form>
+            <button onClick={logOutCalled}>Log Out</button>
         </div>
     )
 }
