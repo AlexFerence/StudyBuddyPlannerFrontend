@@ -94,7 +94,7 @@ const Header = (props) => {
         )
     }
     else {
-        return undefined
+        return(<div></div>)
     }
     
 }
