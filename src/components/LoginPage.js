@@ -76,4 +76,10 @@ const LoginPage = ({ dispatch, history }) => {
     )
 }
 
-export default connect()(LoginPage)
+const mapStateToProps = (state) => {
+    return {
+        profile: state.profile
+    }
+}
+
+export default connect(mapStateToProps)(LoginPage)

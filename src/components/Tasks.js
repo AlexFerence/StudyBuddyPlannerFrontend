@@ -24,7 +24,8 @@ const TasksPage = ({ subjects, currentTask, dispatch }) => {
     }
     
     useEffect(() => {
-        loadTasks()
+        dispatch(loadTasks())
+
     }, [])
 
     return (
