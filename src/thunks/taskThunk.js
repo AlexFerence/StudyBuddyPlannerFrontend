@@ -55,7 +55,7 @@ export const updateTask = (updatedTask) => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         console.log('updating task')
-        console.log(updatedTask.id)
+        //console.log(updatedTask.id)
         delete updatedTask.color
         delete updatedTask.subjectTitle
 
@@ -105,7 +105,7 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
 
     const task = tasks.find((t) => t.id === taskId)
     console.log('about to set currentTask')
-    console.log(taskId)
+    //console.log(taskId)
 
 
     if (task) {
