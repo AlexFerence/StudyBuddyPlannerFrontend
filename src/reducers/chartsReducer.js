@@ -1,9 +1,19 @@
-import { SET_ALL_CHARTS } from '../actions/chartActions'
+import { SET_PIE_CHART, SET_SUBJECT_BREAKDOWN_CHART } from '../actions/chartActions'
 
 const chartsReducer = (state = {}, action) => {
     switch(action.type) {
-        case SET_ALL_CHARTS:
-            return action.charts
+        case SET_PIE_CHART:
+            return {
+                ...state,
+                pieChart: action.pieChart
+            }
+        case SET_SUBJECT_BREAKDOWN_CHART:
+            console.log('breakdown')
+            return {
+                ...state,
+                breakdownChart: action.breakdownChart
+            }
+
         default: 
             return state
     }

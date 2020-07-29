@@ -11,7 +11,8 @@ import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
 import { loadSubjects } from '../thunks/userActivityThunk'
 import { editSubjectThunk } from '../thunks/subjectThunk'
-
+import { loadSubjectBreakdown } from '../thunks/chartThunk'
+import ReactEcharts from 'echarts-for-react'
 
 
 const SubjectsPage = (props) => {
@@ -21,31 +22,8 @@ const SubjectsPage = (props) => {
     var [newChanges, setNewChanges] = useState({})
     var [editMode, setEditMode] = useState(false)
 
-    
-    const getClasses = async () => {
-        try {
-            const res = await axios.post(url + '/api/subjects/list',
-                {
-                    UserId: props.id
-                }, {
-                headers: {
-                    'Authorization': 'bearer ' + props.token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            const list = res.data
-
-            props.dispatch(fillSubjects(list))
-        }
-        catch (e) {
-            console.log('caught errors')
-            console.log(e)
-        }
-    }
-
     useEffect(() => {
-        const getClassesi = async () => {
+        const getClasses = async () => {
             try {
                 const res = await axios.post(url + '/api/subjects/list',
                     {
@@ -58,7 +36,7 @@ const SubjectsPage = (props) => {
                     }
                 })
                 const list = res.data
-    
+
                 props.dispatch(fillSubjects(list))
             }
             catch (e) {
@@ -66,11 +44,14 @@ const SubjectsPage = (props) => {
                 console.log(e)
             }
         }
-        getClassesi()
+        getClasses()
+
+
+
     }, [])
 
     const callDelete = async (id) => {
-        try { 
+        try {
             const res = await axios.delete(url + '/api/subjects/' + id,
                 {
                     headers: {
@@ -104,16 +85,16 @@ const SubjectsPage = (props) => {
             UserId: props.id,
             color: newChanges.color,
         }, classSelection))
-            setClassSelection(newChanges)
-            setEditMode(false)
-        
+        setClassSelection(newChanges)
+        setEditMode(false)
+
     }
 
     return (
         <Row className="subjects">
             <SubjectModal isOpen={openModal} closeModal={closeModal} />
             <Col className="scroller">
-            <div className="classHeader">
+                <div className="classHeader">
                     <div className="left">
                         <div className="title">Subjects</div>
                     </div>
@@ -123,8 +104,11 @@ const SubjectsPage = (props) => {
                 </div>
                 <div className="listClasses">{props.subjects.map((item) => {
                     return (<div onClick={() => {
+                        console.log(item.id)
                         setEditMode(false)
                         setClassSelection(item)
+                        props.dispatch(loadSubjectBreakdown(item.id))
+
                     }} key={item.id}>
                         <SubjectButton
                             className="button"
@@ -139,16 +123,17 @@ const SubjectsPage = (props) => {
                 <div className="innerDisplay">
                     {classSelection.id &&
                         <div className="topBar">
-                            <div className="left" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color )}}>
+                            <div className="left" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
                                 {!editMode && <h4>{classSelection.name} {classSelection.classCode}</h4>}
                                 {editMode && <h4>EDIT</h4>}
                             </div>
-                            <div className="right" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color )}}>
+                            <div className="right" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
                                 <button
                                     className="icon"
                                     onClick={() => {
                                         setEditMode(!editMode)
                                         setNewChanges(classSelection)
+                                        //props.dispatch(loadSubjectBreakdown())
                                     }}
                                 ><FaEdit /></button>
                                 <button
@@ -163,9 +148,41 @@ const SubjectsPage = (props) => {
                     }
                     {classSelection.id && !editMode &&
                         <div className="mainSection">
-                            Credits: <span>{classSelection.credits}</span> <br />
+                            <Row>
+                                <Col>
+                                    Credits: <span>{classSelection.credits}</span> <br />
                             Professor: <span>{classSelection.professor}</span> <br />
                             Description: <span>{classSelection.description}</span> <br />
+                                </Col>
+                                <Col>
+                                    <ReactEcharts
+                                        option={{
+
+                                            tooltip: {},
+                                            series: [
+                                                {
+                                                    type: 'pie',
+                                                    radius: '65%',
+                                                    center: ['50%', '50%'],
+                                                    selectedMode: 'single',
+                                                    data:
+                                                        props.charts.breakdownChart
+                                                    ,
+                                                    emphasis: {
+                                                        itemStyle: {
+                                                            shadowBlur: 10,
+                                                            shadowOffsetX: 0,
+                                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                        }
+                                                    }
+                                                }
+                                            ]
+
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+
 
                         </div>
                     }
@@ -226,13 +243,13 @@ const SubjectsPage = (props) => {
                                 /> <br />
                                 <label className="inpLabel">Prof:</label>
                                 <input
-                                    className="inp"    
-                                type="text" value={newChanges.professor} 
-                                onChange={(e) => {
-                                        setNewChanges({...newChanges, professor: e.target.value })
-                                    }}/> <br />
-                                
-                                    <br />
+                                    className="inp"
+                                    type="text" value={newChanges.professor}
+                                    onChange={(e) => {
+                                        setNewChanges({ ...newChanges, professor: e.target.value })
+                                    }} /> <br />
+
+                                <br />
                                 <button className="but">Submit</button>
                             </form>
                         </div>
@@ -244,7 +261,7 @@ const SubjectsPage = (props) => {
         </Row>
 
 
-        
+
     )
 }
 
@@ -252,7 +269,8 @@ const mapStateToProps = (state) => {
     return {
         token: state.profile.token,
         id: state.profile.id,
-        subjects: state.subjects
+        subjects: state.subjects,
+        charts: state.charts
     }
 }
 

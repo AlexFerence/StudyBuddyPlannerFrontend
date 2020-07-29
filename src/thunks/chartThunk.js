@@ -1,6 +1,6 @@
 import axios from 'axios'
 import url from '../environment/url'
-import { setCharts } from '../actions/chartActions'
+import { setPieChart, setSubjectBreakdownChart } from '../actions/chartActions'
 
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
@@ -18,26 +18,25 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(res.data)
-        console.log(res.status)
+        
         if (res.status === 200) {
             var pieData = []
             res.data.responseItems.forEach((item) => {
                 console.log(item)
                 pieData.push({ 
-                    value: parseInt(item.name2.replace(",", "")), 
+                    value: item.value1, 
                     name: item.name1,
-                    color: "#333333"
                 })
             })
-            dispatch(setCharts({ pieData }))
+            console.log(pieData)
+            dispatch(setPieChart({ pieData }))
         }
     } catch (e) {
         return(e)
     }
 }
 
-export const loadSubjectBreakdown = () => async (dispatch, getState) => {
+export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -45,7 +44,7 @@ export const loadSubjectBreakdown = () => async (dispatch, getState) => {
         const res = await axios.post(url + '/api/SubjectCharts/listsubjectbreakdown',
         {
             userId: id,
-            subjectId: 100
+            subjectId: subjId
         }, {
             headers: {
                 'Authorization': 'bearer ' + token,
@@ -55,19 +54,19 @@ export const loadSubjectBreakdown = () => async (dispatch, getState) => {
         })
         console.log("subject breakdown")
         console.log(res.data)
-
-        // if (res.status === 200) {
-        //     var pieData = []
-        //     res.data.responseItems.forEach((item) => {
-        //         console.log(item)
-        //         pieData.push({ 
-        //             value: parseInt(item.name2.replace(",", "")), 
-        //             name: item.name1,
-        //             color: "#333333"
-        //         })
-        //     })
-        //     dispatch(setCharts({ pieData }))
-        //}
+        var formattedSubjectBreakdown = []
+        res.data.responseItems.forEach((subj) => {
+            console.log(subj)
+            formattedSubjectBreakdown.push(
+                { 
+                value: subj.value1,
+                name: subj.name1
+            })
+         
+        })
+        console.log('formatted')
+        console.log(formattedSubjectBreakdown)
+        dispatch(setSubjectBreakdownChart(formattedSubjectBreakdown))
     } catch (e) {
         return(e)
     }
