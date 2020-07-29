@@ -100,7 +100,8 @@ const Header = (props) => {
 }
 const mapStateToProps = (state) => {
     return {
-        profile: state.profile
+        profile: state.profile,
+        isAuth: state.profile.isAuth
     }
 }
 export default connect(mapStateToProps)(Header)
