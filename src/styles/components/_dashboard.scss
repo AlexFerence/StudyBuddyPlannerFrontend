@@ -1,6 +1,7 @@
 .dashboard {
   background-color: $light-grey;
-  height: 100vh;
+  //height: 100vh;
+  overflow-y: scroll;
 }
 
 .App {
