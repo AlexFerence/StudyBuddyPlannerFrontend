@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginThunk} from '../thunks/profileThunk'
 
-const LoginPage = ({ dispatch, history }) => {
+const LoginPage = ({ dispatch, history, profile }) => {
     useEffect(() => {
         setEmail('akaufman2000@gmail.com')
         setPassword('securePassword')
+        if (profile.email) {
+            history.push('dashboard')
+        }
+
     }, [])
 
     const [email, setEmail] = useState('')
@@ -72,7 +76,6 @@ const LoginPage = ({ dispatch, history }) => {
                 </p>
             </form>
         </div>
-
     )
 }
 

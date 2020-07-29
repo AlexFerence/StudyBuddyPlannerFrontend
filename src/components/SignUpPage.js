@@ -10,7 +10,7 @@ import url from '../environment/url'
 import { loadSchools } from '../thunks/schoolsThunk';
 
 
-const FormPage = ({ history, dispatch }) => {
+const FormPage = ({ history, dispatch, profile }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -22,6 +22,9 @@ const FormPage = ({ history, dispatch }) => {
 
   useEffect(() => {
     dispatch(loadSchools())
+    if (profile.email) {
+      history.push('dashboard')
+  }
   }, [])
 
   const onSubmit = async (e) => {
@@ -97,4 +100,10 @@ const FormPage = ({ history, dispatch }) => {
   );
 }
 
-export default connect()(FormPage)
+const mapStateToProps = (state) => {
+  return {
+      profile: state.profile
+  }
+}
+
+export default connect(mapStateToProps)(FormPage)
