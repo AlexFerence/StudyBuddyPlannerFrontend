@@ -7,7 +7,7 @@ const facultiesDefaultState = {
 const facultiesReducer = (state = facultiesDefaultState, action) => {
     switch(action.type) {
         case SET_FACULTIES:
-            return action.faculties
+            return [...action.faculties]
         default: 
             return state
     }

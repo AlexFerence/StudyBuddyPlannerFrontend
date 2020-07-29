@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react'
 import { Row, Col } from 'react-bootstrap'
-import { loadChartsThunk } from '../thunks/chartThunk'
+import { loadChartsThunk, loadSubjectBreakdown } from '../thunks/chartThunk'
 import { connect } from 'react-redux'
 
 
@@ -10,6 +10,7 @@ const Dashboard = ({ dispatch, charts }) => {
   useEffect(() => {
     console.log('dispatching')
     dispatch(loadChartsThunk())
+    dispatch(loadSubjectBreakdown())
   }, [])
 
   return (

@@ -38,6 +38,7 @@ export const loadFaculties = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
+    console.log('setting faculties')
     try {
         const res = await axios.post(url + '/api/Faculties/list',
             {
@@ -46,13 +47,19 @@ export const loadFaculties = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
+
+        console.log(res)
+
         var formattedFaculties = []
+        
+        console.log(res.data)
         
         res.data.forEach((faculty) => {
             formattedFaculties.push({ id: faculty.id, label: faculty.name })
             //console.log(school)
         })
 
+        console.log(formattedFaculties)
         dispatch(setFaculties(formattedFaculties)) 
        
     } catch (e) {
