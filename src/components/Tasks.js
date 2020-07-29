@@ -38,6 +38,7 @@ const TasksPage = ({ subjects, currentTask, dispatch }) => {
             <Col className="main-right">
             {displayType === 'adding' && <AddTask 
                 displayOn={displayOn}
+                setDisplayType={setDisplayType}
                 /> }
             { displayType === 'display' && <TaskDisplay
                 editingOn={editingOn}

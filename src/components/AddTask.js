@@ -17,7 +17,7 @@ const subjReduce = (list, item) => {
 }
 
 
-const AddTask = ({ subjects, displayOn, token, id, dispatch }) => {
+const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) => {
     const [currentSubjectID, setCurrentSubjectID] = useState('')
     const [currentClass, setCurrentClass] = useState('')
     const [taskType, setTaskType] = useState('')
@@ -66,7 +66,7 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch }) => {
 
             console.log(res)
             dispatch(loadTasks())
-            displayOn()
+            setDisplayType('')
             
 
         } catch (e) {
