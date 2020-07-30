@@ -13,6 +13,7 @@ import { getClassColor, getClassName } from '../thunks/subjectThunk'
 //import { getTask } from '../thunks/taskThunk';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { markTaskAsDone } from '../thunks/taskThunk'
+import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
 
 const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch, blankOn }) => {
 
@@ -67,16 +68,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         return momentDay.format("MMM D")
     }
 
-
-
-    // const renderTooltipDone = (props, display) => {
-    //     return (
-    //         <Tooltip id="button-tooltip" {...props}>
-    //             Done
-    //         </Tooltip>
-    //     );
-    // }
-
     return (
         <div className="display-task">
             <div className="display-task-header" style={{ backgroundColor: currentTask.color }}>
@@ -109,17 +100,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             <div className="multiLine">{currentTask.description}</div>
                         </div>
 
-                        <button 
-                        className="but complete"
-                        onClick={() => {
-                            console.log(currentTask)
-                            dispatch(markTaskAsDone(currentTask.id))
-                            blankOn()
-                        }}
-                        ><FaCheck className="green" /> Completed</button>
-
-
-
+                        
                     </Col>
                     <Col>
                         <Select
@@ -150,10 +131,25 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                     </Col>
                 </Row>
                 <div>
-                    <button onClick={() => {
+                    <div className="taskSessionsBar">
+                    <button className="but" onClick={() => {
                         setSessionsOpen(!sessionsOpen)
                         scrollToBottom()
-                    }}>Sessions <FaArrowDown /></button>
+                    }}>Sessions { !sessionsOpen ? <FaAngleDown /> : <FaAngleUp /> }</button>
+
+
+                    <button 
+                        className="but complete"
+                        onClick={() => {
+                            console.log(currentTask)
+                            dispatch(markTaskAsDone(currentTask.id))
+                            blankOn()
+                        }}
+                        ><FaCheck className="green" /> Completed</button>
+                    </div>
+
+                    
+
                     {sessionsOpen &&
                         
                     <div className="sessionsTable">

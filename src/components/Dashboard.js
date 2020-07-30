@@ -4,12 +4,14 @@ import { Row, Col } from 'react-bootstrap'
 import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek } from '../thunks/chartThunk'
 import { connect } from 'react-redux'
 import QuickTimer from './QuickTimer'
+import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
+
 //import PerfectScrollbar from 'react-perfect-scrollbar'
 
 
 const Dashboard = ({ dispatch, charts }) => {
-  var [dropdown1, setDropdown1] = useState(false)
-  var [dropdown2, setDropdown2] = useState(false)
+  var [dropdown1, setDropdown1] = useState(true)
+  var [dropdown2, setDropdown2] = useState(true)
 
   useEffect(() => {
     console.log('dispatching')
@@ -29,7 +31,7 @@ const Dashboard = ({ dispatch, charts }) => {
         </div>
         </Col>
         <Col s={6} >
-          <div className="graph">
+          <div className="graph topRight">
             <ReactEcharts
               option={{
                 title : {
@@ -67,11 +69,14 @@ const Dashboard = ({ dispatch, charts }) => {
         </Col>
       </Row>
 
-      <button className="toggleButton" onClick={() => {
+      <div className="toggleButton" onClick={() => {
         setDropdown1(!dropdown1)
       }}>
-        Personal Analytics
-      </button>
+        { dropdown1 ? <FaAngleDown /> : <FaAngleUp /> }
+        
+        <span>Personal Analytics</span>
+        <span className="lock"><FaLock /></span>
+      </div>
       {dropdown1 &&
         <div>
         <Row>
@@ -106,12 +111,15 @@ const Dashboard = ({ dispatch, charts }) => {
         </Row>
         </div>
       }
-
-      <button className="toggleButton" onClick={() => {
+      <div className="toggleButton" onClick={() => {
         setDropdown2(!dropdown2)
       }}>
-        Comparitive Analytics
-      </button>
+        { dropdown2 ? <FaAngleDown /> : <FaAngleUp /> }
+        
+        <span>Comparative Analytics</span>
+        <span className="lock"><FaLock /></span>
+      </div>
+
       {dropdown2 &&
         <div>
           T

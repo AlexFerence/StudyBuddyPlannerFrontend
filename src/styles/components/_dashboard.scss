@@ -25,8 +25,12 @@
 
 .toggleButton {
   width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   border: 1px solid $grey;
+  background-color: #EFEFEF;
+  display: flex;
+  justify-content: space-between;
+
 }
 .toggleButton:focus {
   outline: none;
@@ -40,5 +44,10 @@
   // align-items: center;
 }
 
+.lock {
+  color: $grey;
+}
 
-
+.topRight {
+  padding-top: 7.5%;
+}

@@ -45,9 +45,6 @@ const SubjectsPage = (props) => {
             }
         }
         getClasses()
-
-
-
     }, [])
 
     const callDelete = async (id) => {
@@ -119,7 +116,7 @@ const SubjectsPage = (props) => {
                 })}</div>
             </Col>
             <Col className="display">
-                {!classSelection.id && <p>Please select a class</p>}
+                {!classSelection.id && <p className="fillerContent">Please select a class</p>}
                 <div className="innerDisplay">
                     {classSelection.id &&
                         <div className="topBar">
@@ -149,12 +146,12 @@ const SubjectsPage = (props) => {
                     {classSelection.id && !editMode &&
                         <div className="mainSection">
                             <Row>
-                                <Col>
-                                    Credits: <span>{classSelection.credits}</span> <br />
-                            Professor: <span>{classSelection.professor}</span> <br />
-                            Description: <span>{classSelection.description}</span> <br />
+                                <Col md={6}>
+                                    <span className="">Credits:</span> <span>{classSelection.credits}</span> <br />
+                            <span className="">Professor:</span> <span>{classSelection.professor}</span> <br />
+                            <span className="">Description:</span>  <span>{classSelection.description}</span> <br />
                                 </Col>
-                                <Col>
+                                <Col md={6}>
                                     <ReactEcharts
                                         option={{
 

@@ -29,7 +29,7 @@
 }
 
 .display-task-body {
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 .display-task-body label {
@@ -63,6 +63,7 @@
 
 .info {
     padding: 6px 0px;
+    margin: 5px 0px;
 }
 
 // .display-task-body .complete {
@@ -73,17 +74,21 @@
 
 .sessionsTable {
     margin: 10px;
-    width: 100%;
     max-height: 150px;
-   // overflow: scroll;
     overflow: scroll;
+    border-bottom: 1px solid $grey;
+    
 
 }
 
 
 .sessionsTable table {
     border-collapse: collapse;
-    width: 90%;
+    margin: none;
+    border-bottom: 1px solid red;
+    width: 100%;
+    padding: 10px;
+
 
 }
 
@@ -121,4 +126,10 @@
 
     /* anchor nodes are required to have non-zero area */
     height: 1px;
+}
+
+.taskSessionsBar {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
 }

@@ -9,7 +9,7 @@
 .tasks .main-right {
     background-color: $light-grey;
     width: 55%;
-    height: calc(100vh - #{$navbar-height} );
+    height: calc(100vh - #{$navbar-height} - 15px);
     float:left;
     padding: 25px;
 } 
@@ -17,7 +17,7 @@
 .tasks .scroller {
     background-color: $white;
     width: 45%;
-    height: calc(100vh - #{$navbar-height} );
+    height: calc(100vh - #{$navbar-height} - 15px );
     float:left;
     border-right: 1px solid lighten($color: $grey, $amount: 20%);
 }
