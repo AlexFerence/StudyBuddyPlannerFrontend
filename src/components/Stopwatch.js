@@ -5,7 +5,6 @@ import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
-import moment from 'moment'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 

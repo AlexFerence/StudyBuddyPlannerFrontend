@@ -6,6 +6,7 @@ import { makeSemesterThunk } from '../thunks/semesterThunk'
 import Select from 'react-select'
 import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
 import { ButtonGroup, ToggleButton } from 'react-bootstrap'
+import { FaBlackTie } from 'react-icons/fa';
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 var languages = [
@@ -13,6 +14,15 @@ var languages = [
   { label: 'McMaster University', id: 2 },
   { label: 'McGill University', id: 3 }
 ];
+
+const style = {
+  option: (base, state) => ({
+    ...base,
+    color: 'black',
+    backgroundColor: 'white',
+    borderColor: '1px solid grey'
+  })
+};
 
 const radios = [
   { name: 'GPA (4.0 scale)', value: 'gpa' },
@@ -83,30 +93,35 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   };
 
   const updateProfile = (e) => {
+    e.preventDefault()
     var clean = true
-    if (!school.id) {
+    if (!school) {
       setSchoolError('School is required')
       clean = false
     }
     else {
       setSchoolError('')
     }
-    if (!faculty.id) {
-      setSchoolError('Faculty is required')
+    if (!faculty) {
+      setFacultyError('Faculty is required')
       clean = false
     }
     else {
       setSchoolError('')
     }
 
-    console.log(gpa)
-    if (!school.id || !faculty.id || !gpa) {
-      console.log('must enter all fields')
+    if (!gpa) {
+      setGpaError('current gpa is required')
+      clean=false
     }
+
     else {
-      e.preventDefault()
-      dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa }))
+      setGpaError('')
+    }
+
+    if (clean) {
       history.push('/dashboard')
+      dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa }))
       dispatch(makeSemesterThunk(gpa))
     }
   }
@@ -115,29 +130,32 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     <div className="container SignUpSecond">
       <label className="inpLabel">School {schoolError && <span className="error">* {schoolError}</span>}</label>
       <Select
+        isClearable={true}
+        onSelectResetsInput={false}
         placeholder="school ..."
         className="selectedInp"
         options={schools}
         values={[]}
         onChange={(value) => setSchool(value)}
         components={{ DropdownIndicator: () => null }}
+        
       />
-      <label className="inpLabel">Faculty {schoolError && <span className="error">* {schoolError}</span>} </label>
+      <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
       <Select
+      isClearable={true}
         placeholder="faculty ..."
         className="selectedInp"
         options={faculties}
         values={[]}
         onChange={(value) => setFaculty(value)}
         components={{ DropdownIndicator: () => null }}
-      />
+        styles={style} 
+        />
       <label className="inpLabel" >Major</label>
       <input className="inp" onChange={onChangeMajor} value={major} />
-      <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>
+      <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>{gpaError && <span className="error">* {gpaError}</span>}
 
-     
-
-      <input className="inp" onChange={onChangeGpa} value={gpa} />
+      <input className="inp" onChange={onChangeGpa} value={gpa} /> 
       <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
     </div>
   )

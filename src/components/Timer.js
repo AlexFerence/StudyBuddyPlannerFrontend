@@ -58,28 +58,20 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
     }
 
     const timerDone = async () => {
-        console.log('done')
+        resetCount()
         
         dispatch(pausedReduxOff())
-        dispatch(postSessionThunk({
+        await dispatch(postSessionThunk({
             taskId: currentTask.id,
             minutes: interval,
         }))
-        // dispatch(getSessionsThunk(currentTask.id)).then((currentT) => {
-        //     setCurrentTask(currentT)
-        // }).catch((e) => {
-        //     console.log(e)
-        // })
-
         await dispatch(loadTasks())
-            
-        dispatch(setCurrentTaskById(currentTask.id))
         
-        resetCount()
-
         dispatch(loadChartsThunk())
         dispatch(loadSubjectBreakdown())
         dispatch(loadHoursWeek())
+
+        dispatch(setCurrentTaskById(currentTask.id))
     }
 
     var percent = count / interval

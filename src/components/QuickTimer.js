@@ -29,8 +29,9 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
     return (
         <div>
         <Row>
-        <Col>
+        <Col className="pad">
         <Select
+                className="pad"
                 className="timerSelect"
                 value={{...currentTask, label: currentTask.title}}
                 onChange={val => {
@@ -38,6 +39,7 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
 
                     dispatch(setCurrentTaskById(val.value.id))
                 }}
+
                 placeholder="Task..."
                 isDisabled={isRunning || paused}
                 options={
@@ -45,8 +47,10 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
                 }
             />
         </Col>
-        <Col>
+        <Col className="pad">
+        
         <Select
+                
                 className="timerSelect"
                 value={timerSetting}
                 onChange={val => setTimerSetting(val)}

@@ -8,7 +8,6 @@ import QuickTimer from './QuickTimer'
 
 
 const Dashboard = ({ dispatch, charts }) => {
-
   var [dropdown1, setDropdown1] = useState(false)
   var [dropdown2, setDropdown2] = useState(false)
 
@@ -22,20 +21,26 @@ const Dashboard = ({ dispatch, charts }) => {
   return (
     <div className="dashboard">
       <Row>
-        <Col>
+        <Col s={6}>
+        <div className="graph">
+        <div className="timerControl">
         <QuickTimer />
+        </div>
+        </div>
         </Col>
-        <Col>
-          <div>
+        <Col s={6} >
+          <div className="graph">
             <ReactEcharts
               option={{
-                title: {
-                  text: 'Hours Per Week',
-                },
+                title : {
+                  text:"Hours per week",
+                  x:'center'
+              },
+
                 tooltip: {
                   trigger: 'axis',
-                  axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                  axisPointer: {
+                    type: 'shadow'        
                   }
                 },
                 xAxis: {
@@ -43,7 +48,13 @@ const Dashboard = ({ dispatch, charts }) => {
                   data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
                 },
                 yAxis: {
-                  type: 'value'
+                  type: 'value',
+                  axisLabel : {
+                    formatter: '{value}'
+                  },
+                  name: 'hours',
+                  nameLocation: 'middle',
+                  nameGap: 50
                 },
                 series: [{
                   data: charts.hoursWeekData,
