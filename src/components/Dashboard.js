@@ -83,7 +83,10 @@ const Dashboard = ({ dispatch, charts }) => {
         <Col>
         <ReactEcharts
             option={{
-              tooltip: {},
+              tooltip: {
+                trigger: 'item',
+                formatter: '{b}: {d}%'
+            },
               series: [
                 {
                   type: 'pie',
@@ -122,8 +125,56 @@ const Dashboard = ({ dispatch, charts }) => {
 
       {dropdown2 &&
         <div>
-          T
+        <Row>
+        <Col>
+        <ReactEcharts
+            option={{
+              tooltip: {},
+              series: [
+                {
+                  type: 'pie',
+                  //radius: '65%',
+                  radius: ['50%', '70%'],
+                  center: ['50%', '50%'],
+                  selectedMode: 'single',
+                  data:
+                    charts.pieChart.pieData
+                  ,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  }
+                }
+              ]
+
+            }}
+          />
+          </Col>
+          <Col>
+          <ReactEcharts 
+          option = {{
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                type: 'line'
+            }]
+        }}
+          />
+          
+          </Col>
+          
+        </Row>
         </div>
+
       }
     </div>
   );
