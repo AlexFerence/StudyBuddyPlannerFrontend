@@ -127,16 +127,12 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         <div>
             <div className="stopwatch">
                 <div className="inside d-flex justify-content-center align-items-center">
-                    <span className="timeDisplay">{timeDisplay(count)}</span>
+                    <span className="stopDisplay">{timeDisplay(count)}</span>
                 </div>
+                <div className="inside d-flex justify-content-center align-items-center">
+                    {!isRunning && <button className="but" onClick={startTimer}><IoMdPlay /></button>}
+                    {isRunning && <button className="but" onClick={submitTime}>Done</button>}
 
-
-                    
-                    <div>
-                
-                        { !isRunning && <button className="but" onClick={startTimer}><IoMdPlay /></button>}
-                        { isRunning && <button className="but" onClick={submitTime}>Done</button> }
-                    
                 </div>
             </div>
         </div>
