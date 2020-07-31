@@ -127,7 +127,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         <div>
             <div className="stopwatch">
                 <div className="inside d-flex justify-content-center align-items-center">
-                    <span className="stopDisplay">{timeDisplay(count)}</span>
+                    <div id="stopDisplay" >{timeDisplay(count)}</div>
                 </div>
                 <div className="inside d-flex justify-content-center align-items-center">
                     {!isRunning && <button className="but" onClick={startTimer}><IoMdPlay /></button>}
@@ -178,17 +178,13 @@ const timeDisplay = (n) => {
     var seconds = n % 60
     if (seconds < 10) {
         seconds = "0" + seconds 
-    } if (mins < 10 && hours > 0) {
+    } if (mins < 10) {
         mins = "0" + mins
-    } if (n < 60) {
-        return(`${n}`)
-    } else if (n >= 3600) {
-        return(`${hours}:${mins}:${seconds}`)
-    } else if (n >= 60) {
-        return(`${mins}:${seconds}`)
-    } else {
-        return(`${seconds}`)
     }
+    if (hours < 10 ){
+        hours = "0" + hours
+    } 
+    return(`${hours}:${mins}:${seconds}`)
 }
 
 export default connect(mapStateToProps)(Stopwatch)
