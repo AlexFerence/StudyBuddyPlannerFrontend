@@ -143,7 +143,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                     }
                     <div>
                     {!isRunning &&
-                        <button className="but" onClick={startTimer}><IoMdPlay /></button>   
+                        <button disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>   
                     }
                     {!isRunning && paused &&
                         <button className="but" onClick={resetCount}><IoMdClose /></button>   
