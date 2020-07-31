@@ -85,13 +85,13 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 <Row>
                     <Col>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {currentTask.dueDate}
+                            <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {moment(currentTask.dueDate).format("MMMM DD") }
                         </div>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaGraduationCap /></span>  Class: {currentTask.subjectTitle}
                         </div>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><IoMdTime /></span>  Total: {currentTask.totalTime}mins
+                            <span className="calendarIcon"><IoMdTime /></span>  Total: {currentTask.totalTime.substring(0, currentTask.totalTime.length - 3)}
                     </div>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaPencilAlt /></span>  Notes:

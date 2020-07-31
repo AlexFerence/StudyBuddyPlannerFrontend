@@ -138,6 +138,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         values={[]}
         onChange={(value) => setSchool(value)}
         components={{ DropdownIndicator: () => null }}
+        styles={style} 
         
       />
       <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
