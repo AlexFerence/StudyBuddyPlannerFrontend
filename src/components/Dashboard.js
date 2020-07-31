@@ -14,6 +14,7 @@ const Dashboard = ({ dispatch, charts }) => {
   var [dropdown2, setDropdown2] = useState(true)
 
   useEffect(() => {
+    
     console.log('dispatching')
     dispatch(loadChartsThunk())
     dispatch(loadSubjectBreakdown())

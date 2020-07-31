@@ -7,23 +7,23 @@ export const runningOnThunk = (taskId) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     dispatch(runningReduxOn(taskId))
-
     console.log('running on thunk')
-    // try {
-    //     const res = await axios.post(url + '/api/UserActivity/create',
-    //         {
-    //             userId: id,
-    //             active: 1
-    //         }, {
-    //         headers: {
-    //             'Authorization': 'bearer ' + token,
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    // } catch (e) {
-    //     console.log(e)
-    // }
+    try {
+        const res = await axios.post(url + '/api/UserActivity/create',
+            {
+                userId: id,
+                active: 1
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        console.log('user activity updated')
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 export const runningOffThunk = (taskId) => async (dispatch, getState) => {
@@ -31,20 +31,20 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     dispatch(runningReduxOff(taskId))
-    // try {
-    //     const res = await axios.post(url + '/api/UserActivity/create',
-    //         {
-    //             userId: id,
-    //             active: 0
-    //         }, {
-    //         headers: {
-    //             'Authorization': 'bearer ' + token,
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    //     console.log('updated done')
-    // } catch (e) {
-    //     console.log(e)
-    // }
+    try {
+        const res = await axios.post(url + '/api/UserActivity/create',
+            {
+                userId: id,
+                active: 0
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        console.log('updated user activity stopped')
+    } catch (e) {
+        console.log(e)
+    }
 }
