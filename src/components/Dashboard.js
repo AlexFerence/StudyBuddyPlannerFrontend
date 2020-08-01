@@ -37,9 +37,9 @@ const Dashboard = ({ dispatch, charts }) => {
               option={{
                 title : {
                   text:"Hours per week",
-                  x:'center'
+                  x:'center',
+                  top : 20
               },
-
                 tooltip: {
                   trigger: 'axis',
                   axisPointer: {
@@ -57,7 +57,7 @@ const Dashboard = ({ dispatch, charts }) => {
                   },
                   name: 'hours',
                   nameLocation: 'middle',
-                  nameGap: 50
+                  nameGap: 35
                 },
                 series: [{
                   data: charts.hoursWeekData,
