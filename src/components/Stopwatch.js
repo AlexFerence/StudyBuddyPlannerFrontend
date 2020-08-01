@@ -7,6 +7,7 @@ import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
+import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek } from '../thunks/chartThunk'
 
 const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -57,7 +58,6 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
     }
 
     const timerDone = async () => {
-        console.log('done')
         
         dispatch(pausedReduxOff())
         dispatch(postSessionThunk({
@@ -69,9 +69,12 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         // }).catch((e) => {
         //     console.log(e)
         // })
-
         await dispatch(loadTasks())
-            
+        
+        dispatch(loadChartsThunk())
+        dispatch(loadSubjectBreakdown())
+        dispatch(loadHoursWeek())
+
         dispatch(setCurrentTaskById(currentTask.id))
         
         resetCount()
@@ -118,7 +121,13 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                 minutes: parseInt(count),
             }))
             await dispatch(loadTasks()) 
+        
+            dispatch(loadChartsThunk())
+            dispatch(loadSubjectBreakdown())
+            dispatch(loadHoursWeek())
+        
             dispatch(setCurrentTaskById(currentTask.id))
+            
         }
         resetCount()
     }

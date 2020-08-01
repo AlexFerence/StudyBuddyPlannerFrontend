@@ -1,5 +1,6 @@
 .stopwatch {
     padding: 30px;
+    margin: 20px;
 //    background-color: red;
    
 }
@@ -8,4 +9,7 @@
     font-weight: 150;
     font-size: 50px;
     font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+.stopwatch .inside {
+    margin: 15px;
 }
