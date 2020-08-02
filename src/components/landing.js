@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import laptop from '../assets/laptop.jpg'
+import pencils from '../assets/pencils.jpg'
 
 const Landing = ({ history, profile }) => {
     useEffect(() => {
@@ -14,24 +15,22 @@ const Landing = ({ history, profile }) => {
 
     return (
         <div className="landing">
-            <Navbar sticky="top">
-                <Navbar.Brand href="#home">Peak</Navbar.Brand>
-                <Nav className="mr-auto">
-                    
-                </Nav>
-                <Form inline>
-                    <Nav.Link href="#home">About</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Form>
-            </Navbar>
-
-            <div className="landingDisplay">
-
+            <div className="landingNav">
+                <button className="navButton">Header</button>
+                <div>
+                    <button className="navButton">About</button>
+                    <button className="navButton">Features</button>
+                    <button className="navButton">Premium</button>
+                </div>
             </div>
-
+            <div className="landingDisplay" style={{ backgroundImage: 'url(' + pencils + ')'}}>
+                <div>
+                <div>Stay on top of your studies.</div>
+                <div>Stay on top of your life.</div>
+                </div>
+            </div>
             <div className="about">
-            <Row>
+            <Row style={{ height: '100%' }}>
             <Col className="aboutText">
             </Col>
             <Col className="aboutDisplay">

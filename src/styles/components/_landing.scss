@@ -1,6 +1,56 @@
+
+//NAVBAR
+.navButton {
+    font-family: 'HelveticaNeue-Light', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: $light-grey;
+    padding: 7.5px 15px;
+    margin: 3px;
+    border: 1px solid transparent;
+    transition: .35s;
+}
+
+.navButton:focus {
+    outline: none;
+}
+
+.navButton:hover {
+    border: 1px solid $light-grey;
+    transition: .35s;
+}
+
+.landingNav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+//BODY
+
+
+
+
+.landing {
+    font-family: 'HelveticaNeue-Light', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
 .landingDisplay {
-    background-color: red;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 7.5vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $light-grey;
 }
 
 .about {
@@ -13,10 +63,14 @@
 }
 
 .aboutDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
 
 }
 
 .laptopImage {
-    width: 100%;
-    margin: 20px 0px;
+    height: 50px;
 }
