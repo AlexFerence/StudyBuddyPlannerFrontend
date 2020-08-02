@@ -15,3 +15,28 @@ export const setHoursWeek = (hoursWeekData) => ({
     type: SET_HOURS_WEEK,
     hoursWeekData
 });
+
+export const SET_YEAR_BREAKDOWN = 'SET_YEAR_BREAKDOWN'
+export const setYearBreakdown = (yearData) => ({
+    type: SET_YEAR_BREAKDOWN,
+    yearData
+});
+
+export const SET_YEAR_XAXIS = 'SET_YEAR_XAXIS'
+export const setYearXAxis = (xAxis) => ({
+    type: SET_YEAR_XAXIS,
+    xAxis
+});
+
+export const SET_FACULTY_BREAKDOWN = 'SET_FACULTY_BREAKDOWN'
+export const setFacultyBreakdown = (yearData) => ({
+    type: SET_FACULTY_BREAKDOWN,
+    yearData
+});
+
+export const SET_FACULTY_XAXIS = 'SET_FACULTY_XAXIS'
+export const setFacultyXAxis = (xAxis) => ({
+    type: SET_FACULTY_XAXIS,
+    xAxis
+});
+

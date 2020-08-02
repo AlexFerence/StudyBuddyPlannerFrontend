@@ -1,7 +1,14 @@
-import { SET_PIE_CHART, SET_SUBJECT_BREAKDOWN_CHART, SET_HOURS_WEEK } from '../actions/chartActions'
+import {
+    SET_PIE_CHART,
+    SET_SUBJECT_BREAKDOWN_CHART,
+    SET_HOURS_WEEK, SET_YEAR_BREAKDOWN,
+    SET_YEAR_XAXIS,
+    SET_FACULTY_BREAKDOWN,
+    SET_FACULTY_XAXIS
+} from '../actions/chartActions'
 
 const chartsReducer = (state = {}, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_PIE_CHART:
             return {
                 ...state,
@@ -19,8 +26,28 @@ const chartsReducer = (state = {}, action) => {
                 ...state,
                 hoursWeekData: action.hoursWeekData
             }
+        case SET_YEAR_BREAKDOWN:
+            return {
+                ...state,
+                yearData: action.yearData
+            }
+        case SET_YEAR_XAXIS:
+            return {
+                ...state,
+                yearXAxis: action.xAxis
+            }
+        case SET_FACULTY_BREAKDOWN:
+            return {
+                ...state,
+                facultyData: action.yearData
+            }
+        case SET_FACULTY_XAXIS:
+            return {
+                ...state,
+                facultyXAxis: action.xAxis
+            }
 
-        default: 
+        default:
             return state
     }
 }

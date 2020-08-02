@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Nav, Navbar, Button, Form, FormControl } from 'react-bootstrap'
+import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import laptop from '../assets/laptop.jpg'
 
 const Landing = ({ history, profile }) => {
     useEffect(() => {
-        if (profile.email) {
-            history.push('dashboard')
-        }
+        // if (profile.email) {
+        //     history.push('dashboard')
+        // }
 
     }, [])
 
@@ -30,6 +31,13 @@ const Landing = ({ history, profile }) => {
             </div>
 
             <div className="about">
+            <Row>
+            <Col className="aboutText">
+            </Col>
+            <Col className="aboutDisplay">
+                <img src={laptop} className="laptopImage"/>
+            </Col>
+            </Row>
             </div>
 
 
