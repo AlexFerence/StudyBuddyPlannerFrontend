@@ -21,12 +21,14 @@ const Landing = ({ history, profile }) => {
                     <button className="navButton">About</button>
                     <button className="navButton">Features</button>
                     <button className="navButton">Premium</button>
+                    <button className="navButtonSignUp">Sign Up</button>
                 </div>
             </div>
             <div className="landingDisplay" style={{ backgroundImage: 'url(' + pencils + ')'}}>
                 <div>
-                <div>Stay on top of your studies.</div>
-                <div>Stay on top of your life.</div>
+                <div className="promotion">Stay on top of your studies.</div>
+                <div className="promotion">Stay on top of your life.</div>
+                <div><button id="mainButton" className="navButtonSignUp">Sign Up</button></div>
                 </div>
             </div>
             <div className="about">

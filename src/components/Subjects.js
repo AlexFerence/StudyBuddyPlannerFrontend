@@ -100,7 +100,8 @@ const SubjectsPage = (props) => {
                     </div>
                 </div>
                 <div className="listClasses">{props.subjects.map((item) => {
-                    return (<div onClick={() => {
+                    return (<div 
+                        onClick={() => {
                         console.log(item.id)
                         setEditMode(false)
                         setClassSelection(item)
