@@ -1,38 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
 import { logout } from '../actions/profileActions'
+import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
 
-const Settings = (props) => {
-    const [fname, setfname] = useState(props.firstName)
-    const [lname, setlname] = useState(props.lastName)
-    const [email, setEmail] = useState(props.email)
-    const [password, setPassword] = useState(props.password)
+const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, token, 
+    id, history, profile }) => {
+    const [fname, setfname] = useState(firstName)
+    const [lname, setlname] = useState(lastName)
+    const [email, setEmail] = useState(emailProp)
+    const [password, setPassword] = useState(passwordProp)
 
     const logOutCalled = () => {
-        props.dispatch(logout())
-        props.history.push("/login")
+        dispatch(logout())
+        history.push("/login")
     }
+
+    useEffect(() => {
+        dispatch(loadSchools())
+        dispatch(loadFaculties())
+
+    }, [])
 
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            console.log(props.token)
-            const res = await axios.put(url + '/api/userprofiles/' + props.id,
-                {   
+            console.log(token)
+            const res = await axios.put(url + '/api/userprofiles/' + id,
+                {
+                    ...profile,
                     firstName: fname,
                     lastName: lname,
                     email1: email,
                     Password: password,
                 }, {
-                    headers: {
-                        'Authorization': 'bearer ' + props.token,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                        
-                    }
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+
                 }
+            }
             )
             console.log(res.status)
             console.log(res.data)
@@ -45,42 +54,43 @@ const Settings = (props) => {
     return (
         <div className="container settings">
             <form onSubmit={onSubmit}>
-                <div className="inp">
-                    <label>First Name</label>
-                    <input 
-                    type="text" 
-                    name="last" 
+
+                <label className="inpLabel">First Name</label>
+                <input
+                    className="inp"
+                    type="text"
+                    name="last"
                     value={fname}
                     onChange={(e) => setfname(e.target.value)}
-                    ></input>
-                </div>
-                <div className="inp">
-                    <label>Last Name</label>
-                    <input 
-                    type="text" 
-                    name="last" 
+                ></input>
+
+
+                <label className="inpLabel">Last Name</label>
+                <input
+                    className="inp"
+                    type="text"
+                    name="last"
                     value={lname}
                     onChange={(e) => setlname(e.target.value)}
-                    ></input>
-                </div>
-                <div className="inp">
-                    <label>Email</label>
-                    <input 
-                    type="email" 
-                    name="email" 
+                ></input>
+                <label className="inpLabel">Email</label>
+                <input
+                    className="inp"
+                    type="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    ></input>
-                </div>
-                <div className="inp">
-                    <label>Password</label>
-                    <input 
-                    type="password" 
-                    name="password" 
+                ></input>
+
+                <label className="inpLabel">Password</label>
+                <input
+                    className="inp"
+                    type="password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    ></input>
-                </div>
+                ></input>
+
                 <button>Submit</button>
             </form>
             <button onClick={logOutCalled}>Log Out</button>
@@ -93,10 +103,13 @@ const mapStateToProps = (state) => {
     return {
         firstName: state.profile.firstName,
         lastName: state.profile.lastName,
-        email: state.profile.email,
-        password: state.profile.password,
+        emailProp: state.profile.email,
+        passwordProp: state.profile.password,
         token: state.profile.token,
         id: state.profile.id,
+        schools: state.schools,
+        faculties: state.faculties,
+        profile: state.profile
     }
 }
 

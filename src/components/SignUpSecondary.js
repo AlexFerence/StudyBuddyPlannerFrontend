@@ -83,7 +83,6 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const onChangeGpa = (e) => {
     //get rid of this and just throw an error that changes per marking scheme
     setGpa(e.target.value)
-    
   }
 
   const onChange = (event, { newValue }) => {
