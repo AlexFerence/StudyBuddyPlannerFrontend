@@ -40,3 +40,9 @@ export const setFacultyXAxis = (xAxis) => ({
     xAxis
 });
 
+export const SET_GPA_SCATTER = 'SET_GPA_SCATTER'
+export const setGpaScatter = (gpaScatterData) => ({
+    type: SET_GPA_SCATTER,
+    gpaScatterData
+})
+

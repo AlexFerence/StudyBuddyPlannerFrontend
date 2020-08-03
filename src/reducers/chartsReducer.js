@@ -4,7 +4,8 @@ import {
     SET_HOURS_WEEK, SET_YEAR_BREAKDOWN,
     SET_YEAR_XAXIS,
     SET_FACULTY_BREAKDOWN,
-    SET_FACULTY_XAXIS
+    SET_FACULTY_XAXIS,
+    SET_GPA_SCATTER
 } from '../actions/chartActions'
 
 const chartsReducer = (state = {}, action) => {
@@ -46,7 +47,11 @@ const chartsReducer = (state = {}, action) => {
                 ...state,
                 facultyXAxis: action.xAxis
             }
-
+        case SET_GPA_SCATTER:
+            return {
+                ...state,
+                scatterData: action.gpaScatterData
+            }
         default:
             return state
     }

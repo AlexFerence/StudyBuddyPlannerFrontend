@@ -4,7 +4,8 @@ import { setPieChart, setSubjectBreakdownChart,
     setHoursWeek, setYearBreakdown,
     setYearXAxis,
     setFacultyBreakdown,
-    setFacultyXAxis
+    setFacultyXAxis,
+    setGpaScatter
 } from '../actions/chartActions'
 import moment from 'moment'
 
@@ -180,6 +181,34 @@ export const loadFacultyStats = () => async (dispatch, getState) => {
         dispatch(setFacultyBreakdown(formattedYearBreakdown))
         dispatch(setFacultyXAxis(xAxis))
     
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+export const loadMarksScatter = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/ComparativeCharts/markshoursscatter",
+        {
+            userId: id,
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var formattedMarksScatter = []
+
+        res.data.responseItems.forEach((subj) => {
+            console.log(subj)
+            formattedMarksScatter.push(
+                [ subj.value1, subj.value2 ])
+        })
+        dispatch(setGpaScatter(formattedMarksScatter))
     } catch(e) {
         console.log(e)
     }
