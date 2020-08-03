@@ -155,7 +155,11 @@ const SubjectsPage = (props) => {
                                 <Col md={6}>
                                     <ReactEcharts
                                         option={{
-
+                                            title : {
+                                                text:"Breakdown By Task Type",
+                                                x:'center',
+                                                top : 20
+                                              },
                                             tooltip: {},
                                             series: [
                                                 {
