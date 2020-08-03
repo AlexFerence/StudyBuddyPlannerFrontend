@@ -7,9 +7,8 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
     const state = getState()
     const { profile, subjects, semester } = state
     const { id, token } = profile
-    const { semesterId } = semester
     try {
-        const res = await axios.post(url + '/api/subjects/create',
+        const res = await axios.post(url + '/api​/Subjects​/create',
             {
                 "Name": subTitle.toUpperCase().trim(),
                 "ClassCode": classCode,
@@ -17,8 +16,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
                 "Professor": professor.trim(),
                 "Credits": credits,
                 "UserId": id,
-                "color": color.hex,
-                "semesterId": semesterId
+                "color": color.hex
             },
             {
                 headers: {

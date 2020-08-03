@@ -4,7 +4,7 @@ import moment from 'moment'
 import { setSemesterId } from '../actions/semesterActions'
 import { update } from '../actions/profileActions'
 
-export const makeSemesterThunk = (startGpa = 0) => async (dispatch, getState) => {
+export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -13,6 +13,7 @@ export const makeSemesterThunk = (startGpa = 0) => async (dispatch, getState) =>
             {
                 userId: id,
                 startGpa,
+                startPercentage,
                 active: 1, 
                 startDate: "2020-08-31",
                 endDate: "2020-12-31"
@@ -23,6 +24,7 @@ export const makeSemesterThunk = (startGpa = 0) => async (dispatch, getState) =>
                     'Content-Type': 'application/json'
                 }
             })
+        console.log(res.data)
         if (res.status === 200) {
             dispatch(setSemesterId(res.data.id))
             console.log("semester data")

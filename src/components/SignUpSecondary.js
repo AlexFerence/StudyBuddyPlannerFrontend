@@ -64,6 +64,10 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const [facultyError, setFacultyError] = useState('')
   const [gpaError, setGpaError] = useState('')
 
+  const [usesPercentage, setUsesPercentage] = useState(0)
+
+
+
   const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState({ name: 'GPA (4.0 scale)', value: 'gpa' });
 
@@ -77,9 +81,9 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     setMajor(e.target.value)
   }
   const onChangeGpa = (e) => {
-    if (!isNaN(e.target.value) && e.target.value < 4.3) {
-      setGpa(e.target.value)
-    }
+    //get rid of this and just throw an error that changes per marking scheme
+    setGpa(e.target.value)
+    
   }
 
   const onChange = (event, { newValue }) => {
@@ -92,9 +96,11 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     onChange
   };
 
-  const updateProfile = (e) => {
+  const updateProfile = async (e) => {
     e.preventDefault()
     var clean = true
+    
+    //validating data
     if (!school) {
       setSchoolError('School is required')
       clean = false
@@ -120,9 +126,20 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     }
 
     if (clean) {
+      
+      await dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa, usePercentage: usesPercentage }))
+      if (usesPercentage === 1) {
+        console.log('making semester')
+        dispatch(makeSemesterThunk(gpa, 0))
+      } 
+      else {
+        //include different call
+        console.log('making semester')
+        dispatch(makeSemesterThunk(0, gpa))
+      }
       history.push('/dashboard')
-      dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa }))
-      dispatch(makeSemesterThunk(gpa))
+
+      
     }
   }
 
@@ -155,6 +172,13 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       <label className="inpLabel" >Major</label>
       <input className="inp" onChange={onChangeMajor} value={major} />
       <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>{gpaError && <span className="error">* {gpaError}</span>}
+
+      <div className="radios" onChange={ (e) => {
+        setUsesPercentage(e.target.value)
+      }}>
+        <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA (4.0 / 4.3 scale) <br />
+        <input type="radio" value={1} name="gradeScale" /> % Percentage
+      </div>
 
       <input className="inp" onChange={onChangeGpa} value={gpa} /> 
       <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
