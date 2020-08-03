@@ -49,7 +49,7 @@ const Dashboard = ({ dispatch, charts }) => {
             <ReactEcharts
               option={{
                 title : {
-                  text:"Hours per week",
+                  text:"This Week",
                   x:'center',
                   top : 20
               },

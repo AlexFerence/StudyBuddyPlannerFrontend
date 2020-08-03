@@ -5,16 +5,18 @@ import { setPieChart, setSubjectBreakdownChart,
     setYearXAxis,
     setFacultyBreakdown,
     setFacultyXAxis,
-    setGpaScatter
+    setGpaScatter,
+    modify
 } from '../actions/chartActions'
+import { getClassColor } from './subjectThunk'
 import moment from 'moment'
 
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    //console.log('chart thunk')
     try {
+        // error
         const res = await axios.post(url + '/api/SubjectCharts/listsubjecttotalhours',
         {
             userId: id,
@@ -28,15 +30,18 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
         
         if (res.status === 200) {
             var pieData = []
+            var pieColors = []
             res.data.responseItems.forEach((item) => {
                 //console.log(item)
                 pieData.push({ 
                     value: item.value1, 
                     name: item.name1,
                 })
+                //get him to send subjectId along with name 2
             })
             //console.log(pieData)
             dispatch(setPieChart({ pieData }))
+            //dispatch(modify({ pieColors }))
         }
     } catch (e) {
         return(e)

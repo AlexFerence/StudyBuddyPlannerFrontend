@@ -42,7 +42,6 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
 
     const getClassColor = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
-
         if (subj) {
             return (subj.color)
         }
@@ -72,8 +71,6 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                 color: getClassColor(t.subjectId),
                 subjectTitle: getClassName(t.subjectId)
             }))
-            //setIsAddingTask(false)
-            //setIsEditing(false)
         }
     }
 

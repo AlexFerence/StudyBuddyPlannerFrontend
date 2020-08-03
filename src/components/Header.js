@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { FaTachometerAlt, FaCheckSquare, FaList, FaCog } from 'react-icons/fa'
 import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import swal from 'sweetalert'
 
 const Header = (props) => {
 
@@ -36,6 +37,9 @@ const Header = (props) => {
             </Tooltip>
         );
     }
+
+
+
     if (props.profile.isAuth) {
         return (
             <div>
@@ -123,7 +127,8 @@ const Header = (props) => {
 const mapStateToProps = (state) => {
     return {
         profile: state.profile,
-        isAuth: state.profile.isAuth
+        isAuth: state.profile.isAuth,
+        running: state.running.isRunning,
     }
 }
 export default connect(mapStateToProps)(Header)
