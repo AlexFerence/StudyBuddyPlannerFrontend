@@ -142,7 +142,7 @@ const Dashboard = ({ dispatch, charts }) => {
         <ReactEcharts
               option={{
                 title : {
-                  text:"Hours per week",
+                  text:"Your Total Hours vs Different Faculties",
                   x:'center',
                   top : 20
               },
@@ -176,7 +176,7 @@ const Dashboard = ({ dispatch, charts }) => {
         <ReactEcharts
               option={{
                 title : {
-                  text:"Total hours spend per year breakdown",
+                  text:"Your Total Hours vs Different Years",
                   x:'center',
                   top : 20
               },
