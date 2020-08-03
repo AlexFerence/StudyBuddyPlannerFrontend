@@ -72,7 +72,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
                 {authError && <span className="error">* {authError}</span>}
                 <button type="submit" className="btn btn-secondary btn-block preAuth">Log In</button>
                 <p className="forgot-password text-right">
-                    Don't have an acount? <Link className="linkAuth" to="/signup">Sign Up</Link>
+                    Don't have an account? <Link className="linkAuth" to="/signup">Sign Up</Link>
                 </p>
             </form>
         </div>

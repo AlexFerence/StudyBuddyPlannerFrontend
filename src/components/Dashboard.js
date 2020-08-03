@@ -95,6 +95,11 @@ const Dashboard = ({ dispatch, charts }) => {
         <Col>
         <ReactEcharts
             option={{
+              title : {
+                text:"Hours Subject Breakdown",
+                x:'center',
+                top : 20
+              },
               tooltip: {
                 trigger: 'item',
                 formatter: '{b}: {d}%'
