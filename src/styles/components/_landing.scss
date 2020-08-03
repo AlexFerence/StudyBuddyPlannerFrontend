@@ -105,6 +105,11 @@
     background-color: $brand;
 }
 
+.navButtonSignUp:focus {
+    outline: none;
+}
+
+
 #mainButton {
     margin: 15px 0px;
     font-size: 30px;
@@ -112,4 +117,9 @@
 
 .promotion {
     margin-top: 10px;
+}
+
+#brand {
+    font-weight: 600;
+    font-size: 20px;
 }

@@ -120,6 +120,21 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       clean=false
     }
 
+    else if (isNaN(gpa)) {
+      setGpaError('GPA must be a number')
+      clean=false
+    }
+
+    else if (usesPercentage === 1 && (gpa > 100 || gpa < 0)) {
+      setGpaError('Percentage must be above 0 and below 100')
+      clean=false
+    }
+
+    else if (usesPercentage === 0 && (gpa > 4.3 || gpa <= 0)) {
+      setGpaError('GPA must be below 4.3 and above 0')
+      clean=false
+    }
+
     else {
       setGpaError('')
     }
@@ -176,11 +191,13 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         console.log(typeof(e.target.value))
         setUsesPercentage(parseInt(e.target.value))
       }}>
-        <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA (4.0 / 4.3 scale) <br />
-        <input type="radio" value={1} name="gradeScale" /> % Percentage
+        <input className="radioSpace" type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA (4.0 / 4.3 scale) <br />
+        <input className="radioSpace" type="radio" value={1} name="gradeScale" /> % Percentage
       </div>
 
-      <input className="inp" onChange={onChangeGpa} value={gpa} /> 
+      <input className="inp" 
+      placeholder="Current Percentage/GPA ..."
+      onChange={onChangeGpa} value={gpa} /> 
       <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
     </div>
   )

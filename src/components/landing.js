@@ -13,22 +13,30 @@ const Landing = ({ history, profile }) => {
 
     }, [])
 
+    const goToSignUp = () => {
+        history.push("/signup")
+    }
+
     return (
         <div className="landing">
             <div className="landingNav">
-                <button className="navButton">Header</button>
+                <button id="brand" className="navButton">Peak</button>
                 <div>
                     <button className="navButton">About</button>
                     <button className="navButton">Features</button>
                     <button className="navButton">Premium</button>
-                    <button className="navButtonSignUp">Sign Up</button>
+                    <button className="navButtonSignUp"
+                    onClick={goToSignUp}
+                    >Sign Up</button>
                 </div>
             </div>
             <div className="landingDisplay" style={{ backgroundImage: 'url(' + pencils + ')'}}>
                 <div>
                 <div className="promotion">Stay on top of your studies.</div>
                 <div className="promotion">Stay on top of your life.</div>
-                <div><button id="mainButton" className="navButtonSignUp">Sign Up</button></div>
+                <div><button id="mainButton" 
+                className="navButtonSignUp"
+                onClick={goToSignUp}>Sign Up</button></div>
                 </div>
             </div>
             <div className="about">
