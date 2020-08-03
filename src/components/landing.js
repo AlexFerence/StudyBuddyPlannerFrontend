@@ -34,6 +34,15 @@ const Landing = ({ history, profile }) => {
             <div className="about">
             <Row style={{ height: '100%' }}>
             <Col className="aboutText">
+            <div className="aboutInner">
+                <div className="aboutHeader">About Us</div>
+                <div className="aboutPara">    omiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí, 
+                ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený. 
+                Spopularizovaný bol v <br />
+       
+                60-tych rokoch 20.storočia, vydaním hárkov Letraset, ktoré obsahovali 
+                pasáže Loreorem Ipsum.</div>
+            </div>
             </Col>
             <Col className="aboutDisplay">
                 <img src={laptop} className="laptopImage"/>
