@@ -206,7 +206,7 @@ export const loadMarksScatter = () => async (dispatch, getState) => {
         res.data.responseItems.forEach((subj) => {
             console.log(subj)
             formattedMarksScatter.push(
-                [ subj.value1, subj.value2 ])
+                [ subj.value2, subj.value1 ])
         })
         dispatch(setGpaScatter(formattedMarksScatter))
     } catch(e) {
