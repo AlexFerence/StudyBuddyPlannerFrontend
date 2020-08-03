@@ -128,18 +128,18 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     if (clean) {
       
       await dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa, usePercentage: usesPercentage }))
+      console.log(usesPercentage)
       if (usesPercentage === 1) {
-        console.log('making semester')
-        dispatch(makeSemesterThunk(gpa, 0))
+        console.log('making with percentage')
+        dispatch(makeSemesterThunk(0, gpa))
       } 
       else {
         //include different call
-        console.log('making semester')
-        dispatch(makeSemesterThunk(0, gpa))
+        console.log('making with gpa')
+      
+        dispatch(makeSemesterThunk(gpa, 0))
       }
       history.push('/dashboard')
-
-      
     }
   }
 
@@ -174,7 +174,8 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>{gpaError && <span className="error">* {gpaError}</span>}
 
       <div className="radios" onChange={ (e) => {
-        setUsesPercentage(e.target.value)
+        console.log(typeof(e.target.value))
+        setUsesPercentage(parseInt(e.target.value))
       }}>
         <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA (4.0 / 4.3 scale) <br />
         <input type="radio" value={1} name="gradeScale" /> % Percentage
