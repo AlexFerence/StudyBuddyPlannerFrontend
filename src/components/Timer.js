@@ -20,7 +20,6 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
 
-
         return () => {
             setIsRunning(false)
             dispatch(runningOffThunk(currentTask.id))
