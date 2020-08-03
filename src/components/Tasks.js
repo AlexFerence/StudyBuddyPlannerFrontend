@@ -29,8 +29,8 @@ const TasksPage = ({ subjects, currentTask, dispatch }) => {
     
     useEffect(() => {
         dispatch(loadTasks())
-
     }, [])
+
 
     return (
         <Row className="tasks">

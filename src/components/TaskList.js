@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { FaCheck } from 'react-icons/fa'
@@ -6,34 +6,48 @@ import swal from 'sweetalert'
 import { pausedReduxOn, pausedReduxOff, runningReduxOff, setCount } from '../actions/isRunningActions'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
+import Select from 'react-select';
+import { loadTasks } from '../thunks/taskThunk'
 
 
 const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
     running, paused, dispatch }) => {
 
+    const [filterBy, setFilterBy] = useState({ value: 'Due Date', label: 'Due Date' })
+    const [filterByCompleted, setFilterByCompleted] = useState(true)
+
     const getClassName = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
         if (subj) {
-            return(subj.name + " " + subj.classCode)
+            return (subj.name + " " + subj.classCode)
         }
         else {
-            return("no class found")
+            return ("no class found")
         }
     }
 
     useEffect(() => {
         dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
+        //setFilterByCompleted(false)
     }, [])
+
+    useEffect(() => {
+        console.log(filterByCompleted)
+        console.log(filterBy)
+        dispatch(
+            loadTasks((filterBy.value === 'Due Date' ? true : false), filterByCompleted)
+        )
+    }, [filterByCompleted ,filterBy])
 
     const getClassColor = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
 
         if (subj) {
-            return(subj.color)
+            return (subj.color)
         }
         else {
-            return(undefined)
+            return (undefined)
         }
     }
 
@@ -63,27 +77,47 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
         }
     }
 
+    const filterChanged = async (val) => {
+        setFilterBy(val)
+    }
+
+    const completedChanged = () => {
+        setFilterByCompleted(!filterByCompleted)
+    }
+
     return (
         <div className="task-list">
             <div className="classHeader">
-                    <div className="left">
-                        <div className="title">
-                        Tasks
-                        
-                        </div>
-                    </div>
-                    <div className="right">
-                        <button onClick={() => addingOn()}>+ Add Task</button>
-                    </div>
-                </div>
+                <div>Tasks</div>
+                <div className="selectClass"><Select
+                value={filterBy}
+                onChange={val => filterChanged(val)}
+                placeholder="Filter By..."
+                options={[
+                    { value: 'Due Date', label: 'Due Date' },
+                    { value: 'Class', label: 'Class' }
+                    
+                ]}
+            /></div>
+
+                <div className="completedLabel">Completed 
+                <input 
+                type="checkbox" 
+                onClick={completedChanged}
+                value={filterByCompleted}
+                /> </div>
+                <button onClick={() => addingOn()}>+ Add Task</button>
+
+
+            </div>
             {
                 tasks.map((t) => {
                     return (
-                        <div 
-                        style={{borderLeft: '5px solid ' + getClassColor(t.subjectId)}}
-                        className="task-button"
-                        key={t.id}
-                        onClick={() => taskClicked(t)}>
+                        <div
+                            style={{ borderLeft: '5px solid ' + getClassColor(t.subjectId) }}
+                            className="task-button"
+                            key={t.id}
+                            onClick={() => taskClicked(t)}>
                             <div className="top-bar">
                                 <div className="subjTitle">{t.title}</div>
                                 <div className="due">{returnParsedMoment(t.dueDate)}</div>
@@ -92,7 +126,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                                 <div className="subjDesc">{
                                     getClassName(t.subjectId)
                                 }</div>
-                                <div className="due"><button><FaCheck /></button></div>
+                                <div className="due"></div>
                             </div>
                         </div>
                     )

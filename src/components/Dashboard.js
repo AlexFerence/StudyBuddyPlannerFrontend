@@ -6,6 +6,7 @@ import { loadChartsThunk, loadSubjectBreakdown,
   loadFacultyStats,
   loadMarksScatter
 } from '../thunks/chartThunk'
+import { loadTasks } from '../thunks/taskThunk'
 import { connect } from 'react-redux'
 import QuickTimer from './QuickTimer'
 import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
@@ -22,7 +23,7 @@ const Dashboard = ({ dispatch, charts }) => {
   var [dropdown2, setDropdown2] = useState(true)
 
   useEffect(() => {
-    
+    dispatch(loadTasks())
     console.log('dispatching')
     dispatch(loadChartsThunk())
     //dispatch(loadSubjectBreakdown())
