@@ -138,6 +138,7 @@ const Dashboard = ({ dispatch, charts }) => {
                       data:
                         charts.pieChart ? charts.pieChart.pieData : []
                       ,
+                      color: charts.pieColors,
                       emphasis: {
                         itemStyle: {
                           shadowBlur: 10,

@@ -37,11 +37,12 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
                     value: item.value1, 
                     name: item.name1,
                 })
+                pieColors.push(item.name2)
                 //get him to send subjectId along with name 2
             })
             //console.log(pieData)
             dispatch(setPieChart({ pieData }))
-            //dispatch(modify({ pieColors }))
+            dispatch(modify({ pieColors }))
         }
     } catch (e) {
         return(e)
