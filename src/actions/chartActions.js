@@ -10,11 +10,6 @@ export const setSubjectBreakdownChart = (breakdownChart) => ({
     breakdownChart
 });
 
-export const MODIFY = 'MODIFY'
-export const modify = (data) => ({
-    type: MODIFY,
-    data
-});
 
 export const SET_HOURS_WEEK = 'SET_HOURS_WEEK'
 export const setHoursWeek = (hoursWeekData) => ({
@@ -52,3 +47,8 @@ export const setGpaScatter = (gpaScatterData) => ({
     gpaScatterData
 });
 
+export const MODIFY = 'MODIFY'
+export const modify = (data) => ({
+    type: MODIFY,
+    data
+});

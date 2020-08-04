@@ -4,7 +4,8 @@ import { Row, Col, Accordion } from 'react-bootstrap'
 import { loadChartsThunk, loadSubjectBreakdown, 
   loadHoursWeek, loadYearBeakdown,
   loadFacultyStats,
-  loadMarksScatter
+  loadMarksScatter,
+  loadTaskHoursPerWeek
 } from '../thunks/chartThunk'
 import { loadTasks } from '../thunks/taskThunk'
 import { connect } from 'react-redux'
@@ -31,6 +32,7 @@ const Dashboard = ({ dispatch, charts }) => {
     dispatch(loadYearBeakdown())
     dispatch(loadFacultyStats())
     dispatch(loadMarksScatter())
+    dispatch(loadTaskHoursPerWeek())
   
   }, [])
 
@@ -124,6 +126,38 @@ const Dashboard = ({ dispatch, charts }) => {
           />
           </Col>
           <Col>
+          <ReactEcharts 
+          option={{title: {
+            text: '折线图堆叠'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: charts.hoursPerWeekSubjBeakdown
+        }}
+          />
           </Col>
         </Row>
         </div>

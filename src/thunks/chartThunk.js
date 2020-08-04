@@ -68,7 +68,7 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
         //console.log(res.data)
         var formattedSubjectBreakdown = []
         res.data.responseItems.forEach((subj) => {
-            console.log(subj)
+            //console.log(subj)
             formattedSubjectBreakdown.push(
                 { 
                 value: subj.value1,
@@ -76,8 +76,8 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
             })
          
         })
-        console.log('formatted')
-        console.log(formattedSubjectBreakdown)
+        //console.log('formatted')
+       //console.log(formattedSubjectBreakdown)
         dispatch(setSubjectBreakdownChart(formattedSubjectBreakdown))
     } catch (e) {
         return(e)
@@ -88,8 +88,8 @@ export const loadHoursWeek = (date = moment().format("YYYY-MM-DD")) => async (di
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    console.log("date")
-    console.log(id)
+    //console.log("date")
+    //console.log(id)
     try {
         const res = await axios.post(url + "/api/TaskCharts/listhoursperweek",
         {
@@ -102,8 +102,8 @@ export const loadHoursWeek = (date = moment().format("YYYY-MM-DD")) => async (di
                 'Content-Type': 'application/json'
             }
         })
-        console.log("hours week")
-        console.log(res.data)
+       // console.log("hours week")
+        //console.log(res.data)
         var weekList = []
         res.data.responseItems.forEach((item) => {
             weekList.push(item.value1)
@@ -131,13 +131,13 @@ export const loadYearBeakdown = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log("year breakdown")
-        console.log(res.data)
+        //console.log("year breakdown")
+        //console.log(res.data)
         var formattedYearBreakdown = []
         var xAxis = []
 
         res.data.responseItems.forEach((subj) => {
-            console.log(subj)
+            //console.log(subj)
             formattedYearBreakdown.push(
                 { 
                 value: subj.value1,
@@ -169,13 +169,13 @@ export const loadFacultyStats = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log("year breakdown")
-        console.log(res.data)
+        //console.log("year breakdown")
+        //console.log(res.data)
         var formattedYearBreakdown = []
         var xAxis = []
 
         res.data.responseItems.forEach((subj) => {
-            console.log(subj)
+            //console.log(subj)
             formattedYearBreakdown.push(
                 { 
                 value: subj.value1,
@@ -209,11 +209,50 @@ export const loadMarksScatter = () => async (dispatch, getState) => {
         var formattedMarksScatter = []
 
         res.data.responseItems.forEach((subj) => {
-            console.log(subj)
+            //console.log(subj)
             formattedMarksScatter.push(
                 [ subj.value2, subj.value1 ])
         })
         dispatch(setGpaScatter(formattedMarksScatter))
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/TaskCharts/listhourspermonth",
+        {
+            userId: id,
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var formattedWeekData = []
+        console.log(res.data)
+
+        res.data.forEach((subj) => {
+            var title = subj.title
+            var individlList = []
+            subj.responseItems.forEach((item) => {
+                individlList.push(item.value1)
+            })
+            formattedWeekData.push({
+                name: title,
+                type: 'line',
+                data: individlList
+            })
+        })
+        console.log('hours per week asdfasdfasdfasdfasdf;laskdjf;lkasj')
+        console.log(formattedWeekData)
+        var hoursPerWeekSubjBeakdown = formattedWeekData
+        dispatch(modify({ hoursPerWeekSubjBeakdown }))
     } catch(e) {
         console.log(e)
     }
