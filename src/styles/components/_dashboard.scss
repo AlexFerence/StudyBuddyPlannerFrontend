@@ -1,6 +1,5 @@
 .dashboard {
   background-color: $light-grey;
-  height: calc(100vh - #{$navbar-height} );
   //overflow-y: scroll;
 }
 
@@ -48,6 +47,37 @@
   color: $grey;
 }
 
+
+
+.lineGraph {
+  padding: 5px;
+}
+
+.dropdownBar {
+  height: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdown {
+  width: 150px;
+  margin: 5px;
+  height: 25px;
+}
+
 .topRight {
-  padding-top: 7.5%;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.toggleContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 40px 10% 0px 20px;
+}
+
+.toggle {
+  font-size: 20px;
+  color: $dark-grey;
 }

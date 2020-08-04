@@ -121,11 +121,18 @@ const Landing = ({ history, profile }) => {
                 xAxis: {
                   type: 'category',
                   data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                  axisLine: {
+                    lineStyle: {
+                      color: '#FFF'
+                    }
+                  }
                 },
                 yAxis: {
                   type: 'value',
-                  axisLabel : {
-                    formatter: '{value}'
+                  axisLine: {
+                    lineStyle: {
+                      color: '#FFF'
+                    }
                   },
                   name: 'hours',
                   nameLocation: 'middle',

@@ -84,7 +84,7 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
     }
 }
 
-export const loadHoursWeek = (date = moment().format("YYYY-MM-DD")) => async (dispatch, getState) => {
+export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -94,7 +94,7 @@ export const loadHoursWeek = (date = moment().format("YYYY-MM-DD")) => async (di
         const res = await axios.post(url + "/api/TaskCharts/listhoursperweek",
         {
             userId: id,
-            date: "2020-07-29"
+            date: date.format("YYYY-MM-DD")
         }, {
             headers: {
                 'Authorization': 'bearer ' + token,

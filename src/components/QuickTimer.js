@@ -50,7 +50,6 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
         <Col className="pad">
         
         <Select
-                
                 className="timerSelect"
                 value={timerSetting}
                 onChange={val => setTimerSetting(val)}
