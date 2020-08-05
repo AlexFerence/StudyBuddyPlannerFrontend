@@ -290,7 +290,12 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         
         console.log('formatted personal stats')
 
-        dispatch(modify({ formattedPersonalStats }))
+        dispatch(modify({ todayTotal: {mins: res.data.responseItems[0].value2, hours: res.data.responseItems[0].value1 }, thisWeekTotal: res.data.responseItems[3].value1, thisMonthTotal: res.data.responseItems[6].value1}));
+        dispatch(modify({ dailyAverage: res.data.responseItems[1], weeklyAverage: res.data.responseItems[4], monthlyAverage: res.data.responseItems[7]}));
+        dispatch(modify({ bestDay: res.data.responseItems[2], bestWeek: res.data.responseItems[5], bestMonth: res.data.responseItems[8]}));
+
+
+        //dispatch(modify({ formattedPersonalStats }))
 
     } catch(e) {
         console.log(e)
