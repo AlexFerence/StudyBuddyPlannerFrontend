@@ -132,9 +132,8 @@ const Landing = ({ history, profile }) => {
             <Col md={6} className="textCol">
             <div className="textInner">
                 <div className="textHeader">In-Depth Data Analysis</div>
-                <div className="textPara">omiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí, 
-                ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený. 
-                Spopularizovaný bol v</div>
+                <div className="textPara">Peak offers in depth analysis on all of your studies. Let us do the work for you. We will help you
+                track how you divide your time through the week, across all your subjects, and much more.</div>
             </div>
             </Col>
             <Col md={6} className="imageCol">
