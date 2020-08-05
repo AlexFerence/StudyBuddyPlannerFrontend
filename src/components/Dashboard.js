@@ -139,7 +139,7 @@ const Dashboard = ({ dispatch, charts }) => {
             </div>
             <div className="square">
             <div className="squareTitle">This Week</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareData">{charts.thisWeekTotal.hours}hrs., {charts.thisWeekTotal.mins}min.</div>
             </div>
             <div className="square">
             <div className="squareTitle">This Month</div>
