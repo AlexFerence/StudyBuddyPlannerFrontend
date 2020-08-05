@@ -135,7 +135,7 @@ const Dashboard = ({ dispatch, charts }) => {
             <div className="row">
             <div className="square">
             <div className="squareTitle">Today</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareData">{ charts.todayTotal ? charts.todayTotal.hours : 0}hrs., min.</div>
             </div>
             <div className="square">
             <div className="squareTitle">This Week</div>
