@@ -263,3 +263,31 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+export const loadPersonalStats = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/TaskCharts/listpersonalstats",
+        {
+            userId: id,
+            date: moment().format("YYYY-MM-DD")
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var formattedPersonalStats = []
+
+        res.data.responseItems.forEach((item) => {
+            formattedPersonalStats.push({ mins: item.value2, hours: item.value1 })
+        })
+        dispatch(modify({ formattedPersonalStats }))
+
+    } catch(e) {
+        console.log(e)
+    }
+}

@@ -6,7 +6,8 @@ import {
   loadHoursWeek, loadYearBeakdown,
   loadFacultyStats,
   loadMarksScatter,
-  loadTaskHoursPerWeek
+  loadTaskHoursPerWeek,
+  loadPersonalStats
 } from '../thunks/chartThunk'
 import Select from 'react-select';
 import { loadTasks } from '../thunks/taskThunk'
@@ -38,6 +39,7 @@ const Dashboard = ({ dispatch, charts }) => {
     dispatch(loadFacultyStats())
     dispatch(loadMarksScatter())
     dispatch(loadTaskHoursPerWeek())
+    dispatch(loadPersonalStats())
 
   }, [])
 
@@ -132,7 +134,7 @@ const Dashboard = ({ dispatch, charts }) => {
             <div className="row">
             <div className="square">
             <div className="squareTitle">Today</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareData">{charts.formattedPersonalStats[0].mins}hrs., 15min</div>
             </div>
             <div className="square">
             <div className="squareTitle">This Week</div>
