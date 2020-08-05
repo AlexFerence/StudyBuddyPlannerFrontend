@@ -153,7 +153,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       
         dispatch(makeSemesterThunk(gpa, 0))
       }
-      history.push('/dashboard')
+      history.push('/subjects')
     }
   }
 

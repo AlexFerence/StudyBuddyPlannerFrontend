@@ -19,6 +19,17 @@ import { FaAngleDown, FaLock, FaAngleUp, FaAngleRight, FaAngleLeft } from 'react
 
 //import PerfectScrollbar from 'react-perfect-scrollbar'
 
+const hoursToTimeDisplay = (h) => {
+  var hours = Math.floor(h)
+  var decimalMins = (h - hours) * 60
+  var returnMins = Math.floor(decimalMins)
+  if (decimalMins < 10) {
+    returnMins = "0" + returnMins
+  }
+  return(hours + ":" + returnMins)
+
+}
+
 const reducer = (acc, item) => {
   acc = acc.push(item)
   return acc
@@ -85,14 +96,27 @@ const Dashboard = ({ dispatch, charts }) => {
                   textStyle: {
                     fontFamily: 'Helvetica',
                     fontWeight: 100
-                    
-                  }
+                  },
+                  subtext: moment(whichWeek).startOf('week').format("MMM D") + " - " + moment(whichWeek).endOf('week').format("MMM D")
+                  ,
+
                 },
                 tooltip: {
                   trigger: 'axis',
                   axisPointer: {
                     type: 'shadow'
-                  }
+                  },
+                  formatter: function (params) {
+                    let rez = '<span>' + params[0].axisValue + " " + '</span>';
+                    //console.log(params); //quite useful for debug
+                    params.forEach(item => {
+                        //console.log(item); //quite useful for debug
+                        var xx = '<span>' +  hoursToTimeDisplay(item.data) + '' + '</span>'
+                        rez += xx;
+                    });
+            
+                    return rez;
+                }        
                 },
                 xAxis: {
                   type: 'category',
@@ -198,7 +222,20 @@ const Dashboard = ({ dispatch, charts }) => {
                     },
 
                     tooltip: {
-                      trigger: 'axis'
+                      trigger: 'axis',
+                      //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
+                      formatter: function (params) {
+                        var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+                        let rez = '<p>' + params[0].axisValue + '</p>';
+                        //console.log(params); //quite useful for debug
+                        params.forEach(item => {
+                            //console.log(item); //quite useful for debug
+                            var xx = '<p>'   + colorSpan(item.color) + ' ' + item.seriesName + ': ' +  hoursToTimeDisplay(item.data) + '' + '</p>'
+                            rez += xx;
+                        });
+                
+                        return rez;
+                    }        
                     },
                     grid: {
                       right: '10%',
@@ -236,7 +273,18 @@ const Dashboard = ({ dispatch, charts }) => {
                       trigger: 'axis',
                       axisPointer: {
                         type: 'shadow'
-                      }
+                      },
+                      formatter: function (params) {
+                        let rez = '<span>' + params[0].axisValue + ' ' + '</span>';
+                        //console.log(params); //quite useful for debug
+                        params.forEach(item => {
+                            //console.log(item); //quite useful for debug
+                            var xx = '<span>' +  hoursToTimeDisplay(item.data) + '' + '</span>'
+                            rez += xx;
+                        });
+                
+                        return rez;
+                    }  
                     },
                     xAxis: {
                       type: 'category',

@@ -128,8 +128,9 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                         pathColor: currentTask.color,
                     })}
                 >
-                    
-                        {(!isRunning && !paused) &&
+                    {
+                        !currentTask.id ? <span>Please select a task</span> :
+                        (!isRunning && !paused) &&
                             <div className="inside d-flex justify-content-center align-items-center">
                             <input className="inp" type="number"
                             value={interval}
@@ -144,7 +145,9 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                         </div>
 
 
+                    
                     }
+                        
                     <div>
                     {!isRunning &&
                         <button disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>   
