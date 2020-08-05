@@ -7,7 +7,12 @@ import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
-import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek } from '../thunks/chartThunk'
+import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek, 
+    loadMarksScatter,
+    loadTaskHoursPerWeek,
+    loadPersonalStats,
+    loadYearBeakdown, loadFacultyStats, loadAverageOfWeekDay
+} from '../thunks/chartThunk'
 
 const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -125,6 +130,12 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
             dispatch(loadChartsThunk())
             dispatch(loadSubjectBreakdown())
             dispatch(loadHoursWeek())
+            dispatch(loadYearBeakdown())
+            dispatch(loadFacultyStats())
+            dispatch(loadMarksScatter())
+            dispatch(loadTaskHoursPerWeek())
+            dispatch(loadPersonalStats())
+            dispatch(loadAverageOfWeekDay())
         
             dispatch(setCurrentTaskById(currentTask.id))
             

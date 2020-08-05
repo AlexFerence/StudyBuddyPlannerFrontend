@@ -130,6 +130,53 @@ const Dashboard = ({ dispatch, charts }) => {
         <div>
           <Row>
             <Col>
+            <div className="flexNumDisplay">
+            <div className="rowTitle">Current Stats</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Today</div>
+            <div className="squareData">{charts.formattedPersonalStats[0].hours}hrs., {charts.formattedPersonalStats[0].mins}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Week</div>
+            <div className="squareData">{charts.formattedPersonalStats[3].hours}hrs., {charts.formattedPersonalStats[3].mins}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Month</div>
+            <div className="squareData">{charts.formattedPersonalStats[6].hours}hrs., {charts.formattedPersonalStats[6].mins}min.</div>
+            </div>
+            </div>
+            <div className="rowTitle">Average Result</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Day</div>
+            <div className="squareData">{charts.formattedPersonalStats[1].hours}hrs., {charts.formattedPersonalStats[1].mins}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">Week</div>
+            <div className="squareData">{charts.formattedPersonalStats[4].hours}hrs., {charts.formattedPersonalStats[4].mins}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">Month</div>
+            <div className="squareData">{charts.formattedPersonalStats[7].hours}hrs., {charts.formattedPersonalStats[7].mins}min.</div>
+            </div>
+            </div>
+            <div className="rowTitle">Best Result</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Day</div>
+            <div className="squareData">{charts.formattedPersonalStats[2].hours}hrs., {charts.formattedPersonalStats[2].mins}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">Week</div>
+            <div className="squareData">{charts.formattedPersonalStats[5].hours}hrs., {charts.formattedPersonalStats[5].mins}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">Month</div>
+            <div className="squareData">{charts.formattedPersonalStats[8].hours}hrs., {charts.formattedPersonalStats[8].mins}min.</div>
+            </div>
+            </div>
+            </div>
             </Col>
             <Col>
               <div className="lineGraph">
@@ -400,50 +447,3 @@ export default connect(mapStateToProps)(Dashboard)
 
 
 
-// <div className="flexNumDisplay">
-//             <div className="rowTitle">Current Stats</div>
-//             <div className="row">
-//             <div className="square">
-//             <div className="squareTitle">Today</div>
-//             <div className="squareData">{charts.formattedPersonalStats[0].hours}hrs., {charts.formattedPersonalStats[0].mins}min.</div>
-//             </div>
-//             <div className="square">
-//             <div className="squareTitle">This Week</div>
-//             <div className="squareData">{charts.formattedPersonalStats[3].hours}hrs., {charts.formattedPersonalStats[3].mins}min.</div>
-//             </div>
-//             <div className="square">
-//             <div className="squareTitle">This Month</div>
-//             <div className="squareData">{charts.formattedPersonalStats[6].hours}hrs., {charts.formattedPersonalStats[6].mins}min.</div>
-//             </div>
-//             </div>
-//             <div className="rowTitle">Average Result</div>
-//             <div className="row">
-//             <div className="square">
-//             <div className="squareTitle">Day</div>
-//             <div className="squareData">{charts.formattedPersonalStats[1].hours}hrs., {charts.formattedPersonalStats[1].mins}min.</div>
-//             </div>
-//             <div className="square">
-//             <div className="squareTitle">Week</div>
-//             <div className="squareData">{charts.formattedPersonalStats[4].hours}hrs., {charts.formattedPersonalStats[4].mins}min.</div>
-//             </div>
-//             <div className="square">
-//             <div className="squareTitle">Month</div>
-//             <div className="squareData">{charts.formattedPersonalStats[7].hours}hrs., {charts.formattedPersonalStats[7].mins}min.</div>
-//             </div>
-//             </div>
-//             <div className="rowTitle">Best Result</div>
-//             <div className="row">
-//             <div className="square">
-//             <div className="squareTitle">Day</div>
-//             <div className="squareData">{charts.formattedPersonalStats[2].hours}hrs., {charts.formattedPersonalStats[2].mins}min.</div>
-//             </div>
-//             <div className="square">
-//             <div className="squareTitle">Week</div>
-//             <div className="squareData">{charts.formattedPersonalStats[5].hours}hrs., {charts.formattedPersonalStats[5].mins}min.</div>
-//             </div>
-//             <div className="square">
-//             <div className="squareTitle">Month</div>
-//             <div className="squareData">{charts.formattedPersonalStats[8].hours}hrs., {charts.formattedPersonalStats[8].mins}min.</div>
-//             </div>
-//             </div>
-//             </div>

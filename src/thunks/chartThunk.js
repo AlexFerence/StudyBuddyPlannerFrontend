@@ -284,9 +284,9 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
 
         console.log(res.data)
 
-        // res.data.responseItems.forEach((item) => {
-        //     formattedPersonalStats.push({ mins: item.value2, hours: item.value1 })
-        // })
+        res.data.responseItems.forEach((item) => {
+            formattedPersonalStats.push({ mins: item.value2, hours: item.value1 })
+        })
         
         console.log('formatted personal stats')
 

@@ -10,7 +10,9 @@ import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek, 
     loadMarksScatter,
-    loadTaskHoursPerWeek } from '../thunks/chartThunk'
+    loadTaskHoursPerWeek,
+    loadPersonalStats
+} from '../thunks/chartThunk'
 
 const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -67,13 +69,12 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
             minutes: interval,
         }))
         await dispatch(loadTasks())
-        
         dispatch(loadChartsThunk())
         dispatch(loadSubjectBreakdown())
         dispatch(loadHoursWeek())
         dispatch(loadMarksScatter())
         dispatch(loadTaskHoursPerWeek())
-
+        dispatch(loadPersonalStats())
         dispatch(setCurrentTaskById(currentTask.id))
     }
 
