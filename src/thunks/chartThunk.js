@@ -272,7 +272,7 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         const res = await axios.post(url + "/api/TaskCharts/listpersonalstats",
         {
             userId: id,
-            date: moment().format("YYYY-MM-DD")
+            date: String(moment().format("YYYY-MM-DD"))
         }, {
             headers: {
                 'Authorization': 'bearer ' + token,
@@ -282,9 +282,14 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         })
         var formattedPersonalStats = []
 
-        res.data.responseItems.forEach((item) => {
-            formattedPersonalStats.push({ mins: item.value2, hours: item.value1 })
-        })
+        console.log(res.data)
+
+        // res.data.responseItems.forEach((item) => {
+        //     formattedPersonalStats.push({ mins: item.value2, hours: item.value1 })
+        // })
+        
+        console.log('formatted personal stats')
+
         dispatch(modify({ formattedPersonalStats }))
 
     } catch(e) {
