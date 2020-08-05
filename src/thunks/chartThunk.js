@@ -291,3 +291,33 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/TaskCharts/listaveragehoursperweek",
+        {
+            userId: id,
+            date: moment().format("YYYY-MM-DD")
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var averageByDayOfWeek = []
+        var averageByDayOfWeekxaxis = []
+
+        res.data.responseItems.forEach((item) => {
+            averageByDayOfWeek.push(item.value1)
+            averageByDayOfWeekxaxis.push(item.name1)
+        })
+        dispatch(modify({ averageByDayOfWeek, averageByDayOfWeekxaxis }))
+
+    } catch(e) {
+        console.log(e)
+    }
+}

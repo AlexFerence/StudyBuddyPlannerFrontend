@@ -7,7 +7,8 @@ import {
   loadFacultyStats,
   loadMarksScatter,
   loadTaskHoursPerWeek,
-  loadPersonalStats
+  loadPersonalStats,
+  loadAverageOfWeekDay
 } from '../thunks/chartThunk'
 import Select from 'react-select';
 import { loadTasks } from '../thunks/taskThunk'
@@ -40,7 +41,7 @@ const Dashboard = ({ dispatch, charts }) => {
     dispatch(loadMarksScatter())
     dispatch(loadTaskHoursPerWeek())
     dispatch(loadPersonalStats())
-
+    dispatch(loadAverageOfWeekDay())
   }, [])
 
   const goToNextWeek = () => {
@@ -134,45 +135,45 @@ const Dashboard = ({ dispatch, charts }) => {
             <div className="row">
             <div className="square">
             <div className="squareTitle">Today</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareData">{charts.formattedPersonalStats[0].hours}hrs., {charts.formattedPersonalStats[0].mins}min.</div>
             </div>
             <div className="square">
             <div className="squareTitle">This Week</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareData">{charts.formattedPersonalStats[3].hours}hrs., {charts.formattedPersonalStats[3].mins}min.</div>
             </div>
             <div className="square">
             <div className="squareTitle">This Month</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareData">{charts.formattedPersonalStats[6].hours}hrs., {charts.formattedPersonalStats[6].mins}min.</div>
             </div>
             </div>
             <div className="rowTitle">Average Result</div>
             <div className="row">
             <div className="square">
-            <div className="squareTitle">Today</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareTitle">Day</div>
+            <div className="squareData">{charts.formattedPersonalStats[1].hours}hrs., {charts.formattedPersonalStats[1].mins}min.</div>
             </div>
             <div className="square">
-            <div className="squareTitle">This Week</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareTitle">Week</div>
+            <div className="squareData">{charts.formattedPersonalStats[4].hours}hrs., {charts.formattedPersonalStats[4].mins}min.</div>
             </div>
             <div className="square">
-            <div className="squareTitle">This Month</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareTitle">Month</div>
+            <div className="squareData">{charts.formattedPersonalStats[7].hours}hrs., {charts.formattedPersonalStats[7].mins}min.</div>
             </div>
             </div>
             <div className="rowTitle">Best Result</div>
             <div className="row">
             <div className="square">
-            <div className="squareTitle">Today</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareTitle">Day</div>
+            <div className="squareData">{charts.formattedPersonalStats[2].hours}hrs., {charts.formattedPersonalStats[2].mins}min.</div>
             </div>
             <div className="square">
-            <div className="squareTitle">This Week</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareTitle">Week</div>
+            <div className="squareData">{charts.formattedPersonalStats[5].hours}hrs., {charts.formattedPersonalStats[5].mins}min.</div>
             </div>
             <div className="square">
-            <div className="squareTitle">This Month</div>
-            <div className="squareData">2hrs., 15min</div>
+            <div className="squareTitle">Month</div>
+            <div className="squareData">{charts.formattedPersonalStats[8].hours}hrs., {charts.formattedPersonalStats[8].mins}min.</div>
             </div>
             </div>
             </div>
@@ -186,7 +187,7 @@ const Dashboard = ({ dispatch, charts }) => {
                       //color: 'blue'
                     },
                     title: {
-                      text: "Hours Per Week Per Subject",
+                      text: "Minutes Per Week Per Subject",
                       x: 'center',
                       top: 20,
                       textStyle: {
@@ -218,19 +219,48 @@ const Dashboard = ({ dispatch, charts }) => {
           </Row>
           <Row>
           <Col>
+          <ReactEcharts
+                  option={{
+                    title: {
+                      text: "Average Per Day of Week",
+                      x: 'center',
+                      top: 20,
+                      textStyle: {
+                        fontFamily: 'Helvetica',
+                        fontWeight: 100
+                        
+                      }
+                    },
+                    tooltip: {
+                      trigger: 'axis',
+                      axisPointer: {
+                        type: 'shadow'
+                      }
+                    },
+                    xAxis: {
+                      type: 'category',
+                      data: charts.averageByDayOfWeekxaxis
+                    },
+                    yAxis: {
+                      type: 'value',
+                      axisLabel: {
+                        formatter: '{value}'
+                      },
+                      name: 'hours',
+                      nameLocation: 'middle',
+                      nameGap: 35
+                    },
+                    series: [{
+                      data: charts.averageByDayOfWeek,
+                      type: 'bar'
+                    }]
+                  }}
+                />
           </Col>
           <Col>
           <ReactEcharts
                 option={{
-                  title: {
-                    text: "Breakdown By Subject",
-                    x: 'center',
-                    top: 20,
-                    textStyle: {
-                      fontFamily: 'Helvetica',
-                      fontWeight: 100
-                    }},
-
+                  
                   tooltip: {
                     trigger: 'item',
                     formatter: '{b}: {d}%'

@@ -148,9 +148,15 @@ const SubjectsPage = (props) => {
                         <div className="mainSection">
                             <Row>
                                 <Col md={6}>
-                                    <span className="">Credits:</span> <span>{classSelection.credits}</span> <br />
-                            <span className="">Professor:</span> <span>{classSelection.professor}</span> <br />
-                            <span className="">Description:</span>  <span>{classSelection.description}</span> <br />
+                                <div className="tidbits">
+                                    <span className="">Credits:</span> <span>{classSelection.credits}</span>
+                                </div>
+                                <div className="tidbits">
+                                    <span className="">Professor:</span> <span>{classSelection.professor}</span> <br />
+                                </div>
+                                <div className="tidbits">
+                                    <span className="">Description:</span>  <span>{classSelection.description}</span> <br />
+                                </div>
                                 </Col>
                                 <Col md={6}>
                                     <ReactEcharts
