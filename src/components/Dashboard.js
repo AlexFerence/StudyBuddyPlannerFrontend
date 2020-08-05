@@ -134,7 +134,7 @@ const Dashboard = ({ dispatch, charts }) => {
             <div className="row">
             <div className="square">
             <div className="squareTitle">Today</div>
-            <div className="squareData">{charts.formattedPersonalStats[0].mins}hrs., 15min</div>
+            <div className="squareData">2hrs., 15min</div>
             </div>
             <div className="square">
             <div className="squareTitle">This Week</div>
@@ -192,9 +192,9 @@ const Dashboard = ({ dispatch, charts }) => {
                       textStyle: {
                         fontFamily: 'Helvetica',
                         fontWeight: 100
-                        
                       }
                     },
+
                     tooltip: {
                       trigger: 'axis'
                     },
@@ -222,6 +222,15 @@ const Dashboard = ({ dispatch, charts }) => {
           <Col>
           <ReactEcharts
                 option={{
+                  title: {
+                    text: "Breakdown By Subject",
+                    x: 'center',
+                    top: 20,
+                    textStyle: {
+                      fontFamily: 'Helvetica',
+                      fontWeight: 100
+                    }},
+
                   tooltip: {
                     trigger: 'item',
                     formatter: '{b}: {d}%'
