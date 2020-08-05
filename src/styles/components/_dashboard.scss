@@ -81,3 +81,49 @@
   font-size: 20px;
   color: $dark-grey;
 }
+
+.flexNumDisplay {
+  padding-top: 5px;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.row {
+ width: 100%;
+ height: 100%;
+ 
+ flex-direction: row;
+ display: flex;
+ justify-content: space-around;
+}
+
+.square {
+  //border: 1px solid $grey;
+  flex-direction: column;
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+
+.squareTitle {
+  margin-bottom: 5px;
+  color: lighten($color: $dark-grey, $amount: 35);
+}
+
+.squareData {
+  color: $dark-grey;
+  font-weight: 500;
+}
+
+.rowTitle {
+  display: flex;
+  justify-content: center;
+  //padding-left: 50px;
+  padding-top: 7.5px;
+  font-weight: 550;
+  font-family: 'Helvetica';
+}

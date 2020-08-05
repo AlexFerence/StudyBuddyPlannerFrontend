@@ -237,23 +237,28 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
         })
         var formattedWeekData = []
         console.log(res.data)
+        var hoursPerWeekColors = []
 
         res.data.forEach((subj) => {
             var title = subj.title
             var individlList = []
+            //hoursPerWeekColors.push(subj.color)
             subj.responseItems.forEach((item) => {
                 individlList.push(item.value1)
             })
             formattedWeekData.push({
                 name: title,
                 type: 'line',
+                color: subj.color,
                 data: individlList
             })
+
         })
         console.log('hours per week asdfasdfasdfasdfasdf;laskdjf;lkasj')
         console.log(formattedWeekData)
         var hoursPerWeekSubjBeakdown = formattedWeekData
         dispatch(modify({ hoursPerWeekSubjBeakdown }))
+        dispatch(modify({ hoursPerWeekColors }))
     } catch(e) {
         console.log(e)
     }

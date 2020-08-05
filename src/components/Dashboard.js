@@ -78,7 +78,12 @@ const Dashboard = ({ dispatch, charts }) => {
                 title: {
                   text: "This Week",
                   x: 'center',
-                  top: 0
+                  top: 0,
+                  textStyle: {
+                    fontFamily: 'Helvetica',
+                    fontWeight: 100
+                    
+                  }
                 },
                 tooltip: {
                   trigger: 'axis',
@@ -122,8 +127,98 @@ const Dashboard = ({ dispatch, charts }) => {
         <div>
           <Row>
             <Col>
-              
-              <ReactEcharts
+            <div className="flexNumDisplay">
+            <div className="rowTitle">Current Stats</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Today</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Week</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Month</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            </div>
+            <div className="rowTitle">Average Result</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Today</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Week</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Month</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            </div>
+            <div className="rowTitle">Best Result</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Today</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Week</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">This Month</div>
+            <div className="squareData">2hrs., 15min</div>
+            </div>
+            </div>
+            </div>
+            </Col>
+            <Col>
+              <div className="lineGraph">
+                <ReactEcharts
+                  option={{
+                    textStyle: {
+                      //fontFamily: 'Helvetica Neue',
+                      //color: 'blue'
+                    },
+                    title: {
+                      text: "Hours Per Week Per Subject",
+                      x: 'center',
+                      top: 20,
+                      textStyle: {
+                        fontFamily: 'Helvetica',
+                        fontWeight: 100
+                        
+                      }
+                    },
+                    tooltip: {
+                      trigger: 'axis'
+                    },
+                    grid: {
+                      right: '10%',
+
+                    },
+                    xAxis: {
+                      type: 'category',
+                      boundaryGap: false,
+                      data: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+                    },
+                    yAxis: {
+                      type: 'value'
+                    },
+                    series: charts.hoursPerWeekSubjBeakdown 
+                  }}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+          <Col>
+          </Col>
+          <Col>
+          <ReactEcharts
                 option={{
                   tooltip: {
                     trigger: 'item',
@@ -151,37 +246,7 @@ const Dashboard = ({ dispatch, charts }) => {
 
                 }}
               />
-            </Col>
-            <Col>
-              <div className="lineGraph">
-                <ReactEcharts
-                  option={{
-
-                    title: {
-                      text: "Hours Per Week Per Subject",
-                      x: 'center',
-                      top: 20
-                    },
-                    tooltip: {
-                      trigger: 'axis'
-                    },
-                    grid: {
-                      right: '10%',
-
-                    },
-                    xAxis: {
-                      type: 'category',
-                      boundaryGap: false,
-                      data: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
-                    },
-                    yAxis: {
-                      type: 'value'
-                    },
-                    series: charts.hoursPerWeekSubjBeakdown
-                  }}
-                />
-              </div>
-            </Col>
+          </Col>
           </Row>
         </div>
       }
@@ -205,7 +270,12 @@ const Dashboard = ({ dispatch, charts }) => {
                     title: {
                       text: "Your Total Hours vs Different Faculties",
                       x: 'center',
-                      top: 20
+                      top: 20,
+                      textStyle: {
+                        fontFamily: 'Helvetica',
+                        fontWeight: 100
+                        
+                      }
                     },
                     tooltip: {
                       trigger: 'axis',
@@ -239,7 +309,12 @@ const Dashboard = ({ dispatch, charts }) => {
                     title: {
                       text: "Your Total Hours vs Different Years",
                       x: 'center',
-                      top: 20
+                      top: 20,
+                      textStyle: {
+                        fontFamily: 'Helvetica',
+                        fontWeight: 100
+                        
+                      }
                     },
                     tooltip: {
                       trigger: 'axis',

@@ -97,13 +97,13 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                 ]}
             /></div>
 
-                <div className="completedLabel">Completed 
+                <div className="completedLabel"><div>Completed</div>
                 <input 
                 type="checkbox" 
                 onClick={completedChanged}
                 value={filterByCompleted}
                 /> </div>
-                <button onClick={() => addingOn()}>+ Add Task</button>
+                <button className="addTaskButton" onClick={() => addingOn()}>+ Add Task</button>
 
 
             </div>

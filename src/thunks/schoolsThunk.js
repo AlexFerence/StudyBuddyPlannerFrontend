@@ -34,6 +34,22 @@ export const loadSchools = () => async (dispatch, getState) => {
     }
 }
 
+export const getSchool = async (id) => (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects, schools } = state
+    const { id, token } = profile
+    
+    var result = schools.find((sch) => sch.id === id)
+
+    if (result) {
+        return result
+    }
+    else {
+        return {}
+    }
+
+}
+
 export const loadFaculties = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
