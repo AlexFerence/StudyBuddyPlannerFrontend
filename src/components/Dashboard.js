@@ -135,32 +135,46 @@ const Dashboard = ({ dispatch, charts }) => {
             <div className="row">
             <div className="square">
             <div className="squareTitle">Today</div>
-            <div className="squareData">{ charts.todayTotal ? charts.todayTotal.hours : 0}hrs., min.</div>
+            <div className="squareData">{ charts.todayTotal ? charts.todayTotal.hours : 0}hrs., { charts.todayTotal ? charts.todayTotal.mins : 0}min.</div>
             </div>
             <div className="square">
-            <div className="squareTitle">This Week</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareTitle">Past Week</div>
+            <div className="squareData">{ charts.thisWeekTotal ? charts.thisWeekTotal.hours : 0}hrs., { charts.thisWeekTotal ? charts.thisWeekTotal.mins : 0}min.</div>
             </div>
             <div className="square">
-            <div className="squareTitle">This Month</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareTitle">Past Month</div>
+            <div className="squareData">{ charts.thisMonthTotal ? charts.thisMonthTotal.hours : 0}hrs., { charts.thisMonthTotal ? charts.thisMonthTotal.mins : 0}min.</div>
             </div>
             </div>
             <div className="rowTitle">Average Result</div>
             <div className="row">
             <div className="square">
             <div className="squareTitle">Day</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareData">{charts.dailyAverage ? charts.dailyAverage.hours : 0}hrs., { charts.dailyAverage ? charts.dailyAverage.mins : 0}min.</div>
             </div>
             <div className="square">
             <div className="squareTitle">Week</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareData">{charts.weeklyAverage ? charts.weeklyAverage.hours : 0}hrs., { charts.weeklyAverage ? charts.weeklyAverage.mins : 0}min.</div>
             </div>
             <div className="square">
             <div className="squareTitle">Month</div>
-            <div className="squareData">hrs., min.</div>
+            <div className="squareData">{charts.monthlyAverage ? charts.monthlyAverage.hours : 0}hrs., { charts.monthlyAverage ? charts.monthlyAverage.mins : 0}min.</div>
             </div>
-            
+            </div>
+            <div className="rowTitle">Best Result</div>
+            <div className="row">
+            <div className="square">
+            <div className="squareTitle">Day</div>
+            <div className="squareData">{charts.bestDay ? charts.bestDay.hours : 0}hrs., { charts.bestDay ? charts.bestDay.mins : 0}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">Week</div>
+            <div className="squareData">{charts.bestWeek ? charts.bestWeek.hours : 0}hrs., { charts.bestWeek ? charts.bestWeek.mins : 0}min.</div>
+            </div>
+            <div className="square">
+            <div className="squareTitle">Month</div>
+            <div className="squareData">{charts.bestMonth ? charts.bestMonth.hours : 0}hrs., { charts.bestMonth ? charts.bestMonth.mins : 0}min.</div>
+            </div>
             </div>
             </div>
             

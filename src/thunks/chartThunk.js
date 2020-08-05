@@ -291,8 +291,8 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         console.log('formatted personal stats')
 
         dispatch(modify({ todayTotal: {mins: res.data.responseItems[0].value2, hours: res.data.responseItems[0].value1 }, thisWeekTotal: {mins: res.data.responseItems[3].value2, hours: res.data.responseItems[3].value1 }, thisMonthTotal: {mins: res.data.responseItems[6].value2, hours: res.data.responseItems[6].value1 }}));
-        dispatch(modify({ dailyAverage: res.data.responseItems[1], weeklyAverage: res.data.responseItems[4], monthlyAverage: res.data.responseItems[7]}));
-        dispatch(modify({ bestDay: res.data.responseItems[2], bestWeek: res.data.responseItems[5], bestMonth: res.data.responseItems[8]}));
+        dispatch(modify({ dailyAverage: {mins: res.data.responseItems[1].value2, hours: res.data.responseItems[1].value1 }, weeklyAverage: {mins: res.data.responseItems[4].value2, hours: res.data.responseItems[4].value1 }, monthlyAverage: {mins: res.data.responseItems[7].value2, hours: res.data.responseItems[7].value1 }}));
+        dispatch(modify({ bestDay: {mins: res.data.responseItems[2].value2, hours: res.data.responseItems[2].value1 }, bestWeek: {mins: res.data.responseItems[5].value2, hours: res.data.responseItems[5].value1 }, bestMonth: {mins: res.data.responseItems[8].value2, hours: res.data.responseItems[8].value1 }}));
 
 
         //dispatch(modify({ formattedPersonalStats }))
