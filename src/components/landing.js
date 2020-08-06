@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
@@ -6,12 +6,32 @@ import laptop from '../assets/laptop.png'
 //import pencils from '../assets/video.mp4'
 import ReactEcharts from 'echarts-for-react'
 import ReactPlayer from 'react-player'
+import JoyRide from 'react-joyride';
 
+const TOUR_STEPS = [
+  {
+    target: "#about",
+    content: "This is where you can search the dashboard.",
+    disableBeacon: true
+  },
+  {
+    target: "#features",
+    content:
+      "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
+  },
+  {
+    target: "",
+    content:
+      "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
+  },
+];
 
 const Landing = ({ history, profile }) => {
+  
+
+  var [run, setRun] = useState(false)
+  
   useEffect(() => {
-
-
   }, [])
 
   const goToSignUp = () => {
@@ -19,7 +39,9 @@ const Landing = ({ history, profile }) => {
   }
 
   return (
-    <div className="landing">
+    <div className="landing" id="#my-first-step" target="_blank">
+      
+    <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
       <div className="landingNav">
         <button id="brand" className="navButton">Peak</button>
         <div>

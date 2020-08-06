@@ -17,7 +17,7 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         // error
-        const res = await axios.post(url + '/api/SubjectCharts/listsubjecttotalhours',
+        const res = await axios.post(url + '/api/PersonalCharts/listsubjecttotalhours',
         {
             userId: id,
         }, {
@@ -54,7 +54,7 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/SubjectCharts/listsubjectbreakdown',
+        const res = await axios.post(url + '/api/PersonalCharts/listsubjectbreakdown',
         {
             userId: id,
             subjectId: subjId
@@ -92,7 +92,7 @@ export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => 
     //console.log("date")
     //console.log(id)
     try {
-        const res = await axios.post(url + "/api/TaskCharts/listhoursperweek",
+        const res = await axios.post(url + "/PersonalCharts/listhoursperweek",
         {
             userId: id,
             date: date.format("YYYY-MM-DD")
@@ -225,7 +225,7 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + "/api/TaskCharts/listhourspermonth",
+        const res = await axios.post(url + "/PersonalCharts/listhourspermonth",
         {
             userId: id,
         }, {
@@ -269,7 +269,7 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + "/api/TaskCharts/listpersonalstats",
+        const res = await axios.post(url + "/api/PersonalCharts/listpersonalstats",
         {
             userId: id,
             date: String(moment().format("YYYY-MM-DD"))
@@ -307,7 +307,7 @@ export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + "/api/TaskCharts/listaveragehoursperweek",
+        const res = await axios.post(url + "/PersonalChartsarts/listaveragehoursperweek",
         {
             userId: id,
             date: moment().format("YYYY-MM-DD")

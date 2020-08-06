@@ -12,11 +12,14 @@ import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
 
+
+
 //import '../node_modules/normalize-scss/sass/normalize.scss'
 
 import './styles/styles.scss'
 
 const ConfigureApp = () => {
+
   return (
     <BrowserRouter>
       <Header />

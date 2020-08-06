@@ -6,6 +6,22 @@ import { FaTachometerAlt, FaCheckSquare, FaList, FaCog } from 'react-icons/fa'
 import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
+import JoyRide from 'react-joyride';
+
+const TOUR_STEPS = [
+    {
+      target: "#my-other-step",
+      disableBeacon: true,
+      content:
+        "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
+    },
+    {
+      target: "#features",
+      content:
+        "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
+    }
+  ];
+
 
 const Header = (props) => {
 
@@ -43,6 +59,7 @@ const Header = (props) => {
     if (props.profile.isAuth) {
         return (
             <div>
+            <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
             <Navbar fixed="top" expand="true">
                 <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
                 {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
@@ -87,7 +104,7 @@ const Header = (props) => {
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipSet}
                             >
-                            <NavLink style={{ padding: 5 }} to="/settings"><FaCog />
+                            <NavLink id='my-other-step' style={{ padding: 5 }} to="/settings"><FaCog />
                             </NavLink>
                             </OverlayTrigger>
                         }
