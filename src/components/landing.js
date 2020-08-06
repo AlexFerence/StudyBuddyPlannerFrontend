@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import laptop from '../assets/laptop.jpg'
+import laptop from '../assets/laptop.png'
 //import pencils from '../assets/video.mp4'
 import ReactEcharts from 'echarts-for-react'
 import ReactPlayer from 'react-player'
@@ -33,7 +33,7 @@ const Landing = ({ history, profile }) => {
       </div>
 
       <div className="landingDisplay">
-        <video id="background-video" loop autoPlay>
+        <video id="background-video" loop autoPlay muted>
           <source src="/videos/video.mp4" type="video/mp4" />
           <source src="/videos/video.mp4" type="video/ogg" />
             Your browser does not support the video tag.
