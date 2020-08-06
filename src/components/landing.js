@@ -23,9 +23,9 @@ const Landing = ({ history, profile }) => {
       <div className="landingNav">
         <button id="brand" className="navButton">Peak</button>
         <div>
-          <button className="navButton">About</button>
-          <button className="navButton">Features</button>
-          <button className="navButton">Premium</button>
+          <a className="navButton" href="#features">About</a>
+          <a className="navButton" href="#about">Features</a>
+          <a className="navButton" href="#premium">Premium</a>
           <button className="navButtonSignUp"
             onClick={goToSignUp}
           >Sign Up</button>
@@ -52,7 +52,7 @@ const Landing = ({ history, profile }) => {
 
       <div className='player-wrapper'>
 
-        
+      <a id="features"></a>
         <div className="rowSection">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
@@ -71,7 +71,7 @@ const Landing = ({ history, profile }) => {
             </Col>
           </Row>
         </div>
-
+        <a id="about"></a>
         <div className="rowSection">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="imageCol">
@@ -119,6 +119,7 @@ const Landing = ({ history, profile }) => {
             </Col>
           </Row>
         </div>
+        <a id="premium"></a>
         <div className="rowSection">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">

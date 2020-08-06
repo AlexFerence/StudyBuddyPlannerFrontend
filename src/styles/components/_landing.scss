@@ -19,6 +19,8 @@
 .navButton:hover {
     border: 1px solid $light-grey;
     transition: .35s;
+    color: white;
+    text-decoration: none;
 }
 
 .landingNav {
