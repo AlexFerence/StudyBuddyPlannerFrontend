@@ -56,7 +56,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
                     firstName: res.data.firstName,
                     lastName: res.data.lastName,
                     token: res.data.token,
-                    isAuth: true
+                    isAuth: false
                 }))
             }
             return res.status

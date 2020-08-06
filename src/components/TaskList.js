@@ -139,7 +139,8 @@ const mapStateToProps = (state) => {
         running: state.running.isRunning,
         paused: state.running.paused,
         tasks: state.tasks,
-        currentTask: state.currentTask
+        currentTask: state.currentTask,
+ 
     }
 }
 

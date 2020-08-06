@@ -16,6 +16,52 @@ import { connect } from 'react-redux'
 import QuickTimer from './QuickTimer'
 import moment from 'moment'
 import { FaAngleDown, FaLock, FaAngleUp, FaAngleRight, FaAngleLeft } from 'react-icons/fa'
+import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
+import { modifyProfile } from '../actions/profileActions'
+
+const TOUR_STEPS = [
+  {
+      target: "#quickT",
+      content: 'this is the quick timer',
+      disableBeacon: true,
+  },
+  {
+      target: "#timerSelect",
+      content:
+        "Select task to be completed",
+      locale: {
+          last: 'Next'
+      }
+  },
+  {
+      target: "#timerSelect2",
+      content:
+        "Select type of timer",
+      locale: {
+          last: 'Next'
+      }
+  },
+  {
+    target: ".topRight",
+    content:
+      "Weekly hours are provided here",
+      locale: {
+        last: 'Next'
+      },
+      disableBeacon: true,
+  },
+  {
+    target: "#row1",
+    content:
+      "All your personal analytics will be shown below, we hope you enjoy",
+      locale: {
+        last: 'Next'
+      },
+      disableBeacon: true,
+  },
+    
+
+];
 
 //import PerfectScrollbar from 'react-perfect-scrollbar'
 
@@ -35,9 +81,13 @@ const reducer = (acc, item) => {
   return acc
 }
 
-const Dashboard = ({ dispatch, charts }) => {
+const Dashboard = ({ dispatch, charts, profile, history }) => {
   var [dropdown1, setDropdown1] = useState(true)
   var [dropdown2, setDropdown2] = useState(true)
+
+  var [steps, setSteps] = useState(TOUR_STEPS)
+  var [stepIndex, setStepIndex] = useState(0)
+  var [run, setRun] = useState(true);
 
   var [whichWeek, setWhichWeek] = useState(moment())
 
@@ -65,10 +115,34 @@ const Dashboard = ({ dispatch, charts }) => {
     dispatch(loadHoursWeek(whichWeek))
   }
 
+  const handleJoyrideCallback = data => {
+    const { action, index, status, type } = data;
+
+    if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
+      // Update state to advance the tour
+      setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
+    }
+    else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+      // Need to set our running state to false, so we can restart if we click start again.
+      setRun(false)
+      dispatch(modifyProfile({ dashTour: false }))
+    }
+
+    console.groupCollapsed(type);
+    console.log(data); //eslint-disable-line no-console
+    console.groupEnd();
+  };
+
+
   return (
     <div className="dashboard">
+    <Joyride steps={TOUR_STEPS} 
+        callback={handleJoyrideCallback}
+        continuous={true} showSkipButton={true}
+        run={profile.dashTour}
+        />
       <Row>
-        <Col s={6}>
+        <Col id="quickT" s={6}>
           <div className="graph">
             <div className="timerControl">
               <QuickTimer />
@@ -88,6 +162,7 @@ const Dashboard = ({ dispatch, charts }) => {
           </div>
           <div className="graph topRight">
             <ReactEcharts
+
               option={{
                 title: {
                   text: "This Week",
@@ -152,7 +227,7 @@ const Dashboard = ({ dispatch, charts }) => {
       </div>
       {dropdown1 &&
         <div>
-          <Row>
+          <Row id="row1">
             <Col>
             <div className="flexNumDisplay">
             <div className="rowTitle">Current Stats</div>
@@ -470,7 +545,8 @@ const Dashboard = ({ dispatch, charts }) => {
 
 const mapStateToProps = (state) => {
   return {
-    charts: state.charts
+    charts: state.charts,
+    profile: state.profile
   }
 }
 

@@ -33,6 +33,7 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
         <Select
                 className="pad"
                 className="timerSelect"
+                id="timerSelect"
                 value={{...currentTask, label: currentTask.title}}
                 onChange={val => {
                     console.log("changed value" + val)
@@ -51,6 +52,7 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
         
         <Select
                 className="timerSelect"
+                id="timerSelect2"
                 value={timerSetting}
                 onChange={val => setTimerSetting(val)}
                 placeholder="Type..."

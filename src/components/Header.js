@@ -59,7 +59,6 @@ const Header = (props) => {
     if (props.profile.isAuth) {
         return (
             <div>
-            <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
             <Navbar fixed="top" expand="true">
                 <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
                 {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
@@ -73,7 +72,7 @@ const Header = (props) => {
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipDash}
                             >
-                                <NavLink style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
+                                <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
                                 </NavLink>
                             </OverlayTrigger>
     
@@ -84,7 +83,7 @@ const Header = (props) => {
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipTask}
                             >
-                                <NavLink style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                <NavLink id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
                                 </NavLink>
                             </OverlayTrigger>
                         }
@@ -94,7 +93,7 @@ const Header = (props) => {
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipSubj}
                             >
-                            <NavLink style={{ padding: 5 }} to="/subjects"><FaList />
+                            <NavLink id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
                             </NavLink>
                             </OverlayTrigger>
                         }
@@ -104,7 +103,7 @@ const Header = (props) => {
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipSet}
                             >
-                            <NavLink id='my-other-step' style={{ padding: 5 }} to="/settings"><FaCog />
+                            <NavLink id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
                             </NavLink>
                             </OverlayTrigger>
                         }

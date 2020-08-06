@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../environment/url'
-import { logout, update } from '../actions/profileActions'
+import { logout, update, modifyProfile } from '../actions/profileActions'
 import { loadSchools, loadFaculties, getSchool } from '../thunks/schoolsThunk'
 import Select from 'react-select'
+import { contactUsRequest } from '../thunks/settingsThunk'
+import swal from 'sweetalert'
+import { FaEdit } from 'react-icons/fa'
+
 
 const style = {
     option: (base, state) => ({
@@ -25,10 +29,17 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     const [password, setPassword] = useState(passwordProp)
     const [school, setSchool] = useState({})
     const [faculty, setFaculty] = useState({})
+    const [description, setDescription] = useState('')
+    const [requestType, setRequestType] = useState('')
+    const [isEditingSchool, setIsEditingSchool] = useState(false);
+    const [isEditingFaculty, setIsEditingFaculty] = useState(false);
+
+
+//    const [contactType, setContactType] = useState('')
 
     const logOutCalled = () => {
         dispatch(logout())
-        history.push("/login")
+        history.push("/")
     }
 
     useEffect(() => {
@@ -47,6 +58,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     firstName: fname,
                     lastName: lname,
                     email: email,
+                    schoolId: school.id,
+                    faculty: faculty.id
                 }, {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -61,10 +74,23 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             dispatch(update({
                 ...profile,
                 ...res.data
-            }))    
+            }))
+            dispatch(modifyProfile({ schoolTitle: school.label, facultytitle: faculty.label }))
         } catch (e) {
             console.log(e)
         }
+    }
+
+    const submitContactUs = () => {
+        dispatch(contactUsRequest({ description, requestType: requestType.value }))
+        swal({
+            title: "Thank you for your feedback",
+            icon: "success",
+            buttons: true,
+        })
+        setDescription('')
+        setRequestType('')
+
     }
 
 
@@ -109,32 +135,73 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 ></input>
 
                 <label className="inpLabel">School</label>
-      <Select
-        isClearable={true}
-        onSelectResetsInput={false}
-        placeholder="school ..."
-        className="selectedInp"
-        options={schools}
-        values={[]}
-        onChange={(value) => setSchool(value)}
-        components={{ DropdownIndicator: () => null }}
-        styles={style} 
-        
-      />
+                { isEditingSchool ? <Select
+                    isClearable={true}
+                    onSelectResetsInput={false}
+                    placeholder="school ..."
+                    className="selectedInp"
+                    options={schools}
+                    values={[]}
+                    onChange={(value) => setSchool(value)}
+                    components={{ DropdownIndicator: () => null }}
+                    styles={style} 
+                    
+                  />  : 
+                  <div>
+                  {profile.schoolTitle}
+                  <button className="editButton"
+                  onClick={() => setIsEditingSchool(!isEditingSchool)}>
+                  <FaEdit /></button>
+                  
+                  </div>  
+                
+                }
       <label className="inpLabel">Faculty </label>
-      <Select
-      isClearable={true}
-        placeholder="faculty ..."
-        className="selectedInp"
-        options={faculties}
-        values={[]}
-        onChange={(value) => setFaculty(value)}
-        components={{ DropdownIndicator: () => null }}
-        styles={style} 
-        />
+      { isEditingFaculty ? <Select
+        isClearable={true}
+          placeholder="faculty ..."
+          className="selectedInp"
+          options={faculties}
+          values={[]}
+          onChange={(value) => setFaculty(value)}
+          components={{ DropdownIndicator: () => null }}
+          styles={style} 
+          /> : 
+          <div>
+          {profile.facultytitle}
+          <button className="editButton"
+          onClick={() => setIsEditingFaculty(!isEditingFaculty)}>
+          <FaEdit /></button>
+          
+          </div> 
+        }
+      
             <button>Submit</button>
             </form>
-            <button onClick={logOutCalled}>Log Out</button>
+            
+        <div className="section contact-us">
+        
+        <h1>Contact us</h1>
+        <Select
+        isClearable={true}
+        onSelectResetsInput={false}
+        placeholder="Type of error"
+        className="selectedInp"
+        options={[
+            { value: 'NewFeature', label: 'New Feature' },
+            { value: 'Bug', label: 'Bug' },
+        ]}
+        values={[]}
+        onChange={(value) => setRequestType(value)}
+        styles={style}
+        />
+        <textarea onChange={(e) => setDescription(e.target.value)}>
+        
+        </textarea>
+        <button onClick={submitContactUs}>Submit</button>
+        </div>
+
+        <button id="logoutButton" onClick={logOutCalled}>Log Out</button>
         </div>
     )
 }

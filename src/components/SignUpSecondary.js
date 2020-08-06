@@ -7,6 +7,9 @@ import Select from 'react-select'
 import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
 import { ButtonGroup, ToggleButton } from 'react-bootstrap'
 import { FaBlackTie } from 'react-icons/fa';
+//import { modify } from '../actions/chartActions';
+import { modifyProfile } from '../actions/profileActions'
+
 
 // Imagine you have a list of languages that you'd like to autosuggest.
 var languages = [
@@ -117,7 +120,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
 
     if (!gpa) {
       setGpaError('current gpa is required')
-      clean=false
+      setGpa(0)
     }
 
     else if (isNaN(gpa)) {
@@ -146,12 +149,21 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       if (usesPercentage === 1) {
         console.log('making with percentage')
         dispatch(makeSemesterThunk(0, gpa))
+        dispatch(modifyProfile({ schoolTitle: school.label, 
+          facultytitle: faculty.label, 
+          isAuth: true,
+          subjTour: true,
+          taskTour: true,
+          dashTour: true
+        }));
       } 
+
       else {
         //include different call
         console.log('making with gpa')
       
         dispatch(makeSemesterThunk(gpa, 0))
+        dispatch(modifyProfile({ schoolTitle: school.label , facultytitle: faculty.label, isAuth: true }));
       }
       history.push('/subjects')
     }

@@ -13,6 +13,26 @@ import { loadSubjects } from '../thunks/userActivityThunk'
 import { editSubjectThunk } from '../thunks/subjectThunk'
 import { loadSubjectBreakdown } from '../thunks/chartThunk'
 import ReactEcharts from 'echarts-for-react'
+import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
+import { modifyProfile } from '../actions/profileActions'
+
+const TOUR_STEPS = [
+    {
+        target: "#addButton",
+        content: 'First, add your subjects here',
+        disableBeacon: true,
+    },
+    {
+        target: "#tasks",
+        content:
+          "Next lets head over to tasks",
+        locale: {
+            last: 'Next'
+        }
+      },
+      
+
+  ];
 
 
 const SubjectsPage = (props) => {
@@ -21,6 +41,10 @@ const SubjectsPage = (props) => {
     var [classSelection, setClassSelection] = useState({})
     var [newChanges, setNewChanges] = useState({})
     var [editMode, setEditMode] = useState(false)
+
+    var [steps, setSteps] = useState(TOUR_STEPS)
+    var [stepIndex, setStepIndex] = useState(0)
+    var [run, setRun] = useState(true);
 
     useEffect(() => {
         const getClasses = async () => {
@@ -87,16 +111,44 @@ const SubjectsPage = (props) => {
 
     }
 
+    const handleJoyrideCallback = data => {
+        const { action, index, status, type } = data;
+    
+        if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
+          // Update state to advance the tour
+          setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
+        }
+        else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+          // Need to set our running state to false, so we can restart if we click start again.
+          setRun(false)
+
+          console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
+          props.history.push("/tasks")
+          props.dispatch(modifyProfile({ subjTour: false }))
+        }
+    
+        console.groupCollapsed(type);
+        console.log(data); //eslint-disable-line no-console
+        console.groupEnd();
+    };
+
     return (
         <Row className="subjects">
-            <SubjectModal isOpen={openModal} closeModal={closeModal} />
+            <Joyride steps={TOUR_STEPS} continuous={true} showSkipButton={true}
+            callback={handleJoyrideCallback}
+            run={props.profile.subjTour}
+            />
+            
+            <SubjectModal isOpen={openModal} closeModal={closeModal} 
+            
+            />
             <Col className="scroller">
                 <div className="classHeader">
                     <div className="left">
                         <div className="title">Subjects</div>
                     </div>
                     <div className="right">
-                        <button onClick={() => setOpenModal(true)}>+ Add</button>
+                        <button id="addButton" onClick={() => setOpenModal(true)}>+ Add</button>
                     </div>
                 </div>
                 <div className="listClasses">{props.subjects.map((item) => {
@@ -278,7 +330,8 @@ const mapStateToProps = (state) => {
         token: state.profile.token,
         id: state.profile.id,
         subjects: state.subjects,
-        charts: state.charts
+        charts: state.charts,
+        profile: state.profile
     }
 }
 

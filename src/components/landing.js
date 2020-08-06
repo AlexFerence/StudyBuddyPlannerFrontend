@@ -28,7 +28,6 @@ const TOUR_STEPS = [
 
 const Landing = ({ history, profile }) => {
   
-
   var [run, setRun] = useState(false)
   
   useEffect(() => {
@@ -61,7 +60,7 @@ const Landing = ({ history, profile }) => {
             Your browser does not support the video tag.
             </video>
       </div>
-      <div class="overlay landingDisplay">
+      <div className="overlay landingDisplay">
           <div className="center">
             <div className="promotion">Stay on top of your studies.</div>
             <div className="promotion">Stay on top of your life.</div>

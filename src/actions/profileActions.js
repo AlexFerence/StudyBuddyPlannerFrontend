@@ -21,3 +21,9 @@ export const DESTROY_SESSION = 'DESTROY_SESSION'
 export const logout = () => ({
     type: DESTROY_SESSION,
 })
+
+export const MODIFY_PROFILE = 'MODIFY_PROFILE'
+export const modifyProfile = (data) => ({
+    type: MODIFY_PROFILE,
+    data
+});
