@@ -45,7 +45,7 @@ const Landing = ({ history, profile }) => {
       
     <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
       <div className="landingNav">
-        <button id="brand" className="navButton">Peak</button>
+        <button id="brand" className="navButton">StudyBuddy</button>
         <div>
           <a className="navButton" href="#features">About</a>
           <a className="navButton" href="#about">Features</a>
@@ -133,12 +133,12 @@ const Landing = ({ history, profile }) => {
             <Col md={6} className="textCol">
               <div className="textInner">
                 <div className="textHeader">Features</div>
-                <div className="textPara">omiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí,
-                ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený.
-                Spopularizovaný bol v</div><div className="textPara">
+                <div className="textPara">UniBuddy provides its users with all essenial
+                resources that a student needs to track their study habits. This includes Timers, stopwatches and 
+                time input fields all automatically correlated to the analytical graphs.
+                </div><div className="textPara">
 
-                  60-tych rokoch 20.storočia, vydaním hárkov Letraset, ktoré obsahovali
-                pasáže Loreorem Ipsum.</div>
+                  </div>
               </div>
             </Col>
           </Row>
@@ -149,7 +149,7 @@ const Landing = ({ history, profile }) => {
             <Col md={6} className="textCol">
               <div className="textInner">
                 <div className="textHeader">In-Depth Data Analysis</div>
-                <div className="textPara">Peak offers in depth analysis on all of your studies. Let us do the work for you. We will help you
+                <div className="textPara">Study Buddy offers in depth analysis on all of your studies. Let us do the work for you. We will help you
                 track how you divide your time through the week, across all your subjects, and much more.</div>
               </div>
             </Col>

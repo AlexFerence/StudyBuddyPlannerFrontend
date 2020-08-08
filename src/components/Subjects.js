@@ -134,9 +134,10 @@ const SubjectsPage = (props) => {
 
     return (
         <Row className="subjects">
-            <Joyride steps={TOUR_STEPS} continuous={true} showSkipButton={true}
+            <Joyride steps={TOUR_STEPS} 
+            continuous={true} showSkipButton={true}
             callback={handleJoyrideCallback}
-            run={props.profile.subjTour}
+            run={!(props.profile.subjTour !== true)}
             />
             
             <SubjectModal isOpen={openModal} closeModal={closeModal} 
@@ -333,7 +334,7 @@ const mapStateToProps = (state) => {
         charts: state.charts,
         profile: state.profile
     }
-}
+} 
 
 export default connect(mapStateToProps)(SubjectsPage)
 
