@@ -7,6 +7,7 @@ import Counter from './Timer';
 import { getClassColor, getClassName } from '../thunks/subjectThunk';
 import {Row, Col } from 'react-bootstrap'
 import { setCurrentTaskById } from '../thunks/taskThunk'
+//new line
 
 
 
