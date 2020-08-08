@@ -24,18 +24,15 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
 
-
         return () => {
             setIsRunning(false)
             dispatch(runningOffThunk(currentTask.id))
             submitTime()
-
         }
     }, [])
 
     useEffect(() => {
         if (isRunning) {
-
             dispatch(runningOnThunk(currentTask.id))
         }
         else {
@@ -113,11 +110,11 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         }        
     }
 
-    const timeChanged = (e) => {
-        if (e.target.value >= 0 && !isNaN(e.target.value)) {
-            setInterval(parseInt(e.target.value))
-        }
-    }
+    // const timeChanged = (e) => {
+    //     if (e.target.value >= 0 && !isNaN(e.target.value)) {
+    //         setInterval(parseInt(e.target.value))
+    //     }
+    // }
 
     const submitTime = async () => {
         if (count > 1) {

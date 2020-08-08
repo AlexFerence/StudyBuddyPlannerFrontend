@@ -30,10 +30,9 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
 
         }
     }, [])
-
+    //links local and database
     useEffect(() => {
         if (isRunning) {
-
             dispatch(runningOnThunk(currentTask.id))
         }
         else {
@@ -51,6 +50,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
     const startTimer = () => {
         if (interval > 0) {
             setIsRunning(true)
+            //turn on is running locally
             dispatch(pausedReduxOff())
         }
     }
@@ -62,7 +62,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
 
     const timerDone = async () => {
         resetCount()
-        
+        dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
         await dispatch(postSessionThunk({
             taskId: currentTask.id,

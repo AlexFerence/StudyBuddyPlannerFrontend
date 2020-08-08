@@ -8,15 +8,9 @@ import { getClassColor, getClassName } from '../thunks/subjectThunk';
 import {Row, Col } from 'react-bootstrap'
 import { setCurrentTaskById } from '../thunks/taskThunk'
 
-const makeTasks = (tasks) => {
-    var formattedTasks = []
-    tasks.forEach((task) => {
-        formattedTasks.push({ value: task, label: task.title })
-    })
-    return formattedTasks
-}
 
-const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
+
+const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
     const [localTasks, setLocalTasks] = useState([])
@@ -25,6 +19,24 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks }) => {
     useEffect(() => {
         setLocalTasks(makeTasks(tasks))
     }, [])
+
+    const getClassName = (subjectId) => {
+        const subj = subjects.find((subject) => subject.id === subjectId)
+        if (subj) {
+            return (subj.name + " " + subj.classCode)
+        }
+        else {
+            return ("no class found")
+        }
+    }
+
+    const makeTasks = (tasks) => {
+        var formattedTasks = []
+        tasks.forEach((task) => {
+            formattedTasks.push({ value: task, label: getClassName(task.subjectId) + " - " + task.title })
+        })
+        return formattedTasks
+    }
 
     return (
         <div>

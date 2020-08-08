@@ -331,3 +331,28 @@ export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+export const loadUACurrentUsers = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/UserActivity/count",
+        {
+            userId: id,
+            //school id??
+            school: profile.schoolId
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+       
+        dispatch(modify({ }))
+
+    } catch(e) {
+        console.log(e)
+    }
+}

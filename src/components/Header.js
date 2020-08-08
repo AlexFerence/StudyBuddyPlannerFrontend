@@ -75,7 +75,6 @@ const Header = (props) => {
                                 <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
                                 </NavLink>
                             </OverlayTrigger>
-    
                         }
                         {props.isAuth &&
                             <OverlayTrigger
