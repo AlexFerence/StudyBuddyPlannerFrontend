@@ -18,6 +18,7 @@ import moment from 'moment'
 import { FaAngleDown, FaLock, FaAngleUp, FaAngleRight, FaAngleLeft } from 'react-icons/fa'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
+import {realoadClassesThunk} from '../thunks/subjectThunk'
 
 const TOUR_STEPS = [
   {
@@ -92,8 +93,8 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
   var [whichWeek, setWhichWeek] = useState(moment())
 
   useEffect(() => {
+    dispatch(realoadClassesThunk())
     dispatch(loadTasks())
-    console.log('dispatching')
     dispatch(loadChartsThunk())
     dispatch(loadSubjectBreakdown())
     dispatch(loadHoursWeek())
@@ -103,6 +104,7 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
     dispatch(loadTaskHoursPerWeek())
     dispatch(loadPersonalStats())
     dispatch(loadAverageOfWeekDay())
+    
   }, [])
 
   const goToNextWeek = () => {
@@ -215,7 +217,10 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
           </div>
 
         </Col>
+          
+        
       </Row>
+        
 
       <div className="toggleButton" onClick={() => {
         setDropdown1(!dropdown1)
@@ -332,6 +337,7 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
           </Row>
           <Row>
           <Col>
+          
           <ReactEcharts
                   option={{
                     title: {
@@ -382,35 +388,38 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
                 />
           </Col>
           <Col>
-          <ReactEcharts
-                option={{
-                  
-                  tooltip: {
-                    trigger: 'item',
-                    formatter: '{b}: {d}%'
-                  },
-                  series: [
-                    {
-                      type: 'pie',
-                      radius: '65%',
-                      center: ['50%', '50%'],
-                      selectedMode: 'single',
-                      data:
-                        charts.pieChart ? charts.pieChart.pieData : []
-                      ,
-                      color: charts.pieColors,
-                      emphasis: {
-                        itemStyle: {
-                          shadowBlur: 10,
-                          shadowOffsetX: 0,
-                          shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                      }
+          { !charts.pieColors ?  <div className="noData">
+          <div>
+          No Data
+          </div>
+          </div> : <ReactEcharts
+            option={{
+              
+              tooltip: {
+                trigger: 'item',
+                formatter: '{b}: {d}%'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '65%',
+                  center: ['50%', '50%'],
+                  selectedMode: 'single',
+                  data:
+                    charts.pieChart ? charts.pieChart.pieData : []
+                  ,
+                  color: charts.pieColors,
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
-                  ]
-
-                }}
-              />
+                  }
+                }
+              ]
+            }}
+          /> }
           </Col>
           </Row>
         </div>
@@ -539,11 +548,7 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
         </div>
       }
 
-      <div className="sticky-bottom">
-      <div>stay at the bottom</div>
-      <div>Current active users</div>
-      <div>Time spent today {charts.todayTotal.hours || 0}:{charts.todayTotal.mins || 0} </div>
-      </div>
+      
     </div>
   );
 }
@@ -556,3 +561,13 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Dashboard)
+
+const noData = () => {
+  return(
+    <div className="noData">
+    <div>
+    No Data
+    </div>
+    </div>
+  )
+}

@@ -10,8 +10,6 @@ import { setCurrentTask } from '../actions/currentTaskActions'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 
-
-
 const TOUR_STEPS = [
     {
         target: ".addTaskButton",

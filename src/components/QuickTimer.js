@@ -7,6 +7,7 @@ import Counter from './Timer';
 import { getClassColor, getClassName } from '../thunks/subjectThunk';
 import {Row, Col } from 'react-bootstrap'
 import { setCurrentTaskById } from '../thunks/taskThunk'
+import { realoadClassesThunk } from '../thunks/subjectThunk'
 //new line
 
 
@@ -18,7 +19,9 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects 
     const [localTask, setLocalTask] = useState({})
 
     useEffect(() => {
+        dispatch(realoadClassesThunk)
         setLocalTasks(makeTasks(tasks))
+
     }, [])
 
     const getClassName = (subjectId) => {

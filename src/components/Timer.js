@@ -129,7 +129,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                     })}
                 >
                     {
-                        !currentTask.id ? <span>Please select a task</span> :
+                        !currentTask.id ? (<div style={{ textAlign: 'center'}}><span>Quick Timer</span><br/><span>Please select a task</span></div>) :
                         (!isRunning && !paused) &&
                             <div className="inside d-flex justify-content-center align-items-center">
                             <input className="inp" type="number"
