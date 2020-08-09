@@ -67,7 +67,7 @@ const Landing = ({ history, profile }) => {
       <div className="overlay landingDisplay">
           <div className="center">
             <div className="promotion">Organize your classes and tasks.</div>
-            <div className="promotion">Real Time Analytics and Comparisons.</div>
+            <div className="promotion">Real Time analytics and comparisons.</div>
             <div><button id="mainButton"
               className="navButtonSignUp"
               onClick={goToSignUp}>Sign Up</button></div>
