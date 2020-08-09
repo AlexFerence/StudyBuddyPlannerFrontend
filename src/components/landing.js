@@ -58,15 +58,15 @@ const Landing = ({ history, profile }) => {
 
       <div className="landingDisplay">
         <video id="background-video" loop autoPlay muted>
-          <source src="/videos/video.mp4" type="video/mp4" />
-          <source src="/videos/video.mp4" type="video/ogg" />
+          <source src="/videos/video5.mp4" type="video/mp4" />
+          <source src="/videos/video5.mp4" type="video/ogg" />
             Your browser does not support the video tag.
             </video>
       </div>
       <div className="overlay landingDisplay">
           <div className="center">
-            <div className="promotion">Stay on top of your studies.</div>
-            <div className="promotion">Stay on top of your life.</div>
+            <div className="promotion">Organize your classes and tasks.</div>
+            <div className="promotion">Real Time Analytics and Comparisons.</div>
             <div><button id="mainButton"
               className="navButtonSignUp"
               onClick={goToSignUp}>Sign Up</button></div>
@@ -148,7 +148,7 @@ const Landing = ({ history, profile }) => {
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
               <div className="textInner">
-                <div className="textHeader">In-Depth Data Analysis</div>
+                <div className="textHeader">In-Depth Data Analysis.</div>
                 <div className="textPara">Study Buddy offers in depth analysis on all of your studies. Let us do the work for you. We will help you
                 track how you divide your time through the week, across all your subjects, and much more.</div>
               </div>
@@ -228,7 +228,7 @@ const Landing = ({ history, profile }) => {
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">Features</div>
+                  <div className="textHeader">Compare your work to others.</div>
                   <div className="textPara">omiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí,
                   ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený.
                 Spopularizovaný bol v</div><div className="textPara">
