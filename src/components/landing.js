@@ -50,6 +50,7 @@ const Landing = ({ history, profile }) => {
           <a className="navButton" href="#features">About</a>
           <a className="navButton" href="#about">Features</a>
           <a className="navButton" href="#premium">Premium</a>
+          <a className="navButton" href="#premium">Future Plan</a>
           <button className="navButtonSignUp"
             onClick={goToSignUp}
           >Sign Up</button>
