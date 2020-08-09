@@ -125,14 +125,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
 
-                <label className="inpLabel">Password</label>
-                <input
-                    className="inp"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                ></input>
+            
 
                 <label className="inpLabel">School</label>
                 { isEditingSchool ? <Select

@@ -11,7 +11,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
             })
         if (res.status === 200) {
             console.log(res.data)
-            await dispatch(setProfile({
+            dispatch(setProfile({
                 //TODO check what fields come back from res.data.email
                 email,
                 password,
@@ -21,7 +21,6 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 token: res.data.token,
                 isAuth: true
             }))
-
             dispatch(refreshUser());
         }
         return(res.status)
@@ -106,7 +105,7 @@ export const refreshUser = () => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.get(url + '/api/UserProfiles/' + id,
+        const res = await axios.put(url + '/api/userprofiles/' + id,
             {
             headers: {
                 'Authorization': 'bearer ' + token,

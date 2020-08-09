@@ -10,12 +10,10 @@ const LoginPage = ({ dispatch, history, profile }) => {
         if (profile.email) {
             history.push('dashboard')
         }
-
     }, [])
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [authError, setAuthError] = useState('')
