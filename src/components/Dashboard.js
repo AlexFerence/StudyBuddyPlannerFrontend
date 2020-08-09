@@ -176,7 +176,7 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
                     fontFamily: 'Helvetica',
                     fontWeight: 100
                   },
-                  subtext: moment(whichWeek).startOf('week').format("MMM D") + " - " + moment(whichWeek).endOf('week').format("MMM D")
+                  subtext: moment(whichWeek).startOf('isoWeek').format("MMM D") + " - " + moment(whichWeek).endOf('isoWeek').format("MMM D")
                   ,
 
                 },
