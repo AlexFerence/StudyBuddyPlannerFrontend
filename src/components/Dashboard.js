@@ -19,6 +19,7 @@ import { FaAngleDown, FaLock, FaAngleUp, FaAngleRight, FaAngleLeft } from 'react
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import {realoadClassesThunk} from '../thunks/subjectThunk'
+import { refreshUser } from '../thunks/profileThunk'
 
 const TOUR_STEPS = [
   {
@@ -104,6 +105,7 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
     dispatch(loadTaskHoursPerWeek())
     dispatch(loadPersonalStats())
     dispatch(loadAverageOfWeekDay())
+    dispatch(refreshUser())
     
   }, [])
 

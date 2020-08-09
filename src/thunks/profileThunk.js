@@ -1,6 +1,6 @@
 import axios from 'axios'
 import url from '../environment/url'
-import { setProfile, update } from '../actions/profileActions'
+import { setProfile, update, modifyProfile } from '../actions/profileActions'
 
 export const loginThunk = ({ email, password }) => async (dispatch, getState) => {
     try {
@@ -11,7 +11,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
             })
         if (res.status === 200) {
             console.log(res.data)
-            dispatch(setProfile({
+            await dispatch(setProfile({
                 //TODO check what fields come back from res.data.email
                 email,
                 password,
@@ -21,6 +21,8 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 token: res.data.token,
                 isAuth: true
             }))
+
+            dispatch(refreshUser());
         }
         return(res.status)
     } catch (e) {
@@ -91,6 +93,31 @@ export const updateProfileThunk = ({ school, major, minor, faculty, usePercentag
 
         console.log(res.data)
         dispatch(update({
+            ...res.data
+        }))
+
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const refreshUser = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.get(url + '/api/UserProfiles/' + id,
+            {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log(res.data)
+        
+        dispatch(modifyProfile({
             ...res.data
         }))
 
