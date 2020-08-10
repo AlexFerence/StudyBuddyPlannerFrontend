@@ -60,7 +60,7 @@ const Header = (props) => {
         return (
             <div>
             <Navbar fixed="top" expand="true">
-                <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
+                <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
                 {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                 <Navbar id="">
                     <Nav className="mr-auto">
@@ -110,7 +110,7 @@ const Header = (props) => {
                 </Navbar>
             </Navbar>
             <Navbar expand="true">
-                <Navbar.Brand className="title" href="/">GradeAid</Navbar.Brand>
+                <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
                 {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                 <Navbar id="">
                     <Nav className="mr-auto">

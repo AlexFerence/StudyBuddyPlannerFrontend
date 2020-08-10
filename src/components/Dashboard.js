@@ -83,7 +83,7 @@ const reducer = (acc, item) => {
   return acc
 }
 
-const Dashboard = ({ dispatch, charts, profile, history }) => {
+const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
   var [dropdown1, setDropdown1] = useState(true)
   var [dropdown2, setDropdown2] = useState(true)
 
@@ -386,9 +386,10 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
               />
             </Col>
             <Col>
-              {!charts.pieColors ? <div className="noData">
+              {subjects.length === 0 ? <div className="noData">
                 <div>
                   No Data
+                  <div className="subNoData">Create subjects to view subject breakdown</div>
           </div>
               </div> : <ReactEcharts
                   option={{
@@ -441,7 +442,8 @@ const Dashboard = ({ dispatch, charts, profile, history }) => {
 const mapStateToProps = (state) => {
   return {
     charts: state.charts,
-    profile: state.profile
+    profile: state.profile,
+    subjects: state.subjects
   }
 }
 

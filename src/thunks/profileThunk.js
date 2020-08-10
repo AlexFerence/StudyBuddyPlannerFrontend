@@ -94,6 +94,7 @@ export const updateProfileThunk = ({ school, major, minor, faculty, usePercentag
         dispatch(update({
             ...res.data
         }))
+        return res.data
 
     } catch (e) {
         console.log(e)

@@ -142,8 +142,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       setGpaError('')
     }
 
-    if (clean) {
-      
+    if (clean === true) {
       await dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa, usePercentage: usesPercentage }))
       console.log(usesPercentage)
       if (usesPercentage === 1) {
@@ -152,20 +151,17 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         dispatch(modifyProfile({ schoolTitle: school.label, 
           facultytitle: faculty.label, 
           isAuth: true,
-          subjTour: true,
-          taskTour: true,
-          dashTour: true
         }));
+        history.push('/subjects')
       } 
 
       else {
         //include different call
         console.log('making with gpa')
-      
         dispatch(makeSemesterThunk(gpa, 0))
         dispatch(modifyProfile({ schoolTitle: school.label , facultytitle: faculty.label, isAuth: true }));
+        history.push('/subjects')
       }
-      history.push('/subjects')
     }
   }
 
