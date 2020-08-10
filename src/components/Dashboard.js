@@ -24,13 +24,13 @@ import { refreshUser, turnOffDashboardTour } from '../thunks/profileThunk'
 const TOUR_STEPS = [
   {
     target: "#quickT",
-    content: 'this is the quick timer',
+    content: 'This is the quick timer.',
     disableBeacon: true,
   },
   {
     target: "#timerSelect",
     content:
-      "Select task to be completed",
+      "You can select a task from your list to be completed, and:",
     locale: {
       last: 'Next'
     }
@@ -38,7 +38,7 @@ const TOUR_STEPS = [
   {
     target: "#timerSelect2",
     content:
-      "Select type of timer",
+      "Select either timer, or stopwatch.",
     locale: {
       last: 'Next'
     }
@@ -46,7 +46,7 @@ const TOUR_STEPS = [
   {
     target: ".topRight",
     content:
-      "Weekly hours are provided here",
+      "Your hours per day are shown here.",
     locale: {
       last: 'Next'
     },
@@ -55,7 +55,7 @@ const TOUR_STEPS = [
   {
     target: "#row1",
     content:
-      "All your personal analytics will be shown below, we hope you enjoy",
+      "And all your personal analytics are below for you to explore.",
     locale: {
       last: 'Next'
     },
