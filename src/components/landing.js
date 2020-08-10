@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import laptop from '../assets/laptop.png'
+import timer from '../assets/timer.png'
 //import pencils from '../assets/video.mp4'
 import ReactEcharts from 'echarts-for-react'
 import ReactPlayer from 'react-player'
@@ -101,34 +102,7 @@ const Landing = ({ history, profile }) => {
           <Row style={{ height: '100%' }}>
             <Col md={6} className="imageCol">
               <div className="imageInner">
-                <ReactEcharts
-                  option={{
-                    series: [
-                      {
-                        type: 'pie',
-                        radius: '65%',
-                        center: ['50%', '50%'],
-                        selectedMode: 'single',
-                        data: [
-                          { name: 'MATH', value: 66 },
-                          { name: 'PHYS', value: 33 },
-                          { name: 'BIO', value: 44 },
-                          { name: 'ENGL', value: 30 },
-                          { name: 'HIST', value: 10 },
-                        ]
-                        ,
-                        emphasis: {
-                          itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                          }
-                        }
-                      }
-                    ]
-
-                  }}
-                />
+                
               </div>
             </Col>
             <Col md={6} className="textCol">
@@ -252,3 +226,32 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Landing)
+
+// <ReactEcharts
+//                   option={{
+//                     series: [
+//                       {
+//                         type: 'pie',
+//                         radius: '65%',
+//                         center: ['50%', '50%'],
+//                         selectedMode: 'single',
+//                         data: [
+//                           { name: 'MATH', value: 66 },
+//                           { name: 'PHYS', value: 33 },
+//                           { name: 'BIO', value: 44 },
+//                           { name: 'ENGL', value: 30 },
+//                           { name: 'HIST', value: 10 },
+//                         ]
+//                         ,
+//                         emphasis: {
+//                           itemStyle: {
+//                             shadowBlur: 10,
+//                             shadowOffsetX: 0,
+//                             shadowColor: 'rgba(0, 0, 0, 0.5)'
+//                           }
+//                         }
+//                       }
+//                     ]
+
+//                   }}
+//                 />
