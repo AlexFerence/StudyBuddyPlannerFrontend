@@ -127,7 +127,7 @@ const SubjectsPage = (props) => {
           
           props.history.push("/tasks")
           //turn off tour locally
-          props.dispatch(modifyProfile({ subjTour: false }))
+          props.dispatch(modifyProfile({ subjectTour: 1 }))
           //turn off in server
           props.dispatch(turnOffSubjectTour())
         }
@@ -142,7 +142,7 @@ const SubjectsPage = (props) => {
             <Joyride steps={TOUR_STEPS} 
             continuous={true} showSkipButton={true}
             callback={handleJoyrideCallback}
-            run={!(props.profile.subjTour === 0)}
+            run={props.profile.subjectTour === 0}
             />
             
             <SubjectModal isOpen={openModal} closeModal={closeModal} 

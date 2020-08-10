@@ -216,8 +216,12 @@ const Landing = ({ history, profile }) => {
         </div>
         </div>
         
+        
       </div>
+      
+      
     </div>
+    
   )
 }
 const mapStateToProps = (state) => {

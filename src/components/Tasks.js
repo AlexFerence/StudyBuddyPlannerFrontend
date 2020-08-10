@@ -91,7 +91,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
           console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
           history.push("/dashboard")
           //locally turn off the tour
-          dispatch(modifyProfile({ taskTour: false }))
+          dispatch(modifyProfile({ taskTour: 1 }))
           //send back to server to turn off tour
           dispatch(turnOffTaskTour())
         
@@ -108,7 +108,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
         <Row className="tasks">
             <Joyride steps={TOUR_STEPS} 
             callback={handleJoyrideCallback}
-            continuous={true} showSkipButton={false}
+            continuous={true} showSkipButton={true}
             run={profile.taskTour === 0}
             />
             <Col className="scroller">

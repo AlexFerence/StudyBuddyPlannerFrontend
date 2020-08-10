@@ -52,7 +52,13 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
 
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
-        return momentDay.format("MMM D")
+        if (moment(date).isBefore((moment().add(0, 'days')))) {
+            return <div style={{ color:'red'}}>{momentDay.format("MMM D")}</div>
+        }
+        if (moment(date).isBefore(moment().add(2, 'days'))){
+            return <div style={{ color:'#FFAE42' }}>{momentDay.format("MMM D")}</div>
+        }
+        return <div>{momentDay.format("MMM D")}</div>
     }
 
     const taskClicked = (t) => {

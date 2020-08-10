@@ -23,7 +23,7 @@ const TOUR_STEPS = [
   ];
 
 
-const Header = (props) => {
+const Header = (props, { isRunning }) => {
 
     const renderTooltipDash = (props, display) => {
         return (
@@ -54,6 +54,19 @@ const Header = (props) => {
         );
     }
 
+    const checkRunningDash = () => {
+        if (isRunning) {
+            swal({
+                title: "Can't switch tasks during study session",
+                icon: "info",
+                buttons: true,
+                dangerMode: true,
+            })
+        }
+        else {
+            props.history.push()
+        }
+    }
 
 
     if (props.profile.isAuth) {
@@ -66,27 +79,58 @@ const Header = (props) => {
                     <Nav className="mr-auto">
                     </Nav>
                     <Nav  inline="true">
-                        {props.isAuth &&
+                        {props.isRunning ?
                             <OverlayTrigger
                                 placement="bottom"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipDash}
-                            >
-                                <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer />
-                                </NavLink>
+                            >   
+                            
+                            <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
                             </OverlayTrigger>
+
+                            :
+                            <div className ="navbarIcon"
+                            onClick={() => {
+                                console.log('onSwitch')
+                                swal({
+                                    title: "Can't switch tabs during study session",
+                                    icon: "info",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                
+                            }}
+                            id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
+                        </div>
                         }
-                        {props.isAuth &&
+                        {!props.isRunning ?
                             <OverlayTrigger
                                 placement="bottom"
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltipTask}
                             >
-                                <NavLink id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                
+                                 <NavLink id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
                                 </NavLink>
-                            </OverlayTrigger>
+                                
+                            </OverlayTrigger>:
+
+                            <div className ="navbarIcon"
+                                onClick={() => {
+                                    console.log('onSwitch')
+                                    swal({
+                                        title: "Can't switch tabs during study session",
+                                        icon: "info",
+                                        buttons: true,
+                                        dangerMode: true,
+                                    })
+                                    
+                                }}
+                                id="tasks" style={{ padding: 5 }} ><FaCheckSquare />
+                            </div>
                         }
-                        {props.isAuth &&
+                        {!props.isRunning ?
                             <OverlayTrigger
                                 placement="bottom"
                                 delay={{ show: 250, hide: 400 }}
@@ -95,8 +139,23 @@ const Header = (props) => {
                             <NavLink id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
                             </NavLink>
                             </OverlayTrigger>
+                            :
+                            <div className ="navbarIcon"
+                            onClick={() => {
+                                console.log('onSwitch')
+                                swal({
+                                    title: "Can't switch tabs during study session",
+                                    icon: "info",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                
+                            }}
+                            id="tasks" style={{ padding: 5 }} ><FaList />
+                        </div>
+
                         }
-                        {props.isAuth &&
+                        {!props.isRunning ?
                             <OverlayTrigger
                                 placement="bottom"
                                 delay={{ show: 250, hide: 400 }}
@@ -105,6 +164,21 @@ const Header = (props) => {
                             <NavLink id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
                             </NavLink>
                             </OverlayTrigger>
+                            :
+                            <div className ="navbarIcon"
+                            onClick={() => {
+                                console.log('onSwitch')
+                                swal({
+                                    title: "Can't switch tabs during study session",
+                                    icon: "info",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                
+                            }}
+                            id="tasks" style={{ padding: 5 }} ><FaCog />
+                            </div>
+
                         }
                     </Nav>
                 </Navbar>
@@ -116,7 +190,6 @@ const Header = (props) => {
                     <Nav className="mr-auto">
                     </Nav>
                     <Nav  inline="true">
-                        
                         {props.isAuth &&
                             <OverlayTrigger
                                 placement="bottom"
@@ -127,8 +200,6 @@ const Header = (props) => {
                                 </NavLink>
                             </OverlayTrigger>
                         }
-                        
-                        
                     </Nav>
                 </Navbar>
             </Navbar>
@@ -143,7 +214,7 @@ const mapStateToProps = (state) => {
     return {
         profile: state.profile,
         isAuth: state.profile.isAuth,
-        running: state.running.isRunning,
+        isRunning: state.running.isRunning,
     }
 }
 export default connect(mapStateToProps)(Header)

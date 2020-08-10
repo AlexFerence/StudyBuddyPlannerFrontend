@@ -99,9 +99,6 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
     dispatch(loadChartsThunk())
     dispatch(loadSubjectBreakdown())
     dispatch(loadHoursWeek())
-    dispatch(loadYearBeakdown())
-    dispatch(loadFacultyStats())
-    dispatch(loadMarksScatter())
     dispatch(loadTaskHoursPerWeek())
     dispatch(loadPersonalStats())
     dispatch(loadAverageOfWeekDay())
@@ -130,7 +127,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
       // Need to set our running state to false, so we can restart if we click start again.
       setRun(false)
       //turn off locally
-      dispatch(modifyProfile({ dashTour: false }))
+      dispatch(modifyProfile({ dashboardTour: 1 }))
       //turn off server
       dispatch(turnOffDashboardTour())
     }
