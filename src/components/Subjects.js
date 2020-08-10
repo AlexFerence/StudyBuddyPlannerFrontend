@@ -180,7 +180,7 @@ const SubjectsPage = (props) => {
                     {classSelection.id &&
                         <div className="topBar">
                             <div className="left" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
-                                {!editMode && <h4>{classSelection.name} {classSelection.classCode}</h4>}
+                                {!editMode && <div className="idTitle">{classSelection.name} {classSelection.classCode}</div>}
                                 {editMode && <h4>EDIT</h4>}
                             </div>
                             <div className="right" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>

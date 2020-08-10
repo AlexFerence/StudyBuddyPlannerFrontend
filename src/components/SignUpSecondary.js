@@ -119,7 +119,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     }
 
     if (!gpa) {
-      setGpaError('current gpa is required')
+      //setGpaError('current gpa is required')
       setGpa(0)
     }
 
@@ -197,14 +197,18 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         />
       <label className="inpLabel" >Major</label>
       <input className="inp" onChange={onChangeMajor} value={major} />
-      <label className="inpLabel">Current Gpa (out of 4.0 scale)</label>{gpaError && <span className="error">* {gpaError}</span>}
+      <div className="radioDiv">
+      <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA 4.0 Scale
+      </div>
+      <div className="radioDiv">
+      <input type="radio" value={1} name="gradeScale" /> % Percentage
+      </div>
 
       <div className="radios" onChange={ (e) => {
         console.log(typeof(e.target.value))
         setUsesPercentage(parseInt(e.target.value))
       }}>
-        <input className="radioSpace" type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA (4.0 / 4.3 scale) <br />
-        <input className="radioSpace" type="radio" value={1} name="gradeScale" /> % Percentage
+        
       </div>
 
       <input className="inp" 

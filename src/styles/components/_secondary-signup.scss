@@ -60,7 +60,9 @@
 }
 
 .SignUpSecond {
-    background-color: transparent;
+    background-color: $white;
+    border: 1px solid grey;
+    padding: 30px
 }
 
 .selectedInp {
@@ -73,4 +75,12 @@
 
 .radios {
     margin: 10px 0px;
+}
+
+.radioDiv {
+    padding: 10px 0px;
+}
+
+#curGpa {
+    padding-top: 5px;
 }

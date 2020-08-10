@@ -15,6 +15,17 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import { markTaskAsDone } from '../thunks/taskThunk'
 import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
 
+const hoursToTimeDisplay = (h) => {
+    var hours = Math.floor(h)
+    var decimalMins = (h - hours) * 60
+    var returnMins = Math.floor(decimalMins)
+    if (decimalMins < 10) {
+      returnMins = "0" + returnMins
+    }
+    return (hours + ":" + returnMins)
+  
+  }
+
 const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch, blankOn }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
@@ -71,7 +82,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
     return (
         <div className="display-task">
             <div className="display-task-header" style={{ backgroundColor: currentTask.color }}>
-                <span>{currentTask.title}</span>
+                <div className="idTitle">{currentTask.title}</div>
                 <div>
                     <button
                         className="edit"
@@ -156,8 +167,8 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         <table>
                             <thead>
                             <tr>
-                                <th>Minutes</th>
-                                <th>Date</th>
+                                <th style={{ backgroundColor: currentTask.color }}>Minutes</th>
+                                <th style={{ backgroundColor: currentTask.color }}>Date</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -167,7 +178,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                     currentTask.taskSessions.map((session) => {
                                         return (
                                             <tr key={session.id}>
-                                                <td>{session.minutes}</td>
+                                                <td>{hoursToTimeDisplay(session.minutes / 60)}</td>
                                                 <td>{moment(session.dateCompleted).format("MMM D")}</td>
                                             </tr>
                                         )

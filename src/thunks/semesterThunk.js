@@ -4,7 +4,7 @@ import moment from 'moment'
 import { setSemesterId } from '../actions/semesterActions'
 import { update } from '../actions/profileActions'
 
-export const makeSemesterThunk = (startGpa, startPercentage) => async (dispatch, getState) => {
+export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile

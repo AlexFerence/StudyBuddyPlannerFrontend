@@ -30,12 +30,15 @@ h3 {
 .subjects .scroller .subjectButton .subjTitle {
     color: $dark-grey;
     width: 100%;
+    padding-bottom: 8px;
+    font-size: large;
 }
 
 .subjects .scroller .subjectButton .subjDesc {
     width: 100%;
     font-size: 12px;
     color: $grey-text;
+    
 }
 
 .subjects .scroller .classHeader {
@@ -50,6 +53,7 @@ h3 {
     border-bottom: .1px solid lighten($color: $grey, $amount: 20%);
     text-align: left;
     margin-bottom: 10px;
+ 
 }
 
 .subjects .scroller .classHeader .title {
@@ -58,6 +62,7 @@ h3 {
     border: none;
     color: $dark-grey;
     border-radius: 3px;
+    
 }
 
 .subjects .scroller .classHeader .right {
@@ -110,7 +115,7 @@ h3 {
     width: 50%;
     float: left;
     background-color: $grey;
-    padding: 18px 15px;
+    padding: 10px;
     margin-bottom: 15px;
     color: $white;
 }
