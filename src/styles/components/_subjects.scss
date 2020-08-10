@@ -109,25 +109,32 @@ h3 {
 }
 
 .subjects .display .innerDisplay .topBar {
-}
-
-.subjects .display .innerDisplay .topBar .left {
-    width: 50%;
-    float: left;
-    background-color: $grey;
     padding: 10px;
-    margin-bottom: 15px;
-    color: $white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.subjects .display .innerDisplay .topBar .right {
-    padding: 15px;
-    background-color: $grey;
-    width: 50%;
-    text-align: right;
-    float: left;
-    margin-bottom: 15px;
 
-}
+
+
+
+// .subjects .display .innerDisplay .topBar .left {
+//     width: 50%;
+//     float: left;
+//     background-color: $grey;
+//     padding: 10px;
+//     margin-bottom: 15px;
+//     color: $white;
+// }
+// .subjects .display .innerDisplay .topBar .right {
+//     padding: 15px;
+//     background-color: $grey;
+//     width: 50%;
+//     text-align: right;
+//     float: left;
+//     margin-bottom: 15px;
+
+// }
 .subjects .display .innerDisplay .topBar .right button {
     padding: 0;
     border: none;

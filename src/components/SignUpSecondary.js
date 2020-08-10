@@ -107,6 +107,10 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       setSchoolError('School is required')
       clean = false
     }
+    else if (!school.id) {
+      setSchoolError('School is required')
+      clean = false
+    }
     else {
       setSchoolError('')
     }
@@ -114,8 +118,12 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       setFacultyError('Faculty is required')
       clean = false
     }
+    else if (!faculty.id) {
+      setFacultyError('Faculty is Required')
+      clean = false
+    }
     else {
-      setSchoolError('')
+      setFacultyError('')
     }
 
     if (!gpa) {
@@ -141,13 +149,15 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     else {
       setGpaError('')
     }
+    
+    console.log(clean);
 
     if (clean === true) {
       await dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa, usePercentage: usesPercentage }))
       console.log(usesPercentage)
       if (usesPercentage === 1) {
         console.log('making with percentage')
-        dispatch(makeSemesterThunk(0, gpa))
+        dispatch(makeSemesterThunk(0, gpa || 0))
         dispatch(modifyProfile({ schoolTitle: school.label, 
           facultytitle: faculty.label, 
           isAuth: true,
@@ -158,7 +168,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       else {
         //include different call
         console.log('making with gpa')
-        dispatch(makeSemesterThunk(gpa, 0))
+        dispatch(makeSemesterThunk(gpa || 0, 0))
         dispatch(modifyProfile({ schoolTitle: school.label , facultytitle: faculty.label, isAuth: true }));
         history.push('/subjects')
       }
@@ -206,7 +216,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       }}>
         
       </div>
-
+      {gpaError && <span className="error">* {gpaError}</span>}
       <input className="inp" 
       placeholder="Current Percentage/GPA ..."
       onChange={onChangeGpa} value={gpa} /> 
