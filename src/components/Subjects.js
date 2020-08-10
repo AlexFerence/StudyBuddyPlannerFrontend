@@ -178,12 +178,9 @@ const SubjectsPage = (props) => {
                 {!classSelection.id && <p className="fillerContent">Please select a class</p>}
                 <div className="innerDisplay">
                     {classSelection.id &&
-                        <div className="topBar">
-                            <div className="left" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
-                                {!editMode && <h4>{classSelection.name} {classSelection.classCode}</h4>}
-                                {editMode && <h4>EDIT</h4>}
-                            </div>
-                            <div className="right" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
+                        <div className="topBar" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }} >
+                                {editMode ? <div className="idTitle">EDIT</div> : <div className="idTitle">{classSelection.name} {classSelection.classCode}</div> }
+                                <div>
                                 <button
                                     className="icon"
                                     onClick={() => {
@@ -198,8 +195,9 @@ const SubjectsPage = (props) => {
                                         callDelete(classSelection.id)
                                     }}
                                 ><FaTrashAlt /></button>
+                                </div>
 
-                            </div>
+                        
                         </div>
                     }
                     {classSelection.id && !editMode &&
@@ -220,7 +218,10 @@ const SubjectsPage = (props) => {
                                     <ReactEcharts
                                         option={{
                                             title : {
-                                                text:"Breakdown By Task Type",
+                                                text:"Task Type Breakdown",
+                                                textStyle: {
+                                                    fontSize: 15
+                                                },
                                                 x:'center',
                                                 top : 20
                                               },

@@ -132,3 +132,12 @@ html {
 .green {
   color: lighten($color: green, $amount: 5); 
 }
+
+.icon {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+
+}
