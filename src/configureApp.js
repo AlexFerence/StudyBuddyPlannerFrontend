@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import FormPage from './components/SignUpPage'
 import LoginPage from './components/LoginPage'
@@ -12,13 +12,43 @@ import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
 
+import {
+  loadChartsThunk, loadSubjectBreakdown,
+  loadHoursWeek, loadYearBeakdown,
+
+  loadTaskHoursPerWeek,
+  loadPersonalStats,
+  loadAverageOfWeekDay
+} from './thunks/chartThunk'
+
+import { loadTasks } from './thunks/taskThunk'
+import { connect } from 'react-redux'
+
+import { realoadClassesThunk } from './thunks/subjectThunk'
+import { refreshUser } from './thunks/profileThunk'
+
+
 
 
 //import '../node_modules/normalize-scss/sass/normalize.scss'
 
 import './styles/styles.scss'
 
-const ConfigureApp = () => {
+const ConfigureApp = ({dispatch}) => {
+  useEffect(() => {
+    dispatch(realoadClassesThunk())
+    dispatch(loadTasks())
+    dispatch(loadChartsThunk())
+    dispatch(loadSubjectBreakdown())
+    dispatch(loadHoursWeek())
+    dispatch(loadTaskHoursPerWeek())
+    dispatch(loadPersonalStats())
+    dispatch(loadAverageOfWeekDay())
+    dispatch(refreshUser())
+    return () => {
+      
+    }
+  }, [])
 
   return (
     <BrowserRouter>
@@ -38,4 +68,4 @@ const ConfigureApp = () => {
   )
 }
   
-export default ConfigureApp
+export default connect()(ConfigureApp)

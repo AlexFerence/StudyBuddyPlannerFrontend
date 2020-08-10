@@ -79,7 +79,7 @@ const Header = (props, { isRunning }) => {
                     <Nav className="mr-auto">
                     </Nav>
                     <Nav  inline="true">
-                        {props.isRunning ?
+                        {!props.isRunning ?
                             <OverlayTrigger
                                 placement="bottom"
                                 delay={{ show: 250, hide: 400 }}
