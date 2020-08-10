@@ -65,8 +65,6 @@ const TOUR_STEPS = [
 
 ];
 
-//import PerfectScrollbar from 'react-perfect-scrollbar'
-
 const hoursToTimeDisplay = (h) => {
   var hours = Math.floor(h)
   var decimalMins = (h - hours) * 60
@@ -211,11 +209,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
           </div>
 
         </Col>
-
-
       </Row>
-
-
 
       {dropdown1 &&
         <div>
@@ -306,12 +300,11 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
                     },
                     grid: {
                       right: '10%',
-
                     },
                     xAxis: {
                       type: 'category',
                       boundaryGap: false,
-                      data: ['Week 1', 'Week 2', 'Week 3', 'Week 4']
+                      data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
                     },
                     yAxis: {
                       type: 'value'

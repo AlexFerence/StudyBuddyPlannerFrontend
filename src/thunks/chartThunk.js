@@ -254,7 +254,6 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
             })
 
         })
-        console.log('hours per week asdfasdfasdfasdfasdf;laskdjf;lkasj')
         console.log(formattedWeekData)
         var hoursPerWeekSubjBeakdown = formattedWeekData
         dispatch(modify({ hoursPerWeekSubjBeakdown }))

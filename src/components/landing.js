@@ -214,14 +214,16 @@ const Landing = ({ history, profile }) => {
             </Col>
           </Row>
         </div>
+        <footer className="footerSection">
+          <Row style={{ height: '50%' }}>
+            <Col md={6} className="textCol">
+              <p className="textPara">© StudyBuddy</p>
+            </Col>
+          </Row>
+        </footer>
         </div>
-        
-        
       </div>
-      
-      
     </div>
-    
   )
 }
 const mapStateToProps = (state) => {
