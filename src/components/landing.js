@@ -4,6 +4,7 @@ import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstra
 import { connect } from 'react-redux'
 import laptop from '../assets/laptop.png'
 import laptop2 from '../assets/laptop2.png'
+import futureplans from '../assets/futureplans.png'
 import timer from '../assets/timer.png'
 //import pencils from '../assets/video.mp4'
 import ReactEcharts from 'echarts-for-react'
@@ -49,10 +50,9 @@ const Landing = ({ history, profile }) => {
       <div className="landingNav">
         <button id="brand" className="navButton">StudyBuddy</button>
         <div>
-          <a className="navButton" href="#features">About</a>
-          <a className="navButton" href="#about">Features</a>
+          <a className="navButton" href="#features">Features</a>
           <a className="navButton" href="#premium">Premium</a>
-          <a className="navButton" href="#premium">Future Plan</a>
+          <a className="navButton" href="#futureplan">Future Plan</a>
           <button className="navButtonSignUp"
             onClick={goToSignUp}
           >Sign Up</button>
@@ -69,7 +69,7 @@ const Landing = ({ history, profile }) => {
       <div className="overlay landingDisplay">
           <div className="center">
             <div className="promotion">Organize your classes and tasks.</div>
-            <div className="promotion">Real Time analytics and comparisons.</div>
+            <div className="promotion">Real time analytics and comparisons.</div>
             <div><button id="mainButton"
               className="navButtonSignUp"
               onClick={goToSignUp}>Sign Up</button></div>
@@ -78,27 +78,7 @@ const Landing = ({ history, profile }) => {
         </div>
 
       <div className='player-wrapper'>
-
-      <a id="features"></a>
-        <div className="rowSection">
-          <Row style={{ height: '100%' }}>
-            <Col md={6} className="textCol">
-              <div className="textInner">
-                <div className="textHeader">About Us</div>
-                <div className="textPara">    omiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí,
-                ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený.
-                Spopularizovaný bol v</div><div className="textPara">
-
-                  60-tych rokoch 20.storočia, vydaním hárkov Letraset, ktoré obsahovali
-                pasáže Loreorem Ipsum.</div>
-              </div>
-            </Col>
-            <Col className="imageCol" >
-              <img src={laptop} className="imageInner" />
-            </Col>
-          </Row>
-        </div>
-        <a id="about"></a>
+        <a id="features"></a>
         <div className="rowSection">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="imageCol">
@@ -107,9 +87,9 @@ const Landing = ({ history, profile }) => {
             <Col md={6} className="textCol">
               <div className="textInner">
                 <div className="textHeader">Features</div>
-                <div className="textPara">UniBuddy provides its users with all essenial
-                resources that a student needs to track their study habits. This includes Timers, stopwatches and 
-                time input fields all automatically correlated to the analytical graphs.
+                <div className="textPara">Study Buddy does more than just manage your tasks. This application allows you to track
+                when you study on all your tasks, and easily log a study session. Moreover, tasks can be tracked using a stopwatch, a timer, or
+                a quick add for your convenience. All of your time spent is tracked and analyzed, so that you can study better and more effectively.
                 </div><div className="textPara">
 
                   </div>
@@ -117,14 +97,14 @@ const Landing = ({ history, profile }) => {
             </Col>
           </Row>
         </div>
-        <a id="premium"></a>
         <div className="rowSection">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
               <div className="textInner">
                 <div className="textHeader">In-Depth Data Analysis.</div>
-                <div className="textPara">Study Buddy offers in depth analysis on all of your studies. Let us do the work for you. We will help you
-                track how you divide your time through the week, across all your subjects, and much more.</div>
+                <div className="textPara">Study Buddy offers in depth analysis on all of your studies. We will help you
+                track how you divide your time through the week, across all your subjects, and much more. Not only will we be able to track 
+                how you study best, we can also track how you stack up against other students in your subjects, faculty, and school.</div>
               </div>
             </Col>
             <Col md={6} className="imageCol">
@@ -160,6 +140,9 @@ const Landing = ({ history, profile }) => {
               </div>
             </Col>
           </Row>
+          </div>
+        <a id="premium"></a>
+        <div className="rowSection">
           <div className="rowSection">
             <Row style={{ height: '100%' }}>
               <Col md={6} className="imageCol">
@@ -187,12 +170,12 @@ const Landing = ({ history, profile }) => {
                         nameGap: 35
                       },
                       series: [{
-                        data: [4, 5, 3.5, 5.5, 2, 3, 6],
+                        data: [4, 5, 6, 7, 8, 11, 13],
                         type: 'line'
                       },
                       {
                         color: '#add8e6',
-                        data: [1, 4, 2, 3.5, 6, 4, 3],
+                        data: [3, 2, 4, 5, 6, 8, 9],
                         type: 'line'
                       }
                       ]
@@ -203,17 +186,36 @@ const Landing = ({ history, profile }) => {
               <Col md={6} className="textCol">
                 <div className="textInner">
                   <div className="textHeader">Compare your work to others.</div>
-                  <div className="textPara">omiešal ich, aby tak vytvoril vzorkovú knihu. Prežil nielen päť storočí,
-                  ale aj skok do elektronickej sadzby, a pritom zostal v podstate nezmenený.
-                Spopularizovaný bol v</div><div className="textPara">
-
-                    60-tych rokoch 20.storočia, vydaním hárkov Letraset, ktoré obsahovali
-                pasáže Loreorem Ipsum.</div>
+                  <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track. 
+                  With our comparative premium features, you can see how you are studying versus the average for your classes. Your hours through the days and weeks will
+                  be tracked, and compared to others in the same classes, faculty, and school. 
+                  </div>
                 </div>
               </Col>
             </Row>
           </div>
+          <a id="futureplan"></a>
+        <div className="rowSection">
+          <Row style={{ height: '100%' }}>
+            <Col md={6} className="textCol">
+              <div className="textInner">
+                <div className="textHeader">Future Plans</div>
+                <div className="textPara">Study Buddy is working towards building data to help support students, and their time management.
+                Over time, we hope to build data that will help students find out how many hours they need to get a certain mark, before they 
+                even begin the course. Over years of consistent data, we can find trends in marks achieved by students for each class given
+                a certain amount of hours. This, along with much more, is what we hope to bring to you with Study Buddy.
+                </div><div className="textPara">
+
+                  </div>
+              </div>
+            </Col>
+            <Col md={6} className="imageCol">
+            <img src={futureplans} style={{width: '50%'}} />
+            </Col>
+          </Row>
         </div>
+        </div>
+        
       </div>
     </div>
   )
