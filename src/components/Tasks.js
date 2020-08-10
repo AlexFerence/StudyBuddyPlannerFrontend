@@ -13,13 +13,13 @@ import { modifyProfile } from '../actions/profileActions'
 const TOUR_STEPS = [
     {
         target: ".addTaskButton",
-        content: 'Add your tasks here',
+        content: 'Here, you can add all of your tasks.',
         disableBeacon: true,
     },
     {
         target: ".selectClass",
         content:
-          "Filter your tasks by due date or subject",
+          "You can filter by due date and subject. Or, ",
         locale: {
             last: 'Next'
         }
@@ -27,7 +27,7 @@ const TOUR_STEPS = [
     {
         target: ".completedLabel",
         content:
-          "filter by completed and non completed tasks",
+          "filter by completed and non completed tasks.",
         locale: {
             last: 'Next'
         }
@@ -35,7 +35,7 @@ const TOUR_STEPS = [
     {
         target: "#dashboard",
         content:
-          "Next lets explore the dashboard",
+          "Next, let's explore the dashboard...",
           locale: {
             last: 'Next'
           },
