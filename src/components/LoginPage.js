@@ -5,8 +5,8 @@ import { loginThunk} from '../thunks/profileThunk'
 
 const LoginPage = ({ dispatch, history, profile }) => {
     useEffect(() => {
-        setEmail('akaufman2000@gmail.com')
-        setPassword('securePassword')
+        // setEmail('akaufman2000@gmail.com')
+        // setPassword('securePassword')
         if (profile.email) {
             history.push('dashboard')
         }

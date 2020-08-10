@@ -94,15 +94,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
   var [whichWeek, setWhichWeek] = useState(moment())
 
   useEffect(() => {
-    dispatch(realoadClassesThunk())
-    dispatch(loadTasks())
-    dispatch(loadChartsThunk())
-    dispatch(loadSubjectBreakdown())
-    dispatch(loadHoursWeek())
-    dispatch(loadTaskHoursPerWeek())
-    dispatch(loadPersonalStats())
-    dispatch(loadAverageOfWeekDay())
-    dispatch(refreshUser())
+    
 
   }, [])
 
