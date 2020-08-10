@@ -28,7 +28,8 @@ const TOUR_STEPS = [
           "Next let's head over to tasks...",
         locale: {
             last: 'Next'
-        }
+        },
+        disableOverlay: true
       },
       
 
