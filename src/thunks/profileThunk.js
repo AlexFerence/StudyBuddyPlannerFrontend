@@ -105,7 +105,7 @@ export const refreshUser = () => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.put(url + '/api/userprofiles/' + id,
+        const res = await axios.get(url + '/api/userprofiles/' + id,
             {
             headers: {
                 'Authorization': 'bearer ' + token,
@@ -120,6 +120,87 @@ export const refreshUser = () => async (dispatch, getState) => {
             ...res.data
         }))
 
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const turnOffTaskTour = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.put(url + '/api/UserProfiles/' + id, {
+                ...profile,
+                taskTour: 1
+            },
+            {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log(res.data)
+        
+        dispatch(modifyProfile({
+            ...res.data
+        }))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const turnOffSubjectTour = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.put(url + '/api/UserProfiles/' + id, {
+                ...profile,
+                subjectTour: 1
+            },
+            {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log(res.data)
+        
+        dispatch(modifyProfile({
+            ...res.data
+        }))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const turnOffDashboardTour = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.put(url + '/api/UserProfiles/' + id, {
+                ...profile,
+                dashboardTour: 1
+            },
+            {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log(res.data)
+        
+        dispatch(modifyProfile({
+            ...res.data
+        }))
     } catch (e) {
         console.log(e)
     }

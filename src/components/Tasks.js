@@ -9,12 +9,14 @@ import { loadTasks } from '../thunks/taskThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
+import { turnOffTaskTour } from '../thunks/profileThunk'
 
 const TOUR_STEPS = [
     {
         target: ".addTaskButton",
         content: 'Add your tasks here',
         disableBeacon: true,
+        disableOverlay: true
     },
     {
         target: ".selectClass",
@@ -86,7 +88,12 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
 
           console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
           history.push("/dashboard")
+          //locally turn off the tour
           dispatch(modifyProfile({ taskTour: false }))
+          //send back to server to turn off tour
+          dispatch(turnOffTaskTour())
+        
+
         }
     
         console.groupCollapsed(type);
@@ -100,7 +107,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
             <Joyride steps={TOUR_STEPS} 
             callback={handleJoyrideCallback}
             continuous={true} showSkipButton={false}
-            run={profile.taskTour}
+            run={profile.taskTour === 0}
             />
             <Col className="scroller">
                 <TaskList

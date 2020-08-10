@@ -168,7 +168,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                         return (
                                             <tr key={session.id}>
                                                 <td>{session.minutes}</td>
-                                                <td className="">{moment(session.dateCompleted).format("MMM D")}</td>
+                                                <td>{moment(session.dateCompleted).format("MMM D")}</td>
                                             </tr>
                                         )
                                     })

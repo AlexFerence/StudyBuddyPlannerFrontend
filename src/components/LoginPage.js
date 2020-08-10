@@ -51,8 +51,6 @@ const LoginPage = ({ dispatch, history, profile }) => {
     }
     
     return (
-      
-        
         <div className="container authContainer">
             <div className="preHeader">Log In</div>
             <form onSubmit={onSubmit}> 

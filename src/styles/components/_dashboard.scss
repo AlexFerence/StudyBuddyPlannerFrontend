@@ -23,12 +23,14 @@
 }
 
 .toggleButton {
+  margin: 5px;
   width: 100%;
   padding: 10px 20px;
-  border: 1px solid $grey;
-  background-color: #EFEFEF;
+  //border: 1px solid $grey;
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
+  color: white;
 
 }
 .toggleButton:focus {
@@ -151,4 +153,10 @@
   height: 100%;
   width: 100%;
   min-height: 300px;
+}
+
+.dashRow {
+  margin: 20px 0px;
+  padding: 20px 0px 15px 0px;
+  border-top: 1px solid $grey;
 }
