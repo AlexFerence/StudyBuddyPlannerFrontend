@@ -200,7 +200,7 @@ const Landing = ({ history, profile }) => {
             <Col md={6} className="textCol">
               <div className="textInner">
                 <div className="textHeader">Future Plans</div>
-                <div className="textPara">Study Buddy is working towards building data to help support students, and their time management.
+                <div className="textPara">Study Buddy is building data to help support students, and their time management.
                 Over time, we hope to build data that will help students find out how many hours they need to get a certain mark, before they 
                 even begin the course. Over years of consistent data, we can find trends in marks achieved by students for each class given
                 a certain amount of hours. This, along with much more, is what we hope to bring to you with Study Buddy.
