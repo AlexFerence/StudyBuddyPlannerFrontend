@@ -38,6 +38,8 @@
 
 .tasks .scroller .task-button .subjTitle {
     color: $dark-grey;
+    padding-bottom: 8px;
+    font-size: large;
     //width: 100%;
 }
 
@@ -57,7 +59,7 @@
     align-items: center;
 }
 .due {
-    font-size: 12px;
+    font-size: 15px;
     color: $grey-text;
 }
 
@@ -165,3 +167,8 @@
     background: $dark-grey;
     color: white;
   }
+
+.idTitle {
+    font-size: 25px;
+    color: white;
+}

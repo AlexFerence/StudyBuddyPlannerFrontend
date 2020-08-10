@@ -117,7 +117,9 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                             onClick={() => taskClicked(t)}>
                             <div className="top-bar">
                                 <div className="subjTitle">{t.title}</div>
-                                <div className="due">{returnParsedMoment(t.dueDate)}</div>
+                                <div className="due">
+                                {returnParsedMoment(t.dueDate)}
+                                </div>
                             </div>
                             <div className="bottom-bar">
                                 <div className="subjDesc">{

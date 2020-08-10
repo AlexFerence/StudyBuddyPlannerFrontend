@@ -78,7 +78,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                 id="your_unique_id" // PropTypes.string.isRequired,
                 numberOfMonths={1}
                 hideKeyboardShortcutsPanel={true}
-                isOutsideRange={() => false}
+                isOutsideRange={day => (moment().diff(day) < 0)}
             />
             </Row>
             
