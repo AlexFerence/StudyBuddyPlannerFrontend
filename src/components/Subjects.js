@@ -15,25 +15,23 @@ import { loadSubjectBreakdown } from '../thunks/chartThunk'
 import ReactEcharts from 'echarts-for-react'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
-import { turnOffSubjectTour } from '../thunks/profileThunk'
 
 const TOUR_STEPS = [
     {
         target: "#addButton",
-        content: 'First, add your subjects here',
+        content: 'First, add all of your subjects for this semester.',
         disableBeacon: true,
-        disableOverlay: false,
     },
     {
         target: "#tasks",
         content:
-          "Next lets head over to tasks",
+          "Next let's head over to tasks...",
         locale: {
             last: 'Next'
-        },
-        disableOverlay: true
+        }
       },
       
+
   ];
 
 
@@ -120,16 +118,13 @@ const SubjectsPage = (props) => {
           // Update state to advance the tour
           setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
         }
-        else if ([STATUS.FINISHED, STATUS.PAUSED, STATUS.SKIPPED].includes(status)) {
+        else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
           // Need to set our running state to false, so we can restart if we click start again.
           setRun(false)
 
           console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
           props.history.push("/tasks")
-          //turn off tour locally
           props.dispatch(modifyProfile({ subjTour: false }))
-          //turn off in server
-          props.dispatch(turnOffSubjectTour())
         }
     
         console.groupCollapsed(type);
@@ -142,7 +137,7 @@ const SubjectsPage = (props) => {
             <Joyride steps={TOUR_STEPS} 
             continuous={true} showSkipButton={true}
             callback={handleJoyrideCallback}
-            run={props.profile.subjectTour === 0}
+            run={!(props.profile.subjTour !== true)}
             />
             
             <SubjectModal isOpen={openModal} closeModal={closeModal} 
@@ -180,7 +175,7 @@ const SubjectsPage = (props) => {
                     {classSelection.id &&
                         <div className="topBar">
                             <div className="left" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
-                                {!editMode && <div className="idTitle">{classSelection.name} {classSelection.classCode}</div>}
+                                {!editMode && <h4>{classSelection.name} {classSelection.classCode}</h4>}
                                 {editMode && <h4>EDIT</h4>}
                             </div>
                             <div className="right" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }}>
