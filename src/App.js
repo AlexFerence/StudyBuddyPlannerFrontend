@@ -3,9 +3,6 @@ import ConfigureApp from './configureApp';
 
 
 const App = () => {
-
-  
-
   return (
     <div >
       

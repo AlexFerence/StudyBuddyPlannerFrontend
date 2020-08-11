@@ -34,9 +34,9 @@ const Landing = ({ history, profile }) => {
   var [run, setRun] = useState(false)
   
   useEffect(() => {
-    if (profile.email) {
+    if (profile.email && profile.isAuth) {
       history.push('/dashboard')
-  }
+    }
   }, [])
 
   const goToSignUp = () => {

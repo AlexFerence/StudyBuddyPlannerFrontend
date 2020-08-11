@@ -7,9 +7,9 @@ const LoginPage = ({ dispatch, history, profile }) => {
     useEffect(() => {
         // setEmail('akaufman2000@gmail.com')
         // setPassword('securePassword')
-        if (profile.email) {
-            history.push('dashboard')
-        }
+        if (profile.email && profile.isAuth) {
+            history.push('/dashboard')
+          }
     }, [])
 
     const [email, setEmail] = useState('')
@@ -38,7 +38,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
             dispatch(loginThunk({ email, password })).then((status) => {
                 console.log(status)
                 if (status === 200) {
-                    history.push("/dashboard")
+                    history.push("/subjects")
                 }
                 else {
                     setAuthError('invalid email or password')

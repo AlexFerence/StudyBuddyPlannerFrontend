@@ -22,9 +22,9 @@ const FormPage = ({ history, dispatch, profile }) => {
 
   useEffect(() => {
     dispatch(loadSchools())
-    if (profile.email) {
-      history.push('dashboard')
-  }
+    if (profile.email && profile.isAuth) {
+      history.push('/dashboard')
+    }
   }, [])
 
   const onSubmit = async (e) => {
