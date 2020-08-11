@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { FaTachometerAlt, FaCheckSquare, FaList, FaCog } from 'react-icons/fa'
+import { FaTachometerAlt, FaCheckSquare, FaList, FaCog, FaUsers } from 'react-icons/fa'
 import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
@@ -29,6 +29,13 @@ const Header = (props, { isRunning }) => {
         return (
             <Tooltip id="button-tooltip" {...props}>
                 Dashboard
+            </Tooltip>
+        );
+    }
+    const renderTooltipCompare = (props, display) => {
+        return (
+            <Tooltip id="button-tooltip" {...props}>
+                Compare
             </Tooltip>
         );
     }
@@ -87,6 +94,31 @@ const Header = (props, { isRunning }) => {
                             >   
                             
                             <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
+                            </OverlayTrigger>
+
+                            :
+                            <div className ="navbarIcon"
+                            onClick={() => {
+                                console.log('onSwitch')
+                                swal({
+                                    title: "Can't switch tabs during study session",
+                                    icon: "info",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                
+                            }}
+                            id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
+                        </div>
+                        }
+                        {!props.isRunning ?
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltipCompare}
+                            >   
+                            
+                            <NavLink id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
                             </OverlayTrigger>
 
                             :

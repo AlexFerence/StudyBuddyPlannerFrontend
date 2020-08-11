@@ -50,6 +50,7 @@ const SubjectsPage = (props) => {
     var [run, setRun] = useState(true);
 
     useEffect(() => {
+        setNewChanges({ ...newChanges, color: { hex: "#2b2b2b" }})
         const getClasses = async () => {
             try {
                 const res = await axios.post(url + '/api/subjects/list',
@@ -107,7 +108,7 @@ const SubjectsPage = (props) => {
             Professor: newChanges.professor.trim(),
             Credits: newChanges.credits,
             UserId: props.id,
-            color: newChanges.color,
+            color: newChanges.color ,
         }, classSelection))
         setClassSelection(newChanges)
         setEditMode(false)

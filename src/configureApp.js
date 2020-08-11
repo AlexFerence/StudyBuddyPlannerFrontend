@@ -10,6 +10,7 @@ import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
+import Compare from './components/Compare'
 
 import {
   loadChartsThunk, loadSubjectBreakdown,
@@ -44,9 +45,7 @@ const ConfigureApp = ({dispatch}) => {
     dispatch(loadPersonalStats())
     dispatch(loadAverageOfWeekDay())
     dispatch(refreshUser())
-    return () => {
-      
-    }
+    
   }, [])
 
   return (
@@ -58,6 +57,7 @@ const ConfigureApp = ({dispatch}) => {
         <Route path='/signUpSecondary' component={SignUpSecondary} />
         <Route path='/login' exact component={LoginPage} />
         <Route path='/dashboard' component={Dashboard} />
+        <Route path='/compare' component={Compare} />
         <Route path='/tasks' component={Tasks} />
         <Route path='/settings' component={Settings} />
         <Route path='/subjects' component={SubjectsPage} />

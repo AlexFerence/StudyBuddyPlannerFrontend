@@ -355,3 +355,48 @@ export const loadUACurrentUsers = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+
+export const comparativePersonalToAverage = (sid) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects,  } = state
+    const { id, token, subjId, schoolId } = profile
+    try {
+        const res = await axios.post(url + "/api/ComparativeCharts/listhourspermonthcomparative",
+        {
+            userId: id,
+            subjectId: sid,
+            schoolId,
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var formattedWeekData = []
+        var comparativePersonalToAverageColors = []
+
+        res.data.forEach((subj) => {
+            var title = subj.title
+            var individlList = []
+            //hoursPerWeekColors.push(subj.color)
+            subj.responseItems.forEach((item) => {
+                individlList.push(item.value1)
+            })
+            formattedWeekData.push({
+                name: title,
+                type: 'line',
+                color: subj.color,
+                data: individlList
+            })
+
+        })
+        console.log(formattedWeekData)
+        var comparativePersonalToAverageData = formattedWeekData
+        dispatch(modify({ comparativePersonalToAverageData }))
+        dispatch(modify({ comparativePersonalToAverageColors }))
+    } catch(e) {
+        console.log(e)
+    }
+}

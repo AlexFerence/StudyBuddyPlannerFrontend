@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
+//
 
 
 
@@ -43,6 +44,8 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
             await dispatch(loadTasks())
             
             dispatch(setCurrentTaskById(currentTask.id))
+
+            //PUT SWAL HERE
             
             //dispatch(getSessionsThunk(currentTask.id))
 

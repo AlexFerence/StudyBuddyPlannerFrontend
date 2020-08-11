@@ -3,7 +3,7 @@ import axios from 'axios'
 import url from '../environment/url'
 import { addSubject, fillSubjects } from '../actions/subjectActions'
 
-export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits, color }) => async (dispatch, getState) => {
+export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits, color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects, semester } = state
     const { id, token } = profile

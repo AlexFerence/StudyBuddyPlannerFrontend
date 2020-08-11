@@ -92,7 +92,15 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
   var [whichWeek, setWhichWeek] = useState(moment())
 
   useEffect(() => {
-    
+    dispatch(realoadClassesThunk())
+    dispatch(loadTasks())
+    dispatch(loadChartsThunk())
+    dispatch(loadSubjectBreakdown())
+    dispatch(loadHoursWeek())
+    dispatch(loadTaskHoursPerWeek())
+    dispatch(loadPersonalStats())
+    dispatch(loadAverageOfWeekDay())
+    dispatch(refreshUser())
 
   }, [])
 
@@ -126,8 +134,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
     console.log(data); //eslint-disable-line no-console
     console.groupEnd();
   };
-
-
+  
   return (
     <div className="dashboard">
       <Joyride steps={TOUR_STEPS}
