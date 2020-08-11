@@ -16,7 +16,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
                 "Professor": professor.trim(),
                 "Credits": credits,
                 "UserId": id,
-                "color": color.hex
+                "color": color.hex || "#656565"
             },
             {
                 headers: {
