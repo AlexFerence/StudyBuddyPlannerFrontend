@@ -71,19 +71,19 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                         duration={2.75}
                                     />
                                 </div>
-                                <div className="subCurBold">Current users in your faculty at your university</div>
+                                <div className="subCurBold">Active Users in Your Faculty + University</div>
                             </div>
                         </div>
                         <div className="triple-center">
                             <div>
                                 <div className="full-width curBold">{charts.schoolCurUsers}</div>
-                                <div className="subCurBold">Current Active user at your university</div>
+                                <div className="subCurBold">Active Users in Your University</div>
                             </div>
                         </div>
                         <div className="triple-center">
                             <div>
                                 <div className="full-width curBold">{charts.worldCurUsers}</div>
-                                <div className="subCurBold">Current Active users on study buddy</div>
+                                <div className="subCurBold">Active Users WorldWide</div>
                             </div>
                         </div>
                     </div>
