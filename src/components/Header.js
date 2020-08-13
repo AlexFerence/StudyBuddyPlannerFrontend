@@ -7,23 +7,25 @@ import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
 import JoyRide from 'react-joyride';
+import { useBeforeunload } from 'react-beforeunload';
 
 const TOUR_STEPS = [
     {
-      target: "#my-other-step",
-      disableBeacon: true,
-      content:
-        "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
+        target: "#my-other-step",
+        disableBeacon: true,
+        content:
+            "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
     },
     {
-      target: "#features",
-      content:
-        "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
+        target: "#features",
+        content:
+            "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
     }
-  ];
+];
 
 
 const Header = (props, { isRunning }) => {
+
 
     const renderTooltipDash = (props, display) => {
         return (
@@ -79,167 +81,167 @@ const Header = (props, { isRunning }) => {
     if (props.profile.isAuth) {
         return (
             <div>
-            <Navbar fixed="top" expand="true">
-                <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
-                {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
-                <Navbar id="">
-                    <Nav className="mr-auto">
-                    </Nav>
-                    <Nav  inline="true">
-                        {!props.isRunning ?
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipDash}
-                            >   
-                            
-                            <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
-                            </OverlayTrigger>
+                <Navbar fixed="top" expand="true">
+                    <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
+                    {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
+                    <Navbar id="">
+                        <Nav className="mr-auto">
+                        </Nav>
+                        <Nav inline="true">
+                            {!props.isRunning ?
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipDash}
+                                >
 
-                            :
-                            <div className ="navbarIcon"
-                            onClick={() => {
-                                console.log('onSwitch')
-                                swal({
-                                    title: "Can't switch tabs during study session",
-                                    icon: "info",
-                                    buttons: true,
-                                    dangerMode: true,
-                                })
-                                
-                            }}
-                            id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
-                        </div>
-                        }
-                        {!props.isRunning ?
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipCompare}
-                            >   
-                            
-                            <NavLink id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
-                            </OverlayTrigger>
+                                    <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
+                                </OverlayTrigger>
 
-                            :
-                            <div className ="navbarIcon"
-                            onClick={() => {
-                                console.log('onSwitch')
-                                swal({
-                                    title: "Can't switch tabs during study session",
-                                    icon: "info",
-                                    buttons: true,
-                                    dangerMode: true,
-                                })
-                                
-                            }}
-                            id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
-                        </div>
-                        }
-                        {!props.isRunning ?
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipTask}
-                            >
-                                
-                                 <NavLink id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
-                                </NavLink>
-                                
-                            </OverlayTrigger>:
+                                :
+                                <div className="navbarIcon"
+                                    onClick={() => {
+                                        console.log('onSwitch')
+                                        swal({
+                                            title: "Can't switch tabs during study session",
+                                            icon: "info",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
 
-                            <div className ="navbarIcon"
-                                onClick={() => {
-                                    console.log('onSwitch')
-                                    swal({
-                                        title: "Can't switch tabs during study session",
-                                        icon: "info",
-                                        buttons: true,
-                                        dangerMode: true,
-                                    })
-                                    
-                                }}
-                                id="tasks" style={{ padding: 5 }} ><FaCheckSquare />
-                            </div>
-                        }
-                        {!props.isRunning ?
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipSubj}
-                            >
-                            <NavLink id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
-                            </NavLink>
-                            </OverlayTrigger>
-                            :
-                            <div className ="navbarIcon"
-                            onClick={() => {
-                                console.log('onSwitch')
-                                swal({
-                                    title: "Can't switch tabs during study session",
-                                    icon: "info",
-                                    buttons: true,
-                                    dangerMode: true,
-                                })
-                                
-                            }}
-                            id="tasks" style={{ padding: 5 }} ><FaList />
-                        </div>
+                                    }}
+                                    id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
+                                </div>
+                            }
+                            {!props.isRunning ?
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipCompare}
+                                >
 
-                        }
-                        {!props.isRunning ?
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipSet}
-                            >
-                            <NavLink id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
-                            </NavLink>
-                            </OverlayTrigger>
-                            :
-                            <div className ="navbarIcon"
-                            onClick={() => {
-                                console.log('onSwitch')
-                                swal({
-                                    title: "Can't switch tabs during study session",
-                                    icon: "info",
-                                    buttons: true,
-                                    dangerMode: true,
-                                })
-                                
-                            }}
-                            id="tasks" style={{ padding: 5 }} ><FaCog />
-                            </div>
+                                    <NavLink id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
+                                </OverlayTrigger>
 
-                        }
-                    </Nav>
+                                :
+                                <div className="navbarIcon"
+                                    onClick={() => {
+                                        console.log('onSwitch')
+                                        swal({
+                                            title: "Can't switch tabs during study session",
+                                            icon: "info",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
+
+                                    }}
+                                    id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
+                                </div>
+                            }
+                            {!props.isRunning ?
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipTask}
+                                >
+
+                                    <NavLink id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                    </NavLink>
+
+                                </OverlayTrigger> :
+
+                                <div className="navbarIcon"
+                                    onClick={() => {
+                                        console.log('onSwitch')
+                                        swal({
+                                            title: "Can't switch tabs during study session",
+                                            icon: "info",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
+
+                                    }}
+                                    id="tasks" style={{ padding: 5 }} ><FaCheckSquare />
+                                </div>
+                            }
+                            {!props.isRunning ?
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipSubj}
+                                >
+                                    <NavLink id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
+                                    </NavLink>
+                                </OverlayTrigger>
+                                :
+                                <div className="navbarIcon"
+                                    onClick={() => {
+                                        console.log('onSwitch')
+                                        swal({
+                                            title: "Can't switch tabs during study session",
+                                            icon: "info",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
+
+                                    }}
+                                    id="tasks" style={{ padding: 5 }} ><FaList />
+                                </div>
+
+                            }
+                            {!props.isRunning ?
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipSet}
+                                >
+                                    <NavLink id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
+                                    </NavLink>
+                                </OverlayTrigger>
+                                :
+                                <div className="navbarIcon"
+                                    onClick={() => {
+                                        console.log('onSwitch')
+                                        swal({
+                                            title: "Can't switch tabs during study session",
+                                            icon: "info",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
+
+                                    }}
+                                    id="tasks" style={{ padding: 5 }} ><FaCog />
+                                </div>
+
+                            }
+                        </Nav>
+                    </Navbar>
                 </Navbar>
-            </Navbar>
-            <Navbar expand="true">
-                <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
-                {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
-                <Navbar id="">
-                    <Nav className="mr-auto">
-                    </Nav>
-                    <Nav  inline="true">
-                        {props.isAuth &&
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltipTask}
-                            >
-                                <NavLink style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
-                                </NavLink>
-                            </OverlayTrigger>
-                        }
-                    </Nav>
+                <Navbar expand="true">
+                    <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
+                    {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
+                    <Navbar id="">
+                        <Nav className="mr-auto">
+                        </Nav>
+                        <Nav inline="true">
+                            {props.isAuth &&
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipTask}
+                                >
+                                    <NavLink style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                    </NavLink>
+                                </OverlayTrigger>
+                            }
+                        </Nav>
+                    </Navbar>
                 </Navbar>
-            </Navbar>
             </div>
         )
     }
     else {
-        return(<div></div>)
+        return (<div></div>)
     }
 }
 const mapStateToProps = (state) => {

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap'
 import ReactEcharts from 'echarts-for-react';
 import { connect } from 'react-redux'
-import { loadMarksScatter, comparativePersonalToAverage } from '../thunks/chartThunk'
+import { loadMarksScatter, comparativePersonalToAverage } from '../thunks/chartThunk';
+import { userActivityCount } from '../thunks/userActivityThunk';
 import Select from 'react-select'
+import CountUp from 'react-countup';
 
 const hoursToTimeDisplay = (h) => {
     var hours = Math.floor(h)
@@ -13,7 +15,6 @@ const hoursToTimeDisplay = (h) => {
         returnMins = "0" + returnMins
     }
     return (hours + ":" + returnMins)
-
 }
 
 const reducer = (acc, item) => {
@@ -30,10 +31,11 @@ const Compare = ({ charts, dispatch, subjects }) => {
 
     useEffect(() => {
         dispatch(loadMarksScatter())
+        dispatch(userActivityCount())
 
         if (subjects.length === 0) {
             setEmptySubjError(true);
-            
+
         }
         else {
             dispatch(comparativePersonalToAverage(subjects[0].id))
@@ -45,7 +47,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
     const makeSubjects = (subjects) => {
         var formattedSubjects = []
         subjects.forEach((subject) => {
-            formattedSubjects.push({ value: subject, label: subject.name + " " + subject.classCode})
+            formattedSubjects.push({ value: subject, label: subject.name + " " + subject.classCode })
         })
         return formattedSubjects
     }
@@ -59,7 +61,24 @@ const Compare = ({ charts, dispatch, subjects }) => {
         <div>
             <Row>
                 <Col>
-                    
+                    <div className="flex-triple-horizontal">
+                        <div className="triple-center">
+                            <div className="full-width">
+                                <CountUp end={100 + charts.schoolFacultyCurUsers}
+                                    duration={2.75}
+                                />
+                            </div>
+                            <div>Current Active user</div>
+                        </div>
+                        <div className="triple-center">
+                            <div className="full-width">{charts.schoolCurUsers}</div>
+                            <div>Current Active user</div>
+                        </div>
+                        <div className="triple-center">
+                            <div className="full-width">{charts.worldCurUsers}</div>
+                            <div>Current Active user</div>
+                        </div>
+                    </div>
                 </Col>
                 <Col>
 
@@ -69,60 +88,60 @@ const Compare = ({ charts, dispatch, subjects }) => {
           <div className="subNoData">Create subjects to view subject breakdown</div>
                         </div>
                     </div> :
-                    <div>
-                        <Select
-                            className="timerSelect"
-                            value={localSubject}
-                            onChange={subjectChanged}
-                            placeholder="Subject..."
-                            options={localSubjects}
-                        />
-                        <ReactEcharts
-                            option={{
-                                textStyle: {
-                                    //fontFamily: 'Helvetica Neue',
-                                    //color: 'blue'
-                                },
-                                title: {
-                                    text: "Compare Class Hours to Average",
-                                    x: 'center',
-                                    top: 20,
+                        <div>
+                            <Select
+                                className="timerSelect"
+                                value={localSubject}
+                                onChange={subjectChanged}
+                                placeholder="Subject..."
+                                options={localSubjects}
+                            />
+                            <ReactEcharts
+                                option={{
                                     textStyle: {
-                                        fontFamily: 'Helvetica',
-                                        fontWeight: 100
-                                    }
-                                },
+                                        //fontFamily: 'Helvetica Neue',
+                                        //color: 'blue'
+                                    },
+                                    title: {
+                                        text: "Compare Class Hours to Average",
+                                        x: 'center',
+                                        top: 20,
+                                        textStyle: {
+                                            fontFamily: 'Helvetica',
+                                            fontWeight: 100
+                                        }
+                                    },
 
-                                tooltip: {
-                                    trigger: 'axis',
-                                    //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
-                                    formatter: function (params) {
-                                        var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
-                                        let rez = '<p>' + params[0].axisValue + '</p>';
-                                        //console.log(params); //quite useful for debug
-                                        params.forEach(item => {
-                                            //console.log(item); //quite useful for debug
-                                            var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
-                                            rez += xx;
-                                        });
+                                    tooltip: {
+                                        trigger: 'axis',
+                                        //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
+                                        formatter: function (params) {
+                                            var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+                                            let rez = '<p>' + params[0].axisValue + '</p>';
+                                            //console.log(params); //quite useful for debug
+                                            params.forEach(item => {
+                                                //console.log(item); //quite useful for debug
+                                                var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
+                                                rez += xx;
+                                            });
 
-                                        return rez;
-                                    }
-                                },
-                                grid: {
-                                    right: '10%',
-                                },
-                                xAxis: {
-                                    type: 'category',
-                                    boundaryGap: false,
-                                    data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
-                                },
-                                yAxis: {
-                                    type: 'value'
-                                },
-                                series: charts.comparativePersonalToAverageData
-                            }}
-                        />
+                                            return rez;
+                                        }
+                                    },
+                                    grid: {
+                                        right: '10%',
+                                    },
+                                    xAxis: {
+                                        type: 'category',
+                                        boundaryGap: false,
+                                        data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
+                                    },
+                                    yAxis: {
+                                        type: 'value'
+                                    },
+                                    series: charts.comparativePersonalToAverageData
+                                }}
+                            />
                         </div>
                     }
 
@@ -144,7 +163,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
                             tooltip: {
                             },
                             xAxis: {
-                                name : "Hours",
+                                name: "Hours",
                                 nameLocation: 'middle',
                                 nameGap: 35
 
@@ -153,7 +172,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
 
                             },
                             series: [{
-                                symbolSize : 10,
+                                symbolSize: 10,
                                 data: charts.scatterData,
                                 type: 'scatter'
                             }]

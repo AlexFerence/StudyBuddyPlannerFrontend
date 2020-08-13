@@ -1,16 +1,21 @@
 import React from 'react';
 import ConfigureApp from './configureApp';
+import { Beforeunload } from 'react-beforeunload';
+import { connect } from 'react-redux'
+import { runningOffThunk } from './thunks/userActivityThunk'
 
-
-const App = () => {
+const App = ({ dispatch }) => {
   return (
     <div >
-      
-      <ConfigureApp />
+      <Beforeunload onBeforeunload={() => {
+        dispatch(runningOffThunk())
+      }}>
+        <ConfigureApp />
+      </Beforeunload>
     </div>
   )
 }
-  
-export default App
+
+export default connect()(App)
 
 
