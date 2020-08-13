@@ -203,7 +203,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
                   axisLabel: {
                     formatter: '{value}'
                   },
-                  name: 'hours',
+                  name: 'Hours',
                   nameLocation: 'middle',
                   nameGap: 35
                 },
@@ -280,7 +280,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
                       //color: 'blue'
                     },
                     title: {
-                      text: "Minutes Per Week Per Subject",
+                      text: "Hours Per Week Per Subject",
                       x: 'center',
                       top: 20,
                       textStyle: {
@@ -316,7 +316,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
                     yAxis: {
                       type: 'value'
                     },
-                    series: charts.hoursPerWeekSubjBeakdown
+                    series: charts.hoursPerWeekSubjBeakdown 
                   }}
                 />
               </div>

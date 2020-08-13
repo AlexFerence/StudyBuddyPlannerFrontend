@@ -142,15 +142,18 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                 },
                             },
                             tooltip: {
-
                             },
                             xAxis: {
+                                name : "Hours",
+                                nameLocation: 'middle',
+                                nameGap: 35
 
                             },
                             yAxis: {
 
                             },
                             series: [{
+                                symbolSize : 10,
                                 data: charts.scatterData,
                                 type: 'scatter'
                             }]
