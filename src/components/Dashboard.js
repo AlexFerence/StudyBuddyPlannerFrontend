@@ -134,7 +134,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
     console.log(data); //eslint-disable-line no-console
     console.groupEnd();
   };
-  
+
   return (
     <div className="dashboard">
       <Joyride steps={TOUR_STEPS}
@@ -316,7 +316,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
                     yAxis: {
                       type: 'value'
                     },
-                    series: charts.hoursPerWeekSubjBeakdown 
+                    series: charts.hoursPerWeekSubjBeakdown
                   }}
                 />
               </div>
@@ -379,7 +379,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
                 <div>
                   No Data
                   <div className="subNoData">Create subjects to view subject breakdown</div>
-          </div>
+                </div>
               </div> : <ReactEcharts
                   option={{
 
