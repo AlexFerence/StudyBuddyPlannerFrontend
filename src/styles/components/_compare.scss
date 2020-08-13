@@ -7,9 +7,22 @@
 
 .triple-center {
  display: flex;
-
  align-items: center;
  text-align: center;
  width: 100%;
  height: 100%;
+ padding: 10px;
+}
+
+.curBold {
+ font-size: 40px;
+}
+
+.subCurBold {
+ font-size: 10px;
+ color: $grey;
+}
+
+.compare {
+ background-color: $light-grey;
 }

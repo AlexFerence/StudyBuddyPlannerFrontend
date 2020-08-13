@@ -58,34 +58,53 @@ const Compare = ({ charts, dispatch, subjects }) => {
     }
 
     return (
-        <div>
-            <Row>
+        <div className="compare">
+            <Row className="">
                 <Col>
                     <div className="flex-triple-horizontal">
-                        <div className="triple-center">
+                        <div className="triple-center"
+                            style={{ paddingTop: '60px', paddingBottom: '60px' }}
+                        >
                             <div className="full-width">
-                                <CountUp end={100 + charts.schoolFacultyCurUsers}
-                                    duration={2.75}
-                                />
+                                <div className="curBold">
+                                    <CountUp end={charts.schoolFacultyCurUsers}
+                                        duration={2.75}
+                                    />
+                                </div>
+                                <div className="subCurBold">Current users in your faculty at your university</div>
                             </div>
-                            <div>Current Active user</div>
                         </div>
                         <div className="triple-center">
-                            <div className="full-width">{charts.schoolCurUsers}</div>
-                            <div>Current Active user</div>
+                            <div>
+                                <div className="full-width curBold">{charts.schoolCurUsers}</div>
+                                <div className="subCurBold">Current Active user at your university</div>
+                            </div>
                         </div>
                         <div className="triple-center">
-                            <div className="full-width">{charts.worldCurUsers}</div>
-                            <div>Current Active user</div>
+                            <div>
+                                <div className="full-width curBold">{charts.worldCurUsers}</div>
+                                <div className="subCurBold">Current Active users on study buddy</div>
+                            </div>
                         </div>
                     </div>
                 </Col>
                 <Col>
 
+                    <div className="noData">
+                        <div>
+                            In Production
+                        </div>
+                    </div>
+
+                </Col>
+            </Row>
+            <Row className="dashRow">
+                <Col>
+
                     {emptySubjError ? <div className="noData">
                         <div>
                             No Data
-          <div className="subNoData">Create subjects to view subject breakdown</div>
+
                         </div>
                     </div> :
                         <div>
@@ -146,8 +165,17 @@ const Compare = ({ charts, dispatch, subjects }) => {
                     }
 
                 </Col>
+                <Col>
+
+                    <div className="noData">
+                        <div>
+                            In Production </div>
+
+                    </div>
+
+                </Col>
             </Row>
-            <Row>
+            <Row className="dashRow">
                 <Col>
                     <ReactEcharts
                         option={{
@@ -178,6 +206,14 @@ const Compare = ({ charts, dispatch, subjects }) => {
                             }]
                         }}
                     />
+                </Col>
+                <Col>
+
+                    <div className="noData">
+                        <div>
+                            In Production </div>
+                    </div>
+
                 </Col>
             </Row>
         </div>
