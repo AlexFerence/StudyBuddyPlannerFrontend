@@ -8,6 +8,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
 import JoyRide from 'react-joyride';
 import { useBeforeunload } from 'react-beforeunload';
+import icon from '../assets/Icon.png'
 
 const TOUR_STEPS = [
     {
@@ -82,7 +83,7 @@ const Header = (props, { isRunning }) => {
         return (
             <div>
                 <Navbar fixed="top" expand="true">
-                    <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
+                    <Navbar.Brand className="title" href="/"> <img src={icon} style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" />StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
                         <Nav className="mr-auto">
