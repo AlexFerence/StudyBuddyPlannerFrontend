@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import FormPage from './components/SignUpPage'
 import LoginPage from './components/LoginPage'
@@ -11,7 +11,6 @@ import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
 import Compare from './components/Compare'
-
 import {
   loadChartsThunk, loadSubjectBreakdown,
   loadHoursWeek, loadYearBeakdown,
@@ -34,7 +33,7 @@ import { refreshUser } from './thunks/profileThunk'
 
 import './styles/styles.scss'
 
-const ConfigureApp = ({dispatch}) => {
+const ConfigureApp = ({ dispatch }) => {
   useEffect(() => {
     dispatch(realoadClassesThunk())
     dispatch(loadTasks())
@@ -45,7 +44,7 @@ const ConfigureApp = ({dispatch}) => {
     dispatch(loadPersonalStats())
     dispatch(loadAverageOfWeekDay())
     dispatch(refreshUser())
-    
+
   }, [])
 
   return (
@@ -65,5 +64,5 @@ const ConfigureApp = ({dispatch}) => {
     </BrowserRouter>
   )
 }
-  
+
 export default connect()(ConfigureApp)
