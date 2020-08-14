@@ -1,6 +1,7 @@
 import axios from 'axios'
 import url from '../environment/url'
-import { setPieChart, setSubjectBreakdownChart, 
+import {
+    setPieChart, setSubjectBreakdownChart,
     setHoursWeek, setYearBreakdown,
     setYearXAxis,
     setFacultyBreakdown,
@@ -18,23 +19,23 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
     try {
         // error
         const res = await axios.post(url + '/api/PersonalCharts/listsubjecttotalhours',
-        {
-            userId: id,
-        }, {
+            {
+                userId: id,
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-        
+
         if (res.status === 200) {
             var pieData = []
             var pieColors = []
             res.data.responseItems.forEach((item) => {
                 //console.log(item)
-                pieData.push({ 
-                    value: item.value1, 
+                pieData.push({
+                    value: item.value1,
                     name: item.name1,
                 })
                 pieColors.push(item.name2)
@@ -45,7 +46,7 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
             dispatch(modify({ pieColors }))
         }
     } catch (e) {
-        return(e)
+        return (e)
     }
 }
 
@@ -55,10 +56,10 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + '/api/PersonalCharts/listsubjectbreakdown',
-        {
-            userId: id,
-            subjectId: subjId
-        }, {
+            {
+                userId: id,
+                subjectId: subjId
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -71,17 +72,17 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
         res.data.responseItems.forEach((subj) => {
             //console.log(subj)
             formattedSubjectBreakdown.push(
-                { 
-                value: subj.value1,
-                name: subj.name1
-            })
-         
+                {
+                    value: subj.value1,
+                    name: subj.name1
+                })
+
         })
         //console.log('formatted')
-       //console.log(formattedSubjectBreakdown)
+        //console.log(formattedSubjectBreakdown)
         dispatch(setSubjectBreakdownChart(formattedSubjectBreakdown))
     } catch (e) {
-        return(e)
+        return (e)
     }
 }
 
@@ -93,25 +94,25 @@ export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => 
     //console.log(id)
     try {
         const res = await axios.post(url + "/api/personalcharts/listhoursperweek",
-        {
-            userId: id,
-            date: date.format("YYYY-MM-DD")
-        }, {
+            {
+                userId: id,
+                date: date.format("YYYY-MM-DD")
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-       // console.log("hours week")
+        // console.log("hours week")
         //console.log(res.data)
         var weekList = []
         res.data.responseItems.forEach((item) => {
             weekList.push(item.value1)
         })
-        
+
         dispatch(setHoursWeek(weekList))
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -122,10 +123,10 @@ export const loadYearBeakdown = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/populationbreakdown",
-        {
-            "breakdownType": 1,
-            "calculateAverage": true
-        }, {
+            {
+                "breakdownType": 1,
+                "calculateAverage": true
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -140,16 +141,16 @@ export const loadYearBeakdown = () => async (dispatch, getState) => {
         res.data.responseItems.forEach((subj) => {
             //console.log(subj)
             formattedYearBreakdown.push(
-                { 
-                value: subj.value1,
-                name: subj.name1
-            })
+                {
+                    value: subj.value1,
+                    name: subj.name1
+                })
             xAxis.push(subj.name1)
         })
         dispatch(setYearBreakdown(formattedYearBreakdown))
         dispatch(setYearXAxis(xAxis))
-    
-    } catch(e) {
+
+    } catch (e) {
         console.log(e)
     }
 }
@@ -160,10 +161,10 @@ export const loadFacultyStats = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/populationbreakdown",
-        {
-            "breakdownType": 0,
-            "calculateAverage": true
-        }, {
+            {
+                "breakdownType": 0,
+                "calculateAverage": true
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -178,16 +179,16 @@ export const loadFacultyStats = () => async (dispatch, getState) => {
         res.data.responseItems.forEach((subj) => {
             //console.log(subj)
             formattedYearBreakdown.push(
-                { 
-                value: subj.value1,
-                name: subj.name1
-            })
+                {
+                    value: subj.value1,
+                    name: subj.name1
+                })
             xAxis.push(subj.name1)
         })
         dispatch(setFacultyBreakdown(formattedYearBreakdown))
         dispatch(setFacultyXAxis(xAxis))
-    
-    } catch(e) {
+
+    } catch (e) {
         console.log(e)
     }
 }
@@ -198,9 +199,9 @@ export const loadMarksScatter = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/markshoursscatter",
-        {
-            userId: id,
-        }, {
+            {
+                userId: id,
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -212,10 +213,10 @@ export const loadMarksScatter = () => async (dispatch, getState) => {
         res.data.responseItems.forEach((subj) => {
             //console.log(subj)
             formattedMarksScatter.push(
-                [ subj.value2, subj.value1 ])
+                [subj.value2, subj.value1])
         })
         dispatch(setGpaScatter(formattedMarksScatter))
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -226,9 +227,9 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listhourspermonth",
-        {
-            userId: id,
-        }, {
+            {
+                userId: id,
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -258,7 +259,7 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
         var hoursPerWeekSubjBeakdown = formattedWeekData
         dispatch(modify({ hoursPerWeekSubjBeakdown }))
         dispatch(modify({ hoursPerWeekColors }))
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -269,10 +270,10 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listpersonalstats",
-        {
-            userId: id,
-            date: String(moment().format("YYYY-MM-DD"))
-        }, {
+            {
+                userId: id,
+                date: String(moment().format("YYYY-MM-DD"))
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -286,17 +287,17 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         res.data.responseItems.forEach((item) => {
             formattedPersonalStats.push({ mins: item.value2, hours: item.value1 })
         })
-        
+
         console.log('formatted personal stats')
 
-        dispatch(modify({ todayTotal: {mins: res.data.responseItems[0].value2, hours: res.data.responseItems[0].value1 }, thisWeekTotal: {mins: res.data.responseItems[3].value2, hours: res.data.responseItems[3].value1 }, thisMonthTotal: {mins: res.data.responseItems[6].value2, hours: res.data.responseItems[6].value1 }}));
-        dispatch(modify({ dailyAverage: {mins: res.data.responseItems[1].value2, hours: res.data.responseItems[1].value1 }, weeklyAverage: {mins: res.data.responseItems[4].value2, hours: res.data.responseItems[4].value1 }, monthlyAverage: {mins: res.data.responseItems[7].value2, hours: res.data.responseItems[7].value1 }}));
-        dispatch(modify({ bestDay: {mins: res.data.responseItems[2].value2, hours: res.data.responseItems[2].value1 }, bestWeek: {mins: res.data.responseItems[5].value2, hours: res.data.responseItems[5].value1 }, bestMonth: {mins: res.data.responseItems[8].value2, hours: res.data.responseItems[8].value1 }}));
+        dispatch(modify({ todayTotal: { mins: res.data.responseItems[0].value2, hours: res.data.responseItems[0].value1 }, thisWeekTotal: { mins: res.data.responseItems[3].value2, hours: res.data.responseItems[3].value1 }, thisMonthTotal: { mins: res.data.responseItems[6].value2, hours: res.data.responseItems[6].value1 } }));
+        dispatch(modify({ dailyAverage: { mins: res.data.responseItems[1].value2, hours: res.data.responseItems[1].value1 }, weeklyAverage: { mins: res.data.responseItems[4].value2, hours: res.data.responseItems[4].value1 }, monthlyAverage: { mins: res.data.responseItems[7].value2, hours: res.data.responseItems[7].value1 } }));
+        dispatch(modify({ bestDay: { mins: res.data.responseItems[2].value2, hours: res.data.responseItems[2].value1 }, bestWeek: { mins: res.data.responseItems[5].value2, hours: res.data.responseItems[5].value1 }, bestMonth: { mins: res.data.responseItems[8].value2, hours: res.data.responseItems[8].value1 } }));
 
 
         //dispatch(modify({ formattedPersonalStats }))
 
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -307,10 +308,10 @@ export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listaveragehoursperweek",
-        {
-            userId: id,
-            date: moment().format("YYYY-MM-DD")
-        }, {
+            {
+                userId: id,
+                date: moment().format("YYYY-MM-DD")
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -326,7 +327,7 @@ export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
         })
         dispatch(modify({ averageByDayOfWeek, averageByDayOfWeekxaxis }))
 
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
 }
@@ -337,21 +338,21 @@ export const loadUACurrentUsers = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/UserActivity/count",
-        {
-            userId: id,
-            //school id??
-            school: profile.schoolId
-        }, {
+            {
+                userId: id,
+                //school id??
+                school: profile.schoolId
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-       
-        dispatch(modify({ }))
 
-    } catch(e) {
+        dispatch(modify({}))
+
+    } catch (e) {
         console.log(e)
     }
 }
@@ -359,15 +360,15 @@ export const loadUACurrentUsers = () => async (dispatch, getState) => {
 
 export const comparativePersonalToAverage = (sid) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects,  } = state
+    const { profile, subjects, } = state
     const { id, token, subjId, schoolId } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/listhourspermonthcomparative",
-        {
-            userId: id,
-            subjectId: sid,
-            schoolId,
-        }, {
+            {
+                userId: id,
+                subjectId: sid,
+                schoolId,
+            }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
@@ -396,7 +397,18 @@ export const comparativePersonalToAverage = (sid) => async (dispatch, getState) 
         var comparativePersonalToAverageData = formattedWeekData
         dispatch(modify({ comparativePersonalToAverageData }))
         dispatch(modify({ comparativePersonalToAverageColors }))
-    } catch(e) {
+    } catch (e) {
         console.log(e)
     }
+}
+
+export const refreshAllCharts = () => async (dispatch, getState) => {
+
+    dispatch(loadChartsThunk())
+    dispatch(loadSubjectBreakdown())
+    dispatch(loadHoursWeek())
+    dispatch(loadMarksScatter())
+    dispatch(loadTaskHoursPerWeek())
+    dispatch(loadPersonalStats())
+
 }
