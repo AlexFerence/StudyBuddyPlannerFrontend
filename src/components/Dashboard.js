@@ -166,7 +166,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
 
               option={{
                 title: {
-                  text: "This Week",
+                  text: "Week View",
                   x: 'center',
                   top: 0,
                   textStyle: {
