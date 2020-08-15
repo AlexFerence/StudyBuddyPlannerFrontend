@@ -1,171 +1,206 @@
-
 //NAVBAR
 .navButton {
-    font-family: 'HelveticaNeue-Light', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: $light-grey;
-    padding: 7.5px 15px;
-    margin: 3px;
-    border: 1px solid transparent;
-    transition: .35s;
+ font-family: 'HelveticaNeue-Light', 'Helvetica Neue UltraLight',
+  'Helvetica Neue', Arial, Helvetica, sans-serif;
+ border: none;
+ outline: none;
+ background-color: transparent;
+ color: $light-grey;
+ padding: 7.5px 15px;
+ margin: 3px;
+ border: 1px solid transparent;
+ transition: 0.35s;
 }
 
 .navButton:focus {
-    outline: none;
+ outline: none;
 }
 
 .navButton:hover {
-    border: 1px solid $light-grey;
-    transition: .35s;
-    color: white;
-    text-decoration: none;
+ border: 1px solid $light-grey;
+ transition: 0.35s;
+ color: white;
+ text-decoration: none;
 }
 
 .landingNav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    z-index: 5;
+ position: fixed;
+ top: 0;
+ width: 100%;
+ padding: 10px;
+ display: flex;
+ justify-content: space-between;
+ z-index: 5;
 }
 
 .footer {
-    color: white
+ color: white;
 }
 
 //BODY
 
-
-
-
 .landing {
-    font-family: 'HelveticaNeue-Light', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+ font-family: 'HelveticaNeue-Light', 'Helvetica Neue UltraLight',
+  'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 .landingDisplay {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    font-size: 7.5vh;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: $light-grey;
-    overflow: hidden;
+ height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-weight: 500;
+ font-size: 7.5vh;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ color: $light-grey;
+ overflow: hidden;
 }
 
 .laptopImage {
-   width: 100%;
+ width: 100%;
 }
 
 .navButtonSignUp {
-    border: none;
-    border-radius: 10px;
-    padding: 15px 20px; 
-    color: white;
-    background-color: $brand;
+ border: none;
+ border-radius: 10px;
+ padding: 15px 20px;
+ color: white;
+ background-color: $brand;
 }
 
 .navButtonSignUp:focus {
-    outline: none;
+ outline: none;
 }
 
-
 #mainButton {
-    margin: 15px 0px;
-    font-size: 30px;
-
+ margin: 15px 0px;
+ font-size: 30px;
 }
 
 .promotion {
-    color: whitesmoke ;
-    margin-top: 10px;
-    font-size: 40px;
-    font-weight: 600;
+ color: whitesmoke;
+ margin-top: 10px;
+ font-size: 40px;
+ font-weight: 600;
 }
 
 .center {
-
 }
 
 #brand {
-    font-weight: 600;
-    font-size: 20px;
+ font-weight: 600;
+ font-size: 20px;
 }
 
-
 .rowSection {
-    background-color: $dark-grey;
-    height: 55vh;
+ background-color: $dark-grey;
+ height: 55vh;
 }
 
 .footerSection {
-    background-color: $dark-grey;
-    height: 5vh;
+ background-color: $dark-grey;
+ height: 5vh;
 }
 .textCol {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $light-grey;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ color: $light-grey;
 }
 
 .textInner {
-    width: 70%;
-    margin: 20px;
+ width: 70%;
+ margin: 20px;
 }
 
 .textHeader {
-    font-weight: 600;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    text-align: center;
+ font-weight: 600;
+ font-size: 30px;
+ display: flex;
+ justify-content: center;
+ margin-bottom: 20px;
+ text-align: center;
 }
 
-
 .textPara {
-    text-indent: 50px;
-    line-height: 30px;   
+ text-indent: 50px;
+ line-height: 30px;
+ color: white;
 }
 
 .imageCol {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 .imageInner {
-    width: 80%;
+ width: 80%;
 }
 
 .landingDisplay video {
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%;
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
+ flex-shrink: 0;
+ min-width: 100%;
+ min-height: 100%;
+ -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+ filter: grayscale(100%);
 }
 
 .overlay {
-    width: 100%;
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ width: 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ z-index: 1;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 .footer {
-    background-color: grey;
+ background-color: grey;
+}
+
+.testemonials {
+ width: 100%;
+ background-color: $dark-grey;
+ display: flex;
+ justify-content: space-evenly;
+ align-content: center;
+ align-items: center;
+ color: white;
+ height: 300px;
+}
+
+.third {
+ //display: flex;
+ //justify-content: center;
+ //align-content: center;
+ padding: 20px;
+}
+
+.quote {
+ font-size: 20px;
+ font-weight: 600;
+ margin-bottom: 20px;
+ width: 100%;
+ text-align: left;
+}
+
+.author {
+ text-align: right;
+}
+
+.testHeader {
+ background-color: $dark-grey;
+ color: white;
+ font-size: 40px;
+ font-weight: 600;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding-top: 80px;
 }
