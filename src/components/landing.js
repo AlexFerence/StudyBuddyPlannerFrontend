@@ -30,14 +30,14 @@ const TOUR_STEPS = [
 ];
 
 const Landing = ({ history, profile }) => {
-  
+
   var [run, setRun] = useState(false)
-  
-  useEffect(() => {
-    if (profile.email && profile.isAuth) {
-      history.push('/dashboard')
-    }
-  }, [])
+
+  // useEffect(() => {
+  //   if (profile.email && profile.isAuth) {
+  //     history.push('/dashboard')
+  //   }
+  // }, [])
 
   const goToSignUp = () => {
     history.push("/signup")
@@ -45,8 +45,8 @@ const Landing = ({ history, profile }) => {
 
   return (
     <div className="landing" id="#my-first-step" target="_blank">
-      
-    <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
+
+      <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
       <div className="landingNav">
         <button id="brand" className="navButton">StudyBuddy</button>
         <div>
@@ -67,22 +67,22 @@ const Landing = ({ history, profile }) => {
             </video>
       </div>
       <div className="overlay landingDisplay">
-          <div className="center">
-            <div className="promotion">Organize your classes and tasks.</div>
-            <div className="promotion">Real time analytics and comparisons.</div>
-            <div><button id="mainButton"
-              className="navButtonSignUp"
-              onClick={goToSignUp}>Sign Up</button></div>
+        <div className="center">
+          <div className="promotion">Organize your classes and tasks.</div>
+          <div className="promotion">Real time analytics and comparisons.</div>
+          <div><button id="mainButton"
+            className="navButtonSignUp"
+            onClick={goToSignUp}>Sign Up</button></div>
 
-          </div>
         </div>
+      </div>
 
       <div className='player-wrapper'>
         <a id="features"></a>
         <div className="rowSection">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="imageCol">
-            <img src={laptop2} className="imageInner" />
+              <img src={laptop2} className="imageInner" />
             </Col>
             <Col md={6} className="textCol">
               <div className="textInner">
@@ -92,7 +92,7 @@ const Landing = ({ history, profile }) => {
                 a quick add for your convenience. All of your time spent is tracked and analyzed, so that you can study better and more effectively.
                 </div><div className="textPara">
 
-                  </div>
+                </div>
               </div>
             </Col>
           </Row>
@@ -103,7 +103,7 @@ const Landing = ({ history, profile }) => {
               <div className="textInner">
                 <div className="textHeader">In-Depth Data Analysis.</div>
                 <div className="textPara">Study Buddy offers in depth analysis on all of your studies. We will help you
-                track how you divide your time through the week, across all your subjects, and much more. Not only will we be able to track 
+                track how you divide your time through the week, across all your subjects, and much more. Not only will we be able to track
                 how you study best, we can also track how you stack up against other students in your subjects, faculty, and school.</div>
               </div>
             </Col>
@@ -140,7 +140,7 @@ const Landing = ({ history, profile }) => {
               </div>
             </Col>
           </Row>
-          </div>
+        </div>
         <a id="premium"></a>
         <div className="rowSection">
           <div className="rowSection">
@@ -186,41 +186,72 @@ const Landing = ({ history, profile }) => {
               <Col md={6} className="textCol">
                 <div className="textInner">
                   <div className="textHeader">Compare your work to others.</div>
-                  <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track. 
+                  <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track.
                   With our comparative premium features, you can see how you are studying versus the average for your classes. Your hours through the days and weeks will
-                  be tracked, and compared to others in the same classes, faculty, and school. 
+                  be tracked, and compared to others in the same classes, faculty, and school.
                   </div>
                 </div>
               </Col>
             </Row>
           </div>
           <a id="futureplan"></a>
-        <div className="rowSection">
-          <Row style={{ height: '100%' }}>
-            <Col md={6} className="textCol">
-              <div className="textInner">
-                <div className="textHeader">Future Plans</div>
-                <div className="textPara">Study Buddy is building data to help support students, and their time management.
-                Over time, we hope to build data that will help students find out how many hours they need to get a certain mark, before they 
-                even begin the course. Over years of consistent data, we can find trends in marks achieved by students for each class given
-                a certain amount of hours. This, along with much more, is what we hope to bring to you with Study Buddy.
+          <div className="rowSection">
+            <Row style={{ height: '100%' }}>
+              <Col md={6} className="textCol">
+                <div className="textInner">
+                  <div className="textHeader">Future Plans</div>
+                  <div className="textPara">Study Buddy is building data to help support students, and their time management.
+                  Over time, we hope to build data that will help students find out how many hours they need to get a certain mark, before they
+                  even begin the course. Over years of consistent data, we can find trends in marks achieved by students for each class given
+                  a certain amount of hours. This, along with much more, is what we hope to bring to you with Study Buddy.
                 </div><div className="textPara">
 
                   </div>
+                </div>
+              </Col>
+              <Col md={6} className="imageCol">
+                <img src={futureplans} style={{ width: '50%' }} />
+              </Col>
+            </Row>
+          </div>
+          <div className=""><div></div></div>
+          <div className="testemonials">
+            <div className="third">
+              <div className="quote">
+                "My Favourite study app"
               </div>
-            </Col>
-            <Col md={6} className="imageCol">
-            <img src={futureplans} style={{width: '50%'}} />
-            </Col>
-          </Row>
-        </div>
-        <footer className="footerSection">
-          <Row style={{ height: '50%' }}>
-            <Col md={6} className="textCol">
-              <p className="textPara">© StudyBuddy</p>
-            </Col>
-          </Row>
-        </footer>
+              <div className="author">
+                - Josh Levy, Mcgill University
+                </div>
+            </div>
+            <div className="third">
+              <div className="quote">
+                "Arousing"
+              </div>
+              <div className="author">
+                - Silas Chapelle, Mcgill University
+              </div>
+            </div>
+            <div className="third">
+              <div className="quote">
+                "Wowie"
+              </div>
+              <div className="author">
+                - Owen Cotterill, Mcgill University
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <footer className="footerSection">
+            <Row style={{ height: '50%' }}>
+              <Col md={6} className="textCol">
+                <p className="textPara">© StudyBuddy</p>
+              </Col>
+            </Row>
+          </footer>
         </div>
       </div>
     </div>
@@ -233,3 +264,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Landing)
+
+//test

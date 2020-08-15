@@ -35,11 +35,11 @@ const Compare = ({ charts, dispatch, subjects }) => {
 
         if (subjects.length === 0) {
             setEmptySubjError(true);
-
         }
         else {
             dispatch(comparativePersonalToAverage(subjects[0].id))
             setLocalSubjects(makeSubjects(subjects))
+            setLocalSubject(subjects[0])
         }
     }, [])
 
@@ -108,13 +108,25 @@ const Compare = ({ charts, dispatch, subjects }) => {
                         </div>
                     </div> :
                         <div>
-                            <Select
-                                className="timerSelect"
-                                value={localSubject}
-                                onChange={subjectChanged}
-                                placeholder="Subject..."
-                                options={localSubjects}
-                            />
+                            <div className="subjCompareSelect">
+                                <Select
+                                    className="timerSelect"
+                                    value={localSubject}
+                                    onChange={subjectChanged}
+                                    placeholder="Subject..."
+                                    options={localSubjects}
+                                    theme={(theme) => ({
+                                        ...theme,
+                                        // colors: {
+                                        //     ...theme.colors,
+                                        //     text: 'orange',
+                                        //     primary25: '#FB4033',
+                                        //     primary: '#656565'
+                                        // }
+                                    })}
+                                    className="half-width"
+                                />
+                            </div>
                             <ReactEcharts
                                 option={{
                                     textStyle: {
