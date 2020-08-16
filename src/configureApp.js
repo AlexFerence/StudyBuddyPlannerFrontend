@@ -34,18 +34,6 @@ import { refreshUser } from './thunks/profileThunk'
 import './styles/styles.scss'
 
 const ConfigureApp = ({ dispatch }) => {
-  useEffect(() => {
-    dispatch(realoadClassesThunk())
-    dispatch(loadTasks())
-    dispatch(loadChartsThunk())
-    dispatch(loadSubjectBreakdown())
-    dispatch(loadHoursWeek())
-    dispatch(loadTaskHoursPerWeek())
-    dispatch(loadPersonalStats())
-    dispatch(loadAverageOfWeekDay())
-    dispatch(refreshUser())
-
-  }, [])
 
   return (
     <BrowserRouter>

@@ -1,6 +1,9 @@
 import axios from 'axios'
 import url from '../environment/url'
 import { setProfile, update, modifyProfile } from '../actions/profileActions'
+import { refreshAllCharts } from './chartThunk'
+import { realoadClassesThunk } from './subjectThunk'
+import { loadTasks } from './taskThunk'
 
 export const loginThunk = ({ email, password }) => async (dispatch, getState) => {
     try {
@@ -22,10 +25,13 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 isAuth: true
             }))
             dispatch(refreshUser());
+            dispatch(refreshAllCharts());
+            dispatch(loadTasks())
+            dispatch(realoadClassesThunk)
         }
-        return(res.status)
+        return (res.status)
     } catch (e) {
-        return(e)
+        return (e)
         console.log(e)
         console.log(e.message)
     }
@@ -74,7 +80,7 @@ export const updateProfileThunk = ({ school, major, minor, faculty, usePercentag
     const { id, token } = profile
     try {
         const res = await axios.put(url + '/api/UserProfiles/' + id,
-            {  
+            {
                 ...profile,
                 schoolID: school,
                 facultyID: faculty,
@@ -108,15 +114,15 @@ export const refreshUser = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(url + '/api/userprofiles/' + id,
             {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
 
         console.log(res.data)
-        
+
         dispatch(modifyProfile({
             ...res.data
         }))
@@ -132,19 +138,19 @@ export const turnOffTaskTour = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.put(url + '/api/UserProfiles/' + id, {
-                ...profile,
-                taskTour: 1
-            },
+            ...profile,
+            taskTour: 1
+        },
             {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
 
         console.log(res.data)
-        
+
         dispatch(modifyProfile({
             ...res.data
         }))
@@ -159,19 +165,19 @@ export const turnOffSubjectTour = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.put(url + '/api/UserProfiles/' + id, {
-                ...profile,
-                subjectTour: 1
-            },
+            ...profile,
+            subjectTour: 1
+        },
             {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
 
         console.log(res.data)
-        
+
         dispatch(modifyProfile({
             ...res.data
         }))
@@ -186,19 +192,19 @@ export const turnOffDashboardTour = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.put(url + '/api/UserProfiles/' + id, {
-                ...profile,
-                dashboardTour: 1
-            },
+            ...profile,
+            dashboardTour: 1
+        },
             {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
 
         console.log(res.data)
-        
+
         dispatch(modifyProfile({
             ...res.data
         }))
