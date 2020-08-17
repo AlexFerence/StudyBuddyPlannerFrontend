@@ -34,3 +34,28 @@
 // .half-width {
 //  width: 175px;
 // }
+
+.nums {
+ padding: 50px 0px;
+}
+
+.left {
+ border-right: 1px solid $grey;
+}
+
+.stickyActivity {
+ position: -webkit-sticky; /* Safari */
+ position: sticky;
+ top: 66px;
+
+ width: 100%;
+ max-height: 200vh;
+}
+
+.friendActivityHeader {
+ padding: 10px 0px;
+ margin: 0px 10px;
+ border-bottom: 1px solid lighten($color: $grey, $amount: 15);
+ font-size: 20px;
+ font-weight: 400;
+}

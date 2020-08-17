@@ -39,7 +39,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
         else {
             dispatch(comparativePersonalToAverage(subjects[0].id))
             setLocalSubjects(makeSubjects(subjects))
-            setLocalSubject(subjects[0])
+            setLocalSubject({ value: subjects[0], label: subjects[0].name + " " + subjects[0].classCode })
         }
     }, [])
 
@@ -59,171 +59,157 @@ const Compare = ({ charts, dispatch, subjects }) => {
 
     return (
         <div className="compare">
-            <Row className="">
-                <Col>
-                    <div className="flex-triple-horizontal">
-                        <div className="triple-center"
-                            style={{ paddingTop: '60px', paddingBottom: '60px' }}
-                        >
-                            <div className="full-width">
-                                <div className="curBold">
-                                    <CountUp end={charts.schoolFacultyCurUsers}
-                                        duration={2.75}
+            <Row>
+                <Col className="left">
+
+                    <div className="nums">
+                        <Col>
+                            <div className="flex-triple-horizontal">
+                                <div className="triple-center"
+                                    style={{ paddingTop: '60px', paddingBottom: '60px' }}
+                                >
+                                    <div className="full-width">
+                                        <div className="curBold">
+                                            <CountUp end={charts.schoolFacultyCurUsers}
+                                                duration={2.75}
+                                            />
+                                        </div>
+                                        <div className="subCurBold">Active Users in Your Faculty + University</div>
+                                    </div>
+                                </div>
+                                <div className="triple-center">
+                                    <div>
+                                        <div className="full-width curBold">{charts.schoolCurUsers}</div>
+                                        <div className="subCurBold">Active Users in Your University</div>
+                                    </div>
+                                </div>
+                                <div className="triple-center">
+                                    <div>
+                                        <div className="full-width curBold">{charts.worldCurUsers}</div>
+                                        <div className="subCurBold">Active Users WorldWide</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+
+                    </div>
+                    <div className="dashRow">
+                        <Col>
+
+
+                            <div>
+                                <div className="subjCompareSelect">
+                                    <Select
+                                        className="timerSelect"
+                                        value={localSubject}
+                                        onChange={subjectChanged}
+                                        placeholder="Subject..."
+                                        options={localSubjects}
+                                        theme={(theme) => ({
+                                            ...theme,
+                                            // colors: {
+                                            //     ...theme.colors,
+                                            //     text: 'orange',
+                                            //     primary25: '#FB4033',
+                                            //     primary: '#656565'
+                                            // }
+                                        })}
+                                        className="half-width"
                                     />
                                 </div>
-                                <div className="subCurBold">Active Users in Your Faculty + University</div>
-                            </div>
-                        </div>
-                        <div className="triple-center">
-                            <div>
-                                <div className="full-width curBold">{charts.schoolCurUsers}</div>
-                                <div className="subCurBold">Active Users in Your University</div>
-                            </div>
-                        </div>
-                        <div className="triple-center">
-                            <div>
-                                <div className="full-width curBold">{charts.worldCurUsers}</div>
-                                <div className="subCurBold">Active Users WorldWide</div>
-                            </div>
-                        </div>
-                    </div>
-                </Col>
-                <Col>
+                                <ReactEcharts
+                                    option={{
+                                        textStyle: {
+                                            //fontFamily: 'Helvetica Neue',
+                                            //color: 'blue'
+                                        },
+                                        title: {
+                                            text: "Compare Class Hours to Average",
+                                            x: 'center',
+                                            top: 20,
+                                            textStyle: {
+                                                fontFamily: 'Helvetica',
+                                                fontWeight: 100
+                                            }
+                                        },
 
-                    <div className="noData">
-                        <div>
-                            In Production
-                        </div>
-                    </div>
+                                        tooltip: {
+                                            trigger: 'axis',
+                                            //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
+                                            formatter: function (params) {
+                                                var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+                                                let rez = '<p>' + params[0].axisValue + '</p>';
+                                                //console.log(params); //quite useful for debug
+                                                params.forEach(item => {
+                                                    //console.log(item); //quite useful for debug
+                                                    var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
+                                                    rez += xx;
+                                                });
 
-                </Col>
-            </Row>
-            <Row className="dashRow">
-                <Col>
-
-                    {emptySubjError ? <div className="noData">
-                        <div>
-                            No Data
-
-                        </div>
-                    </div> :
-                        <div>
-                            <div className="subjCompareSelect">
-                                <Select
-                                    className="timerSelect"
-                                    value={localSubject}
-                                    onChange={subjectChanged}
-                                    placeholder="Subject..."
-                                    options={localSubjects}
-                                    theme={(theme) => ({
-                                        ...theme,
-                                        // colors: {
-                                        //     ...theme.colors,
-                                        //     text: 'orange',
-                                        //     primary25: '#FB4033',
-                                        //     primary: '#656565'
-                                        // }
-                                    })}
-                                    className="half-width"
+                                                return rez;
+                                            }
+                                        },
+                                        grid: {
+                                            right: '10%',
+                                        },
+                                        xAxis: {
+                                            type: 'category',
+                                            boundaryGap: false,
+                                            data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
+                                        },
+                                        yAxis: {
+                                            type: 'value'
+                                        },
+                                        series: charts.comparativePersonalToAverageData
+                                    }}
                                 />
                             </div>
+
+
+                        </Col>
+
+                    </div>
+                    <div className="dashRow">
+                        <Col>
                             <ReactEcharts
                                 option={{
-                                    textStyle: {
-                                        //fontFamily: 'Helvetica Neue',
-                                        //color: 'blue'
-                                    },
                                     title: {
-                                        text: "Compare Class Hours to Average",
+                                        text: "GPA - Hours Spent",
                                         x: 'center',
-                                        top: 20,
+                                        top: 0,
                                         textStyle: {
                                             fontFamily: 'Helvetica',
                                             fontWeight: 100
-                                        }
+                                        },
                                     },
-
                                     tooltip: {
-                                        trigger: 'axis',
-                                        //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
-                                        formatter: function (params) {
-                                            var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
-                                            let rez = '<p>' + params[0].axisValue + '</p>';
-                                            //console.log(params); //quite useful for debug
-                                            params.forEach(item => {
-                                                //console.log(item); //quite useful for debug
-                                                var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
-                                                rez += xx;
-                                            });
-
-                                            return rez;
-                                        }
-                                    },
-                                    grid: {
-                                        right: '10%',
                                     },
                                     xAxis: {
-                                        type: 'category',
-                                        boundaryGap: false,
-                                        data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
+                                        name: "Hours",
+                                        nameLocation: 'middle',
+                                        nameGap: 35
+
                                     },
                                     yAxis: {
-                                        type: 'value'
+
                                     },
-                                    series: charts.comparativePersonalToAverageData
+                                    series: [{
+                                        symbolSize: 10,
+                                        data: charts.scatterData,
+                                        type: 'scatter'
+                                    }]
                                 }}
                             />
-                        </div>
-                    }
-
-                </Col>
-                <Col>
-
-                    <div className="noData">
-                        <div>
-                            In Production </div>
-
+                        </Col>
                     </div>
-
                 </Col>
-            </Row>
-            <Row className="dashRow">
-                <Col>
-                    <ReactEcharts
-                        option={{
-                            title: {
-                                text: "GPA - Hours Spent",
-                                x: 'center',
-                                top: 0,
-                                textStyle: {
-                                    fontFamily: 'Helvetica',
-                                    fontWeight: 100
-                                },
-                            },
-                            tooltip: {
-                            },
-                            xAxis: {
-                                name: "Hours",
-                                nameLocation: 'middle',
-                                nameGap: 35
+                <Col xs={4} style={{ padding: '0px' }}>
+                    <div className="stickyActivity">
+                        <div className="friendActivityHeader">
+                            Friend activity
+                        </div>
 
-                            },
-                            yAxis: {
 
-                            },
-                            series: [{
-                                symbolSize: 10,
-                                data: charts.scatterData,
-                                type: 'scatter'
-                            }]
-                        }}
-                    />
-                </Col>
-                <Col>
-
-                    <div className="noData">
-                        <div>
-                            In Production </div>
                     </div>
 
                 </Col>
