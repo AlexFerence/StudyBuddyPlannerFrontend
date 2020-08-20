@@ -6,6 +6,8 @@ import { loadMarksScatter, comparativePersonalToAverage } from '../thunks/chartT
 import { userActivityCount } from '../thunks/userActivityThunk';
 import Select from 'react-select'
 import CountUp from 'react-countup';
+import QuickTimer from './QuickTimer'
+import FriendActivity from './FriendActivity'
 
 const hoursToTimeDisplay = (h) => {
     var hours = Math.floor(h)
@@ -60,11 +62,16 @@ const Compare = ({ charts, dispatch, subjects }) => {
     return (
         <div className="compare">
             <Row>
-                <Col className="left">
-
+                <Col md={6} className="left">
                     <div className="nums">
                         <Col>
-                            <div className="flex-triple-horizontal">
+                            <div className="compare-quick-timer">
+                                <QuickTimer />
+                            </div>
+
+                        </Col>
+                        <Col>
+                            <div className="flex-triple-horizontal dashRow">
                                 <div className="triple-center"
                                     style={{ paddingTop: '60px', paddingBottom: '60px' }}
                                 >
@@ -91,12 +98,9 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                 </div>
                             </div>
                         </Col>
-
                     </div>
                     <div className="dashRow">
                         <Col>
-
-
                             <div>
                                 <div className="subjCompareSelect">
                                     <Select
@@ -169,45 +173,14 @@ const Compare = ({ charts, dispatch, subjects }) => {
                         </Col>
 
                     </div>
-                    <div className="dashRow">
-                        <Col>
-                            <ReactEcharts
-                                option={{
-                                    title: {
-                                        text: "GPA - Hours Spent",
-                                        x: 'center',
-                                        top: 0,
-                                        textStyle: {
-                                            fontFamily: 'Helvetica',
-                                            fontWeight: 100
-                                        },
-                                    },
-                                    tooltip: {
-                                    },
-                                    xAxis: {
-                                        name: "Hours",
-                                        nameLocation: 'middle',
-                                        nameGap: 35
 
-                                    },
-                                    yAxis: {
-
-                                    },
-                                    series: [{
-                                        symbolSize: 10,
-                                        data: charts.scatterData,
-                                        type: 'scatter'
-                                    }]
-                                }}
-                            />
-                        </Col>
-                    </div>
                 </Col>
-                <Col xs={4} style={{ padding: '0px' }}>
+                <Col md={6} style={{ padding: '0px' }}>
                     <div className="stickyActivity">
                         <div className="friendActivityHeader">
                             Friend activity
                         </div>
+                        <FriendActivity />
 
 
                     </div>

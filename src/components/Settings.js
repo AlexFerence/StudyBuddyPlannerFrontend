@@ -8,14 +8,15 @@ import Select from 'react-select'
 import { contactUsRequest } from '../thunks/settingsThunk'
 import swal from 'sweetalert'
 import { FaEdit } from 'react-icons/fa'
+import PaymentForm from './payment/PaymentModal'
 
 
 const style = {
     option: (base, state) => ({
-      ...base,
-      color: 'black',
-      backgroundColor: 'white',
-      borderColor: '1px solid grey'
+        ...base,
+        color: 'black',
+        backgroundColor: 'white',
+        borderColor: '1px solid grey'
     })
 };
 
@@ -35,7 +36,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     const [isEditingFaculty, setIsEditingFaculty] = useState(false);
 
 
-//    const [contactType, setContactType] = useState('')
+    //    const [contactType, setContactType] = useState('')
 
     const logOutCalled = () => {
         dispatch(logout())
@@ -96,6 +97,10 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
     return (
         <div className="container settings">
+            <div style={{ width: '100%', height: '300px' }}>
+                <PaymentForm />
+            </div>
+
             <form onSubmit={onSubmit}>
 
                 <label className="inpLabel">First Name</label>
@@ -125,10 +130,10 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
 
-            
+
 
                 <label className="inpLabel">School</label>
-                { isEditingSchool ? <Select
+                {isEditingSchool ? <Select
                     isClearable={true}
                     onSelectResetsInput={false}
                     placeholder="school ..."
@@ -137,64 +142,64 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     values={[]}
                     onChange={(value) => setSchool(value)}
                     components={{ DropdownIndicator: () => null }}
-                    styles={style} 
-                    
-                  />  : 
-                  <div>
-                  {profile.schoolTitle}
-                  <button className="editButton"
-                  onClick={() => setIsEditingSchool(!isEditingSchool)}>
-                  <FaEdit /></button>
-                  
-                  </div>  
-                
-                }
-      <label className="inpLabel">Faculty </label>
-      { isEditingFaculty ? <Select
-        isClearable={true}
-          placeholder="faculty ..."
-          className="selectedInp"
-          options={faculties}
-          values={[]}
-          onChange={(value) => setFaculty(value)}
-          components={{ DropdownIndicator: () => null }}
-          styles={style} 
-          /> : 
-          <div>
-          {profile.facultytitle}
-          <button className="editButton"
-          onClick={() => setIsEditingFaculty(!isEditingFaculty)}>
-          <FaEdit /></button>
-          
-          </div> 
-        }
-      
-            <button>Submit</button>
-            </form>
-            
-        <div className="section contact-us">
-        
-        <h1>Contact us</h1>
-        <Select
-        isClearable={true}
-        onSelectResetsInput={false}
-        placeholder="Type of error"
-        className="selectedInp"
-        options={[
-            { value: 'NewFeature', label: 'New Feature' },
-            { value: 'Bug', label: 'Bug' },
-        ]}
-        values={[]}
-        onChange={(value) => setRequestType(value)}
-        styles={style}
-        />
-        <textarea onChange={(e) => setDescription(e.target.value)}>
-        
-        </textarea>
-        <button onClick={submitContactUs}>Submit</button>
-        </div>
+                    styles={style}
 
-        <button id="logoutButton" onClick={logOutCalled}>Log Out</button>
+                /> :
+                    <div>
+                        {profile.schoolTitle}
+                        <button className="editButton"
+                            onClick={() => setIsEditingSchool(!isEditingSchool)}>
+                            <FaEdit /></button>
+
+                    </div>
+
+                }
+                <label className="inpLabel">Faculty </label>
+                {isEditingFaculty ? <Select
+                    isClearable={true}
+                    placeholder="faculty ..."
+                    className="selectedInp"
+                    options={faculties}
+                    values={[]}
+                    onChange={(value) => setFaculty(value)}
+                    components={{ DropdownIndicator: () => null }}
+                    styles={style}
+                /> :
+                    <div>
+                        {profile.facultytitle}
+                        <button className="editButton"
+                            onClick={() => setIsEditingFaculty(!isEditingFaculty)}>
+                            <FaEdit /></button>
+
+                    </div>
+                }
+
+                <button>Submit</button>
+            </form>
+
+            <div className="section contact-us">
+
+                <h1>Contact us</h1>
+                <Select
+                    isClearable={true}
+                    onSelectResetsInput={false}
+                    placeholder="Type of error"
+                    className="selectedInp"
+                    options={[
+                        { value: 'NewFeature', label: 'New Feature' },
+                        { value: 'Bug', label: 'Bug' },
+                    ]}
+                    values={[]}
+                    onChange={(value) => setRequestType(value)}
+                    styles={style}
+                />
+                <textarea onChange={(e) => setDescription(e.target.value)}>
+
+                </textarea>
+                <button onClick={submitContactUs}>Submit</button>
+            </div>
+
+            <button id="logoutButton" onClick={logOutCalled}>Log Out</button>
         </div>
     )
 }

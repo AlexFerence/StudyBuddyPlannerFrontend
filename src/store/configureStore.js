@@ -8,6 +8,7 @@ import schoolsReducer from '../reducers/schoolsReducer'
 import facultiesReducer from '../reducers/facultyReducer'
 import currentTaskReducer from '../reducers/currentTaskReducer'
 import chartsReducer from '../reducers/chartsReducer'
+import subscriptionsReducer from '../reducers/subscriptionReducer'
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
@@ -27,10 +28,11 @@ const reducers = {
     schools: schoolsReducer,
     faculties: facultiesReducer,
     currentTask: currentTaskReducer,
-    charts: chartsReducer
+    charts: chartsReducer,
+    subscriptions: subscriptionsReducer
 };
 
-const persistConfig ={
+const persistConfig = {
     key: 'root',
     storage,
     stateReconciler: autoMergeLevel2
@@ -38,13 +40,13 @@ const persistConfig ={
 
 const appReducer = combineReducers(reducers);
 
-const rootReducer = (state, action) => {   
+const rootReducer = (state, action) => {
     // Clear all data in redux store to initial.
-    if(action.type === DESTROY_SESSION)
-       state = undefined;
-    
+    if (action.type === DESTROY_SESSION)
+        state = undefined;
+
     return appReducer(state, action);
- };
+};
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -54,4 +56,4 @@ export const configureStore = () => createStore(
     persistedReducer,
     composeWithDevTools(
         applyMiddleware(thunk)
-));
+    ));
