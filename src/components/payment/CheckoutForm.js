@@ -5,7 +5,6 @@ import CardSection from './CardSection';
 import { createSubscription } from '../../thunks/settingsThunk';
 import url from '../../environment/url'
 
-
 const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
     const stripe = useStripe();
     const elements = useElements();

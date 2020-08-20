@@ -226,7 +226,7 @@ const Landing = ({ history, profile }) => {
             </div>
             <div className="third">
               <div className="quote">
-                "Arousing"
+                "I use it every day"
               </div>
               <div className="author">
                 - Silas Chapelle, Mcgill University
