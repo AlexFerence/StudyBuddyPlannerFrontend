@@ -193,7 +193,7 @@ const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
                 // });
             } else {
                 // Create the subscription
-                createSubscription({ customerId: "1", paymentMethodId, priceId: "1.89" });
+                createSubscription({ paymentMethodId });
 
             }
         }
