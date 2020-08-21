@@ -130,50 +130,6 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
 
-
-
-                <label className="inpLabel">School</label>
-                {isEditingSchool ? <Select
-                    isClearable={true}
-                    onSelectResetsInput={false}
-                    placeholder="school ..."
-                    className="selectedInp"
-                    options={schools}
-                    values={[]}
-                    onChange={(value) => setSchool(value)}
-                    components={{ DropdownIndicator: () => null }}
-                    styles={style}
-
-                /> :
-                    <div>
-                        {profile.schoolTitle}
-                        <button className="editButton"
-                            onClick={() => setIsEditingSchool(!isEditingSchool)}>
-                            <FaEdit /></button>
-
-                    </div>
-
-                }
-                <label className="inpLabel">Faculty </label>
-                {isEditingFaculty ? <Select
-                    isClearable={true}
-                    placeholder="faculty ..."
-                    className="selectedInp"
-                    options={faculties}
-                    values={[]}
-                    onChange={(value) => setFaculty(value)}
-                    components={{ DropdownIndicator: () => null }}
-                    styles={style}
-                /> :
-                    <div>
-                        {profile.facultytitle}
-                        <button className="editButton"
-                            onClick={() => setIsEditingFaculty(!isEditingFaculty)}>
-                            <FaEdit /></button>
-
-                    </div>
-                }
-
                 <button>Submit</button>
             </form>
 

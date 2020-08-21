@@ -79,7 +79,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                         <div className="curBold">
                                             <CountUp end={charts.schoolFacultyCurUsers} duration={2.75} />
                                         </div>
-                                        <div className="subCurBold">{charts.schoolFacultyCurUsers}  Active Users in Your Faculty + University  </div>
+                                        <div className="subCurBold">{charts.schoolFacultyCurUsers} Active Users in Your Faculty + University  </div>
                                     </div>
                                 </div>
                                 <div className="triple-center">

@@ -5,6 +5,8 @@ import CardSection from './CardSection';
 import { createSubscription } from '../../thunks/settingsThunk';
 import url from '../../environment/url'
 
+import { refreshUser } from '../../thunks/profileThunk'
+
 const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -16,6 +18,7 @@ const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
     function onSubscriptionComplete(result) {
         // Payment was successful.
         if (result.subscription.status === 'active') {
+            dispatch(refreshUser)
             // Change your UI to show a success message to your customer.
             // Call your backend to grant access to your service based on
             // `result.subscription.items.data[0].price.product` the customer subscribed to.
@@ -91,6 +94,11 @@ const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
     function createSubscription({ customerId, paymentMethodId, priceId }) {
         console.log(paymentMethodId)
         console.log(subscriptions.currentSubscription.id)
+
+        if (!profile.userBilling.id) {
+            alert('error processing payment')
+            return
+        }
 
         return (
             fetch(url + '/api/UserBilling/createsubscription', {
