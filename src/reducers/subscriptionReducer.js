@@ -1,6 +1,20 @@
-import { FILL_SUBSCRIPTIONS, SET_CURRENT_SUBSCRIPTION } from '../actions/subscriptionActions'
+import { FILL_SUBSCRIPTIONS, SET_CURRENT_SUBSCRIPTION, SET_ACTIVE_SUBSCRIPTION } from '../actions/subscriptionActions'
 
-const subscriptionReducer = (state = {}, action) => {
+const subscriptionDefaultState = {
+    subscriptions: [],
+    currentSubscription: {
+        id: "",
+        interval: "",
+        amount: "",
+    },
+    activeSub: {
+        id: "",
+        interval: "",
+        amount: "",
+    }
+};
+
+const subscriptionReducer = (state = subscriptionDefaultState, action) => {
     switch (action.type) {
         case FILL_SUBSCRIPTIONS:
             return {
@@ -11,6 +25,11 @@ const subscriptionReducer = (state = {}, action) => {
             return {
                 ...state,
                 currentSubscription: action.subscription
+            }
+        case SET_ACTIVE_SUBSCRIPTION:
+            return {
+                ...state,
+                activeSub: action.activeSub
             }
 
         default:

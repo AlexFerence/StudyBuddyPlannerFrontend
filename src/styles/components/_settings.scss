@@ -14,22 +14,16 @@
 //     margin-bottom: 20px;
 // }
 
-.settings button {
- outline: none;
- border: none;
- margin-top: 10px;
- height: 40px;
- width: 80px;
- border: 1px solid $dark;
- background-color: $white;
- color: $dark;
-}
-
-.settings button:hover {
- border: 1px solid $white;
- background-color: $dark;
- color: $white;
-}
+// .settings button {
+//  outline: none;
+//  border: none;
+//  margin-top: 10px;
+//  height: 40px;
+//  width: 80px;
+//  border: 1px solid $dark;
+//  background-color: $white;
+//  color: $dark;
+// }
 
 .contact-us {
  margin: 30px 0px 40px 0px;
@@ -67,5 +61,76 @@
 
 .cardContainer {
  display: flex;
- border: 1px solid red;
+ //border: 1px solid red;
+}
+
+.subCard {
+ width: 100%;
+ border: 1px solid $grey;
+ margin: 10px;
+ padding: 10px;
+ padding-left: 15px;
+ border-radius: 10px;
+}
+
+.subCard:hover {
+ border: 1px solid $brand;
+}
+
+#noHover:hover {
+ border: 1px solid $grey;
+}
+
+.subCard__title {
+ font-size: 18px;
+ color: $dark-grey;
+ margin-bottom: 10px;
+ text-transform: capitalize;
+}
+
+.subCard__price {
+ color: $brand;
+ font-size: 22px;
+}
+
+.subCard__sub-text {
+ color: $grey;
+ font-size: 12px;
+ margin: 5px 0px;
+}
+
+#butFull {
+ color: $brand;
+ border: 1px solid $brand;
+ width: 100%;
+
+ margin: 10px 0px;
+}
+
+#butFull:hover {
+ background-color: $brand;
+ color: $white;
+}
+
+.creditInput {
+ padding: 15px 0px;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+}
+
+label {
+ width: 100%;
+}
+
+.card-details {
+ margin-bottom: 15px;
+ font-size: 18px;
+ font-weight: 500;
+}
+
+.settings-title {
+ font-size: 25px;
+ text-align: center;
+ margin: 10px 0px;
 }

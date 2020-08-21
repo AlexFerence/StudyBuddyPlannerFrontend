@@ -6,6 +6,7 @@ import { createSubscription } from '../../thunks/settingsThunk';
 import url from '../../environment/url'
 
 import { refreshUser } from '../../thunks/profileThunk'
+import { setActiveSubscription } from '../../actions/subscriptionActions'
 
 const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
     const stripe = useStripe();
@@ -18,7 +19,8 @@ const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
     function onSubscriptionComplete(result) {
         // Payment was successful.
         if (result.subscription.status === 'active') {
-            dispatch(refreshUser)
+            dispatch(refreshUser())
+            dispatch(setActiveSubscription(subscriptions.currentSubscription))
             // Change your UI to show a success message to your customer.
             // Call your backend to grant access to your service based on
             // `result.subscription.items.data[0].price.product` the customer subscribed to.
@@ -209,8 +211,10 @@ const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <CardSection />
-            <button disabled={!stripe}>Confirm order</button>
+            <div className="creditInput">
+                <CardSection />
+            </div>
+            <button id="butFull" className="but" disabled={!stripe}>Submit</button>
         </form>
     );
 }

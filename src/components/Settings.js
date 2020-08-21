@@ -100,7 +100,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             <div style={{ width: '100%', height: '300px' }}>
                 <PaymentForm />
             </div>
-
+            <div className="settings-title" style={{ paddingTop: "30px" }}>Settings</div>
             <form onSubmit={onSubmit}>
 
                 <label className="inpLabel">First Name</label>
@@ -130,12 +130,12 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
 
-                <button>Submit</button>
+                <button style={{ marginLeft: '0px' }} className="but">Submit</button>
             </form>
 
             <div className="section contact-us">
 
-                <h1>Contact us</h1>
+                <div className="settings-title" style={{ paddingTop: "30px", paddingBottom: "20px" }}>Contact Us</div>
                 <Select
                     isClearable={true}
                     onSelectResetsInput={false}
@@ -152,10 +152,11 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 <textarea onChange={(e) => setDescription(e.target.value)}>
 
                 </textarea>
-                <button onClick={submitContactUs}>Submit</button>
+                <button className="but" style={{ marginLeft: '0px' }} onClick={submitContactUs}>Submit</button>
             </div>
-
-            <button id="logoutButton" onClick={logOutCalled}>Log Out</button>
+            <button id="butFull" className="but" onClick={logOutCalled}
+                style={{ marginBottom: "30px" }}
+            >Log Out</button>
         </div>
     )
 }

@@ -11,3 +11,9 @@ export const setCurrentSubscription = (subscription) => ({
     type: SET_CURRENT_SUBSCRIPTION,
     subscription
 })
+
+export const SET_ACTIVE_SUBSCRIPTION = 'SET_ACTIVE_SUBSCRIPTION'
+export const setActiveSubscription = (activeSub) => ({
+    type: SET_ACTIVE_SUBSCRIPTION,
+    activeSub
+})

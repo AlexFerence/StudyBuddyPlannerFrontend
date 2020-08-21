@@ -14,7 +14,7 @@ const CARD_ELEMENT_OPTIONS = {
             },
             padding: "30px",
             width: "100px",
-            height: "100px"
+            height: "40px"
         },
         invalid: {
             color: "#fa755a",
@@ -26,7 +26,8 @@ const CARD_ELEMENT_OPTIONS = {
 function CardSection() {
     return (
         <label>
-            Card details
+
+
             <CardElement options={CARD_ELEMENT_OPTIONS} />
         </label>
     );

@@ -10,7 +10,7 @@ import Card from './subCard'
 
 const stripePromise = loadStripe("pk_live_51HHYysGxfzAdmwjMhM74G9cXIQkY5dsf1tRaEDMUun5dyAHBy117237KBazSiXdIVOTo0Wci3NTCBzryOzXiKuW700iVPagWci");
 
-const PaymentForm = ({ dispatch, subscriptions = [], stripeStatus }) => {
+const PaymentForm = ({ dispatch, subscriptions = [], stripeStatus, activeSub }) => {
     useEffect(() => {
         //load payment options here
         dispatch(loadPaymentOptions())
@@ -27,9 +27,9 @@ const PaymentForm = ({ dispatch, subscriptions = [], stripeStatus }) => {
 
             {stripeStatus !== "active" ?
                 <Elements stripe={stripePromise}>
+                    <div className="settings-title">Premium Plans</div>
                     <div className="cardContainer">
-                        options
-                {
+                        {
                             subscriptions.length > 0 &&
                             subscriptions.map((sub) => {
                                 return (
@@ -41,10 +41,15 @@ const PaymentForm = ({ dispatch, subscriptions = [], stripeStatus }) => {
                     <CheckoutForm />
                 </Elements>
                 :
-                <div>
-                    Current Plan:
 
-                    <button onClick={handleCancelSub}>Cancel Subscription</button>
+                <div className="subCard" id="noHover">
+                    <div className="subCard__title">{activeSub.interval}ly</div>
+
+                    <div className="subCard__price">${activeSub.amount / 100}</div>
+                    <div className="subCard__sub-text">per {activeSub.interval}</div>
+                    <div className="subCard__sub-text">billed {activeSub.interval}ly</div>
+
+                    <button className="but" onClick={handleCancelSub}>Cancel Subscription</button>
                 </div>
             }
 
@@ -58,6 +63,7 @@ const mapStateToProps = (state) => {
     return {
         subscriptions: state.subscriptions.subscriptions,
         stripeStatus: state.profile.userBilling.stripeStatus,
+        activeSub: state.subscriptions.activeSub
     }
 }
 
