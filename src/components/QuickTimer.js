@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import TimeInput from './TaskTimeInput'
 import Stopwatch from './Stopwatch'
 import Select from 'react-select';
 import { connect } from 'react-redux'
 import Counter from './Timer';
 import { getClassColor, getClassName } from '../thunks/subjectThunk';
-import {Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { setCurrentTaskById } from '../thunks/taskThunk'
 import { realoadClassesThunk } from '../thunks/subjectThunk'
 //new line
 
 
 
-const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects }) => {
+const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects, specialFunction }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
     const [localTasks, setLocalTasks] = useState([])
@@ -44,48 +44,48 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects 
 
     return (
         <div>
-        <Row>
-        <Col className="pad">
-        <Select
-                className="pad"
-                className="timerSelect"
-                id="timerSelect"
-                value={{...currentTask, label: currentTask.title}}
-                onChange={val => {
-                    console.log("changed value" + val)
+            <Row>
+                <Col className="pad">
+                    <Select
+                        className="pad"
+                        className="timerSelect"
+                        id="timerSelect"
+                        value={{ ...currentTask, label: currentTask.title }}
+                        onChange={val => {
+                            console.log("changed value" + val)
 
-                    dispatch(setCurrentTaskById(val.value.id))
-                }}
+                            dispatch(setCurrentTaskById(val.value.id))
+                        }}
 
-                placeholder="Task..."
-                isDisabled={isRunning || paused}
-                options={
-                    localTasks
-                }
-            />
-        </Col>
-        <Col className="pad">
-        
-        <Select
-                className="timerSelect"
-                id="timerSelect2"
-                value={timerSetting}
-                onChange={val => setTimerSetting(val)}
-                placeholder="Type..."
-                isDisabled={isRunning || paused}
-                options={[
-                    { value: 'Timer', label: 'Timer' },
-                    { value: 'Stopwatch', label: 'Stopwatch' }
-                
-                ]}
-            />
-        </Col>
-        </Row>
-            
-            
+                        placeholder="Task..."
+                        isDisabled={isRunning || paused}
+                        options={
+                            localTasks
+                        }
+                    />
+                </Col>
+                <Col className="pad">
+
+                    <Select
+                        className="timerSelect"
+                        id="timerSelect2"
+                        value={timerSetting}
+                        onChange={val => setTimerSetting(val)}
+                        placeholder="Type..."
+                        isDisabled={isRunning || paused}
+                        options={[
+                            { value: 'Timer', label: 'Timer' },
+                            { value: 'Stopwatch', label: 'Stopwatch' }
+
+                        ]}
+                    />
+                </Col>
+            </Row>
+
+
             {timerSetting.value === 'Timer' &&
-                <Counter
-                    //color={getClassColor(currentTask.subjectId)}
+                <Counter specialFunction={specialFunction}
+                //color={getClassColor(currentTask.subjectId)}
                 //currentTask={currentTask}
 
                 />}
@@ -100,14 +100,14 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects 
 
 const mapStateToProps = (state) => {
     return {
-      charts: state.charts,
-      subjects: state.subjects,
-      isRunning: state.running.isRunning,
-      paused: state.running.paused,
-      currentTask: state.currentTask,
-      tasks: state.tasks
+        charts: state.charts,
+        subjects: state.subjects,
+        isRunning: state.running.isRunning,
+        paused: state.running.paused,
+        currentTask: state.currentTask,
+        tasks: state.tasks
     }
-  }
-  
+}
+
 
 export default connect(mapStateToProps)(QuickTimer)

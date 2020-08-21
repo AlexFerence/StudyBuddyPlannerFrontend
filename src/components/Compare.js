@@ -32,7 +32,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
     const [localSubject, setLocalSubject] = useState({})
 
     useEffect(() => {
-        dispatch(loadMarksScatter())
+        //dispatch(loadMarksScatter())
         dispatch(userActivityCount())
 
         if (subjects.length === 0) {
@@ -66,7 +66,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
                     <div className="nums">
                         <Col>
                             <div className="compare-quick-timer">
-                                <QuickTimer />
+                                <QuickTimer specialFunction={userActivityCount} />
                             </div>
 
                         </Col>
@@ -77,11 +77,9 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                 >
                                     <div className="full-width">
                                         <div className="curBold">
-                                            <CountUp end={charts.schoolFacultyCurUsers}
-                                                duration={2.75}
-                                            />
+                                            <CountUp end={charts.schoolFacultyCurUsers} duration={2.75} />
                                         </div>
-                                        <div className="subCurBold">Active Users in Your Faculty + University</div>
+                                        <div className="subCurBold">{charts.schoolFacultyCurUsers}  Active Users in Your Faculty + University  </div>
                                     </div>
                                 </div>
                                 <div className="triple-center">

@@ -8,13 +8,14 @@ import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import moment from 'moment'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
-import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek, 
+import {
+    loadChartsThunk, loadSubjectBreakdown, loadHoursWeek,
     loadMarksScatter,
     loadTaskHoursPerWeek,
     loadPersonalStats
 } from '../thunks/chartThunk'
 
-const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
+const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask, specialFunction }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
@@ -39,7 +40,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
             dispatch(runningOffThunk(currentTask.id))
         }
     }, [isRunning])
-    
+
     //interval for timer to tick
     useInterval(() => {
         setCount(count + 1);
@@ -52,12 +53,18 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
             setIsRunning(true)
             //turn on is running locally
             dispatch(pausedReduxOff())
+            if (specialFunction) {
+                dispatch(specialFunction())
+            }
         }
     }
 
     const pauseTimer = () => {
         setIsRunning(false)
         dispatch(pausedReduxOn())
+        if (specialFunction) {
+            dispatch(specialFunction())
+        }
     }
 
     const timerDone = async () => {
@@ -76,6 +83,11 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         dispatch(loadTaskHoursPerWeek())
         dispatch(loadPersonalStats())
         dispatch(setCurrentTaskById(currentTask.id))
+
+        if (specialFunction) {
+            dispatch(specialFunction())
+        }
+
     }
 
     var percent = count / interval
@@ -88,24 +100,24 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-              })
-              .then((willDelete) => {
-                if (willDelete) {
-                    setCount(0)
-                    setIsRunning(false)
-                    dispatch(pausedReduxOff())
-                } else {
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        setCount(0)
+                        setIsRunning(false)
+                        dispatch(pausedReduxOff())
+                    } else {
 
-                }
-              });
+                    }
+                });
         }
         else {
             setCount(0)
             setIsRunning(false)
             dispatch(pausedReduxOff())
         }
-        
-        
+
+
     }
 
     const timeChanged = (e) => {
@@ -114,7 +126,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         }
     }
 
-    
+
 
     return (
         <div>
@@ -129,33 +141,33 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                     })}
                 >
                     {
-                        !currentTask.id ? (<div style={{ textAlign: 'center'}}><span>Quick Timer</span><br/><span>Please select a task</span></div>) :
-                        (!isRunning && !paused) &&
+                        !currentTask.id ? (<div style={{ textAlign: 'center' }}><span>Quick Timer</span><br /><span>Please select a task</span></div>) :
+                            (!isRunning && !paused) &&
                             <div className="inside d-flex justify-content-center align-items-center">
-                            <input className="inp" type="number"
-                            value={interval}
-                            onChange={timeChanged}
-                            />
-                            <div className="minlab">min</div>
+                                <input className="inp" type="number"
+                                    value={interval}
+                                    onChange={timeChanged}
+                                />
+                                <div className="minlab">min</div>
                             </div>
-                        }
-                        {(isRunning || paused) &&
+                    }
+                    {(isRunning || paused) &&
                         <div className="inside d-flex justify-content-center align-items-center">
                             <span className="timeDisplay">{timeDisplay(interval - count)}</span>
                         </div>
 
 
-                    
+
                     }
-                        
+
                     <div>
-                    {!isRunning &&
-                        <button disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>   
-                    }
-                    {!isRunning && paused &&
-                        <button className="but" onClick={resetCount}><IoMdClose /></button>   
-                        
-                    }
+                        {!isRunning &&
+                            <button disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>
+                        }
+                        {!isRunning && paused &&
+                            <button className="but" onClick={resetCount}><IoMdClose /></button>
+
+                        }
                     </div>
                     {isRunning && <button className="but" onClick={pauseTimer}><IoMdPause /></button>}
 
@@ -207,17 +219,17 @@ const timeDisplay = (n) => {
     var mins = Math.floor((n - (hours * 3600)) / 60)
     var seconds = n % 60
     if (seconds < 10) {
-        seconds = "0" + seconds 
+        seconds = "0" + seconds
     } if (mins < 10 && hours > 0) {
         mins = "0" + mins
     } if (n < 60) {
-        return(`${n}`)
+        return (`${n}`)
     } else if (n >= 3600) {
-        return(`${hours}:${mins}:${seconds}`)
+        return (`${hours}:${mins}:${seconds}`)
     } else if (n >= 60) {
-        return(`${mins}:${seconds}`)
+        return (`${mins}:${seconds}`)
     } else {
-        return(`${seconds}`)
+        return (`${seconds}`)
     }
 }
 
