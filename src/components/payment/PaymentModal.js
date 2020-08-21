@@ -8,7 +8,7 @@ import Card from './subCard'
 
 const stripePromise = loadStripe("pk_live_51HHYysGxfzAdmwjMhM74G9cXIQkY5dsf1tRaEDMUun5dyAHBy117237KBazSiXdIVOTo0Wci3NTCBzryOzXiKuW700iVPagWci");
 
-const PaymentForm = ({ dispatch, subscriptions }) => {
+const PaymentForm = ({ dispatch, subscriptions = [] }) => {
     useEffect(() => {
         //load payment options here
         dispatch(loadPaymentOptions())
