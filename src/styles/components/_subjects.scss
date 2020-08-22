@@ -159,9 +159,19 @@ h4 {
 }
 
 .fillerContent {
- margin: 40px;
+    color: $dark-grey;
+    font-size: 14px;
+    margin: 30px;
+    font-style: italic;
 }
 
 .tidbits {
- margin: 20px 0px;
+ margin: 10px 0px;
 }
+
+.subjects__sub-text {
+    color: $dark-grey;
+    font-size: 18px;
+    margin: 5px 0px;
+    font-style: italic;
+   }

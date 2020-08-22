@@ -206,13 +206,13 @@ const SubjectsPage = (props) => {
                             <Row>
                                 <Col md={6}>
                                 <div className="tidbits">
-                                    <span className="">Credits:</span> <span>{classSelection.credits}</span>
+                                     <span className="subjects__sub-text">{classSelection.description}</span> <br />
                                 </div>
                                 <div className="tidbits">
-                                    <span className="">Professor:</span> <span>{classSelection.professor}</span> <br />
+                                     <span className="subjects__sub-text">{classSelection.credits}</span> <span className="subjects__sub-text">Credits</span>
                                 </div>
                                 <div className="tidbits">
-                                    <span className="">Description:</span>  <span>{classSelection.description}</span> <br />
+                                    <span className="subjects__sub-text"></span> <span>{classSelection.professor}</span> <br />
                                 </div>
                                 </Col>
                                 <Col md={6}>
@@ -309,7 +309,7 @@ const SubjectsPage = (props) => {
                                     value={newChanges.description}
                                     onChange={(e) => setNewChanges({ ...newChanges, description: e.target.value })}
                                 /> <br />
-                                <label className="inpLabel">Prof:</label>
+                                <label className="inpLabel">Professor:</label>
                                 <input
                                     className="inp"
                                     type="text" value={newChanges.professor}

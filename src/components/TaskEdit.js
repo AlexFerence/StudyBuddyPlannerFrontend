@@ -118,7 +118,7 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
 
                     {/* CALENDAR */}
                     <label className="inpLabel">Due Date:</label>
-                    <SingleDatePicker
+                    <SingleDatePicker 
                         date={selectedDate} // momentPropTypes.momentObj or null
                         onDateChange={date => {
                             console.log(date)
