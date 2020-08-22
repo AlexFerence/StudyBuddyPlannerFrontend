@@ -130,7 +130,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
 
-                <button style={{ marginLeft: '0px' }} className="but">Submit</button>
+                <button style={{ marginLeft: '0px' }} className="but">Update</button>
             </form>
 
             <div className="section contact-us">
