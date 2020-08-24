@@ -20,6 +20,7 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { realoadClassesThunk } from '../thunks/subjectThunk'
 import { refreshUser, turnOffDashboardTour } from '../thunks/profileThunk'
+import Overlay from '../components/Overlay'
 
 const TOUR_STEPS = [
   {
@@ -73,23 +74,21 @@ const hoursToTimeDisplay = (h) => {
     returnMins = "0" + returnMins
   }
   return (hours + ":" + returnMins)
-
 }
-
 const reducer = (acc, item) => {
   acc = acc.push(item)
   return acc
 }
 
-const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
+const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus }) => {
   var [dropdown1, setDropdown1] = useState(true)
   var [dropdown2, setDropdown2] = useState(true)
-
   var [steps, setSteps] = useState(TOUR_STEPS)
   var [stepIndex, setStepIndex] = useState(0)
   var [run, setRun] = useState(true);
-
   var [whichWeek, setWhichWeek] = useState(moment())
+
+  const isPremium = (stripeStatus === 'active')
 
   useEffect(() => {
     dispatch(realoadClassesThunk())
@@ -101,7 +100,6 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
     dispatch(loadPersonalStats())
     dispatch(loadAverageOfWeekDay())
     dispatch(refreshUser())
-
   }, [])
 
   const goToNextWeek = () => {
@@ -163,7 +161,6 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
           </div>
           <div className="graph topRight">
             <ReactEcharts
-
               option={{
                 title: {
                   text: "Week View",
@@ -273,6 +270,9 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects }) => {
             </Col>
             <Col>
               <div className="lineGraph">
+                {!isPremium &&
+                  <Overlay />
+                }
                 <ReactEcharts
                   option={{
                     textStyle: {
@@ -432,7 +432,8 @@ const mapStateToProps = (state) => {
   return {
     charts: state.charts,
     profile: state.profile,
-    subjects: state.subjects
+    subjects: state.subjects,
+    stripeStatus: state.profile.userBilling.stripeStatus
   }
 }
 
