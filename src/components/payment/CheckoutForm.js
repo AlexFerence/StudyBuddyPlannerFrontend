@@ -214,7 +214,9 @@ const CheckoutForm = ({ dispatch, profile, subscriptions }) => {
             <div className="creditInput">
                 <CardSection />
             </div>
-            <button id="butFull" className="but" disabled={!stripe}>Submit</button>
+            <button id="butFull" className="but" disabled={!stripe}
+                style={{ fontSize: '20px', padding: '10px' }}
+            >Get Premium</button>
         </form>
     );
 }
