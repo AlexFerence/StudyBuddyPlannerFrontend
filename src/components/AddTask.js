@@ -11,16 +11,27 @@ import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
 
 
+// TODO: make sure that the default is assignment
+// prevent cut off
+// make sure a user cant submit without setting a subject, show error
+
 const subjReduce = (list, item) => {
     list.push({ value: item, label: item.name + " " + item.classCode })
     return list
 }
 
+const options = [
+    { value: 'Assignment', label: 'Assignment' },
+    { value: 'Quiz', label: 'Quiz' },
+    { value: 'Test', label: 'Test' },
+    { value: 'Exam', label: 'Exam' }
+]
+
 
 const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) => {
     const [currentSubjectID, setCurrentSubjectID] = useState('')
     const [currentClass, setCurrentClass] = useState('')
-    const [taskType, setTaskType] = useState('')
+    const [taskType, setTaskType] = useState({ value: 'Assignment', label: 'Assignment' })
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
     const [selectedDate, setSelectedDate] = useState(moment())
@@ -43,6 +54,8 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
 
     const onSubmit = async (e) => {
         e.preventDefault()
+
+
 
         try {
             const res = await axios.post(url + '/api/Tasks/create',
@@ -67,7 +80,7 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
             console.log(res)
             dispatch(loadTasks())
             setDisplayType('')
-            
+
 
         } catch (e) {
             console.log(e)
@@ -95,18 +108,13 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                         value={taskType}
                         onChange={val => setTaskType(val)}
                         placeholder="Type..."
-                        options={[
-                            { value: 'Assignment', label: 'Assignment' },
-                            { value: 'Quiz', label: 'Quiz' },
-                            { value: 'Test', label: 'Test' },
-                            { value: 'Exam', label: 'Exam' }
-                        ]}
+                        options={options}
                     />
                     <label className="inpLabel">Title:</label>
                     <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
 
 
-                    <label className="inpLabel">Date:</label>
+                    <label className="inpLabel">Due Date:</label>
                     <SingleDatePicker
                         date={selectedDate} // momentPropTypes.momentObj or null
                         onDateChange={date => {
@@ -120,7 +128,7 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                         hideKeyboardShortcutsPanel={true}
                     />
 
-                    <label className="inpLabel">Description: </label>
+                    <label className="inpLabel">Description: (optional)</label>
                     <textarea className="inpArea" rows="3" onChange={(e) => {
                         setTaskDesc(e.target.value)
                     }} />

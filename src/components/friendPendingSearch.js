@@ -11,6 +11,7 @@ const FriendPendingActivity = ({ dispatch }) => {
         if (res) {
             if (res.email) {
                 setSearchedPerson(res)
+                console.log(res)
             }
             else {
                 setSearchedPerson()
@@ -27,9 +28,20 @@ const FriendPendingActivity = ({ dispatch }) => {
     }
 
     return (
-        <div className="friendActivity">
-            <input onChange={handleChangedSearch} />
-            {searchedPerson && <div>{searchedPerson.email} <button onClick={handleAddFriend}>Add</button></div>}
+        <div className="friend-search">
+            <input
+                onChange={handleChangedSearch}
+                placeholder="search for your friends ..."
+            />
+            {searchedPerson &&
+                <div className="suggest-person">
+                    <div>
+                        <div className="suggest-person__name">{searchedPerson.firstName} {searchedPerson.lastName}</div>
+                        <div className="suggest-person__email">{searchedPerson.email}</div>
+                    </div>
+                    {searchedPerson.email && <button className="but" onClick={handleAddFriend}>Add</button>}
+                </div>
+            }
         </div>
 
     )

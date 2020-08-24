@@ -32,7 +32,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
         console.log('submitting time ')
         const totalMins = ((parseInt(hrs) * 60) + parseInt(mins))
         if (totalMins > 0) {
-            //swal("Good job!", "You clicked the button!", "success");
+
             setMins(0)
             setHrs(0)
             await dispatch(postSessionThunk({
@@ -42,11 +42,17 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
             }))
 
             await dispatch(loadTasks())
-            
+
             dispatch(setCurrentTaskById(currentTask.id))
 
             //PUT SWAL HERE
-            
+
+            swal({
+                title: "Study session recorded",
+                icon: "success",
+                buttons: true,
+            })
+
             //dispatch(getSessionsThunk(currentTask.id))
 
         }
@@ -69,28 +75,28 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                 </Col>
             </Row>
             <Row className="d-flex align-items-center">
-            <div className="timeLabel">Day</div>
-            <SingleDatePicker
-                date={selectedDate} // momentPropTypes.momentObj or null
-                onDateChange={date => {
-                    console.log(date)
-                    setSelectedDate(date)
-                }} // PropTypes.func.isRequired
-                focused={calendarFocused} // PropTypes.bool
-                onFocusChange={({ focused }) => setCalendarFocused(focused)} // PropTypes.func.isRequired
-                id="your_unique_id" // PropTypes.string.isRequired,
-                numberOfMonths={1}
-                hideKeyboardShortcutsPanel={true}
-                isOutsideRange={day => (moment().diff(day) < 0)}
-            />
+                <div className="timeLabel">Day</div>
+                <SingleDatePicker
+                    date={selectedDate} // momentPropTypes.momentObj or null
+                    onDateChange={date => {
+                        console.log(date)
+                        setSelectedDate(date)
+                    }} // PropTypes.func.isRequired
+                    focused={calendarFocused} // PropTypes.bool
+                    onFocusChange={({ focused }) => setCalendarFocused(focused)} // PropTypes.func.isRequired
+                    id="your_unique_id" // PropTypes.string.isRequired,
+                    numberOfMonths={1}
+                    hideKeyboardShortcutsPanel={true}
+                    isOutsideRange={day => (moment().diff(day) < 0)}
+                />
             </Row>
-            
+
             <Row>
                 <Col>
-                    <button 
-                    className="timeSubmit" 
-                    style={{ backgroundColor: currentTask.color }}
-                    onClick={() => submitTime()}
+                    <button
+                        className="timeSubmit"
+                        style={{ backgroundColor: currentTask.color }}
+                        onClick={() => submitTime()}
                     >Submit Time</button>
                 </Col>
             </Row>

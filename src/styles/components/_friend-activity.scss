@@ -14,7 +14,34 @@
  border-right: 1px solid grey;
 }
 
-.friendActivity input {
- border: 1px solid grey;
- padding: 5px;
+.friend-search {
+ padding: 10px;
+ input {
+  border: 1px solid grey;
+  padding: 7.5px;
+  background-color: $light-grey;
+  width: 100%;
+ }
+ input:focus {
+  outline: none;
+ }
+}
+
+.suggest-person {
+ padding: 10px;
+ //border: 1px solid red;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ background-color: darken($color: $light-grey, $amount: 10);
+}
+
+.suggest-person__name {
+ font-size: 18px;
+}
+
+.suggest-person__email {
+ font-size: 12px;
+ color: darken($color: $grey, $amount: 30);
 }
