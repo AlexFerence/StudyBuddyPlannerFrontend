@@ -21,6 +21,7 @@ import { modifyProfile } from '../actions/profileActions'
 import { realoadClassesThunk } from '../thunks/subjectThunk'
 import { refreshUser, turnOffDashboardTour } from '../thunks/profileThunk'
 import Overlay from '../components/Overlay'
+import { setCurrentTask } from '../actions/currentTaskActions'
 
 const TOUR_STEPS = [
   {
@@ -80,7 +81,7 @@ const reducer = (acc, item) => {
   return acc
 }
 
-const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus }) => {
+const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus, tasks }) => {
   var [dropdown1, setDropdown1] = useState(true)
   var [dropdown2, setDropdown2] = useState(true)
   var [steps, setSteps] = useState(TOUR_STEPS)
@@ -91,15 +92,25 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus 
   const isPremium = (stripeStatus === 'active')
 
   useEffect(() => {
-    dispatch(realoadClassesThunk())
-    dispatch(loadTasks())
-    dispatch(loadChartsThunk())
-    dispatch(loadSubjectBreakdown())
+    if (isPremium) {
+      dispatch(loadPersonalStats())
+      dispatch(loadAverageOfWeekDay())
+      dispatch(refreshUser())
+      dispatch(realoadClassesThunk())
+      dispatch(loadTasks())
+      dispatch(loadChartsThunk())
+      dispatch(loadSubjectBreakdown())
+      dispatch(loadTaskHoursPerWeek())
+    }
+
     dispatch(loadHoursWeek())
-    dispatch(loadTaskHoursPerWeek())
-    dispatch(loadPersonalStats())
-    dispatch(loadAverageOfWeekDay())
-    dispatch(refreshUser())
+
+
+
+    if (tasks.length > 0) {
+      setCurrentTask(tasks[0])
+    }
+
   }, [])
 
   const goToNextWeek = () => {
@@ -219,6 +230,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus 
         <div>
           <Row id="row1" className="dashRow">
             <Col>
+              <Overlay />
               <div className="flexNumDisplay">
                 <div className="rowTitle">Current Stats</div>
                 <div className="row">
@@ -324,7 +336,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus 
           </Row>
           <Row className="dashRow">
             <Col>
-
+              <Overlay />
               <ReactEcharts
                 option={{
                   title: {
@@ -375,6 +387,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus 
               />
             </Col>
             <Col>
+              <Overlay />
               {subjects.length === 0 ? <div className="noData">
                 <div>
                   No Data
@@ -394,9 +407,17 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus 
                         center: ['50%', '50%'],
                         selectedMode: 'single',
                         data:
-                          charts.pieChart ? charts.pieChart.pieData : []
+                          isPremium ?
+                            (charts.pieChart ? charts.pieChart.pieData : []) :
+                            [
+                              { name: 'math', value: 2 },
+                              { name: 'chem', value: 1 },
+                              { name: 'hist', value: .5 },
+                              { name: 'engl', value: 2 },
+
+                            ]
                         ,
-                        color: charts.pieColors,
+                        color: isPremium ? charts.pieColors : null,
                         emphasis: {
                           itemStyle: {
                             shadowBlur: 10,
@@ -420,10 +441,6 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus 
         <span>Comparative Analytics</span>
         <span className="lock">{false && <FaLock />}</span>
       </div>
-
-
-
-
     </div>
   );
 }
@@ -433,7 +450,8 @@ const mapStateToProps = (state) => {
     charts: state.charts,
     profile: state.profile,
     subjects: state.subjects,
-    stripeStatus: state.profile.userBilling.stripeStatus
+    stripeStatus: state.profile.userBilling.stripeStatus,
+    tasks: state.tasks
   }
 }
 

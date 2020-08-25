@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { runningReduxOn, runningReduxOff } from '../actions/isRunningActions';
 import url from '../environment/url';
+import { modifyFriends } from '../actions/friendActions'
 
 
 export const searchIfExists = (email) => async (dispatch, getState) => {
@@ -54,6 +55,8 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
+
+    console.log('GETTING PENDING FRIENDDS')
     try {
         const res = await axios.post(url + '/api/Friends/getListPendingFriends', {
             userId: id
@@ -66,7 +69,8 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
-        return (res.data);
+        console.log(res.data);
+        dispatch(modifyFriends({ pendingFriends: res.data }))
 
 
     } catch (e) {

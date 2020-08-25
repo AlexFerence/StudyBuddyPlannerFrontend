@@ -8,6 +8,7 @@ import { getClassColor, getClassName } from '../thunks/subjectThunk';
 import { Row, Col } from 'react-bootstrap'
 import { setCurrentTaskById } from '../thunks/taskThunk'
 import { realoadClassesThunk } from '../thunks/subjectThunk'
+
 //new line
 
 
@@ -56,7 +57,6 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
 
                             dispatch(setCurrentTaskById(val.value.id))
                         }}
-
                         placeholder="Task..."
                         isDisabled={isRunning || paused}
                         options={
@@ -65,7 +65,6 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
                     />
                 </Col>
                 <Col className="pad">
-
                     <Select
                         className="timerSelect"
                         id="timerSelect2"

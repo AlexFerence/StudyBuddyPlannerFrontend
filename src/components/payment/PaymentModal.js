@@ -7,6 +7,7 @@ import { cancelSubscription } from '../../thunks/subscriptionThunk'
 import { refreshUser } from '../../thunks/profileThunk'
 import { connect } from 'react-redux'
 import Card from './subCard'
+import { setCurrentSubscription } from '../../actions/subscriptionActions'
 
 const stripePromise = loadStripe("pk_live_51HHYysGxfzAdmwjMhM74G9cXIQkY5dsf1tRaEDMUun5dyAHBy117237KBazSiXdIVOTo0Wci3NTCBzryOzXiKuW700iVPagWci");
 
@@ -14,6 +15,10 @@ const PaymentForm = ({ dispatch, subscriptions = [], stripeStatus, activeSub }) 
     useEffect(() => {
         //load payment options here
         dispatch(loadPaymentOptions())
+        if (subscriptions.length > 0) {
+            dispatch(setCurrentSubscription(subscriptions[0]))
+        }
+
     }, [])
 
     const handleCancelSub = () => {

@@ -32,14 +32,14 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         }
     }, [])
     //links local and database
-    useEffect(() => {
-        if (isRunning) {
-            dispatch(runningOnThunk(currentTask.id))
-        }
-        else {
-            dispatch(runningOffThunk(currentTask.id))
-        }
-    }, [isRunning])
+    // useEffect(() => {
+    //     if (isRunning) {
+    //         dispatch(runningOnThunk(currentTask.id))
+    //     }
+    //     else {
+    //         dispatch(runningOffThunk(currentTask.id))
+    //     }
+    // }, [isRunning])
 
     //interval for timer to tick
     useInterval(() => {
@@ -52,6 +52,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         if (interval > 0) {
             setIsRunning(true)
             //turn on is running locally
+            dispatch(runningOnThunk(currentTask.id))
             dispatch(pausedReduxOff())
             if (specialFunction) {
                 dispatch(specialFunction())
@@ -62,6 +63,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
     const pauseTimer = () => {
         setIsRunning(false)
         dispatch(pausedReduxOn())
+        dispatch(runningOffThunk(currentTask.id))
         if (specialFunction) {
             dispatch(specialFunction())
         }
@@ -69,20 +71,22 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
 
     const timerDone = async () => {
         resetCount()
-        dispatch(runningOffThunk())
+        dispatch(runningOffThunk(currentTask.id))
         dispatch(pausedReduxOff())
         await dispatch(postSessionThunk({
             taskId: currentTask.id,
             minutes: interval,
         }))
         await dispatch(loadTasks())
-        dispatch(loadChartsThunk())
-        dispatch(loadSubjectBreakdown())
-        dispatch(loadHoursWeek())
-        dispatch(loadMarksScatter())
-        dispatch(loadTaskHoursPerWeek())
-        dispatch(loadPersonalStats())
-        dispatch(setCurrentTaskById(currentTask.id))
+
+        //TODO put in new call
+        // dispatch(loadChartsThunk())
+        // dispatch(loadSubjectBreakdown())
+        // dispatch(loadHoursWeek())
+        // dispatch(loadMarksScatter())
+        // dispatch(loadTaskHoursPerWeek())
+        // dispatch(loadPersonalStats())
+        // dispatch(setCurrentTaskById(currentTask.id))
 
         if (specialFunction) {
             dispatch(specialFunction())

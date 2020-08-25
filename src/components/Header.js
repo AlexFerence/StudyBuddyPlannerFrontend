@@ -96,7 +96,7 @@ const Header = (props, { isRunning }) => {
                                     overlay={renderTooltipDash}
                                 >
 
-                                    <NavLink id="dashboard" style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
+                                    <NavLink activeStyle={{ color: 'white' }} style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
                                 </OverlayTrigger>
 
                                 :
@@ -121,7 +121,7 @@ const Header = (props, { isRunning }) => {
                                     overlay={renderTooltipCompare}
                                 >
 
-                                    <NavLink id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
+                                    <NavLink activeStyle={{ color: 'white' }} id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
                                 </OverlayTrigger>
 
                                 :
@@ -136,7 +136,7 @@ const Header = (props, { isRunning }) => {
                                         })
 
                                     }}
-                                    id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
+                                    id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><IoIosSpeedometer />
                                 </div>
                             }
                             {!props.isRunning ?
@@ -146,7 +146,7 @@ const Header = (props, { isRunning }) => {
                                     overlay={renderTooltipTask}
                                 >
 
-                                    <NavLink id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                    <NavLink activeStyle={{ color: 'white' }} id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
                                     </NavLink>
 
                                 </OverlayTrigger> :
@@ -162,7 +162,7 @@ const Header = (props, { isRunning }) => {
                                         })
 
                                     }}
-                                    id="tasks" style={{ padding: 5 }} ><FaCheckSquare />
+                                    id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><FaCheckSquare />
                                 </div>
                             }
                             {!props.isRunning ?
@@ -171,7 +171,7 @@ const Header = (props, { isRunning }) => {
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipSubj}
                                 >
-                                    <NavLink id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
+                                    <NavLink activeStyle={{ color: 'white' }} id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
                                     </NavLink>
                                 </OverlayTrigger>
                                 :
@@ -196,7 +196,7 @@ const Header = (props, { isRunning }) => {
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipSet}
                                 >
-                                    <NavLink id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
+                                    <NavLink activeStyle={{ color: 'white' }} id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
                                     </NavLink>
                                 </OverlayTrigger>
                                 :
@@ -225,13 +225,14 @@ const Header = (props, { isRunning }) => {
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav inline="true">
+
                             {props.isAuth &&
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipTask}
                                 >
-                                    <NavLink style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                    <NavLink activeStyle={{ color: 'white' }} style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
                                     </NavLink>
                                 </OverlayTrigger>
                             }

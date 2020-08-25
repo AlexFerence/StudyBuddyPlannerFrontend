@@ -7,12 +7,14 @@ import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
-import { loadChartsThunk, loadSubjectBreakdown, loadHoursWeek, 
+import {
+    loadChartsThunk, loadSubjectBreakdown, loadHoursWeek,
     loadMarksScatter,
     loadTaskHoursPerWeek,
     loadPersonalStats,
     loadYearBeakdown, loadFacultyStats, loadAverageOfWeekDay
 } from '../thunks/chartThunk'
+import { refreshAllCharts } from '../thunks/chartThunk'
 
 const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -39,7 +41,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
             dispatch(runningOffThunk(currentTask.id))
         }
     }, [isRunning])
-    
+
     //interval for timer to tick
     useInterval(() => {
         setCount(count + 1);
@@ -60,7 +62,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
     }
 
     const timerDone = async () => {
-        
+
         dispatch(pausedReduxOff())
         dispatch(postSessionThunk({
             taskId: currentTask.id,
@@ -71,14 +73,10 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         // }).catch((e) => {
         //     console.log(e)
         // })
-        await dispatch(loadTasks())
-        
-        dispatch(loadChartsThunk())
-        dispatch(loadSubjectBreakdown())
-        dispatch(loadHoursWeek())
+        dispatch(refreshAllCharts())
 
         dispatch(setCurrentTaskById(currentTask.id))
-        
+
         resetCount()
     }
 
@@ -92,22 +90,22 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-              })
-              .then((willDelete) => {
-                if (willDelete) {
-                    setCount(0)
-                    setIsRunning(false)
-                    dispatch(pausedReduxOff())
-                } else {
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        setCount(0)
+                        setIsRunning(false)
+                        dispatch(pausedReduxOff())
+                    } else {
 
-                }
-              });
+                    }
+                });
         }
         else {
             setCount(0)
             setIsRunning(false)
             dispatch(pausedReduxOff())
-        }        
+        }
     }
 
     // const timeChanged = (e) => {
@@ -122,8 +120,8 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                 taskId: currentTask.id,
                 minutes: parseInt(count),
             }))
-            await dispatch(loadTasks()) 
-        
+            await dispatch(loadTasks())
+
             dispatch(loadChartsThunk())
             dispatch(loadSubjectBreakdown())
             dispatch(loadHoursWeek())
@@ -133,13 +131,13 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
             dispatch(loadTaskHoursPerWeek())
             dispatch(loadPersonalStats())
             dispatch(loadAverageOfWeekDay())
-        
+
             dispatch(setCurrentTaskById(currentTask.id))
-            
+
         }
         resetCount()
     }
-    
+
     return (
         <div>
             <div className="stopwatch">
@@ -194,14 +192,14 @@ const timeDisplay = (n) => {
     var mins = Math.floor((n - (hours * 3600)) / 60)
     var seconds = n % 60
     if (seconds < 10) {
-        seconds = "0" + seconds 
+        seconds = "0" + seconds
     } if (mins < 10) {
         mins = "0" + mins
     }
-    if (hours < 10 ){
+    if (hours < 10) {
         hours = "0" + hours
-    } 
-    return(`${hours}:${mins}:${seconds}`)
+    }
+    return (`${hours}:${mins}:${seconds}`)
 }
 
 export default connect(mapStateToProps)(Stopwatch)

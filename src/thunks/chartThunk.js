@@ -403,12 +403,19 @@ export const comparativePersonalToAverage = (sid) => async (dispatch, getState) 
 }
 
 export const refreshAllCharts = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects, } = state
+    const { id, token, subjId, schoolId, userBilling } = profile
+    const { stripeStatus = "" } = userBilling
 
-    dispatch(loadChartsThunk())
-    dispatch(loadSubjectBreakdown())
+    if (stripeStatus) {
+        dispatch(loadChartsThunk())
+        dispatch(loadSubjectBreakdown())
+        dispatch(loadMarksScatter())
+        dispatch(loadTaskHoursPerWeek())
+        dispatch(loadPersonalStats())
+    }
+
     dispatch(loadHoursWeek())
-    dispatch(loadMarksScatter())
-    dispatch(loadTaskHoursPerWeek())
-    dispatch(loadPersonalStats())
-
 }
+

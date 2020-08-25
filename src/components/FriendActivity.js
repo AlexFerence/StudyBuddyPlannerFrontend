@@ -5,17 +5,25 @@ import FriendPendingSearch from './friendPendingSearch'
 const FriendActivity = () => {
     const [activityShowing, setActivityShowing] = useState(true);
 
+    const handleShowActivity = () => {
+        setActivityShowing(true)
+    }
+
+    const handleShowPending = () => {
+        setActivityShowing(false)
+    }
+
     return (
         <div className="friendActivity">
             <div className="flip-container">
-                <div className="flip-header" >
+                <div className="flip-header" onClick={handleShowActivity} >
                     Friend Activity
                 </div>
-                <div className="flip-header">
+                <div className="flip-header" onClick={handleShowPending}>
                     Pending/Add Friends
                 </div>
             </div>
-            <FriendPendingSearch />
+            {activityShowing ? <div>Friend activity</div> : <FriendPendingSearch />}
         </div>
     )
 }

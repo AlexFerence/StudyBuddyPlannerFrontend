@@ -9,6 +9,7 @@ import facultiesReducer from '../reducers/facultyReducer'
 import currentTaskReducer from '../reducers/currentTaskReducer'
 import chartsReducer from '../reducers/chartsReducer'
 import subscriptionsReducer from '../reducers/subscriptionReducer'
+import friendReducer from '../reducers/friendsReducer'
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
@@ -29,7 +30,8 @@ const reducers = {
     faculties: facultiesReducer,
     currentTask: currentTaskReducer,
     charts: chartsReducer,
-    subscriptions: subscriptionsReducer
+    subscriptions: subscriptionsReducer,
+    friends: friendReducer
 };
 
 const persistConfig = {

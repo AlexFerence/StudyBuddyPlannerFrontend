@@ -57,7 +57,7 @@ export const userActivityCount = () => async (dispatch, getState) => {
     console.log(' CURRENT USERS ')
     try {
         // smallest (school and faculty)
-        const res0 = await axios.post(url + '/api/UserActivity/count',
+        const res = await axios.post(url + '/api/UserActivity/count',
             {
                 faculty: profile.facultyId,
                 school: profile.schoolId
@@ -70,35 +70,10 @@ export const userActivityCount = () => async (dispatch, getState) => {
             }
         })
         // medium (people at your school)
-        const res1 = await axios.post(url + '/api/UserActivity/count',
-            {
-                school: profile.schoolId
-            }, {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
         // large (people worldwide)
-        const res2 = await axios.post(url + '/api/UserActivity/count',
-            {
-
-            }, {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        console.log(res0.data)
-        console.log(res1.data)
-        console.log(res2.data)
-
+        console.log(res.data)
         dispatch(modify({
-            schoolFacultyCurUsers: res0.data,
-            schoolCurUsers: res1.data,
-            worldCurUsers: res2.data
+            ...res.data,
         }));
 
         console.log('updated user activity stopped')

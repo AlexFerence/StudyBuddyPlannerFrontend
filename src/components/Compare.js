@@ -8,6 +8,7 @@ import Select from 'react-select'
 import CountUp from 'react-countup';
 import QuickTimer from './QuickTimer'
 import FriendActivity from './FriendActivity'
+import Overlay from '../components/Overlay'
 
 const hoursToTimeDisplay = (h) => {
     var hours = Math.floor(h)
@@ -68,7 +69,6 @@ const Compare = ({ charts, dispatch, subjects }) => {
                             <div className="compare-quick-timer">
                                 <QuickTimer specialFunction={userActivityCount} />
                             </div>
-
                         </Col>
                         <Col>
                             <div className="flex-triple-horizontal dashRow">
@@ -77,20 +77,20 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                 >
                                     <div className="full-width">
                                         <div className="curBold">
-                                            <CountUp end={charts.schoolFacultyCurUsers} duration={2.75} />
+                                            {charts.SchoolFacultyCurUsers}
                                         </div>
-                                        <div className="subCurBold">{charts.schoolFacultyCurUsers} Active Users in Your Faculty + University  </div>
+                                        <div className="subCurBold">Active Users in Your Faculty + University  </div>
                                     </div>
                                 </div>
                                 <div className="triple-center">
                                     <div>
-                                        <div className="full-width curBold">{charts.schoolCurUsers}</div>
+                                        <div className="full-width curBold">{charts.SchoolCurUsers}</div>
                                         <div className="subCurBold">Active Users in Your University</div>
                                     </div>
                                 </div>
                                 <div className="triple-center">
                                     <div>
-                                        <div className="full-width curBold">{charts.worldCurUsers}</div>
+                                        <div className="full-width curBold">{charts.WorldCurUsers}</div>
                                         <div className="subCurBold">Active Users WorldWide</div>
                                     </div>
                                 </div>
@@ -119,6 +119,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                         className="half-width"
                                     />
                                 </div>
+                                <Overlay />
                                 <ReactEcharts
                                     option={{
                                         textStyle: {
@@ -179,10 +180,7 @@ const Compare = ({ charts, dispatch, subjects }) => {
                             Friend activity
                         </div>
                         <FriendActivity />
-
-
                     </div>
-
                 </Col>
             </Row>
         </div>

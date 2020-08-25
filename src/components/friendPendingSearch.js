@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { searchIfExists, sendRequest } from '../thunks/friendThunk'
+import { searchIfExists, sendRequest, getPendingFriends } from '../thunks/friendThunk'
 
 const FriendPendingActivity = ({ dispatch }) => {
-    const [searchedPerson, setSearchedPerson] = useState({});
+    const [searchedPerson, setSearchedPerson] = useState();
+
+    useEffect(() => {
+        dispatch(getPendingFriends())
+
+    }, [])
 
     const handleChangedSearch = async (e) => {
         var res = await dispatch(searchIfExists(e.target.value))

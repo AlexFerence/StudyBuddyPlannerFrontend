@@ -34,8 +34,6 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     const [requestType, setRequestType] = useState('')
     const [isEditingSchool, setIsEditingSchool] = useState(false);
     const [isEditingFaculty, setIsEditingFaculty] = useState(false);
-
-
     //    const [contactType, setContactType] = useState('')
 
     const logOutCalled = () => {
@@ -44,8 +42,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     }
 
     useEffect(() => {
-        dispatch(loadSchools())
-        dispatch(loadFaculties())
+        //dispatch(loadSchools())
+        //dispatch(loadFaculties())
 
     }, [])
 
