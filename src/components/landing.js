@@ -215,34 +215,6 @@ const Landing = ({ history, profile }) => {
             </Row>
           </div>
           <div className=""><div></div></div>
-          <div className="testemonials">
-            <div className="third">
-              <div className="quote">
-                "My Favourite study app"
-              </div>
-              <div className="author">
-                - Josh Levy, Mcgill University
-                </div>
-            </div>
-            <div className="third">
-              <div className="quote">
-                "I use it every day"
-              </div>
-              <div className="author">
-                - Silas Chapelle, Mcgill University
-              </div>
-            </div>
-            <div className="third">
-              <div className="quote">
-                "Wowie"
-              </div>
-              <div className="author">
-                - Owen Cotterill, Mcgill University
-              </div>
-
-            </div>
-
-          </div>
 
 
           <footer className="footerSection">
