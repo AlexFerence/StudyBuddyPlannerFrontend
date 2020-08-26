@@ -7,12 +7,21 @@ const profileReducerDefaultState = {
     firstName: '',
     lastName: '',
     id: 0,
-    isAuth: false
+    isAuth: false,
+    userBilling: {
+        stripeStatus: "",
+        id: 0,
+        userId: 0,
+        stripeCurrentPeriodEnd: "",
+        stripeCustomerId: "cus_HtJ1BMgUoXQBiU",
+        stripeSubscriptionId: ""
+    }
+
 }
 
 
 const profileReducer = (state = profileReducerDefaultState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case ADD_PROFILE:
             console.log('save user!!!!!!')
             return action.profile
@@ -32,7 +41,7 @@ const profileReducer = (state = profileReducerDefaultState, action) => {
             return {
                 ...state,
                 ...action.data
-        }
+            }
         default:
             return state
     }

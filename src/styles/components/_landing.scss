@@ -97,7 +97,7 @@
 
 .rowSection {
  background-color: $dark-grey;
- height: 55vh;
+ min-height: 55vh;
 }
 
 .footerSection {
@@ -129,7 +129,7 @@
  text-indent: 50px;
  line-height: 30px;
  color: white;
- min-height: 250px;
+ //min-height: 250px;
 }
 
 .imageCol {

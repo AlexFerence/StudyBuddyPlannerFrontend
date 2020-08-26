@@ -27,15 +27,15 @@ const TOUR_STEPS = [
     {
         target: "#tasks",
         content:
-          "Next let's head over to tasks...",
+            "Next let's head over to tasks...",
         locale: {
             last: 'Next'
         },
         disableOverlay: true
-      },
-      
+    },
 
-  ];
+
+];
 
 
 const SubjectsPage = (props) => {
@@ -50,7 +50,7 @@ const SubjectsPage = (props) => {
     var [run, setRun] = useState(true);
 
     useEffect(() => {
-        setNewChanges({ ...newChanges, color: { hex: "#2b2b2b" }})
+        setNewChanges({ ...newChanges, color: { hex: "#2b2b2b" } })
         const getClasses = async () => {
             try {
                 const res = await axios.post(url + '/api/subjects/list',
@@ -108,7 +108,7 @@ const SubjectsPage = (props) => {
             Professor: newChanges.professor.trim(),
             Credits: newChanges.credits,
             UserId: props.id,
-            color: newChanges.color ,
+            color: newChanges.color,
         }, classSelection))
         setClassSelection(newChanges)
         setEditMode(false)
@@ -117,22 +117,22 @@ const SubjectsPage = (props) => {
 
     const handleJoyrideCallback = data => {
         const { action, index, status, type } = data;
-    
+
         if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-          // Update state to advance the tour
-          setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
+            // Update state to advance the tour
+            setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
         }
         else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-          // Need to set our running state to false, so we can restart if we click start again.
-          setRun(false)
-          
-          props.history.push("/tasks")
-          //turn off tour locally
-          props.dispatch(modifyProfile({ subjectTour: 1 }))
-          //turn off in server
-          props.dispatch(turnOffSubjectTour())
+            // Need to set our running state to false, so we can restart if we click start again.
+            setRun(false)
+
+            props.history.push("/tasks")
+            //turn off tour locally
+            props.dispatch(modifyProfile({ subjectTour: 1 }))
+            //turn off in server
+            props.dispatch(turnOffSubjectTour())
         }
-    
+
         console.groupCollapsed(type);
         console.log(data); //eslint-disable-line no-console
         console.groupEnd();
@@ -140,14 +140,20 @@ const SubjectsPage = (props) => {
 
     return (
         <Row className="subjects">
-            <Joyride steps={TOUR_STEPS} 
-            continuous={true} showSkipButton={true}
-            callback={handleJoyrideCallback}
-            run={props.profile.subjectTour === 0}
+            <Joyride steps={TOUR_STEPS}
+                continuous={true} showSkipButton={true}
+                callback={handleJoyrideCallback}
+                run={props.profile.subjectTour === 0}
+                styles={{
+                    options: {
+                        arrowColor: 'green',
+
+                    }
+                }}
             />
-            
-            <SubjectModal isOpen={openModal} closeModal={closeModal} 
-            
+
+            <SubjectModal isOpen={openModal} closeModal={closeModal}
+
             />
             <Col className="scroller">
                 <div className="classHeader">
@@ -159,14 +165,14 @@ const SubjectsPage = (props) => {
                     </div>
                 </div>
                 <div className="listClasses">{props.subjects.map((item) => {
-                    return (<div 
+                    return (<div
                         onClick={() => {
-                        console.log(item.id)
-                        setEditMode(false)
-                        setClassSelection(item)
-                        props.dispatch(loadSubjectBreakdown(item.id))
+                            console.log(item.id)
+                            setEditMode(false)
+                            setClassSelection(item)
+                            props.dispatch(loadSubjectBreakdown(item.id))
 
-                    }} key={item.id}>
+                        }} key={item.id}>
                         <SubjectButton
                             className="button"
                             item={item}
@@ -180,8 +186,8 @@ const SubjectsPage = (props) => {
                 <div className="innerDisplay">
                     {classSelection.id &&
                         <div className="topBar" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }} >
-                                {editMode ? <div className="idTitle">EDIT</div> : <div className="idTitle">{classSelection.name} {classSelection.classCode}</div> }
-                                <div>
+                            {editMode ? <div className="idTitle">EDIT</div> : <div className="idTitle">{classSelection.name} {classSelection.classCode}</div>}
+                            <div>
                                 <button
                                     className="icon"
                                     onClick={() => {
@@ -196,36 +202,36 @@ const SubjectsPage = (props) => {
                                         callDelete(classSelection.id)
                                     }}
                                 ><FaTrashAlt /></button>
-                                </div>
+                            </div>
 
-                        
+
                         </div>
                     }
                     {classSelection.id && !editMode &&
                         <div className="mainSection">
                             <Row>
                                 <Col md={6}>
-                                <div className="tidbits">
-                                     <span className="subjects__sub-text">{classSelection.description}</span> <br />
-                                </div>
-                                <div className="tidbits">
-                                     <span className="subjects__sub-text">{classSelection.credits}</span> <span className="subjects__sub-text">Credits</span>
-                                </div>
-                                <div className="tidbits">
-                                    <span className="subjects__sub-text"></span> <span>{classSelection.professor}</span> <br />
-                                </div>
+                                    <div className="tidbits">
+                                        <span className="subjects__sub-text">{classSelection.description}</span> <br />
+                                    </div>
+                                    <div className="tidbits">
+                                        <span className="subjects__sub-text">{classSelection.credits}</span> <span className="subjects__sub-text">Credits</span>
+                                    </div>
+                                    <div className="tidbits">
+                                        <span className="subjects__sub-text"></span> <span>{classSelection.professor}</span> <br />
+                                    </div>
                                 </Col>
                                 <Col md={6}>
                                     <ReactEcharts
                                         option={{
-                                            title : {
-                                                text:"Task Type Breakdown",
+                                            title: {
+                                                text: "Task Type Breakdown",
                                                 textStyle: {
                                                     fontSize: 15
                                                 },
-                                                x:'center',
-                                                top : 20
-                                              },
+                                                x: 'center',
+                                                top: 20
+                                            },
                                             tooltip: {},
                                             series: [
                                                 {
@@ -341,7 +347,7 @@ const mapStateToProps = (state) => {
         charts: state.charts,
         profile: state.profile
     }
-} 
+}
 
 export default connect(mapStateToProps)(SubjectsPage)
 
@@ -398,7 +404,7 @@ export default connect(mapStateToProps)(SubjectsPage)
 //                                 callDelete(classSelection.id)
 //                             }}
 //                             ><FaTrashAlt /></button>
-                            
+
 //                             </div>
 //                         </div>
 //                     }
@@ -407,7 +413,7 @@ export default connect(mapStateToProps)(SubjectsPage)
 //                             Credits: <span>{classSelection.credits}</span> <br/>
 //                             Professor: <span>{classSelection.professor}</span> <br/>
 //                             Description: <span>{classSelection.description}</span> <br/>
-                            
+
 //                         </div>
 //                     }
 //                     {( classSelection.id) && editMode && 

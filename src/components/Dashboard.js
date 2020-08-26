@@ -225,214 +225,210 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
 
         </Col>
       </Row>
+      {!isPremium && <Overlay special={true} />}
+      <div>
+        <Row id="row1" className="dashRow">
+          <Col>
 
-      {dropdown1 &&
-        <div>
-          <Row id="row1" className="dashRow">
-            <Col>
-              <Overlay />
-              <div className="flexNumDisplay">
-                <div className="rowTitle">Current Stats</div>
-                <div className="row">
-                  <div className="square">
-                    <div className="squareTitle">Today</div>
-                    <div className="squareData">{charts.todayTotal ? charts.todayTotal.hours : 0}hrs., {charts.todayTotal ? charts.todayTotal.mins : 0}min.</div>
-                  </div>
-                  <div className="square">
-                    <div className="squareTitle">Past Week</div>
-                    <div className="squareData">{charts.thisWeekTotal ? charts.thisWeekTotal.hours : 0}hrs., {charts.thisWeekTotal ? charts.thisWeekTotal.mins : 0}min.</div>
-                  </div>
-                  <div className="square">
-                    <div className="squareTitle">Past Month</div>
-                    <div className="squareData">{charts.thisMonthTotal ? charts.thisMonthTotal.hours : 0}hrs., {charts.thisMonthTotal ? charts.thisMonthTotal.mins : 0}min.</div>
-                  </div>
+            <div className="flexNumDisplay">
+              <div className="rowTitle">Current Stats</div>
+              <div className="row">
+                <div className="square">
+                  <div className="squareTitle">Today</div>
+                  <div className="squareData">{charts.todayTotal ? charts.todayTotal.hours : 0}hrs., {charts.todayTotal ? charts.todayTotal.mins : 0}min.</div>
                 </div>
-                <div className="rowTitle">Average Result</div>
-                <div className="row">
-                  <div className="square">
-                    <div className="squareTitle">Day</div>
-                    <div className="squareData">{charts.dailyAverage ? charts.dailyAverage.hours : 0}hrs., {charts.dailyAverage ? charts.dailyAverage.mins : 0}min.</div>
-                  </div>
-                  <div className="square">
-                    <div className="squareTitle">Week</div>
-                    <div className="squareData">{charts.weeklyAverage ? charts.weeklyAverage.hours : 0}hrs., {charts.weeklyAverage ? charts.weeklyAverage.mins : 0}min.</div>
-                  </div>
-                  <div className="square">
-                    <div className="squareTitle">Month</div>
-                    <div className="squareData">{charts.monthlyAverage ? charts.monthlyAverage.hours : 0}hrs., {charts.monthlyAverage ? charts.monthlyAverage.mins : 0}min.</div>
-                  </div>
+                <div className="square">
+                  <div className="squareTitle">Past Week</div>
+                  <div className="squareData">{charts.thisWeekTotal ? charts.thisWeekTotal.hours : 0}hrs., {charts.thisWeekTotal ? charts.thisWeekTotal.mins : 0}min.</div>
                 </div>
-                <div className="rowTitle">Best Result</div>
-                <div className="row">
-                  <div className="square">
-                    <div className="squareTitle">Day</div>
-                    <div className="squareData">{charts.bestDay ? charts.bestDay.hours : 0}hrs., {charts.bestDay ? charts.bestDay.mins : 0}min.</div>
-                  </div>
-                  <div className="square">
-                    <div className="squareTitle">Week</div>
-                    <div className="squareData">{charts.bestWeek ? charts.bestWeek.hours : 0}hrs., {charts.bestWeek ? charts.bestWeek.mins : 0}min.</div>
-                  </div>
-                  <div className="square">
-                    <div className="squareTitle">Month</div>
-                    <div className="squareData">{charts.bestMonth ? charts.bestMonth.hours : 0}hrs., {charts.bestMonth ? charts.bestMonth.mins : 0}min.</div>
-                  </div>
+                <div className="square">
+                  <div className="squareTitle">Past Month</div>
+                  <div className="squareData">{charts.thisMonthTotal ? charts.thisMonthTotal.hours : 0}hrs., {charts.thisMonthTotal ? charts.thisMonthTotal.mins : 0}min.</div>
                 </div>
               </div>
-
-            </Col>
-            <Col>
-              <div className="lineGraph">
-                {!isPremium &&
-                  <Overlay />
-                }
-                <ReactEcharts
-                  option={{
-                    textStyle: {
-                      //fontFamily: 'Helvetica Neue',
-                      //color: 'blue'
-                    },
-                    title: {
-                      text: "Hours Per Week Per Subject",
-                      x: 'center',
-                      top: 20,
-                      textStyle: {
-                        fontFamily: 'Helvetica',
-                        fontWeight: 100
-                      }
-                    },
-
-                    tooltip: {
-                      trigger: 'axis',
-                      //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
-                      formatter: function (params) {
-                        var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
-                        let rez = '<p>' + params[0].axisValue + '</p>';
-                        //console.log(params); //quite useful for debug
-                        params.forEach(item => {
-                          //console.log(item); //quite useful for debug
-                          var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
-                          rez += xx;
-                        });
-
-                        return rez;
-                      }
-                    },
-                    grid: {
-                      right: '10%',
-                    },
-                    xAxis: {
-                      type: 'category',
-                      boundaryGap: false,
-                      data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
-                    },
-                    yAxis: {
-                      type: 'value'
-                    },
-                    series: charts.hoursPerWeekSubjBeakdown
-                  }}
-                />
+              <div className="rowTitle">Average Result</div>
+              <div className="row">
+                <div className="square">
+                  <div className="squareTitle">Day</div>
+                  <div className="squareData">{charts.dailyAverage ? charts.dailyAverage.hours : 0}hrs., {charts.dailyAverage ? charts.dailyAverage.mins : 0}min.</div>
+                </div>
+                <div className="square">
+                  <div className="squareTitle">Week</div>
+                  <div className="squareData">{charts.weeklyAverage ? charts.weeklyAverage.hours : 0}hrs., {charts.weeklyAverage ? charts.weeklyAverage.mins : 0}min.</div>
+                </div>
+                <div className="square">
+                  <div className="squareTitle">Month</div>
+                  <div className="squareData">{charts.monthlyAverage ? charts.monthlyAverage.hours : 0}hrs., {charts.monthlyAverage ? charts.monthlyAverage.mins : 0}min.</div>
+                </div>
               </div>
-            </Col>
-          </Row>
-          <Row className="dashRow">
-            <Col>
-              <Overlay />
+              <div className="rowTitle">Best Result</div>
+              <div className="row">
+                <div className="square">
+                  <div className="squareTitle">Day</div>
+                  <div className="squareData">{charts.bestDay ? charts.bestDay.hours : 0}hrs., {charts.bestDay ? charts.bestDay.mins : 0}min.</div>
+                </div>
+                <div className="square">
+                  <div className="squareTitle">Week</div>
+                  <div className="squareData">{charts.bestWeek ? charts.bestWeek.hours : 0}hrs., {charts.bestWeek ? charts.bestWeek.mins : 0}min.</div>
+                </div>
+                <div className="square">
+                  <div className="squareTitle">Month</div>
+                  <div className="squareData">{charts.bestMonth ? charts.bestMonth.hours : 0}hrs., {charts.bestMonth ? charts.bestMonth.mins : 0}min.</div>
+                </div>
+              </div>
+            </div>
+
+          </Col>
+          <Col>
+            <div className="lineGraph">
+
               <ReactEcharts
                 option={{
+                  textStyle: {
+                    //fontFamily: 'Helvetica Neue',
+                    //color: 'blue'
+                  },
                   title: {
-                    text: "Average Per Day of Week",
+                    text: "Hours Per Week Per Subject",
                     x: 'center',
                     top: 20,
                     textStyle: {
                       fontFamily: 'Helvetica',
                       fontWeight: 100
-
                     }
                   },
+
                   tooltip: {
                     trigger: 'axis',
-                    axisPointer: {
-                      type: 'shadow'
-                    },
+                    //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
                     formatter: function (params) {
-                      let rez = '<span>' + params[0].axisValue + ' ' + '</span>';
+                      var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
+                      let rez = '<p>' + params[0].axisValue + '</p>';
                       //console.log(params); //quite useful for debug
                       params.forEach(item => {
                         //console.log(item); //quite useful for debug
-                        var xx = '<span>' + hoursToTimeDisplay(item.data) + '' + '</span>'
+                        var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
                         rez += xx;
                       });
 
                       return rez;
                     }
                   },
+                  grid: {
+                    right: '10%',
+                  },
                   xAxis: {
                     type: 'category',
-                    data: charts.averageByDayOfWeekxaxis
+                    boundaryGap: false,
+                    data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
                   },
                   yAxis: {
-                    type: 'value',
-                    axisLabel: {
-                      formatter: '{value}'
-                    },
-                    name: 'hours',
-                    nameLocation: 'middle',
-                    nameGap: 35
+                    type: 'value'
                   },
-                  series: [{
-                    data: charts.averageByDayOfWeek,
-                    type: 'bar'
-                  }]
+                  series: charts.hoursPerWeekSubjBeakdown
                 }}
               />
-            </Col>
-            <Col>
-              <Overlay />
-              {subjects.length === 0 ? <div className="noData">
-                <div>
-                  No Data
+            </div>
+          </Col>
+        </Row>
+        <Row className="dashRow">
+          <Col>
+            <ReactEcharts
+              option={{
+                title: {
+                  text: "Average Per Day of Week",
+                  x: 'center',
+                  top: 20,
+                  textStyle: {
+                    fontFamily: 'Helvetica',
+                    fontWeight: 100
+
+                  }
+                },
+                tooltip: {
+                  trigger: 'axis',
+                  axisPointer: {
+                    type: 'shadow'
+                  },
+                  formatter: function (params) {
+                    let rez = '<span>' + params[0].axisValue + ' ' + '</span>';
+                    //console.log(params); //quite useful for debug
+                    params.forEach(item => {
+                      //console.log(item); //quite useful for debug
+                      var xx = '<span>' + hoursToTimeDisplay(item.data) + '' + '</span>'
+                      rez += xx;
+                    });
+
+                    return rez;
+                  }
+                },
+                xAxis: {
+                  type: 'category',
+                  data: charts.averageByDayOfWeekxaxis
+                },
+                yAxis: {
+                  type: 'value',
+                  axisLabel: {
+                    formatter: '{value}'
+                  },
+                  name: 'hours',
+                  nameLocation: 'middle',
+                  nameGap: 35
+                },
+                series: [{
+                  data: charts.averageByDayOfWeek,
+                  type: 'bar'
+                }]
+              }}
+            />
+          </Col>
+          <Col>
+
+            {subjects.length === 0 ? <div className="noData">
+              <div>
+                No Data
                   <div className="subNoData">Create subjects to view subject breakdown</div>
-                </div>
-              </div> : <ReactEcharts
-                  option={{
+              </div>
+            </div> : <ReactEcharts
+                option={{
 
-                    tooltip: {
-                      trigger: 'item',
-                      formatter: '{b}: {d}%'
-                    },
-                    series: [
-                      {
-                        type: 'pie',
-                        radius: '65%',
-                        center: ['50%', '50%'],
-                        selectedMode: 'single',
-                        data:
-                          isPremium ?
-                            (charts.pieChart ? charts.pieChart.pieData : []) :
-                            [
-                              { name: 'math', value: 2 },
-                              { name: 'chem', value: 1 },
-                              { name: 'hist', value: .5 },
-                              { name: 'engl', value: 2 },
+                  tooltip: {
+                    trigger: 'item',
+                    formatter: '{b}: {d}%'
+                  },
+                  series: [
+                    {
+                      type: 'pie',
+                      radius: '65%',
+                      center: ['50%', '50%'],
+                      selectedMode: 'single',
+                      data:
+                        isPremium ?
+                          (charts.pieChart ? charts.pieChart.pieData : []) :
+                          [
+                            { name: 'math', value: 2 },
+                            { name: 'chem', value: 1 },
+                            { name: 'hist', value: .5 },
+                            { name: 'engl', value: 2 },
 
-                            ]
-                        ,
-                        color: isPremium ? charts.pieColors : null,
-                        emphasis: {
-                          itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                          }
+                          ]
+                      ,
+                      color: isPremium ? charts.pieColors : null,
+                      emphasis: {
+                        itemStyle: {
+                          shadowBlur: 10,
+                          shadowOffsetX: 0,
+                          shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }
                       }
-                    ]
-                  }}
-                />}
-            </Col>
-          </Row>
-        </div>
-      }
+                    }
+                  ]
+                }}
+              />}
+          </Col>
+        </Row>
+      </div>
+
       <div className="toggleButton" onClick={() => {
         setDropdown2(!dropdown2)
       }}>
