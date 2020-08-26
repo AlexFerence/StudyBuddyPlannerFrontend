@@ -147,9 +147,18 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
   return (
     <div className="dashboard">
       <Joyride steps={TOUR_STEPS}
-        callback={handleJoyrideCallback}
         continuous={true} showSkipButton={true}
-        run={profile.dashboardTour === 0}
+        callback={handleJoyrideCallback}
+        run={profile.subjectTour === 0}
+        styles={{
+          options: {
+            primaryColor: '#fb4033'
+          },
+          buttonClose: {
+            display: 'none',
+          },
+
+        }}
       />
       <Row>
         <Col id="quickT" s={6}>
@@ -235,45 +244,45 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
               <div className="row">
                 <div className="square">
                   <div className="squareTitle">Today</div>
-                  <div className="squareData">{charts.todayTotal ? charts.todayTotal.hours : 0}hrs., {charts.todayTotal ? charts.todayTotal.mins : 0}min.</div>
+                  <div className="squareData">{charts.todayTotal && isPremium ? charts.todayTotal.hours : 0}hrs., {charts.todayTotal && isPremium ? charts.todayTotal.mins : 0}min.</div>
                 </div>
                 <div className="square">
                   <div className="squareTitle">Past Week</div>
-                  <div className="squareData">{charts.thisWeekTotal ? charts.thisWeekTotal.hours : 0}hrs., {charts.thisWeekTotal ? charts.thisWeekTotal.mins : 0}min.</div>
+                  <div className="squareData">{charts.thisWeekTotal && isPremium ? charts.thisWeekTotal.hours : 0}hrs., {charts.thisWeekTotal && isPremium ? charts.thisWeekTotal.mins : 0}min.</div>
                 </div>
                 <div className="square">
                   <div className="squareTitle">Past Month</div>
-                  <div className="squareData">{charts.thisMonthTotal ? charts.thisMonthTotal.hours : 0}hrs., {charts.thisMonthTotal ? charts.thisMonthTotal.mins : 0}min.</div>
+                  <div className="squareData">{charts.thisMonthTotal && isPremium ? charts.thisMonthTotal.hours : 0}hrs., {charts.thisMonthTotal && isPremium ? charts.thisMonthTotal.mins : 0}min.</div>
                 </div>
               </div>
               <div className="rowTitle">Average Result</div>
               <div className="row">
                 <div className="square">
                   <div className="squareTitle">Day</div>
-                  <div className="squareData">{charts.dailyAverage ? charts.dailyAverage.hours : 0}hrs., {charts.dailyAverage ? charts.dailyAverage.mins : 0}min.</div>
+                  <div className="squareData">{charts.dailyAverage && isPremium ? charts.dailyAverage.hours : 0}hrs., {charts.dailyAverage && isPremium ? charts.dailyAverage.mins : 0}min.</div>
                 </div>
                 <div className="square">
                   <div className="squareTitle">Week</div>
-                  <div className="squareData">{charts.weeklyAverage ? charts.weeklyAverage.hours : 0}hrs., {charts.weeklyAverage ? charts.weeklyAverage.mins : 0}min.</div>
+                  <div className="squareData">{charts.weeklyAverage && isPremium ? charts.weeklyAverage.hours : 0}hrs., {charts.weeklyAverage && isPremium ? charts.weeklyAverage.mins : 0}min.</div>
                 </div>
                 <div className="square">
                   <div className="squareTitle">Month</div>
-                  <div className="squareData">{charts.monthlyAverage ? charts.monthlyAverage.hours : 0}hrs., {charts.monthlyAverage ? charts.monthlyAverage.mins : 0}min.</div>
+                  <div className="squareData">{charts.monthlyAverage && isPremium ? charts.monthlyAverage.hours : 0}hrs., {charts.monthlyAverage && isPremium ? charts.monthlyAverage.mins : 0}min.</div>
                 </div>
               </div>
               <div className="rowTitle">Best Result</div>
               <div className="row">
                 <div className="square">
                   <div className="squareTitle">Day</div>
-                  <div className="squareData">{charts.bestDay ? charts.bestDay.hours : 0}hrs., {charts.bestDay ? charts.bestDay.mins : 0}min.</div>
+                  <div className="squareData">{charts.bestDay && isPremium ? charts.bestDay.hours : 0}hrs., {charts.bestDay && isPremium ? charts.bestDay.mins : 0}min.</div>
                 </div>
                 <div className="square">
                   <div className="squareTitle">Week</div>
-                  <div className="squareData">{charts.bestWeek ? charts.bestWeek.hours : 0}hrs., {charts.bestWeek ? charts.bestWeek.mins : 0}min.</div>
+                  <div className="squareData">{charts.bestWeek && isPremium ? charts.bestWeek.hours : 0}hrs., {charts.bestWeek && isPremium ? charts.bestWeek.mins : 0}min.</div>
                 </div>
                 <div className="square">
                   <div className="squareTitle">Month</div>
-                  <div className="squareData">{charts.bestMonth ? charts.bestMonth.hours : 0}hrs., {charts.bestMonth ? charts.bestMonth.mins : 0}min.</div>
+                  <div className="squareData">{charts.bestMonth && isPremium ? charts.bestMonth.hours : 0}hrs., {charts.bestMonth && isPremium ? charts.bestMonth.mins : 0}min.</div>
                 </div>
               </div>
             </div>
