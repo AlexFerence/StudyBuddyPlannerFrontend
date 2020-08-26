@@ -101,7 +101,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const updateProfile = async (e) => {
     e.preventDefault()
     var clean = true
-    
+
     //validating data
     if (!school) {
       setSchoolError('School is required')
@@ -133,23 +133,23 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
 
     else if (isNaN(gpa)) {
       setGpaError('GPA must be a number')
-      clean=false
+      clean = false
     }
 
     else if (usesPercentage === 1 && (gpa > 100 || gpa < 0)) {
       setGpaError('Percentage must be above 0 and below 100')
-      clean=false
+      clean = false
     }
 
     else if (usesPercentage === 0 && (gpa > 4.3 || gpa <= 0)) {
       setGpaError('GPA must be below 4.3 and above 0')
-      clean=false
+      clean = false
     }
 
     else {
       setGpaError('')
     }
-    
+
     console.log(clean);
 
     if (clean === true) {
@@ -158,18 +158,19 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
       if (usesPercentage === 1) {
         console.log('making with percentage')
         dispatch(makeSemesterThunk(0, gpa || 0))
-        dispatch(modifyProfile({ schoolTitle: school.label, 
-          facultytitle: faculty.label, 
+        dispatch(modifyProfile({
+          schoolTitle: school.label,
+          facultytitle: faculty.label,
           isAuth: true,
         }));
         history.push('/subjects')
-      } 
+      }
 
       else {
         //include different call
         console.log('making with gpa')
         dispatch(makeSemesterThunk(gpa || 0, 0))
-        dispatch(modifyProfile({ schoolTitle: school.label , facultytitle: faculty.label, isAuth: true }));
+        dispatch(modifyProfile({ schoolTitle: school.label, facultytitle: faculty.label, isAuth: true }));
         history.push('/subjects')
       }
     }
@@ -187,39 +188,39 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         values={[]}
         onChange={(value) => setSchool(value)}
         components={{ DropdownIndicator: () => null }}
-        styles={style} 
-        
+        styles={style}
+
       />
       <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
       <Select
-      isClearable={true}
+        isClearable={true}
         placeholder="faculty ..."
         className="selectedInp"
         options={faculties}
         values={[]}
         onChange={(value) => setFaculty(value)}
         components={{ DropdownIndicator: () => null }}
-        styles={style} 
-        />
-      <label className="inpLabel" >Major</label>
+        styles={style}
+      />
+      <label className="inpLabel" >Major <span style={{ color: 'grey' }}>(optional)</span></label>
       <input className="inp" onChange={onChangeMajor} value={major} />
       <div className="radioDiv">
-      <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA 4.0 Scale
+        <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA 4.0 Scale
       </div>
       <div className="radioDiv">
-      <input type="radio" value={1} name="gradeScale" /> % Percentage
+        <input type="radio" value={1} name="gradeScale" /> % Percentage
       </div>
 
-      <div className="radios" onChange={ (e) => {
-        console.log(typeof(e.target.value))
+      <div className="radios" onChange={(e) => {
+        console.log(typeof (e.target.value))
         setUsesPercentage(parseInt(e.target.value))
       }}>
-        
+
       </div>
       {gpaError && <span className="error">* {gpaError}</span>}
-      <input className="inp" 
-      placeholder="Current Percentage/GPA ..."
-      onChange={onChangeGpa} value={gpa} /> 
+      <input className="inp"
+        placeholder="(optional) Current Percentage/GPA ..."
+        onChange={onChangeGpa} value={gpa} />
       <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
     </div>
   )

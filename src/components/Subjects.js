@@ -146,9 +146,12 @@ const SubjectsPage = (props) => {
                 run={props.profile.subjectTour === 0}
                 styles={{
                     options: {
-                        arrowColor: 'green',
+                        primaryColor: '#fb4033'
+                    },
+                    buttonClose: {
+                        display: 'none',
+                    },
 
-                    }
                 }}
             />
 

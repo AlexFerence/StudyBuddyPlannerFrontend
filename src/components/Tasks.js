@@ -107,16 +107,17 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
     return (
         <Row className="tasks">
             <Joyride steps={TOUR_STEPS}
-                callback={handleJoyrideCallback}
                 continuous={true} showSkipButton={true}
-                run={profile.taskTour === 0}
+                callback={handleJoyrideCallback}
+                run={profile.subjectTour === 0}
                 styles={{
-                    buttonClose: {
-                        display: 'none'
-                    },
                     options: {
-                        arrowColor: 'blue'
-                    }
+                        primaryColor: '#fb4033'
+                    },
+                    buttonClose: {
+                        display: 'none',
+                    },
+
                 }}
             />
             <Col className="scroller">
