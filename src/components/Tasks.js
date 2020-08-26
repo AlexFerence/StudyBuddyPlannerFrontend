@@ -21,7 +21,7 @@ const TOUR_STEPS = [
     {
         target: ".selectClass",
         content:
-          "You can filter by due date and subject. Or, ",
+            "You can filter by due date and subject. Or, ",
         locale: {
             last: 'Next'
         }
@@ -29,7 +29,7 @@ const TOUR_STEPS = [
     {
         target: ".completedLabel",
         content:
-          "filter by completed and non completed tasks.",
+            "filter by completed and non completed tasks.",
         locale: {
             last: 'Next'
         }
@@ -37,20 +37,20 @@ const TOUR_STEPS = [
     {
         target: "#dashboard",
         content:
-          "Next, let's explore the dashboard...",
-          locale: {
+            "Next, let's explore the dashboard...",
+        locale: {
             last: 'Next'
-          },
-          disableBeacon: true,
-      },
-      
+        },
+        disableBeacon: true,
+    },
 
-  ];
+
+];
 
 
 const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
     const [displayType, setDisplayType] = useState('')
-    
+
     var [steps, setSteps] = useState(TOUR_STEPS)
     var [stepIndex, setStepIndex] = useState(0)
     var [run, setRun] = useState(true);
@@ -62,7 +62,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
     const editingOn = () => {
         setDisplayType('editing')
     }
-    
+
     const displayOn = () => {
         setDisplayType('display')
     }
@@ -70,7 +70,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
     const blankOn = () => {
         setDisplayType('')
     }
-    
+
     useEffect(() => {
         dispatch(loadTasks())
     }, [])
@@ -79,25 +79,25 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
         const { action, index, status, type } = data;
 
         console.log(STATUS);
-    
+
         if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-          // Update state to advance the tour
-          setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
+            // Update state to advance the tour
+            setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
         }
-        else if ([STATUS.FINISHED, STATUS.PAUSED ,STATUS.SKIPPED].includes(status)) {
-          // Need to set our running state to false, so we can restart if we click start again.
-          setRun(false)
+        else if ([STATUS.FINISHED, STATUS.PAUSED, STATUS.SKIPPED].includes(status)) {
+            // Need to set our running state to false, so we can restart if we click start again.
+            setRun(false)
 
-          console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
-          history.push("/dashboard")
-          //locally turn off the tour
-          dispatch(modifyProfile({ taskTour: 1 }))
-          //send back to server to turn off tour
-          dispatch(turnOffTaskTour())
-        
+            console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
+            history.push("/dashboard")
+            //locally turn off the tour
+            dispatch(modifyProfile({ taskTour: 1 }))
+            //send back to server to turn off tour
+            dispatch(turnOffTaskTour())
+
 
         }
-    
+
         console.groupCollapsed(type);
         console.log(data); //eslint-disable-line no-console
         console.groupEnd();
@@ -106,30 +106,38 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
 
     return (
         <Row className="tasks">
-            <Joyride steps={TOUR_STEPS} 
-            callback={handleJoyrideCallback}
-            continuous={true} showSkipButton={true}
-            run={profile.taskTour === 0}
+            <Joyride steps={TOUR_STEPS}
+                callback={handleJoyrideCallback}
+                continuous={true} showSkipButton={true}
+                run={profile.taskTour === 0}
+                styles={{
+                    buttonClose: {
+                        display: 'none'
+                    },
+                    options: {
+                        arrowColor: 'blue'
+                    }
+                }}
             />
             <Col className="scroller">
                 <TaskList
-                displayOn={displayOn}
-                addingOn={addingOn}
+                    displayOn={displayOn}
+                    addingOn={addingOn}
                 />
             </Col>
             <Col className="main-right">
-            {displayType === 'adding' && <AddTask 
-                displayOn={displayOn}
-                setDisplayType={setDisplayType}
-                /> }
-            { displayType === 'display' && <TaskDisplay
-                editingOn={editingOn}
-                displayOn={displayOn} 
-                blankOn={blankOn}
+                {displayType === 'adding' && <AddTask
+                    displayOn={displayOn}
+                    setDisplayType={setDisplayType}
                 />}
-            { displayType === 'editing' && <TaskEdit
-                displayOn={displayOn}
-                currentTaskCopy={currentTask}
+                {displayType === 'display' && <TaskDisplay
+                    editingOn={editingOn}
+                    displayOn={displayOn}
+                    blankOn={blankOn}
+                />}
+                {displayType === 'editing' && <TaskEdit
+                    displayOn={displayOn}
+                    currentTaskCopy={currentTask}
 
                 //currentTaskCopy={currentTaskCopy} 
                 //loadTasks={loadTasks}

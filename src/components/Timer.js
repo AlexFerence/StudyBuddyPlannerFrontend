@@ -28,7 +28,6 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         return () => {
             setIsRunning(false)
             dispatch(runningOffThunk(currentTask.id))
-
         }
     }, [])
     //links local and database
@@ -80,6 +79,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         await dispatch(loadTasks())
 
         //TODO put in new call
+
         // dispatch(loadChartsThunk())
         // dispatch(loadSubjectBreakdown())
         // dispatch(loadHoursWeek())
