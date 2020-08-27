@@ -1,3 +1,3 @@
-const url = "http://18.221.248.111:8080"
+const url = "https://www.studybuddyplanner.com"
 
 export default url

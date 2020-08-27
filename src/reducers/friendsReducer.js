@@ -1,8 +1,8 @@
 import { SET_FRIENDS } from '../actions/friendActions'
 
 const friendsDefaultState = {
-    pendingFriends: [],
-    requests: [],
+    waitingRequests: [],
+    sentRequests: [],
     activeFriends: []
 }
 

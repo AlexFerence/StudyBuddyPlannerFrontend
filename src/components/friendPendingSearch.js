@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { searchIfExists, sendRequest, getPendingFriends } from '../thunks/friendThunk'
 
-const FriendPendingActivity = ({ dispatch }) => {
+import AcceptDeclineItem from './FriendPendinSearchItem'
+
+const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     const [searchedPerson, setSearchedPerson] = useState();
 
     useEffect(() => {
         dispatch(getPendingFriends())
-
     }, [])
 
     const handleChangedSearch = async (e) => {
@@ -47,6 +48,22 @@ const FriendPendingActivity = ({ dispatch }) => {
                     {searchedPerson.email && <button className="but" onClick={handleAddFriend}>Add</button>}
                 </div>
             }
+            {
+                waitingRequests.map((request) => {
+                    return (
+                        <AcceptDeclineItem key={request.id} request={request} />
+                    )
+                })
+            }
+            {
+                sentRequests.map((req) => {
+                    return (
+                        <AcceptDeclineItem key={req} request={req} />
+                    )
+                })
+            }
+
+
         </div>
 
     )
@@ -54,8 +71,11 @@ const FriendPendingActivity = ({ dispatch }) => {
 
 const mapStateToProps = (state) => {
     return {
-        charts: state.charts,
+        waitingRequests: state.friends.waitingRequests,
+        sentRequests: state.friends.sentRequests
+
     }
 }
 
-export default connect()(FriendPendingActivity)
+export default connect(mapStateToProps)(FriendPendingActivity)
+

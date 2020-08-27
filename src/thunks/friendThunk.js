@@ -58,9 +58,9 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
 
     console.log('GETTING PENDING FRIENDDS')
     try {
-        const res = await axios.post(url + '/api/Friends/getListPendingFriends', {
-            userId: id
-        },
+        const res = await axios.post(url + '/api/Friends/getListPendingFriends',
+            id
+            ,
             {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -69,9 +69,66 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
-        console.log(res.data);
-        dispatch(modifyFriends({ pendingFriends: res.data }))
+        var sentRequests = []
+        var waitingRequests = []
+        console.log(res.data)
 
+        if (res.status === 200 && res.data.length > 0) {
+            res.data.forEach((request) => {
+                if (request.displayType === 'AcceptDecline') {
+                    // add to waiting rquests
+                    waitingRequests.push(request)
+                }
+                else if (request.displayType === "Sent") {
+                    // add to sent requests
+                    sentRequests.push(request)
+                }
+            })
+        }
+        dispatch(modifyFriends({ sentRequests, waitingRequests }))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const acceptRequest = (otherID) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/Friends/sendRequest',
+            otherID
+            ,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        return (res.data);
+
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const declineRequest = (otherID) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/Friends/sendRequest', otherID,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        return (res.data);
 
     } catch (e) {
         console.log(e)

@@ -70,32 +70,34 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                 <QuickTimer specialFunction={userActivityCount} />
                             </div>
                         </Col>
-                        <Col>
-                            <div className="flex-triple-horizontal dashRow">
-                                <div className="triple-center"
-                                    style={{ paddingTop: '60px', paddingBottom: '60px' }}
-                                >
-                                    <div className="full-width">
-                                        <div className="curBold">
-                                            {charts.SchoolFacultyCurUsers}
+                        {false
+                            //make true to get useractivity back
+                            && <Col>
+                                <div className="flex-triple-horizontal dashRow">
+                                    <div className="triple-center"
+                                        style={{ paddingTop: '60px', paddingBottom: '60px' }}
+                                    >
+                                        <div className="full-width">
+                                            <div className="curBold">
+                                                {charts.SchoolFacultyCurUsers}
+                                            </div>
+                                            <div className="subCurBold">Active Users in Your Faculty + University  </div>
                                         </div>
-                                        <div className="subCurBold">Active Users in Your Faculty + University  </div>
+                                    </div>
+                                    <div className="triple-center">
+                                        <div>
+                                            <div className="full-width curBold">{charts.SchoolCurUsers}</div>
+                                            <div className="subCurBold">Active Users in Your University</div>
+                                        </div>
+                                    </div>
+                                    <div className="triple-center">
+                                        <div>
+                                            <div className="full-width curBold">{charts.WorldCurUsers}</div>
+                                            <div className="subCurBold">Active Users WorldWide</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="triple-center">
-                                    <div>
-                                        <div className="full-width curBold">{charts.SchoolCurUsers}</div>
-                                        <div className="subCurBold">Active Users in Your University</div>
-                                    </div>
-                                </div>
-                                <div className="triple-center">
-                                    <div>
-                                        <div className="full-width curBold">{charts.WorldCurUsers}</div>
-                                        <div className="subCurBold">Active Users WorldWide</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
+                            </Col>}
                     </div>
                     <div className="dashRow">
                         <Col>
@@ -119,7 +121,10 @@ const Compare = ({ charts, dispatch, subjects }) => {
                                         className="half-width"
                                     />
                                 </div>
-                                <Overlay />
+                                {false &&
+                                    // PREMIUM make true to hide overlay
+                                    <Overlay />}
+
                                 <ReactEcharts
                                     option={{
                                         textStyle: {
