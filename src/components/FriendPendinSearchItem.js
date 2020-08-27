@@ -7,14 +7,14 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
     const handleAcceptRequest = (rowId) => {
         console.log('accepting')
         console.log('SHOULD NOT LOG ON LOAD')
-        //dispatch(acceptRequest(rowId))
-        //dispatch(getPendingFriends())
+        dispatch(acceptRequest(rowId))
+        dispatch(getPendingFriends())
     }
 
     const handleDeclineRequest = (rowId) => {
         console.log('SHOULD NOT LOG ON LOAD')
-        //dispatch(declineRequest(rowId))
-        //dispatch(getPendingFriends())
+        dispatch(declineRequest(rowId))
+        dispatch(getPendingFriends())
     }
     return (
         <div className="accept-decline-item">
