@@ -31,15 +31,17 @@ export const runningOnThunk = (taskId) => async (dispatch, getState) => {
 
 export const runningOffThunk = (taskId) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile, subjects, currentTask } = state
     const { id, token } = profile
+
     dispatch(runningReduxOff(taskId))
+    console.log(currentTask.id)
     try {
         const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
                 active: 0,
-                currentTaskId: taskId,
+                currentTaskId: currentTask.id,
                 lastActive: moment().format()
             }, {
             headers: {

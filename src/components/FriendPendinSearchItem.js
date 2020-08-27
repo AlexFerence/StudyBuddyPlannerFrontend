@@ -26,8 +26,8 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
             <div>
                 {
                     request.displayType === "AcceptDecline" ? <div>
-                        <div onClick={handleAcceptRequest(request.id)}><FaCheck /></div>
-                        <div onClick={handleDeclineRequest(request.id)}><FaRegWindowClose /></div>
+                        <div onClick={() => handleAcceptRequest(request.id)}><FaCheck /></div>
+                        <div onClick={() => handleDeclineRequest(request.id)}><FaRegWindowClose /></div>
                     </div> : <div>Pending ...</div>
                 }
             </div>

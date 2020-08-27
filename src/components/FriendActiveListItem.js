@@ -4,10 +4,11 @@ import React from 'react'
 const FriendActiveListItem = ({ friend }) => {
     return (
         <div>
-            item
+            <div>{friend.firstName} {friend.lastName}</div>
+            <div>{friend.active ? "active" : "last active ..."}</div>
         </div>
     )
 }
 
 
-export default (FriendActiveList)
+export default (FriendActiveListItem)
