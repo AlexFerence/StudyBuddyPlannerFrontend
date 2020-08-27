@@ -4,15 +4,17 @@ import { acceptRequest, declineRequest, getPendingFriends } from '../thunks/frie
 import { FaCheck, FaRegWindowClose } from 'react-icons/fa'
 
 const AcceptDeclineItem = ({ request, dispatch }) => {
-
-    const handleAcceptRequest = async (rowId) => {
-        await dispatch(acceptRequest(rowId))
-        dispatch(getPendingFriends())
+    const handleAcceptRequest = (rowId) => {
+        console.log('accepting')
+        console.log('SHOULD NOT LOG ON LOAD')
+        //dispatch(acceptRequest(rowId))
+        //dispatch(getPendingFriends())
     }
 
-    const handleDeclineRequest = async (rowId) => {
-        await dispatch(declineRequest(rowId))
-        dispatch(getPendingFriends())
+    const handleDeclineRequest = (rowId) => {
+        console.log('SHOULD NOT LOG ON LOAD')
+        //dispatch(declineRequest(rowId))
+        //dispatch(getPendingFriends())
     }
     return (
         <div className="accept-decline-item">
@@ -24,12 +26,12 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
             <div>
                 {
                     request.displayType === "AcceptDecline" ? <div>
-                        <button onClick={handleAcceptRequest(request.id)}><FaCheck /></button>
-                        <button onClick={handleDeclineRequest(request.id)}><FaRegWindowClose /></button>
+                        <div onClick={handleAcceptRequest(request.id)}><FaCheck /></div>
+                        <div onClick={handleDeclineRequest(request.id)}><FaRegWindowClose /></div>
                     </div> : <div>Pending ...</div>
                 }
             </div>
-        </div >
+        </div>
     )
 }
 

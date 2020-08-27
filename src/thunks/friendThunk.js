@@ -96,9 +96,8 @@ export const acceptRequest = (otherID) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/Friends/sendRequest',
-            otherID
-            ,
+        const res = await axios.post(url + '/api/Friends/acceptRequest',
+            otherID,
             {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -119,7 +118,7 @@ export const declineRequest = (otherID) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/Friends/sendRequest', otherID,
+        const res = await axios.post(url + '/api/Friends/declineRequest', otherID,
             {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -130,6 +129,39 @@ export const declineRequest = (otherID) => async (dispatch, getState) => {
         )
         return (res.data);
 
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getActiveFriends = (otherID) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+
+    console.log('GETTING PENDING FRIENDDS')
+    try {
+        const res = await axios.post(url + '/api/Friends/getListActiveFriends',
+            id
+            ,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+
+        console.log(res.data)
+        var activeFriends = []
+
+        if (res.status === 200 && res.data.length > 0) {
+            res.data.forEach((friend) => {
+                activeFriends.push(friend)
+            })
+        }
+        dispatch(modifyFriends({ activeFriends }))
     } catch (e) {
         console.log(e)
     }

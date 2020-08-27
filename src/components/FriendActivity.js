@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import FriendPendingSearch from './friendPendingSearch'
+import FriendActiveList from './FriendActiveList'
 
 const FriendActivity = () => {
     const [activityShowing, setActivityShowing] = useState(true);
@@ -23,7 +24,7 @@ const FriendActivity = () => {
                     Pending/Add Friends
                 </div>
             </div>
-            {activityShowing ? <div>Friend activity</div> : <FriendPendingSearch />}
+            {activityShowing ? <FriendActiveList /> : <FriendPendingSearch />}
         </div>
     )
 }

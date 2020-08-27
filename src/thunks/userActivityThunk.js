@@ -2,6 +2,7 @@ import axios from 'axios'
 import { runningReduxOn, runningReduxOff } from '../actions/isRunningActions'
 import url from '../environment/url'
 import { modify } from '../actions/chartActions'
+import moment from 'moment'
 
 export const runningOnThunk = (taskId) => async (dispatch, getState) => {
     const state = getState()
@@ -13,7 +14,8 @@ export const runningOnThunk = (taskId) => async (dispatch, getState) => {
         const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
-                active: 1
+                active: 1,
+                currentTaskId: taskId
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,
@@ -36,7 +38,9 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
         const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
-                active: 0
+                active: 0,
+                currentTaskId: taskId,
+                lastActive: moment().format()
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,

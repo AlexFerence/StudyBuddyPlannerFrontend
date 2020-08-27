@@ -12,20 +12,23 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     }, [])
 
     const handleChangedSearch = async (e) => {
-        var res = await dispatch(searchIfExists(e.target.value))
-        console.log(res)
-        if (res) {
-            if (res.email) {
-                setSearchedPerson(res)
-                console.log(res)
+        if (e.target.value.length > 1) {
+            var res = await dispatch(searchIfExists(e.target.value))
+            console.log(res)
+            if (res) {
+                if (res.email) {
+                    setSearchedPerson(res)
+                    console.log(res)
+                }
+                else {
+                    setSearchedPerson()
+                }
             }
             else {
                 setSearchedPerson()
             }
         }
-        else {
-            setSearchedPerson()
-        }
+
     }
 
     const handleAddFriend = async () => {
