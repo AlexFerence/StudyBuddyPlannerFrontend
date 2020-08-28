@@ -28,7 +28,7 @@ const TOUR_STEPS = [
 const Header = ({ isRunning, width, profile, history, isAuth }) => {
 
     useEffect(() => {
-        console.log(width)
+        //console.log(width)
         if (width < 1000) {
             console.log('should be expanded')
         }

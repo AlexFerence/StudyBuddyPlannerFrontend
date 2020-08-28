@@ -38,7 +38,7 @@ const TOUR_STEPS = [
 ];
 
 
-const SubjectsPage = (props) => {
+const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, charts }) => {
     var [openModal, setOpenModal] = useState(false)
     //var [classes, setClasses] = useState([])
     var [classSelection, setClassSelection] = useState({})
@@ -50,22 +50,27 @@ const SubjectsPage = (props) => {
     var [run, setRun] = useState(true);
 
     useEffect(() => {
+        console.log(width)
+    }, [width])
+
+
+    useEffect(() => {
         setNewChanges({ ...newChanges, color: { hex: "#2b2b2b" } })
         const getClasses = async () => {
             try {
                 const res = await axios.post(url + '/api/subjects/list',
                     {
-                        UserId: props.id
+                        UserId: id
                     }, {
                     headers: {
-                        'Authorization': 'bearer ' + props.token,
+                        'Authorization': 'bearer ' + token,
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     }
                 })
                 const list = res.data
 
-                props.dispatch(fillSubjects(list))
+                dispatch(fillSubjects(list))
             }
             catch (e) {
                 console.log('caught errors')
@@ -80,14 +85,14 @@ const SubjectsPage = (props) => {
             const res = await axios.delete(url + '/api/subjects/' + id,
                 {
                     headers: {
-                        'Authorization': 'bearer ' + props.token,
+                        'Authorization': 'bearer ' + token,
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     }
                 })
             if (res.data === true) {
                 console.log('should delete in redux')
-                props.dispatch(deleteSubject(id))
+                dispatch(deleteSubject(id))
                 setClassSelection({})
             }
         } catch (e) {
@@ -101,13 +106,13 @@ const SubjectsPage = (props) => {
 
     const submitEdits = async (e) => {
         e.preventDefault()
-        props.dispatch(editSubjectThunk({
+        dispatch(editSubjectThunk({
             Name: newChanges.name.toUpperCase().trim(),
             ClassCode: newChanges.classCode,
             Description: newChanges.description.trim(),
             Professor: newChanges.professor.trim(),
             Credits: newChanges.credits,
-            UserId: props.id,
+            UserId: id,
             color: newChanges.color,
         }, classSelection))
         setClassSelection(newChanges)
@@ -126,11 +131,11 @@ const SubjectsPage = (props) => {
             // Need to set our running state to false, so we can restart if we click start again.
             setRun(false)
 
-            props.history.push("/tasks")
+            history.push("/tasks")
             //turn off tour locally
-            props.dispatch(modifyProfile({ subjectTour: 1 }))
+            dispatch(modifyProfile({ subjectTour: 1 }))
             //turn off in server
-            props.dispatch(turnOffSubjectTour())
+            dispatch(turnOffSubjectTour())
         }
 
         console.groupCollapsed(type);
@@ -139,11 +144,18 @@ const SubjectsPage = (props) => {
     };
 
     return (
-        <Row className="subjects">
+        <Row className="subjects" style={(width < 1000) ? {
+            paddingRight: '0px', border:
+                '10px solid green'
+        } : {
+                border:
+                    '0px solid blue',
+                paddingRight: '300px'
+            }}>
             <Joyride steps={TOUR_STEPS}
                 continuous={true} showSkipButton={true}
                 callback={handleJoyrideCallback}
-                run={props.profile.subjectTour === 0}
+                run={profile.subjectTour === 0}
                 styles={{
                     options: {
                         primaryColor: '#fb4033'
@@ -167,13 +179,13 @@ const SubjectsPage = (props) => {
                         <button id="addButton" onClick={() => setOpenModal(true)}>+ Add</button>
                     </div>
                 </div>
-                <div className="listClasses">{props.subjects.map((item) => {
+                <div className="listClasses">{subjects.map((item) => {
                     return (<div
                         onClick={() => {
                             console.log(item.id)
                             setEditMode(false)
                             setClassSelection(item)
-                            props.dispatch(loadSubjectBreakdown(item.id))
+                            dispatch(loadSubjectBreakdown(item.id))
 
                         }} key={item.id}>
                         <SubjectButton
@@ -243,7 +255,7 @@ const SubjectsPage = (props) => {
                                                     center: ['50%', '50%'],
                                                     selectedMode: 'single',
                                                     data:
-                                                        props.charts.breakdownChart
+                                                        charts.breakdownChart
                                                     ,
                                                     emphasis: {
                                                         itemStyle: {
@@ -348,7 +360,7 @@ const mapStateToProps = (state) => {
         id: state.profile.id,
         subjects: state.subjects,
         charts: state.charts,
-        profile: state.profile
+        profile: state.profile,
     }
 }
 
