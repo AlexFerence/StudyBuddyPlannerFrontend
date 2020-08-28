@@ -1,0 +1,35 @@
+.active-friend {
+ border: 1px solid red;
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+}
+
+.active-friend__left {
+ display: flex;
+}
+
+.active-friend__left__avatar {
+ width: 40px;
+ height: 40px;
+ border-radius: 20px;
+ background-color: $grey;
+ color: white;
+ padding: 10px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-right: 10px;
+}
+
+.active-friend__left__credentials {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+}
+
+.col-center {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}

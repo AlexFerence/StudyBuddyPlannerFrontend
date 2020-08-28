@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -25,8 +25,15 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = (props, { isRunning }) => {
+const Header = ({ isRunning, width, profile, history, isAuth }) => {
 
+    useEffect(() => {
+        console.log(width)
+        if (width < 1000) {
+            console.log('should be expanded')
+        }
+
+    }, [width])
 
     const renderTooltipDash = (props, display) => {
         return (
@@ -35,13 +42,14 @@ const Header = (props, { isRunning }) => {
             </Tooltip>
         );
     }
-    const renderTooltipCompare = (props, display) => {
-        return (
-            <Tooltip id="button-tooltip" {...props}>
-                Compare
-            </Tooltip>
-        );
-    }
+
+    // const renderTooltipCompare = (props, display) => {
+    //     return (
+    //         <Tooltip id="button-tooltip" {...props}>
+    //             Compare
+    //         </Tooltip>
+    //     );
+    // }
     const renderTooltipSet = (props, display) => {
         return (
             <Tooltip id="button-tooltip" {...props}>
@@ -74,22 +82,22 @@ const Header = (props, { isRunning }) => {
             })
         }
         else {
-            props.history.push()
+            history.push()
         }
     }
 
 
-    if (props.profile.isAuth) {
+    if (profile.isAuth) {
         return (
-            <div>
-                <Navbar fixed="top" expand="true">
+            <div style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }}>
+                <Navbar style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }} fixed="top" expand="true">
                     <Navbar.Brand className="title" href="/"> <img src={icon} style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" />StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav inline="true">
-                            {!props.isRunning ?
+                            {!isRunning ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -114,32 +122,33 @@ const Header = (props, { isRunning }) => {
                                     id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
                                 </div>
                             }
-                            {!props.isRunning ?
-                                <OverlayTrigger
-                                    placement="bottom"
-                                    delay={{ show: 250, hide: 400 }}
-                                    overlay={renderTooltipCompare}
-                                >
+                            {//!props.isRunning ?
+                                //     <OverlayTrigger
+                                //         placement="bottom"
+                                //         delay={{ show: 250, hide: 400 }}
+                                //         overlay={renderTooltipCompare}
+                                //     >
 
-                                    <NavLink activeStyle={{ color: 'white' }} id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
-                                </OverlayTrigger>
+                                //         <NavLink activeStyle={{ color: 'white' }} id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
+                                //     </OverlayTrigger>
 
-                                :
-                                <div className="navbarIcon"
-                                    onClick={() => {
-                                        console.log('onSwitch')
-                                        swal({
-                                            title: "Can't switch tabs during study session",
-                                            icon: "info",
-                                            buttons: true,
-                                            dangerMode: true,
-                                        })
+                                //     :
+                                //     <div className="navbarIcon"
+                                //         onClick={() => {
+                                //             console.log('onSwitch')
+                                //             swal({
+                                //                 title: "Can't switch tabs during study session",
+                                //                 icon: "info",
+                                //                 buttons: true,
+                                //                 dangerMode: true,
+                                //             })
 
-                                    }}
-                                    id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><IoIosSpeedometer />
-                                </div>
+                                //         }}
+                                //         id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><IoIosSpeedometer />
+                                //     </div>
+                                // 
                             }
-                            {!props.isRunning ?
+                            {!isRunning ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -165,7 +174,7 @@ const Header = (props, { isRunning }) => {
                                     id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><FaCheckSquare />
                                 </div>
                             }
-                            {!props.isRunning ?
+                            {!isRunning ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -190,7 +199,7 @@ const Header = (props, { isRunning }) => {
                                 </div>
 
                             }
-                            {!props.isRunning ?
+                            {!isRunning ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -226,7 +235,7 @@ const Header = (props, { isRunning }) => {
                         </Nav>
                         <Nav inline="true">
 
-                            {props.isAuth &&
+                            {isAuth &&
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -239,7 +248,7 @@ const Header = (props, { isRunning }) => {
                         </Nav>
                     </Navbar>
                 </Navbar>
-            </div>
+            </div >
         )
     }
     else {
