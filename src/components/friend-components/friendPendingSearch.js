@@ -33,6 +33,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
 
     const handleAddFriend = async () => {
         var res = await dispatch(sendRequest(searchedPerson.id))
+        setSearchedPerson('')
         console.log(res)
     }
 

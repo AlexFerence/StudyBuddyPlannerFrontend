@@ -27,6 +27,8 @@ export const searchIfExists = (email) => async (dispatch, getState) => {
     }
 }
 
+
+// status 415 is if they already have the person as a friend
 export const sendRequest = (otherID) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
@@ -44,6 +46,8 @@ export const sendRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
+        dispatch(getPendingFriends())
+
         return (res.data);
 
     } catch (e) {
@@ -106,6 +110,7 @@ export const acceptRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
+        dispatch(getPendingFriends())
         return (res.data);
 
     } catch (e) {
@@ -127,6 +132,7 @@ export const declineRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
+        dispatch(getPendingFriends())
         return (res.data);
 
     } catch (e) {

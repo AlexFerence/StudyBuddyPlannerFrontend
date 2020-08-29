@@ -1,29 +1,28 @@
-.friendActivity {
+.friend-activity {
  //border: 1px solid $grey;
  width: 300px;
  position: fixed;
  right: 0;
  top: 0;
- z-index: 20000000;
+ z-index: 100000;
  height: 100%;
  background-color: $dark-grey;
  color: $grey;
 }
 
-.flip-container {
- width: 100%;
+.friend-activity__header {
+ color: white;
+ margin: 15px;
+ font-size: 20px;
+ padding: 14px;
+ border-bottom: 1px solid $grey;
  display: flex;
- justify-content: space-evenly;
+ justify-content: space-between;
+ align-items: center;
 }
 
-.flip-header {
- display: flex;
- justify-content: center;
- width: 100%;
- padding: 5px;
- border-top: 1px solid grey;
- border-left: 1px solid grey;
- border-right: 1px solid grey;
+.friend-activity__header__bell {
+ font-size: 20px;
 }
 
 .friend-search {
