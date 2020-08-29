@@ -22,8 +22,11 @@ const subjReduce = (list, item) => {
 
 const options = [
     { value: 'Assignment', label: 'Assignment' },
-    { value: 'Quiz', label: 'Quiz' },
-    { value: 'Test', label: 'Test' },
+    { value: 'Readings', label: 'Readings' },
+    { value: 'Essay', label: 'Essay' },
+    { value: 'Lab', label: 'Lab' },
+    { value: 'Test/Quiz', label: 'Test/Quiz' },
+    { value: 'Midterm', label: 'Midterm' },
     { value: 'Exam', label: 'Exam' }
 ]
 

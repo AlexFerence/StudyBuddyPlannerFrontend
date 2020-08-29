@@ -32,7 +32,14 @@ const radios = [
   { name: '% Percentage', value: 'percentage' },
 ];
 
-var options = []
+var options = [
+  { label: 'Year 1', value: 1 },
+  { label: 'Year 2', value: 2 },
+  { label: 'Year 3', value: 3 },
+  { label: 'Year 4', value: 4 },
+  { label: 'Year 5', value: 5 },
+  { label: 'Other', value: 0 },
+]
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = val => {
@@ -56,24 +63,26 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
+// const options = [
+//   { value: 'Assignment', label: 'Assignment' },
+//   { value: 'Quiz', label: 'Quiz' },
+//   { value: 'Test', label: 'Test' },
+//   { value: 'Exam', label: 'Exam' }
+// ]
+
 
 const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const [school, setSchool] = useState({})
   const [faculty, setFaculty] = useState({})
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
+  const [year, setYear] = useState({})
 
   const [schoolError, setSchoolError] = useState('')
   const [facultyError, setFacultyError] = useState('')
   const [gpaError, setGpaError] = useState('')
 
   const [usesPercentage, setUsesPercentage] = useState(0)
-
-
-
-  const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState({ name: 'GPA (4.0 scale)', value: 'gpa' });
-
 
   useEffect(() => {
     dispatch(loadSchools())
@@ -189,7 +198,6 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         onChange={(value) => setSchool(value)}
         components={{ DropdownIndicator: () => null }}
         styles={style}
-
       />
       <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
       <Select
@@ -202,25 +210,20 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         components={{ DropdownIndicator: () => null }}
         styles={style}
       />
+      <label className="inpLabel">Year {<span className="error">* {facultyError}</span>} </label>
+      <Select
+        isClearable={true}
+        placeholder="Year ..."
+        className="selectedInp"
+        options={options}
+        values={[]}
+        onChange={(value) => setYear(value)}
+        components={{ DropdownIndicator: () => null }}
+        styles={style}
+      />
       <label className="inpLabel" >Major <span style={{ color: 'grey' }}>(optional)</span></label>
       <input className="inp" onChange={onChangeMajor} value={major} />
-      <div className="radioDiv">
-        <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA 4.0 Scale
-      </div>
-      <div className="radioDiv">
-        <input type="radio" value={1} name="gradeScale" /> % Percentage
-      </div>
 
-      <div className="radios" onChange={(e) => {
-        console.log(typeof (e.target.value))
-        setUsesPercentage(parseInt(e.target.value))
-      }}>
-
-      </div>
-      {gpaError && <span className="error">* {gpaError}</span>}
-      <input className="inp"
-        placeholder="(optional) Current Percentage/GPA ..."
-        onChange={onChangeGpa} value={gpa} />
       <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
     </div>
   )
@@ -255,3 +258,22 @@ export default connect(mapStateToProps)(SignUpSecondary)
 //   </ToggleButton>
 // ))}
 // </ButtonGroup>
+
+
+// <div className="radioDiv">
+//         <input type="radio" value={0} name="gradeScale" defaultChecked={true} /> GPA 4.0 Scale
+//       </div>
+//       <div className="radioDiv">
+//         <input type="radio" value={1} name="gradeScale" /> % Percentage
+//       </div>
+
+//       <div className="radios" onChange={(e) => {
+//         console.log(typeof (e.target.value))
+//         setUsesPercentage(parseInt(e.target.value))
+//       }}>
+
+//       </div>
+//       {gpaError && <span className="error">* {gpaError}</span>}
+//       <input className="inp"
+//         placeholder="(optional) Current Percentage/GPA ..."
+//         onChange={onChangeGpa} value={gpa} />

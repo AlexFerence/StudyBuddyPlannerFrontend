@@ -339,7 +339,7 @@ const Dashboard = ({ dispatch, charts, profile,
                   xAxis: {
                     type: 'category',
                     boundaryGap: false,
-                    data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
+                    data: charts.hoursPerWeekSubjBeakdownXAxis
                   },
                   yAxis: {
                     type: 'value'

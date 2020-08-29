@@ -80,13 +80,13 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
 
         //TODO put in new call
 
-        // dispatch(loadChartsThunk())
-        // dispatch(loadSubjectBreakdown())
-        // dispatch(loadHoursWeek())
-        // dispatch(loadMarksScatter())
-        // dispatch(loadTaskHoursPerWeek())
-        // dispatch(loadPersonalStats())
-        // dispatch(setCurrentTaskById(currentTask.id))
+        dispatch(loadChartsThunk())
+        dispatch(loadSubjectBreakdown())
+        dispatch(loadHoursWeek())
+        dispatch(loadMarksScatter())
+        dispatch(loadTaskHoursPerWeek())
+        dispatch(loadPersonalStats())
+        //dispatch(setCurrentTaskById(currentTask.id))
 
         if (specialFunction) {
             dispatch(specialFunction())

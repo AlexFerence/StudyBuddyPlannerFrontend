@@ -1,0 +1,31 @@
+.SingleDatePicker {
+ width: 100%;
+ color: red;
+}
+
+.SingleDatePickerInput {
+ width: 100%;
+ color: $brand !important;
+}
+
+.DateInput_input__focused {
+ width: 100%;
+ border-bottom: none !important;
+ //color: red !important;
+}
+
+.DateInput {
+ width: 100% !important;
+ //color: red !important;
+}
+
+// .SingleDatePickerInput__withBorder {
+//  border: none;
+//  color: red;
+// }
+
+// .DateInput_input__focused {
+//  width: 100%;
+//  border-bottom: 1px solid #ccc !important;
+//  color: red;
+// }

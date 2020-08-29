@@ -239,14 +239,24 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
         var formattedWeekData = []
         console.log(res.data)
         var hoursPerWeekColors = []
+        var hoursPerWeekSubjBeakdownXAxis = []
+        var firstTime = true
 
         res.data.forEach((subj) => {
             var title = subj.title
             var individlList = []
+
             //hoursPerWeekColors.push(subj.color)
             subj.responseItems.forEach((item) => {
                 individlList.push(item.value1)
+                if (firstTime) {
+                    console.log(item.name1)
+                    hoursPerWeekSubjBeakdownXAxis.push(moment(item.name1).format("MMM D"))
+                }
             })
+
+            firstTime = false
+
             formattedWeekData.push({
                 name: title,
                 type: 'line',
@@ -259,6 +269,7 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
         var hoursPerWeekSubjBeakdown = formattedWeekData
         dispatch(modify({ hoursPerWeekSubjBeakdown }))
         dispatch(modify({ hoursPerWeekColors }))
+        dispatch(modify({ hoursPerWeekSubjBeakdownXAxis }))
     } catch (e) {
         console.log(e)
     }

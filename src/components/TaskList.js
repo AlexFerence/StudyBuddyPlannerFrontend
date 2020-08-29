@@ -38,7 +38,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
         dispatch(
             loadTasks((filterBy.value === 'Due Date' ? true : false), filterByCompleted)
         )
-    }, [filterByCompleted ,filterBy])
+    }, [filterByCompleted, filterBy])
 
     const getClassColor = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
@@ -53,12 +53,23 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
         if (moment(date).isBefore((moment().add(0, 'days')))) {
-            return <div style={{ color:'red'}}>{momentDay.format("MMM D")}</div>
+            return <div style={{ color: 'red' }}>{momentDay.format("MMM D")}</div>
         }
-        if (moment(date).isBefore(moment().add(2, 'days'))){
-            return <div style={{ color:'#FFAE42' }}>{momentDay.format("MMM D")}</div>
+        if (moment(date).isBefore(moment().add(2, 'days'))) {
+            return <div style={{ color: '#FFAE42' }}>{momentDay.format("MMM D")}</div>
         }
         return <div>{momentDay.format("MMM D")}</div>
+    }
+
+    const returnParsedDone = (date) => {
+        var momentDay = moment(date)
+        // if (moment(date).isBefore((moment().add(0, 'days')))) {
+        //     return <div style={{ color: 'red' }}>{momentDay.format("MMM D")}</div>
+        // }
+        // if (moment(date).isBefore(moment().add(2, 'days'))) {
+        //     return <div style={{ color: '#FFAE42' }}>{momentDay.format("MMM D")}</div>
+        // }
+        return <div style={{ color: '#BCBCBC' }}>{momentDay.format("MMM D")}</div>
     }
 
     const taskClicked = (t) => {
@@ -93,22 +104,22 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
             <div className="classHeader">
                 <div>Tasks</div>
                 <div className="selectClass"><Select
-                value={filterBy}
-                onChange={val => filterChanged(val)}
-                placeholder="Filter By..."
-                options={[
-                    { value: 'Due Date', label: 'Due Date' },
-                    { value: 'Class', label: 'Class' }
-                    
-                ]}
-            /></div>
+                    value={filterBy}
+                    onChange={val => filterChanged(val)}
+                    placeholder="Filter By..."
+                    options={[
+                        { value: 'Due Date', label: 'Due Date' },
+                        { value: 'Class', label: 'Class' }
+
+                    ]}
+                /></div>
 
                 <div className="completedLabel"><div>Completed</div>
-                <input 
-                type="checkbox" 
-                onClick={completedChanged}
-                value={filterByCompleted}
-                /> </div>
+                    <input
+                        type="checkbox"
+                        onClick={completedChanged}
+                        value={filterByCompleted}
+                    /> </div>
                 <button className="addTaskButton" onClick={() => addingOn()}>+ Add Task</button>
 
 
@@ -117,20 +128,37 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                 tasks.map((t) => {
                     return (
                         <div
-                            style={{ borderLeft: '5px solid ' + getClassColor(t.subjectId) }}
+                            style={t.isDone ?
+                                {
+                                    borderLeft: '5px solid ' + getClassColor(t.subjectId),
+                                }
+                                :
+                                { borderLeft: '5px solid' + getClassColor(t.subjectId) }}
                             className="task-button"
                             key={t.id}
                             onClick={() => taskClicked(t)}>
                             <div className="top-bar">
-                                <div className="subjTitle">{t.title}</div>
+                                <div className="subjTitle"
+                                    style={
+                                        t.isDone ? { color: '#BCBCBC' } :
+                                            {}
+                                    }
+                                >{t.title}</div>
                                 <div className="due">
-                                {returnParsedMoment(t.dueDate)}
+                                    {
+                                        t.isDone ? returnParsedDone(t.dueDate) :
+                                            returnParsedMoment(t.dueDate)
+                                    }
                                 </div>
                             </div>
                             <div className="bottom-bar">
-                                <div className="subjDesc">{
-                                    getClassName(t.subjectId)
-                                }</div>
+                                <div className="subjDesc" style={
+                                    t.isDone ? { color: '#BCBCBC' } :
+                                        {}
+                                }>{
+
+                                        getClassName(t.subjectId)
+                                    }</div>
                                 <div className="due"></div>
                             </div>
                         </div>
@@ -148,7 +176,7 @@ const mapStateToProps = (state) => {
         paused: state.running.paused,
         tasks: state.tasks,
         currentTask: state.currentTask,
- 
+
     }
 }
 
