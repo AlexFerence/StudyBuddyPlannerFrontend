@@ -11,45 +11,41 @@ import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
 import FriendActivity from './components/FriendActivity'
-//import Compare from './components/Compare'
-import {
-  loadChartsThunk, loadSubjectBreakdown,
-  loadHoursWeek, loadYearBeakdown,
-
-  loadTaskHoursPerWeek,
-  loadPersonalStats,
-  loadAverageOfWeekDay
-} from './thunks/chartThunk'
-
-import { loadTasks } from './thunks/taskThunk'
 import { connect } from 'react-redux'
-
-import { realoadClassesThunk } from './thunks/subjectThunk'
-import { refreshUser } from './thunks/profileThunk'
-//import '../node_modules/normalize-scss/sass/normalize.scss'
+import { setWidth } from './actions/widthActions'
 import './styles/styles.scss'
 
+//import Compare from './components/Compare'
+// import {
+//   loadChartsThunk, loadSubjectBreakdown,
+//   loadHoursWeek, loadYearBeakdown,
 
-const ConfigureApp = ({ dispatch }) => {
+//   loadTaskHoursPerWeek,
+//   loadPersonalStats,
+//   loadAverageOfWeekDay
+// } from './thunks/chartThunk'
+
+// import { loadTasks } from './thunks/taskThunk'
+
+
+// import { realoadClassesThunk } from './thunks/subjectThunk'
+// import { refreshUser } from './thunks/profileThunk'
+//import '../node_modules/normalize-scss/sass/normalize.scss'
+
+
+
+const ConfigureApp = ({ dispatch, width }) => {
 
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth
   })
 
-  const [width, setWidth] = useState(window.innerWidth)
-
   useEffect(() => {
     function handleResize() {
-      setWidth(window.innerWidth)
-      // setDimensions({
-      //   height: window.innerHeight,
-      //   width: window.innerWidth
-      // })
+      dispatch(setWidth(window.innerWidth))
     }
-    //console.log(width)
-    //console.log('changed')
-    //console.log(dimensions.width)
+
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
@@ -66,7 +62,7 @@ const ConfigureApp = ({ dispatch }) => {
 
   return (
     <BrowserRouter>
-      <Header width={width} />
+      <Header />
       {width > 999 && <FriendActivity />}
       <Switch>
         <Route path='/' component={Landing} exact />
@@ -82,6 +78,12 @@ const ConfigureApp = ({ dispatch }) => {
   )
 }
 
-export default connect()(ConfigureApp)
+const mapStateToProps = (state) => {
+  return {
+    width: state.width
+  }
+}
+
+export default connect(mapStateToProps)(ConfigureApp)
 
 //<Route path='/compare' component={Compare} />

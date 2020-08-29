@@ -248,7 +248,7 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
                         </Nav>
                     </Navbar>
                 </Navbar>
-            </div >
+            </div>
         )
     }
     else {
@@ -260,6 +260,7 @@ const mapStateToProps = (state) => {
         profile: state.profile,
         isAuth: state.profile.isAuth,
         isRunning: state.running.isRunning,
+        width: state.width
     }
 }
 export default connect(mapStateToProps)(Header)

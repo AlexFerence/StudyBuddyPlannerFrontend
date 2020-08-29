@@ -1,4 +1,4 @@
-
+import { SET_WIDTH } from '../actions/widthActions'
 
 const widthReducer = (state = window.innerWidth, action) => {
     switch (action.type) {

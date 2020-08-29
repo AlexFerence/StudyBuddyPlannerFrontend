@@ -361,6 +361,7 @@ const mapStateToProps = (state) => {
         subjects: state.subjects,
         charts: state.charts,
         profile: state.profile,
+        width: state.width
     }
 }
 
