@@ -46,7 +46,8 @@
  justify-content: space-between;
  align-items: center;
  width: 100%;
- background-color: darken($color: $light-grey, $amount: 10);
+ border: 1px solid grey;
+ //background-color: darken($color: $light-grey, $amount: 10);
 }
 
 .suggest-person__name {

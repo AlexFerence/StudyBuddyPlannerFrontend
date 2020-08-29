@@ -21,7 +21,8 @@
 @import './components/stopwatch';
 @import './components/landing';
 @import './components/compare';
-@import './components/friend-activity';
+@import './components/friends/friend-activity';
 @import './components/overlay';
-@import './components/active-friend';
+@import './components/friends/active-friend';
 @import './components/react_dates_override';
+@import './components/friends/friend-pending-search';

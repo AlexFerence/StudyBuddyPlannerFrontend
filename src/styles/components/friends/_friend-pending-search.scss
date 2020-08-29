@@ -1,0 +1,45 @@
+.accept-decline-item {
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+ align-items: center;
+ //border: 1px solid red;
+}
+
+.accept-decline-item__name {
+ color: white;
+ margin-bottom: 5px;
+}
+
+.accept-decline-item__email {
+ font-size: 12px;
+}
+
+.accept-decline-item__buttons-container {
+ display: flex;
+}
+
+.accept-decline-item__button {
+ padding: 4px;
+ margin: 5px;
+ font-size: 16px;
+ border: 1px solid $grey;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 5px;
+}
+
+.accept-decline-item__button:hover {
+ padding: 4px;
+ margin: 5px;
+ font-size: 16px;
+ border: 1px solid $grey;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 5px;
+ color: $dark-grey;
+ background-color: $grey;
+ cursor: pointer;
+}
