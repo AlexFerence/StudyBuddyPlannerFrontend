@@ -1,12 +1,23 @@
+.friend-active-list-holder {
+ padding-top: 10px;
+}
+
 .active-friend {
- border: 1px solid red;
+ //border-bottom: 1px solid $grey;
  display: flex;
  justify-content: space-between;
- padding: 10px;
+ padding: 15px 15px;
 }
 
 .active-friend__left {
  display: flex;
+}
+
+.active-friend__left__avatar-container {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-content: center;
 }
 
 .active-friend__left__avatar {
@@ -26,10 +37,34 @@
  display: flex;
  flex-direction: column;
  justify-content: space-around;
+ align-items: flex-start;
+}
+
+.active-friend__left__credentials__name {
+ color: white;
+ font-size: 18px;
+}
+
+.active-friend__left__credentials__class {
+ font-size: 12px;
+ padding: 5px 0px;
+}
+
+.active-friend__left__credentials__task-type {
+ font-size: 12px;
 }
 
 .col-center {
  display: flex;
  flex-direction: column;
  justify-content: center;
+}
+
+.last-active-icon {
+ width: 50px;
+ display: flex;
+ height: 100%;
+ justify-content: center;
+ align-items: center;
+ //border: 1px solid red;
 }

@@ -29,24 +29,35 @@ const TOUR_STEPS = [
   },
 ];
 
-const Landing = ({ history, profile }) => {
+const Landing = ({ history, profile, width }) => {
 
   var [run, setRun] = useState(false)
 
-  // useEffect(() => {
-  //   if (profile.email && profile.isAuth) {
-  //     history.push('/dashboard')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (profile.email && profile.isAuth) {
+      history.push('/dashboard')
+    }
+  }, [])
 
   const goToSignUp = () => {
     history.push("/signup")
   }
 
   return (
-    <div className="landing" id="#my-first-step" target="_blank">
+    <div className="landing"
+      style={(width < 1000) ? {
+        paddingRight: '0px'
+      } : {
+          border:
+            '0px solid blue',
+          paddingRight: '300px'
+        }}
+      id="#my-first-step"
+
+    >
 
       <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
+
       <div className="landingNav">
         <button id="brand" className="navButton">StudyBuddy</button>
         <div>
@@ -58,7 +69,6 @@ const Landing = ({ history, profile }) => {
           >Sign Up</button>
         </div>
       </div>
-
       <div className="landingDisplay">
         <video id="background-video" loop autoPlay muted>
           <source src="/videos/video2.mp4" type="video/mp4" />
@@ -66,14 +76,19 @@ const Landing = ({ history, profile }) => {
             Your browser does not support the video tag.
             </video>
       </div>
-      <div className="overlay landingDisplay">
+      <div className="overlay landingDisplay" style={(width < 1000) ? {
+        paddingRight: '0px'
+      } : {
+          border:
+            '0px solid blue',
+          paddingRight: '300px',
+        }}>
         <div className="center">
           <div className="promotion">Organize your classes and tasks.</div>
           <div className="promotion">Real time analytics and comparisons.</div>
           <div><button id="mainButton"
             className="navButtonSignUp"
             onClick={goToSignUp}>Sign Up</button></div>
-
         </div>
       </div>
 
@@ -231,10 +246,23 @@ const Landing = ({ history, profile }) => {
 }
 const mapStateToProps = (state) => {
   return {
-    profile: state.profile
+    profile: state.profile,
+    width: state.width
   }
 }
 
 export default connect(mapStateToProps)(Landing)
 
 //test
+
+      // <div className="landingNav">
+      //   <button id="brand" className="navButton">StudyBuddy</button>
+      //   <div>
+      //     <a className="navButton" href="#features">Features</a>
+      //     <a className="navButton" href="#premium">Premium</a>
+      //     <a className="navButton" href="#futureplan">Future Plan</a>
+      //     <button className="navButtonSignUp"
+      //       onClick={goToSignUp}
+      //     >Sign Up</button>
+      //   </div>
+      // </div>

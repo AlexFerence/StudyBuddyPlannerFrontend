@@ -81,7 +81,8 @@ const reducer = (acc, item) => {
   return acc
 }
 
-const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus, tasks }) => {
+const Dashboard = ({ dispatch, charts, profile,
+  history, subjects, stripeStatus, tasks, width }) => {
   var [dropdown1, setDropdown1] = useState(true)
   var [dropdown2, setDropdown2] = useState(true)
   var [steps, setSteps] = useState(TOUR_STEPS)
@@ -146,7 +147,13 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
   };
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" style={(width < 1000) ? {
+      paddingRight: '0px'
+    } : {
+        border:
+          '0px solid blue',
+        paddingRight: '300px'
+      }} >
       <Joyride steps={TOUR_STEPS}
         continuous={true} showSkipButton={true}
         callback={handleJoyrideCallback}
@@ -162,14 +169,14 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
         }}
       />
       <Row>
-        <Col id="quickT" s={6}>
+        <Col id="quickT" md={6}>
           <div className="graph">
             <div className="timerControl">
               <QuickTimer />
             </div>
           </div>
         </Col>
-        <Col s={6} >
+        <Col md={6} >
           <div className="toggleContainer">
             <div className="toggle">
               <FaAngleLeft
@@ -238,9 +245,11 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
       {false && <Overlay special={true} />}
       <div>
         <Row id="row1" className="dashRow">
-          <Col>
+          <Col md={6} style={{
+            minHeight: "360px"
+          }}>
 
-            <div className="flexNumDisplay">
+            < div className="flexNumDisplay" >
               <div className="rowTitle">Current Stats</div>
               <div className="row">
                 <div className="square">
@@ -289,7 +298,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
             </div>
 
           </Col>
-          <Col>
+          <Col md={6}>
             <div className="lineGraph">
 
               <ReactEcharts
@@ -342,7 +351,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
           </Col>
         </Row>
         <Row className="dashRow">
-          <Col>
+          <Col md={6}>
             <ReactEcharts
               option={{
                 title: {
@@ -392,7 +401,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
               }}
             />
           </Col>
-          <Col>
+          <Col md={6}>
 
             {subjects.length === 0 ? <div className="noData">
               <div>
@@ -447,7 +456,7 @@ const Dashboard = ({ dispatch, charts, profile, history, subjects, stripeStatus,
         <span>Comparative Analytics</span>
         <span className="lock">{false && <FaLock />}</span>
       </div>
-    </div>
+    </div >
   );
 }
 
@@ -457,27 +466,11 @@ const mapStateToProps = (state) => {
     profile: state.profile,
     subjects: state.subjects,
     stripeStatus: state.profile.userBilling.stripeStatus,
-    tasks: state.tasks
+    tasks: state.tasks,
+    width: state.width
   }
 }
 
 export default connect(mapStateToProps)(Dashboard)
 
-const noData = () => {
-  return (
-    <div className="noData">
-      <div>
-        No Data
-    </div>
-    </div>
-  )
-}
 
-// <div className="toggleButton" onClick={() => {
-//   setDropdown1(!dropdown1)
-// }}>
-//   {dropdown1 ? <FaAngleDown /> : <FaAngleUp />}
-
-//   <span>Personal Analytics</span>
-//   <span className="lock">{ false && <FaLock />}</span>
-// </div>

@@ -1,97 +1,94 @@
 .dashboard {
-  background-color: $light-grey;
-  //overflow-y: scroll;
+ background-color: $light-grey;
+ //overflow-y: scroll;
 }
 
 .App {
-    display: flex;
-    justify-content: space-around;
-    font-family: sans-serif;
-    text-align: center;
-    padding-top: 40px;
-  }
-  .time {
-    font-size: 32px;
-  }
+ display: flex;
+ justify-content: space-around;
+ font-family: sans-serif;
+ text-align: center;
+ padding-top: 40px;
+}
+.time {
+ font-size: 32px;
+}
 
 .graph-box {
-    margin: 10px;
-    padding: 10px;
-   //border: 1px solid $grey;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    background-color: white;
+ margin: 10px;
+ padding: 10px;
+ //border: 1px solid $grey;
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+ background-color: white;
 }
 
 .toggleButton {
-  margin: 5px;
-  width: 100%;
-  padding: 10px 20px;
-  //border: 1px solid $grey;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  color: white;
-
+ margin: 5px;
+ width: 100%;
+ padding: 10px 20px;
+ //border: 1px solid $grey;
+ background-color: transparent;
+ display: flex;
+ justify-content: space-between;
+ color: white;
 }
 .toggleButton:focus {
-  outline: none;
+ outline: none;
 }
 
 .graph {
-  padding: 5px;
-  margin: 10px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+ padding: 5px;
+ margin: 10px;
+ // display: flex;
+ // justify-content: center;
+ // align-items: center;
 }
 
 .lock {
-  color: $grey;
+ color: $grey;
 }
 
-
-
 .lineGraph {
-  padding: 5px;
+ padding: 5px;
 }
 
 .dropdownBar {
-  height: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
+ height: 15px;
+ width: 100%;
+ display: flex;
+ justify-content: flex-end;
 }
 
 .dropdown {
-  width: 150px;
-  margin: 5px;
-  height: 25px;
+ width: 150px;
+ margin: 5px;
+ height: 25px;
 }
 
 .topRight {
-  padding-top: 0px;
-  margin-top: 0px;
+ padding-top: 0px;
+ margin-top: 0px;
 }
 
 .toggleContainer {
-  display: flex;
-  justify-content: flex-end;
-  margin: 40px 10% 0px 20px;
+ display: flex;
+ justify-content: flex-end;
+ margin: 40px 10% 0px 20px;
 }
 
 .toggle {
-  font-size: 20px;
-  color: $dark-grey;
+ font-size: 20px;
+ color: $dark-grey;
 }
 
 .flexNumDisplay {
-  padding-top: 5px;
-  height: 100%;
-  flex-direction: column;
-  display: flex;
-  justify-content: space-around;
-  //border: 1px solid $grey;
-
+ padding-top: 5px;
+ min-height: 360px;
+ height: 100%;
+ flex-direction: column;
+ display: flex;
+ justify-content: space-around;
+ //border: 1px solid $grey;
 }
 
 .row {
@@ -104,67 +101,65 @@
 }
 
 .square {
-  //border-bottom: 1px solid $grey;
-  flex-direction: column;
-  display: flex;
-  align-content: space-between;
-  align-items: center;
-  justify-content: center;
+ //border-bottom: 1px solid $grey;
+ flex-direction: column;
+ display: flex;
+ align-content: space-between;
+ align-items: center;
+ justify-content: center;
 }
 
 .squareTitle {
-  margin-bottom: 5px;
-  color: lighten($color: $dark-grey, $amount: 35);
+ margin-bottom: 5px;
+ color: lighten($color: $dark-grey, $amount: 35);
 }
 
 .squareData {
-  color: $dark-grey;
-  font-weight: 500;
+ color: $dark-grey;
+ font-weight: 500;
 }
 
 .rowTitle {
-  display: flex;
-  justify-content: center;
-  //padding-left: 50px;
-  padding-top: 7.5px;
-  font-weight: 550;
-  font-family: 'Helvetica';
+ display: flex;
+ justify-content: center;
+ //padding-left: 50px;
+ padding-top: 7.5px;
+ font-weight: 550;
+ font-family: 'Helvetica';
 }
 
 .sticky-bottom {
-  //border-top: 1px solid $grey;
-  padding: 7.5px;
-  display: flex;
-  justify-content: space-around;
-  background-color: $light-grey;
+ //border-top: 1px solid $grey;
+ padding: 7.5px;
+ display: flex;
+ justify-content: space-around;
+ background-color: $light-grey;
 
-  // position: sticky;
-  // bottom: 0px;
+ // position: sticky;
+ // bottom: 0px;
 }
 
 .noData {
-  
-  color: $grey;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 35px;
-  border: 10px solid $light-grey;
-  height: 100%;
-  width: 100%;
-  min-height: 300px;
-  text-align: center;
-
+ color: $grey;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 35px;
+ border: 10px solid $light-grey;
+ height: 100%;
+ width: 100%;
+ min-height: 300px;
+ text-align: center;
 }
 
 .subNoData {
-  padding-top: 5px;
-  font-size: 12px;
-  color: $grey;
+ padding-top: 5px;
+ font-size: 12px;
+ color: $grey;
 }
 
 .dashRow {
-  margin: 20px 0px;
-  padding: 20px 0px 15px 0px;
-  border-top: 1px solid $grey;
+ margin: 20px 0px;
+ padding: 20px 0px 15px 0px;
+ border-top: 1px solid $grey;
 }

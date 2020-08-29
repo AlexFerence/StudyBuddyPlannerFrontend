@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { searchIfExists, sendRequest, getPendingFriends } from '../thunks/friendThunk'
+import { searchIfExists, sendRequest, getPendingFriends } from '../../thunks/friendThunk'
 
 import AcceptDeclineItem from './FriendPendinSearchItem'
 
@@ -76,7 +76,6 @@ const mapStateToProps = (state) => {
     return {
         waitingRequests: state.friends.waitingRequests,
         sentRequests: state.friends.sentRequests
-
     }
 }
 

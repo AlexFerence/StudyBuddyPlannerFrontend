@@ -145,8 +145,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
 
     return (
         <Row className="subjects" style={(width < 1000) ? {
-            paddingRight: '0px', border:
-                '10px solid green'
+            paddingRight: '0px'
         } : {
                 border:
                     '0px solid blue',
@@ -170,7 +169,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
             <SubjectModal isOpen={openModal} closeModal={closeModal}
 
             />
-            <Col className="scroller">
+            <Col md={6} className="scroller">
                 <div className="classHeader">
                     <div className="left">
                         <div className="title">Subjects</div>
@@ -196,7 +195,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                     )
                 })}</div>
             </Col>
-            <Col className="display">
+            <Col md={6} className="display">
                 {!classSelection.id && <p className="fillerContent">Please select a class</p>}
                 <div className="innerDisplay">
                     {classSelection.id &&

@@ -21,7 +21,7 @@ const FriendActivity = () => {
                     Friend Activity
                 </div>
                 <div className="flip-header" onClick={handleShowPending}>
-                    Pending/Add Friends
+                    Add Friends
                 </div>
             </div>
             {activityShowing ? <FriendActiveList /> : <FriendPendingSearch />}

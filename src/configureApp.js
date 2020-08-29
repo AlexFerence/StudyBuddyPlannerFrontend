@@ -10,7 +10,7 @@ import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
-import FriendActivity from './components/FriendActivity'
+import FriendActivity from './components/friend-components/FriendActivity'
 import { connect } from 'react-redux'
 import { setWidth } from './actions/widthActions'
 import './styles/styles.scss'
@@ -34,7 +34,7 @@ import './styles/styles.scss'
 
 
 
-const ConfigureApp = ({ dispatch, width }) => {
+const ConfigureApp = ({ dispatch, width, isAuth }) => {
 
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
@@ -63,7 +63,7 @@ const ConfigureApp = ({ dispatch, width }) => {
   return (
     <BrowserRouter>
       <Header />
-      {width > 999 && <FriendActivity />}
+      {width > 999 && isAuth && <FriendActivity />}
       <Switch>
         <Route path='/' component={Landing} exact />
         <Route path='/signup' component={FormPage} />
@@ -80,7 +80,8 @@ const ConfigureApp = ({ dispatch, width }) => {
 
 const mapStateToProps = (state) => {
   return {
-    width: state.width
+    width: state.width,
+    isAuth: state.profile.isAuth
   }
 }
 

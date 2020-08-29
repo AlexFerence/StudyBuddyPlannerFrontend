@@ -22,7 +22,7 @@ const style = {
 
 
 const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, token,
-    id, history, profile, schools, faculties }) => {
+    id, history, profile, schools, faculties, width }) => {
 
     const [fname, setfname] = useState(firstName)
     const [lname, setlname] = useState(lastName)
@@ -94,7 +94,13 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
 
     return (
-        <div className="container settings">
+        <div className="settings" style={(width < 1000) ? {
+            paddingRight: '0px'
+        } : {
+                border:
+                    '0px solid blue',
+                paddingRight: '300px'
+            }}>
             <div style={{ width: '100%', height: '300px' }}>
                 <PaymentForm />
             </div>
@@ -170,7 +176,8 @@ const mapStateToProps = (state) => {
         id: state.profile.id,
         schools: state.schools,
         faculties: state.faculties,
-        profile: state.profile
+        profile: state.profile,
+        width: state.width
     }
 }
 

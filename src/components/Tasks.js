@@ -48,7 +48,7 @@ const TOUR_STEPS = [
 ];
 
 
-const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
+const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width }) => {
     const [displayType, setDisplayType] = useState('')
 
     var [steps, setSteps] = useState(TOUR_STEPS)
@@ -105,7 +105,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
 
 
     return (
-        <Row className="tasks">
+        <div>
             <Joyride steps={TOUR_STEPS}
                 continuous={true} showSkipButton={true}
                 callback={handleJoyrideCallback}
@@ -120,33 +120,43 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile }) => {
 
                 }}
             />
-            <Col className="scroller">
-                <TaskList
-                    displayOn={displayOn}
-                    addingOn={addingOn}
-                />
-            </Col>
-            <Col className="main-right">
-                {displayType === 'adding' && <AddTask
-                    displayOn={displayOn}
-                    setDisplayType={setDisplayType}
-                />}
-                {displayType === 'display' && <TaskDisplay
-                    editingOn={editingOn}
-                    displayOn={displayOn}
-                    blankOn={blankOn}
-                />}
-                {displayType === 'editing' && <TaskEdit
-                    displayOn={displayOn}
-                    currentTaskCopy={currentTask}
 
-                //currentTaskCopy={currentTaskCopy} 
-                //loadTasks={loadTasks}
-                //setCurrentTask={setCurrentTask}
-                //setIsEditing={setIsEditing} 
-                />}
-            </Col>
-        </Row>
+            <Row className="tasks" style={(width < 1000) ? {
+                paddingRight: '0px'
+            } : {
+                    border:
+                        '0px solid blue',
+                    paddingRight: '300px'
+                }}>
+
+                <Col className="scroller" s={6}>
+                    <TaskList
+                        displayOn={displayOn}
+                        addingOn={addingOn}
+                    />
+                </Col>
+                <Col s={6} className="main-right">
+                    {displayType === 'adding' && <AddTask
+                        displayOn={displayOn}
+                        setDisplayType={setDisplayType}
+                    />}
+                    {displayType === 'display' && <TaskDisplay
+                        editingOn={editingOn}
+                        displayOn={displayOn}
+                        blankOn={blankOn}
+                    />}
+                    {displayType === 'editing' && <TaskEdit
+                        displayOn={displayOn}
+                        currentTaskCopy={currentTask}
+
+                    //currentTaskCopy={currentTaskCopy} 
+                    //loadTasks={loadTasks}
+                    //setCurrentTask={setCurrentTask}
+                    //setIsEditing={setIsEditing} 
+                    />}
+                </Col>
+            </Row>
+        </div>
     )
 }
 
@@ -157,7 +167,8 @@ const mapStateToProps = (state) => {
         id: state.profile.id,
         subjects: state.subjects,
         currentTask: state.currentTask,
-        profile: state.profile
+        profile: state.profile,
+        width: state.width
     }
 }
 

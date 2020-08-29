@@ -1,11 +1,13 @@
 .friendActivity {
- border: 10px solid red;
+ //border: 1px solid $grey;
  width: 300px;
- position: absolute;
+ position: fixed;
  right: 0;
  top: 0;
  z-index: 20000000;
  height: 100%;
+ background-color: $dark-grey;
+ color: $grey;
 }
 
 .flip-container {
@@ -49,6 +51,7 @@
 
 .suggest-person__name {
  font-size: 18px;
+ color: white;
 }
 
 .suggest-person__email {

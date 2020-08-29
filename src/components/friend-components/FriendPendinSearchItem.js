@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { acceptRequest, declineRequest, getPendingFriends } from '../thunks/friendThunk'
+import { acceptRequest, declineRequest, getPendingFriends } from '../../thunks/friendThunk'
 import { FaCheck, FaRegWindowClose } from 'react-icons/fa'
 
 const AcceptDeclineItem = ({ request, dispatch }) => {
@@ -25,10 +25,12 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
             </div>
             <div>
                 {
-                    request.displayType === "AcceptDecline" ? <div>
-                        <div onClick={() => handleAcceptRequest(request.id)}><FaCheck /></div>
-                        <div onClick={() => handleDeclineRequest(request.id)}><FaRegWindowClose /></div>
-                    </div> : <div>Pending ...</div>
+                    request.displayType === "AcceptDecline" ?
+                        <div className="accept-decline-buttons">
+                            <div onClick={() => handleAcceptRequest(request.id)}><FaCheck /></div>
+                            <div onClick={() => handleDeclineRequest(request.id)}><FaRegWindowClose /></div>
+                        </div>
+                        : <div>Pending ...</div>
                 }
             </div>
         </div>

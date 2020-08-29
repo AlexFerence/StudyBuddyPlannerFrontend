@@ -402,11 +402,13 @@ export const comparativePersonalToAverage = (sid) => async (dispatch, getState) 
     }
 }
 
+const defaultUserBilling = { stripeStatus: 0 }
+
 export const refreshAllCharts = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects, } = state
-    const { id, token, subjId, schoolId, userBilling } = profile
-    const { stripeStatus = "" } = userBilling
+    const { id, token, subjId, schoolId, userBilling = defaultUserBilling } = profile
+    const { stripeStatus } = userBilling
 
     if (stripeStatus) {
         dispatch(loadChartsThunk())
