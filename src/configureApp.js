@@ -61,7 +61,7 @@ const ConfigureApp = ({ dispatch, width, isAuth }) => {
 
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history="">
       <Header />
       {width > 999 && isAuth && <FriendActivity />}
       <Switch>

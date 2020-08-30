@@ -5,7 +5,8 @@ import url from '../environment/url'
 import SubjectButton from './SubjectButton'
 import { fillSubjects } from '../actions/subjectActions'
 import { deleteSubject } from '../actions/subjectActions'
-import { FaTrashAlt, FaEdit } from 'react-icons/fa'
+import { FaTrashAlt, FaEdit, FaCreditCard, FaTag } from 'react-icons/fa'
+import { IoMdSchool } from 'react-icons/io'
 import SubjectModal from './SubjectModal'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
@@ -169,7 +170,9 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
 
             <SubjectModal isOpen={openModal} closeModal={closeModal}
             />
-            <Col md={6} className="scroller">
+            <Col style={{ padding: '0px' }}
+                xs={12} s={12} md={6} lg={6}
+                className="scroller">
                 <div className="classHeader">
                     <div className="left">
                         <div className="title">Subjects</div>
@@ -195,7 +198,8 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                     )
                 })}</div>
             </Col>
-            <Col md={6} className="display">
+            <Col style={{ padding: '0px' }}
+                xs={12} s={12} md={6} lg={6} className="display">
                 {!classSelection.id && subjects.length === 0 && <CustomOverlay message="Add a subject to get started" />}
                 <div className="innerDisplay">
                     {classSelection.id &&
@@ -226,13 +230,16 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                             <Row>
                                 <Col md={6}>
                                     <div className="tidbits">
+                                        <FaTag />
                                         <span className="subjects__sub-text">{classSelection.description}</span> <br />
                                     </div>
                                     <div className="tidbits">
-                                        <span className="subjects__sub-text">{classSelection.credits}</span> <span className="subjects__sub-text">Credits</span>
+                                        <FaCreditCard />
+                                        <span className="subjects__sub-text"> {classSelection.credits}</span> <span style={{ marginLeft: '4px' }} className="subjects__sub-text">Credits</span>
                                     </div>
                                     <div className="tidbits">
-                                        <span className="subjects__sub-text"></span> <span>{classSelection.professor}</span> <br />
+                                        <IoMdSchool />
+                                        <span className="subjects__sub-text">{classSelection.professor}</span> <br />
                                     </div>
                                 </Col>
                                 <Col md={6}>

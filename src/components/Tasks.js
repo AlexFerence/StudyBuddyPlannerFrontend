@@ -132,13 +132,15 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
                     paddingRight: '300px'
                 }}>
 
-                <Col className="scroller" s={6}>
+                <Col
+                    style={{ padding: '0px' }}
+                    xs={12} s={12} md={6} lg={6} className="scroller" s={6}>
                     <TaskList
                         displayOn={displayOn}
                         addingOn={addingOn}
                     />
                 </Col>
-                <Col s={6} className="main-right">
+                <Col xs={12} s={12} md={6} lg={6} className="main-right">
                     {displayType === 'adding' && <AddTask
                         displayOn={displayOn}
                         setDisplayType={setDisplayType}

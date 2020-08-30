@@ -7,7 +7,7 @@ h3 {
 .subjects .scroller {
  background-color: $white;
  width: 45vw;
- height: calc(100vh - #{$navbar-height});
+ //height: calc(100vh - #{$navbar-height});
  float: left;
  border-right: 1px solid lighten($color: $grey, $amount: 20%);
 }
@@ -167,11 +167,17 @@ h4 {
 
 .tidbits {
  margin: 10px 0px;
+ display: flex;
+ align-items: center;
+}
+.tidbits__text {
+}
+.tidbits__icon {
 }
 
 .subjects__sub-text {
  color: $dark-grey;
  font-size: 18px;
- margin: 5px 0px;
- font-style: italic;
+ margin-left: 8px;
+ //font-style: italic;
 }
