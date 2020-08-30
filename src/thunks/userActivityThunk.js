@@ -44,7 +44,7 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
                 active: 0,
                 currentTaskId: currentTask.id,
                 lastActive: moment().format(),
-                timezoneOffset: now.getTimezoneOffset() / 60
+                //timezoneOffset: now.getTimezoneOffset() / 60
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,

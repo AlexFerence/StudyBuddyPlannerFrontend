@@ -6,18 +6,39 @@
  outline: none;
  background-color: transparent;
  color: $light-grey;
- padding: 7.5px 15px;
+ padding: 7.5px 5px;
  margin: 3px;
  border: 1px solid transparent;
  transition: 0.35s;
+ text-transform: capitalize;
+ font-size: 14px;
+}
+
+// id to override bootstrap
+#navBut {
+ text-transform: capitalize;
+ font-size: 16px;
+ text-align: center;
+ padding: 5px;
+ background-color: transparent;
+}
+#navBut:hover {
+ background-color: transparent;
+}
+
+.nav-right {
+ display: flex;
+ align-items: center;
+ margin-top: 5px;
 }
 
 .navButton:focus {
  outline: none;
+ background-color: transparent;
 }
 
 .navButton:hover {
- border: 1px solid $light-grey;
+ //border: 1px solid $light-grey;
  transition: 0.35s;
  color: white;
  text-decoration: none;
@@ -72,6 +93,20 @@
 }
 
 .navButtonSignUp:focus {
+ outline: none;
+}
+
+#navButtonSignUp {
+ border: none;
+ border-radius: 10px;
+ padding: 15px 20px;
+ color: white;
+ background-color: $brand;
+ font-size: 16px;
+ margin-left: 5px;
+}
+
+#navButtonSignUp:focus {
  outline: none;
 }
 

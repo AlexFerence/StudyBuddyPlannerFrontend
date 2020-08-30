@@ -68,3 +68,11 @@
  align-items: center;
  //border: 1px solid red;
 }
+
+.last-active-time-display {
+ display: flex;
+}
+
+.last-active-time-display__time {
+ margin-right: 3px;
+}

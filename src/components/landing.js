@@ -50,16 +50,8 @@ const Landing = ({ history, profile, width }) => {
 
       <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
 
-      <div className="landingNav">
-        <button id="brand" className="navButton">StudyBuddy</button>
-        <div>
-          <a className="navButton" href="#features">Features</a>
-          <a className="navButton" href="#premium">Premium</a>
-          <a className="navButton" href="#futureplan">Future Plan</a>
-          <button className="navButtonSignUp"
-            onClick={goToSignUp}
-          >Sign Up</button>
-        </div>
+      <div className="landingNav" style={{ padding: '0px' }}>
+        <LandingNav />
       </div>
       <div className="landingDisplay">
         <video id="background-video" loop autoPlay muted>

@@ -158,7 +158,7 @@ export const getActiveFriends = (otherID) => async (dispatch, getState) => {
             {
                 id,
                 currentTime: moment().format(),
-                timezoneOffset: now.getTimezoneOffset() / 60
+                //timezoneOffset: now.getTimezoneOffset() / 60
             }
 
             ,

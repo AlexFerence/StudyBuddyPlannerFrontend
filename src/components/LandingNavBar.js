@@ -1,32 +1,44 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 
-const LandingNav = () => {
+const LandingNav = ({ history }) => {
+
+    const goToSignUp = () => {
+        history.push("/signup")
+    }
+
     return (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar expand="md" style={{
+            fontSize: '12px',
+            width: '100%',
+            backgroundColor: 'transparent',
+        }}>
+            <Navbar.Brand href="#home">Study Buddy</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#features">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#premium">Premium</NavDropdown.Item>
-                        <NavDropdown.Item href="#futureplan">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#futureplan">Something</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
                 </Nav>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <NavDropdown.Item href="#futureplan">Something</NavDropdown.Item>
-                    <Button variant="outline-success">Search</Button>
-                </Form>
+                <Nav className="nav-right">
+                    <NavDropdown.Item id="navBut" className="navButton" href="#features">Features</NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton" href="#premium">Friends</NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton" href="#futureplan">Future</NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton" href="/login">Log In</NavDropdown.Item>
+                    <NavDropdown.Item
+                        style={{ color: 'white' }}
+                        id="navButSignUp" id="navButtonSignUp" href="/signup">Sign Up</NavDropdown.Item>
+
+                </Nav>
             </Navbar.Collapse>
         </Navbar>
     )
 }
 
-export default LandingNav
+const mapStateToProps = (state) => {
+    return {
+        profile: state.profile,
+        width: state.width
+    }
+}
+
+export default connect(mapStateToProps)(LandingNav)
