@@ -28,7 +28,7 @@ const FriendActiveListItem = ({ friend }) => {
                 </div>
             </div>
             <div className="col-center">
-                <div className="last-active-icon">{friend.active ? <FaBookReader /> : ""}</div>
+                <div className="last-active-icon">{friend.active ? <FaBookReader /> : friend.lastActiveDescription}</div>
             </div>
         </div>
     )

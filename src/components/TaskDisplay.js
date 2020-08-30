@@ -20,11 +20,11 @@ const hoursToTimeDisplay = (h) => {
     var decimalMins = (h - hours) * 60
     var returnMins = Math.floor(decimalMins)
     if (decimalMins < 10) {
-      returnMins = "0" + returnMins
+        returnMins = "0" + returnMins
     }
     return (hours + ":" + returnMins)
-  
-  }
+
+}
 
 const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch, blankOn }) => {
 
@@ -35,7 +35,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
     const scrollToBottom = () => {
         if (sessionsOpen) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
-        }     
+        }
     }
 
     const makeColor = async (subjId) => {
@@ -46,7 +46,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         } catch (e) {
             console.log(e)
         }
-    } 
+    }
 
     const getTitle = async (subjId) => {
         try {
@@ -96,14 +96,14 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 <Row>
                     <Col>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {moment(currentTask.dueDate).format("MMMM DD") }
+                            <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {moment(currentTask.dueDate).format("MMMM DD")}
                         </div>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaGraduationCap /></span>  Class: {currentTask.subjectTitle}
                         </div>
                         <div className="d-flex align-items-end info">
-                            <span className="calendarIcon"><IoMdTime /></span>  Total: {currentTask.totalTime.substring(0, currentTask.totalTime.length - 3)}
-                    </div>
+                            <span className="calendarIcon"><IoMdTime /></span>  Total: {currentTask.totalTime.substring(0, currentTask.totalTime.length - 3) || 0}
+                        </div>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaPencilAlt /></span>  Notes:
                     </div>
@@ -111,7 +111,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             <div className="multiLine">{currentTask.description}</div>
                         </div>
 
-                        
+
                     </Col>
                     <Col>
                         <Select
@@ -129,11 +129,11 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         {timerSetting.value === 'Timer' &&
                             <Counter
                                 color={getClassColor(currentTask.subjectId)}
-                                //currentTask={currentTask}
-                                
+                            //currentTask={currentTask}
+
                             />}
-                        {timerSetting.value === 'Stopwatch' && 
-                            <Stopwatch />    
+                        {timerSetting.value === 'Stopwatch' &&
+                            <Stopwatch />
                         }
                         {timerSetting.value === 'Time Input' &&
                             <TimeInput
@@ -143,52 +143,52 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 </Row>
                 <div>
                     <div className="taskSessionsBar">
-                    <button className="but" onClick={() => {
-                        setSessionsOpen(!sessionsOpen)
-                        scrollToBottom()
-                    }}>Sessions { !sessionsOpen ? <FaAngleDown /> : <FaAngleUp /> }</button>
+                        <button className="but" onClick={() => {
+                            setSessionsOpen(!sessionsOpen)
+                            scrollToBottom()
+                        }}>Sessions {!sessionsOpen ? <FaAngleDown /> : <FaAngleUp />}</button>
 
 
-                    <button 
-                        className="but complete"
-                        onClick={() => {
-                            console.log(currentTask)
-                            dispatch(markTaskAsDone(currentTask.id))
-                            blankOn()
-                        }}
+                        <button
+                            className="but complete"
+                            onClick={() => {
+                                console.log(currentTask)
+                                dispatch(markTaskAsDone(currentTask.id))
+                                blankOn()
+                            }}
                         ><FaCheck className="green" /> Completed</button>
                     </div>
 
-                    
+
 
                     {sessionsOpen &&
-                        
-                    <div className="sessionsTable">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th style={{ backgroundColor: currentTask.color }}>Minutes</th>
-                                <th style={{ backgroundColor: currentTask.color }}>Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            
-                            { 
-                                currentTask &&
-                                    currentTask.taskSessions.map((session) => {
-                                        return (
-                                            <tr key={session.id}>
-                                                <td>{hoursToTimeDisplay(session.minutes / 60)}</td>
-                                                <td>{moment(session.dateCompleted).format("MMM D")}</td>
-                                            </tr>
-                                        )
-                                    })
-                            }
-                            <tr ref={messagesEndRef}>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+                        <div className="sessionsTable">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style={{ backgroundColor: currentTask.color }}>Minutes</th>
+                                        <th style={{ backgroundColor: currentTask.color }}>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {
+                                        currentTask &&
+                                        currentTask.taskSessions.map((session) => {
+                                            return (
+                                                <tr key={session.id}>
+                                                    <td>{hoursToTimeDisplay(session.minutes / 60)}</td>
+                                                    <td>{moment(session.dateCompleted).format("MMM D")}</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    <tr ref={messagesEndRef}>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     }
                 </div>
             </div>
@@ -202,7 +202,7 @@ const mapStateToProps = (state) => {
         isRunning: state.running.isRunning,
         paused: state.running.paused,
         currentTask: state.currentTask,
-        
+
     }
 }
 

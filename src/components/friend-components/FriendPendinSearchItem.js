@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { acceptRequest, declineRequest, getPendingFriends } from '../../thunks/friendThunk'
-import { FaCheck, FaRegWindowClose } from 'react-icons/fa'
 import { IoMdClose, IoMdCheckmark } from 'react-icons/io'
 
 const AcceptDeclineItem = ({ request, dispatch }) => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { runningReduxOn, runningReduxOff } from '../actions/isRunningActions';
 import url from '../environment/url';
 import { modifyFriends } from '../actions/friendActions'
-
+import moment from 'moment'
 
 export const searchIfExists = (email) => async (dispatch, getState) => {
     const state = getState()
@@ -46,10 +46,11 @@ export const sendRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
+        dispatch(getPendingFriends())
         return res.status
 
     } catch (e) {
-
+        dispatch(getPendingFriends())
         return (e)
     }
 }
@@ -113,7 +114,9 @@ export const acceptRequest = (otherID) => async (dispatch, getState) => {
             }
         )
         dispatch(getPendingFriends())
+        dispatch(getActiveFriends())
         return (res.data);
+
 
     } catch (e) {
         console.log(e)
@@ -138,6 +141,7 @@ export const declineRequest = (otherID) => async (dispatch, getState) => {
         return (res.data);
 
     } catch (e) {
+        dispatch(getPendingFriends())
         console.log(e)
     }
 }
@@ -149,8 +153,14 @@ export const getActiveFriends = (otherID) => async (dispatch, getState) => {
 
     console.log('GETTING PENDING FRIENDDS')
     try {
+        var now = new Date()
         const res = await axios.post(url + '/api/Friends/getListActiveFriends',
-            id
+            {
+                id,
+                currentTime: moment().format(),
+                timezoneOffset: now.getTimezoneOffset() / 60
+            }
+
             ,
             {
                 headers: {

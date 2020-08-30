@@ -37,12 +37,14 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
     dispatch(runningReduxOff(taskId))
     console.log(currentTask.id)
     try {
+        var now = new Date()
         const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
                 active: 0,
                 currentTaskId: currentTask.id,
-                lastActive: moment().format()
+                lastActive: moment().format(),
+                timezoneOffset: now.getTimezoneOffset() / 60
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,
@@ -67,7 +69,6 @@ export const userActivityCount = () => async (dispatch, getState) => {
             {
                 faculty: profile.facultyId,
                 school: profile.schoolId
-
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,

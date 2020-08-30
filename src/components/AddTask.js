@@ -33,7 +33,8 @@ const options = [
 
 const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) => {
     const [currentSubjectID, setCurrentSubjectID] = useState('')
-    const [currentClass, setCurrentClass] = useState('')
+    const [currentClass, setCurrentClass] = useState()
+    const [currentClassError, setCurrentClassError] = useState()
     const [taskType, setTaskType] = useState({ value: 'Assignment', label: 'Assignment' })
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
@@ -41,23 +42,22 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
     const [calendarFocused, setCalendarFocused] = useState(null)
     const [selectedOption, setSelectedOption] = useState('')
 
-
     useEffect(() => {
         if (subjects[0]) {
             setCurrentSubjectID(subjects[0].id)
         }
     }, [])
 
-    useEffect(() => {
-        //console.log(taskType)
-    }, [taskType])
-    useEffect(() => {
-        //console.log(currentClass)
-    }, [currentClass])
-
     const onSubmit = async (e) => {
+
         e.preventDefault()
 
+        //errro handelling
+
+        if (!currentClass) {
+            setCurrentClassError('please enter class')
+            return
+        }
 
 
         try {
@@ -83,8 +83,6 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
             console.log(res)
             dispatch(loadTasks())
             setDisplayType('')
-
-
         } catch (e) {
             console.log(e)
         }
@@ -92,7 +90,7 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
 
     return (
         <div className="add-task">
-            <div className="add-task-header" style={currentClass.value && { backgroundColor: currentClass.value.color }}>
+            <div className="add-task-header" style={(currentClass) && { backgroundColor: (currentClass.value.color || '#2b2b2b') }}>
                 <span>Add Task</span>
                 <div>
                 </div>
@@ -100,6 +98,7 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
             <div className="add-task-body">
                 <form onSubmit={onSubmit}>
                     <label className="inpLabel">Class:</label>
+                    {currentClassError && <span className="error">* {currentClassError}</span>}
                     <Select
                         value={currentClass}
                         onChange={val => setCurrentClass(val)}

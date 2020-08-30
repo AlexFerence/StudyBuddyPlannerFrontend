@@ -10,6 +10,7 @@ import timer from '../assets/timer.png'
 import ReactEcharts from 'echarts-for-react'
 import ReactPlayer from 'react-player'
 import JoyRide from 'react-joyride';
+import LandingNav from './LandingNavBar'
 
 const TOUR_STEPS = [
   {
@@ -67,13 +68,7 @@ const Landing = ({ history, profile, width }) => {
             Your browser does not support the video tag.
             </video>
       </div>
-      <div className="overlay landingDisplay" style={(width < 1000) ? {
-        paddingRight: '0px'
-      } : {
-          border:
-            '0px solid blue',
-          paddingRight: '300px',
-        }}>
+      <div className="overlay landingDisplay">
         <div className="center">
           <div className="promotion">Organize your classes and tasks.</div>
           <div className="promotion">Real time analytics and comparisons.</div>
@@ -245,6 +240,19 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Landing)
 
 //test
+
+      // <div className="landingNav">
+      //   <button id="brand" className="navButton">StudyBuddy</button>
+      //   <div>
+      //     <a className="navButton" href="#features">Features</a>
+      //     <a className="navButton" href="#premium">Premium</a>
+      //     <a className="navButton" href="#futureplan">Future Plan</a>
+      //     <button className="navButtonSignUp"
+      //       onClick={goToSignUp}
+      //     >Sign Up</button>
+      //   </div>
+      // </div>
+
 
       // <div className="landingNav">
       //   <button id="brand" className="navButton">StudyBuddy</button>
