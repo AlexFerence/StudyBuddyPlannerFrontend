@@ -1,47 +1,45 @@
 .navbar {
-  background-color: $dark;
-  color: $light;
-
+ color: $light;
 }
 
 .navbar a {
-  text-decoration: none;
-  color: $light;
-  font-weight: 300;
-  text-transform: uppercase;
-  position: relative;
-  font-size: 22.5px;
-  padding-right: 20px;
+ text-decoration: none;
+ color: $light;
+ font-weight: 300;
+ text-transform: uppercase;
+ position: relative;
+ font-size: 22.5px;
+ padding-right: 20px;
 }
 
 .navbar .title {
-  text-transform: none;
+ text-transform: none;
 }
 
 .navbar a,
 .navbar a:after,
 .navbar a:before {
-  transition: all .5s;
+ transition: all 0.5s;
 }
 
 .navbar a:hover {
-  color: lighten($color: $light, $amount: 100);
+ color: lighten($color: $light, $amount: 100);
 }
 
 .navbar .navbar-brand {
-  color: $white
+ color: $white;
 }
 
 .navbar .navbar-brand:hover {
-  color: $white
+ color: $white;
 }
 
 .navbar-toggler {
-  background-color: $grey;
-  outline: none;
-  border: none;
-
-  
+ background-color: $grey;
+ outline: none;
+ border: none;
 }
 
-.navbar-toggler:focus { outline:0; }
+.navbar-toggler:focus {
+ outline: 0;
+}

@@ -3,20 +3,24 @@ import { connect } from 'react-redux'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const LandingNav = ({ history }) => {
+const LandingNav = ({ history, width }) => {
 
     const goToSignUp = () => {
         history.push("/signup")
     }
 
     return (
-        <Navbar expand="md" style={{
+        <Navbar expand="md" style={width < 768 ? {
             fontSize: '12px',
             width: '100%',
-            backgroundColor: 'transparent',
-        }}>
+            backgroundColor: '#2b2b2b',
+        } : {
+                fontSize: '12px',
+                width: '100%',
+                backgroundColor: 'transparent',
+            }}>
             <Navbar.Brand href="#home">Study Buddy</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle style={{ color: 'white' }} aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                 </Nav>
@@ -24,9 +28,9 @@ const LandingNav = ({ history }) => {
                     <NavDropdown.Item id="navBut" className="navButton" href="#features">Features</NavDropdown.Item>
                     <NavDropdown.Item id="navBut" className="navButton" href="#premium">Friends</NavDropdown.Item>
                     <NavDropdown.Item id="navBut" className="navButton" href="#futureplan">Future</NavDropdown.Item>
-                    <NavDropdown.Item id="navBut" className="navButton"><Link style={{ textTransform: 'capitalize', fontSize: '16px' }} to="/login">Log In</Link></NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton"><Link style={{ paddingRight: '0px', textAlign: 'center', textTransform: 'capitalize', fontSize: '16px' }} to="/login">  Log In</Link></NavDropdown.Item>
                     <NavDropdown.Item
-                        style={{ color: 'white' }}
+                        style={{ color: 'white', textAlign: 'center' }}
                         id="navButSignUp" id="navButtonSignUp"><Link to="/signup" style={{ textTransform: 'capitalize', color: 'white', padding: '5px' }}>Sign Up</Link></NavDropdown.Item>
 
                 </Nav>
