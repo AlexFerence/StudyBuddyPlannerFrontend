@@ -3,15 +3,18 @@ import { connect } from 'react-redux'
 import { searchIfExists, sendRequest, getPendingFriends } from '../../thunks/friendThunk'
 
 import AcceptDeclineItem from './FriendPendinSearchItem'
+import swal from 'sweetalert';
 
 const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     const [searchedPerson, setSearchedPerson] = useState();
+    const [addingError, setAddingError] = useState();
 
     useEffect(() => {
         dispatch(getPendingFriends())
     }, [])
 
     const handleChangedSearch = async (e) => {
+        setAddingError()
         if (e.target.value.length > 1) {
             var res = await dispatch(searchIfExists(e.target.value))
             console.log(res)
@@ -33,9 +36,21 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
 
     const handleAddFriend = async () => {
         var res = await dispatch(sendRequest(searchedPerson.id))
-        setSearchedPerson('')
         console.log(res)
+        if (res !== 415) {
+            setAddingError('Friend Already Added')
+            // swal({
+            //     title: "Friend already added",
+            //     icon: "info",
+            //     buttons: true,
+            // })
+
+        }
+        else {
+            setSearchedPerson('')
+        }
     }
+    var key = 0
 
     return (
         <div className="friend-search">
@@ -48,21 +63,24 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                     <div>
                         <div className="suggest-person__name">{searchedPerson.firstName} {searchedPerson.lastName}</div>
                         <div className="suggest-person__email">{searchedPerson.email}</div>
+                        {addingError && <div className="suggest-person__name" style={{ fontSize: '12px', color: 'red' }}>{addingError}</div>}
                     </div>
                     {searchedPerson.email && <button className="but" onClick={handleAddFriend}>Add</button>}
                 </div>
             }
             {
                 waitingRequests.map((request) => {
+                    key++
                     return (
-                        <AcceptDeclineItem key={request.id} request={request} />
+                        <AcceptDeclineItem key={key} request={request} />
                     )
                 })
             }
             {
                 sentRequests.map((req) => {
+                    key++
                     return (
-                        <AcceptDeclineItem key={req} request={req} />
+                        <AcceptDeclineItem key={key} request={req} />
                     )
                 })
             }

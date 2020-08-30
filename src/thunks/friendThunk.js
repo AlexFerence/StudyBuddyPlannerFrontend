@@ -46,12 +46,11 @@ export const sendRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
-        dispatch(getPendingFriends())
-
-        return (res.data);
+        return res.status
 
     } catch (e) {
-        console.log(e)
+
+        return (e)
     }
 }
 
@@ -62,8 +61,11 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
 
     console.log('GETTING PENDING FRIENDDS')
     try {
-        const res = await axios.post(url + '/api/Friends/getListPendingFriends',
-            id
+        const res = await axios.post(url + '/api/Friends/getListFriends',
+            {
+                id,
+                pending: true
+            }
             ,
             {
                 headers: {
