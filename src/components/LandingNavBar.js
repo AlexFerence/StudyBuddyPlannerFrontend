@@ -27,7 +27,7 @@ const LandingNav = ({ history }) => {
                     <NavDropdown.Item id="navBut" className="navButton"><Link style={{ textTransform: 'capitalize', fontSize: '16px' }} to="/login">Log In</Link></NavDropdown.Item>
                     <NavDropdown.Item
                         style={{ color: 'white' }}
-                        id="navButSignUp" id="navButtonSignUp"><Link to="/login" style={{ textTransform: 'capitalize', color: 'white' }}>Sign Up</Link></NavDropdown.Item>
+                        id="navButSignUp" id="navButtonSignUp"><Link to="/login" style={{ textTransform: 'capitalize', color: 'white', padding: '5px' }}>Sign Up</Link></NavDropdown.Item>
 
                 </Nav>
             </Navbar.Collapse>
