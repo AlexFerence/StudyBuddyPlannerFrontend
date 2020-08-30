@@ -24,7 +24,7 @@ const FriendActiveListItem = ({ friend }) => {
                     <div className="active-friend__left__credentials__name">{friend.firstName} {friend.lastName}</div>
                     <div className="active-friend__left__credentials__class">{friend.subjectName} {friend.subjectClassCode}</div>
                     {/* TASK TYPE DOESNT RETURN ANYTHING */}
-                    <div className="active-friend__left__credentials__task-type">{friend.taskDescription} {friend.subjectClassCode}</div>
+                    <div className="active-friend__left__credentials__task-type">{friend.taskType}</div>
                 </div>
             </div>
             <div className="col-center">
