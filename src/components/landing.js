@@ -45,16 +45,7 @@ const Landing = ({ history, profile, width }) => {
 
   return (
     <div className="landing"
-      style={(width < 1000) ? {
-        paddingRight: '0px'
-      } : {
-          border:
-            '0px solid blue',
-          paddingRight: '300px'
-        }}
-      id="#my-first-step"
-
-    >
+      id="#my-first-step">
 
       <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
 

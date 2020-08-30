@@ -72,3 +72,16 @@
 // #overlay .sub {
 //  font-size: 12px;
 // }
+
+.custom-overlay {
+ //border: 10px solid red;
+ color: $brand;
+ font-size: 25px;
+ display: flex;
+ width: 100%;
+ height: 100%;
+ z-index: 2;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+}

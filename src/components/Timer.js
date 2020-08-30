@@ -86,7 +86,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         dispatch(loadMarksScatter())
         dispatch(loadTaskHoursPerWeek())
         dispatch(loadPersonalStats())
-        //dispatch(setCurrentTaskById(currentTask.id))
+        dispatch(setCurrentTaskById(currentTask.id))
 
         if (specialFunction) {
             dispatch(specialFunction())

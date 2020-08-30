@@ -4,12 +4,14 @@ import TaskList from './TaskList'
 import AddTask from './AddTask'
 import TaskDisplay from './TaskDisplay'
 import TaskEdit from './TaskEdit'
+import CustomOverlay from './CustomOverlay'
 import { Row, Col } from 'react-bootstrap'
 import { loadTasks } from '../thunks/taskThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffTaskTour } from '../thunks/profileThunk'
+import { setCurrentTaskById } from '../thunks/taskThunk'
 
 const TOUR_STEPS = [
     {
@@ -48,7 +50,7 @@ const TOUR_STEPS = [
 ];
 
 
-const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width }) => {
+const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, tasks }) => {
     const [displayType, setDisplayType] = useState('')
 
     var [steps, setSteps] = useState(TOUR_STEPS)
@@ -73,6 +75,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width })
 
     useEffect(() => {
         dispatch(loadTasks())
+        //dispatch(setCurrentTaskById(currentTask.id))
     }, [])
 
     const handleJoyrideCallback = data => {
@@ -148,12 +151,10 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width })
                     {displayType === 'editing' && <TaskEdit
                         displayOn={displayOn}
                         currentTaskCopy={currentTask}
-
-                    //currentTaskCopy={currentTaskCopy} 
-                    //loadTasks={loadTasks}
-                    //setCurrentTask={setCurrentTask}
-                    //setIsEditing={setIsEditing} 
                     />}
+                    {displayType === '' && tasks.length === 0 &&
+                        <CustomOverlay message="Add a task to get started" />
+                    }
                 </Col>
             </Row>
         </div>
@@ -168,7 +169,8 @@ const mapStateToProps = (state) => {
         subjects: state.subjects,
         currentTask: state.currentTask,
         profile: state.profile,
-        width: state.width
+        width: state.width,
+        tasks: state.tasks
     }
 }
 

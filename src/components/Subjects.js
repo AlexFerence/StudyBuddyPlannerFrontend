@@ -16,6 +16,7 @@ import ReactEcharts from 'echarts-for-react'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffSubjectTour } from '../thunks/profileThunk'
+import CustomOverlay from '../components/CustomOverlay'
 
 const TOUR_STEPS = [
     {
@@ -38,7 +39,7 @@ const TOUR_STEPS = [
 ];
 
 
-const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, charts }) => {
+const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, charts, tasks }) => {
     var [openModal, setOpenModal] = useState(false)
     //var [classes, setClasses] = useState([])
     var [classSelection, setClassSelection] = useState({})
@@ -167,7 +168,6 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
             />
 
             <SubjectModal isOpen={openModal} closeModal={closeModal}
-
             />
             <Col md={6} className="scroller">
                 <div className="classHeader">
@@ -196,7 +196,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                 })}</div>
             </Col>
             <Col md={6} className="display">
-                {!classSelection.id && <p className="fillerContent">Please select a class</p>}
+                {!classSelection.id && subjects.length === 0 && <CustomOverlay message="Add a subject to get started" />}
                 <div className="innerDisplay">
                     {classSelection.id &&
                         <div className="topBar" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }} >
@@ -360,113 +360,9 @@ const mapStateToProps = (state) => {
         subjects: state.subjects,
         charts: state.charts,
         profile: state.profile,
-        width: state.width
+        width: state.width,
     }
 }
 
 export default connect(mapStateToProps)(SubjectsPage)
 
-
-
-// <div className="subjects">
-//             <SubjectModal isOpen={openModal} closeModal={closeModal} />           
-//             <div className="scroller">
-//                 <div className="classHeader">
-//                     <div className="left">
-//                         <div className="title">Subjects</div>
-//                     </div>
-//                     <div className="right">
-//                         <button onClick={() => setOpenModal(true)}>+ Add</button>
-//                     </div>
-//                 </div>
-//                 <div className="listClasses">{props.subjects.map((item) => {
-//                     return (<div onClick={() => {
-//                         setEditMode(false)
-//                         setClassSelection(item)
-//                         console.log('clicked')
-//                         console.log(item)
-//                         console.log(classSelection)
-//                     }} key={item.id}>
-//                         <SubjectButton
-//                             className="button"
-//                             item={item}
-//                             setClassSelection={setClassSelection}
-//                         /></div>
-//                     )
-//                 })}</div>
-
-//             </div>
-//             <div className="display">
-//                 {!classSelection.id && <p>Please select a class</p>}
-//                 <div className="innerDisplay">
-//                     { classSelection.id && 
-//                         <div className="topBar">
-//                             <div className="left">
-//                                 { !editMode && <h4>{classSelection.name} {classSelection.classCode}</h4> }
-//                                 { editMode && <h4>EDIT</h4>}
-//                             </div>
-//                             <div className="right">
-//                             <button 
-//                             className="icon"
-//                             onClick={() => {
-//                                 setEditMode(!editMode)
-//                                 setNewChanges(classSelection)
-//                             }}
-//                             ><FaEdit /></button>
-//                             <button 
-//                             className="icon"
-//                             onClick={() => {
-//                                 callDelete(classSelection.id)
-//                             }}
-//                             ><FaTrashAlt /></button>
-
-//                             </div>
-//                         </div>
-//                     }
-//                     {classSelection.id && !editMode &&
-//                         <div className="mainSection">
-//                             Credits: <span>{classSelection.credits}</span> <br/>
-//                             Professor: <span>{classSelection.professor}</span> <br/>
-//                             Description: <span>{classSelection.description}</span> <br/>
-
-//                         </div>
-//                     }
-//                     {( classSelection.id) && editMode && 
-//                         <div className="mainSection">
-//                             <form className="edits" onSubmit={submitEdits}>
-//                                 Name: <input 
-//                                     type="text" 
-//                                     value={newChanges.name}
-//                                     onChange={(e) => {
-//                                         if (true) {
-//                                             setNewChanges({...newChanges, name: e.target.value.toUpperCase()})
-//                                         }
-//                                         }} 
-//                                     /> <br/>
-//                                 Class Code: <input type="text" value={newChanges.classCode} 
-//                                 onChange={(e) => {
-//                                     if (!isNaN(e.target.value) && e.target.value < 999) {
-//                                         setNewChanges({...newChanges, classCode: e.target.value})
-//                                     }}}
-//                                 /> <br/>
-//                                 Description: <input type="text" value={newChanges.description} 
-//                                     onChange={(e) => setNewChanges({...newChanges, description: e.target.value})}
-//                                 /> <br/>
-//                                 Prof: <input type="text" value={newChanges.professor} 
-//                                     onChange={(e) => {
-//                                         setNewChanges({...newChanges, professor: e.target.value })
-//                                     }} /> <br />
-//                                 Credits: <input type="text" value={newChanges.credits}
-//                                     onChange={(e) => {
-//                                         if (!isNaN(e.target.value) && e.target.value < 10) {
-//                                             setNewChanges({...newChanges, credits: e.target.value })
-//                                         }
-//                                     }} /> 
-//                                     <br />
-//                                 <button className="button">Submit</button>
-//                             </form>
-//                         </div>
-//                     }
-//                 </div>
-//             </div>
-//         </div>

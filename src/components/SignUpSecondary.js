@@ -41,46 +41,15 @@ var options = [
   { label: 'Other', value: 0 },
 ]
 
-// Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions = val => {
-  const inputValue = val.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0 ? [] : languages.filter(lang =>
-    lang.name.toLowerCase().slice(0, inputLength) === inputValue
-  );
-};
-
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
-const getSuggestionValue = suggestion => suggestion.name;
-
-// Use your imagination to render suggestions.
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
-);
-
-// const options = [
-//   { value: 'Assignment', label: 'Assignment' },
-//   { value: 'Quiz', label: 'Quiz' },
-//   { value: 'Test', label: 'Test' },
-//   { value: 'Exam', label: 'Exam' }
-// ]
-
-
 const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const [school, setSchool] = useState({})
   const [faculty, setFaculty] = useState({})
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
-  const [year, setYear] = useState({})
+  const [year, setYear] = useState({ label: 'Year 1', value: 1 })
 
   const [schoolError, setSchoolError] = useState('')
   const [facultyError, setFacultyError] = useState('')
-  const [gpaError, setGpaError] = useState('')
 
   const [usesPercentage, setUsesPercentage] = useState(0)
 
@@ -91,10 +60,6 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
 
   const onChangeMajor = (e) => {
     setMajor(e.target.value)
-  }
-  const onChangeGpa = (e) => {
-    //get rid of this and just throw an error that changes per marking scheme
-    setGpa(e.target.value)
   }
 
   const onChange = (event, { newValue }) => {
@@ -134,54 +99,29 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
     else {
       setFacultyError('')
     }
-
-    if (!gpa) {
-      //setGpaError('current gpa is required')
-      setGpa(0)
-    }
-
-    else if (isNaN(gpa)) {
-      setGpaError('GPA must be a number')
-      clean = false
-    }
-
-    else if (usesPercentage === 1 && (gpa > 100 || gpa < 0)) {
-      setGpaError('Percentage must be above 0 and below 100')
-      clean = false
-    }
-
-    else if (usesPercentage === 0 && (gpa > 4.3 || gpa <= 0)) {
-      setGpaError('GPA must be below 4.3 and above 0')
-      clean = false
-    }
-
-    else {
-      setGpaError('')
-    }
-
     console.log(clean);
 
     if (clean === true) {
-      await dispatch(updateProfileThunk({ school: school.id, faculty: faculty.id, major, gpa, usePercentage: usesPercentage }))
-      console.log(usesPercentage)
-      if (usesPercentage === 1) {
-        console.log('making with percentage')
-        dispatch(makeSemesterThunk(0, gpa || 0))
-        dispatch(modifyProfile({
-          schoolTitle: school.label,
-          facultytitle: faculty.label,
-          isAuth: true,
-        }));
-        history.push('/subjects')
-      }
+      await dispatch(updateProfileThunk({
+        school: school.id,
+        faculty: faculty.id,
+        year: year.value,
+        major,
+      }))
 
-      else {
-        //include different call
-        console.log('making with gpa')
-        dispatch(makeSemesterThunk(gpa || 0, 0))
-        dispatch(modifyProfile({ schoolTitle: school.label, facultytitle: faculty.label, isAuth: true }));
-        history.push('/subjects')
-      }
+      dispatch(makeSemesterThunk(0, gpa || 0))
+      dispatch(modifyProfile({
+        schoolTitle: school.label,
+        facultytitle: faculty.label,
+        isAuth: true,
+      }));
+      history.push('/subjects')
+
+      // else {
+      //   dispatch(makeSemesterThunk(gpa || 0, 0))
+      //   dispatch(modifyProfile({ schoolTitle: school.label, facultytitle: faculty.label, isAuth: true }));
+      //   history.push('/subjects')
+      // }
     }
   }
 
@@ -210,7 +150,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
         components={{ DropdownIndicator: () => null }}
         styles={style}
       />
-      <label className="inpLabel">Year {<span className="error">* {facultyError}</span>} </label>
+      <label className="inpLabel">Year</label>
       <Select
         isClearable={true}
         placeholder="Year ..."

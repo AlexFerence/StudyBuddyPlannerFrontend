@@ -8,7 +8,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
 import JoyRide from 'react-joyride';
 import { useBeforeunload } from 'react-beforeunload';
-import icon from '../assets/Icon.png'
+import icon from '../assets/whiteSB.png'
 
 const TOUR_STEPS = [
     {

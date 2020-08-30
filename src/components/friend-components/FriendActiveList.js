@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getActiveFriends } from '../../thunks/friendThunk'
 import FriendActiveListItem from './FriendActiveListItem'
+import CustomOverlay from '../CustomOverlay'
 
 const FriendActiveList = ({ dispatch, activeFriends }) => {
     useEffect(() => {
@@ -17,6 +18,9 @@ const FriendActiveList = ({ dispatch, activeFriends }) => {
                     )
                 })
             }
+            {activeFriends.length === 0 && <div style={{ padding: '15px' }}>
+                <CustomOverlay message="Add Friends by hitting the + icon" />
+            </div>}
         </div>
     )
 }

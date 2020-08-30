@@ -74,7 +74,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
     }
 }
 
-export const updateProfileThunk = ({ school, major, minor, faculty, usePercentage }) => async (dispatch, getState) => {
+export const updateProfileThunk = ({ school, major, minor, faculty, year = 0 }) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -86,7 +86,7 @@ export const updateProfileThunk = ({ school, major, minor, faculty, usePercentag
                 facultyID: faculty,
                 major,
                 minor,
-                usePercentage
+                year
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,

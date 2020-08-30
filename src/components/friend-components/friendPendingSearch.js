@@ -54,10 +54,12 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
 
     return (
         <div className="friend-search">
-            <input
-                onChange={handleChangedSearch}
-                placeholder="search for your friends ..."
-            />
+            <div className="friend-search__input-container">
+                <input className="friend-search__input"
+                    onChange={handleChangedSearch}
+                    placeholder="search for your friends ..."
+                />
+            </div>
             {searchedPerson &&
                 <div className="suggest-person">
                     <div>
