@@ -14,22 +14,22 @@ export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (d
                 userId: id,
                 startGpa,
                 startPercentage,
-                active: 1, 
-                startDate: "2020-07-13",
+                active: 1,
+                startDate: "2020-08-31",
                 endDate: "2020-12-31"
             }, {
-                headers: {
-                    'Authorization': 'bearer ' + token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
         console.log(res.data)
         if (res.status === 200) {
             dispatch(setSemesterId(res.data.id))
             console.log("semester data")
         }
-    } 
+    }
     catch (e) {
         console.log(e)
         console.log(e.message)

@@ -211,11 +211,9 @@ const Landing = ({ history, profile, width }) => {
 
 
           <footer className="footerSection">
-            <Row style={{ height: '50%' }}>
-              <Col md={6} className="textCol">
-                <p className="textPara">© StudyBuddy</p>
-              </Col>
-            </Row>
+            <div>
+              <div className="footer-copy">© StudyBuddy</div>
+            </div>
           </footer>
         </div>
       </div>

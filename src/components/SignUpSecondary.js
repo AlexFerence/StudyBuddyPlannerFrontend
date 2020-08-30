@@ -41,7 +41,7 @@ var options = [
   { label: 'Other', value: 0 },
 ]
 
-const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
+const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => {
   const [school, setSchool] = useState({})
   const [faculty, setFaculty] = useState({})
   const [major, setMajor] = useState('')
@@ -54,6 +54,9 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties }) => {
   const [usesPercentage, setUsesPercentage] = useState(0)
 
   useEffect(() => {
+    if (profile.email && profile.isAuth) {
+      history.push('/dashboard')
+    }
     dispatch(loadSchools())
     dispatch(loadFaculties())
   }, [])
@@ -176,7 +179,8 @@ const mapStateToProps = (state) => {
     id: state.profile.id,
     subjects: state.subjects,
     schools: state.schools,
-    faculties: state.faculties
+    faculties: state.faculties,
+    profile: state.profile
   }
 }
 
