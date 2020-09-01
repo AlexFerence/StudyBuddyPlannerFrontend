@@ -157,7 +157,7 @@ const Dashboard = ({ dispatch, charts, profile,
       <Joyride steps={TOUR_STEPS}
         continuous={true} showSkipButton={true}
         callback={handleJoyrideCallback}
-        run={profile.subjectTour === 0}
+        run={profile.dashboardTour === 0}
         styles={{
           options: {
             primaryColor: '#fb4033'
@@ -403,12 +403,13 @@ const Dashboard = ({ dispatch, charts, profile,
           </Col>
           <Col md={6}>
 
-            {subjects.length === 0 ? <div className="noData">
-              <div>
-                No Data
+            {subjects.length === 0 ?
+              <div className="noData">
+                <div>
+                  No Data
                   <div className="subNoData">Create subjects to view subject breakdown</div>
-              </div>
-            </div> : <ReactEcharts
+                </div>
+              </div> : <ReactEcharts
                 option={{
 
                   tooltip: {

@@ -243,38 +243,46 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                                     </div>
                                 </Col>
                                 <Col md={6}>
-                                    <ReactEcharts
-                                        option={{
-                                            title: {
-                                                text: "Task Type Breakdown",
-                                                textStyle: {
-                                                    fontSize: 15
+                                    {charts.breakdownChart.length === 0 ?
+                                        <div className="noData">
+                                            <div>
+                                                No Data
+                                            <div className="subNoData">Create subjects to view subject breakdown</div>
+                                            </div>
+                                        </div> :
+                                        <ReactEcharts
+                                            option={{
+                                                title: {
+                                                    text: "Task Type Breakdown",
+                                                    textStyle: {
+                                                        fontSize: 15
+                                                    },
+                                                    x: 'center',
+                                                    top: 20
                                                 },
-                                                x: 'center',
-                                                top: 20
-                                            },
-                                            tooltip: {},
-                                            series: [
-                                                {
-                                                    type: 'pie',
-                                                    radius: '65%',
-                                                    center: ['50%', '50%'],
-                                                    selectedMode: 'single',
-                                                    data:
-                                                        charts.breakdownChart
-                                                    ,
-                                                    emphasis: {
-                                                        itemStyle: {
-                                                            shadowBlur: 10,
-                                                            shadowOffsetX: 0,
-                                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                tooltip: {},
+                                                series: [
+                                                    {
+                                                        type: 'pie',
+                                                        radius: '65%',
+                                                        center: ['50%', '50%'],
+                                                        selectedMode: 'single',
+                                                        data:
+                                                            charts.breakdownChart
+                                                        ,
+                                                        emphasis: {
+                                                            itemStyle: {
+                                                                shadowBlur: 10,
+                                                                shadowOffsetX: 0,
+                                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                                            }
                                                         }
                                                     }
-                                                }
-                                            ]
+                                                ]
 
-                                        }}
-                                    />
+                                            }}
+                                        />
+                                    }
                                 </Col>
                             </Row>
 

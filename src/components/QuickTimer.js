@@ -82,6 +82,7 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
             </Row>
 
 
+
             {timerSetting.value === 'Timer' &&
                 <Counter specialFunction={specialFunction}
                 //color={getClassColor(currentTask.subjectId)}
@@ -91,6 +92,7 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
             {timerSetting.value === 'Stopwatch' &&
                 <Stopwatch />
             }
+
 
         </div>
     )

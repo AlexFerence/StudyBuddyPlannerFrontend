@@ -16,14 +16,14 @@ import { setCurrentTaskById } from '../thunks/taskThunk'
 const TOUR_STEPS = [
     {
         target: ".addTaskButton",
-        content: 'Here, you can add all of your tasks.',
+        content: 'Add a task here',
         disableBeacon: true,
         disableOverlay: true
     },
     {
         target: ".selectClass",
         content:
-            "You can filter by due date and subject. Or, ",
+            "Filter by due date and subject",
         locale: {
             last: 'Next'
         }
@@ -31,7 +31,7 @@ const TOUR_STEPS = [
     {
         target: ".completedLabel",
         content:
-            "filter by completed and non completed tasks.",
+            "Filter by completed and non completed tasks.",
         locale: {
             last: 'Next'
         }
@@ -112,7 +112,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
             <Joyride steps={TOUR_STEPS}
                 continuous={true} showSkipButton={true}
                 callback={handleJoyrideCallback}
-                run={profile.subjectTour === 0}
+                run={profile.taskTour === 0}
                 styles={{
                     options: {
                         primaryColor: '#fb4033'
