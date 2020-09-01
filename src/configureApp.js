@@ -15,31 +15,8 @@ import { connect } from 'react-redux'
 import { setWidth } from './actions/widthActions'
 import './styles/styles.scss'
 
-//import Compare from './components/Compare'
-// import {
-//   loadChartsThunk, loadSubjectBreakdown,
-//   loadHoursWeek, loadYearBeakdown,
-
-//   loadTaskHoursPerWeek,
-//   loadPersonalStats,
-//   loadAverageOfWeekDay
-// } from './thunks/chartThunk'
-
-// import { loadTasks } from './thunks/taskThunk'
-
-
-// import { realoadClassesThunk } from './thunks/subjectThunk'
-// import { refreshUser } from './thunks/profileThunk'
-//import '../node_modules/normalize-scss/sass/normalize.scss'
-
-
-
 const ConfigureApp = ({ dispatch, width, isAuth }) => {
 
-  const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth
-  })
 
   useEffect(() => {
     function handleResize() {
@@ -51,14 +28,6 @@ const ConfigureApp = ({ dispatch, width, isAuth }) => {
       window.removeEventListener('resize', handleResize)
     }
   })
-
-  // useEffect(() => {
-  //   if (width < 400) {
-  //     console.log('smol')
-  //   }
-
-  // }, [width])
-
 
   return (
     <BrowserRouter history="">
@@ -86,5 +55,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ConfigureApp)
-
-//<Route path='/compare' component={Compare} />
