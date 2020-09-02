@@ -101,9 +101,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     '0px solid blue',
                 paddingRight: '300px'
             }}>
-            <div style={{ width: '100%', height: '300px' }}>
-                <PaymentForm />
-            </div>
+
             <div className="settings-title" style={{ paddingTop: "30px" }}>Settings</div>
             <form onSubmit={onSubmit}>
 
@@ -182,3 +180,8 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Settings)
+
+
+// <div style={{ width: '100%', height: '300px' }}>
+//                 <PaymentForm />
+//             </div>
