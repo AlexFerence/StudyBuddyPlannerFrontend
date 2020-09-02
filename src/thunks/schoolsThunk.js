@@ -12,23 +12,23 @@ export const loadSchools = () => async (dispatch, getState) => {
     try {
         const res = await axios.post(url + '/api/Schools/list',
             {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
         var formattedSchools = []
-        
+
         res.data.forEach((school) => {
-            formattedSchools.push({ id: school.id, label: school.name })
+            formattedSchools.push({ value: school.id, label: school.name })
             //console.log(school)
         })
 
         dispatch(setSchools(formattedSchools))
-        console.log(typeof(formattedSchools))
+        console.log(typeof (formattedSchools))
         //return formattedSchools
-        
-       
+
+
     } catch (e) {
         console.log(e)
     }
@@ -38,7 +38,7 @@ export const getSchool = async (id) => (dispatch, getState) => {
     const state = getState()
     const { profile, subjects, schools } = state
     const { id, token } = profile
-    
+
     var result = schools.find((sch) => sch.id === id)
 
     if (result) {
@@ -58,26 +58,26 @@ export const loadFaculties = () => async (dispatch, getState) => {
     try {
         const res = await axios.post(url + '/api/Faculties/list',
             {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
 
         console.log(res)
 
         var formattedFaculties = []
-        
+
         console.log(res.data)
-        
+
         res.data.forEach((faculty) => {
-            formattedFaculties.push({ id: faculty.id, label: faculty.name })
+            formattedFaculties.push({ value: faculty.id, label: faculty.name })
             //console.log(school)
         })
 
         console.log(formattedFaculties)
-        dispatch(setFaculties(formattedFaculties)) 
-       
+        dispatch(setFaculties(formattedFaculties))
+
     } catch (e) {
         console.log(e)
     }

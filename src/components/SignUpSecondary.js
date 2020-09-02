@@ -21,9 +21,7 @@ var languages = [
 const style = {
   option: (base, state) => ({
     ...base,
-    color: 'black',
-    backgroundColor: 'white',
-    borderColor: '1px solid grey'
+    padding: '20px'
   })
 };
 
@@ -42,8 +40,8 @@ var options = [
 ]
 
 const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => {
-  const [school, setSchool] = useState({})
-  const [faculty, setFaculty] = useState({})
+  const [school, setSchool] = useState()
+  const [faculty, setFaculty] = useState()
   const [major, setMajor] = useState('')
   const [gpa, setGpa] = useState('')
   const [year, setYear] = useState({ label: 'Year 1', value: 1 })
@@ -84,7 +82,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
       setSchoolError('School is required')
       clean = false
     }
-    else if (!school.id) {
+    else if (!school.value) {
       setSchoolError('School is required')
       clean = false
     }
@@ -95,13 +93,14 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
       setFacultyError('Faculty is required')
       clean = false
     }
-    else if (!faculty.id) {
+    else if (!faculty.value) {
       setFacultyError('Faculty is Required')
       clean = false
     }
     else {
       setFacultyError('')
     }
+
     console.log(clean);
 
     if (clean === true) {
@@ -133,25 +132,45 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
       <label className="inpLabel">School {schoolError && <span className="error">* {schoolError}</span>}</label>
       <Select
         isClearable={true}
-        onSelectResetsInput={false}
-        placeholder="school ..."
         className="selectedInp"
+        id="timerSelect2"
+        value={school}
+        onChange={val => setSchool(val)}
+        placeholder="Type..."
         options={schools}
-        values={[]}
-        onChange={(value) => setSchool(value)}
         components={{ DropdownIndicator: () => null }}
-        styles={style}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            text: 'black',
+            primary25: '#bcbcbc',
+            primary50: '#bcbcbc',
+            primary: '#bcbcbc',
+          },
+        })}
       />
       <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
       <Select
         isClearable={true}
-        placeholder="faculty ..."
         className="selectedInp"
+        id="timerSelect2"
+        value={faculty}
+        onChange={val => setFaculty(val)}
+        placeholder="Type..."
         options={faculties}
-        values={[]}
-        onChange={(value) => setFaculty(value)}
         components={{ DropdownIndicator: () => null }}
-        styles={style}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            text: 'black',
+            primary25: '#bcbcbc',
+            primary50: '#bcbcbc',
+            primary: '#bcbcbc',
+
+          },
+        })}
       />
       <label className="inpLabel">Year</label>
       <Select
@@ -162,7 +181,18 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
         values={[]}
         onChange={(value) => setYear(value)}
         components={{ DropdownIndicator: () => null }}
-        styles={style}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            text: 'black',
+            primary25: '#bcbcbc',
+            primary50: '#bcbcbc',
+            primary: '#bcbcbc',
+
+          },
+        })}
+      //styles={style}
       />
       <label className="inpLabel" >Major <span style={{ color: 'grey' }}>(optional)</span></label>
       <input className="inp" onChange={onChangeMajor} value={major} />

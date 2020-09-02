@@ -110,7 +110,6 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                     options={[
                         { value: 'Due Date', label: 'Due Date' },
                         { value: 'Class', label: 'Class' }
-
                     ]}
                 /></div>
 
@@ -120,7 +119,13 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                         onClick={completedChanged}
                         value={filterByCompleted}
                     /> </div>
-                <button className="addTaskButton" onClick={() => addingOn()}>+ Add Task</button>
+                <button
+                    className="addTaskButton"
+                    disabled={subjects.length === 0}
+                    onClick={() => addingOn()}
+                    style={subjects.length === 0 ?
+                        { color: 'grey', border: '1px solid grey' } : {}}
+                >+ Add Task</button>
 
 
             </div>

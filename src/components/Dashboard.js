@@ -28,6 +28,7 @@ const TOUR_STEPS = [
     target: "#quickT",
     content: 'This is the quick timer.',
     disableBeacon: true,
+    disableOverlay: true
   },
   {
     target: "#timerSelect",
@@ -35,7 +36,8 @@ const TOUR_STEPS = [
       "You can select a task from your list to be completed, and:",
     locale: {
       last: 'Next'
-    }
+    },
+    disableOverlay: true
   },
   {
     target: "#timerSelect2",
@@ -43,7 +45,8 @@ const TOUR_STEPS = [
       "Select either timer, or stopwatch.",
     locale: {
       last: 'Next'
-    }
+    },
+    disableOverlay: true
   },
   {
     target: ".topRight",
@@ -53,6 +56,7 @@ const TOUR_STEPS = [
       last: 'Next'
     },
     disableBeacon: true,
+    disableOverlay: true
   },
   {
     target: "#row1",
@@ -62,6 +66,7 @@ const TOUR_STEPS = [
       last: 'Next'
     },
     disableBeacon: true,
+    disableOverlay: true
   },
 
 
@@ -249,7 +254,7 @@ const Dashboard = ({ dispatch, charts, profile,
             minHeight: "360px"
           }}>
 
-            < div className="flexNumDisplay" >
+            <div className="flexNumDisplay" >
               <div className="rowTitle">Current Stats</div>
               <div className="row">
                 <div className="square">

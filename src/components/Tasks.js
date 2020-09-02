@@ -5,6 +5,7 @@ import AddTask from './AddTask'
 import TaskDisplay from './TaskDisplay'
 import TaskEdit from './TaskEdit'
 import CustomOverlay from './CustomOverlay'
+import CustomChildrenOverlay from './CustomChildrenOverlay'
 import { Row, Col } from 'react-bootstrap'
 import { loadTasks } from '../thunks/taskThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
@@ -12,6 +13,7 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffTaskTour } from '../thunks/profileThunk'
 import { setCurrentTaskById } from '../thunks/taskThunk'
+import { FaList } from 'react-icons/fa'
 
 const TOUR_STEPS = [
     {
@@ -26,7 +28,8 @@ const TOUR_STEPS = [
             "Filter by due date and subject",
         locale: {
             last: 'Next'
-        }
+        },
+        disableOverlay: true
     },
     {
         target: ".completedLabel",
@@ -34,7 +37,8 @@ const TOUR_STEPS = [
             "Filter by completed and non completed tasks.",
         locale: {
             last: 'Next'
-        }
+        },
+        disableOverlay: true
     },
     {
         target: "#dashboard",
@@ -44,6 +48,7 @@ const TOUR_STEPS = [
             last: 'Next'
         },
         disableBeacon: true,
+        disableOverlay: true
     },
 
 
@@ -56,6 +61,10 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
     var [steps, setSteps] = useState(TOUR_STEPS)
     var [stepIndex, setStepIndex] = useState(0)
     var [run, setRun] = useState(true);
+
+    const nothingOn = () => {
+        setDisplayType('')
+    }
 
     const addingOn = () => {
         setDisplayType('adding')
@@ -90,8 +99,6 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
         else if ([STATUS.FINISHED, STATUS.PAUSED, STATUS.SKIPPED].includes(status)) {
             // Need to set our running state to false, so we can restart if we click start again.
             setRun(false)
-
-            console.log('doneasdfasdfasdfasdfasdfasfasdfasdfa')
             history.push("/dashboard")
             //locally turn off the tour
             dispatch(modifyProfile({ taskTour: 1 }))
@@ -138,6 +145,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
                     <TaskList
                         displayOn={displayOn}
                         addingOn={addingOn}
+                        nothingOn={nothingOn}
                     />
                 </Col>
                 <Col xs={12} s={12} md={6} lg={6} className="main-right">
@@ -154,7 +162,14 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
                         displayOn={displayOn}
                         currentTaskCopy={currentTask}
                     />}
-                    {displayType === '' && tasks.length === 0 &&
+                    {displayType === '' && subjects.length === 0 &&
+                        <CustomChildrenOverlay>
+                            <div>Before adding a task, you need at least one subject</div>
+                            <div style={{ marginTop: '20px' }}>Click the <FaList style={{ margin: '10px' }} /> icon above</div>
+
+                        </CustomChildrenOverlay>
+                    }
+                    {displayType === '' && subjects.length > 0 && tasks.length === 0 &&
                         <CustomOverlay message="Add a task to get started" />
                     }
                 </Col>

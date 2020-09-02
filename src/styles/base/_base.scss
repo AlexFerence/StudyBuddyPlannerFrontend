@@ -15,6 +15,16 @@ button {
  cursor: pointer;
 }
 
+.btn:focus {
+ outline: none !important;
+ outline-offset: none !important;
+}
+
+button:focus {
+ outline: none !important;
+ outline-offset: none !important;
+}
+
 button:disabled {
  cursor: default;
 }

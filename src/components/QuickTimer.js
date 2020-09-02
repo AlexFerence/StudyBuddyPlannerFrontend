@@ -62,6 +62,17 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
                         options={
                             localTasks
                         }
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+
+                            },
+                        })}
                     />
                 </Col>
                 <Col className="pad">
@@ -77,6 +88,17 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
                             { value: 'Stopwatch', label: 'Stopwatch' }
 
                         ]}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+
+                            },
+                        })}
                     />
                 </Col>
             </Row>

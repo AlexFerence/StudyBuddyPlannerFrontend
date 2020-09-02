@@ -137,7 +137,7 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                     <button className="but" type="submit">Submit</button>
                     <button className="but" onClick={(e) => {
                         e.preventDefault()
-                        displayOn()
+                        setDisplayType('')
                     }}>Cancel</button>
                 </form>
             </div>
