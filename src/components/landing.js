@@ -62,8 +62,8 @@ const Landing = ({ history, profile, width }) => {
       </div>
       <div className="overlay landingDisplay">
         <div className="center">
-          <div className="promotion">Organize your classes and tasks.</div>
-          <div className="promotion">Real time analytics and comparisons.</div>
+          <div className="promotion">Organize your schedule and tasks.</div>
+          <div className="promotion">Stay in touch with classmates.</div>
           <div><button id="mainButton"
             className="navButtonSignUp"
             onClick={goToSignUp}>Sign Up</button></div>
@@ -94,7 +94,7 @@ const Landing = ({ history, profile, width }) => {
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
               <div className="textInner">
-                <div className="textHeader">In-Depth Data Analysis.</div>
+                <div className="textHeader">In-Depth Data Analysis</div>
                 <div className="textPara">Study Buddy offers in depth analysis on all of your studies. We will help you
                 track how you divide your time through the week, across all your subjects, and much more. Not only will we be able to track
                 how you study best, we can also track how you stack up against other students in your subjects, faculty, and school.</div>
@@ -178,10 +178,10 @@ const Landing = ({ history, profile, width }) => {
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">Compare your work to others.</div>
+                  <div className="textHeader">Stay in Touch with Classmates</div>
                   <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track.
-                  With our comparative premium features, you can see how you are studying versus the average for your classes. Your hours through the days and weeks will
-                  be tracked, and compared to others in the same classes, faculty, and school.
+                  With our user activity features, you can study with your friends from your own home. You will be able to see when one of your friends are active
+                  and what they are studying on, to make the at home learning experience more enjoyable.
                   </div>
                 </div>
               </Col>
