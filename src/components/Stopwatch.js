@@ -118,7 +118,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         if (count > 1) {
             dispatch(postSessionThunk({
                 taskId: currentTask.id,
-                minutes: parseInt(count),
+                minutes: Math.floor(parseInt(count) / 60),
             }))
             await dispatch(loadTasks())
 
@@ -145,8 +145,16 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                     <div id="stopDisplay" >{timeDisplay(count)}</div>
                 </div>
                 <div className="inside d-flex justify-content-center align-items-center">
-                    {!isRunning && <button className="but" onClick={startTimer}><IoMdPlay /></button>}
-                    {isRunning && <button className="but" onClick={submitTime}>Done</button>}
+                    {!isRunning &&
+                        <button
+                            disabled={!currentTask.id}
+                            className="but noHover"
+                            onClick={startTimer}
+                        ><IoMdPlay /></button>}
+                    {isRunning && <button
+                        className="but noHover"
+                        onClick={submitTime}
+                    >Done</button>}
 
                 </div>
             </div>

@@ -14,6 +14,8 @@ import { modifyProfile } from '../actions/profileActions'
 import { turnOffTaskTour } from '../thunks/profileThunk'
 import { setCurrentTaskById } from '../thunks/taskThunk'
 import { FaList } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+
 
 const TOUR_STEPS = [
     {
@@ -164,9 +166,10 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
                     />}
                     {displayType === '' && subjects.length === 0 &&
                         <CustomChildrenOverlay>
-                            <div>Before adding a task, you need at least one subject</div>
-                            <div style={{ marginTop: '20px' }}>Click the <FaList style={{ margin: '10px' }} /> icon above</div>
-
+                            <div style={{ color: 'black' }}>Before you can add a task</div>
+                            <Link to="/subjects" style={{
+                                color: '#fb4033'
+                            }}><div>Add a subject</div></Link>
                         </CustomChildrenOverlay>
                     }
                     {displayType === '' && subjects.length > 0 && tasks.length === 0 &&

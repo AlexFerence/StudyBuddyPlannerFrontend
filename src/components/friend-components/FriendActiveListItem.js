@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaPen } from 'react-icons/fa'
+import { FaUser } from 'react-icons/fa'
 import { FaBookReader } from 'react-icons/fa'
 import moment from 'moment'
 
@@ -18,7 +18,9 @@ const FriendActiveListItem = ({ friend }) => {
         <div className="active-friend">
             <div className="active-friend__left">
                 <div className="active-friend__left__avatar-container">
-                    <div className="active-friend__left__avatar">AF</div>
+                    <div className="active-friend__left__avatar">
+                        {friend.firstName.length > 0 && friend.lastName.length > 0 ? friend.firstName[0].toUpperCase() + friend.lastName[0].toUpperCase() : <FaUser />}
+                    </div>
                 </div>
                 <div className="active-friend__left__credentials">
                     <div className="active-friend__left__credentials__name">{friend.firstName} {friend.lastName}</div>

@@ -18,6 +18,7 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffSubjectTour } from '../thunks/profileThunk'
 import CustomOverlay from '../components/CustomOverlay'
+import swal from 'sweetalert'
 
 const TOUR_STEPS = [
     {
@@ -82,7 +83,13 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
         getClasses()
     }, [])
 
-    const callDelete = async (id) => {
+    // handle deleting classes
+
+    const callDelete = (id) => {
+        swal()
+    }
+
+    const actullayDelete = async (id) => {
         try {
             const res = await axios.delete(url + '/api/subjects/' + id,
                 {
@@ -247,7 +254,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                                         <div className="noData">
                                             <div>
                                                 No Data
-                                            <div className="subNoData">Create subjects to view subject breakdown</div>
+                                            <div className="subNoData">Create tasks first to view subject breakdown</div>
                                             </div>
                                         </div> :
                                         <ReactEcharts

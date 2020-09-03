@@ -8,21 +8,7 @@ import { connect } from 'react-redux'
 import { CirclePicker } from 'react-color'
 import { addSubjectThunk } from '../thunks/subjectThunk'
 
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        // marginRight           : '-50%',
-        transform: 'translate(-50%, -50%)',
-        background: '#ffffff',
-        margin: 'none',
-        padding: 'none',
-        boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-        minWidth: '500px'
-    }
-};
+
 
 const SubjectModal = (props) => {
     const [subTitle, setSubTitle] = useState('')
@@ -30,8 +16,21 @@ const SubjectModal = (props) => {
     const [professor, setProfessor] = useState('')
     const [credits, setCredits] = useState(3)
     const [description, setDescription] = useState('')
-
     const [color, setColor] = useState('#607d8b')
+
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '40%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            background: '#ffffff',
+            padding: 'none',
+            boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+            minWidth: '500px'
+        }
+    };
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -59,7 +58,7 @@ const SubjectModal = (props) => {
             contentLabel="Example Modal"
         >
             <div>
-                <div className="modal-header" style={{ backgroundColor: color.hex}}><h3>Add Subject</h3></div>
+                <div className="modal-header" style={{ backgroundColor: color.hex }}><h3>Add Subject</h3></div>
                 <div className="modal-main">
                     <form onSubmit={onSubmit}>
                         <div>
@@ -78,19 +77,19 @@ const SubjectModal = (props) => {
                         </div>
                         <Row>
                             <Col>
-                            <label className="inpLabel">Class Code (ex: 202, 141)</label>
-                            <input
-                                className="inp"
-                                required
-                                type="text"
-                                value={classCode}
-                                onChange={(e) => {
-                                    if (!isNaN(e.target.value) && e.target.value < 9999) {
-                                        setClassCode(e.target.value)
-                                    }
-                                }}
-                            ></input>
-                            <label className="inpLabel">Credits</label>
+                                <label className="inpLabel">Class Code (ex: 202, 141)</label>
+                                <input
+                                    className="inp"
+                                    required
+                                    type="text"
+                                    value={classCode}
+                                    onChange={(e) => {
+                                        if (!isNaN(e.target.value) && e.target.value < 9999) {
+                                            setClassCode(e.target.value)
+                                        }
+                                    }}
+                                ></input>
+                                <label className="inpLabel">Credits</label>
                                 <input
                                     required
                                     className="inp"
@@ -112,16 +111,16 @@ const SubjectModal = (props) => {
                                 ></input>
                             </Col>
                             <Col className="circle">
-                            <CirclePicker
-                            width="210px"
-                            height="30px"
-                            color={color}
-                            onChangeComplete={(c) => setColor(c)}
-                            circleSpacing={14}
-                            />
+                                <CirclePicker
+                                    width="210px"
+                                    height="30px"
+                                    color={color}
+                                    onChangeComplete={(c) => setColor(c)}
+                                    circleSpacing={14}
+                                />
                             </Col>
                         </Row>
-                            
+
                         <div>
                             <label className="inpLabel">Description</label>
                             <textarea className="inpArea"
@@ -147,6 +146,7 @@ const mapStateToProps = (state) => {
         password: state.profile.password,
         token: state.profile.token,
         id: state.profile.id,
+        width: state.width,
     }
 }
 

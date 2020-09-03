@@ -14,12 +14,13 @@ import {
     loadTaskHoursPerWeek,
     loadPersonalStats
 } from '../thunks/chartThunk'
+import { Link } from 'react-router-dom'
 
-const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask, specialFunction }) => {
+const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask, specialFunction }) => {
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
-    const [interval, setInterval] = useState(15)
+    const [interval, setInterval] = useState(15 * 60)
 
     useEffect(() => {
         dispatch(runningOffThunk())
@@ -30,17 +31,25 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
             dispatch(runningOffThunk(currentTask.id))
         }
     }, [])
-    //links local and database
-    // useEffect(() => {
-    //     if (isRunning) {
-    //         dispatch(runningOnThunk(currentTask.id))
-    //     }
-    //     else {
-    //         dispatch(runningOffThunk(currentTask.id))
-    //     }
-    // }, [isRunning])
 
-    //interval for timer to tick
+    const getStatement = () => {
+        if (subjects.length === 0) {
+            return (
+                <div>First add a <Link to="/subjects" style={{ color: "#fb4033" }}>Subject</Link></div>
+            )
+        }
+        else if (tasks.length === 0) {
+            return (
+                <div>First add a <Link to="/tasks" style={{ color: "#fb4033" }}>Task</Link></div>
+            )
+        }
+        else {
+            return (
+                <div>Please select a task above</div>
+            )
+        }
+    }
+
     useInterval(() => {
         setCount(count + 1);
         if (percent >= 1) { setIsRunning(false) }
@@ -74,7 +83,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
         dispatch(pausedReduxOff())
         await dispatch(postSessionThunk({
             taskId: currentTask.id,
-            minutes: interval,
+            minutes: Math.floor(interval / 60),
         }))
         await dispatch(loadTasks())
 
@@ -126,7 +135,7 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
 
     const timeChanged = (e) => {
         if (e.target.value >= 0 && !isNaN(e.target.value)) {
-            setInterval(parseInt(e.target.value))
+            setInterval(parseInt(e.target.value) * 60)
         }
     }
 
@@ -144,17 +153,28 @@ const Counter = ({ currentTask, dispatch, id, color, isRunningRedux, paused, set
                         pathColor: currentTask.color,
                     })}
                 >
+                    {false &&
+                        <div>
+                            First add a <Link style={{ color: "#fb4033" }}>Subject</Link>
+                        </div>
+                    }
                     {
-                        !currentTask.id ? (<div style={{ textAlign: 'center' }}><span>Quick Timer</span><br /><span>Please select a task</span></div>) :
+                        !currentTask.id > 0 ?
+                            (<div style={{ textAlign: 'center' }}>
+                                {getStatement()}</div>) :
                             (!isRunning && !paused) &&
                             <div className="inside d-flex justify-content-center align-items-center">
                                 <input className="inp" type="number"
-                                    value={interval}
+                                    value={Math.floor(interval / 60)}
                                     onChange={timeChanged}
                                 />
                                 <div className="minlab">min</div>
                             </div>
                     }
+
+
+
+
                     {(isRunning || paused) &&
                         <div className="inside d-flex justify-content-center align-items-center">
                             <span className="timeDisplay">{timeDisplay(interval - count)}</span>
@@ -207,6 +227,7 @@ function useInterval(callback, delay) {
 const mapStateToProps = (state) => {
     return {
         tasks: state.tasks,
+        subjects: state.subjects,
         token: state.profile.token,
         id: state.profile.id,
         subjects: state.subjects,

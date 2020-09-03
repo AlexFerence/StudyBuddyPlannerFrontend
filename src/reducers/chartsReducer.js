@@ -9,7 +9,30 @@ import {
     MODIFY
 } from '../actions/chartActions'
 
-const chartsReducer = (state = {}, action) => {
+const chartsDefaultState = {
+    breakdownChart: [],
+    hoursWeekData: [],
+    bestDay: { mins: 0, hours: 0 },
+    bestWeek: { mins: 0, hours: 0 },
+    bestMonth: { mins: 0, hours: 0 },
+    hoursPerWeekSubjBreakdownXAxis: [],
+    hoursPerWeekColors: [],
+    hoursPerWeekSubjBreakdown: [],
+    pieChart: {
+        pieData: []
+    },
+    pieColors: [],
+    todayTotal: { mins: 0, hours: 0 },
+    thisWeekTotal: { mins: 0, hours: 0 },
+    thisMonthTotal: { mins: 0, hours: 0 },
+    dailyAverage: { mins: 0, hours: 0 },
+    weeklyAverage: { mins: 0, hours: 0 },
+    monthlyAverage: { mins: 0, hours: 0 },
+
+
+}
+
+const chartsReducer = (state = chartsDefaultState, action) => {
     switch (action.type) {
         case SET_PIE_CHART:
             return {

@@ -22,6 +22,9 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
     useEffect(() => {
         dispatch(realoadClassesThunk)
         setLocalTasks(makeTasks(tasks))
+        if (tasks.length > 0) {
+            setCurrentTaskById(tasks[0].id)
+        }
 
     }, [])
 
