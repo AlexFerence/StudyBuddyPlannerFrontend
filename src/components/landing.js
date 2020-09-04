@@ -11,6 +11,9 @@ import ReactEcharts from 'echarts-for-react'
 import ReactPlayer from 'react-player'
 import JoyRide from 'react-joyride';
 import LandingNav from './LandingNavBar'
+import LandingBarChart from './landing-charts/LandingBarChart'
+import LandingLineChart from './landing-charts/LandingLineChart'
+
 
 const TOUR_STEPS = [
   {
@@ -79,7 +82,7 @@ const Landing = ({ history, profile, width }) => {
             </Col>
             <Col md={6} className="textCol">
               <div className="textInner">
-                <div className="textHeader">Features</div>
+                <div className="textHeader">BOOST YOUR PRODUCTIVITY</div>
                 <div className="textPara">Study Buddy does more than just manage your tasks. This application allows you to track
                 when you study on all your tasks, and easily log a study session. Moreover, tasks can be tracked using a stopwatch, a timer, or
                 a quick add for your convenience. All of your time spent is tracked and analyzed, so that you can study better and more effectively.
@@ -178,7 +181,7 @@ const Landing = ({ history, profile, width }) => {
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">Stay in Touch with Classmates</div>
+                  <div className="textHeader">STAY CONNECTED WITH YOUR FRIENDS</div>
                   <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track.
                   With our user activity features, you can study with your friends from your own home. You will be able to see when one of your friends are active
                   and what they are studying on, to make the at home learning experience more enjoyable.
