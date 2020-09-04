@@ -252,7 +252,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                                         <div className="noData">
                                             <div>
                                                 No Data
-                                            <div className="subNoData">Create tasks first to view subject breakdown</div>
+                                            <div className="subNoData">Finish tasks to view task breakdown</div>
                                             </div>
                                         </div> :
                                         <ReactEcharts

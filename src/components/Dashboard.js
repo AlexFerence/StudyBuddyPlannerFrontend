@@ -416,7 +416,16 @@ const Dashboard = ({ dispatch, charts, profile,
                 </div>
               </div> : <ReactEcharts
                 option={{
-
+                  title: {
+                    text: "Breakdown of Time by Subject",
+                    x: 'center',
+                    top: 20,
+                    textStyle: {
+                      fontFamily: 'Helvetica',
+                      fontWeight: 100
+  
+                    }
+                  },
                   tooltip: {
                     trigger: 'item',
                     formatter: '{b}: {d}%'
