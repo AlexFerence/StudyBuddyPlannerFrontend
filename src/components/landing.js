@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Nav, Navbar, Button, Form, FormControl, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import laptop from '../assets/laptop.png'
 import laptop2 from '../assets/laptop2.png'
@@ -82,7 +82,7 @@ const Landing = ({ history, profile, width }) => {
             </Col>
             <Col md={6} className="textCol">
               <div className="textInner">
-                <div className="textHeader">BOOST YOUR PRODUCTIVITY</div>
+                <div className="textHeader">Boost Your Productivity</div>
                 <div className="textPara">Study Buddy does more than just manage your tasks. This application allows you to track
                 when you study on all your tasks, and easily log a study session. Moreover, tasks can be tracked using a stopwatch, a timer, or
                 a quick add for your convenience. All of your time spent is tracked and analyzed, so that you can study better and more effectively.
@@ -105,34 +105,7 @@ const Landing = ({ history, profile, width }) => {
             </Col>
             <Col md={6} className="imageCol">
               <div className="imageInner">
-                <ReactEcharts
-                  option={{
-                    xAxis: {
-                      type: 'category',
-                      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                      axisLine: {
-                        lineStyle: {
-                          color: '#FFF'
-                        }
-                      }
-                    },
-                    yAxis: {
-                      type: 'value',
-                      axisLine: {
-                        lineStyle: {
-                          color: '#FFF'
-                        }
-                      },
-                      name: 'hours',
-                      nameLocation: 'middle',
-                      nameGap: 35
-                    },
-                    series: [{
-                      data: [4, 5, 3.5, 5.5, 2, 3, 6],
-                      type: 'bar'
-                    }]
-                  }}
-                />
+                <LandingBarChart />
               </div>
             </Col>
           </Row>
@@ -143,45 +116,12 @@ const Landing = ({ history, profile, width }) => {
             <Row style={{ height: '100%' }}>
               <Col md={6} className="imageCol">
                 <div className="imageInner">
-                  <ReactEcharts
-                    option={{
-                      xAxis: {
-                        type: 'category',
-                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                        axisLine: {
-                          lineStyle: {
-                            color: '#FFF'
-                          }
-                        }
-                      },
-                      yAxis: {
-                        type: 'value',
-                        axisLine: {
-                          lineStyle: {
-                            color: '#FFF'
-                          }
-                        },
-                        name: 'hours',
-                        nameLocation: 'middle',
-                        nameGap: 35
-                      },
-                      series: [{
-                        data: [4, 5, 6, 7, 8, 11, 13],
-                        type: 'line'
-                      },
-                      {
-                        color: '#add8e6',
-                        data: [3, 2, 4, 5, 6, 8, 9],
-                        type: 'line'
-                      }
-                      ]
-                    }}
-                  />
+                  <LandingLineChart />
                 </div>
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">STAY CONNECTED WITH YOUR FRIENDS</div>
+                  <div className="textHeader">Stay Connected With Friends</div>
                   <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track.
                   With our user activity features, you can study with your friends from your own home. You will be able to see when one of your friends are active
                   and what they are studying on, to make the at home learning experience more enjoyable.

@@ -1,34 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Autosuggest from 'react-autosuggest';
 import { connect } from 'react-redux'
 import { updateProfileThunk } from '../thunks/profileThunk'
 import { makeSemesterThunk } from '../thunks/semesterThunk'
 import Select from 'react-select'
 import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
-import { ButtonGroup, ToggleButton } from 'react-bootstrap'
-import { FaBlackTie } from 'react-icons/fa';
-//import { modify } from '../actions/chartActions';
 import { modifyProfile } from '../actions/profileActions'
 
-
-// Imagine you have a list of languages that you'd like to autosuggest.
-var languages = [
-  { label: 'Montreal University', id: 1 },
-  { label: 'McMaster University', id: 2 },
-  { label: 'McGill University', id: 3 }
-];
-
-const style = {
-  option: (base, state) => ({
-    ...base,
-    padding: '20px'
-  })
-};
-
-const radios = [
-  { name: 'GPA (4.0 scale)', value: 'gpa' },
-  { name: '% Percentage', value: 'percentage' },
-];
 
 var options = [
   { label: 'Year 1', value: 1 },
@@ -48,8 +25,6 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
 
   const [schoolError, setSchoolError] = useState('')
   const [facultyError, setFacultyError] = useState('')
-
-  const [usesPercentage, setUsesPercentage] = useState(0)
 
   useEffect(() => {
     if (profile.email && profile.isAuth) {
@@ -105,8 +80,8 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
 
     if (clean === true) {
       await dispatch(updateProfileThunk({
-        school: school.id,
-        faculty: faculty.id,
+        school: school.value,
+        faculty: faculty.value,
         year: year.value,
         major,
       }))

@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactEcharts from 'echarts-for-react'
 
 const LandingBarChart = () => {
     return (
