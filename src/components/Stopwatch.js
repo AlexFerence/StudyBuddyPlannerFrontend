@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
-import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
+import { IoMdPlay } from 'react-icons/io'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import {

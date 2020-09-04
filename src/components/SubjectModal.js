@@ -36,6 +36,7 @@ const SubjectModal = (props) => {
         e.preventDefault()
         props.closeModal()
         props.dispatch(addSubjectThunk({ subTitle, classCode, description, professor, credits, color }))
+        setProfessor('')
         setSubTitle('')
         setClassCode('')
         setDescription('')

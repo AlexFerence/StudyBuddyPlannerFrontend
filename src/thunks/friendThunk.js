@@ -6,8 +6,8 @@ import moment from 'moment'
 
 export const searchIfExists = (email) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
-    const { id, token } = profile
+    const { profile } = state
+    const { token } = profile
     if (email.length === 0) {
         return undefined
     }
@@ -46,11 +46,17 @@ export const sendRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
+        console.log(res)
+        console.log(res.status)
         dispatch(getPendingFriends())
         return res.status
 
     } catch (e) {
         dispatch(getPendingFriends())
+        console.log(e)
+        if (e.response) {
+            return (e.response.status)
+        }
         return (e)
     }
 }
@@ -60,7 +66,7 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
 
-    console.log('GETTING PENDING FRIENDDS')
+    //console.log('GETTING PENDING FRIENDDS')
     try {
         const res = await axios.post(url + '/api/Friends/getListFriends',
             {
@@ -78,7 +84,7 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
         )
         var sentRequests = []
         var waitingRequests = []
-        console.log(res.data)
+        // console.log(res.data)
 
         if (res.status === 200 && res.data.length > 0) {
             res.data.forEach((request) => {
@@ -94,7 +100,7 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
         }
         dispatch(modifyFriends({ sentRequests, waitingRequests }))
     } catch (e) {
-        console.log(e)
+        // console.log(e)
     }
 }
 
@@ -171,7 +177,7 @@ export const getActiveFriends = (otherID) => async (dispatch, getState) => {
             }
         )
 
-        console.log(res.data)
+        //console.log(res.data)
         var activeFriends = []
 
         if (res.status === 200 && res.data.length > 0) {

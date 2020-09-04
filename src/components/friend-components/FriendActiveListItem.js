@@ -1,17 +1,6 @@
 import React from 'react'
 import { FaUser } from 'react-icons/fa'
 import { FaBookReader } from 'react-icons/fa'
-import moment from 'moment'
-
-const getTimeSince = (time) => {
-    const startTime = moment(time)
-    const end = moment()
-    var duration = moment.duration(end.diff(startTime));
-    var hours = duration.asHours()
-    console.log(startTime.format("YYYY MM DD"))
-    return hours
-}
-
 
 const FriendActiveListItem = ({ friend }) => {
     return (

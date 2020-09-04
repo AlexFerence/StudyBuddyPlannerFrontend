@@ -5,7 +5,6 @@ import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
 import { IoMdPause, IoMdPlay, IoMdExit, IoMdClose } from 'react-icons/io'
-import moment from 'moment'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import {
@@ -15,6 +14,10 @@ import {
     loadPersonalStats
 } from '../thunks/chartThunk'
 import { Link } from 'react-router-dom'
+
+import Sound1 from '../assets/sound1.mp3'
+
+const audio = new Audio(Sound1)
 
 const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask, specialFunction }) => {
     const [count, setCount] = useState(0);
@@ -78,6 +81,10 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
     }
 
     const timerDone = async () => {
+
+        // play sound
+        audio.play()
+
         resetCount()
         dispatch(runningOffThunk(currentTask.id))
         dispatch(pausedReduxOff())

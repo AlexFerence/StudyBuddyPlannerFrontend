@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { signupThunk } from '../thunks/profileThunk'
 import isEmail from 'validator/lib/isEmail';
-
-import { setProfile } from '../actions/profileActions'
-import axios from 'axios'
-import url from '../environment/url'
 import { loadSchools } from '../thunks/schoolsThunk';
 
 
@@ -15,8 +11,6 @@ const FormPage = ({ history, dispatch, profile }) => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
@@ -70,7 +64,7 @@ const FormPage = ({ history, dispatch, profile }) => {
   return (
 
     <div className="container authContainer">
-    <div className="preHeader">Sign Up</div>
+      <div className="preHeader">Sign Up</div>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label className="inpLabel">First Name</label>
@@ -81,15 +75,15 @@ const FormPage = ({ history, dispatch, profile }) => {
           <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="inp" placeholder="First name" />
         </div>
         <div className="form-group">
-          <div className="inpLabel">Email Address { emailError && <span className="error">* {emailError}</span>}</div>
+          <div className="inpLabel">Email Address {emailError && <span className="error">* {emailError}</span>}</div>
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="inp" placeholder="Enter email" />
         </div>
         <div className="form-group">
           <label className="inpLabel">Password {passwordError && <span className="error">* {passwordError}</span>}</label>
-          <input value={password} onChange={(e) => setPassword(e.target.value)} 
-          type="password" 
-          className="inp" 
-          placeholder="Enter password" />
+          <input value={password} onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="inp"
+            placeholder="Enter password" />
         </div>
         <button type="submit" className="btn btn-secondary btn-block preAuth">Sign Up</button>
         <p className="forgot-password text-right">
@@ -102,7 +96,7 @@ const FormPage = ({ history, dispatch, profile }) => {
 
 const mapStateToProps = (state) => {
   return {
-      profile: state.profile
+    profile: state.profile
   }
 }
 

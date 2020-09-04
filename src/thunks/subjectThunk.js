@@ -5,7 +5,7 @@ import { addSubject, fillSubjects } from '../actions/subjectActions'
 
 export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits, color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects, semester } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/Subjects/create",
@@ -100,12 +100,12 @@ export const getClassColor = (subjId) => async (dispatch, getState) => {
     const { id, token } = profile
 
     const subj = subjects.find((subject) => subject.id === subjId)
-        if (subj) {
-            return(subj.color)
-        }
-        else {
-            return(undefined)
-        }
+    if (subj) {
+        return (subj.color)
+    }
+    else {
+        return (undefined)
+    }
 }
 
 export const getClassName = (subjId) => async (dispatch, getState) => {
@@ -114,11 +114,11 @@ export const getClassName = (subjId) => async (dispatch, getState) => {
     const { id, token } = profile
 
     const subj = subjects.find((subject) => subject.id === subjId)
-        if (subj) {
-            return(subj.name)
-        }
-        else {
-            return(undefined)
-        }
+    if (subj) {
+        return (subj.name)
+    }
+    else {
+        return (undefined)
+    }
 }
 

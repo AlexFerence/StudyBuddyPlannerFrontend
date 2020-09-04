@@ -10,7 +10,6 @@ import { IoMdSchool } from 'react-icons/io'
 import SubjectModal from './SubjectModal'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
-import { loadSubjects } from '../thunks/userActivityThunk'
 import { editSubjectThunk } from '../thunks/subjectThunk'
 import { loadSubjectBreakdown } from '../thunks/chartThunk'
 import ReactEcharts from 'echarts-for-react'
@@ -18,7 +17,7 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffSubjectTour } from '../thunks/profileThunk'
 import CustomOverlay from '../components/CustomOverlay'
-import swal from 'sweetalert'
+
 
 const TOUR_STEPS = [
     {
@@ -85,11 +84,10 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
 
     // handle deleting classes
 
-    const callDelete = (id) => {
-        swal()
-    }
+    //TODO MAKE NEW WAY TO STOP DELETING DATA
 
-    const actullayDelete = async (id) => {
+
+    const callDelete = async (id) => {
         try {
             const res = await axios.delete(url + '/api/subjects/' + id,
                 {

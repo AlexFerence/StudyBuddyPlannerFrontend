@@ -9,12 +9,12 @@ import {
     setGpaScatter,
     modify
 } from '../actions/chartActions'
-import { getClassColor } from './subjectThunk'
+
 import moment from 'moment'
 
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         // error
@@ -52,7 +52,7 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
 
 export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + '/api/PersonalCharts/listsubjectbreakdown',
@@ -88,10 +88,9 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
 
 export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
-    //console.log("date")
-    //console.log(id)
+
     try {
         const res = await axios.post(url + "/api/personalcharts/listhoursperweek",
             {
@@ -119,8 +118,8 @@ export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => 
 
 export const loadYearBeakdown = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
-    const { id, token } = profile
+    const { profile } = state
+    const { token } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/populationbreakdown",
             {
@@ -157,8 +156,8 @@ export const loadYearBeakdown = () => async (dispatch, getState) => {
 
 export const loadFacultyStats = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
-    const { id, token } = profile
+    const { profile } = state
+    const { token } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/populationbreakdown",
             {
@@ -195,7 +194,7 @@ export const loadFacultyStats = () => async (dispatch, getState) => {
 
 export const loadMarksScatter = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/markshoursscatter",
@@ -223,7 +222,7 @@ export const loadMarksScatter = () => async (dispatch, getState) => {
 
 export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listhourspermonth",
@@ -277,7 +276,7 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
 
 export const loadPersonalStats = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listpersonalstats",
@@ -315,7 +314,7 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
 
 export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listaveragehoursperweek",
@@ -345,7 +344,7 @@ export const loadAverageOfWeekDay = () => async (dispatch, getState) => {
 
 export const loadUACurrentUsers = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile } = state
     const { id, token } = profile
     try {
         const res = await axios.post(url + "/api/UserActivity/count",
@@ -371,7 +370,7 @@ export const loadUACurrentUsers = () => async (dispatch, getState) => {
 
 export const comparativePersonalToAverage = (sid) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects, } = state
+    const { profile, } = state
     const { id, token, subjId, schoolId } = profile
     try {
         const res = await axios.post(url + "/api/ComparativeCharts/listhourspermonthcomparative",

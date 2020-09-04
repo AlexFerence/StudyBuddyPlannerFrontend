@@ -8,12 +8,9 @@ import CustomOverlay from './CustomOverlay'
 import CustomChildrenOverlay from './CustomChildrenOverlay'
 import { Row, Col } from 'react-bootstrap'
 import { loadTasks } from '../thunks/taskThunk'
-import { setCurrentTask } from '../actions/currentTaskActions'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffTaskTour } from '../thunks/profileThunk'
-import { setCurrentTaskById } from '../thunks/taskThunk'
-import { FaList } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 

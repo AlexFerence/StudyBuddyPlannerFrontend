@@ -37,7 +37,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     const handleAddFriend = async () => {
         var res = await dispatch(sendRequest(searchedPerson.id))
         console.log(res)
-        if (res !== 415) {
+        if (res === 415) {
             setAddingError('Friend Already Added')
             // swal({
             //     title: "Friend already added",
