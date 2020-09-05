@@ -94,7 +94,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             </div>
             <div className="display-task-body">
                 <Row>
-                    <Col>
+                    <Col md={6}>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {moment(currentTask.dueDate).format("MMMM DD")}
                         </div>
@@ -113,7 +113,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
 
 
                     </Col>
-                    <Col>
+                    <Col md={6}>
                         <Select
                             className="timerSelect"
                             value={timerSetting}

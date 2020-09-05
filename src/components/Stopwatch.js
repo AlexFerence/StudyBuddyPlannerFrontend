@@ -60,18 +60,20 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
         dispatch(pausedReduxOn())
     }
 
-    const timerDone = async () => {
+    const timerDone = () => {
+        console.log()
+        swal({
+            title: "Study session recorded",
+            icon: "success",
+            buttons: true,
+        })
 
         dispatch(pausedReduxOff())
         dispatch(postSessionThunk({
             taskId: currentTask.id,
             minutes: interval,
         }))
-        // dispatch(getSessionsThunk(currentTask.id)).then((currentT) => {
-        //     setCurrentTask(currentT)
-        // }).catch((e) => {
-        //     console.log(e)
-        // })
+
         dispatch(refreshAllCharts())
 
         dispatch(setCurrentTaskById(currentTask.id))
@@ -115,6 +117,13 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
 
     const submitTime = async () => {
         if (count > 1) {
+
+            swal({
+                title: "Study session recorded",
+                icon: "success",
+                buttons: true,
+            })
+
             dispatch(postSessionThunk({
                 taskId: currentTask.id,
                 minutes: Math.floor(parseInt(count) / 60),
