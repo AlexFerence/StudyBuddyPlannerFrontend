@@ -152,7 +152,7 @@ export const declineRequest = (otherID) => async (dispatch, getState) => {
     }
 }
 
-export const getActiveFriends = (otherID) => async (dispatch, getState) => {
+export const getActiveFriends = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -189,4 +189,73 @@ export const getActiveFriends = (otherID) => async (dispatch, getState) => {
     } catch (e) {
         console.log(e)
     }
+}
+
+export const getFriendsActiveFriends = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, friends } = state
+    const { token } = profile
+    const { selectedFriend } = friends
+    const { id = 0 } = selectedFriend
+    console.log('GETTING PENDING FRIENDDS')
+    try {
+        const res = await axios.post(url + '/api/Friends/getListActiveFriends',
+            {
+                id,
+                currentTime: moment().format(),
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+
+        //console.log(res.data)
+        var selectedFriendFriends = []
+
+        if (res.status === 200 && res.data.length > 0) {
+            res.data.forEach((friend) => {
+                selectedFriendFriends.push(friend)
+            })
+        }
+        dispatch(modifyFriends({ selectedFriendFriends }))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getFriendSubjects = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, friends } = state
+    const { token } = profile
+    const { selectedFriend } = friends
+    const { id = 0 } = selectedFriend
+    try {
+
+        const res = await axios.post(url + '/api/subjects/list',
+            {
+                UserId: id
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var selectedFriendSubjects = []
+
+        console.log('setting friends friends')
+        selectedFriendSubjects = res.data
+        console.log(res.data)
+
+        dispatch(modifyFriends({ selectedFriendSubjects }))
+    }
+    catch (e) {
+        console.log('caught errors')
+        console.log(e)
+    }
+
 }

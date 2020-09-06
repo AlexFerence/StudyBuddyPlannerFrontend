@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Modal from 'react-modal';
+import { connect } from 'react-redux'
+import { closeFriendModal } from '../../actions/friendActions'
+import { getFriendsActiveFriends, getFriendSubjects } from '../../thunks/friendThunk'
+
 
 const customStyles = {
     content: {
@@ -8,30 +12,48 @@ const customStyles = {
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
+        transform: 'translate(-50%, -50%)',
+        padding: 'none',
+    },
+    overlay: { zIndex: 1031 }
 };
 
-const FriendModal = () => {
+const FriendModal = ({ dispatch, isOpen, selectedFriend }) => {
+
+    const closeModal = () => {
+        dispatch(closeFriendModal())
+    }
+
+    useEffect(() => {
+        dispatch(getFriendsActiveFriends())
+        dispatch(getFriendSubjects())
+    }, [])
+
     return (
         <Modal
-            isOpen={true}
-            // onAfterOpen={afterOpenModal}
-            // onRequestClose={closeModal}
+            isOpen={isOpen}
             style={customStyles}
             contentLabel="Example Modal"
+            onRequestClose={closeModal}
         >
             { /* <button onClick={closeModal}>close</button> */}
-            <div>
-                <div>Selected Friend</div>
-                <div>
+            <div className="friend-modal">
+                <div>{selectedFriend.firstName} {selectedFriend.lastName}</div>
+                <div >
                     <div>Classes</div>
                     <div>Friends</div>
-
+                    <button onClick={closeModal}>close</button>
                 </div>
             </div>
         </Modal>
     )
 }
 
-export default FriendModal
+const mapStateToProps = (state) => {
+    return {
+        isOpen: state.friends.friendModalOpen,
+        selectedFriend: state.friends.selectedFriend
+    }
+}
+
+export default connect(mapStateToProps)(FriendModal)
