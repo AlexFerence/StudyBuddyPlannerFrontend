@@ -26,6 +26,10 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
         dispatch(closeFriendModal())
     }
 
+    const removeFriend = () => {
+
+    }
+
     var idCount = 0;
 
     return (
@@ -51,16 +55,18 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
 
                             })
                         }
-
+                        <button onClick={removeFriend}>Remove Friend</button>
                     </div>
                     <div className="friend-modal__body__col">
                         <div className="friend-modal__body__col__list-title">Friends</div>
-                        {selectedFriendFriends.length > 0 &&
-                            selectedFriendFriends.map((friend) => {
-                                idCount = idCount + 1
-                                return <FriendModalFriendListItem key={idCount} friend={friend} />
-                            })
-                        }
+                        <div className="friend-modal__body__col__list">
+                            {selectedFriendFriends.length > 0 &&
+                                selectedFriendFriends.map((friend) => {
+                                    idCount = idCount + 1
+                                    return <FriendModalFriendListItem key={idCount} friend={friend} />
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

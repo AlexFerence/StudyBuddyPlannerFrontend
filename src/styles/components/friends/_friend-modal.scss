@@ -25,6 +25,11 @@
  font-size: 20px;
 }
 
+.friend-modal__body__col__list {
+ max-height: 600px;
+ overflow: scroll;
+}
+
 .friend-modal-subject-list-item__class-name {
  font-size: 16px;
  margin-top: 10px;
@@ -41,8 +46,18 @@
 }
 
 .friend-modal-friend-list-item {
- border: 1px solid red;
+ margin: 10px 0px;
  display: flex;
  justify-content: space-between;
  align-items: center;
+}
+
+.friend-modal-friend-list-item__name {
+ font-size: 16px;
+ margin-bottom: 2px;
+}
+
+.friend-modal-friend-list-item__university {
+ font-size: 12px;
+ color: $grey;
 }
