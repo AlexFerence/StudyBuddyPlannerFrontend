@@ -1,0 +1,48 @@
+.friend-modal {
+ min-width: 500px;
+}
+
+.friend-modal__header {
+ font-size: 20px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ background-color: $dark-grey;
+ padding: 10px;
+ color: white;
+}
+
+.friend-modal__body {
+ padding: 15px;
+ display: flex;
+}
+
+.friend-modal__body__col {
+ width: 100%;
+}
+
+.friend-modal__body__col__list-title {
+ font-size: 20px;
+}
+
+.friend-modal-subject-list-item__class-name {
+ font-size: 16px;
+ margin-top: 10px;
+ display: flex;
+ align-items: center;
+}
+
+.friend-modal-subject-list-item__circle {
+ height: 7px;
+ width: 7px;
+ border-radius: 3.5px;
+ background-color: black;
+ margin-right: 7.5px;
+}
+
+.friend-modal-friend-list-item {
+ border: 1px solid red;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}

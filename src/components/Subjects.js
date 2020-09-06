@@ -124,12 +124,9 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
         }, classSelection))
         setClassSelection(newChanges)
         setEditMode(false)
-
     }
-
     const handleJoyrideCallback = data => {
         const { action, index, status, type } = data;
-
         if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
             // Update state to advance the tour
             setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
@@ -209,7 +206,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                 <div className="innerDisplay">
                     {classSelection.id &&
                         <div className="topBar" style={{ backgroundColor: (!editMode ? classSelection.color : newChanges.color) }} >
-                            {editMode ? <div className="idTitle">EDIT</div> : <div className="idTitle">{classSelection.name} {classSelection.classCode}</div>}
+                            {editMode ? <div className="idTitle">Edit</div> : <div className="idTitle">{classSelection.name} {classSelection.classCode}</div>}
                             <div>
                                 <button
                                     className="icon"
@@ -349,7 +346,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                                     value={newChanges.description}
                                     onChange={(e) => setNewChanges({ ...newChanges, description: e.target.value })}
                                 /> <br />
-                                <label className="inpLabel">Professor:</label>
+                                <label className="inpLabel">Professor: (optional)</label>
                                 <input
                                     className="inp"
                                     type="text" value={newChanges.professor}

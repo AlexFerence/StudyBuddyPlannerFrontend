@@ -423,7 +423,7 @@ const Dashboard = ({ dispatch, charts, profile,
                     textStyle: {
                       fontFamily: 'Helvetica',
                       fontWeight: 100
-  
+
                     }
                   },
                   tooltip: {
