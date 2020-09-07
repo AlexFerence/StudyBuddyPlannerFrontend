@@ -61,3 +61,33 @@
  font-size: 12px;
  color: $grey;
 }
+
+#but-add-friend {
+ color: $dark-grey;
+ border: 1px solid $dark-grey;
+ background-color: transparent;
+ border-radius: 5px;
+ padding: 6px;
+ cursor: pointer;
+ font-size: 14px;
+}
+
+#but-add-friend:hover {
+ background-color: $dark-grey;
+ color: white;
+}
+
+.friend-modal__body__col__remove-friend {
+ margin-top: 20px;
+ border: 1px solid red;
+ color: red;
+ font-size: 14px;
+ background-color: transparent;
+ border-radius: 5px;
+ padding: 5px;
+}
+
+.friend-modal__body__col__remove-friend:hover {
+ color: white;
+ background-color: red;
+}

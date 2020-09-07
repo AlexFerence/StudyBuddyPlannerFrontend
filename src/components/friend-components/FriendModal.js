@@ -38,6 +38,7 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
             style={customStyles}
             contentLabel="Example Modal"
             onRequestClose={closeModal}
+            ariaHideApp={false}
         >
             <div className="friend-modal">
                 <div className="friend-modal__header">
@@ -55,7 +56,7 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
 
                             })
                         }
-                        <button onClick={removeFriend}>Remove Friend</button>
+                        <button className="friend-modal__body__col__remove-friend" onClick={removeFriend}>Remove</button>
                     </div>
                     <div className="friend-modal__body__col">
                         <div className="friend-modal__body__col__list-title">Friends</div>

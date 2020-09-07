@@ -1,12 +1,41 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { sendRequest } from '../../thunks/friendThunk'
+import { sendRequest, getAlreadyFriends, getAlreadyPending, isMe, getFriendsActiveFriends } from '../../thunks/friendThunk'
+import { IoMdPerson, IoMdCheckmark } from 'react-icons/io'
 
 const FriendModalFriendListItem = ({ dispatch, friend }) => {
 
     const addFriend = () => {
         console.log('add friend')
         dispatch(sendRequest(friend.id))
+        dispatch(getFriendsActiveFriends())
+    }
+
+    const getFriendAction = () => {
+        var alreadyFriends = dispatch(getAlreadyFriends(friend.id))
+        var pending = dispatch(getAlreadyPending(friend.id))
+        if (alreadyFriends) {
+            console.log(alreadyFriends)
+            return (
+                <div><IoMdPerson /><IoMdCheckmark /></div>
+            )
+        }
+        else if (isMe) {
+            return (
+                <div></div>
+            )
+        }
+        else if (pending) {
+            return (
+                <div>Pending ...</div>
+            )
+        }
+        return (
+            <div id="but-add-friend" onClick={addFriend} className="friend-modal-friend-list-item__add-button">
+                + Add
+            </div>
+        )
+
     }
 
     return (
@@ -15,11 +44,9 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
                 <div className="friend-modal-friend-list-item__name">{friend.firstName} {friend.lastName}</div>
                 <div className="friend-modal-friend-list-item__university">{friend.school}</div>
             </div>
-            <button onClick={addFriend} className="friend-modal-friend-list-item__add-button">
-                + Add
-            </button>
+            {getFriendAction()}
         </div>
     )
 }
 
-export default FriendModalFriendListItem
+export default connect()(FriendModalFriendListItem)

@@ -257,5 +257,46 @@ export const getFriendSubjects = () => async (dispatch, getState) => {
         console.log('caught errors')
         console.log(e)
     }
+}
 
+export const getAlreadyFriends = (id) => (dispatch, getState) => {
+    const state = getState()
+    const { friends } = state
+    const { activeFriends } = friends
+    if (activeFriends.length > 0) {
+        var result = activeFriends.find((friend) => friend.id === id)
+        return result
+    }
+    else {
+        return false
+    }
+}
+
+export const getAlreadyPending = (id) => (dispatch, getState) => {
+    const state = getState()
+    const { friends } = state
+    const { sentRequests } = friends
+    console.log(sentRequests)
+
+    if (sentRequests.length > 0) {
+        var result = sentRequests.find((friend) => {
+            return (friend.userId2 === id)
+        })
+        console.log(result)
+        return result
+    }
+    else {
+        return false
+    }
+}
+export const isMe = (friendId) => (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    if (friendId === id) {
+        return true
+    }
+    else {
+        return false
+    }
 }
