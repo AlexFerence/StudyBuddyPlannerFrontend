@@ -3,7 +3,7 @@ import url from '../environment/url'
 import { fillTasks } from '../actions/taskActions'
 import { setCurrentTask } from '../actions/currentTaskActions'
 
-export const loadTasks = ( filterBy = true, completed = true ) => async (dispatch, getState) => {
+export const loadTasks = (filterBy = true, completed = true) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
@@ -41,13 +41,13 @@ export const getTask = (taskId) => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.get(url + '/api/Tasks/' + taskId,
-        {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }   
-        })
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
         console.log(res.data)
     } catch (e) {
         console.log(e)
@@ -76,7 +76,7 @@ export const updateTask = (updatedTask) => async (dispatch, getState) => {
         // if (wait) {
         //     await dispatch(setCurrentTaskById(res.data.id))
         // }
-        
+
     } catch (e) {
         console.log(e)
     }
@@ -89,10 +89,10 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
     const getClassName = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
         if (subj) {
-            return(subj.name + " " + subj.classCode)
+            return (subj.name + " " + subj.classCode)
         }
         else {
-            return("no class found")
+            return ("no class found")
         }
     }
 
@@ -100,10 +100,10 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
 
         if (subj) {
-            return(subj.color)
+            return (subj.color)
         }
         else {
-            return(undefined)
+            return (undefined)
         }
     }
 
@@ -114,13 +114,13 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
 
     if (task) {
         dispatch(setCurrentTask({
-            ...task, 
-            color: getClassColor(task.subjectId), 
+            ...task,
+            color: getClassColor(task.subjectId),
             subjectTitle: getClassName(task.subjectId)
-        }))   
+        }))
         console.log({
-            ...task, 
-            color: getClassColor(task.subjectId), 
+            ...task,
+            color: getClassColor(task.subjectId),
             subjectTitle: getClassName(task.subjectId)
         })
     }
@@ -143,10 +143,30 @@ export const markTaskAsDone = (taskId) => async (dispatch, getState) => {
         console.log(res.data)
         dispatch(loadTasks())
         dispatch(setCurrentTask({}))
-
-
     } catch (e) {
-
     }
+}
 
+export const unmarkTaskAsDone = (taskId) => async (dispatch, getState) => {
+    const { profile, subjects, currentTask, tasks } = getState()
+    const { id, token } = profile
+    console.log('unmarking task')
+    console.log('unmarking task')
+    console.log('unmarking task')
+    console.log('unmarking task')
+    try {
+        const res = await axios.put(url + '/api/Tasks/' + taskId, {
+            ...currentTask,
+            isDone: 0
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(loadTasks())
+        dispatch(setCurrentTaskById(currentTask.id))
+    } catch (e) {
+    }
 }

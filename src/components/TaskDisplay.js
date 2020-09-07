@@ -12,7 +12,7 @@ import Stopwatch from './Stopwatch'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
 //import { getTask } from '../thunks/taskThunk';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { markTaskAsDone } from '../thunks/taskThunk'
+import { markTaskAsDone, unmarkTaskAsDone } from '../thunks/taskThunk'
 import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
 
 const hoursToTimeDisplay = (h) => {
@@ -73,6 +73,20 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
 
     //scrolls to bottom
 
+
+    const handleCompleted = () => {
+        console.log('handle COMPLETED PLEASE')
+        if (currentTask.idDone === 0) {
+            console.log('task is NOT DONE')
+            dispatch(markTaskAsDone(currentTask.id))
+            blankOn()
+        }
+        else {
+            console.log('task is DONE')
+            dispatch(unmarkTaskAsDone(currentTask.id))
+        }
+
+    }
 
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
@@ -151,11 +165,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
 
                         <button
                             className="but complete"
-                            onClick={() => {
-                                console.log(currentTask)
-                                dispatch(markTaskAsDone(currentTask.id))
-                                blankOn()
-                            }}
+                            onClick={handleCompleted}
                         ><FaCheck className="green" /> Completed</button>
                     </div>
 
