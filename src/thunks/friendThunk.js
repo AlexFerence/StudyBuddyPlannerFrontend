@@ -296,7 +296,6 @@ export const isMe = (friendId) => (dispatch, getState) => {
     if (friendId === id) {
         return true
     }
-    else {
-        return false
-    }
+    return false
+
 }

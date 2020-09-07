@@ -14,13 +14,14 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
     const getFriendAction = () => {
         var alreadyFriends = dispatch(getAlreadyFriends(friend.id))
         var pending = dispatch(getAlreadyPending(friend.id))
+        var me = dispatch(isMe(friend.id))
         if (alreadyFriends) {
             console.log(alreadyFriends)
             return (
                 <div><IoMdPerson /><IoMdCheckmark /></div>
             )
         }
-        else if (isMe) {
+        else if (me) {
             return (
                 <div></div>
             )
@@ -40,6 +41,9 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
 
     return (
         <div className="friend-modal-friend-list-item">
+            <div className="popup">
+                popup stuff
+            </div>
             <div>
                 <div className="friend-modal-friend-list-item__name">{friend.firstName} {friend.lastName}</div>
                 <div className="friend-modal-friend-list-item__university">{friend.school}</div>

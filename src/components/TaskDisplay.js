@@ -161,8 +161,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             setSessionsOpen(!sessionsOpen)
                             scrollToBottom()
                         }}>Sessions {!sessionsOpen ? <FaAngleDown /> : <FaAngleUp />}</button>
-
-
                         <button
                             className="but complete"
                             onClick={handleCompleted}
