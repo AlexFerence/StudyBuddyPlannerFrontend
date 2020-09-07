@@ -9,6 +9,11 @@
  padding: 15px 15px;
 }
 
+.active-friend:hover {
+ background-color: lighten($color: $dark-grey, $amount: 5);
+ cursor: pointer;
+}
+
 .active-friend__left {
  display: flex;
 }

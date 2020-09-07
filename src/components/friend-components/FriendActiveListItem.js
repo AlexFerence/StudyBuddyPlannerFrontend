@@ -4,8 +4,10 @@ import { FaBookReader } from 'react-icons/fa'
 import { openFriendModal, modifyFriends } from '../../actions/friendActions'
 import { connect } from 'react-redux'
 import { getFriendsActiveFriends, getFriendSubjects } from '../../thunks/friendThunk'
+import FriendPopup from './FriendPopup'
+import OutsideAlerter from './OutsideAlerter'
 
-const FriendActiveListItem = ({ dispatch, friend }) => {
+const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
 
     const openModal = () => {
         console.log('setting friends')
@@ -17,9 +19,15 @@ const FriendActiveListItem = ({ dispatch, friend }) => {
 
     return (
         <div>
-
-            <div className="active-friend">
-
+            <div className="popup">
+                {
+                    isOpen && selectedFriend.id === friend.id &&
+                    <OutsideAlerter>
+                        <FriendPopup />
+                    </OutsideAlerter>
+                }
+            </div>
+            <div onClick={openModal} className="active-friend">
                 <div className="active-friend__left">
                     <div className="active-friend__left__avatar-container">
                         <div className="active-friend__left__avatar" onClick={openModal}>
@@ -42,7 +50,15 @@ const FriendActiveListItem = ({ dispatch, friend }) => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isOpen: state.friends.friendModalOpen,
+        selectedFriend: state.friends.selectedFriend,
+        selectedFriendFriends: state.friends.selectedFriendFriends,
+        selectedFriendSubjects: state.friends.selectedFriendSubjects
+    }
+}
 
-export default connect()(FriendActiveListItem)
+export default connect(mapStateToProps)(FriendActiveListItem)
 
 // getLastActiveTime(friend.lastActive)

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import FriendPendingSearch from './friendPendingSearch'
 import FriendActiveList from './FriendActiveList'
 import { IoMdAdd, IoMdClose } from 'react-icons/io';
-import FriendModal from './FriendModal'
+//import FriendModal from './FriendModal'
 
 
 
@@ -17,7 +17,7 @@ const FriendActivity = () => {
 
     return (
         <div className="friend-activity">
-            <FriendModal />
+
             <div className="friend-activity__header">
                 <div className="friend-activity__header__title" >
                     Friend Activity

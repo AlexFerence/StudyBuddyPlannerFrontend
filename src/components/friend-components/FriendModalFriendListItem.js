@@ -41,9 +41,6 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
 
     return (
         <div className="friend-modal-friend-list-item">
-            <div className="popup">
-                popup stuff
-            </div>
             <div>
                 <div className="friend-modal-friend-list-item__name">{friend.firstName} {friend.lastName}</div>
                 <div className="friend-modal-friend-list-item__university">{friend.school}</div>

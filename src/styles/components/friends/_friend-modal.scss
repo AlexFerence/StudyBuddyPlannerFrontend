@@ -1,5 +1,7 @@
+$popup-width: 450px;
+
 .friend-modal {
- min-width: 500px;
+ width: $popup-width;
 }
 
 .friend-modal__header {
@@ -81,10 +83,10 @@
  margin-top: 20px;
  border: 1px solid red;
  color: red;
- font-size: 14px;
+ font-size: 11px;
  background-color: transparent;
  border-radius: 5px;
- padding: 5px;
+ padding: 5px 8px;
 }
 
 .friend-modal__body__col__remove-friend:hover {
@@ -93,7 +95,11 @@
 }
 
 .popup {
- position: relative;
+ color: black;
+ position: absolute;
+ left: -$popup-width;
  display: inline-block;
- background-color: red;
+ background-color: white;
+ min-width: $popup-width;
+ box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
