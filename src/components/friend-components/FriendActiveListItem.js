@@ -3,7 +3,7 @@ import { FaUser } from 'react-icons/fa'
 import { FaBookReader } from 'react-icons/fa'
 import { openFriendModal, modifyFriends } from '../../actions/friendActions'
 import { connect } from 'react-redux'
-import { getFriendsActiveFriends, getFriendSubjects } from '../../thunks/friendThunk'
+import { getFriendsActiveFriends, getFriendSubjects, loadSubjectBreakdown } from '../../thunks/friendThunk'
 import FriendPopup from './FriendPopup'
 import OutsideAlerter from './OutsideAlerter'
 
@@ -15,6 +15,8 @@ const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
         dispatch(openFriendModal())
         dispatch(getFriendsActiveFriends())
         dispatch(getFriendSubjects())
+        dispatch(loadSubjectBreakdown(friend.id))
+
     }
 
     return (

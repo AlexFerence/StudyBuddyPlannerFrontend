@@ -65,9 +65,9 @@ $popup-width: 450px;
 }
 
 #but-add-friend {
- color: $dark-grey;
- border: 1px solid $dark-grey;
- background-color: transparent;
+ color: $white;
+ //border: 1px solid $dark-grey;
+ background-color: $brand;
  border-radius: 5px;
  padding: 6px;
  cursor: pointer;
@@ -75,12 +75,11 @@ $popup-width: 450px;
 }
 
 #but-add-friend:hover {
- background-color: $dark-grey;
- color: white;
+ background-color: lighten($color: $brand, $amount: 10);
 }
 
 .friend-modal__body__col__remove-friend {
- margin-top: 20px;
+ margin-top: 10px;
  border: 1px solid red;
  color: red;
  font-size: 11px;
@@ -92,6 +91,15 @@ $popup-width: 450px;
 .friend-modal__body__col__remove-friend:hover {
  color: white;
  background-color: red;
+}
+
+.friend-modal-friend-list-item__pending {
+ font-size: 12px;
+ color: $grey;
+}
+
+.friend-modal-friend-list-item__already-added {
+ color: $grey;
 }
 
 .popup {

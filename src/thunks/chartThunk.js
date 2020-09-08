@@ -367,7 +367,6 @@ export const loadUACurrentUsers = () => async (dispatch, getState) => {
     }
 }
 
-
 export const comparativePersonalToAverage = (sid) => async (dispatch, getState) => {
     const state = getState()
     const { profile, } = state

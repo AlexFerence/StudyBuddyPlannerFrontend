@@ -23,6 +23,8 @@ const friendsDefaultState = {
     },
     selectedFriendFriends: [],
     selectedFriendSubjects: [],
+    selectedFriendSubjectsBreakdown: [],
+    selectedFriendSubjectsColors: [],
     friendModalOpen: false
 }
 

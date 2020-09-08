@@ -297,5 +297,46 @@ export const isMe = (friendId) => (dispatch, getState) => {
         return true
     }
     return false
+}
 
+
+export const loadSubjectBreakdown = (id) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { token } = profile
+    try {
+        // error
+        const res = await axios.post(url + '/api/PersonalCharts/listsubjecttotalhours',
+            {
+                userId: id,
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (res.status === 200) {
+            var pieData = []
+            var pieColors = []
+            res.data.responseItems.forEach((item) => {
+                //console.log(item)
+                pieData.push({
+                    value: item.value1,
+                    name: item.name1,
+                })
+                pieColors.push(item.name2)
+                //get him to send subjectId along with name 2
+            })
+            //console.log(pieData)
+            dispatch(modifyFriends({
+                selectedFriendSubjectsBreakdown: pieData,
+                selectedFriendSubjectsBreakdownColors: pieColors
+            }))
+
+        }
+    } catch (e) {
+        return (e)
+    }
 }

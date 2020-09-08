@@ -18,7 +18,7 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
         if (alreadyFriends) {
             console.log(alreadyFriends)
             return (
-                <div><IoMdPerson /><IoMdCheckmark /></div>
+                <div className="friend-modal-friend-list-item__already-added"><IoMdPerson /><IoMdCheckmark /></div>
             )
         }
         else if (me) {
@@ -28,7 +28,7 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
         }
         else if (pending) {
             return (
-                <div>Pending ...</div>
+                <div className="friend-modal-friend-list-item__pending">Pending ...</div>
             )
         }
         return (

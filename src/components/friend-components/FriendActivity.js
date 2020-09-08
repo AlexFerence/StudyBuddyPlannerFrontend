@@ -6,13 +6,27 @@ import { IoMdAdd, IoMdClose } from 'react-icons/io';
 //import FriendModal from './FriendModal'
 
 
-
-
 const FriendActivity = () => {
     const [activityShowing, setActivityShowing] = useState(true);
 
     const handleShowPending = () => {
         setActivityShowing(!activityShowing)
+    }
+
+    const plusOrX = () => {
+        if (activityShowing) {
+            return (
+                <div>
+
+                    <IoMdAdd />
+                </div>
+            )
+        }
+        else {
+            return (
+                <IoMdClose />
+            )
+        }
     }
 
     return (
@@ -23,7 +37,7 @@ const FriendActivity = () => {
                     Friend Activity
                 </div>
                 <div className="friend-activity__header__bell" onClick={handleShowPending}>
-                    {activityShowing ? <IoMdAdd /> : <IoMdClose />}
+                    {plusOrX()}
                 </div>
             </div>
             {activityShowing ? <FriendActiveList /> : <FriendPendingSearch />}
