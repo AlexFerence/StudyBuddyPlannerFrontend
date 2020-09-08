@@ -142,7 +142,7 @@ export const markTaskAsDone = (taskId) => async (dispatch, getState) => {
         })
         console.log(res.data)
         dispatch(loadTasks())
-        dispatch(setCurrentTask({}))
+        //dispatch(setCurrentTask({}))
     } catch (e) {
     }
 }

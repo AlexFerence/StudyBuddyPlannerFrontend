@@ -75,16 +75,17 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
 
 
     const handleCompleted = () => {
+        dispatch(markTaskAsDone(currentTask.id))
         console.log('handle COMPLETED PLEASE')
-        if (currentTask.idDone === 0) {
-            console.log('task is NOT DONE')
-            dispatch(markTaskAsDone(currentTask.id))
-            blankOn()
-        }
-        else {
-            console.log('task is DONE')
-            dispatch(unmarkTaskAsDone(currentTask.id))
-        }
+        // if (currentTask.idDone === 0) {
+        //     console.log('task is NOT DONE')
+        //     dispatch(markTaskAsDone(currentTask.id))
+        //     blankOn()
+        // }
+        // else {
+        //     console.log('task is DONE')
+        //     dispatch(unmarkTaskAsDone(currentTask.id))
+        // }
 
     }
 

@@ -26,7 +26,7 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
     const [interval, setInterval] = useState(15 * 60)
 
     useEffect(() => {
-        dispatch(runningOffThunk())
+        //dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
 
         return () => {

@@ -6,16 +6,17 @@ import moment from 'moment'
 
 export const runningOnThunk = (taskId) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile, currentTask } = state
     const { id, token } = profile
     dispatch(runningReduxOn(taskId))
-    console.log('running on thunk')
+    console.log('CURRENT TASK ID')
+    console.log(taskId)
     try {
         const res = await axios.post(url + '/api/UserActivity/create',
             {
                 userId: id,
                 active: 1,
-                currentTaskId: taskId
+                currentTaskId: currentTask.id
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,
