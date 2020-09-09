@@ -46,11 +46,9 @@ export const sendRequest = (otherID) => async (dispatch, getState) => {
                 }
             }
         )
-        console.log(res)
-        console.log(res.status)
         dispatch(getPendingFriends())
+        var y = await dispatch(getFriendsActiveFriends()) + res
         return res.status
-
     } catch (e) {
         dispatch(getPendingFriends())
         console.log(e)
@@ -336,6 +334,29 @@ export const loadSubjectBreakdown = (id) => async (dispatch, getState) => {
             }))
 
         }
+    } catch (e) {
+        return (e)
+    }
+}
+
+export const removeFriend = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, friends } = state
+    const { token } = profile
+    const { selectedFriend } = friends
+    const { friendRowId } = selectedFriend
+    try {
+        const res = await axios.delete(url + '/api/Friends/' + friendRowId,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        //dispatch(getActiveFriends())
+        //dispatch(closeFriendModal())
+
     } catch (e) {
         return (e)
     }

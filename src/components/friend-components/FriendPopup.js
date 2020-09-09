@@ -6,6 +6,8 @@ import { IoMdClose } from 'react-icons/io'
 import FriendModalSubjectListItem from './FriendModalSubjectListItem'
 import FriendModalFriendListItem from './FriendModalFriendListItem'
 import FriendSubjBreakdownChart from './FriendSubjBreakdownChart'
+import { removeFriend } from '../../thunks/friendThunk'
+import swal from 'sweetalert'
 
 const customStyles = {
     content: {
@@ -24,15 +26,14 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
     selectedFriendSubjects }) => {
 
 
+    const removeFriend = async () => {
+        dispatch(removeFriend())
+    }
+
     const closeModal = () => {
         dispatch(closeFriendModal())
     }
 
-
-
-    const removeFriend = () => {
-
-    }
 
     var idCount = 0;
 
@@ -55,7 +56,7 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
                             })
                         }
                         <FriendSubjBreakdownChart />
-                        <button className="friend-modal__body__col__remove-friend" onClick={removeFriend}>Unfriend</button>
+                        {false && <button className="friend-modal__body__col__remove-friend" onClick={removeFriend}>Unfriend</button>}
                     </div>
                     <div className="friend-modal__body__col">
                         <div className="friend-modal__body__col__list-title">Friends</div>

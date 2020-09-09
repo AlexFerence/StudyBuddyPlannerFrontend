@@ -1,5 +1,7 @@
 .friend-activity {
  //border: 1px solid $grey;
+ display: flex;
+ flex-direction: column;
  width: 300px;
  position: fixed;
  right: 0;
@@ -57,4 +59,31 @@
 .suggest-person__email {
  font-size: 12px;
  color: darken($color: $grey, $amount: 30);
+}
+
+.plus-container:hover {
+ border-radius: 50%;
+ background-color: lighten($color: $dark-grey, $amount: 10);
+}
+
+.badge {
+ position: absolute;
+ top: 15px;
+ right: 15px;
+
+ padding: 4px 8px;
+ border-radius: 50%;
+ background-color: $brand;
+ color: white;
+ z-index: 1;
+}
+
+.invite-friends {
+ margin: 10px 20px;
+ padding: 20px;
+ font-size: 20px;
+ color: white;
+ background-color: $brand;
+ border-radius: 20px;
+ border: none;
 }

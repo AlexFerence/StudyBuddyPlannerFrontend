@@ -5,6 +5,7 @@ const friendsDefaultState = {
     sentRequests: [],
     activeFriends: [],
     selectedFriend: {
+        friendRowId: 0,
         id: 0,
         firstName: "",
         lastName: "",

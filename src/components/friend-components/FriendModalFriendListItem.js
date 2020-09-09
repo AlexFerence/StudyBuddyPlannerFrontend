@@ -5,10 +5,10 @@ import { IoMdPerson, IoMdCheckmark } from 'react-icons/io'
 
 const FriendModalFriendListItem = ({ dispatch, friend }) => {
 
-    const addFriend = () => {
-        console.log('add friend')
+    const addFriend = async () => {
+
         dispatch(sendRequest(friend.id))
-        dispatch(getFriendsActiveFriends())
+
     }
 
     const getFriendAction = () => {

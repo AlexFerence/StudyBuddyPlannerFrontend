@@ -262,9 +262,22 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
                                                     x: 'center',
                                                     top: 20
                                                 },
-                                                tooltip: {},
+                                                tooltip: {
+                                                    trigger: 'item',
+                                                    formatter: '{b}: {d}%'
+                                                },
                                                 series: [
                                                     {
+                                                        itemStyle: {
+                                                            normal: {
+                                                                label: {
+                                                                    show: false
+                                                                },
+                                                                labelLine: {
+                                                                    show: false
+                                                                }
+                                                            }
+                                                        },
                                                         type: 'pie',
                                                         radius: '65%',
                                                         center: ['50%', '50%'],
