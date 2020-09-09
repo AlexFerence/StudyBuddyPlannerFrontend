@@ -227,7 +227,7 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
                         </Nav>
                     </Navbar>
                 </Navbar>
-                <Navbar expand="true">
+                <Navbar expand="true" id="backgroundNav">
                     <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
