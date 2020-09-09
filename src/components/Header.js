@@ -228,14 +228,14 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
                     </Navbar>
                 </Navbar>
                 <Navbar expand="true" id="backgroundNav">
-                    <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
+                    <Navbar.Brand className="title" href="/"></Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
                         <Nav className="mr-auto">
                         </Nav>
-                        <Nav inline="true">
+                        {false &&
+                            <Nav inline="true">
 
-                            {false &&
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -244,11 +244,12 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
                                     <NavLink activeStyle={{ color: 'white' }} style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
                                     </NavLink>
                                 </OverlayTrigger>
-                            }
+                        }
                         </Nav>
-                    </Navbar>
+
                 </Navbar>
-            </div>
+                </Navbar>
+            </div >
         )
     }
     else {
