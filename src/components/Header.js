@@ -235,7 +235,7 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
                         </Nav>
                         <Nav inline="true">
 
-                            {isAuth &&
+                            {false &&
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
