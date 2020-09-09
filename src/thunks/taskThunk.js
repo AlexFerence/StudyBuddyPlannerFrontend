@@ -72,7 +72,7 @@ export const updateTask = (updatedTask) => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        await dispatch(loadTasks())
+        const wait = await dispatch(loadTasks())
         // if (wait) {
         //     await dispatch(setCurrentTaskById(res.data.id))
         // }
