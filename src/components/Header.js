@@ -227,15 +227,14 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
                         </Nav>
                     </Navbar>
                 </Navbar>
-                <Navbar expand="true" id="backgroundNav">
+                <Navbar expand="true" >
                     <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav inline="true">
-
-                            {false &&
+                            {true &&
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
