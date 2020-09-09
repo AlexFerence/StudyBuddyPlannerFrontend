@@ -60,4 +60,5 @@ export const configureStore = () => createStore(
     persistedReducer,
     composeWithDevTools(
         applyMiddleware(thunk)
-    ));
+    )
+);
