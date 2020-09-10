@@ -173,15 +173,13 @@ export const deleteTask = (taskId) => async (dispatch, getState) => {
     const { token, id } = profile
     try {
         const res = await axios.delete(url + '/api/Tasks/' + taskId, {
-            userId: id
-        }, {
             headers: {
                 'Authorization': 'bearer ' + token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         })
-        dispatch(loadTasks())
+        var x = res + await dispatch(loadTasks())
     } catch (e) {
         console.log(e)
     }
