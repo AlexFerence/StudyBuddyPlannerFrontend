@@ -32,7 +32,7 @@ const FriendActivity = ({ waitingRequests }) => {
                 <div className="plus-container">
                     <IoMdAdd />
 
-                    {waitingRequests && waitingRequests.length > 0 && <div class="badge">{waitingRequests.length}</div>}
+                    {waitingRequests && waitingRequests.length > 0 && <div className="badge">{waitingRequests.length}</div>}
                 </div>
             )
         }

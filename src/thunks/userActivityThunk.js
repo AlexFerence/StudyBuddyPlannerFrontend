@@ -35,6 +35,7 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
     const { profile, subjects, currentTask } = state
     const { id, token } = profile
 
+
     dispatch(runningReduxOff(taskId))
     console.log(currentTask.id)
     try {

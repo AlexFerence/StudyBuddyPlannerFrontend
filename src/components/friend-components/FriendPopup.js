@@ -26,7 +26,7 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
     selectedFriendSubjects }) => {
 
 
-    const removeFriend = async () => {
+    const handleRemoveFriend = async () => {
         dispatch(removeFriend())
     }
 
@@ -56,7 +56,7 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
                             })
                         }
                         <FriendSubjBreakdownChart />
-                        {false && <button className="friend-modal__body__col__remove-friend" onClick={removeFriend}>Unfriend</button>}
+                        {true && <button className="friend-modal__body__col__remove-friend" onClick={handleRemoveFriend}>Unfriend</button>}
                     </div>
                     <div className="friend-modal__body__col">
                         <div className="friend-modal__body__col__list-title">Friends</div>

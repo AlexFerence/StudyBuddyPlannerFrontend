@@ -354,7 +354,7 @@ export const removeFriend = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-        //dispatch(getActiveFriends())
+        dispatch(getActiveFriends())
         //dispatch(closeFriendModal())
 
     } catch (e) {

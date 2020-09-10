@@ -150,10 +150,6 @@ export const markTaskAsDone = (taskId) => async (dispatch, getState) => {
 export const unmarkTaskAsDone = (taskId) => async (dispatch, getState) => {
     const { profile, subjects, currentTask, tasks } = getState()
     const { id, token } = profile
-    console.log('unmarking task')
-    console.log('unmarking task')
-    console.log('unmarking task')
-    console.log('unmarking task')
     try {
         const res = await axios.put(url + '/api/Tasks/' + taskId, {
             ...currentTask,
@@ -168,5 +164,25 @@ export const unmarkTaskAsDone = (taskId) => async (dispatch, getState) => {
         dispatch(loadTasks())
         dispatch(setCurrentTaskById(currentTask.id))
     } catch (e) {
+        console.log(e)
+    }
+}
+
+export const deleteTask = (taskId) => async (dispatch, getState) => {
+    const { profile, currentTask } = getState()
+    const { token, id } = profile
+    try {
+        const res = await axios.delete(url + '/api/Tasks/' + taskId, {
+            userId: id
+        }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        dispatch(loadTasks())
+    } catch (e) {
+        console.log(e)
     }
 }

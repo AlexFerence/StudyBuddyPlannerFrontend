@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getActiveFriends } from '../../thunks/friendThunk'
+import { getActiveFriends, getPendingFriends } from '../../thunks/friendThunk'
 import FriendActiveListItem from './FriendActiveListItem'
 import CustomOverlay from '../CustomOverlay'
 
 const FriendActiveList = ({ dispatch, activeFriends }) => {
     useEffect(() => {
         dispatch(getActiveFriends())
+        dispatch(getPendingFriends())
     }, [])
 
     return (

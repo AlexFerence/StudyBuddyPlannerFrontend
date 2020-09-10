@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
-import { FaEdit, FaCalendarAlt, FaGraduationCap, FaPencilAlt, FaCheckDouble, FaCheck, FaArrowDown } from 'react-icons/fa'
+import { FaEdit, FaCalendarAlt, FaGraduationCap, FaPencilAlt, FaTrashAlt, FaCheck, FaArrowDown } from 'react-icons/fa'
 import { IoMdTime, IoMdCheckmark } from 'react-icons/io'
 import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
@@ -12,8 +12,10 @@ import Stopwatch from './Stopwatch'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
 //import { getTask } from '../thunks/taskThunk';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { markTaskAsDone, unmarkTaskAsDone } from '../thunks/taskThunk'
+import { markTaskAsDone, unmarkTaskAsDone, deleteTask } from '../thunks/taskThunk'
 import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
+import swal from 'sweetalert'
+
 
 const hoursToTimeDisplay = (h) => {
     var hours = Math.floor(h)
@@ -48,14 +50,14 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         }
     }
 
-    const getTitle = async (subjId) => {
-        try {
-            var title = await dispatch(getClassName(subjId))
-            return title
-        } catch (e) {
-            console.log(e)
-        }
-    }
+    // const getTitle = async (subjId) => {
+    //     try {
+    //         var title = await dispatch(getClassName(subjId))
+    //         return title
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
 
 
     useEffect(scrollToBottom, [currentTask.taskSessions]);
@@ -71,21 +73,41 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         // })
     }, [])
 
-    //scrolls to bottom
 
+
+    const handleDelete = () => {
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, all data for this task will be lost!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                blankOn()
+                dispatch(deleteTask(currentTask.id))
+            }
+        }).then((idk) => {
+            console.log(idk)
+        }).catch((e) => {
+            console.log(e)
+        })
+
+    }
 
     const handleCompleted = () => {
-        dispatch(markTaskAsDone(currentTask.id))
+        //dispatch(markTaskAsDone(currentTask.id))
         console.log('handle COMPLETED PLEASE')
-        // if (currentTask.idDone === 0) {
-        //     console.log('task is NOT DONE')
-        //     dispatch(markTaskAsDone(currentTask.id))
-        //     blankOn()
-        // }
-        // else {
-        //     console.log('task is DONE')
-        //     dispatch(unmarkTaskAsDone(currentTask.id))
-        // }
+        if (currentTask.idDone === 0) {
+            console.log('task is NOT DONE')
+            dispatch(markTaskAsDone(currentTask.id))
+            blankOn()
+        }
+        else {
+            console.log('task is DONE')
+            dispatch(unmarkTaskAsDone(currentTask.id))
+        }
 
     }
 
@@ -162,13 +184,17 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             setSessionsOpen(!sessionsOpen)
                             scrollToBottom()
                         }}>Sessions {!sessionsOpen ? <FaAngleDown /> : <FaAngleUp />}</button>
-                        <button
-                            className="but complete"
-                            onClick={handleCompleted}
-                        ><FaCheck className="green" /> Completed</button>
+                        <div>
+                            <button
+                                className="but complete"
+                                onClick={handleCompleted}
+                            ><FaCheck className="green" /> Completed</button>
+                            <button
+                                onClick={handleDelete}
+                                className="but complete"
+                            ><FaTrashAlt /></button>
+                        </div>
                     </div>
-
-
 
                     {sessionsOpen &&
 
