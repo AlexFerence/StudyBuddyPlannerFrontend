@@ -1,6 +1,5 @@
 import React from 'react';
 import ConfigureApp from './configureApp';
-import { Beforeunload } from 'react-beforeunload';
 import { connect } from 'react-redux'
 import { runningOffThunk } from './thunks/userActivityThunk'
 import './styles/styles.scss'
@@ -11,12 +10,8 @@ ReactGA.initialize(trackingId);
 
 const App = ({ dispatch }) => {
   return (
-    <div >
-      <Beforeunload onBeforeunload={() => {
-        dispatch(runningOffThunk())
-      }}>
-        <ConfigureApp />
-      </Beforeunload>
+    <div>
+      <ConfigureApp />
     </div>
   )
 }
