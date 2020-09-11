@@ -471,7 +471,7 @@ const Dashboard = ({ dispatch, charts, profile,
         <span>Comparative Analytics</span>
         <span className="lock">{false && <FaLock />}</span>
       </div>
-    </div >
+    </div>
   );
 }
 

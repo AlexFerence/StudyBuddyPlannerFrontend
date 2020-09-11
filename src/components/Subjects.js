@@ -17,6 +17,7 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffSubjectTour } from '../thunks/profileThunk'
 import CustomOverlay from '../components/CustomOverlay'
+import swal from 'sweetalert'
 
 
 const TOUR_STEPS = [
@@ -85,9 +86,25 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
     // handle deleting classes
 
     //TODO MAKE NEW WAY TO STOP DELETING DATA
+    const callDelete = (id) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, all data for this subject will be lost!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                actullayCallDelete(id)
+            }
+        }).then((idk) => {
+            console.log(idk)
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
 
-
-    const callDelete = async (id) => {
+    const actullayCallDelete = async (id) => {
         try {
             const res = await axios.delete(url + '/api/subjects/' + id,
                 {

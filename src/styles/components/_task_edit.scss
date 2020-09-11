@@ -1,44 +1,42 @@
 .edit-task {
-    background-color: $white;
-    border-radius: 3px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+ background-color: $white;
+ border-radius: 3px;
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 .edit-task-header {
-    background-color: red;
-    width: 100%;
-    background-color: $brand;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius:  3px 3px 0px 0px;
+ background-color: red;
+ width: 100%;
+ background-color: $brand;
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+ border-radius: 3px 3px 0px 0px;
 }
-.edit-task-header span {
-    margin: auto 10px;
-    font-size: large;
-    font-weight: 900;
-    color: $white;
+.edit-task-header div {
+ //margin: auto 10px;
+ font-size: 26px;
+ color: white;
 }
 
 .edit-task-header button {
-    background-color: transparent;
-    color: white;
-    border: none;
-    padding: 2px 0;
+ background-color: transparent;
+ color: white;
+ border: none;
+ padding: 2px 0;
 }
 .edit-task-header button:focus {
-    outline: none;
-    border: none;
+ outline: none;
+ border: none;
 }
 
 .edit-task-body {
-    padding: 15px;
+ padding: 15px;
 }
 
 .edit-task-body label {
-    width: 100%;
+ width: 100%;
 }
 
 .isComplete {
-    padding: 10px 0px;
+ padding: 10px 0px;
 }
-

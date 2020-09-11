@@ -74,6 +74,10 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 ...profile,
                 ...res.data
             }))
+            swal({
+                icon: 'success',
+                title: 'Profile Updated'
+            })
             dispatch(modifyProfile({ schoolTitle: school.label, facultytitle: faculty.label }))
         } catch (e) {
             console.log(e)

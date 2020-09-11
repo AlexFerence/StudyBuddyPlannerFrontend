@@ -132,7 +132,7 @@ export const declineRequest = (otherID) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/Friends/declineRequest', otherID,
+        const res = await axios.delete(url + '/api/Friends/' + otherID,
             {
                 headers: {
                     'Authorization': 'bearer ' + token,
