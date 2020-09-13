@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
+import { ANCHOR_RIGHT } from 'react-dates/constants'
+
 //
 
 
@@ -74,7 +76,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                     <div className="timeLabel">Hrs</div>
                 </Col>
             </Row>
-            <Row className="d-flex align-items-center">
+            <Row className="d-flex align-items-center" style={{ zIndex: '200' }}>
                 <div className="timeLabel">Day</div>
                 <SingleDatePicker
                     date={selectedDate} // momentPropTypes.momentObj or null
@@ -88,6 +90,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                     numberOfMonths={1}
                     hideKeyboardShortcutsPanel={true}
                     isOutsideRange={day => (moment().diff(day) < 0)}
+                    anchorDirection={ANCHOR_RIGHT}
                 />
             </Row>
 

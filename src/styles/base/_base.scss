@@ -179,3 +179,15 @@ ul {
 .noHover:hover {
  border: 1px solid grey;
 }
+
+// set z-index higher than .tether-element
+// .DateRangePicker__picker,
+// .SingleDatePicker__picker {
+//  z-index: 2000;
+//  pointer-events: all;
+// }
+// // make .tether-element non-reactive
+// .tether-element {
+//  z-index: 1999;
+//  pointer-events: none;
+// }
