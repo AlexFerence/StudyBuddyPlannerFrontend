@@ -14,8 +14,8 @@ import {
     loadPersonalStats
 } from '../thunks/chartThunk'
 import { Link } from 'react-router-dom'
-
-import Sound1 from '../assets/sound1.mp3'
+import * as workerTimers from 'worker-timers';
+import Sound1 from '../assets/sound2.mp3'
 
 const audio = new Audio(Sound1)
 
@@ -225,8 +225,8 @@ function useInterval(callback, delay) {
             savedCallback.current();
         }
         if (delay !== null) {
-            let id = setInterval(tick, delay);
-            return () => clearInterval(id);
+            let id = workerTimers.setInterval(tick, delay);
+            return () => workerTimers.clearInterval(id);
         }
     }, [delay]);
 }

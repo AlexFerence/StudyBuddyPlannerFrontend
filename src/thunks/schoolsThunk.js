@@ -20,7 +20,7 @@ export const loadSchools = () => async (dispatch, getState) => {
         var formattedSchools = []
 
         res.data.forEach((school) => {
-            formattedSchools.push({ value: school.id, label: school.name })
+            formattedSchools.push({ value: school.id, label: school.name, numberOfStudents: school.numberOfStudents })
             //console.log(school)
         })
 

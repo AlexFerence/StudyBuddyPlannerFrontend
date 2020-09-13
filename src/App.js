@@ -5,10 +5,14 @@ import { runningOffThunk } from './thunks/userActivityThunk'
 import './styles/styles.scss'
 import ReactGA from 'react-ga';
 
-const trackingId = "UA-177528109-1";
-ReactGA.initialize(trackingId);
+//const trackingId = 'UA-177528109-1';
+
 
 const App = ({ dispatch }) => {
+
+  // ReactGA.initialize('UA-177528109-1');
+  // ReactGA.pageview('/homepage');
+
   return (
     <div>
       <ConfigureApp />

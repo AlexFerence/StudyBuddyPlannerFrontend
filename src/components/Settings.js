@@ -9,6 +9,9 @@ import { contactUsRequest } from '../thunks/settingsThunk'
 import swal from 'sweetalert'
 import { FaEdit } from 'react-icons/fa'
 import PaymentForm from './payment/PaymentModal'
+import OverviewBar from './landing-charts/OverviewBar'
+import OverviewTable from './landing-charts/UniversitiesTable'
+
 
 
 const style = {
@@ -163,7 +166,16 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             <button id="butFull" className="but" onClick={logOutCalled}
                 style={{ marginBottom: "30px" }}
             >Log Out</button>
+            {(emailProp === 'akaufman2000@gmail.com' || emailProp === 'alexference23@gmail.com') &&
+                <div>
+                    <OverviewBar />
+                    <OverviewTable />
+                </div>
+
+            }
         </div>
+
+
     )
 }
 
