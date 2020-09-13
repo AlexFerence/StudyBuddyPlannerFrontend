@@ -14,6 +14,7 @@ import {
     loadYearBeakdown, loadFacultyStats, loadAverageOfWeekDay
 } from '../thunks/chartThunk'
 import { refreshAllCharts } from '../thunks/chartThunk'
+import * as workerTimers from 'worker-timers';
 
 const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
     const [count, setCount] = useState(0);
@@ -184,8 +185,8 @@ function useInterval(callback, delay) {
             savedCallback.current();
         }
         if (delay !== null) {
-            let id = setInterval(tick, delay);
-            return () => clearInterval(id);
+            let id = workerTimers.setInterval(tick, delay);
+            return () => workerTimers.clearInterval(id);
         }
     }, [delay]);
 }
