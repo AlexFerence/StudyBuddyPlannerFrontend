@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { FaTachometerAlt, FaCheckSquare, FaList, FaCog, FaUsers } from 'react-icons/fa'
+import { FaCheckSquare, FaList, FaCog, FaUsers } from 'react-icons/fa'
 import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
-import JoyRide from 'react-joyride';
-import { useBeforeunload } from 'react-beforeunload';
 import icon from '../assets/whiteSB.png'
+import moment from 'moment'
+import { logout } from '../actions/profileActions'
 
 const TOUR_STEPS = [
     {
@@ -25,15 +25,16 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = ({ isRunning, width, profile, history, isAuth }) => {
+const Header = ({ isRunning, width, profile, history, isAuth, dispatch }) => {
 
     useEffect(() => {
-        //console.log(width)
-        if (width < 1000) {
-            console.log('should be expanded')
+        if (moment().isAfter(moment(profile.tokenExpiry))) {
+            dispatch(logout())
+            history.push('/')
+
         }
 
-    }, [width])
+    }, [])
 
     const renderTooltipDash = (props, display) => {
         return (
@@ -43,13 +44,6 @@ const Header = ({ isRunning, width, profile, history, isAuth }) => {
         );
     }
 
-    // const renderTooltipCompare = (props, display) => {
-    //     return (
-    //         <Tooltip id="button-tooltip" {...props}>
-    //             Compare
-    //         </Tooltip>
-    //     );
-    // }
     const renderTooltipSet = (props, display) => {
         return (
             <Tooltip id="button-tooltip" {...props}>

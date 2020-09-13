@@ -7,7 +7,8 @@ const OverviewBar = ({ dispatch }) => {
     var data = []
 
     const loadAdminData = async () => {
-        await loadAdminStats()
+        var x = await dispatch(loadAdminStats())
+        console.log(x)
     }
 
     useEffect(() => {

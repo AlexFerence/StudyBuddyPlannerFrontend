@@ -10,8 +10,11 @@ import { Row, Col } from 'react-bootstrap'
 import { loadTasks } from '../thunks/taskThunk'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
-import { turnOffTaskTour } from '../thunks/profileThunk'
+import { turnOffTaskTour, refreshUser } from '../thunks/profileThunk'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
+import { logout } from '../actions/profileActions'
+import { useHistory } from 'react-router-dom'
 
 
 const TOUR_STEPS = [
@@ -54,12 +57,16 @@ const TOUR_STEPS = [
 ];
 
 
-const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, tasks }) => {
+const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) => {
     const [displayType, setDisplayType] = useState('')
+
+
 
     var [steps, setSteps] = useState(TOUR_STEPS)
     var [stepIndex, setStepIndex] = useState(0)
     var [run, setRun] = useState(true);
+
+    const history = useHistory()
 
     const nothingOn = () => {
         setDisplayType('')
@@ -84,6 +91,22 @@ const TasksPage = ({ subjects, currentTask, dispatch, history, profile, width, t
     useEffect(() => {
         dispatch(loadTasks())
         //dispatch(setCurrentTaskById(currentTask.id))
+
+        dispatch(refreshUser()).then(() => {
+            if (moment().isAfter(moment(profile.tokenExpiry))) {
+                dispatch(logout())
+                history.push('/')
+            }
+        })
+
+        console.log(moment())
+        console.log(moment(profile.tokenExpiry))
+        if (moment().isAfter(moment(profile.tokenExpiry))) {
+            console.log('SHOULD LOG OUT')
+            dispatch(logout())
+            history.push('/')
+
+        }
     }, [])
 
     const handleJoyrideCallback = data => {

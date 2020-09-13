@@ -1,17 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ConfigureApp from './configureApp';
 import { connect } from 'react-redux'
-import { runningOffThunk } from './thunks/userActivityThunk'
+import { logout } from './actions/profileActions'
+import moment from 'moment'
 import './styles/styles.scss'
-import ReactGA from 'react-ga';
 
-//const trackingId = 'UA-177528109-1';
-
-
-const App = ({ dispatch }) => {
-
-  // ReactGA.initialize('UA-177528109-1');
-  // ReactGA.pageview('/homepage');
+const App = () => {
 
   return (
     <div>
@@ -21,5 +15,3 @@ const App = ({ dispatch }) => {
 }
 
 export default connect()(App)
-
-

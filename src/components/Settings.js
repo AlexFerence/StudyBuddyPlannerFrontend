@@ -11,6 +11,10 @@ import { FaEdit } from 'react-icons/fa'
 import PaymentForm from './payment/PaymentModal'
 import OverviewBar from './landing-charts/OverviewBar'
 import OverviewTable from './landing-charts/UniversitiesTable'
+import moment from 'moment'
+import { refreshUser } from '../thunks/profileThunk'
+import { Redirect } from 'react-router-dom'
+
 
 
 
@@ -40,14 +44,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
     const logOutCalled = () => {
         dispatch(logout())
-        history.push("/")
     }
-
-    useEffect(() => {
-        //dispatch(loadSchools())
-        //dispatch(loadFaculties())
-
-    }, [])
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -59,6 +56,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     firstName: fname,
                     lastName: lname,
                     email: email,
+                    password,
                     schoolId: school.id,
                     faculty: faculty.id
                 }, {
@@ -98,6 +96,11 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
     }
 
+    if (!profile.isAuth) {
+        return (
+            <Redirect to="/" />
+        )
+    }
 
     return (
         <div className="settings" style={(width < 1000) ? {
@@ -137,6 +140,14 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
+                <label className="inpLabel">Password</label>
+                <input
+                    className="inp"
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                ></input>
 
                 <button style={{ marginLeft: '0px' }} className="but">Update</button>
             </form>
@@ -165,10 +176,10 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             <button id="butFull" className="but" onClick={logOutCalled}
                 style={{ marginBottom: "30px" }}
             >Log Out</button>
-            {(emailProp === 'akaufman2000@gmail.com' || emailProp === 'alexference23@gmail.com') &&
+            {(profile.email === 'akaufman2000@gmail.com' || profile.email === 'alexference23@gmail.com') &&
                 <div>
                     <OverviewBar />
-                    <OverviewTable />
+
                 </div>
             }
         </div>
@@ -194,8 +205,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Settings)
-
-
-// <div style={{ width: '100%', height: '300px' }}>
-//                 <PaymentForm />
-//             </div>

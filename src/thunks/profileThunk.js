@@ -17,7 +17,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
             dispatch(setProfile({
                 //TODO check what fields come back from res.data.email
                 email,
-                password: "",
+                password,
                 id: res.data.id,
                 firstName: res.data.firstName,
                 lastName: res.data.lastName,
@@ -58,7 +58,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
             if (res.status === 200) {
                 dispatch(setProfile({
                     email,
-                    password: "",
+                    password,
                     id: res.data.id,
                     firstName: res.data.firstName,
                     lastName: res.data.lastName,

@@ -18,7 +18,7 @@ import { modifyProfile } from '../actions/profileActions'
 import { turnOffSubjectTour } from '../thunks/profileThunk'
 import CustomOverlay from '../components/CustomOverlay'
 import swal from 'sweetalert'
-
+import { useHistory } from 'react-router-dom'
 
 const TOUR_STEPS = [
     {
@@ -41,7 +41,7 @@ const TOUR_STEPS = [
 ];
 
 
-const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, charts, tasks }) => {
+const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, tasks }) => {
     var [openModal, setOpenModal] = useState(false)
     //var [classes, setClasses] = useState([])
     var [classSelection, setClassSelection] = useState({})
@@ -54,7 +54,8 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
 
     useEffect(() => {
         console.log(width)
-    }, [width])
+
+    }, [])
 
 
     useEffect(() => {
@@ -128,6 +129,8 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
         setOpenModal(false)
     }
 
+    const history = useHistory()
+
     const submitEdits = async (e) => {
         e.preventDefault()
         dispatch(editSubjectThunk({
@@ -151,6 +154,8 @@ const SubjectsPage = ({ token, id, profile, dispatch, history, width, subjects, 
         else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             // Need to set our running state to false, so we can restart if we click start again.
             setRun(false)
+
+
 
             history.push("/tasks")
             //turn off tour locally

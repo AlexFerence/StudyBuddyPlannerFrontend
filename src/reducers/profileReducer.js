@@ -8,6 +8,7 @@ const profileReducerDefaultState = {
     lastName: '',
     id: 0,
     isAuth: false,
+    tokenExpiry: '',
     userBilling: {
         stripeStatus: "",
         id: 0,

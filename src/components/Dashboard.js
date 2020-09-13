@@ -22,6 +22,7 @@ import { realoadClassesThunk } from '../thunks/subjectThunk'
 import { refreshUser, turnOffDashboardTour } from '../thunks/profileThunk'
 import Overlay from '../components/Overlay'
 import { setCurrentTask } from '../actions/currentTaskActions'
+import { logout } from '../actions/profileActions'
 
 const TOUR_STEPS = [
   {
@@ -99,6 +100,11 @@ const Dashboard = ({ dispatch, charts, profile,
   // (stripeStatus === 'active')
 
   useEffect(() => {
+    dispatch(refreshUser()).then(() => {
+    }).catch((e) => {
+      console.log(e)
+    })
+
     if (isPremium) {
       dispatch(loadPersonalStats())
       dispatch(loadAverageOfWeekDay())
@@ -109,6 +115,7 @@ const Dashboard = ({ dispatch, charts, profile,
       dispatch(loadSubjectBreakdown())
       dispatch(loadTaskHoursPerWeek())
     }
+
 
     dispatch(loadHoursWeek())
 
