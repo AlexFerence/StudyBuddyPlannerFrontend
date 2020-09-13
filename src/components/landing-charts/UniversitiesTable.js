@@ -16,8 +16,7 @@ const UniversitiesTable = ({ schools = [], dispatch }) => {
                 </tr>
             </thead>
             <tbody>
-                {schools.forEach((school) => {
-                    console.log(school.numberOfStudents)
+                {schools?.forEach((school) => {
                     if (school.numberOfStudents > 0) {
                         return (
                             <tr>
@@ -26,8 +25,8 @@ const UniversitiesTable = ({ schools = [], dispatch }) => {
                             </tr>
                         )
                     }
-                })}
-
+                })
+                }
             </tbody>
         </table>
     )

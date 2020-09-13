@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { loadAdminStats } from '../../thunks/adminStatsThunk'
+import { connect } from 'react-redux'
 
-const OverviewBar = () => {
+const OverviewBar = ({ dispatch }) => {
+
+    var data = []
+
+    const loadAdminData = async () => {
+        await loadAdminStats()
+    }
+
+    useEffect(() => {
+        loadAdminData()
+        //load the data here
+    }, [])
+
     return (
         <div className="overview-bar">
             <div className="overview-bar__item">
@@ -19,4 +33,4 @@ const OverviewBar = () => {
     )
 }
 
-export default OverviewBar
+export default connect()(OverviewBar)
