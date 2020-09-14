@@ -10,9 +10,10 @@ export const loadSchools = () => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/Schools/list',
+        const res = await axios.post(url + '/api/schools/list',
             {
                 headers: {
+                    'Authorization': 'bearer ' + token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
@@ -59,6 +60,7 @@ export const loadFaculties = () => async (dispatch, getState) => {
         const res = await axios.post(url + '/api/Faculties/list',
             {
                 headers: {
+                    'Authorization': '',
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
@@ -88,13 +90,13 @@ export const loadAdminStats = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    console.log('setting faculties')
+    console.log('setting admin stats')
     try {
         console.log(token)
         const res = await axios.post(url + '/api/admincharts/listadminstats',
             {
                 headers: {
-                    'Authorization': 'bearer ' + token,
+                    'Authorization': '',
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }

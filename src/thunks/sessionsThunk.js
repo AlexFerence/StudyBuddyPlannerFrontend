@@ -38,13 +38,34 @@ export const getSessionsThunk = (taskId, setCurrentTask) => async (dispatch, get
     const { id, token } = profile
     try {
         const res = await axios.get(url + '/api/Tasks/' + taskId,
-        {
-            headers: {
-                'Authorization': 'bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }   
-        })
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        console.log(res.data)
+        return res.data
+        //setCurrentTask(res.data)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const deleteSessionThunk = (sessionId) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.delete(url + '/api/TaskSessions/' + sessionId,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
         console.log(res.data)
         return res.data
         //setCurrentTask(res.data)

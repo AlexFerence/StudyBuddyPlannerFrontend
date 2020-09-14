@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { loadSchools } from '../../thunks/schoolsThunk'
+import { loadSchools, loadAdminStats } from '../../thunks/schoolsThunk'
 
 const UniversitiesTable = ({ schools = [], dispatch }) => {
     useEffect(() => {
         dispatch(loadSchools())
+        console.log('loading admin stats')
+        dispatch(loadAdminStats())
     }, [])
 
     return (

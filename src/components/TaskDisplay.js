@@ -12,9 +12,11 @@ import Stopwatch from './Stopwatch'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
 //import { getTask } from '../thunks/taskThunk';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { markTaskAsDone, unmarkTaskAsDone, deleteTask } from '../thunks/taskThunk'
+import { markTaskAsDone, unmarkTaskAsDone, deleteTask, setCurrentTaskById } from '../thunks/taskThunk'
 import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
 import swal from 'sweetalert'
+import { getSessionsThunk, deleteSessionThunk } from '../thunks/sessionsThunk'
+
 
 
 const hoursToTimeDisplay = (h) => {
@@ -50,30 +52,8 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         }
     }
 
-    // const getTitle = async (subjId) => {
-    //     try {
-    //         var title = await dispatch(getClassName(subjId))
-    //         return title
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-
 
     useEffect(scrollToBottom, [currentTask.taskSessions]);
-
-    useEffect(() => {
-        console.log(currentTask)
-        // console.log(task.taskSessions)
-        // scrollToBottom()
-        // dispatch(getSessionsThunk(task.id)).then((currentTask) => {
-        //     setCurrentTask(currentTask)
-        // }).catch((e) => {
-        //     console.log(e)
-        // })
-    }, [])
-
-
 
     const handleDelete = () => {
 
@@ -109,6 +89,28 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             dispatch(unmarkTaskAsDone(currentTask.id))
         }
 
+    }
+
+
+    const handleDeleteSession = (sessionId) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, all data for this task will be lost!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                console.log('delete session')
+                dispatch(deleteSessionThunk(sessionId))
+
+                //call delete session here
+            }
+        }).then(() => {
+            console.log('new task should be set')
+        }).catch((e) => {
+            console.log(e)
+        })
     }
 
     const returnParsedMoment = (date) => {
@@ -207,6 +209,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                     <tr>
                                         <th style={{ backgroundColor: currentTask.color }}>Minutes</th>
                                         <th style={{ backgroundColor: currentTask.color }}>Date</th>
+                                        <th style={{ backgroundColor: currentTask.color, width: '20px' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -217,7 +220,11 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                             return (
                                                 <tr key={session.id}>
                                                     <td>{hoursToTimeDisplay(session.minutes / 60)}</td>
-                                                    <td>{moment(session.dateCompleted).format("MMM D")}</td>
+                                                    <td >{moment(session.dateCompleted).format("MMM D")}</td>
+                                                    <td style={{ width: '20px' }} onClick={() => handleDeleteSession(session.id)}>
+
+                                                        <FaTrashAlt className="trash-session" />
+                                                    </td>
                                                 </tr>
                                             )
                                         })

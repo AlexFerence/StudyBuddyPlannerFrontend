@@ -1,69 +1,69 @@
 .display-task {
-    background-color: $white;
-    border-radius: 3px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+ background-color: $white;
+ border-radius: 3px;
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 .display-task-header {
-    width: 100%;
-    background-color: $brand;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius:  3px 3px 0px 0px;
+ width: 100%;
+ background-color: $brand;
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
+ border-radius: 3px 3px 0px 0px;
 }
 .display-task-header span {
-    margin: auto 10px;
-    font-size: large;
-    font-weight: 900;
-    color: $white;
+ margin: auto 10px;
+ font-size: large;
+ font-weight: 900;
+ color: $white;
 }
 
 .display-task-header button {
-    background-color: transparent;
-    color: white;
-    border: none;
+ background-color: transparent;
+ color: white;
+ border: none;
 }
 
 .display-task-header button:focus {
-    outline: none;
+ outline: none;
 }
 
 .display-task-body {
-    padding: 10px 15px;
+ padding: 10px 15px;
 }
 
 .display-task-body label {
-    width: 100%;
+ width: 100%;
 }
 
 .display-task-body input {
-    width: 100%;
+ width: 100%;
 }
 
 .display-task-body textarea {
-    width: 100%;
+ width: 100%;
 }
 .timer {
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-    width: 90%;
+ display: flex;
+ justify-content: center;
+ margin: 20px auto;
+ width: 90%;
 }
 
 .multiLine {
-    white-space: pre-wrap;
-    margin-left: 21px;
-    margin-bottom: 10px;
+ white-space: pre-wrap;
+ margin-left: 21px;
+ margin-bottom: 10px;
 }
 
 .calendarIcon {
-    padding: 0px 5px 2px 0px;
-    color: $dark-grey;
+ padding: 0px 5px 2px 0px;
+ color: $dark-grey;
 }
 
 .info {
-    padding: 6px 0px;
-    margin: 5px 0px;
+ padding: 6px 0px;
+ margin: 5px 0px;
 }
 
 // .display-task-body .complete {
@@ -73,63 +73,64 @@
 // }
 
 .sessionsTable {
-    margin: 10px;
-    max-height: 150px;
-    overflow: scroll;
-    border-bottom: 1px solid $grey;
-    
-
+ margin: 10px;
+ max-height: 150px;
+ overflow: scroll;
+ border-bottom: 1px solid $grey;
 }
-
 
 .sessionsTable table {
-    border-collapse: collapse;
-    margin: none;
-    border-bottom: 1px solid red;
-    width: 100%;
-    padding: 10px;
-
-
+ border-collapse: collapse;
+ margin: none;
+ border-bottom: 1px solid red;
+ width: 100%;
+ padding: 10px;
 }
 
-
 .sessionsTable tr {
-    border: 1px solid $grey;
+ border: 1px solid $grey;
 }
 
 .sessionsTable th {
-    position: sticky; 
-    top: 0;
-    color: white;
-    background-color: $grey;
-
+ position: sticky;
+ top: 0;
+ color: white;
+ background-color: $grey;
 }
 
-.sessionsTable td, th {
-    padding: 10px;
+.sessionsTable td,
+th {
+ padding: 10px;
+}
+
+.trash-session {
+ margin-bottom: 4px;
+ color: $grey;
+ font-size: 14px;
+ cursor: pointer;
 }
 
 .bold {
-    margin-left: 10px;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 30px;
+ margin-left: 10px;
+ font-size: 18px;
+ font-weight: 700;
+ margin-top: 30px;
 }
 
 .display-right {
-    text-align: right;
+ text-align: right;
 }
 
 #anchor {
-    /* allow the final child to be selected as an anchor node */
-    overflow-anchor: auto;
+ /* allow the final child to be selected as an anchor node */
+ overflow-anchor: auto;
 
-    /* anchor nodes are required to have non-zero area */
-    height: 1px;
+ /* anchor nodes are required to have non-zero area */
+ height: 1px;
 }
 
 .taskSessionsBar {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
+ margin-top: 15px;
+ display: flex;
+ justify-content: space-between;
 }

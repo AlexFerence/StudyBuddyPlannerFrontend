@@ -21,6 +21,8 @@ import { refreshUser, turnOffDashboardTour } from '../thunks/profileThunk'
 import Overlay from '../components/Overlay'
 import { setCurrentTask } from '../actions/currentTaskActions'
 import { logout } from '../actions/profileActions'
+import { getActiveFriends, getPendingFriends } from '../thunks/friendThunk'
+
 
 const TOUR_STEPS = [
   {
@@ -114,6 +116,8 @@ const Dashboard = ({ dispatch, charts, profile,
       dispatch(loadTaskHoursPerWeek())
     }
 
+    dispatch(getActiveFriends())
+    dispatch(getPendingFriends())
 
     dispatch(loadHoursWeek())
 

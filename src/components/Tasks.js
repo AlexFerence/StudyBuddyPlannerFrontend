@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { logout } from '../actions/profileActions'
 import { useHistory } from 'react-router-dom'
+import { getActiveFriends, getPendingFriends } from '../thunks/friendThunk'
+
 
 
 const TOUR_STEPS = [
@@ -98,6 +100,9 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                 history.push('/')
             }
         })
+
+        dispatch(getActiveFriends())
+        dispatch(getPendingFriends())
 
         console.log(moment())
         console.log(moment(profile.tokenExpiry))
