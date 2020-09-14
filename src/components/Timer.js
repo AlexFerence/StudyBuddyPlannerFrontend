@@ -31,7 +31,10 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
 
         return () => {
             setIsRunning(false)
-            //dispatch(runningOffThunk(currentTask.id))
+            if (currentTask.id) {
+                dispatch(runningOffThunk(currentTask.id))
+            }
+
         }
     }, [])
 
