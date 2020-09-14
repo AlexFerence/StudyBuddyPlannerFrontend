@@ -10,7 +10,7 @@ const UniversitiesTable = ({ schools = [], dispatch }) => {
     }, [])
 
     return (
-        <table>
+        <table className="admin-uni-table">
             <thead>
                 <tr className="uni-table">
                     <th>Name</th>
@@ -18,16 +18,18 @@ const UniversitiesTable = ({ schools = [], dispatch }) => {
                 </tr>
             </thead>
             <tbody>
-                {schools?.forEach((school) => {
-                    if (school.numberOfStudents > 0) {
-                        return (
-                            <tr>
-                                <td>{school.label}</td>
-                                <td>{school.numberOfStudents}</td>
-                            </tr>
-                        )
-                    }
-                })
+                {
+                    schools?.map((school) => {
+                        if (school.numberOfStudents > 0) {
+
+                            return (
+                                <tr key={school.id}>
+                                    <td>{school.label}</td>
+                                    <td>{school.numberOfStudents}</td>
+                                </tr>
+                            )
+                        }
+                    })
                 }
             </tbody>
         </table>
