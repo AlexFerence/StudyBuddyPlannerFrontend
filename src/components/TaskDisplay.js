@@ -142,8 +142,11 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             <span className="calendarIcon"><IoMdTime /></span>  Total: {currentTask.totalTime.substring(0, currentTask.totalTime.length - 3) || 0}
                         </div>
                         <div className="d-flex align-items-end info">
+                            <span className="calendarIcon"><IoMdTime /></span>   Task type: {currentTask?.taskType}
+                        </div>
+                        <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaPencilAlt /></span>  Notes:
-                    </div>
+                        </div>
                         <div>
                             <div className="multiLine">{currentTask.description}</div>
                         </div>

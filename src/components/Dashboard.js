@@ -3,9 +3,7 @@ import ReactEcharts from 'echarts-for-react'
 import { Row, Col, Accordion } from 'react-bootstrap'
 import {
   loadChartsThunk, loadSubjectBreakdown,
-  loadHoursWeek, loadYearBeakdown,
-  loadFacultyStats,
-  loadMarksScatter,
+  loadHoursWeek,
   loadTaskHoursPerWeek,
   loadPersonalStats,
   loadAverageOfWeekDay

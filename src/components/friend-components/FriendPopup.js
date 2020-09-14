@@ -45,14 +45,13 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
                     <button className="icon" onClick={closeModal}><IoMdClose /></button>
                 </div>
                 <div className="friend-modal__body">
-                    <div className="friend-modal__body__col">
+                    <div className="friend-modal__body__col friend-modal__body__col__freinds">
                         <div className="friend-modal__body__col__list-title">Classes</div>
                         {
                             selectedFriendSubjects.length > 0 &&
                             selectedFriendSubjects.map((subject) => {
                                 idCount = idCount + 1
                                 return <FriendModalSubjectListItem key={idCount} subject={subject} />
-
                             })
                         }
                         <FriendSubjBreakdownChart />

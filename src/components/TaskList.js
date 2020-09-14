@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { FaCheck } from 'react-icons/fa'
 import swal from 'sweetalert'
-import { pausedReduxOn, pausedReduxOff, runningReduxOff, setCount } from '../actions/isRunningActions'
-import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { setCurrentTask } from '../actions/currentTaskActions'
 import Select from 'react-select';
 import { loadTasks } from '../thunks/taskThunk'
@@ -27,9 +24,9 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
     }
 
     useEffect(() => {
-        dispatch(runningOffThunk())
-        dispatch(pausedReduxOff())
-        //setFilterByCompleted(false)
+        // On every page load refresh Active users
+
+
     }, [])
 
     useEffect(() => {

@@ -17,7 +17,8 @@ const FriendSubjBreakdownChart = ({
                         },
                         tooltip: {
                             trigger: 'item',
-                            formatter: '{b}: {d}%'
+                            formatter: '{b}: {d}%',
+                            confine: true
                         },
                         height: 150,
                         series: [
@@ -39,6 +40,7 @@ const FriendSubjBreakdownChart = ({
                                 selectedMode: 'single',
                                 data: selectedFriendSubjectsBreakdown,
                                 color: selectedFriendSubjectsBreakdownColors,
+
                                 emphasis: {
                                     itemStyle: {
                                         shadowBlur: 10,
@@ -51,7 +53,7 @@ const FriendSubjBreakdownChart = ({
                     }}
                 />
             }
-        </div >
+        </div>
     )
 }
 

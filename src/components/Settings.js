@@ -9,10 +9,8 @@ import { contactUsRequest } from '../thunks/settingsThunk'
 import swal from 'sweetalert'
 import { FaEdit } from 'react-icons/fa'
 import PaymentForm from './payment/PaymentModal'
-import OverviewBar from './landing-charts/OverviewBar'
-import OverviewTable from './landing-charts/UniversitiesTable'
-import moment from 'moment'
-import { refreshUser } from '../thunks/profileThunk'
+import OverviewBar from './admin-components/OverviewBar'
+import UniversitiesTable from './admin-components/UniversitiesTable'
 import { Redirect } from 'react-router-dom'
 
 
@@ -178,13 +176,10 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             >Log Out</button>
             {(profile.email === 'akaufman2000@gmail.com' || profile.email === 'alexference23@gmail.com') &&
                 <div>
-                    <OverviewBar />
-
+                    <UniversitiesTable />
                 </div>
             }
         </div>
-
-
     )
 }
 
