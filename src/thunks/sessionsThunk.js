@@ -2,6 +2,7 @@ import axios from 'axios'
 import url from '../environment/url'
 import moment from 'moment'
 import TaskDisplay from '../components/TaskDisplay'
+import { loadTasks, setCurrentTaskById } from './taskThunk'
 
 export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dispatch, getState) => {
     const state = getState()
@@ -25,7 +26,7 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
             }
         })
         console.log('getting sessions')
-        dispatch(getSessionsThunk(taskId))
+        dispatch(loadTasks())
     } catch (e) {
         console.log(e)
     }
@@ -55,7 +56,7 @@ export const getSessionsThunk = (taskId, setCurrentTask) => async (dispatch, get
 
 export const deleteSessionThunk = (sessionId) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects } = state
+    const { profile, subjects, currentTask } = state
     const { id, token } = profile
     try {
         const res = await axios.delete(url + '/api/TaskSessions/' + sessionId,
@@ -67,8 +68,15 @@ export const deleteSessionThunk = (sessionId) => async (dispatch, getState) => {
                 }
             })
         console.log(res.data)
-        return res.data
+        dispatch(loadTasks()).then(() => {
+            setCurrentTaskById(currentTask.id)
+        })
+
+        var x = await dispatch(loadTasks())
+        var y = x + dispatch(setCurrentTaskById(currentTask.id))
+        //setCurrentTaskById(currentTask.id)
         //setCurrentTask(res.data)
+        console.log(y)
     } catch (e) {
         console.log(e)
     }

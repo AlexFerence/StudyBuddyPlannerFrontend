@@ -12,7 +12,7 @@ import Stopwatch from './Stopwatch'
 import { getClassColor, getClassName } from '../thunks/subjectThunk'
 //import { getTask } from '../thunks/taskThunk';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { markTaskAsDone, unmarkTaskAsDone, deleteTask, setCurrentTaskById } from '../thunks/taskThunk'
+import { markTaskAsDone, unmarkTaskAsDone, deleteTask, setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
 import swal from 'sweetalert'
 import { getSessionsThunk, deleteSessionThunk } from '../thunks/sessionsThunk'
@@ -104,10 +104,11 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 console.log('delete session')
                 dispatch(deleteSessionThunk(sessionId))
 
+
                 //call delete session here
             }
         }).then(() => {
-            console.log('new task should be set')
+            dispatch(loadTasks())
         }).catch((e) => {
             console.log(e)
         })
