@@ -77,18 +77,27 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
     }
 
     const handleCompleted = () => {
-        //dispatch(markTaskAsDone(currentTask.id))
-        console.log('handle COMPLETED PLEASE')
-        if (currentTask.isDone === 0) {
-            console.log('task is NOT DONE')
-            dispatch(markTaskAsDone(currentTask.id))
-            blankOn()
+        if (currentTask.totalTime === "00:00:00") {
+            swal({
+                title: "Are you sure?",
+                text: "Task can't be completed without a sudy session (0 mins spent)",
+                icon: "warning",
+                button: true,
+                dangerMode: true,
+            })
         }
         else {
-            console.log('task is DONE')
-            dispatch(unmarkTaskAsDone(currentTask.id))
+            console.log('handle COMPLETED PLEASE')
+            if (currentTask.isDone === 0) {
+                console.log('task is NOT DONE')
+                dispatch(markTaskAsDone(currentTask.id))
+                blankOn()
+            }
+            else {
+                console.log('task is DONE')
+                dispatch(unmarkTaskAsDone(currentTask.id))
+            }
         }
-
     }
 
 
