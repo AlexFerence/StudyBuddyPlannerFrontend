@@ -9,6 +9,8 @@ import swal from 'sweetalert'
 import icon from '../assets/whiteSB.png'
 import moment from 'moment'
 import { logout } from '../actions/profileActions'
+import { useBeforeunload } from 'react-beforeunload';
+import { runningOffThunk } from '../thunks/userActivityThunk'
 
 const TOUR_STEPS = [
     {
@@ -25,7 +27,17 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = ({ isRunning, width, profile, history, isAuth, dispatch }) => {
+const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentTask = { id: 0 } }) => {
+
+
+    useBeforeunload((event) => {
+        if (isRunning) {
+            event.preventDefault()
+            dispatch(runningOffThunk(currentTask.id))
+        }
+    })
+
+
 
     useEffect(() => {
         if (moment().isAfter(moment(profile.tokenExpiry))) {
@@ -253,7 +265,8 @@ const mapStateToProps = (state) => {
         profile: state.profile,
         isAuth: state.profile.isAuth,
         isRunning: state.running.isRunning,
-        width: state.width
+        width: state.width,
+        currentTask: state.currentTask
     }
 }
 export default connect(mapStateToProps)(Header)

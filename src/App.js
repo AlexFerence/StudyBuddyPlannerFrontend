@@ -5,11 +5,12 @@ import { logout } from './actions/profileActions'
 import moment from 'moment'
 import './styles/styles.scss'
 import { Beforeunload } from 'react-beforeunload';
-import { useBeforeunload } from 'react-beforeunload';
+
 
 const App = () => {
 
-  useBeforeunload(() => "You'll lose your data!");
+
+
   return (
     <div>
       <ConfigureApp />
