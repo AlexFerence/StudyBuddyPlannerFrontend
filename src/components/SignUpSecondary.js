@@ -80,6 +80,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
 
     if (clean === true) {
       await dispatch(updateProfileThunk({
+        ...profile,
         school: school.value,
         faculty: faculty.value,
         year: year.value,
