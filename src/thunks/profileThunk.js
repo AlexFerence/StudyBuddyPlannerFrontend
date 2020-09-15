@@ -41,9 +41,6 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-
-    console.log(password)
-    console.log(password)
     try {
         const signUpres = await axios.post(url + '/api/userprofiles/create',
             {
