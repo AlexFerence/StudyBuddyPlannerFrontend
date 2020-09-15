@@ -18,7 +18,7 @@ const UniversitiesTable = ({ schools = [], dispatch }) => {
                 </tr>
             </thead>
             <tbody>
-                {
+                {schools &&
                     schools?.map((school) => {
                         if (school.numberOfStudents > 0) {
 
