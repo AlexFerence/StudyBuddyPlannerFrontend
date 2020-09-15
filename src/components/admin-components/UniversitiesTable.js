@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { loadSchools, loadAdminStats } from '../../thunks/schoolsThunk'
+import { loadSchools } from '../../thunks/schoolsThunk'
 
 const UniversitiesTable = ({ schools = [], dispatch }) => {
     useEffect(() => {
         dispatch(loadSchools())
-        console.log('loading admin stats')
-        dispatch(loadAdminStats())
     }, [])
+
+    var id = 0
 
     return (
         <table className="admin-uni-table">
@@ -21,9 +21,9 @@ const UniversitiesTable = ({ schools = [], dispatch }) => {
                 {schools &&
                     schools?.map((school) => {
                         if (school.numberOfStudents > 0) {
-
+                            id++
                             return (
-                                <tr key={school.id}>
+                                <tr className="admin-uni-table__tr" key={id}>
                                     <td>{school.label}</td>
                                     <td>{school.numberOfStudents}</td>
                                 </tr>

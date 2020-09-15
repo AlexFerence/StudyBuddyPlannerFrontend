@@ -1,3 +1,12 @@
 .admin-uni-table {
- border: 1px solid black;
+ border: 1px solid $grey;
+ width: 100%;
+}
+
+.admin-uni-table__tr {
+ border: 1px solid $grey;
+}
+
+.admin-uni-table__tr td {
+ padding: 5px;
 }

@@ -14,8 +14,9 @@ export const loadAdminStats = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
+        //console.log(res.data)
+        return res.data
 
-        console.log(res.data)
     } catch (e) {
         return (e)
     }
