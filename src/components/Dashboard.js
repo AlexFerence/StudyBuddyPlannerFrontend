@@ -22,6 +22,7 @@ import Overlay from '../components/Overlay'
 import { setCurrentTask } from '../actions/currentTaskActions'
 import { logout } from '../actions/profileActions'
 import { getActiveFriends, getPendingFriends } from '../thunks/friendThunk'
+import { loadSchools } from '../thunks/schoolsThunk';
 
 
 const TOUR_STEPS = [
@@ -115,6 +116,8 @@ const Dashboard = ({ dispatch, charts, profile,
       dispatch(loadSubjectBreakdown())
       dispatch(loadTaskHoursPerWeek())
     }
+
+    dispatch(loadSchools())
 
     dispatch(getActiveFriends())
     dispatch(getPendingFriends())
