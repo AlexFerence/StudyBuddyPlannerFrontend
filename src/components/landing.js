@@ -60,8 +60,8 @@ const Landing = ({ history, profile, width }) => {
       </div>
       <div className="overlay landingDisplay">
         <div className="center">
-          <div className="promotion">Boost your productivity.</div>
-          <div className="promotion">Stay connected to classmates.</div>
+          <div className="promotion">Studying,</div>
+          <div className="promotion">it's better with friends.</div>
           <div><button id="mainButton"
             className="navButtonSignUp"
             onClick={goToSignUp}>Sign Up</button></div>
