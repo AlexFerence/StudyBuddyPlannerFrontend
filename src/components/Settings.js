@@ -180,12 +180,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             <button id="butFull" className="but" onClick={logOutCalled}
                 style={{ marginBottom: "30px" }}
             >Log Out</button>
-            {(profile.email === 'akaufman2000@gmail.com' || profile.email === 'alexference23@gmail.com') &&
-                <div>
-                    <OverviewBar />
-                    <UniversitiesTable />
-                </div>
-            }
+
         </div>
     )
 }
@@ -207,3 +202,11 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Settings)
+
+// {
+//     (profile.email === 'akaufman2000@gmail.com' || profile.email === 'alexference23@gmail.com') &&
+//     <div>
+//         <OverviewBar />
+//         <UniversitiesTable />
+//     </div>
+// }
