@@ -88,7 +88,8 @@ const Landing = ({ history, profile, width }) => {
                 <div className="textHeader">Get Started</div>
                 <div className="get-started-list-item"><div className="get-started-list-num">1</div> Add Your Subjects</div>
                 <div className="get-started-list-item"><div className="get-started-list-num">2</div>Add Your Tasks</div>
-                <div className="get-started-list-item"><div className="get-started-list-num">3</div>Start the timer and get studying!</div>
+                <div className="get-started-list-item"><div className="get-started-list-num">3</div>Add Your Friends</div>
+                <div className="get-started-list-item"><div className="get-started-list-num">4</div>Start the timer and get studying!</div>
               </div>
             </Col>
             <Col md={6} className="imageCol">
@@ -104,9 +105,8 @@ const Landing = ({ history, profile, width }) => {
             <Col md={6} className="textCol">
               <div className="textInner">
                 <div className="textHeader">Stay Connected</div>
-                <div className="textPara">At StudyBuddy we believe studying
-                is always better with friends, which is why we allow users to view what their friends
-                are studying and let them feel connected even when studying remotely</div>
+                <div className="textPara">Studying is always better with friends. We provide the ability for users to view what their friends
+                are studying, and let them feel connected even when studying remotely.</div>
               </div>
             </Col>
 
@@ -145,9 +145,9 @@ const Landing = ({ history, profile, width }) => {
               <Col md={6} className="textCol">
                 <div className="textInner">
                   <div className="textHeader">Track Your Studying</div>
-                  <div className="textPara">Timers, stopwatches and input fields are all avaliable
-                  for users to tack their studying. SudyBuddy's software then generates visually
-                  stimulating graphs to show the user their progress in a multitude of ways.
+                  <div className="textPara">StudyBuddy provides various methods to easily track your study time. Our team's software then generates visually
+                  relevant and significant graphs to show the user their progress and study habits. These statistics help you break up your time and study more 
+                  efficiently in the future.
                   </div>
                 </div>
               </Col>
@@ -158,15 +158,14 @@ const Landing = ({ history, profile, width }) => {
             <Row style={{ height: '100%' }}>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">" It apeases the part of the brain
-                  that craves checking things off "</div>
+                  <div className="textHeader">" It satisfies the part of the brain
+                  that craves checking things off. "</div>
                   <div className="textPara">- StudyBuddy User</div>
                 </div>
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">" I feel connected to my friends while still staying
-                  productive, I didn't think that was even possible "</div>
+                  <div className="textHeader">" I like the ability to add friends and stay in touch with other students at my university and worldwide. "</div>
                   <div className="textPara">- StudyBuddy User</div>
                 </div>
               </Col>
