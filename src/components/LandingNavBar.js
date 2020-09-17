@@ -25,9 +25,9 @@ const LandingNav = ({ history, width }) => {
                 <Nav className="mr-auto">
                 </Nav>
                 <Nav className="nav-right">
-                    <NavDropdown.Item id="navBut" className="navButton" href="#features">Features</NavDropdown.Item>
-                    <NavDropdown.Item id="navBut" className="navButton" href="#premium">Friends</NavDropdown.Item>
-                    <NavDropdown.Item id="navBut" className="navButton" href="#futureplan">Future</NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton" href="#features">Get Started</NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton" href="#premium">Features</NavDropdown.Item>
+                    <NavDropdown.Item id="navBut" className="navButton" href="#futureplan">Testemonials</NavDropdown.Item>
                     <NavDropdown.Item id="navBut" className="navButton"><Link style={{ paddingRight: '0px', textAlign: 'center', textTransform: 'capitalize', fontSize: '16px' }} to="/login">  Log In</Link></NavDropdown.Item>
                     <NavDropdown.Item
                         style={{ color: 'white', textAlign: 'center' }}

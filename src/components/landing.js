@@ -88,7 +88,7 @@ const Landing = ({ history, profile, width }) => {
                 <div className="textHeader">Get Started</div>
                 <div className="get-started-list-item"><div className="get-started-list-num">1</div> Add Your Subjects</div>
                 <div className="get-started-list-item"><div className="get-started-list-num">2</div>Add Your Tasks</div>
-                <div className="get-started-list-item"><div className="get-started-list-num">3</div>Start the timer and start studying!</div>
+                <div className="get-started-list-item"><div className="get-started-list-num">3</div>Start the timer and get studying!</div>
               </div>
             </Col>
             <Col md={6} className="imageCol">
@@ -164,7 +164,7 @@ const Landing = ({ history, profile, width }) => {
               <Col md={6} className="textCol">
                 <div className="textInner">
                   <div className="textHeader">" I feel connected to my friends while still staying
-                  productive, didn't think that was possible "</div>
+                  productive, I didn't think that was even possible "</div>
                   <div className="textPara">- StudyBuddy User</div>
                 </div>
               </Col>
