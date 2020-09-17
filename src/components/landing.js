@@ -8,6 +8,9 @@ import JoyRide from 'react-joyride';
 import LandingNav from './LandingNavBar'
 import LandingBarChart from './landing-charts/LandingBarChart'
 import LandingLineChart from './landing-charts/LandingLineChart'
+import OverviewBar from './admin-components/OverviewBar'
+
+import SampleFriendItem from './landing-charts/SampleFriendItem'
 
 
 const TOUR_STEPS = [
@@ -58,51 +61,74 @@ const Landing = ({ history, profile, width }) => {
             Your browser does not support the video tag.
             </video>
       </div>
-      <div className="overlay landingDisplay">
-        <div className="center">
+      <div id="special-overlay" className="overlay landingDisplay">
+        <div style={{ height: '80px' }}></div>
+        <div>
           <div className="promotion">Studying,</div>
           <div className="promotion">it's better with friends.</div>
           <div><button id="mainButton"
             className="navButtonSignUp"
             onClick={goToSignUp}>Sign Up</button></div>
         </div>
+        <div className="overview-bar-container">
+          <OverviewBar />
+          <div style={{ height: '35px' }}></div>
+        </div>
       </div>
+
 
       <div className='player-wrapper'>
         <a id="features"></a>
+
         <div className="rowSection">
+          <div style={{ height: '40px' }}></div>
           <Row style={{ height: '100%' }}>
+            <Col md={6} className="textCol">
+              <div className="textInner">
+                <div className="textHeader">Get Started</div>
+                <div className="get-started-list-item"><div className="get-started-list-num">1</div> Add Your Subjects</div>
+                <div className="get-started-list-item"><div className="get-started-list-num">2</div>Add Your Tasks</div>
+                <div className="get-started-list-item"><div className="get-started-list-num">3</div>Start the timer and start studying!</div>
+              </div>
+            </Col>
             <Col md={6} className="imageCol">
               <img src={laptop2} className="imageInner" />
             </Col>
-            <Col md={6} className="textCol">
-              <div className="textInner">
-                <div className="textHeader">Boost Your Productivity</div>
-                <div className="textPara">Study Buddy does more than just manage your tasks. This application allows you to track
-                when you study on all your tasks, and easily log a study session. Moreover, tasks can be tracked using a stopwatch, a timer, or
-                a quick add for your convenience. All of your time spent is tracked and analyzed, so that you can study better and more effectively.
-                </div><div className="textPara">
 
-                </div>
-              </div>
-            </Col>
           </Row>
         </div>
-        <div className="rowSection">
+        <div className="rowSection" id="align-center">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
               <div className="textInner">
-                <div className="textHeader">In-Depth Data Analysis</div>
-                <div className="textPara">Study Buddy offers in depth analysis on all of your studies. We will help you
-                track how you divide your time through the week, across all your subjects, and much more. Not only will we be able to track
-                how you study best, we can also track how you stack up against other students in your subjects, faculty, and school.</div>
+                <div className="textHeader">Stay Connected</div>
+                <div className="textPara">At StudyBuddy we believe studying
+                is always better with friends, which is why we allow users to view what their friends
+                are studying and let them feel connected even when studying remotely</div>
               </div>
             </Col>
+
             <Col md={6} className="imageCol">
               <div className="imageInner">
-                <LandingBarChart />
+                { /* put component here */}
+                <SampleFriendItem
+                  name="Ari Kaufman"
+                  initials="AK"
+                  subj="MATH 133"
+                  taskType="Assignment" />
+                <SampleFriendItem
+                  name="Alex Ference"
+                  initials="AF"
+                  subj="ATOC 185"
+                  active="5"
+                  taskType="Assignment"
+                  bottom={true}
+                />
+
+
               </div>
             </Col>
+
           </Row>
         </div>
         <a id="premium"></a>
@@ -193,3 +219,7 @@ export default connect(mapStateToProps)(Landing)
       //     >Sign Up</button>
       //   </div>
       // </div>
+
+      // Study Buddy offers in depth analysis on all of your studies. We will help you
+      //           track how you divide your time through the week, across all your subjects, and much more. Not only will we be able to track
+      //           how you study best, we can also track how you stack up against other students in your subjects, faculty, and school.</div>

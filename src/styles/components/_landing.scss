@@ -68,7 +68,8 @@
 .landingDisplay {
  height: 100vh;
  display: flex;
- justify-content: center;
+ flex-direction: column;
+ justify-content: space-between;
  align-items: center;
  font-weight: 500;
  font-size: 7.5vh;
@@ -90,7 +91,7 @@
  padding: 10px 15px;
  color: white;
  background-color: $brand;
- font-size : 14px;
+ font-size: 14px;
 }
 
 .navButtonSignUp:focus {
@@ -133,7 +134,7 @@
 
 .rowSection {
  background-color: $dark-grey;
- min-height: 55vh;
+ min-height: 50vh;
 }
 
 .footerSection {
@@ -193,8 +194,13 @@
  left: 0;
  z-index: 1;
  display: flex;
- justify-content: center;
+ flex-direction: column;
+ justify-content: space-between;
  align-items: center;
+}
+
+#special-overlay {
+ justify-content: space-between;
 }
 
 .footer {
@@ -247,4 +253,30 @@
  display: flex;
  justify-content: center;
  color: white;
+}
+
+.get-started-list-item {
+ display: flex;
+ align-items: center;
+ justify-content: start;
+ font-size: 19px;
+}
+
+.get-started-list-num {
+ height: 40px;
+ width: 40px;
+ border-radius: 20px;
+ background-color: white;
+ color: $dark-grey;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 10px;
+ margin-right: 16px;
+ font-weight: 500;
+}
+
+#align-center {
+ align-items: center;
+ display: flex;
 }
