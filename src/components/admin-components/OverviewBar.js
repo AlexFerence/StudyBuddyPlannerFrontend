@@ -33,19 +33,19 @@ const OverviewBar = ({ dispatch }) => {
         <div id="overview-bar">
             <div className="overview-bar__item">
                 <div className="overview-bar__item__num">
-                    <CountUp end={totalUnis} />
+                    <CountUp duration={4} end={totalUnis} />
                 </div>
                 <div className="overview-bar__item__subtext">Different Universities</div>
             </div>
             <div className="overview-bar__item">
                 <div className="overview-bar__item__num">
-                    <CountUp end={tasksCompleted} />
+                    <CountUp duration={4} end={tasksCompleted} />
                 </div>
                 <div className="overview-bar__item__subtext">Tasks Completed</div>
             </div>
             <div className="overview-bar__item">
                 <div className="overview-bar__item__num">
-                    <CountUp end={minutesSpent} /></div>
+                    <CountUp duration={3} end={minutesSpent} /></div>
 
                 <div className="overview-bar__item__subtext">Minutes Studying</div>
             </div>
