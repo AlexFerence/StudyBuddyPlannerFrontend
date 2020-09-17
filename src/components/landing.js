@@ -147,7 +147,7 @@ const Landing = ({ history, profile, width }) => {
                   <div className="textHeader">Track Your Studying</div>
                   <div className="textPara">Timers, stopwatches and input fields are all avaliable
                   for users to tack their studying. SudyBuddy's software then generates visually
-                  stimulating graphs to show the user their progress in a multitude of ways/
+                  stimulating graphs to show the user their progress in a multitude of ways.
                   </div>
                 </div>
               </Col>
