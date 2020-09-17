@@ -142,37 +142,42 @@ const Landing = ({ history, profile, width }) => {
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">Stay Connected With Friends</div>
-                  <div className="textPara">Use Study Buddy to keep in touch with your classmates through this online semester, and stay on track.
-                  With our user activity features, you can study with your friends from your own home. You will be able to see when one of your friends are active
-                  and what they are studying on, to make the at home learning experience more enjoyable.
+                  <div className="textHeader">Track Your Studying</div>
+                  <div className="textPara">Timers, stopwatches and input fields are all avaliable
+                  for users to tack their studying. SudyBuddy's software then generates visually
+                  stimulating graphs to show the user their progress in a multitude of ways/
                   </div>
                 </div>
               </Col>
             </Row>
           </div>
           <a id="futureplan"></a>
-          <div className="rowSection">
+          <div id="align-center" className="rowSection">
             <Row style={{ height: '100%' }}>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">Future Plans</div>
-                  <div className="textPara">Study Buddy is building data to help support students, and their time management.
-                  Over time, we hope to build data that will help students find out how many hours they need to get a certain mark, before they
-                  even begin the course. Over years of consistent data, we can find trends in marks achieved by students for each class given
-                  a certain amount of hours. This, along with much more, is what we hope to bring to you with Study Buddy.
-                </div><div className="textPara">
-
-                  </div>
+                  <div className="textHeader">" It apeases the part of the mind
+                  that craves checking things off "</div>
+                  <div className="textPara">- StudyBuddy User</div>
                 </div>
               </Col>
+              <Col md={6} className="textCol">
+                <div className="textInner">
+                  <div className="textHeader">" I feel connected to my friends while still staying
+                  productive, didn't think that was possible "</div>
+                  <div className="textPara">- StudyBuddy User</div>
+                </div>
+              </Col>
+
               <Col md={6} className="imageCol">
-                <img src={futureplans} style={{ width: '50%' }} />
+                <div style={{ height: '100px' }}></div>
+                <button id="mainButton"
+                  className="navButtonSignUp"
+                  onClick={goToSignUp}>Sign Up</button>
+                { /* <img src={futureplans} style={{ width: '50%' }} /> */}
               </Col>
             </Row>
           </div>
-          <div className=""><div></div></div>
-
 
           <footer className="footerSection">
             <div>
