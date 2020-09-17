@@ -97,6 +97,8 @@ const Landing = ({ history, profile, width }) => {
 
           </Row>
         </div>
+
+        <a id="premium"></a>
         <div className="rowSection" id="align-center">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
@@ -131,7 +133,7 @@ const Landing = ({ history, profile, width }) => {
 
           </Row>
         </div>
-        <a id="premium"></a>
+
         <div className="rowSection">
           <div className="rowSection">
             <Row style={{ height: '100%' }}>
@@ -156,7 +158,7 @@ const Landing = ({ history, profile, width }) => {
             <Row style={{ height: '100%' }}>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">" It apeases the part of the mind
+                  <div className="textHeader">" It apeases the part of the brain
                   that craves checking things off "</div>
                   <div className="textPara">- StudyBuddy User</div>
                 </div>

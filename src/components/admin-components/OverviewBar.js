@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { loadAdminStats } from '../../thunks/adminStatsThunk'
 import { connect } from 'react-redux'
+import CountUp from 'react-countup'
 
 const OverviewBar = ({ dispatch }) => {
 
@@ -31,15 +32,21 @@ const OverviewBar = ({ dispatch }) => {
     return (
         <div id="overview-bar">
             <div className="overview-bar__item">
-                <div className="overview-bar__item__num">{totalUnis}</div>
+                <div className="overview-bar__item__num">
+                    <CountUp end={totalUnis} />
+                </div>
                 <div className="overview-bar__item__subtext">Different Universities</div>
             </div>
             <div className="overview-bar__item">
-                <div className="overview-bar__item__num">{tasksCompleted}</div>
+                <div className="overview-bar__item__num">
+                    <CountUp end={tasksCompleted} />
+                </div>
                 <div className="overview-bar__item__subtext">Tasks Completed</div>
             </div>
             <div className="overview-bar__item">
-                <div className="overview-bar__item__num">{minutesSpent}</div>
+                <div className="overview-bar__item__num">
+                    <CountUp end={minutesSpent} /></div>
+
                 <div className="overview-bar__item__subtext">Minutes Studying</div>
             </div>
         </div>
