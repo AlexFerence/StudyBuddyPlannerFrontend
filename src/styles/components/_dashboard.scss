@@ -109,6 +109,13 @@
  justify-content: center;
 }
 
+.square:hover {
+    transform: scale(1.1);
+    font-weight: 550;
+    color: black;
+    cursor: pointer;
+  }
+
 .squareTitle {
  margin-bottom: 5px;
  color: lighten($color: $dark-grey, $amount: 35);

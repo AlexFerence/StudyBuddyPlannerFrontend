@@ -6,6 +6,11 @@
  border-right: 1px solid lighten($color: $grey, $amount: 20%);
 }
 
+.tasks .main-left:hover {
+    background-color: lighten($color: $dark-grey, $amount: 10);
+    cursor: pointer;
+   }
+
 .tasks .main-right {
  background-color: $light-grey;
  width: 55%;
