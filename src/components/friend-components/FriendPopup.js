@@ -38,14 +38,14 @@ const FriendModal = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
     var idCount = 0;
 
     return (
-        <div>
+        <div style={{ zIndex: 500 }}>
             <div className="friend-modal">
                 <div className="friend-modal__header">
                     <div>{selectedFriend.firstName} {selectedFriend.lastName}</div>
                     <button className="icon" onClick={closeModal}><IoMdClose /></button>
                 </div>
                 <div className="friend-modal__body">
-                    <div className="friend-modal__body__col friend-modal__body__col__freinds">
+                    <div className="friend-modal__body__col__freinds">
                         <div className="friend-modal__body__col__list-title">Classes</div>
                         {
                             selectedFriendSubjects.length > 0 &&

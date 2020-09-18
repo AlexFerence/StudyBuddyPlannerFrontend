@@ -13,7 +13,6 @@ const FriendActiveList = ({ dispatch, activeFriends }) => {
 
     return (
         <div className="friend-active-list-holder">
-            <FriendModal />
 
             {
                 activeFriends.map((friend) => {

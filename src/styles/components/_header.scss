@@ -1,6 +1,7 @@
 .navbar {
  color: $light;
  background-color: $dark;
+ z-index: 10;
 }
 
 .navbar a {
