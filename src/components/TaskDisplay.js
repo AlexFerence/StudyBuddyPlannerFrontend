@@ -80,7 +80,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         if (currentTask.totalTime === "00:00:00") {
             swal({
                 title: "Are you sure?",
-                text: "Task can't be completed without a sudy session (0 mins spent)",
+                text: "Task can't be completed without a study session (0 mins spent).",
                 icon: "warning",
                 button: true,
                 dangerMode: true,
