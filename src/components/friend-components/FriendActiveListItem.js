@@ -22,7 +22,8 @@ const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
     return (
         <div>
             <div className="popup">
-                {
+                { /*  Get rid of false below to show popup again */}
+                {false &&
                     isOpen && selectedFriend.id === friend.id &&
                     <OutsideAlerter>
                         <FriendPopup />

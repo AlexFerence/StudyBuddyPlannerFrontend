@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getActiveFriends, getPendingFriends } from '../../thunks/friendThunk'
 import FriendActiveListItem from './FriendActiveListItem'
 import CustomOverlay from '../CustomOverlay'
+import FriendModal from './FriendModal'
 
 const FriendActiveList = ({ dispatch, activeFriends }) => {
     useEffect(() => {
@@ -12,6 +13,8 @@ const FriendActiveList = ({ dispatch, activeFriends }) => {
 
     return (
         <div className="friend-active-list-holder">
+            <FriendModal />
+
             {
                 activeFriends.map((friend) => {
                     return (

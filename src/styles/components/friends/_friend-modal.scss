@@ -21,12 +21,15 @@ $popup-width: 450px;
 
 .friend-modal__body__col {
  width: 100%;
+ max-height: 360px;
+ overflow: auto;
 }
 
 .friend-modal__body__col__freinds {
  width: 100%;
  max-height: 360px;
- overflow: scroll;
+ overflow: auto;
+ //border: 1px solid red;
 }
 
 .friend-modal__body__col__list-title {
@@ -35,7 +38,7 @@ $popup-width: 450px;
 
 .friend-modal__body__col__list {
  max-height: 600px;
- overflow: scroll;
+ overflow: auto;
 }
 
 .friend-modal-subject-list-item__class-name {
