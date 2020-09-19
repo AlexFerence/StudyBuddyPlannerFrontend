@@ -138,7 +138,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         id="check-hover"
                         onClick={handleCompleted}
                     ><FaCheck className="" /></button>
-
                     <button
                         className="icon"
                         id="edit-hover"
