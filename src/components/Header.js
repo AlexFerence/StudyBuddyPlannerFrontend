@@ -233,7 +233,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                         </Nav>
                     </Navbar>
                 </Navbar>
-                <Navbar expand="true" style={{ zIndex: 5 }} >
+                <Navbar expand="true" style={{ zIndex: 5, backgroundColor: '#F9F9F9' }} >
                     <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
@@ -246,7 +246,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipTask}
                                 >
-                                    <NavLink activeStyle={{ color: 'white' }} style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                    <NavLink activeStyle={{ color: '#33332E' }} style={{ padding: 5, color: '#F9F9F9' }} to="/tasks"><FaCheckSquare />
                                     </NavLink>
                                 </OverlayTrigger>
                             }

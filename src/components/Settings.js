@@ -11,7 +11,9 @@ import { FaEdit } from 'react-icons/fa'
 import PaymentForm from './payment/PaymentModal'
 import OverviewBar from './admin-components/OverviewBar'
 import UniversitiesTable from './admin-components/UniversitiesTable'
+import AllUsersTable from './admin-components/AdminUsersTable'
 import { Redirect } from 'react-router-dom'
+import AdminBar from './admin-components/AdminBar'
 
 
 
@@ -61,7 +63,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     lastName: lname,
                     email: email,
                     password,
-                    schoolId: school.id,
+                    school: school.id,
                     faculty: faculty.id
                 }, {
                 headers: {
@@ -180,6 +182,17 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             <button id="butFull" className="but" onClick={logOutCalled}
                 style={{ marginBottom: "30px" }}
             >Log Out</button>
+            {
+                (emailProp === 'akaufman2000@gmail.com' || emailProp === 'alexference23@gmail.com') &&
+                <div>
+                    <OverviewBar />
+                    <AdminBar />
+                    <UniversitiesTable />
+                    <div style={{ height: '30px' }}></div>
+                    <AllUsersTable />
+                </div >
+            }
+
 
         </div>
     )
