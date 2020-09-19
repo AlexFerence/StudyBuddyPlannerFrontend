@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import swal from 'sweetalert'
-import { setCurrentTask } from '../actions/currentTaskActions'
+import { setCurrentTask } from '../../actions/currentTaskActions'
 import Select from 'react-select';
-import { loadTasks } from '../thunks/taskThunk'
+import { loadTasks } from '../../thunks/taskThunk'
+import TaskListItem from './TaskListItem'
 
 
 const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
-    running, paused, dispatch }) => {
+    running, paused, dispatch, blankOn }) => {
 
     const [filterBy, setFilterBy] = useState({ value: 'Due Date', label: 'Due Date' })
     const [filterByCompleted, setFilterByCompleted] = useState(true)
@@ -129,43 +130,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
             {
                 tasks.map((t) => {
                     return (
-                        <div
-                            style={t.isDone ?
-                                {
-                                    borderLeft: '5px solid ' + getClassColor(t.subjectId),
-                                }
-                                :
-                                { borderLeft: '5px solid' + getClassColor(t.subjectId) }}
-                            className="task-button"
-                            key={t.id}
-                            onClick={() => taskClicked(t)}>
-                            <div className="top-bar">
-                                <div className="subjTitle"
-                                    style={
-                                        t.isDone ? { color: '#BCBCBC' } :
-                                            {}
-                                    }
-                                >{t.title}</div>
-                                <div className="due">
-                                    {
-                                        t.isDone ? returnParsedDone(t.dueDate) :
-                                            returnParsedMoment(t.dueDate)
-                                    }
-                                </div>
-                            </div>
-                            <div className="bottom-bar">
-                                <div className="subjDesc" style={
-                                    t.isDone ? { color: '#BCBCBC' } :
-                                        {}
-                                }>{
-
-                                        getClassName(t.subjectId) + '  ' + t.taskType
-                                    }</div>
-                                <div className="due">
-                                    <input type="checkbox" style={{ height: '15px', width: '15px' }} />
-                                </div>
-                            </div>
-                        </div>
+                        <TaskListItem blankOn={blankOn} task={t} displayOn={displayOn} />
                     )
                 })
             }
@@ -185,3 +150,41 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(TaskList)
+
+// <div
+//                             style={t.isDone ?
+//                                 {
+//                                     borderLeft: '5px solid ' + getClassColor(t.subjectId),
+//                                 }
+//                                 :
+//                                 { borderLeft: '5px solid' + getClassColor(t.subjectId) }}
+//                             className="task-button"
+//                             key={t.id}
+//                             onClick={() => taskClicked(t)}>
+//                             <div className="top-bar">
+//                                 <div className="subjTitle"
+//                                     style={
+//                                         t.isDone ? { color: '#BCBCBC' } :
+//                                             {}
+//                                     }
+//                                 >{t.title}</div>
+//                                 <div className="due">
+//                                     {
+//                                         t.isDone ? returnParsedDone(t.dueDate) :
+//                                             returnParsedMoment(t.dueDate)
+//                                     }
+//                                 </div>
+//                             </div>
+//                             <div className="bottom-bar">
+//                                 <div className="subjDesc" style={
+//                                     t.isDone ? { color: '#BCBCBC' } :
+//                                         {}
+//                                 }>{
+
+//                                         getClassName(t.subjectId) + '  ' + t.taskType
+//                                     }</div>
+//                                 <div className="due">
+//                                     <input type="checkbox" style={{ height: '15px', width: '15px' }} />
+//                                 </div>
+//                             </div>
+//                         </div>

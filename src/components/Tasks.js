@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import TaskList from './TaskList'
+import TaskList from './tasks/TaskList'
 import AddTask from './AddTask'
 import TaskDisplay from './TaskDisplay'
 import TaskEdit from './TaskEdit'
@@ -173,6 +173,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                         displayOn={displayOn}
                         addingOn={addingOn}
                         nothingOn={nothingOn}
+                        blankOn={blankOn}
                     />
                 </Col>
                 <Col xs={12} s={12} md={6} lg={6} className="main-right">

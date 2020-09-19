@@ -7,9 +7,9 @@
 }
 
 .tasks .main-left:hover {
-    background-color: lighten($color: $dark-grey, $amount: 10);
-    cursor: pointer;
-   }
+ background-color: lighten($color: $dark-grey, $amount: 10);
+ cursor: pointer;
+}
 
 .tasks .main-right {
  background-color: $light-grey;
@@ -44,7 +44,7 @@
 
 .tasks .scroller .task-button .subjTitle {
  color: $dark-grey;
- padding-bottom: 8px;
+ padding-bottom: 0px;
  font-size: large;
  //width: 100%;
 }
