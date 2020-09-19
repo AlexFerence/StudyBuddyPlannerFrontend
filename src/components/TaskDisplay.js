@@ -134,11 +134,23 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                 <div className="idTitle">{currentTask.title}</div>
                 <div>
                     <button
-                        className="edit"
+                        className="icon"
+                        id="check-hover"
+                        onClick={handleCompleted}
+                    ><FaCheck className="" /></button>
+
+                    <button
+                        className="icon"
+                        id="edit-hover"
                         onClick={() => {
                             editingOn()
                         }}
                     ><FaEdit /></button>
+                    <button
+                        id="trash"
+                        onClick={handleDelete}
+                        className="icon"
+                    ><FaTrashAlt /></button>
                 </div>
             </div>
             <div className="display-task-body">
@@ -200,14 +212,21 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                             scrollToBottom()
                         }}>Sessions {!sessionsOpen ? <FaAngleDown /> : <FaAngleUp />}</button>
                         <div>
-                            <button
-                                className="but complete"
-                                onClick={handleCompleted}
-                            ><FaCheck className="green" /> Completed</button>
-                            <button
-                                onClick={handleDelete}
-                                className="but complete"
-                            ><FaTrashAlt /></button>
+                            {
+                                false &&
+                                <>
+                                    <button
+                                        className="but complete"
+                                        onClick={handleCompleted}
+                                    ><FaCheck className="green" /> Completed</button>
+                                    <button
+                                        onClick={handleDelete}
+                                        id="trash"
+                                        className="but complete"
+                                    ><FaTrashAlt /></button>
+                                </>
+                            }
+
                         </div>
                     </div>
 
@@ -233,7 +252,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                                     <td >{moment(session.dateCompleted).format("MMM D")}</td>
                                                     <td style={{ width: '20px' }} onClick={() => handleDeleteSession(session.id)}>
 
-                                                        <FaTrashAlt className="trash-session" />
+                                                        <FaTrashAlt id="trash" className="trash-session" />
                                                     </td>
                                                 </tr>
                                             )

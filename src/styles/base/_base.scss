@@ -150,6 +150,10 @@ ul {
  font-size: 20px;
 }
 
+.icon:hover {
+ background-color: lighten($color: transparent, $amount: 10);
+}
+
 .navbarIcon {
  text-decoration: none;
  color: $light;
@@ -194,4 +198,16 @@ ul {
 
 .tippy-content {
  z-index: 501;
+}
+
+#trash:hover {
+ color: #e3242b;
+}
+
+#check-hover:hover {
+ color: #90ee90;
+}
+
+#edit-hover:hover {
+ color: lighten($color: $grey, $amount: 15);
 }

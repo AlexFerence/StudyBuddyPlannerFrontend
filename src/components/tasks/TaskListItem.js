@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { setCurrentTask } from '../../actions/currentTaskActions'
 import moment from 'moment'
@@ -6,6 +6,8 @@ import swal from 'sweetalert'
 import { markTaskAsDone, unmarkTaskAsDone } from '../../thunks/taskThunk'
 
 const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, tasks, currentTask, displayOn }) => {
+
+    const [isGrey, setIsGrey] = useState(false)
 
     const getClassColor = (subjectId) => {
         const subj = subjects.find((subject) => subject.id === subjectId)
@@ -29,6 +31,7 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
 
     const taskClicked = (t) => {
         displayOn()
+
         if ((running || paused) && (t.id !== currentTask.id)) {
             swal({
                 title: "Can't switch tasks during study session",
@@ -70,7 +73,7 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
 
 
     const handleCompleted = () => {
-        if (currentTask.totalTime === "00:00:00") {
+        if (currentTask.totalTime === "00:00:00" && false) {
             swal({
                 title: "Are you sure?",
                 text: "Task can't be completed without a study session (0 mins spent).",
@@ -81,10 +84,14 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
         }
         else {
             if (currentTask.isDone === 0) {
+                setIsGrey(true)
                 setTimeout(() => {
                     dispatch(markTaskAsDone(currentTask.id))
                     blankOn()
-                }, 500)
+                    setTimeout(() => {
+                        setIsGrey(false)
+                    }, 500)
+                }, 600)
             }
             else {
                 console.log('task is DONE')
@@ -107,35 +114,35 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
             <div className="top-bar">
                 <div className="subjTitle"
                     style={
-                        task.isDone ? { color: '#BCBCBC' } :
+                        task.isDone || isGrey ? { color: '#BCBCBC' } :
                             {}
                     }
                 >{task.title}</div>
                 <div className="due">
                     {
-                        task.isDone ? returnParsedDone(task.dueDate) :
+                        task.isDone || isGrey ? returnParsedDone(task.dueDate) :
                             returnParsedMoment(task.dueDate)
                     }
                 </div>
             </div>
             <div className="bottom-bar">
                 <div className="subjDesc" style={
-                    task.isDone ? { color: '#BCBCBC' } :
+                    task.isDone || isGrey ? { color: '#BCBCBC' } :
                         {}
                 }>{
 
                         getClassName(task.subjectId) + '  ' + task.taskType
                     }</div>
 
-                <div class={task.isDone ? "checkbox coloured" : "checkbox"}>
+                <div class={task.isDone ? "checkbox coloured" : "checkbox coloured-brand"}>
                     <label>
                         {task.isDone ?
                             <>
-                                <input onChange={handleCompleted} type="checkbox" checked /><span class="checkbox-material"><span class="check"></span></span>
+                                <input id="check" onChange={handleCompleted} type="checkbox" checked /><span class="checkbox-material"><span class="check"></span></span>
                             </>
                             :
                             <>
-                                <input onChange={handleCompleted} type="checkbox" /><span class="checkbox-material"><span class="check"></span></span>
+                                <input id="check" onChange={handleCompleted} type="checkbox" /><span class="checkbox-material"><span class="check"></span></span>
                             </>
                         }
 

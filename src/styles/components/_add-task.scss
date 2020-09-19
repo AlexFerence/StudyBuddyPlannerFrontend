@@ -1,38 +1,43 @@
 .add-task {
-    background-color: $white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+ background-color: $white;
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 .add-task-header {
-    width: 100%;
-    background-color: darken($color: $grey, $amount: 10);
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+ width: 100%;
+ background-color: darken($color: $grey, $amount: 10);
+ display: flex;
+ justify-content: space-between;
+ padding: 10px;
 }
 .add-task-header span {
-    margin: auto 10px;
-    font-size: large;
-    font-weight: 900;
-    color: $white;
+ margin: auto 10px;
+ font-size: large;
+ font-weight: 900;
+ color: $white;
 }
 
 .add-task-body {
-    padding: 15px;
+ padding: 15px;
 }
 
 .add-task-body label {
-    width: 100%;
+ width: 100%;
 }
 
 .add-task-body input {
-    width: 100%;
+ width: 100%;
 }
 
 .add-task-body textarea {
-    width: 100%;
+ width: 100%;
 }
 
 .inpLabel {
-    color: $dark-grey;
-    margin: 5px 0px 5px 0px;
+ color: $dark-grey;
+ margin: 5px 0px 5px 0px;
+}
+
+#addTask:hover {
+ background-color: $brand;
+ color: white;
 }

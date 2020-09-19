@@ -202,7 +202,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
                         <div className="title">Subjects</div>
                     </div>
                     <div className="right">
-                        <button id="addButton" onClick={() => setOpenModal(true)}>+ Add</button>
+                        <button id="addButton" onClick={() => setOpenModal(true)}>+ Add Subject</button>
                     </div>
                 </div>
                 <div className="listClasses">{subjects.map((item) => {
@@ -232,6 +232,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
                             <div>
                                 <button
                                     className="icon"
+                                    id="edit-hover"
                                     onClick={() => {
                                         setEditMode(!editMode)
                                         setNewChanges(classSelection)
@@ -240,6 +241,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
                                 ><FaEdit /></button>
                                 <button
                                     className="icon"
+                                    id="trash"
                                     onClick={() => {
                                         callDelete(classSelection.id)
                                     }}

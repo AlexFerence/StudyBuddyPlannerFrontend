@@ -119,13 +119,12 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                     /> </div>
                 <button
                     className="addTaskButton"
+                    id="addTask"
                     disabled={subjects.length === 0}
                     onClick={() => addingOn()}
                     style={subjects.length === 0 ?
                         { color: 'grey', border: '1px solid grey' } : {}}
                 >+ Add Task</button>
-
-
             </div>
             {
                 tasks.map((t) => {
