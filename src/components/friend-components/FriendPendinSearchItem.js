@@ -4,17 +4,15 @@ import { acceptRequest, declineRequest, getPendingFriends } from '../../thunks/f
 import { IoMdClose, IoMdCheckmark } from 'react-icons/io'
 
 const AcceptDeclineItem = ({ request, dispatch }) => {
-    const handleAcceptRequest = (rowId) => {
+    const handleAcceptRequest = async (rowId) => {
         console.log('accepting')
-        console.log('SHOULD NOT LOG ON LOAD')
-        dispatch(acceptRequest(rowId))
-        dispatch(getPendingFriends())
+        var x = await dispatch(acceptRequest(rowId))
+        var y = x + await dispatch(getPendingFriends())
     }
 
-    const handleDeclineRequest = (rowId) => {
-        console.log('SHOULD NOT LOG ON LOAD')
-        dispatch(declineRequest(rowId))
-        dispatch(getPendingFriends())
+    const handleDeclineRequest = async (rowId) => {
+        var z = await dispatch(declineRequest(rowId))
+        var q = z + await dispatch(getPendingFriends())
     }
     return (
         <div className="accept-decline-item">
@@ -35,7 +33,7 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
                                 <IoMdClose />
                             </div>
                         </div>
-                        : <div>Pending ...</div>
+                        : <div>Cancel ...</div>
                 }
             </div>
         </div>
