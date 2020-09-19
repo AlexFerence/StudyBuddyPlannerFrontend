@@ -159,7 +159,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                                         {}
                                 }>{
 
-                                        getClassName(t.subjectId)
+                                        getClassName(t.subjectId) + '  ' + t.taskType
                                     }</div>
                                 <div className="due"></div>
                             </div>
