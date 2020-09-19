@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loginThunk} from '../thunks/profileThunk'
+import { loginThunk } from '../thunks/profileThunk'
 
 const LoginPage = ({ dispatch, history, profile }) => {
     useEffect(() => {
@@ -9,7 +9,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
         // setPassword('securePassword')
         if (profile.email && profile.isAuth) {
             history.push('/dashboard')
-          }
+        }
     }, [])
 
     const [email, setEmail] = useState('')
@@ -44,16 +44,16 @@ const LoginPage = ({ dispatch, history, profile }) => {
                     setAuthError('invalid email or password')
                 }
             }).catch((e) => {
-                
+
             })
         }
         e.preventDefault()
     }
-    
+
     return (
         <div className="container authContainer">
             <div className="preHeader">Log In</div>
-            <form onSubmit={onSubmit}> 
+            <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label className="inpLabel">Email {emailError && <span className="error">* {emailError}</span>}</label>
                     <input className="inp" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />

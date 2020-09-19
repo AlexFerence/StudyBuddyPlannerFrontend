@@ -22,12 +22,13 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
 
 
   useEffect(() => {
-    function handleResize() {
-      dispatch(setWidth(window.innerWidth))
-    }
 
     if (moment().isAfter(moment(tokenExpiry))) {
       dispatch(logout())
+    }
+
+    function handleResize() {
+      dispatch(setWidth(window.innerWidth))
     }
 
     window.addEventListener('resize', handleResize)
