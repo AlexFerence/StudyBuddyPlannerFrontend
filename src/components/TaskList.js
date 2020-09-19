@@ -161,7 +161,9 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
 
                                         getClassName(t.subjectId) + '  ' + t.taskType
                                     }</div>
-                                <div className="due"></div>
+                                <div className="due">
+                                    <input type="checkbox" style={{ height: '15px', width: '15px' }} />
+                                </div>
                             </div>
                         </div>
                     )
