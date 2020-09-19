@@ -33,7 +33,7 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
                                 <IoMdClose />
                             </div>
                         </div>
-                        : <div>Cancel ...</div>
+                        : <div>Pending ...</div>
                 }
             </div>
         </div>
