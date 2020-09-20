@@ -116,7 +116,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                         type="checkbox"
                         onClick={completedChanged}
                         value={filterByCompleted}
-                    /> </div>
+                    /></div>
                 <button
                     className="addTaskButton"
                     id="addTask"
@@ -129,7 +129,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
             {
                 tasks.map((t) => {
                     return (
-                        <TaskListItem blankOn={blankOn} task={t} displayOn={displayOn} />
+                        <TaskListItem key={t.id} blankOn={blankOn} task={t} displayOn={displayOn} />
                     )
                 })
             }

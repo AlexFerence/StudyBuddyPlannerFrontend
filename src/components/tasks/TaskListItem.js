@@ -102,6 +102,7 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
 
     return (
         <div
+            key={task.id}
             style={task.isDone ?
                 {
                     borderLeft: '5px solid ' + getClassColor(task.subjectId),
