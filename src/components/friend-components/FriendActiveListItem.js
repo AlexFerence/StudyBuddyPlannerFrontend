@@ -1,24 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { FaBookReader } from 'react-icons/fa'
-import { openFriendModal, modifyFriends, closeFriendModal } from '../../actions/friendActions'
+import {
+    openFriendModal, modifyFriends, closeFriendModal,
+    friendPopupIsLoadingOn, friendPopupIsLoadingOff
+} from '../../actions/friendActions'
 import { connect } from 'react-redux'
 import { getFriendsActiveFriends, getFriendSubjects, loadSubjectBreakdown } from '../../thunks/friendThunk'
 import FriendPopup from './FriendPopup'
 import OutsideAlerter from './OutsideAlerter'
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
-import Popper from '@popperjs/core';
+
 
 const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
 
-    const openModal = () => {
-        console.log('setting friends')
-        dispatch(modifyFriends({ selectedFriend: friend }))
+    const openModal = async () => {
+        dispatch(friendPopupIsLoadingOn())
+        // set this friend as the selcted friend
+        var a = await dispatch(modifyFriends({ selectedFriend: friend }))
+        //open friend modal
         dispatch(openFriendModal())
-        dispatch(getFriendsActiveFriends())
-        dispatch(getFriendSubjects())
-        dispatch(loadSubjectBreakdown(friend.id))
+        // get friends of the active friend
+        var b = a + await dispatch(getFriendsActiveFriends())
+        // get friends subjects
+        var c = b + await dispatch(getFriendSubjects())
+        // load friends subject breakdown
+        var d = c + await dispatch(loadSubjectBreakdown(friend.id))
+        //turn off spinning
+        var e = d + dispatch(friendPopupIsLoadingOff())
     }
 
     const returnSymbol = () => {

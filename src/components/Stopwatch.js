@@ -23,7 +23,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
     const [interval, setInterval] = useState(100000)
 
     useEffect(() => {
-        dispatch(runningOffThunk())
+        dispatch(runningOffThunk(currentTask.id))
         dispatch(pausedReduxOff())
 
         return () => {

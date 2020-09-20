@@ -1,4 +1,7 @@
-import { SET_FRIENDS, SET_FRIENDS_MODAL } from '../actions/friendActions'
+import {
+    SET_FRIENDS, SET_FRIENDS_MODAL,
+    FRIEND_POPUP_IS_LOADING_ON, FRIEND_POPUP_IS_LOADING_OFF
+} from '../actions/friendActions'
 
 const friendsDefaultState = {
     waitingRequests: [],
@@ -26,7 +29,8 @@ const friendsDefaultState = {
     selectedFriendSubjects: [],
     selectedFriendSubjectsBreakdown: [],
     selectedFriendSubjectsColors: [],
-    friendModalOpen: false
+    friendModalOpen: false,
+    friendPopupIsLoading: false,
 }
 
 const friendsReducer = (state = friendsDefaultState, action) => {
@@ -41,7 +45,16 @@ const friendsReducer = (state = friendsDefaultState, action) => {
                 ...state,
                 friendModalOpen: action.modalState
             }
-
+        case FRIEND_POPUP_IS_LOADING_ON:
+            return {
+                ...state,
+                friendPopupIsLoading: true
+            }
+        case FRIEND_POPUP_IS_LOADING_OFF:
+            return {
+                ...state,
+                friendPopupIsLoading: false
+            }
         default:
             return state
     }

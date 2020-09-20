@@ -34,6 +34,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
     const [sessionsOpen, setSessionsOpen] = useState(false)
+    const [spinning, setSpinning] = useState(false)
     const messagesEndRef = React.createRef()
 
     const scrollToBottom = () => {
@@ -97,6 +98,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
+
                 console.log('delete session')
                 dispatch(deleteSessionThunk(sessionId))
 
