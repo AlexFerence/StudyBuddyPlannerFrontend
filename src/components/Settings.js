@@ -155,7 +155,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
 
-                <button style={{ marginLeft: '0px' }} className="but">Update</button>
+                <button style={{ marginLeft: '0px' }} className="but">Update Profile</button>
             </form>
 
             <div className="section contact-us">
@@ -190,7 +190,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     <UniversitiesTable />
                     <div style={{ height: '30px' }}></div>
                     <AllUsersTable />
-                </div >
+                </div>
             }
 
 

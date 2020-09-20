@@ -234,19 +234,19 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                     </Navbar>
                 </Navbar>
                 <Navbar expand="true" style={{ zIndex: 5, backgroundColor: '#F9F9F9' }} >
-                    <Navbar.Brand className="title" href="/">StudyBuddy</Navbar.Brand>
+                    <Navbar.Brand className="title" href="/" style={{ color: '#F9F9F9' }}>StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
                         <Nav className="mr-auto">
                         </Nav>
-                        <Nav inline="true">
+                        <Nav inline="true" style={{ backgroundColor: '#F9F9F9' }}>
                             {true &&
-                                <OverlayTrigger
+                                <OverlayTrigger style={{ backgroundColor: '#F9F9F9' }}
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipTask}
                                 >
-                                    <NavLink activeStyle={{ color: '#33332E' }} style={{ padding: 5, color: '#F9F9F9' }} to="/tasks"><FaCheckSquare />
+                                    <NavLink activeStyle={{ color: '#F9F9F9' }} style={{ padding: 'none', backgroundColor: '#F9F9F9', color: '#F9F9F9' }} to="/tasks"><FaCheckSquare />
                                     </NavLink>
                                 </OverlayTrigger>
                             }

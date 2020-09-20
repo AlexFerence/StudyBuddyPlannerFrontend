@@ -42,21 +42,9 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         }
     }
 
-    const makeColor = async (subjId) => {
-        try {
-            var color = await dispatch(getClassColor(subjId))
-            console.log(color)
-            return color
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-
     useEffect(scrollToBottom, [currentTask.taskSessions]);
 
     const handleDelete = () => {
-
         swal({
             title: "Are you sure?",
             text: "Once deleted, all data for this task will be lost!",
@@ -77,7 +65,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
     }
 
     const handleCompleted = () => {
-        if (currentTask.totalTime === "00:00:00") {
+        if (currentTask.totalTime === "00:00:00" && false) {
             swal({
                 title: "Are you sure?",
                 text: "Task can't be completed without a study session (0 mins spent).",
@@ -87,7 +75,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             })
         }
         else {
-            console.log('handle COMPLETED PLEASE')
             if (currentTask.isDone === 0) {
                 console.log('task is NOT DONE')
                 dispatch(markTaskAsDone(currentTask.id))
@@ -250,7 +237,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                                     <td>{hoursToTimeDisplay(session.minutes / 60)}</td>
                                                     <td >{moment(session.dateCompleted).format("MMM D")}</td>
                                                     <td style={{ width: '20px' }} onClick={() => handleDeleteSession(session.id)}>
-
                                                         <FaTrashAlt id="trash" className="trash-session" />
                                                     </td>
                                                 </tr>

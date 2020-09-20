@@ -14,6 +14,7 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
         var z = await dispatch(declineRequest(rowId))
         var q = z + await dispatch(getPendingFriends())
     }
+
     return (
         <div className="accept-decline-item">
             <div>
@@ -33,7 +34,10 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
                                 <IoMdClose />
                             </div>
                         </div>
-                        : <div>Pending ...</div>
+                        :
+                        <div id="but-add-friend" onClick={() => handleDeclineRequest(request.id)} className="friend-modal-friend-list-item__add-button">
+                            Cancel Request
+                        </div>
                 }
             </div>
         </div>

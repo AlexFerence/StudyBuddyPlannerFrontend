@@ -21,6 +21,27 @@ const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
         dispatch(loadSubjectBreakdown(friend.id))
     }
 
+    const returnSymbol = () => {
+        if (friend.active) {
+            return (<FaBookReader />)
+        }
+        else if (friend.lastActiveTime == -1) {
+            return (<div></div>)
+        }
+        else {
+            return (
+                <div className="last-active-time-display">
+                    <div className="last-active-time-display__time">
+                        {friend.lastActiveTime}
+                    </div>
+                    <div>
+                        {friend.lastActiveUnit}
+                    </div>
+                </div>
+            )
+        }
+    }
+
     const closeTippy = () => {
         dispatch(closeFriendModal())
     }
@@ -64,8 +85,9 @@ const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
                         </div>
                     </div>
                     <div className="col-center">
-                        <div className="last-active-icon">{friend.active ? <FaBookReader /> :
-                            <div className="last-active-time-display"><div className="last-active-time-display__time">{friend.lastActiveTime}</div><div>{friend.lastActiveUnit}</div></div>}</div>
+                        <div className="last-active-icon">
+                            {returnSymbol()}
+                        </div>
                     </div>
                 </div>
             </Tippy>

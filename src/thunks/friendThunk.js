@@ -278,7 +278,9 @@ export const getAlreadyPending = (id) => (dispatch, getState) => {
 
     if (sentRequests.length > 0) {
         var result = sentRequests.find((friend) => {
-            return (friend.userId2 === id)
+            if (friend.userId2 === id) {
+                return (friend.id)
+            }
         })
         console.log(result)
         return result

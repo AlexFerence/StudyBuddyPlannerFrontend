@@ -23,7 +23,7 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
     const [count, setCount] = useState(0);
     const [delay, setDelay] = useState(1000);
     const [isRunning, setIsRunning] = useState(false);
-    const [interval, setInterval] = useState(15 * 60)
+    const [interval, setInterval] = useState(25 * 60)
 
     useEffect(() => {
         //dispatch(runningOffThunk())

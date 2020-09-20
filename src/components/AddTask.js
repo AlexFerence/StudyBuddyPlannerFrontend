@@ -104,6 +104,16 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                         onChange={val => setCurrentClass(val)}
                         placeholder="Class..."
                         options={subjects.reduce(subjReduce, [])}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
                     />
                     <label className="inpLabel">Type:</label>
                     <Select
@@ -111,6 +121,16 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                         onChange={val => setTaskType(val)}
                         placeholder="Type..."
                         options={options}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
                     />
                     <label className="inpLabel">Title:</label>
                     <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />

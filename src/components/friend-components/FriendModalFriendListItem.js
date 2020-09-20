@@ -1,14 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { sendRequest, getAlreadyFriends, getAlreadyPending, isMe, getFriendsActiveFriends } from '../../thunks/friendThunk'
-import { IoMdPerson, IoMdCheckmark } from 'react-icons/io'
+import {
+    sendRequest, declineRequest, getAlreadyFriends, getAlreadyPending, isMe,
+    getFriendsActiveFriends, getPendingFriends, getActiveFriends
+} from '../../thunks/friendThunk'
+import { IoMdPerson, IoMdCheckmark, IoMdPaperPlane } from 'react-icons/io'
+import { modifyFriends } from '../../actions/friendActions'
+import Spinner from '../shared/Spinner'
 
-const FriendModalFriendListItem = ({ dispatch, friend }) => {
+const FriendModalFriendListItem = ({ dispatch, friend, selectedFriend }) => {
+
+    const [spinning, setSpinning] = useState(false)
 
     const addFriend = async () => {
+        setSpinning(true)
+        const t = await dispatch(sendRequest(friend.id))
+        const u = t + await dispatch(getActiveFriends())
+        const v = u + await dispatch(modifyFriends({ selectedFriend }))
+        const w = v + await dispatch(getFriendsActiveFriends())
+        const x = w + setSpinning(false)
+    }
 
-        dispatch(sendRequest(friend.id))
-
+    const handleCancelRequest = async (row) => {
+        console.log(row?.id)
+        setSpinning(true)
+        var a = await dispatch(declineRequest(row?.id))
+        const b = a + await dispatch(getActiveFriends())
+        const c = b + await dispatch(modifyFriends({ selectedFriend }))
+        const d = c + await dispatch(getFriendsActiveFriends())
+        var e = d + await dispatch(getPendingFriends())
+        const f = e + setSpinning(false)
     }
 
     const getFriendAction = () => {
@@ -28,13 +49,24 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
         }
         else if (pending) {
             return (
-                <div className="friend-modal-friend-list-item__pending">Pending ...</div>
+                <div className="friend-modal-friend-list-item__pending">
+                    {spinning ? <Spinner /> :
+                        <div id="but-add-friend" onClick={() => handleCancelRequest(pending)} className="friend-modal-friend-list-item__add-button">
+                            Cancel
+                        </div>
+                    }
+                </div>
             )
         }
         return (
-            <div id="but-add-friend" onClick={addFriend} className="friend-modal-friend-list-item__add-button">
-                + Add
-            </div>
+            <>
+                {spinning ? <Spinner /> :
+                    <div id="but-add-friend" onClick={() => addFriend()} className="friend-modal-friend-list-item__add-button">
+                        + Add
+                    </div>
+                }
+            </>
+
         )
 
     }
@@ -50,4 +82,11 @@ const FriendModalFriendListItem = ({ dispatch, friend }) => {
     )
 }
 
-export default connect()(FriendModalFriendListItem)
+
+const mapStateToProps = (state) => {
+    return {
+        selectedFriend: state.friends.selectedFriend,
+    }
+}
+
+export default connect(mapStateToProps)(FriendModalFriendListItem)
