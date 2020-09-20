@@ -134,15 +134,15 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
                         getClassName(task.subjectId) + '  ' + task.taskType
                     }</div>
 
-                <div class={task.isDone ? "checkbox coloured" : "checkbox coloured-brand"}>
+                <div className={task.isDone ? "checkbox coloured" : "checkbox coloured-brand"}>
                     <label>
                         {task.isDone ?
                             <>
-                                <input id="check" onChange={handleCompleted} type="checkbox" checked /><span class="checkbox-material"><span class="check"></span></span>
+                                <input id="check" onChange={handleCompleted} type="checkbox" checked /><span className="checkbox-material"><span className="check"></span></span>
                             </>
                             :
                             <>
-                                <input id="check" onChange={handleCompleted} type="checkbox" /><span class="checkbox-material"><span class="check"></span></span>
+                                <input id="check" onChange={handleCompleted} type="checkbox" /><span className="checkbox-material"><span className="check"></span></span>
                             </>
                         }
 
