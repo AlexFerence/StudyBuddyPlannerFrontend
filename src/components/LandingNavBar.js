@@ -30,7 +30,7 @@ const LandingNav = ({ history, width }) => {
                     <NavDropdown.Item id="navBut" className="navButton" href="#futureplan">Testemonials</NavDropdown.Item>
                     <div style={{ minWidth: '60px' }} id="navBut" className="navButton"><Link style={{ paddingRight: '0px', textAlign: 'center', textTransform: 'capitalize', fontSize: '16px' }} to="/login">  Log In</Link></div>
                     <div
-                        style={{ minWidth: '120px', color: 'white', textAlign: 'center' }}
+                        style={{ minWidth: '140px', color: 'white', textAlign: 'center' }}
                         id="navButSignUp" id="navButtonSignUp"><Link id="navButSignUp" to="/signup" style={{ textTransform: 'capitalize', color: 'white', padding: '5px' }}>Sign Up</Link></div>
 
                 </Nav>
