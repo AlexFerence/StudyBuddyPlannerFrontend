@@ -233,7 +233,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                         </Nav>
                     </Navbar>
                 </Navbar>
-                <Navbar expand="true" style={{ zIndex: 5, backgroundColor: '#F9F9F9' }} >
+                <Navbar expand="true" style={{ zIndex: 5, backgroundColor: '#F9F9F9', height: '66.4px' }} >
                     <Navbar.Brand className="title" href="/" style={{ color: '#F9F9F9' }}>StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">

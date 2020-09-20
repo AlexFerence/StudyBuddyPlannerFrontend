@@ -1,7 +1,7 @@
 .tasks .main-left {
  background-color: $white;
  width: 45vw;
- height: calc(100vh - #{$navbar-height});
+ height: calc(98vh - #{$navbar-height} - 15px);
  float: left;
  border-right: 1px solid lighten($color: $grey, $amount: 20%);
 }
@@ -14,13 +14,14 @@
 .tasks .main-right {
  background-color: $light-grey;
  width: 55%;
- height: calc(100vh - #{$navbar-height} - 15px);
+ height: calc(98vh - #{$navbar-height} - 15px);
  float: left;
  padding: 25px;
 }
 
 .tasks .scroller {
  background-color: $white;
+ height: calc(98vh - #{$navbar-height} - 15px);
  width: 45%;
  //height: calc(100vh - #{$navbar-height} - 15px);
  float: left;

@@ -65,9 +65,9 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
     }
 
     const handleCompleted = () => {
-        if (currentTask.totalTime === "00:00:00" && false) {
+        if (currentTask.totalTime === "00:00:00") {
             swal({
-                title: "Are you sure?",
+                title: "Must Add Time",
                 text: "Task can't be completed without a study session (0 mins spent).",
                 icon: "warning",
                 button: true,
@@ -236,9 +236,13 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                                 <tr key={session.id}>
                                                     <td>{hoursToTimeDisplay(session.minutes / 60)}</td>
                                                     <td >{moment(session.dateCompleted).format("MMM D")}</td>
-                                                    <td style={{ width: '20px' }} onClick={() => handleDeleteSession(session.id)}>
-                                                        <FaTrashAlt id="trash" className="trash-session" />
-                                                    </td>
+                                                    {
+                                                        <td style={{ width: '20px' }} onClick={() => handleDeleteSession(session.id)}>
+                                                            <FaTrashAlt id="trash" className="trash-session" />
+                                                        </td>
+
+                                                    }
+
                                                 </tr>
                                             )
                                         })

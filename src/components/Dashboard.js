@@ -23,6 +23,11 @@ import { setCurrentTask } from '../actions/currentTaskActions'
 import { logout } from '../actions/profileActions'
 import { getActiveFriends, getPendingFriends } from '../thunks/friendThunk'
 import { loadSchools } from '../thunks/schoolsThunk';
+import WeeklyChart from './dashboard-components/WeeklyChart'
+import NumbersOverview from './dashboard-components/NumbersOverview'
+import SubjWeeklyBreakdown from './dashboard-components/SubjWeeklyBreakdown'
+import WeeklyAverage from './dashboard-components/WeeklyAverage'
+import SubjPieBreakdown from './dashboard-components/SubjPieBreakdown'
 
 
 const TOUR_STEPS = [
@@ -182,306 +187,50 @@ const Dashboard = ({ dispatch, charts, profile,
           buttonClose: {
             display: 'none',
           },
-
         }}
       />
-      <Row>
-        <Col id="quickT" md={6}>
-          <div className="graph">
-            <div className="timerControl">
-              <QuickTimer />
+      <div className="rows">
+        <Row>
+          <Col className="boxCol" id="quickT" md={6}>
+            <div className="innerBoxCol">
+              <div className="graph">
+                <div className="timerControl">
+                  <QuickTimer />
+                </div>
+              </div>
             </div>
-          </div>
-        </Col>
-        <Col md={6} >
-          <div className="toggleContainer">
-            <div className="toggle">
-              <FaAngleLeft
-                onClick={goToPreviousWeek}
-              />
-              <FaAngleRight
-                onClick={goToNextWeek}
-              />
+          </Col>
+          <Col className="boxCol" md={6} >
+            <div className="innerBoxCol">
+              <WeeklyChart />
             </div>
-          </div>
-          <div className="graph topRight">
-            <ReactEcharts
-              option={{
-                title: {
-                  text: "Week View",
-                  x: 'center',
-                  top: 0,
-                  textStyle: {
-                    fontFamily: 'Helvetica',
-                    fontWeight: 100
-                  },
-                  subtext: moment(whichWeek).startOf('isoWeek').format("MMM D") + " - " + moment(whichWeek).endOf('isoWeek').format("MMM D")
-                  ,
 
-                },
-                tooltip: {
-                  trigger: 'axis',
-                  axisPointer: {
-                    type: 'shadow'
-                  },
-                  formatter: function (params) {
-                    let rez = '<span>' + params[0].axisValue + " " + '</span>';
-                    //console.log(params); //quite useful for debug
-                    params.forEach(item => {
-                      //console.log(item); //quite useful for debug
-                      var xx = '<span>' + hoursToTimeDisplay(item.data) + '' + '</span>'
-                      rez += xx;
-                    });
-
-                    return rez;
-                  }
-                },
-                xAxis: {
-                  type: 'category',
-                  data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                },
-                yAxis: {
-                  type: 'value',
-                  axisLabel: {
-                    formatter: '{value}'
-                  },
-                  name: 'Hours',
-                  nameLocation: 'middle',
-                  nameGap: 35
-                },
-                series: [{
-                  data: charts.hoursWeekData,
-                  type: 'bar'
-                }]
-              }}
-            />
-          </div>
-
-        </Col>
-      </Row>
-      {false && <Overlay special={true} />}
-      <div>
-        <Row id="row1" className="dashRow">
-          <Col md={6} style={{
+          </Col>
+        </Row>
+        <Row id="row1">
+          <Col className="boxCol" md={6} style={{
             minHeight: "360px"
           }}>
-
-            <div className="flexNumDisplay" >
-              <div className="rowTitle">Current Stats</div>
-              <div className="row">
-                <div className="square">
-                  <div className="squareTitle">Today</div>
-                  <div className="squareData">{charts.todayTotal && true ? charts.todayTotal.hours : 0}hrs., {charts.todayTotal && true ? charts.todayTotal.mins : 0}min.</div>
-                </div>
-                <div className="square">
-                  <div className="squareTitle">Past Week</div>
-                  <div className="squareData">{charts.thisWeekTotal && true ? charts.thisWeekTotal.hours : 0}hrs., {charts.thisWeekTotal && true ? charts.thisWeekTotal.mins : 0}min.</div>
-                </div>
-                <div className="square">
-                  <div className="squareTitle">Past Month</div>
-                  <div className="squareData">{charts.thisMonthTotal && true ? charts.thisMonthTotal.hours : 0}hrs., {charts.thisMonthTotal && true ? charts.thisMonthTotal.mins : 0}min.</div>
-                </div>
-              </div>
-              <div className="rowTitle">Average Result</div>
-              <div className="row">
-                <div className="square">
-                  <div className="squareTitle">Day</div>
-                  <div className="squareData">{charts.dailyAverage && true ? charts.dailyAverage.hours : 0}hrs., {charts.dailyAverage && true ? charts.dailyAverage.mins : 0}min.</div>
-                </div>
-                <div className="square">
-                  <div className="squareTitle">Week</div>
-                  <div className="squareData">{charts.weeklyAverage && true ? charts.weeklyAverage.hours : 0}hrs., {charts.weeklyAverage && true ? charts.weeklyAverage.mins : 0}min.</div>
-                </div>
-                <div className="square">
-                  <div className="squareTitle">Month</div>
-                  <div className="squareData">{charts.monthlyAverage && true ? charts.monthlyAverage.hours : 0}hrs., {charts.monthlyAverage && true ? charts.monthlyAverage.mins : 0}min.</div>
-                </div>
-              </div>
-              <div className="rowTitle">Best Result</div>
-              <div className="row">
-                <div className="square">
-                  <div className="squareTitle">Day</div>
-                  <div className="squareData">{charts.bestDay && true ? charts.bestDay.hours : 0}hrs., {charts.bestDay && true ? charts.bestDay.mins : 0}min.</div>
-                </div>
-                <div className="square">
-                  <div className="squareTitle">Week</div>
-                  <div className="squareData">{charts.bestWeek && true ? charts.bestWeek.hours : 0}hrs., {charts.bestWeek && true ? charts.bestWeek.mins : 0}min.</div>
-                </div>
-                <div className="square">
-                  <div className="squareTitle">Month</div>
-                  <div className="squareData">{charts.bestMonth && true ? charts.bestMonth.hours : 0}hrs., {charts.bestMonth && true ? charts.bestMonth.mins : 0}min.</div>
-                </div>
-              </div>
-            </div>
-
+            <NumbersOverview />
           </Col>
-          <Col md={6}>
-            <div className="lineGraph">
-
-              <ReactEcharts
-                option={{
-                  textStyle: {
-                    //fontFamily: 'Helvetica Neue',
-                    //color: 'blue'
-                  },
-                  title: {
-                    text: "Hours Per Week Per Subject",
-                    x: 'center',
-                    top: 20,
-                    textStyle: {
-                      fontFamily: 'Helvetica',
-                      fontWeight: 100
-                    }
-                  },
-
-                  tooltip: {
-                    trigger: 'axis',
-                    //formatter: '{b0}:{d3} {c0}<br />{b1}: {c1}, , {e1}'
-                    formatter: function (params) {
-                      var colorSpan = color => '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + color + '"></span>';
-                      let rez = '<p>' + params[0].axisValue + '</p>';
-                      //console.log(params); //quite useful for debug
-                      params.forEach(item => {
-                        //console.log(item); //quite useful for debug
-                        var xx = '<p>' + colorSpan(item.color) + ' ' + item.seriesName + ': ' + hoursToTimeDisplay(item.data) + '' + '</p>'
-                        rez += xx;
-                      });
-
-                      return rez;
-                    }
-                  },
-                  grid: {
-                    right: '10%',
-                  },
-                  xAxis: {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: charts.hoursPerWeekSubjBeakdownXAxis
-                  },
-                  yAxis: {
-                    type: 'value'
-                  },
-                  series: charts.hoursPerWeekSubjBeakdown
-                }}
-              />
+          <Col className="boxCol" md={6}>
+            <div className="innerBoxCol extra-top-padding">
+              <SubjWeeklyBreakdown />
             </div>
           </Col>
         </Row>
-        <Row className="dashRow">
-          <Col md={6}>
-            <ReactEcharts
-              option={{
-                title: {
-                  text: "Average Per Day of Week",
-                  x: 'center',
-                  top: 20,
-                  textStyle: {
-                    fontFamily: 'Helvetica',
-                    fontWeight: 100
-
-                  }
-                },
-                tooltip: {
-                  trigger: 'axis',
-                  axisPointer: {
-                    type: 'shadow'
-                  },
-                  formatter: function (params) {
-                    let rez = '<span>' + params[0].axisValue + ' ' + '</span>';
-                    //console.log(params); //quite useful for debug
-                    params.forEach(item => {
-                      //console.log(item); //quite useful for debug
-                      var xx = '<span>' + hoursToTimeDisplay(item.data) + '' + '</span>'
-                      rez += xx;
-                    });
-
-                    return rez;
-                  }
-                },
-                xAxis: {
-                  type: 'category',
-                  data: charts.averageByDayOfWeekxaxis
-                },
-                yAxis: {
-                  type: 'value',
-                  axisLabel: {
-                    formatter: '{value}'
-                  },
-                  name: 'hours',
-                  nameLocation: 'middle',
-                  nameGap: 35
-                },
-                series: [{
-                  data: charts.averageByDayOfWeek,
-                  type: 'bar'
-                }]
-              }}
-            />
+        <Row>
+          <Col className="boxCol" md={6}>
+            <div className="innerBoxCol">
+              <WeeklyAverage />
+            </div>
           </Col>
-          <Col md={6}>
-
-            {subjects.length === 0 ?
-              <div className="noData">
-                <div>
-                  No Data
-                  <div className="subNoData">Create subjects to view subject breakdown</div>
-                </div>
-              </div> : <ReactEcharts
-                option={{
-                  title: {
-                    text: "Breakdown of Time by Subject",
-                    x: 'center',
-                    top: 20,
-                    textStyle: {
-                      fontFamily: 'Helvetica',
-                      fontWeight: 100
-
-                    }
-                  },
-                  tooltip: {
-                    trigger: 'item',
-                    formatter: '{b}: {d}%'
-                  },
-                  series: [
-                    {
-                      type: 'pie',
-                      radius: '65%',
-                      center: ['50%', '50%'],
-                      selectedMode: 'single',
-                      data:
-                        isPremium ?
-                          (charts.pieChart ? charts.pieChart.pieData : []) :
-                          [
-                            { name: 'math', value: 2 },
-                            { name: 'chem', value: 1 },
-                            { name: 'hist', value: .5 },
-                            { name: 'engl', value: 2 },
-
-                          ]
-                      ,
-                      color: isPremium ? charts.pieColors : null,
-                      emphasis: {
-                        itemStyle: {
-                          shadowBlur: 10,
-                          shadowOffsetX: 0,
-                          shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                      }
-                    }
-                  ]
-                }}
-              />}
+          <Col className="boxCol" md={6}>
+            <div className="innerBoxCol">
+              <SubjPieBreakdown />
+            </div>
           </Col>
         </Row>
-      </div>
-
-      <div className="toggleButton" onClick={() => {
-        setDropdown2(!dropdown2)
-      }}>
-        {dropdown2 ? <FaAngleDown /> : <FaAngleUp />}
-
-        <span>Comparative Analytics</span>
-        <span className="lock">{false && <FaLock />}</span>
       </div>
     </div>
   );
@@ -501,3 +250,12 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Dashboard)
 
 
+
+// <div className="toggleButton" onClick={() => {
+//   setDropdown2(!dropdown2)
+// }}>
+//   {dropdown2 ? <FaAngleDown /> : <FaAngleUp />}
+
+//   <span>Comparative Analytics</span>
+//   <span className="lock">{false && <FaLock />}</span>
+// </div>

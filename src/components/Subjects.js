@@ -196,7 +196,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
             />
             <Col style={{ padding: '0px' }}
                 xs={12} s={12} md={6} lg={6}
-                className="scroller">
+                className="scroller main-left">
                 <div className="classHeader">
                     <div className="left">
                         <div className="title">Subjects</div>

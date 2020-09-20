@@ -73,7 +73,7 @@ const TaskListItem = ({ blankOn, dispatch, task, subjects, running, paused, task
 
 
     const handleCompleted = () => {
-        if (currentTask.totalTime === "00:00:00" && false) {
+        if (currentTask.totalTime === "00:00:00") {
             swal({
                 title: "Are you sure?",
                 text: "Task can't be completed without a study session (0 mins spent).",
