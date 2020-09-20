@@ -17,7 +17,7 @@ const FriendActiveList = ({ dispatch, activeFriends }) => {
             {
                 activeFriends.map((friend) => {
                     return (
-                        <FriendActiveListItem key={friend.lastActive} friend={friend} />
+                        <FriendActiveListItem key={friend.id} friend={friend} />
                     )
                 })
             }
