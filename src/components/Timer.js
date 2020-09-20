@@ -98,7 +98,6 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
         await dispatch(loadTasks())
 
         //TODO put in new call
-
         dispatch(loadChartsThunk())
         dispatch(loadSubjectBreakdown())
         dispatch(loadHoursWeek())
