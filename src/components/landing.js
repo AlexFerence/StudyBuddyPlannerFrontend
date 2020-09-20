@@ -146,7 +146,7 @@ const Landing = ({ history, profile, width }) => {
                 <div className="textInner">
                   <div className="textHeader">Track Your Studying</div>
                   <div className="textPara">StudyBuddy provides various methods to easily track your study time. Our team's software then generates visually
-                  relevant and significant graphs to show the user their progress and study habits. These statistics help you break up your time and study more 
+                  relevant and significant graphs to show the user their progress and study habits. These statistics help you break up your time and study more
                   efficiently in the future.
                   </div>
                 </div>

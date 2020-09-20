@@ -21,7 +21,7 @@ export const friendPopupIsLoadingOn = () => ({
     type: FRIEND_POPUP_IS_LOADING_ON
 })
 
-export const FRIEND_POPUP_IS_LOADING_OFF = 'FRIEND_POPUP_IS_LOADING_ON'
+export const FRIEND_POPUP_IS_LOADING_OFF = 'FRIEND_POPUP_IS_LOADING_OFF'
 export const friendPopupIsLoadingOff = () => ({
     type: FRIEND_POPUP_IS_LOADING_OFF
 })
