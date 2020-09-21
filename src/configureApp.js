@@ -11,12 +11,15 @@ import SubjectsPage from './components/Subjects'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
 import FriendActivity from './components/friend-components/FriendActivity'
+import PrivatePolicy from './components/PrivatePolicy'
+import ResetPassword from './components/ResetPassword'
 import { connect } from 'react-redux'
 import { setWidth } from './actions/widthActions'
 import './styles/styles.scss'
 import moment from 'moment'
 import Dashboard from './components/Dashboard';
 import { logout } from './actions/profileActions';
+
 
 const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
 
@@ -46,6 +49,8 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
         <Route path='/signup' component={FormPage} />
         <Route path='/signUpSecondary' component={SignUpSecondary} />
         <Route path='/login' exact component={LoginPage} />
+        <Route path='/privatepolicy' exact component={PrivatePolicy} />
+        <Route path='/resetpassword' exact component={ResetPassword} />
         <Route path='/dashboard'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Dashboard />}
         </Route>

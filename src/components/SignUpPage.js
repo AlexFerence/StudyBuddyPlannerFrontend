@@ -86,9 +86,16 @@ const FormPage = ({ history, dispatch, profile }) => {
             placeholder="Enter password" />
         </div>
         <button type="submit" className="btn btn-secondary btn-block preAuth">Sign Up</button>
-        <p className="forgot-password text-right">
-          Already registered <Link className="linkAuth" to="/login">Log In</Link>
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <p className="forgot-password text-right">
+            By singing up you agree <br /> to our <Link className="linkAuth" to="/privatepolicy">Private Policy</Link>
+          </p>
+          <p className="forgot-password text-right">
+            Already registered <Link className="linkAuth" to="/login">Log In</Link>
+          </p>
+        </div>
+
+
       </form>
     </div>
   );
