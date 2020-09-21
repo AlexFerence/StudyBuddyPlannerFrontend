@@ -17,7 +17,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
 
     const handleChangedSearch = async (e) => {
         setAddingError()
-        if (e.target.value.length > 1) {
+        if (e.target.value.length > 10) {
 
             var res = await dispatch(searchIfExists(e.target.value))
             console.log(res)

@@ -88,7 +88,7 @@ const FormPage = ({ history, dispatch, profile }) => {
         <button type="submit" className="btn btn-secondary btn-block preAuth">Sign Up</button>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <p className="forgot-password text-right">
-            By singing up you agree <br /> to our <Link className="linkAuth" to="/privatepolicy">Private Policy</Link>
+            By signing up you agree <br /> to our <Link className="linkAuth" to="/privatepolicy">Private Policy</Link>
           </p>
           <p className="forgot-password text-right">
             Already registered <Link className="linkAuth" to="/login">Log In</Link>
