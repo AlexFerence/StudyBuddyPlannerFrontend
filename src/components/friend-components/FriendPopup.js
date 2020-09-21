@@ -43,7 +43,9 @@ const FriendPopup = ({ dispatch, isOpen, selectedFriend, selectedFriendFriends,
                                     return <FriendModalSubjectListItem key={idCount} subject={subject} />
                                 })
                         }
-                        <FriendSubjBreakdownChart />
+                        {
+                            spinning ? <div /> : <FriendSubjBreakdownChart />
+                        }
                         {true && <button className="friend-modal__body__col__remove-friend" onClick={handleRemoveFriend}>Unfriend</button>}
                     </div>
                     <div className="friend-modal__body__col">

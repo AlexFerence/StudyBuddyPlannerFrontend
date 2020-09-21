@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { searchIfExists, sendRequest, getPendingFriends } from '../../thunks/friendThunk'
-
+import Spinner from '../shared/Spinner'
 import AcceptDeclineItem from './FriendPendinSearchItem'
 import swal from 'sweetalert';
 
 const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     const [searchedPerson, setSearchedPerson] = useState();
     const [addingError, setAddingError] = useState();
+
+    const [spinning, setSpinning] = useState(false)
 
     useEffect(() => {
         dispatch(getPendingFriends())
@@ -16,6 +18,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     const handleChangedSearch = async (e) => {
         setAddingError()
         if (e.target.value.length > 1) {
+
             var res = await dispatch(searchIfExists(e.target.value))
             console.log(res)
             if (res) {
@@ -35,15 +38,11 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     }
 
     const handleAddFriend = async () => {
+
         var res = await dispatch(sendRequest(searchedPerson.id))
         console.log(res)
         if (res === 415) {
             setAddingError('Friend Already Added')
-            // swal({
-            //     title: "Friend already added",
-            //     icon: "info",
-            //     buttons: true,
-            // })
 
         }
         else {
@@ -67,7 +66,14 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                         <div className="suggest-person__email">{searchedPerson.email}</div>
                         {addingError && <div className="suggest-person__name" style={{ fontSize: '12px', color: 'red' }}>{addingError}</div>}
                     </div>
-                    {searchedPerson.email && <button className="but" onClick={handleAddFriend}>Add</button>}
+                    {searchedPerson.email &&
+                        spinning ?
+                        <Spinner />
+                        :
+                        <button className="but" onClick={handleAddFriend}>
+                            Add
+                        </button>
+                    }
                 </div>
             }
             {
