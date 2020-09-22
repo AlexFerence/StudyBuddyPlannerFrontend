@@ -5,7 +5,7 @@ const NumbersOverView = ({ charts }) => {
 
     const hoursToTimeDisplay = (h) => {
         const hours = Math.floor(h / 60)
-        const mins = Math.floor(m % 60)
+        const mins = Math.floor(h % 60)
 
         return (hours + 'hrs., ' + mins + 'min.')
     }
