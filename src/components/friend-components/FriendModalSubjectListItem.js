@@ -7,7 +7,11 @@ const FriendModalFriendListItem = ({ subject }) => {
 
 
     return (
-        <Tippy content={<div>{subject.description}</div>}
+        <Tippy content={
+            subject.description.length > 0 ?
+                <div>{subject.description}</div> :
+                <div>N/A</div>
+        }
             placement="left"
             allowHTML={true}
             animateFill={false}
