@@ -20,45 +20,45 @@ const NumbersOverView = ({ charts }) => {
                 <div className="row">
                     <div className="square">
                         <div className="squareTitle">Today</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.CurrentDay)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.currentDay)}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Past Week</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.CurrentWeek)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.currentWeek)}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Past Month</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.CurrentMonth)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.currentMonth)}</div>
                     </div>
                 </div>
                 <div className="rowTitle">Average Result</div>
                 <div className="row">
                     <div className="square">
                         <div className="squareTitle">Day</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.AverageDay)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.averageDay)}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Week</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.AverageWeek)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.averageWeek)}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Month</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.AverageMonth)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.averageMonth)}</div>
                     </div>
                 </div>
                 <div className="rowTitle">Best Result</div>
                 <div className="row">
                     <div className="square">
                         <div className="squareTitle">Day</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.BestDay)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.bestDay)}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Week</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.BestWeek)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.bestWeek)}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Month</div>
-                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.BestMonth)}</div>
+                        <div className="squareData">{hoursToTimeDisplay(charts.personalStats.bestMonth)}</div>
                     </div>
                 </div>
             </div>
