@@ -48,6 +48,11 @@ $popup-width: 450px;
  align-items: center;
 }
 
+.friend-modal-subject-list-item__class-name:hover {
+    color: darken(#f9f9f9, 10%);
+    cursor: pointer;
+   }
+
 .friend-modal-subject-list-item__circle {
  height: 7px;
  width: 7px;
