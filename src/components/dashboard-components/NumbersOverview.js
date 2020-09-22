@@ -10,7 +10,7 @@ const NumbersOverView = ({ charts }) => {
         if (decimalMins < 10) {
             returnMins = "0" + returnMins
         }
-        return (hours + ":" + returnMins)
+        return (hours + 'hrs., ' + returnMins + 'min.')
     }
 
     return (
