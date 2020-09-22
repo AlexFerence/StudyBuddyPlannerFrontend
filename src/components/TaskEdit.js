@@ -99,9 +99,11 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
                         placeholder="Type..."
                         options={[
                             { value: 'Assignment', label: 'Assignment' },
-                            { value: 'Quiz', label: 'Quiz' },
-                            { value: 'Test', label: 'Test' },
-                            { value: 'Exam', label: 'Exam' }
+                            { value: 'Readings', label: 'Readings' },
+                            { value: 'Essay', label: 'Essay' },
+                            { value: 'Lab', label: 'Lab' },
+                            { value: 'General Studying', label: 'General Studying' },
+                            { value: 'Lecture', label: 'Lecture' }
                         ]}
                     />
 

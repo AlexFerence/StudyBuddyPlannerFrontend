@@ -26,9 +26,7 @@ const options = [
     { value: 'Essay', label: 'Essay' },
     { value: 'Lab', label: 'Lab' },
     { value: 'General Studying', label: 'General Studying' },
-    { value: 'Test/Quiz', label: 'Test/Quiz' },
-    { value: 'Midterm', label: 'Midterm' },
-    { value: 'Exam', label: 'Exam' }
+    { value: 'Lecture', label: 'Lecture' }
 ]
 
 
