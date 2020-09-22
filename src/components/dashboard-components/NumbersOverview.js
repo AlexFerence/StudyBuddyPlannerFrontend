@@ -4,13 +4,10 @@ import { connect } from 'react-redux'
 const NumbersOverView = ({ charts }) => {
 
     const hoursToTimeDisplay = (h) => {
-        var hours = Math.floor(h)
-        var decimalMins = (h - hours) * 60
-        var returnMins = Math.floor(decimalMins)
-        if (decimalMins < 10) {
-            returnMins = "0" + returnMins
-        }
-        return (hours + 'hrs., ' + returnMins + 'min.')
+        const hours = Math.floor(h / 60)
+        const mins = Math.floor(m % 60)
+
+        return (hours + 'hrs., ' + mins + 'min.')
     }
 
     return (
