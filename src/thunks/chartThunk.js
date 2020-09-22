@@ -290,13 +290,12 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        var formattedPersonalStats = []
 
         console.log(res.data)
 
         if (res.status === 200) {
 
-            res.data
+            dispatch(modify({ personalStats: { ...res.data } }))
 
 
 
@@ -309,7 +308,7 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
         // dispatch(modify({ bestDay: { mins: res.data.responseItems[2].value2, hours: res.data.responseItems[2].value1 }, bestWeek: { mins: res.data.responseItems[5].value2, hours: res.data.responseItems[5].value1 }, bestMonth: { mins: res.data.responseItems[8].value2, hours: res.data.responseItems[8].value1 } }));
 
 
-        //dispatch(modify({ formattedPersonalStats }))
+        // dispatch(modify({ formattedPersonalStats }))
 
     } catch (e) {
         console.log(e)
