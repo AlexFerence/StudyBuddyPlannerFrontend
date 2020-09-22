@@ -262,7 +262,6 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
                 color: subj.color,
                 data: individlList
             })
-
         })
         console.log(formattedWeekData)
         var hoursPerWeekSubjBeakdown = formattedWeekData
