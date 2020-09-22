@@ -9,45 +9,45 @@ const NumbersOverView = ({ charts }) => {
                 <div className="row">
                     <div className="square">
                         <div className="squareTitle">Today</div>
-                        <div className="squareData">{charts.todayTotal && true ? charts.todayTotal.hours : 0}hrs., {charts.todayTotal && true ? charts.todayTotal.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.CurrentDay}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Past Week</div>
-                        <div className="squareData">{charts.thisWeekTotal && true ? charts.thisWeekTotal.hours : 0}hrs., {charts.thisWeekTotal && true ? charts.thisWeekTotal.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.CurrentWeek}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Past Month</div>
-                        <div className="squareData">{charts.thisMonthTotal && true ? charts.thisMonthTotal.hours : 0}hrs., {charts.thisMonthTotal && true ? charts.thisMonthTotal.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.CurrentMonth}</div>
                     </div>
                 </div>
                 <div className="rowTitle">Average Result</div>
                 <div className="row">
                     <div className="square">
                         <div className="squareTitle">Day</div>
-                        <div className="squareData">{charts.dailyAverage && true ? charts.dailyAverage.hours : 0}hrs., {charts.dailyAverage && true ? charts.dailyAverage.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.AverageDay}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Week</div>
-                        <div className="squareData">{charts.weeklyAverage && true ? charts.weeklyAverage.hours : 0}hrs., {charts.weeklyAverage && true ? charts.weeklyAverage.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.AverageWeek}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Month</div>
-                        <div className="squareData">{charts.monthlyAverage && true ? charts.monthlyAverage.hours : 0}hrs., {charts.monthlyAverage && true ? charts.monthlyAverage.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.AverageMonth}</div>
                     </div>
                 </div>
                 <div className="rowTitle">Best Result</div>
                 <div className="row">
                     <div className="square">
                         <div className="squareTitle">Day</div>
-                        <div className="squareData">{charts.bestDay && true ? charts.bestDay.hours : 0}hrs., {charts.bestDay && true ? charts.bestDay.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.BestDay}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Week</div>
-                        <div className="squareData">{charts.bestWeek && true ? charts.bestWeek.hours : 0}hrs., {charts.bestWeek && true ? charts.bestWeek.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.BestWeek}</div>
                     </div>
                     <div className="square">
                         <div className="squareTitle">Month</div>
-                        <div className="squareData">{charts.bestMonth && true ? charts.bestMonth.hours : 0}hrs., {charts.bestMonth && true ? charts.bestMonth.mins : 0}min.</div>
+                        <div className="squareData">{charts.personalStats.BestMonth}</div>
                     </div>
                 </div>
             </div>

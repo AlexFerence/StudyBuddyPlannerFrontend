@@ -22,13 +22,13 @@ const chartsDefaultState = {
         pieData: []
     },
     pieColors: [],
-    todayTotal: { mins: 0, hours: 0 },
-    thisWeekTotal: { mins: 0, hours: 0 },
-    thisMonthTotal: { mins: 0, hours: 0 },
-    dailyAverage: { mins: 0, hours: 0 },
-    weeklyAverage: { mins: 0, hours: 0 },
-    monthlyAverage: { mins: 0, hours: 0 },
-
+    personalStats: {
+        CurrentDay: 0, CurrentWeek: 0,
+        CurrentMonth: 0, AverageDay: 0,
+        AverageWeek: 0, AverageMonth: 0,
+        BestDay: 0, BestWeek: 0,
+        BestMonth: 0
+    }
 
 }
 
