@@ -39,7 +39,7 @@ const SubjPieBreakdown = ({ charts, subjects }) => {
                         {
                             type: 'pie',
                             radius: '65%',
-                            center: ['50%', '50%'],
+                            center: ['50%', '60%'],
                             selectedMode: 'single',
                             data:
                                 isPremium ?
