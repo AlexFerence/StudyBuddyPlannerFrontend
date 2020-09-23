@@ -25,7 +25,7 @@ export const postSessionThunk = ({ minutes, taskId, date, title }) => async (dis
                 'Content-Type': 'application/json'
             }
         })
-        console.log('getting sessions')
+
         dispatch(loadTasks())
     } catch (e) {
         console.log(e)
@@ -46,7 +46,7 @@ export const getSessionsThunk = (taskId, setCurrentTask) => async (dispatch, get
                     'Content-Type': 'application/json'
                 }
             })
-        console.log(res.data)
+
         return res.data
         //setCurrentTask(res.data)
     } catch (e) {
@@ -67,16 +67,14 @@ export const deleteSessionThunk = (sessionId) => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-        console.log(res.data)
+
         dispatch(loadTasks()).then(() => {
             setCurrentTaskById(currentTask.id)
         })
 
         var x = await dispatch(loadTasks())
         var y = x + dispatch(setCurrentTaskById(currentTask.id))
-        //setCurrentTaskById(currentTask.id)
-        //setCurrentTask(res.data)
-        console.log(y)
+
     } catch (e) {
         console.log(e)
     }

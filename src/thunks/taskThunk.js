@@ -7,8 +7,6 @@ export const loadTasks = (filterBy = true, completed = true) => async (dispatch,
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    console.log("filter by " + filterBy)
-    console.log("completed " + completed)
     try {
         const res = await axios.post(url + '/api/tasks/list',
             {
@@ -48,7 +46,7 @@ export const getTask = (taskId) => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-        console.log(res.data)
+
     } catch (e) {
         console.log(e)
     }
@@ -58,7 +56,7 @@ export const updateTask = (updatedTask) => async (dispatch, getState) => {
     const { profile, subjects, currentTask } = getState()
     const { id, token } = profile
     try {
-        console.log('updating task')
+
         //console.log(updatedTask.id)
         delete updatedTask.color
         delete updatedTask.subjectTitle
@@ -108,7 +106,7 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
     }
 
     const task = tasks.find((t) => t.id === taskId)
-    console.log('about to set currentTask')
+
     //console.log(taskId)
 
 
@@ -118,11 +116,7 @@ export const setCurrentTaskById = (taskId) => async (dispatch, getState) => {
             color: getClassColor(task.subjectId),
             subjectTitle: getClassName(task.subjectId)
         }))
-        console.log({
-            ...task,
-            color: getClassColor(task.subjectId),
-            subjectTitle: getClassName(task.subjectId)
-        })
+
     }
 }
 
@@ -140,7 +134,7 @@ export const markTaskAsDone = (taskId) => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(res.data)
+
         dispatch(loadTasks())
         //dispatch(setCurrentTask({}))
     } catch (e) {

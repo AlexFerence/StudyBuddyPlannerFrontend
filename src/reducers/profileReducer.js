@@ -24,7 +24,6 @@ const profileReducerDefaultState = {
 const profileReducer = (state = profileReducerDefaultState, action) => {
     switch (action.type) {
         case ADD_PROFILE:
-            console.log('save user!!!!!!')
             return action.profile
 
         case SET_FIELDS:

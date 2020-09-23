@@ -26,7 +26,7 @@ export const cancelSubscription = () => async (dispatch, getState) => {
                 }
             }
         )
-        console.log(res)
+
 
     } catch (e) {
         console.log(e)

@@ -21,7 +21,7 @@
 
 .tasks .scroller {
  background-color: $white;
- height: calc(98vh - #{$navbar-height} - 15px);
+ max-height: calc(98vh - #{$navbar-height} - 15px);
  width: 45%;
  //height: calc(100vh - #{$navbar-height} - 15px);
  float: left;

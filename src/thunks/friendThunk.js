@@ -63,8 +63,6 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-
-    //console.log('GETTING PENDING FRIENDDS')
     try {
         const res = await axios.post(url + '/api/Friends/getListFriends',
             {
@@ -82,7 +80,6 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
         )
         var sentRequests = []
         var waitingRequests = []
-        // console.log(res.data)
 
         if (res.status === 200 && res.data.length > 0) {
             res.data.forEach((request) => {
@@ -98,7 +95,7 @@ export const getPendingFriends = (otherID) => async (dispatch, getState) => {
         }
         dispatch(modifyFriends({ sentRequests, waitingRequests }))
     } catch (e) {
-        // console.log(e)
+        console.log(e)
     }
 }
 
@@ -154,8 +151,6 @@ export const getActiveFriends = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-
-    console.log('GETTING PENDING FRIENDDS')
     try {
         var now = new Date()
         const res = await axios.post(url + '/api/Friends/getListActiveFriends',
@@ -195,7 +190,6 @@ export const getFriendsActiveFriends = () => async (dispatch, getState) => {
     const { token } = profile
     const { selectedFriend } = friends
     const { id = 0 } = selectedFriend
-    console.log('GETTING PENDING FRIENDDS')
     try {
         const res = await axios.post(url + '/api/Friends/getListActiveFriends',
             {
@@ -245,14 +239,12 @@ export const getFriendSubjects = () => async (dispatch, getState) => {
         })
         var selectedFriendSubjects = []
 
-        console.log('setting friends friends')
         selectedFriendSubjects = res.data
-        console.log(res.data)
+
 
         dispatch(modifyFriends({ selectedFriendSubjects }))
     }
     catch (e) {
-        console.log('caught errors')
         console.log(e)
     }
 }
@@ -274,7 +266,6 @@ export const getAlreadyPending = (id) => (dispatch, getState) => {
     const state = getState()
     const { friends } = state
     const { sentRequests } = friends
-    console.log(sentRequests)
 
     if (sentRequests.length > 0) {
         var result = sentRequests.find((friend) => {
@@ -282,7 +273,7 @@ export const getAlreadyPending = (id) => (dispatch, getState) => {
                 return (friend.id)
             }
         })
-        console.log(result)
+
         return result
     }
     else {

@@ -9,8 +9,7 @@ export const runningOnThunk = (taskId) => async (dispatch, getState) => {
     const { profile, currentTask } = state
     const { id, token } = profile
     dispatch(runningReduxOn(taskId))
-    console.log('CURRENT TASK ID')
-    console.log(taskId)
+
     try {
         const res = await axios.post(url + '/api/UserActivity/create',
             {
@@ -24,7 +23,7 @@ export const runningOnThunk = (taskId) => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log('user activity updated')
+
     } catch (e) {
         console.log(e)
     }
@@ -37,7 +36,7 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
 
 
     dispatch(runningReduxOff(taskId))
-    console.log(currentTask.id)
+
     try {
         var now = new Date()
         const res = await axios.post(url + '/api/UserActivity/create',
@@ -54,7 +53,7 @@ export const runningOffThunk = (taskId) => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log('updated user activity stopped')
+
     } catch (e) {
         console.log(e)
     }
@@ -64,7 +63,7 @@ export const userActivityCount = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    console.log(' CURRENT USERS ')
+
     try {
         // smallest (school and faculty)
         const res = await axios.post(url + '/api/UserActivity/count',
@@ -78,14 +77,12 @@ export const userActivityCount = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        // medium (people at your school)
-        // large (people worldwide)
-        console.log(res.data)
+
         dispatch(modify({
             ...res.data,
         }));
 
-        console.log('updated user activity stopped')
+
     } catch (e) {
         console.log(e)
     }

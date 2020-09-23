@@ -52,11 +52,6 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
     var [stepIndex, setStepIndex] = useState(0)
     var [run, setRun] = useState(true);
 
-    useEffect(() => {
-        console.log(width)
-
-    }, [])
-
 
     useEffect(() => {
         setNewChanges({ ...newChanges, color: { hex: "#2b2b2b" } })

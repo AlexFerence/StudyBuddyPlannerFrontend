@@ -47,10 +47,6 @@ const SubjectModal = (props) => {
         Modal.setAppElement('body');
     }, [])
 
-    useEffect(() => {
-        console.log(color)
-    }, [color])
-
     return (
         <Modal
             isOpen={props.isOpen}

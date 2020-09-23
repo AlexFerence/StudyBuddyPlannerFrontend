@@ -22,7 +22,6 @@ const FriendModalFriendListItem = ({ dispatch, friend, selectedFriend }) => {
     }
 
     const handleCancelRequest = async (row) => {
-        console.log(row?.id)
         setSpinning(true)
         var a = await dispatch(declineRequest(row?.id))
         const b = a + await dispatch(getActiveFriends())
@@ -37,7 +36,6 @@ const FriendModalFriendListItem = ({ dispatch, friend, selectedFriend }) => {
         var pending = dispatch(getAlreadyPending(friend.id))
         var me = dispatch(isMe(friend.id))
         if (alreadyFriends) {
-            console.log(alreadyFriends)
             return (
                 <div className="friend-modal-friend-list-item__already-added"><IoMdPerson /><IoMdCheckmark /></div>
             )

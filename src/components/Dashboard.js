@@ -106,10 +106,10 @@ const Dashboard = ({ dispatch, charts, profile,
   // (stripeStatus === 'active')
 
   useEffect(() => {
-    dispatch(refreshUser()).then(() => {
-    }).catch((e) => {
-      console.log(e)
-    })
+    // dispatch(refreshUser()).then(() => {
+    // }).catch((e) => {
+    //   console.log(e)
+    // })
 
     if (isPremium) {
       dispatch(loadPersonalStats())
@@ -137,15 +137,6 @@ const Dashboard = ({ dispatch, charts, profile,
 
   }, [])
 
-  const goToNextWeek = () => {
-    setWhichWeek(whichWeek.add(1, 'w'))
-    dispatch(loadHoursWeek(whichWeek))
-  }
-
-  const goToPreviousWeek = () => {
-    setWhichWeek(whichWeek.subtract(1, 'w'));
-    dispatch(loadHoursWeek(whichWeek))
-  }
 
   const handleJoyrideCallback = data => {
     const { action, index, status, type } = data;
@@ -164,7 +155,7 @@ const Dashboard = ({ dispatch, charts, profile,
     }
 
     console.groupCollapsed(type);
-    console.log(data); //eslint-disable-line no-console
+    //eslint-disable-line no-console
     console.groupEnd();
   };
 

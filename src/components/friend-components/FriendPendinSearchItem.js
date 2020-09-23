@@ -5,7 +5,6 @@ import { IoMdClose, IoMdCheckmark } from 'react-icons/io'
 
 const AcceptDeclineItem = ({ request, dispatch }) => {
     const handleAcceptRequest = async (rowId) => {
-        console.log('accepting')
 
         var x = await dispatch(acceptRequest(rowId))
         var y = x + await dispatch(getPendingFriends())

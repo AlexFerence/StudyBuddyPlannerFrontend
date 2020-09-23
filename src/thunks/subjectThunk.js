@@ -56,7 +56,6 @@ export const editSubjectThunk = (newData, classSelection) => async (dispatch, ge
                 }
             }
         )
-        console.log(res.data)
 
         if (res.status === 200) {
             dispatch(realoadClassesThunk())
@@ -88,7 +87,7 @@ export const realoadClassesThunk = () => async (dispatch, getState) => {
         dispatch(fillSubjects(list))
     }
     catch (e) {
-        console.log('caught errors')
+
         console.log(e)
     }
 }

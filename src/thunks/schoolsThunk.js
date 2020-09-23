@@ -21,11 +21,10 @@ export const loadSchools = () => async (dispatch, getState) => {
 
         res.data.forEach((school) => {
             formattedSchools.push({ value: school.id, label: school.name, numberOfStudents: school.numberOfStudents })
-            //console.log(school)
+
         })
 
         dispatch(setSchools(formattedSchools))
-        console.log(typeof (formattedSchools))
         //return formattedSchools
 
 
@@ -54,7 +53,7 @@ export const loadFaculties = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    console.log('setting faculties')
+
     try {
         const res = await axios.post(url + '/api/Faculties/list',
             {
@@ -65,18 +64,15 @@ export const loadFaculties = () => async (dispatch, getState) => {
                 }
             })
 
-        console.log(res)
+
 
         var formattedFaculties = []
 
-        console.log(res.data)
 
         res.data.forEach((faculty) => {
             formattedFaculties.push({ value: faculty.id, label: faculty.name })
-            //console.log(school)
-        })
 
-        console.log(formattedFaculties)
+        })
         dispatch(setFaculties(formattedFaculties))
 
     } catch (e) {
@@ -89,9 +85,9 @@ export const loadAdminStats = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-    console.log('setting admin stats')
+
     try {
-        console.log(token)
+
         const res = await axios.post(url + '/api/admincharts/listadminstats',
             {
                 headers: {
@@ -100,7 +96,7 @@ export const loadAdminStats = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-        console.log(res.data?.responseItems)
+
     } catch (e) {
         console.log(e)
         return (false)

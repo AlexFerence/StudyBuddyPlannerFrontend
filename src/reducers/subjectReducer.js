@@ -9,8 +9,7 @@ const subjectReducer = (state = subjectDefaultState, action) => {
             return [...state, action.newSubject]
 
         case DELETE_SUBJECT:
-            console.log('deleteing')
-            console.log(state)
+
             return state.filter((subject) => subject.id !== action.id)
 
         case FILL_SUBJECTS:

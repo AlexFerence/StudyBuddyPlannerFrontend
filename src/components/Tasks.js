@@ -104,10 +104,9 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
         dispatch(getActiveFriends())
         dispatch(getPendingFriends())
 
-        console.log(moment())
-        console.log(moment(profile.tokenExpiry))
+
         if (moment().isAfter(moment(profile.tokenExpiry))) {
-            console.log('SHOULD LOG OUT')
+
             dispatch(logout())
             history.push('/')
 
@@ -117,7 +116,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
     const handleJoyrideCallback = data => {
         const { action, index, status, type } = data;
 
-        console.log(STATUS);
+        //console.log(STATUS);
 
         if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
             // Update state to advance the tour
@@ -136,7 +135,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
         }
 
         console.groupCollapsed(type);
-        console.log(data); //eslint-disable-line no-console
+        // console.log(data); //eslint-disable-line no-console
         console.groupEnd();
     };
 
@@ -176,7 +175,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                         blankOn={blankOn}
                     />
                 </Col>
-                <Col xs={12} s={12} md={6} lg={6} className="main-right">
+                <Col xs={12} s={12} md={6} lg={6} style={{ overflow: 'hidden' }} className="main-right">
                     {displayType === 'adding' && <AddTask
                         displayOn={displayOn}
                         setDisplayType={setDisplayType}
@@ -198,9 +197,15 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                             }}><div>Add a subject</div></Link>
                         </CustomChildrenOverlay>
                     }
-                    {displayType === '' && subjects.length > 0 && tasks.length === 0 &&
+                    {
+                        displayType === '' && subjects.length > 0 && tasks.length === 0 &&
                         <CustomOverlay message="Add a task to get started" />
                     }
+                    <div
+
+                        onClick={() => blankOn()}
+
+                        style={{ height: '100%' }} />
                 </Col>
             </Row>
         </div>

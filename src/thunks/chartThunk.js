@@ -66,11 +66,10 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        //console.log("subject breakdown")
-        //console.log(res.data)
+
         var formattedSubjectBreakdown = []
         res.data.responseItems.forEach((subj) => {
-            //console.log(subj)
+
             formattedSubjectBreakdown.push(
                 {
                     value: subj.value1,
@@ -78,8 +77,7 @@ export const loadSubjectBreakdown = (subjId) => async (dispatch, getState) => {
                 })
 
         })
-        //console.log('formatted')
-        //console.log(formattedSubjectBreakdown)
+
         dispatch(setSubjectBreakdownChart(formattedSubjectBreakdown))
     } catch (e) {
         return (e)
@@ -103,8 +101,7 @@ export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => 
                 'Content-Type': 'application/json'
             }
         })
-        // console.log("hours week")
-        //console.log(res.data)
+
         var weekList = []
         res.data.responseItems.forEach((item) => {
             weekList.push(item.value1)
@@ -236,7 +233,8 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
             }
         })
         var formattedWeekData = []
-        console.log(res.data)
+
+
         var hoursPerWeekColors = []
         var hoursPerWeekSubjBeakdownXAxis = []
         var firstTime = true
@@ -249,7 +247,7 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
             subj.responseItems.forEach((item) => {
                 individlList.push(item.value1)
                 if (firstTime) {
-                    console.log(item.name1)
+
                     hoursPerWeekSubjBeakdownXAxis.push(moment(item.name1).format("MMM D"))
                 }
             })
@@ -263,7 +261,6 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
                 data: individlList
             })
         })
-        console.log(formattedWeekData)
         var hoursPerWeekSubjBeakdown = formattedWeekData
         dispatch(modify({ hoursPerWeekSubjBeakdown }))
         dispatch(modify({ hoursPerWeekColors }))
@@ -289,9 +286,6 @@ export const loadPersonalStats = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-
-        console.log(res.data)
-
         if (res.status === 200) {
 
             dispatch(modify({ personalStats: { ...res.data } }))
@@ -404,7 +398,7 @@ export const comparativePersonalToAverage = (sid) => async (dispatch, getState) 
             })
 
         })
-        console.log(formattedWeekData)
+
         var comparativePersonalToAverageData = formattedWeekData
         dispatch(modify({ comparativePersonalToAverageData }))
         dispatch(modify({ comparativePersonalToAverageColors }))

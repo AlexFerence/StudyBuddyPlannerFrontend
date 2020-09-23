@@ -24,10 +24,11 @@ export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (d
                 'Content-Type': 'application/json'
             }
         })
-        console.log(res.data)
+
+
         if (res.status === 200) {
             dispatch(setSemesterId(res.data.id))
-            console.log("semester data")
+
         }
     }
     catch (e) {

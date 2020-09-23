@@ -13,7 +13,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 password
             })
         if (res.status === 200) {
-            console.log(res.data)
+            //console.log(res.data)
             dispatch(setProfile({
                 //TODO check what fields come back from res.data.email
                 email,
@@ -97,9 +97,8 @@ export const updateProfileThunk = ({ school, major, minor, faculty, year = 0 }) 
                 'Content-Type': 'application/json'
             }
         })
-        console.log('put update recieved data')
 
-        console.log(res.data)
+
         dispatch(update({
             ...res.data
         }))
@@ -123,8 +122,6 @@ export const refreshUser = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-
-        console.log(res.data)
 
         dispatch(modifyProfile({
             ...res.data
@@ -152,8 +149,6 @@ export const turnOffTaskTour = () => async (dispatch, getState) => {
                 }
             })
 
-        console.log(res.data)
-
         dispatch(modifyProfile({
             ...res.data
         }))
@@ -179,8 +174,6 @@ export const turnOffSubjectTour = () => async (dispatch, getState) => {
                 }
             })
 
-        console.log(res.data)
-
         dispatch(modifyProfile({
             ...res.data
         }))
@@ -205,8 +198,6 @@ export const turnOffDashboardTour = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-
-        console.log(res.data)
 
         dispatch(modifyProfile({
             ...res.data

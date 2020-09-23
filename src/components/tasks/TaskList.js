@@ -31,8 +31,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
     }, [])
 
     useEffect(() => {
-        console.log(filterByCompleted)
-        console.log(filterBy)
+
         dispatch(
             loadTasks((filterBy.value === 'Due Date' ? true : false), filterByCompleted)
         )
