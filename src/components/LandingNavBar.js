@@ -21,10 +21,8 @@ const LandingNav = ({ history, width }) => {
                 backgroundColor: 'transparent',
             }}>
             <Navbar.Brand id="landing-nav-title" style={{ color: 'white', textTransform: 'Capitalize' }} href="#home">
-
                 <img alt="Study Buddy Logo" src={icon} style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" />
                 <span style={{ paddingTop: '6px' }}>StudyBuddy</span>
-
             </Navbar.Brand>
             <Navbar.Toggle style={{ color: 'white' }} aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

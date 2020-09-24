@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
-import { IoMdPlay } from 'react-icons/io'
+import { IoMdPlay, IoMdPause } from 'react-icons/io'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import {
@@ -85,29 +85,29 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
     var percent = count / interval
 
     const resetCount = () => {
-        if (paused) {
-            swal({
-                title: "Are you sure you want to Give Up?",
-                text: "All progress for the study session will be lost",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        setCount(0)
-                        setIsRunning(false)
-                        dispatch(pausedReduxOff())
-                    } else {
+        // if (paused) {
+        //     swal({
+        //         title: "S",
+        //         text: "All progress for the study session will be lost",
+        //         icon: "warning",
+        //         buttons: true,
+        //         dangerMode: true,
+        //     })
+        //         .then((willDelete) => {
+        //             if (willDelete) {
+        //                 setCount(0)
+        //                 setIsRunning(false)
+        //                 dispatch(pausedReduxOff())
+        //             } else {
 
-                    }
-                });
-        }
-        else {
-            setCount(0)
-            setIsRunning(false)
-            dispatch(pausedReduxOff())
-        }
+        //             }
+        //         });
+        // }
+        // else {
+        setCount(0)
+        setIsRunning(false)
+        dispatch(pausedReduxOff())
+        //}
     }
 
     // const timeChanged = (e) => {
@@ -155,15 +155,32 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                 </div>
                 <div className="inside d-flex justify-content-center align-items-center">
                     {!isRunning &&
-                        <button
-                            disabled={!currentTask.id}
-                            className="but noHover"
-                            onClick={startTimer}
-                        ><IoMdPlay /></button>}
-                    {isRunning && <button
-                        className="but noHover"
-                        onClick={submitTime}
-                    >Done</button>}
+                        <div>
+                            <button
+                                disabled={!currentTask.id}
+                                className="but noHover"
+                                onClick={startTimer}
+                            ><IoMdPlay /></button>
+                            {count > 1 && <button
+                                className="but noHover"
+                                onClick={submitTime}
+                            >Submit</button>}
+                        </div>
+                    }
+                    {isRunning &&
+                        <div>
+                            <button
+                                className="but noHover"
+                                onClick={pauseTimer}
+                            >
+                                <IoMdPause />
+                            </button>
+                            <button
+                                className="but noHover"
+                                onClick={submitTime}
+                            >Done</button>
+                        </div>
+                    }
 
                 </div>
             </div>
