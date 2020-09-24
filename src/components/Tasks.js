@@ -201,11 +201,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                         displayType === '' && subjects.length > 0 && tasks.length === 0 &&
                         <CustomOverlay message="Add a task to get started" />
                     }
-                    <div
 
-                        onClick={() => blankOn()}
-
-                        style={{ height: '100%' }} />
                 </Col>
             </Row>
         </div>
@@ -227,3 +223,7 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(TasksPage)
+
+// <div
+                    //     onClick={() => blankOn()}
+                    //     style={{ height: '100%' }} />

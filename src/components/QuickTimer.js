@@ -8,12 +8,11 @@ import { getClassColor, getClassName } from '../thunks/subjectThunk';
 import { Row, Col } from 'react-bootstrap'
 import { setCurrentTaskById } from '../thunks/taskThunk'
 import { realoadClassesThunk } from '../thunks/subjectThunk'
-
-//new line
-
+import TaskTimeInput from './TaskTimeInput'
 
 
-const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects, specialFunction }) => {
+const QuickTimer = ({ dispatch, isRunning, paused, currentTask,
+    tasks, subjects, specialFunction }) => {
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
     const [localTasks, setLocalTasks] = useState([])
@@ -25,7 +24,6 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
         if (tasks.length > 0) {
             setCurrentTaskById(tasks[0].id)
         }
-
     }, [])
 
     const getClassName = (subjectId) => {
@@ -88,8 +86,8 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
                         isDisabled={isRunning || paused}
                         options={[
                             { value: 'Timer', label: 'Timer' },
-                            { value: 'Stopwatch', label: 'Stopwatch' }
-
+                            { value: 'Stopwatch', label: 'Stopwatch' },
+                            { value: 'Time Input', label: 'Time Input' }
                         ]}
                         theme={(theme) => ({
                             ...theme,
@@ -106,19 +104,15 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask, tasks, subjects,
                 </Col>
             </Row>
 
-
-
             {timerSetting.value === 'Timer' &&
                 <Counter specialFunction={specialFunction}
-                //color={getClassColor(currentTask.subjectId)}
-                //currentTask={currentTask}
-
                 />}
             {timerSetting.value === 'Stopwatch' &&
                 <Stopwatch />
             }
-
-
+            {timerSetting.value === 'Time Input' &&
+                <TaskTimeInput />
+            }
         </div>
     )
 

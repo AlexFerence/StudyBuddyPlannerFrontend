@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import icon from '../assets/whiteSB.png'
 
 const LandingNav = ({ history, width }) => {
 
@@ -19,7 +20,12 @@ const LandingNav = ({ history, width }) => {
                 width: '100%',
                 backgroundColor: 'transparent',
             }}>
-            <Navbar.Brand href="#home">Study Buddy</Navbar.Brand>
+            <Navbar.Brand id="landing-nav-title" style={{ color: 'white', textTransform: 'Capitalize' }} href="#home">
+
+                <img alt="Study Buddy Logo" src={icon} style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" />
+                <span style={{ paddingTop: '6px' }}>StudyBuddy</span>
+
+            </Navbar.Brand>
             <Navbar.Toggle style={{ color: 'white' }} aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -32,7 +38,6 @@ const LandingNav = ({ history, width }) => {
                     <div
                         style={{ minWidth: '140px', color: 'white', textAlign: 'center' }}
                         id="navButSignUp" id="navButtonSignUp"><Link id="navButSignUp" to="/signup" style={{ textTransform: 'capitalize', color: 'white', padding: '5px' }}>Sign Up</Link></div>
-
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
