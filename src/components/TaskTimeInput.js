@@ -63,7 +63,6 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
             dispatch(loadMarksScatter())
             dispatch(loadTaskHoursPerWeek())
             dispatch(loadPersonalStats())
-
         }
     }
 
@@ -83,8 +82,8 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                     <div className="timeLabel">Hrs</div>
                 </Col>
             </Row>
+            <div style={{ height: '5px' }} />
             <Row className="d-flex align-items-center" style={{ zIndex: '200' }}>
-                <div className="timeLabel">Day</div>
                 <SingleDatePicker
                     date={selectedDate} // momentPropTypes.momentObj or null
                     onDateChange={date => {
@@ -100,7 +99,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                     anchorDirection={ANCHOR_RIGHT}
                 />
             </Row>
-
+            <div style={{ height: '5px' }} />
             <Row>
                 <Col>
                     <button

@@ -111,7 +111,9 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask,
                 <Stopwatch />
             }
             {timerSetting.value === 'Time Input' &&
-                <TaskTimeInput />
+                <div style={{ padding: '10px' }}>
+                    <TaskTimeInput />
+                </div>
             }
         </div>
     )
