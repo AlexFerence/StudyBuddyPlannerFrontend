@@ -164,7 +164,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                             {count > 1 && <button
                                 className="but noHover"
                                 onClick={submitTime}
-                            >Submit</button>}
+                            >Done</button>}
                         </div>
                     }
                     {isRunning &&
