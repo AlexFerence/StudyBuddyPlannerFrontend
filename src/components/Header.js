@@ -27,7 +27,7 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentTask = { id: 0 } }) => {
+const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
 
 
     useBeforeunload((event) => {
@@ -103,7 +103,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav inline="true">
-                            {!isRunning ?
+                            {(!isRunning && !paused) ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -154,7 +154,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                                 //     </div>
                                 // 
                             }
-                            {!isRunning ?
+                            {(!isRunning && !paused) ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -180,7 +180,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                                     id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><FaCheckSquare />
                                 </div>
                             }
-                            {!isRunning ?
+                            {(!isRunning && !paused) ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -205,7 +205,7 @@ const Header = ({ isRunning, width, profile, history, isAuth, dispatch, currentT
                                 </div>
 
                             }
-                            {!isRunning ?
+                            {(!isRunning && !paused) ?
                                 <OverlayTrigger
                                     placement="bottom"
                                     delay={{ show: 250, hide: 400 }}
@@ -266,7 +266,8 @@ const mapStateToProps = (state) => {
         isAuth: state.profile.isAuth,
         isRunning: state.running.isRunning,
         width: state.width,
-        currentTask: state.currentTask
+        currentTask: state.currentTask,
+        paused: state.running.paused,
     }
 }
 export default connect(mapStateToProps)(Header)
