@@ -211,3 +211,8 @@ ul {
 #edit-hover:hover {
  color: lighten($color: $grey, $amount: 15);
 }
+
+#no-padding {
+ padding: 0px;
+ margin: 0px;
+}

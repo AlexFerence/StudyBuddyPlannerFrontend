@@ -4,7 +4,6 @@ import FormPage from './components/SignUpPage'
 import LoginPage from './components/LoginPage'
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header'
-
 import Tasks from './components/Tasks'
 import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
@@ -19,6 +18,8 @@ import './styles/styles.scss'
 import moment from 'moment'
 import Dashboard from './components/Dashboard';
 import { logout } from './actions/profileActions';
+import Premium from './components/premiumPage/Premium'
+import PremiumDetailed from './components/premiumDetailedPage/PremiumDetailed'
 
 
 const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
@@ -62,6 +63,12 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
         </Route>
         <Route path='/subjects'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <SubjectsPage />}
+        </Route>
+        <Route path='/premium' exact>
+          {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Premium />}
+        </Route>
+        <Route path='/premium/detailed'>
+          {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <PremiumDetailed />}
         </Route>
       </Switch>
     </BrowserRouter>

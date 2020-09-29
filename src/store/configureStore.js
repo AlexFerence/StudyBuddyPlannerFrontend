@@ -11,6 +11,7 @@ import chartsReducer from '../reducers/chartsReducer'
 import subscriptionsReducer from '../reducers/subscriptionReducer'
 import friendReducer from '../reducers/friendsReducer'
 import widthReducer from '../reducers/widthReducer'
+import premiumStatsReducer from '../reducers/premiumStatsReducer'
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
@@ -33,7 +34,8 @@ const reducers = {
     charts: chartsReducer,
     subscriptions: subscriptionsReducer,
     friends: friendReducer,
-    width: widthReducer
+    width: widthReducer,
+    premiumStats: premiumStatsReducer
 };
 
 const persistConfig = {
