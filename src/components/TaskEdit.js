@@ -103,7 +103,8 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
                             { value: 'Essay', label: 'Essay' },
                             { value: 'Lab', label: 'Lab' },
                             { value: 'General Studying', label: 'General Studying' },
-                            { value: 'Lecture', label: 'Lecture' }
+                            { value: 'Lecture', label: 'Lecture' },
+                            { value: 'Quiz/Midterm/Exam', label: 'Quiz/Midterm/Exam' }
                         ]}
                     />
 
