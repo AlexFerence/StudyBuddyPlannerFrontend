@@ -8,6 +8,7 @@ import Tasks from './components/Tasks'
 import Settings from './components/Settings'
 import SubjectsPage from './components/Subjects'
 import Subjects2 from './components/subjects/Subjects2'
+import Subjects3 from './components/subjects/Subjects3'
 import SignUpSecondary from './components/SignUpSecondary'
 import Landing from './components/landing'
 import FriendActivity from './components/friend-components/FriendActivity'
@@ -67,6 +68,9 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
         </Route>
         <Route path='/subjects2'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Subjects2 />}
+        </Route>
+        <Route path='/subjects3'>
+          {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Subjects3 />}
         </Route>
         <Route path='/premium' exact>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Premium />}

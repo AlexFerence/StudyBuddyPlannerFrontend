@@ -20,7 +20,7 @@ import CustomOverlay from '../../components/CustomOverlay'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
 
-import ListSubjects from './ListSubjects'
+import ListSubjects from './SubjectList/ListSubjects'
 
 const TOUR_STEPS = [
     {

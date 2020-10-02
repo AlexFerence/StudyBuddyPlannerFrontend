@@ -12,6 +12,8 @@ import subscriptionsReducer from '../reducers/subscriptionReducer'
 import friendReducer from '../reducers/friendsReducer'
 import widthReducer from '../reducers/widthReducer'
 import premiumStatsReducer from '../reducers/premiumStatsReducer'
+import currentSubjectReducer from '../reducers/currentSubjectReducer'
+
 
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
