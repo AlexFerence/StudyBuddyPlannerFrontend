@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import url from '../environment/url'
-import SubjectButton from './SubjectButton'
-import { fillSubjects } from '../actions/subjectActions'
-import { deleteSubject } from '../actions/subjectActions'
+import url from '../../environment/url'
+import SubjectButton from '../SubjectButton'
+import { fillSubjects } from '../../actions/subjectActions'
+import { deleteSubject } from '../../actions/subjectActions'
 import { FaTrashAlt, FaEdit, FaCreditCard, FaTag } from 'react-icons/fa'
 import { IoMdSchool } from 'react-icons/io'
-import SubjectModal from './SubjectModal'
+import SubjectModal from '../SubjectModal'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
-import { editSubjectThunk } from '../thunks/subjectThunk'
-import { loadSubjectBreakdown } from '../thunks/chartThunk'
+import { editSubjectThunk } from '../../thunks/subjectThunk'
+import { loadSubjectBreakdown } from '../../thunks/chartThunk'
 import ReactEcharts from 'echarts-for-react'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
-import { modifyProfile } from '../actions/profileActions'
-import { turnOffSubjectTour } from '../thunks/profileThunk'
-import CustomOverlay from '../components/CustomOverlay'
+import { modifyProfile } from '../../actions/profileActions'
+import { turnOffSubjectTour } from '../../thunks/profileThunk'
+import CustomOverlay from '../../components/CustomOverlay'
 import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
+
+import ListSubjects from './ListSubjects'
 
 const TOUR_STEPS = [
     {
@@ -191,30 +193,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
             <Col style={{ padding: '0px' }}
                 xs={12} s={12} md={6} lg={6}
                 className="scroller main-left">
-                <div className="classHeader">
-                    <div className="left">
-                        <div className="title">Subjects</div>
-                    </div>
-                    <div className="right">
-                        <button id="addButton" onClick={() => setOpenModal(true)}>+ Add Subject</button>
-                    </div>
-                </div>
-                <div className="listClasses">{subjects.map((item) => {
-                    return (<div
-                        onClick={() => {
-                            console.log(item.id)
-                            setEditMode(false)
-                            setClassSelection(item)
-                            dispatch(loadSubjectBreakdown(item.id))
-
-                        }} key={item.id}>
-                        <SubjectButton
-                            className="button"
-                            item={item}
-                            setClassSelection={setClassSelection}
-                        /></div>
-                    )
-                })}</div>
+                <ListSubjects />
             </Col>
             <Col style={{ padding: '0px' }}
                 xs={12} s={12} md={6} lg={6} className="display">

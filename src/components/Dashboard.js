@@ -122,11 +122,10 @@ const Dashboard = ({ dispatch, charts, profile,
       dispatch(loadTaskHoursPerWeek())
     }
 
-    dispatch(loadSchools())
-
     dispatch(getActiveFriends())
     dispatch(getPendingFriends())
 
+    // loading top right hours week chart
     dispatch(loadHoursWeek())
 
 
