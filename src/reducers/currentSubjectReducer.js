@@ -1,8 +1,6 @@
 import { SET_CURRENT_SUBJECT } from '../actions/currentSubjectActions'
 
-const currentSubjectDefaultState = {
-    currentSubject: {}
-}
+const currentSubjectDefaultState = {}
 
 const currentSubjectReducer = (state = currentSubjectDefaultState, action) => {
     switch (action.type) {

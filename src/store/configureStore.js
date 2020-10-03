@@ -37,7 +37,8 @@ const reducers = {
     subscriptions: subscriptionsReducer,
     friends: friendReducer,
     width: widthReducer,
-    premiumStats: premiumStatsReducer
+    premiumStats: premiumStatsReducer,
+    currentSubject: currentSubjectReducer
 };
 
 const persistConfig = {

@@ -1,11 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SubjectButton from './SubjectButton'
+import { setCurrentSubject } from '../../../actions/currentSubjectActions'
 
-const ListSubjects = ({ subjects, setOpenModal, setEditMode, dispatch }) => {
+const ListSubjects = ({ subjects, setDisplayMode, dispatch }) => {
 
-    const handleSelectedSubject = () => {
+    const handleSelectedSubject = (id) => {
+        setDisplayMode('display')
+        const selectedSubject = subjects.find((subject) => subject.id === id)
+        if (selectedSubject) {
+            dispatch(setCurrentSubject(selectedSubject))
+        }
+    }
 
+    const handleOpenAddModal = () => {
+        setDisplayMode('adding')
     }
 
     return (
@@ -15,12 +24,12 @@ const ListSubjects = ({ subjects, setOpenModal, setEditMode, dispatch }) => {
                     <div className="title">Subjects</div>
                 </div>
                 <div className="right">
-                    <button id="addButton" onClick={() => setOpenModal(true)}>+ Add Subject</button>
+                    <button id="addButton" onClick={() => handleOpenAddModal}>+ Add Subject</button>
                 </div>
             </div>
             <div className="listClasses">{subjects.map((item) => {
                 return (
-                    <div onClick={handleSelectedSubject} key={item.id}>
+                    <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
                         <SubjectButton item={item} />
                     </div>
                 )
