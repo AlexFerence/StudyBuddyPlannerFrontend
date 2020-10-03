@@ -11,7 +11,7 @@ import {
     loadChartsThunk, loadSubjectBreakdown, loadHoursWeek,
     loadMarksScatter,
     loadTaskHoursPerWeek,
-    loadPersonalStats
+    loadPersonalStats, loadFiveCharts
 } from '../thunks/chartThunk'
 import { Link } from 'react-router-dom'
 import * as workerTimers from 'worker-timers';
@@ -95,15 +95,12 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
             taskId: currentTask.id,
             minutes: Math.floor(interval / 60),
         }))
-        await dispatch(loadTasks())
+
 
         //TODO put in new call
-        dispatch(loadChartsThunk())
-        dispatch(loadSubjectBreakdown())
-        dispatch(loadHoursWeek())
-        dispatch(loadMarksScatter())
-        dispatch(loadTaskHoursPerWeek())
-        dispatch(loadPersonalStats())
+        dispatch(loadFiveCharts())
+
+        await dispatch(loadTasks())
         dispatch(setCurrentTaskById(currentTask.id))
 
         if (specialFunction) {

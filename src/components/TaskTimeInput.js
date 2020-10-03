@@ -7,10 +7,7 @@ import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import { ANCHOR_RIGHT } from 'react-dates/constants'
-import {
-    loadChartsThunk, loadSubjectBreakdown, loadHoursWeek,
-    loadMarksScatter, loadTaskHoursPerWeek, loadPersonalStats
-} from '../thunks/chartThunk'
+import { loadFiveCharts } from '../thunks/chartThunk'
 
 
 const TimeInput = ({ color, dispatch, currentTask }) => {
@@ -57,12 +54,10 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
             // dispatch(getSessionsThunk(currentTask.id))
 
             // update charts here
-            dispatch(loadChartsThunk())
-            dispatch(loadSubjectBreakdown())
-            dispatch(loadHoursWeek())
-            dispatch(loadMarksScatter())
-            dispatch(loadTaskHoursPerWeek())
-            dispatch(loadPersonalStats())
+            dispatch(loadFiveCharts())
+
+            await dispatch(loadTasks())
+            dispatch(setCurrentTaskById(currentTask.id))
         }
     }
 

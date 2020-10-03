@@ -39,7 +39,6 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
                     name: item.name1,
                 })
                 pieColors.push(item.name2)
-                //get him to send subjectId along with name 2
             })
             //console.log(pieData)
             dispatch(setPieChart({ pieData }))
@@ -129,13 +128,11 @@ export const loadYearBeakdown = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        //console.log("year breakdown")
-        //console.log(res.data)
+
         var formattedYearBreakdown = []
         var xAxis = []
 
         res.data.responseItems.forEach((subj) => {
-            //console.log(subj)
             formattedYearBreakdown.push(
                 {
                     value: subj.value1,
@@ -409,20 +406,21 @@ export const comparativePersonalToAverage = (sid) => async (dispatch, getState) 
 
 const defaultUserBilling = { stripeStatus: 0 }
 
-export const refreshAllCharts = () => async (dispatch, getState) => {
-    const state = getState()
-    const { profile, subjects, } = state
-    const { id, token, subjId, schoolId, userBilling = defaultUserBilling } = profile
-    const { stripeStatus } = userBilling
-
-    if (stripeStatus) {
-        dispatch(loadChartsThunk())
-        dispatch(loadSubjectBreakdown())
-        dispatch(loadMarksScatter())
-        dispatch(loadTaskHoursPerWeek())
-        dispatch(loadPersonalStats())
-    }
-
+export const loadFiveCharts = () => async (dispatch, getState) => {
+    console.log('loading 5 subjects')
+    // top right
     dispatch(loadHoursWeek())
+
+    // subject week breakdown
+    dispatch(loadTaskHoursPerWeek())
+
+    // personal stats
+    dispatch(loadPersonalStats())
+
+    // average per day of week
+    dispatch(loadAverageOfWeekDay())
+
+    // subject pie chart
+    dispatch(loadChartsThunk())
 }
 

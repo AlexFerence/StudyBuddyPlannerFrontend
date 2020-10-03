@@ -1,25 +1,68 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ListSubjects from './SubjectList/ListSubjects'
 import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import SubjectDisplay from './SubjectDisplay/SubjectDisplayMain'
+import CustomOverlay from '../../components/CustomOverlay'
+import { loadSubjectBreakdown } from '../../thunks/chartThunk'
+import AddSubjectModalContent from './AddSubject/AddSubjectModalContent'
+import EditSubject from './EditSubject/EditSubject'
+import Modal from 'react-modal';
 
 
-const Subjects3 = ({ width, subjects = [] }) => {
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '40%',
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'translate(-50%, -50%)',
+        background: '#ffffff',
+        padding: 'none',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+        minWidth: '500px'
+    }
+};
 
+const Subjects3 = ({ width, subjects = [], dispatch, currentSubject }) => {
+    // controls the display of the view on the right
     const [displayMode, setDisplayMode] = useState('')
 
+    // load new pie chart data every time current subject is changed
+    useEffect(() => {
+        dispatch(loadSubjectBreakdown(currentSubject.id))
+    }, [currentSubject])
+
+    const turnOnEditing = () => setDisplayMode('editing')
+
+    const closeAddModal = () => {
+        if (currentSubject?.id) {
+            setDisplayMode('display')
+        }
+        else {
+            setDisplayMode('')
+        }
+    }
+
     const renderDisplay = () => {
-        if (displayMode === 'edit') {
-            return (<div>Editing</div>)
+        if (displayMode === 'editing') {
+            return (<EditSubject setDisplayMode={setDisplayMode} />)
         }
         else if (displayMode === 'adding') {
-            return (<div>Adding</div>)
+            return (<Modal
+                isOpen={displayMode === 'adding'}
+                onRequestClose={closeAddModal}
+                style={customStyles}
+                contentLabel="Add Subject Modal"
+            >
+                <AddSubjectModalContent closeAddModal={closeAddModal} />
+            </Modal>)
         }
         else if (displayMode === 'display') {
-            return (<div>Display</div>)
+            return (<SubjectDisplay turnOnEditing={turnOnEditing} />)
         }
         else if (subjects.length === 0) {
-            return (<div>Nothing</div>)
+            return (<CustomOverlay message="Add a subject to get started" />)
         }
         else {
             return (<div></div>)
@@ -43,7 +86,8 @@ const Subjects3 = ({ width, subjects = [] }) => {
 const mapStateToProps = (state) => {
     return {
         width: state.width,
-        subjects: state.subjects
+        subjects: state.subjects,
+        currentSubject: state.currentSubject
     }
 }
 

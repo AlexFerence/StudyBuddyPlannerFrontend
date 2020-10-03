@@ -1,7 +1,7 @@
 import axios from 'axios'
 import url from '../environment/url'
 import { setProfile, update, modifyProfile } from '../actions/profileActions'
-import { refreshAllCharts } from './chartThunk'
+import { loadFiveCharts } from './chartThunk'
 import { realoadClassesThunk } from './subjectThunk'
 import { loadTasks } from './taskThunk'
 
@@ -25,7 +25,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 isAuth: true,
             }))
             dispatch(refreshUser());
-            dispatch(refreshAllCharts());
+            dispatch(loadFiveCharts());
             dispatch(loadTasks())
             dispatch(realoadClassesThunk)
         }

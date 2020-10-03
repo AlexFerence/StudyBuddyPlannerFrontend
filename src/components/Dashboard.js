@@ -106,30 +106,9 @@ const Dashboard = ({ dispatch, charts, profile,
   // (stripeStatus === 'active')
 
   useEffect(() => {
-    // dispatch(refreshUser()).then(() => {
-    // }).catch((e) => {
-    //   console.log(e)
-    // })
-
-    if (isPremium) {
-      dispatch(loadPersonalStats())
-      dispatch(loadAverageOfWeekDay())
-      dispatch(refreshUser())
-      dispatch(realoadClassesThunk())
-      dispatch(loadTasks())
-      dispatch(loadChartsThunk())
-      dispatch(loadSubjectBreakdown())
-      dispatch(loadTaskHoursPerWeek())
-    }
 
     dispatch(getActiveFriends())
     dispatch(getPendingFriends())
-
-    // loading top right hours week chart
-    dispatch(loadHoursWeek())
-
-
-
     if (tasks.length > 0) {
       setCurrentTask(tasks[0])
     }

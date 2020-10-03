@@ -14,6 +14,7 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch }) => {
     }
 
     const handleOpenAddModal = () => {
+        console.log('adding')
         setDisplayMode('adding')
     }
 
@@ -24,7 +25,7 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch }) => {
                     <div className="title">Subjects</div>
                 </div>
                 <div className="right">
-                    <button id="addButton" onClick={() => handleOpenAddModal}>+ Add Subject</button>
+                    <button id="addButton" onClick={() => handleOpenAddModal()}>+ Add Subject</button>
                 </div>
             </div>
             <div className="listClasses">{subjects.map((item) => {

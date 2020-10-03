@@ -10,7 +10,7 @@ import { addSubjectThunk } from '../thunks/subjectThunk'
 
 
 
-const SubjectModal = (props) => {
+const SubjectModal = ({ dispatch, closeModal, isOpen }) => {
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')
     const [professor, setProfessor] = useState('')
@@ -34,8 +34,10 @@ const SubjectModal = (props) => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        props.closeModal()
-        props.dispatch(addSubjectThunk({ subTitle, classCode, description, professor, credits, color }))
+        closeModal()
+        dispatch(addSubjectThunk({ subTitle, classCode, description, professor, credits, color }))
+
+        // clear all the input fields
         setProfessor('')
         setSubTitle('')
         setClassCode('')
@@ -49,8 +51,8 @@ const SubjectModal = (props) => {
 
     return (
         <Modal
-            isOpen={props.isOpen}
-            onRequestClose={props.closeModal}
+            isOpen={isOpen}
+            onRequestClose={closeModal}
             style={customStyles}
             contentLabel="Example Modal"
         >

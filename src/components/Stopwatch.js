@@ -1,19 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from 'react-redux'
 import { runningOnThunk, runningOffThunk } from '../thunks/userActivityThunk'
-import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
+import { postSessionThunk } from '../thunks/sessionsThunk'
 import { pausedReduxOn, pausedReduxOff } from '../actions/isRunningActions'
-import { IoMdPlay, IoMdPause } from 'react-icons/io'
+import { IoMdPlay, IoMdPause, IoMdCheckmark } from 'react-icons/io'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
-import {
-    loadChartsThunk, loadSubjectBreakdown, loadHoursWeek,
-    loadMarksScatter,
-    loadTaskHoursPerWeek,
-    loadPersonalStats,
-    loadYearBeakdown, loadFacultyStats, loadAverageOfWeekDay
-} from '../thunks/chartThunk'
-import { refreshAllCharts } from '../thunks/chartThunk'
+import { loadFiveCharts } from '../thunks/chartThunk'
 import * as workerTimers from 'worker-timers';
 
 const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, setCurrentTask }) => {
@@ -75,7 +68,7 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
             minutes: interval,
         }))
 
-        dispatch(refreshAllCharts())
+        dispatch(loadFiveCharts())
 
         dispatch(setCurrentTaskById(currentTask.id))
 
@@ -85,36 +78,14 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
     var percent = count / interval
 
     const resetCount = () => {
-        // if (paused) {
-        //     swal({
-        //         title: "S",
-        //         text: "All progress for the study session will be lost",
-        //         icon: "warning",
-        //         buttons: true,
-        //         dangerMode: true,
-        //     })
-        //         .then((willDelete) => {
-        //             if (willDelete) {
-        //                 setCount(0)
-        //                 setIsRunning(false)
-        //                 dispatch(pausedReduxOff())
-        //             } else {
 
-        //             }
-        //         });
-        // }
-        // else {
         setCount(0)
         setIsRunning(false)
         dispatch(pausedReduxOff())
-        //}
+
     }
 
-    // const timeChanged = (e) => {
-    //     if (e.target.value >= 0 && !isNaN(e.target.value)) {
-    //         setInterval(parseInt(e.target.value))
-    //     }
-    // }
+
 
     const submitTime = async () => {
         if (count > 1) {
@@ -125,22 +96,16 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                 buttons: true,
             })
 
-            dispatch(postSessionThunk({
+            await dispatch(postSessionThunk({
                 taskId: currentTask.id,
                 minutes: Math.floor(parseInt(count) / 60),
             }))
+
+            // refresh all dashboard charts
+            dispatch(loadFiveCharts())
+
+            // so task sessions instantly update
             await dispatch(loadTasks())
-
-            dispatch(loadChartsThunk())
-            dispatch(loadSubjectBreakdown())
-            dispatch(loadHoursWeek())
-            dispatch(loadYearBeakdown())
-            dispatch(loadFacultyStats())
-            dispatch(loadMarksScatter())
-            dispatch(loadTaskHoursPerWeek())
-            dispatch(loadPersonalStats())
-            dispatch(loadAverageOfWeekDay())
-
             dispatch(setCurrentTaskById(currentTask.id))
 
         }
@@ -153,32 +118,38 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                 <div className="inside d-flex justify-content-center align-items-center">
                     <div id="stopDisplay" >{timeDisplay(count)}</div>
                 </div>
-                <div className="inside d-flex justify-content-center align-items-center">
+                <div
+                    className="inside d-flex justify-content-center align-items-center">
                     {!isRunning &&
                         <div>
-                            <button
-                                disabled={!currentTask.id}
-                                className="but noHover"
-                                onClick={startTimer}
-                            ><IoMdPlay /></button>
-                            {count > 1 && <button
-                                className="but noHover"
-                                onClick={submitTime}
-                            >Done</button>}
+                            <div style={{ minWidth: '120px' }}>
+                                <button
+                                    disabled={!currentTask.id}
+                                    className="but noHover"
+                                    onClick={startTimer}
+                                ><IoMdPlay /></button>
+                                {count > 1 && <button
+                                    className="but noHover"
+                                    onClick={submitTime}
+                                ><IoMdCheckmark /></button>}
+                            </div>
                         </div>
+
                     }
                     {isRunning &&
                         <div>
-                            <button
-                                className="but noHover"
-                                onClick={pauseTimer}
-                            >
-                                <IoMdPause />
-                            </button>
-                            <button
-                                className="but noHover"
-                                onClick={submitTime}
-                            >Done</button>
+                            <div style={{ minWidth: '120px' }}>
+                                <button
+                                    className="but noHover"
+                                    onClick={pauseTimer}
+                                >
+                                    <IoMdPause />
+                                </button>
+                                <button
+                                    className="but noHover"
+                                    onClick={submitTime}
+                                ><IoMdCheckmark /></button>
+                            </div>
                         </div>
                     }
 

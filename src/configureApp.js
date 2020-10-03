@@ -22,6 +22,7 @@ import Dashboard from './components/Dashboard';
 import { logout } from './actions/profileActions';
 import Premium from './components/premiumPage/Premium'
 import PremiumDetailed from './components/premiumDetailedPage/PremiumDetailed'
+import { loadFiveCharts } from './thunks/chartThunk'
 
 
 const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
@@ -31,6 +32,10 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry }) => {
 
     if (moment().isAfter(moment(tokenExpiry))) {
       dispatch(logout())
+    }
+
+    if (isAuth) {
+      dispatch(loadFiveCharts())
     }
 
     function handleResize() {
