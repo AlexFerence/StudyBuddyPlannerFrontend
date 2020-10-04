@@ -77,10 +77,12 @@ const ResetPassword = Loadable({
   loader: () => import('./components/ResetPassword'),
   loading: FullPageLoader,
 });
+
 const PremiumDetailed = Loadable({
   loader: () => import('./components/premiumDetailedPage/PremiumDetailed'),
   loading: FullPageLoader,
 });
+
 const Premium = Loadable({
   loader: () => import('./components/premiumPage/Premium'),
   loading: FullPageLoader,
