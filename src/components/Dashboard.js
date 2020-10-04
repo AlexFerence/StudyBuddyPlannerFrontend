@@ -170,7 +170,7 @@ const Dashboard = ({ dispatch, charts, profile,
           <Col className="boxCol" md={6}>
             <div className="innerBoxCol extra-top-padding">
               <SubjWeeklyBreakdown />
-            </div>=
+            </div>
           </Col>
         </Row>
         <Row>
