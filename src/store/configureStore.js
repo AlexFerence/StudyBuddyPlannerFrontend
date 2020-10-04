@@ -13,6 +13,7 @@ import friendReducer from '../reducers/friendsReducer'
 import widthReducer from '../reducers/widthReducer'
 import premiumStatsReducer from '../reducers/premiumStatsReducer'
 import currentSubjectReducer from '../reducers/currentSubjectReducer'
+import loadingReducer from '../reducers/loadingReducer'
 
 
 import { persistReducer } from 'redux-persist'
@@ -38,7 +39,8 @@ const reducers = {
     friends: friendReducer,
     width: widthReducer,
     premiumStats: premiumStatsReducer,
-    currentSubject: currentSubjectReducer
+    currentSubject: currentSubjectReducer,
+    loading: loadingReducer
 };
 
 const persistConfig = {

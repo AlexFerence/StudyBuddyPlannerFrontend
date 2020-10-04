@@ -86,7 +86,6 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
     }
 
 
-
     const submitTime = async () => {
         if (count > 1) {
 
@@ -122,7 +121,11 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                     className="inside d-flex justify-content-center align-items-center">
                     {!isRunning &&
                         <div>
-                            <div style={{ minWidth: '120px' }}>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                minWidth: '120px'
+                            }}>
                                 <button
                                     disabled={!currentTask.id}
                                     className="but noHover"
@@ -138,7 +141,11 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                     }
                     {isRunning &&
                         <div>
-                            <div style={{ minWidth: '120px' }}>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                minWidth: '120px'
+                            }}>
                                 <button
                                     className="but noHover"
                                     onClick={pauseTimer}

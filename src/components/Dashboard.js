@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactEcharts from 'echarts-for-react'
 import { Row, Col, Accordion } from 'react-bootstrap'
-import {
-  loadChartsThunk, loadSubjectBreakdown,
-  loadHoursWeek,
-  loadTaskHoursPerWeek,
-  loadPersonalStats,
-  loadAverageOfWeekDay
-} from '../thunks/chartThunk'
 import Select from 'react-select';
 import { loadTasks } from '../thunks/taskThunk'
 import { connect } from 'react-redux'
@@ -18,16 +11,14 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { realoadClassesThunk } from '../thunks/subjectThunk'
 import { refreshUser, turnOffDashboardTour } from '../thunks/profileThunk'
-import Overlay from '../components/Overlay'
 import { setCurrentTask } from '../actions/currentTaskActions'
-import { logout } from '../actions/profileActions'
 import { getActiveFriends, getPendingFriends } from '../thunks/friendThunk'
-import { loadSchools } from '../thunks/schoolsThunk';
 import WeeklyChart from './dashboard-components/WeeklyChart'
 import NumbersOverview from './dashboard-components/NumbersOverview'
 import SubjWeeklyBreakdown from './dashboard-components/SubjWeeklyBreakdown'
 import WeeklyAverage from './dashboard-components/WeeklyAverage'
 import SubjPieBreakdown from './dashboard-components/SubjPieBreakdown'
+import { Redirect } from 'react-router-dom'
 
 
 const TOUR_STEPS = [
@@ -79,22 +70,9 @@ const TOUR_STEPS = [
 
 ];
 
-const hoursToTimeDisplay = (h) => {
-  var hours = Math.floor(h)
-  var decimalMins = (h - hours) * 60
-  var returnMins = Math.floor(decimalMins)
-  if (decimalMins < 10) {
-    returnMins = "0" + returnMins
-  }
-  return (hours + ":" + returnMins)
-}
-const reducer = (acc, item) => {
-  acc = acc.push(item)
-  return acc
-}
 
 const Dashboard = ({ dispatch, charts, profile,
-  history, subjects, stripeStatus, tasks, width }) => {
+  history, subjects, stripeStatus, tasks, width, isAuth }) => {
   var [dropdown1, setDropdown1] = useState(true)
   var [dropdown2, setDropdown2] = useState(true)
   var [steps, setSteps] = useState(TOUR_STEPS)
@@ -109,11 +87,18 @@ const Dashboard = ({ dispatch, charts, profile,
 
     dispatch(getActiveFriends())
     dispatch(getPendingFriends())
+
     if (tasks.length > 0) {
       setCurrentTask(tasks[0])
     }
 
   }, [])
+
+  if (!isAuth) {
+    return (
+      <Redirect to="/" />
+    )
+  }
 
 
   const handleJoyrideCallback = data => {
@@ -185,7 +170,7 @@ const Dashboard = ({ dispatch, charts, profile,
           <Col className="boxCol" md={6}>
             <div className="innerBoxCol extra-top-padding">
               <SubjWeeklyBreakdown />
-            </div>
+            </div>=
           </Col>
         </Row>
         <Row>
@@ -212,7 +197,8 @@ const mapStateToProps = (state) => {
     subjects: state.subjects,
     stripeStatus: state.profile.userBilling.stripeStatus,
     tasks: state.tasks,
-    width: state.width
+    width: state.width,
+    isAuth: state.profile.isAuth
   }
 }
 

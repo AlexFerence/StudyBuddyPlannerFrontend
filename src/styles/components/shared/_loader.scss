@@ -1,0 +1,57 @@
+// loading animation
+.lds-dual-ring {
+ display: inline-block;
+ width: 80px;
+ height: 80px;
+}
+.lds-dual-ring:after {
+ content: ' ';
+ display: block;
+ width: 64px;
+ height: 64px;
+ margin: 8px;
+ border-radius: 50%;
+ border: 6px solid red;
+ border-color: white transparent white transparent;
+ animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+ 0% {
+  transform: rotate(0deg);
+ }
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+// overlay component
+
+#overlay {
+ margin: 0px;
+ //border: 10px solid red;
+ position: fixed;
+ display: flex;
+ width: calc(100%);
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.5);
+ z-index: 2;
+ justify-content: center;
+ align-items: center;
+}
+
+#overlay__full-page {
+ margin: 0px;
+ position: fixed;
+ display: flex;
+ width: calc(100%);
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.5);
+ z-index: 2;
+ justify-content: center;
+ align-items: center;
+}
+
+@media only screen and (min-width: 999px) {
+ #overlay {
+  width: calc(100vw - 300px);
+ }
+} /* min-width 1024px and max-width 1440px, use when QAing large screen-only issues */
