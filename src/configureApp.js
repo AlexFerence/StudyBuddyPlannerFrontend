@@ -20,8 +20,8 @@ import './styles/styles.scss'
 import moment from 'moment'
 //import Dashboard from './components/Dashboard';
 import { logout } from './actions/profileActions';
-import Premium from './components/premiumPage/Premium'
-import PremiumDetailed from './components/premiumDetailedPage/PremiumDetailed'
+//import Premium from './components/premiumPage/Premium'
+//import PremiumDetailed from './components/premiumDetailedPage/PremiumDetailed'
 import { loadFiveCharts } from './thunks/chartThunk'
 
 import Loader from './components/shared/Loader'
@@ -75,6 +75,14 @@ const Landing = Loadable({
 
 const ResetPassword = Loadable({
   loader: () => import('./components/ResetPassword'),
+  loading: FullPageLoader,
+});
+const PremiumDetailed = Loadable({
+  loader: () => import('./components/premiumDetailedPage/PremiumDetailed'),
+  loading: FullPageLoader,
+});
+const Premium = Loadable({
+  loader: () => import('./components/premiumPage/Premium'),
   loading: FullPageLoader,
 });
 
