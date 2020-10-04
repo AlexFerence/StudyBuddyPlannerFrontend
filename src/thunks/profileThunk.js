@@ -54,7 +54,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
                     password
                 })
             if (res.status === 200) {
-                dispatch(setProfile({
+                await dispatch(setProfile({
                     email,
                     password,
                     id: res.data.id,
@@ -63,6 +63,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
                     token: res.data.token,
                     isAuth: false
                 }))
+                await dispatch(refreshUser());
             }
             return res.status
         }
