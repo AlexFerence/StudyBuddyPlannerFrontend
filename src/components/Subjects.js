@@ -36,8 +36,6 @@ const TOUR_STEPS = [
         },
         disableOverlay: true
     },
-
-
 ];
 
 
@@ -51,7 +49,6 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
     var [steps, setSteps] = useState(TOUR_STEPS)
     var [stepIndex, setStepIndex] = useState(0)
     var [run, setRun] = useState(true);
-
 
     useEffect(() => {
         setNewChanges({ ...newChanges, color: { hex: "#2b2b2b" } })
@@ -78,8 +75,6 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
         }
         getClasses()
     }, [])
-
-    // handle deleting classes
 
     //TODO MAKE NEW WAY TO STOP DELETING DATA
     const callDelete = (id) => {
@@ -140,6 +135,7 @@ const SubjectsPage = ({ token, id, profile, dispatch, width, subjects, charts, t
         setClassSelection(newChanges)
         setEditMode(false)
     }
+
     const handleJoyrideCallback = data => {
         const { action, index, status, type } = data;
         if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {

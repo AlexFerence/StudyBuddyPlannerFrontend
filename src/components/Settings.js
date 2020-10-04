@@ -40,13 +40,6 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     const [description, setDescription] = useState('')
     const [requestType, setRequestType] = useState('')
 
-    //    const [contactType, setContactType] = useState('')
-
-    useEffect(() => {
-        dispatch(loadSchools())
-    }, [])
-
-
 
     const logOutCalled = () => {
         dispatch(logout())

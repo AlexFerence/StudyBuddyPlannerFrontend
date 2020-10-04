@@ -24,14 +24,14 @@ import { Redirect } from 'react-router-dom'
 const TOUR_STEPS = [
   {
     target: "#quickT",
-    content: 'This is the quick timer.',
+    content: 'Use the quick timer to log study sessions',
     disableBeacon: true,
     disableOverlay: true
   },
   {
     target: "#timerSelect",
     content:
-      "You can select a task from your list to be completed, and:",
+      "You can select a task from your list to be completed.",
     locale: {
       last: 'Next'
     },
@@ -40,7 +40,7 @@ const TOUR_STEPS = [
   {
     target: "#timerSelect2",
     content:
-      "Select either timer, or stopwatch.",
+      "Select either timer, stopwatch or time input",
     locale: {
       last: 'Next'
     },
@@ -49,7 +49,7 @@ const TOUR_STEPS = [
   {
     target: ".topRight",
     content:
-      "Your hours per day are shown here.",
+      "Your hours per day are shown here",
     locale: {
       last: 'Next'
     },
@@ -203,14 +203,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Dashboard)
-
-
-
-// <div className="toggleButton" onClick={() => {
-//   setDropdown2(!dropdown2)
-// }}>
-//   {dropdown2 ? <FaAngleDown /> : <FaAngleUp />}
-
-//   <span>Comparative Analytics</span>
-//   <span className="lock">{false && <FaLock />}</span>
-// </div>

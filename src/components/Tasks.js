@@ -221,9 +221,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-
 export default connect(mapStateToProps)(TasksPage)
-
-// <div
-                    //     onClick={() => blankOn()}
-                    //     style={{ height: '100%' }} />
