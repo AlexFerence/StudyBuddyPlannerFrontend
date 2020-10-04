@@ -6,8 +6,11 @@ import { addSubject, fillSubjects } from '../actions/subjectActions'
 export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits,
     color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
         const state = getState()
-        const { profile, semester } = state
+        const { profile, semesters } = state
         const { id, token } = profile
+
+        const activeSemester = semesters.find((sem) => sem.active === 1)
+
         try {
             const res = await axios.post(url + "/api/Subjects/create",
                 {
@@ -18,6 +21,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
                     Credits: credits,
                     UserId: id,
                     color: color.hex || "#656565",
+                    semesterId: activeSemester?.id
                 },
                 {
                     headers: {
@@ -40,14 +44,17 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
 
 export const editSubjectThunk = (newData, classSelection) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects, semester } = state
+    const { profile, subjects, semesters } = state
     const { id, token } = profile
-    const { semesterId } = semester
+
+
+    const activeSemester = semesters.find((sem) => sem.active === 1)
+
     try {
         const res = await axios.put(url + '/api/subjects/' + classSelection.id,
             {
                 ...newData,
-                semesterId
+                semesterId: activeSemester.id
             },
             {
                 headers: {

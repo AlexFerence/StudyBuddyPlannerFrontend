@@ -24,7 +24,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 token: res.data.token,
                 isAuth: true,
             }))
-            dispatch(refreshUser());
+            await dispatch(refreshUser());
             dispatch(loadFiveCharts());
             dispatch(loadTasks())
             dispatch(realoadClassesThunk())
@@ -117,9 +117,13 @@ export const refreshUser = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-        dispatch(modifyProfile({
-            ...res.data
-        }))
+        if (res.status === 200) {
+            dispatch(modifyProfile({
+                ...res.data
+            }))
+        }
+
+
 
     } catch (e) {
         console.log(e)
@@ -191,8 +195,8 @@ export const turnOffDashboardTour = () => async (dispatch, getState) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
-            })
-
+            }
+        )
         dispatch(modifyProfile({
             ...res.data
         }))

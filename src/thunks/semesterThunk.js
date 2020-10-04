@@ -41,9 +41,7 @@ export const getSemester = (startGpa = 0, startPercentage = 0) => async (dispatc
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-
     const activeSemesterId = 1
-
     try {
         const res = await axios.get(url + '/api/Semesters/' + activeSemesterId,
             {
