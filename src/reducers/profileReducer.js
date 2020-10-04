@@ -16,10 +16,9 @@ const profileReducerDefaultState = {
         stripeCurrentPeriodEnd: "",
         stripeCustomerId: "cus_HtJ1BMgUoXQBiU",
         stripeSubscriptionId: ""
-    }
-
+    },
+    semesters: []
 }
-
 
 const profileReducer = (state = profileReducerDefaultState, action) => {
     switch (action.type) {
@@ -35,7 +34,6 @@ const profileReducer = (state = profileReducerDefaultState, action) => {
             return {
                 ...state,
                 ...action.updates
-
             }
         case MODIFY_PROFILE:
             return {

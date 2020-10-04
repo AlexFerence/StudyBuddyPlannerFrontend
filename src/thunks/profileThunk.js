@@ -27,13 +27,11 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
             dispatch(refreshUser());
             dispatch(loadFiveCharts());
             dispatch(loadTasks())
-            dispatch(realoadClassesThunk)
+            dispatch(realoadClassesThunk())
         }
         return (res.status)
     } catch (e) {
         return (e)
-        console.log(e)
-        console.log(e.message)
     }
 }
 
@@ -41,9 +39,6 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
-
-    // console.log(password)
-    //console.log(password)
     try {
         const signUpres = await axios.post(url + '/api/userprofiles/create',
             {
@@ -122,7 +117,6 @@ export const refreshUser = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-
         dispatch(modifyProfile({
             ...res.data
         }))

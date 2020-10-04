@@ -3,39 +3,40 @@ import axios from 'axios'
 import url from '../environment/url'
 import { addSubject, fillSubjects } from '../actions/subjectActions'
 
-export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits, color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
-    const state = getState()
-    const { profile } = state
-    const { id, token } = profile
-    try {
-        const res = await axios.post(url + "/api/Subjects/create",
-            {
-                "Name": subTitle.toUpperCase().trim(),
-                "ClassCode": classCode,
-                "Description": description.trim(),
-                "Professor": professor.trim(),
-                "Credits": credits,
-                "UserId": id,
-                "color": color.hex || "#656565"
-            },
-            {
-                headers: {
-                    'Authorization': 'bearer ' + token,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits,
+    color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
+        const state = getState()
+        const { profile, semester } = state
+        const { id, token } = profile
+        try {
+            const res = await axios.post(url + "/api/Subjects/create",
+                {
+                    Name: subTitle.toUpperCase().trim(),
+                    ClassCode: classCode,
+                    Description: description.trim(),
+                    Professor: professor.trim(),
+                    Credits: credits,
+                    UserId: id,
+                    color: color.hex || "#656565",
+                },
+                {
+                    headers: {
+                        'Authorization': 'bearer ' + token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
                 }
+            )
+            if (res.status === 200) {
+                dispatch(addSubject(res.data))
+
+
             }
-        )
-        if (res.status === 200) {
-            dispatch(addSubject(res.data))
 
-
+        } catch (e) {
+            console.log(e)
         }
-
-    } catch (e) {
-        console.log(e)
     }
-}
 
 export const editSubjectThunk = (newData, classSelection) => async (dispatch, getState) => {
     const state = getState()

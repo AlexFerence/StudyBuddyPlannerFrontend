@@ -36,3 +36,39 @@ export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (d
         console.log(e.message)
     }
 }
+
+export const getSemester = (startGpa = 0, startPercentage = 0) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+
+    const activeSemesterId = 1
+
+    try {
+        const res = await axios.get(url + '/api/Semesters/' + activeSemesterId,
+            {
+                userId: id,
+                startGpa,
+                startPercentage,
+                active: 1,
+                startDate: "2020-08-31",
+                endDate: "2020-12-31"
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+
+        if (res.status === 200) {
+            dispatch(setSemesterId(res.data.id))
+
+        }
+    }
+    catch (e) {
+        console.log(e)
+        console.log(e.message)
+    }
+}
