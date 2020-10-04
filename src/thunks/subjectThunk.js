@@ -6,10 +6,10 @@ import { addSubject, fillSubjects } from '../actions/subjectActions'
 export const addSubjectThunk = ({ subTitle, classCode, description, professor, credits,
     color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
         const state = getState()
-        const { profile, semesters } = state
-        const { id, token } = profile
+        const { profile } = state
+        const { id, token, semesters } = profile
 
-        const activeSemester = semesters.find((sem) => sem.active === 1)
+        const activeSemester = semesters?.find((sem) => sem.active === 1)
 
         try {
             const res = await axios.post(url + "/api/Subjects/create",
@@ -33,10 +33,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
             )
             if (res.status === 200) {
                 dispatch(addSubject(res.data))
-
-
             }
-
         } catch (e) {
             console.log(e)
         }
@@ -44,8 +41,8 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
 
 export const editSubjectThunk = (newData, classSelection) => async (dispatch, getState) => {
     const state = getState()
-    const { profile, subjects, semesters } = state
-    const { id, token } = profile
+    const { profile } = state
+    const { id, token, semesters } = profile
 
 
     const activeSemester = semesters.find((sem) => sem.active === 1)

@@ -58,8 +58,6 @@ export const getSemester = (startGpa = 0, startPercentage = 0) => async (dispatc
                 'Content-Type': 'application/json'
             }
         })
-
-
         if (res.status === 200) {
             dispatch(setSemesterId(res.data.id))
 
