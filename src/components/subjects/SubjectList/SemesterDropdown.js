@@ -32,7 +32,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
             >
                 <div className="sem-dropdown__title" >
                     <div onClick={() => handleDropdownClick()}> {sem.title}</div>
-                    {true &&
+                    {showEdit &&
                         <React.Fragment>
                             <EditSemesterButton />
                             <AddSemesterButton />
