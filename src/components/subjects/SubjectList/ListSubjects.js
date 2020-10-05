@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SubjectButton from './SubjectButton'
 import { setCurrentSubject } from '../../../actions/currentSubjectActions'
+import SemesterDropdown from './SemesterDropdown'
 
-const ListSubjects = ({ subjects, setDisplayMode, dispatch }) => {
-
+const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters }) => {
     const handleSelectedSubject = (id) => {
         setDisplayMode('display')
         const selectedSubject = subjects.find((subject) => subject.id === id)
@@ -14,7 +14,6 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch }) => {
     }
 
     const handleOpenAddModal = () => {
-        console.log('adding')
         setDisplayMode('adding')
     }
 
@@ -28,21 +27,28 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch }) => {
                     <button id="addButton" onClick={() => handleOpenAddModal()}>+ Add Subject</button>
                 </div>
             </div>
-            <div className="listClasses">{subjects.map((item) => {
-                return (
-                    <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
-                        <SubjectButton item={item} />
-                    </div>
-                )
-            })}
+            <div>
+                {
+                    // map over the semesters
+                    semesters.map((sem) => {
+                        return (
+                            <SemesterDropdown sem={sem} key={sem.id}
+                                handleSelectedSubject={handleSelectedSubject} />
+                        )
+                    })
+                }
             </div>
+
+
+
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        subjects: state.subjects
+        subjects: state.subjects,
+        semesters: state.profile.semesters
     }
 }
 

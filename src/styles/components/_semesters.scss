@@ -1,0 +1,31 @@
+.sem-dropdown {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 1px;
+ background-color: $light-grey;
+ border-bottom: 0.1px solid lighten($color: $grey, $amount: 20%);
+}
+
+.sem-dropdown__title {
+ display: flex;
+ align-items: center;
+ min-width: 145px;
+ padding: 9px;
+}
+
+.sem-dropdown__title__icon {
+ color: $grey;
+ margin-left: 10px;
+ cursor: pointer;
+}
+
+.sem-dropdown__angle {
+ width: 100%;
+ padding: 9px;
+ text-align: right;
+}
+
+.add-semester-modal {
+ padding: 30px;
+}

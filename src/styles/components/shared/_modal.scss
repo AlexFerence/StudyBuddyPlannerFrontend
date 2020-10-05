@@ -1,0 +1,32 @@
+.modal__header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ color: white;
+ background-color: $grey;
+ padding: 10px;
+ font-size: 20px;
+}
+
+.right-button-container {
+ display: flex;
+ justify-content: flex-end;
+}
+
+.react-datepicker-popper {
+ z-index: 9999 !important;
+}
+
+.close-button {
+ background-color: transparent;
+ color: white;
+ padding: 0px 5px;
+ border: none;
+ font-size: 20px;
+ padding-top: 5px;
+ cursor: pointer;
+}
+
+.close-button:focus {
+ outline: none;
+}

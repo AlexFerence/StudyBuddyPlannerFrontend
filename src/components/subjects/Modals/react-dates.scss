@@ -1,0 +1,19 @@
+.CalendarDay__selected_span {
+ //background
+ color: white; //text
+ border: 1px solid #fb4033; //default styles include a border
+}
+
+// Will edit selected date or the endpoints of a range of dates
+.CalendarDay__selected {
+ background: #fb4033;
+ color: white;
+ border: 1px solid #fb4033;
+}
+
+// Will edit when hovered over. _span style also has this property
+.CalendarDay__selected:hover {
+ background: #fb4033;
+ color: white;
+ border: 1px solid lighten($color: #fb4033, $amount: 20);
+}

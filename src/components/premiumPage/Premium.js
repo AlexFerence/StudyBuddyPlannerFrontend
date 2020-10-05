@@ -19,7 +19,7 @@ const Premium = ({ email, width }) => {
                 <div className="rows">
                     <Row>
                         <Col onClick={handleNavigateToDetailed} className="boxCol" id="quickT" md={12}>
-                            <div className="innerBoxCol detailed-view-button arrow">
+                            <div className="innerBoxCol detailed-view-button arrow-premium">
                                 <span>Go to premium detailed view </span>
                             </div>
                         </Col>
