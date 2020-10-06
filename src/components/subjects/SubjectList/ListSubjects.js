@@ -4,7 +4,7 @@ import SubjectButton from './SubjectButton'
 import { setCurrentSubject } from '../../../actions/currentSubjectActions'
 import SemesterDropdown from './SemesterDropdown'
 
-const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters }) => {
+const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters = [] }) => {
     const handleSelectedSubject = (id) => {
         setDisplayMode('display')
         const selectedSubject = subjects.find((subject) => subject.id === id)
@@ -30,7 +30,7 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters }) => {
             <div>
                 {
                     // map over the semesters
-                    semesters.map((sem) => {
+                    semesters && semesters.map((sem) => {
                         return (
                             <SemesterDropdown sem={sem} key={sem.id}
                                 handleSelectedSubject={handleSelectedSubject} />
