@@ -103,7 +103,7 @@ export const editSemesterThunk = ({ title, startDate, endDate, sem }) => async (
     const { profile } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/Semesters/create',
+        const res = await axios.put(url + '/api/Semesters/' + sem.id,
             {
                 ...sem,
                 startDate,

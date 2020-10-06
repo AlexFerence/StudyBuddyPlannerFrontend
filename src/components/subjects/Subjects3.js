@@ -60,8 +60,12 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     // load new pie chart data every time current subject is changed
     useEffect(() => {
         dispatch(loadSubjectBreakdown(currentSubject.id))
-        dispatch(refreshUser())
+
     }, [currentSubject])
+
+    useEffect(() => {
+        dispatch(refreshUser())
+    }, [])
 
     const turnOnEditing = () => setDisplayMode('editing')
 

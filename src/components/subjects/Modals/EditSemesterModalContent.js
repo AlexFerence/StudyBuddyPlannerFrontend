@@ -59,6 +59,7 @@ const AddSemesterModalContent = ({ closeModal, dispatch, semesters, sem }) => {
                     numberOfMonths={1}
                     hideKeyboardShortcutsPanel={true}
                     anchorDirection={ANCHOR_RIGHT}
+                    isOutsideRange={(day) => false}
                 />
                 <div style={{ height: '20px' }} />
                 <div>End Date:</div>
