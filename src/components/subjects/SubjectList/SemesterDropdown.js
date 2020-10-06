@@ -33,7 +33,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
                     {showEdit &&
                         <React.Fragment>
                             <EditSemesterButton sem={sem} />
-                            <AddSemesterButton />
+                            {false && <AddSemesterButton />}
                         </React.Fragment>
                     }
                 </div>
