@@ -89,7 +89,7 @@ export const createSemesterThunk = ({ title, startDate, endDate }) => async (dis
             }
         })
         if (res.status === 200) {
-            dispatch(refreshUser())
+            await dispatch(refreshUser())
         }
     }
     catch (e) {

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import SubjectDisplay from './SubjectDisplay/SubjectDisplayMain'
 import CustomOverlay from '../../components/CustomOverlay'
 import { loadSubjectBreakdown } from '../../thunks/chartThunk'
+import { refreshUser } from '../../thunks/profileThunk'
 import AddSubjectModalContent from './AddSubject/AddSubjectModalContent'
 import EditSubject from './EditSubject/EditSubject'
 import Modal from 'react-modal';
@@ -59,6 +60,7 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     // load new pie chart data every time current subject is changed
     useEffect(() => {
         dispatch(loadSubjectBreakdown(currentSubject.id))
+        dispatch(refreshUser())
     }, [currentSubject])
 
     const turnOnEditing = () => setDisplayMode('editing')

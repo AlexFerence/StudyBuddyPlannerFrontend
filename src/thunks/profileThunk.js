@@ -109,6 +109,9 @@ export const refreshUser = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
+
+    console.log('refreshing user')
+
     try {
         const res = await axios.get(url + '/api/userprofiles/' + id,
             {
