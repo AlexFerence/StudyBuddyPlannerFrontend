@@ -48,11 +48,12 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
             {
                 showSubjects &&
                 <div className="listClasses">{subjects.map((item) => {
-                    return (
-                        <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
-                            <SubjectButton item={item} />
-                        </div>
-                    )
+                    if (item.semesterId === sem.id)
+                        return (
+                            <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
+                                <SubjectButton item={item} />
+                            </div>
+                        )
                 })}
                 </div>
 
