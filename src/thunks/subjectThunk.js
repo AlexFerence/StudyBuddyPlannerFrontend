@@ -62,12 +62,9 @@ export const editSubjectThunk = (newData, classSelection) => async (dispatch, ge
                 }
             }
         )
-
         if (res.status === 200) {
             dispatch(realoadClassesThunk())
         }
-
-
     } catch (e) {
         console.log(e)
     }

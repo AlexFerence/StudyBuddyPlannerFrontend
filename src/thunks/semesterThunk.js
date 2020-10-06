@@ -97,3 +97,31 @@ export const createSemesterThunk = ({ title, startDate, endDate }) => async (dis
         console.log(e.message)
     }
 }
+
+export const editSemesterThunk = ({ title, startDate, endDate, sem }) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/Semesters/create',
+            {
+                ...sem,
+                startDate,
+                endDate,
+                title
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        if (res.status === 200) {
+            await dispatch(refreshUser())
+        }
+    }
+    catch (e) {
+        console.log(e)
+        console.log(e.message)
+    }
+}

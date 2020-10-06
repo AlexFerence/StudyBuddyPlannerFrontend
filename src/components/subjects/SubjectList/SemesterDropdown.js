@@ -7,8 +7,6 @@ import SubjectButton from './SubjectButton'
 import AddSemesterButton from './AddSemesterButton'
 import EditSemesterButton from './EditSemesterButton'
 
-
-
 const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) => {
     const [showSubjects, setShowSubjects] = useState(true)
     const [showEdit, setShowEdit] = useState(false)
@@ -34,7 +32,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
                     <div onClick={() => handleDropdownClick()}> {sem.title}</div>
                     {showEdit &&
                         <React.Fragment>
-                            <EditSemesterButton />
+                            <EditSemesterButton sem={sem} />
                             <AddSemesterButton />
                         </React.Fragment>
                     }

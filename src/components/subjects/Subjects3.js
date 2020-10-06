@@ -89,7 +89,7 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
             </Modal>)
         }
         else if (displayMode === 'display') {
-            return (<SubjectDisplay turnOnEditing={turnOnEditing} />)
+            return (<SubjectDisplay setDisplayMode={setDisplayMode} turnOnEditing={turnOnEditing} />)
         }
         else if (subjects.length === 0) {
             return (<CustomOverlay message="Add a subject to get started" />)
