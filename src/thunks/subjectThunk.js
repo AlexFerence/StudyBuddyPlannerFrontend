@@ -33,6 +33,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor, c
             )
             if (res.status === 200) {
                 dispatch(addSubject(res.data))
+                dispatch(realoadClassesThunk())
             }
         } catch (e) {
             console.log(e)
