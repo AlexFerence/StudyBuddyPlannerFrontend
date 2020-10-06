@@ -20,6 +20,7 @@ const EditSemesterButton = ({ width, sem }) => {
 
     const handleEditSemester = (e) => {
         e.stopPropagation()
+        openEditSemesterModal()
     }
 
     const renderEditTooltip = (props, display) => {
