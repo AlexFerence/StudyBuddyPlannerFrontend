@@ -134,8 +134,6 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                     />
                     <label className="inpLabel">Title:</label>
                     <input className="inp" required value={taskTitle} onChange={(e) => setTaskTitle(e.target.value)} />
-
-
                     <label className="inpLabel">Due Date:</label>
                     <SingleDatePicker
                         date={selectedDate} // momentPropTypes.momentObj or null
@@ -149,7 +147,6 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                         numberOfMonths={1}
                         hideKeyboardShortcutsPanel={true}
                     />
-
                     <label className="inpLabel">Description: (optional)</label>
                     <textarea className="inpArea" rows="3" onChange={(e) => {
                         setTaskDesc(e.target.value)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ModalContent from '../../shared/ModalContent'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
@@ -9,19 +9,45 @@ import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
 import './react-dates.scss'
 
-const AddSemesterModalContent = ({ closeModal, dispatch }) => {
-
+const AddSemesterModalContent = ({ closeModal, dispatch, semesters }) => {
     const [startDate, setStartDate] = useState(moment('Jan 4, 2021'))
     const [calendarFocused, setCalendarFocused] = useState(false)
     const [endDate, setEndDate] = useState(moment('April 29, 2021'))
     const [calendarFocused2, setCalendarFocused2] = useState(false)
-
     const [title, setTitle] = useState('Winter 2021')
+    const [earliestDate, setEarliestDate] = useState(moment().subtract(1, 'month'))
 
-    const handleCreateSemester = () => {
-        console.log('should create semester')
-        dispatch(createSemesterThunk({ title, startDate, endDate }))
+    const earliestPossibleDate = () => {
+        const earliest = moment().subtract(1, 'year')
+        semesters.forEach(sem => {
+            if (moment(sem.endDate).isAfter(earliest)) {
+                setEarliestDate(moment(sem.endDate))
+            }
+        });
     }
+
+    const handleCreateSemester = async () => {
+        console.log('should create semester')
+
+        const sd = await moment(startDate).startOf('week').add(1, 'days')
+        const ed = await moment(endDate).startOf('week').add(1, 'days')
+
+        setStartDate(sd)
+        setEndDate(ed)
+
+        //console.log(moment(sd).format("dddd, MMMM Do YYYY, h:mm:ss a"))
+        //console.log(moment(ed).format("dddd, MMMM Do YYYY, h:mm:ss a"))
+
+        console.log(title)
+
+        dispatch(createSemesterThunk({ title, startDate: sd, endDate: ed }))
+
+        closeModal()
+    }
+
+    useEffect(() => {
+        //earliestPossibleDate()
+    })
 
     return (
         <ModalContent closeModal={closeModal} title="Add Semester">
@@ -79,4 +105,10 @@ const AddSemesterModalContent = ({ closeModal, dispatch }) => {
     )
 }
 
-export default connect()(AddSemesterModalContent)
+const mapStateToProps = (state) => {
+    return {
+        semesters: state.semesters
+    }
+}
+
+export default connect(mapStateToProps)(AddSemesterModalContent)
