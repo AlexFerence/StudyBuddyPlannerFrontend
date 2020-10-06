@@ -146,14 +146,7 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
 
                     {/* COMPLETED CHECKBOX */}
 
-                    <div className="isComplete">Is Completed:  <input
-                        type="checkbox"
-                        checked={isDone}
-                        onChange={() => {
-                            setIsDone(!isDone)
-                        }}
-                    />
-                    </div>
+
                     <button type="submit" className="but">Submit</button>
                     <button className="but">Cancel</button>
                 </form>
