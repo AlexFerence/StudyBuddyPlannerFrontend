@@ -86,14 +86,11 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
             return (<EditSubject setDisplayMode={setDisplayMode} />)
         }
         else if (displayMode === 'adding') {
-            return (<Modal
-                isOpen={displayMode === 'adding'}
-                onRequestClose={closeAddModal}
-                style={width > 999 ? addModalStyles : modalStylesCompressed}
-                contentLabel="Add Subject Modal"
-            >
-                <AddSubjectModalContent closeAddModal={closeAddModal} />
-            </Modal>)
+            return (
+                <div className="innerDisplay">
+                    <AddSubjectModalContent closeAddModal={closeAddModal} />
+                </div>
+            )
         }
         else if (displayMode === 'display') {
             return (<SubjectDisplay setDisplayMode={setDisplayMode} turnOnEditing={turnOnEditing} />)
@@ -163,3 +160,10 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Subjects3)
+
+// <Modal
+//                 isOpen={displayMode === 'adding'}
+//                 onRequestClose={closeAddModal}
+//                 style={width > 999 ? addModalStyles : modalStylesCompressed}
+//                 contentLabel="Add Subject Modal"
+//             >
