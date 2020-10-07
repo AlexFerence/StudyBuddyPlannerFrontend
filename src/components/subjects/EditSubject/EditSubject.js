@@ -45,7 +45,7 @@ const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
                                 type="text"
                                 value={newChanges.name}
                                 onChange={(e) => {
-                                    if (true) {
+                                    if (e.target.value < 5) {
                                         setNewChanges({ ...newChanges, name: e.target.value.toUpperCase() })
                                     }
                                 }}
@@ -56,7 +56,7 @@ const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
                                 type="text"
                                 value={newChanges.classCode}
                                 onChange={(e) => {
-                                    if (!isNaN(e.target.value) && e.target.value < 999) {
+                                    if (e.target.value.length < 7) {
                                         setNewChanges({ ...newChanges, classCode: e.target.value })
                                     }
                                 }}

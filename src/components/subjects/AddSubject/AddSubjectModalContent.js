@@ -83,7 +83,7 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
                                 type="text"
                                 value={classCode}
                                 onChange={(e) => {
-                                    if (!isNaN(e.target.value) && e.target.value < 9999) {
+                                    if (e.target.value.length < 7) {
                                         setClassCode(e.target.value)
                                     }
                                 }}
