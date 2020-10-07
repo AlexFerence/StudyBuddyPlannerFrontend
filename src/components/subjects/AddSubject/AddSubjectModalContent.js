@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { CirclePicker } from 'react-color'
 import { addSubjectThunk } from '../../../thunks/subjectThunk'
-
+import { IoMdClose } from 'react-icons/io'
 
 
 const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
@@ -13,21 +13,25 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
     const [professor, setProfessor] = useState('')
     const [credits, setCredits] = useState(3)
     const [description, setDescription] = useState('')
-    const [color, setColor] = useState('#607d8b')
+    const [color, setColor] = useState({ hex: '#bcbcbc' })
 
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '40%',
-            right: 'auto',
-            bottom: 'auto',
-            transform: 'translate(-50%, -50%)',
-            background: '#ffffff',
-            padding: 'none',
-            boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-            minWidth: '500px'
-        }
-    };
+    const handleClose = () => {
+        closeAddModal()
+    }
+
+    // const customStyles = {
+    //     content: {
+    //         top: '50%',
+    //         left: '40%',
+    //         right: 'auto',
+    //         bottom: 'auto',
+    //         transform: 'translate(-50%, -50%)',
+    //         background: '#ffffff',
+    //         padding: 'none',
+    //         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+    //         minWidth: '500px'
+    //     }
+    // };
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -48,7 +52,12 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
     return (
 
         <div>
-            <div className="modal-header" style={{ backgroundColor: color.hex }}><h3>Add Subject</h3></div>
+            <div className="modal-header" style={{
+                backgroundColor: color.hex,
+                cursor: 'pointer'
+            }}><h3>Add Subject</h3>
+                <IoMdClose onClick={handleClose} style={{ fontSize: '18px' }} />
+            </div>
             <div className="modal-main">
                 <form onSubmit={onSubmit}>
                     <div>

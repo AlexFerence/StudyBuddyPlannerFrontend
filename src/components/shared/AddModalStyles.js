@@ -1,7 +1,7 @@
 export default {
     content: {
         top: '350px',
-        left: 'calc(50vw)',
+        left: 'calc(50vw - 150px)',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
@@ -9,6 +9,6 @@ export default {
         padding: '0px',
         marginRight: '300px',
         overflow: 'visible',
-        minWidth: '355px'
+        minWidth: '405px',
     }
 };

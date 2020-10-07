@@ -14,6 +14,9 @@ import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { turnOffSubjectTour } from '../../thunks/profileThunk'
 import { modifyProfile } from '../../actions/profileActions'
 import { useHistory } from 'react-router-dom'
+import addModalStyles from '../shared/AddModalStyles'
+//import modalStyles from '../shared / ModalStyles'
+import modalStylesCompressed from '../shared/ModalStylesCompressed'
 
 const customStyles = {
     content: {
@@ -25,7 +28,7 @@ const customStyles = {
         background: '#ffffff',
         padding: 'none',
         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-        minWidth: '500px'
+        minWidth: '300px'
     }
 };
 
@@ -86,7 +89,7 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
             return (<Modal
                 isOpen={displayMode === 'adding'}
                 onRequestClose={closeAddModal}
-                style={customStyles}
+                style={width > 999 ? addModalStyles : modalStylesCompressed}
                 contentLabel="Add Subject Modal"
             >
                 <AddSubjectModalContent closeAddModal={closeAddModal} />
