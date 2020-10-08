@@ -157,9 +157,8 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                 })
             }
             {sentRequests?.length > 0 &&
-                <div style={{ margin: '5px 0px' }}>Sent Requests</div>
+                <div style={{ marginTop: '15px', marginBottom: '5px' }}>Sent Requests</div>
             }
-
             {
                 sentRequests.map((req) => {
                     key++
