@@ -146,7 +146,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                 }
             </div>
             {waitingRequests?.length > 0 &&
-                <div style={{ margin: '5px 0px' }}>Waiting Requests</div>}
+                <div style={{ marginTop: '15px', marginBottom: '5px' }}>Waiting Requests</div>}
 
             {
                 waitingRequests.map((request) => {
