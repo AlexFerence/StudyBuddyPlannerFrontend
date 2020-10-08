@@ -48,7 +48,9 @@
  justify-content: space-between;
  align-items: center;
  width: 100%;
- //background-color: lighten($color: $dark-grey, $amount: 10);
+ background-color: lighten($color: $dark-grey, $amount: 3);
+ border: '1px solid grey';
+ border-top: 'none';
  //border: 1px solid grey;
  //background-color: darken($color: $light-grey, $amount: 10);
 }

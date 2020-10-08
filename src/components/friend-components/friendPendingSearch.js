@@ -128,21 +128,26 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                     placeholder="enter email of friends ..."
                 />
             </div>
-            {searchedPeople && searchedPeople.map((person) => {
-                return (
-                    <div key={person.id} className="suggest-person">
-                        <div>
-                            <div className="suggest-person__name">{person.firstName} {person.lastName}</div>
-                            <div className="suggest-person__email">{person.email}</div>
+            <div>
+                {searchedPeople && searchedPeople.map((person) => {
+                    return (
+                        <div key={person.id} className="suggest-person">
+                            <div>
+                                <div className="suggest-person__name">{person.firstName} {person.lastName}</div>
+                                <div className="suggest-person__email">{person.email}</div>
+                            </div>
+                            {
+                                getFriendAction(person)
+                            }
                         </div>
-                        {
-                            getFriendAction(person)
-                        }
-                    </div>
-                )
+                    )
 
-            })
-            }
+                })
+                }
+            </div>
+            {waitingRequests?.length > 0 &&
+                <div style={{ margin: '5px 0px' }}>Waiting Requests</div>}
+
             {
                 waitingRequests.map((request) => {
                     key++
@@ -151,6 +156,10 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                     )
                 })
             }
+            {sentRequests?.length > 0 &&
+                <div style={{ margin: '5px 0px' }}>Sent Requests</div>
+            }
+
             {
                 sentRequests.map((req) => {
                     key++

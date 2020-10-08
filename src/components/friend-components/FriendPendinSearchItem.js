@@ -35,7 +35,7 @@ const AcceptDeclineItem = ({ request, dispatch }) => {
                         </div>
                         :
                         <div id="but-add-friend" onClick={() => handleDeclineRequest(request.id)} className="friend-modal-friend-list-item__add-button">
-                            Cancel Request
+                            Cancel
                         </div>
                 }
             </div>
