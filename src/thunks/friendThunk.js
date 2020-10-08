@@ -87,7 +87,7 @@ export const sendRequest = (otherID) => async (dispatch, getState) => {
     }
 }
 
-export const getPendingFriends = (otherID) => async (dispatch, getState) => {
+export const getPendingFriends = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
