@@ -77,7 +77,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                             spinning ?
                             <Spinner />
                             :
-                            <button className="but" onClick={handleAddFriend(person.id)}>
+                            <button className="but" onClick={() => handleAddFriend(person.id)}>
                                 Add
                             </button>
                         }
