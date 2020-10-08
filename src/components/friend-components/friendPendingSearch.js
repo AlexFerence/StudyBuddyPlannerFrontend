@@ -1,52 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { searchIfExists, sendRequest, getPendingFriends } from '../../thunks/friendThunk'
+import { searchIfExists, sendRequest, searchUsers, getPendingFriends } from '../../thunks/friendThunk'
 import Spinner from '../shared/Spinner'
 import AcceptDeclineItem from './FriendPendinSearchItem'
-import swal from 'sweetalert';
+import useDebounce from '../shared/use-debounce'
 
 const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
-    const [searchedPerson, setSearchedPerson] = useState();
+    const [searchedPersonInput, setSearchedPersonInput] = useState()
+    const [searchedPeople, setSearchedPeople] = useState([]);
     const [addingError, setAddingError] = useState();
-
     const [spinning, setSpinning] = useState(false)
+
+    const [isSearching, setIsSearching] = useState(false);
 
     useEffect(() => {
         dispatch(getPendingFriends())
     }, [])
 
-    const handleChangedSearch = async (e) => {
-        setAddingError()
-        if (e.target.value.length > 10) {
-
-            var res = await dispatch(searchIfExists(e.target.value))
-            console.log(res)
-            if (res) {
-                if (res.email) {
-                    setSearchedPerson(res)
+    const debouncedSearchTerm = useDebounce(searchedPersonInput, 600);
+    useEffect(
+        () => {
+            // Make sure we have a value (user has entered something in input)
+            if (debouncedSearchTerm) {
+                // Set isSearching state
+                setIsSearching(true);
+                // Fire off our API call
+                console.log(debouncedSearchTerm)
+                dispatch(searchUsers(debouncedSearchTerm)).then((res) => {
                     console.log(res)
-                }
-                else {
-                    setSearchedPerson()
-                }
-            }
-            else {
-                setSearchedPerson()
-            }
-        }
+                    setSearchedPeople(res)
+                    setIsSearching(false);
+                })
+                console.log('searched')
 
+            } else {
+                setSearchedPeople('')
+            }
+        },
+        [debouncedSearchTerm]
+    );
+
+    const handleChangedSearch = (e) => {
+        setSearchedPersonInput(e.target.value)
     }
 
-    const handleAddFriend = async () => {
+    const handleAddFriend = async (searchedId) => {
 
-        var res = await dispatch(sendRequest(searchedPerson.id))
-        console.log(res)
+        var res = await dispatch(sendRequest(searchedId))
+
         if (res === 415) {
             setAddingError('Friend Already Added')
-
         }
         else {
-            setSearchedPerson('')
+            setSearchedPeople('')
         }
     }
     var key = 0
@@ -59,22 +65,26 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                     placeholder="enter email of friends ..."
                 />
             </div>
-            {searchedPerson &&
-                <div className="suggest-person">
-                    <div>
-                        <div className="suggest-person__name">{searchedPerson.firstName} {searchedPerson.lastName}</div>
-                        <div className="suggest-person__email">{searchedPerson.email}</div>
-                        {addingError && <div className="suggest-person__name" style={{ fontSize: '12px', color: 'red' }}>{addingError}</div>}
+            { searchedPeople && searchedPeople.map((person) => {
+                return (
+                    <div key={person.id} className="suggest-person">
+                        <div>
+                            <div className="suggest-person__name">{person.firstName} {person.lastName}</div>
+                            <div className="suggest-person__email">{person.email}</div>
+                            {addingError && <div className="suggest-person__name" style={{ fontSize: '12px', color: 'red' }}>{addingError}</div>}
+                        </div>
+                        {person.email &&
+                            spinning ?
+                            <Spinner />
+                            :
+                            <button className="but" onClick={handleAddFriend(person.id)}>
+                                Add
+                            </button>
+                        }
                     </div>
-                    {searchedPerson.email &&
-                        spinning ?
-                        <Spinner />
-                        :
-                        <button className="but" onClick={handleAddFriend}>
-                            Add
-                        </button>
-                    }
-                </div>
+                )
+
+            })
             }
             {
                 waitingRequests.map((request) => {
@@ -92,10 +102,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
                     )
                 })
             }
-
-
         </div>
-
     )
 }
 
@@ -108,3 +115,23 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(FriendPendingActivity)
 
+  // const handleChangedSearch = async (e) => {
+    //     setAddingError()
+    //     if (e.target.value.length > 10) {
+    //         var res = await dispatch(searchIfExists(e.target.value))
+    //         console.log(res)
+    //         if (res) {
+    //             if (res.email) {
+    //                 setSearchedPerson(res)
+    //                 console.log(res)
+    //             }
+    //             else {
+    //                 setSearchedPerson()
+    //             }
+    //         }
+    //         else {
+    //             setSearchedPerson()
+    //         }
+    //     }
+
+    // }

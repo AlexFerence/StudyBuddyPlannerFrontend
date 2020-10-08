@@ -4,6 +4,34 @@ import url from '../environment/url';
 import { modifyFriends } from '../actions/friendActions'
 import moment from 'moment'
 
+
+export const searchUsers = (email) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { token } = profile
+    if (email.length === 0) {
+        return []
+    }
+    console.log(email)
+    try {
+        const res = await axios.post(url + '/api/userprofiles/list',
+            {
+                search: email
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        return res.data
+
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export const searchIfExists = (email) => async (dispatch, getState) => {
     const state = getState()
     const { profile } = state

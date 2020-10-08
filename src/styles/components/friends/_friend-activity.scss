@@ -48,7 +48,8 @@
  justify-content: space-between;
  align-items: center;
  width: 100%;
- border: 1px solid grey;
+ //background-color: lighten($color: $dark-grey, $amount: 10);
+ //border: 1px solid grey;
  //background-color: darken($color: $light-grey, $amount: 10);
 }
 
@@ -80,7 +81,7 @@
 }
 
 .invite-friends {
- margin: 10px 20px;
+ margin: 10px 10px;
  padding: 20px;
  font-size: 20px;
  color: white;
