@@ -8,8 +8,7 @@ import {
 import Spinner from '../shared/Spinner'
 import AcceptDeclineItem from './FriendPendinSearchItem'
 import useDebounce from '../shared/use-debounce'
-import { IoMdPerson, IoMdCheckmark } from 'react-icons/io'
-import { modifyFriends } from '../../actions/friendActions'
+import FriendSearchItem from './FriendSearchItem'
 
 const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     const [searchedPersonInput, setSearchedPersonInput] = useState()
@@ -50,73 +49,36 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
         setSearchedPersonInput(e.target.value)
     }
 
-    const addFriend = async (friend) => {
-        setSpinning(true)
-        const t = await dispatch(sendRequest(friend.id))
-        const u = t + await dispatch(getActiveFriends())
-        //const v = u + await dispatch(modifyFriends({ selectedFriend }))
-        const w = u + await dispatch(getFriendsActiveFriends())
-        const x = w + setSpinning(false)
-    }
+    // const addFriend = async (friend) => {
+    //     setSpinning(true)
+    //     const t = await dispatch(sendRequest(friend.id))
+    //     const u = t + await dispatch(getActiveFriends())
+    //     //const v = u + await dispatch(modifyFriends({ selectedFriend }))
+    //     const w = u + await dispatch(getFriendsActiveFriends())
+    //     const x = w + setSpinning(false)
+    // }
 
 
-    const handleAddFriend = async (searchedId) => {
-        var res = await dispatch(sendRequest(searchedId))
+    // const handleAddFriend = async (searchedId) => {
+    //     var res = await dispatch(sendRequest(searchedId))
 
-        if (res === 415) {
-            setAddingError('Friend Already Added')
-        }
-        else {
-            setSearchedPeople('')
-        }
-    }
+    //     if (res === 415) {
+    //         setAddingError('Friend Already Added')
+    //     }
+    //     else {
+    //         setSearchedPeople('')
+    //     }
+    // }
 
-    const handleCancelRequest = async (row) => {
-        setSpinning(true)
-        var a = await dispatch(declineRequest(row?.id))
-        const b = a + await dispatch(getActiveFriends())
-        //const c = b + await dispatch(modifyFriends({ selectedFriend }))
-        const d = b + await dispatch(getFriendsActiveFriends())
-        var e = d + await dispatch(getPendingFriends())
-        const f = e + setSpinning(false)
-    }
-
-
-    const getFriendAction = (friend) => {
-        var alreadyFriends = dispatch(getAlreadyFriends(friend.id))
-        var pending = dispatch(getAlreadyPending(friend.id))
-        var me = dispatch(isMe(friend.id))
-        if (alreadyFriends) {
-            return (
-                <div className="friend-modal-friend-list-item__already-added"><IoMdPerson /><IoMdCheckmark /></div>
-            )
-        }
-        else if (me) {
-            return (
-                <div></div>
-            )
-        }
-        else if (pending) {
-            return (
-                <div className="friend-modal-friend-list-item__pending">
-                    {spinning ? <Spinner /> :
-                        <div id="but-add-friend" onClick={() => handleCancelRequest(pending)} className="friend-modal-friend-list-item__add-button">
-                            Cancel
-                        </div>
-                    }
-                </div>
-            )
-        }
-        return (
-            <React.Fragment>
-                <div id="but-add-friend" onClick={() => addFriend(friend)} className="friend-modal-friend-list-item__add-button">
-                    + Add
-                </div>
-            </React.Fragment>
-        )
-
-    }
-
+    // const handleCancelRequest = async (row) => {
+    //     setSpinning(true)
+    //     var a = await dispatch(declineRequest(row?.id))
+    //     const b = a + await dispatch(getActiveFriends())
+    //     //const c = b + await dispatch(modifyFriends({ selectedFriend }))
+    //     const d = b + await dispatch(getFriendsActiveFriends())
+    //     var e = d + await dispatch(getPendingFriends())
+    //     const f = e + setSpinning(false)
+    // }
 
     var key = 0
 
@@ -131,15 +93,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
             <div>
                 {searchedPeople && searchedPeople.map((person) => {
                     return (
-                        <div key={person.id} className="suggest-person">
-                            <div>
-                                <div className="suggest-person__name">{person.firstName} {person.lastName}</div>
-                                <div className="suggest-person__email">{person.email}</div>
-                            </div>
-                            {
-                                getFriendAction(person)
-                            }
-                        </div>
+                        <FriendSearchItem person={person} key={person.id} />
                     )
 
                 })
