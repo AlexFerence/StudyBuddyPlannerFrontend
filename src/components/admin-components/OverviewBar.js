@@ -20,7 +20,7 @@ const OverviewBar = ({ dispatch }) => {
             setTotalSudents(list[0]?.value1)
             setTasksCompleted(data?.responseItems[4]?.value1)
             setTotalUnis(data?.responseItems[3]?.value1)
-            setMinutesSpent(data?.responseItems[5]?.value1)
+            setMinutesSpent(Math.floor(data?.responseItems[5]?.value1 / 60))
         }
     }
 
@@ -47,7 +47,7 @@ const OverviewBar = ({ dispatch }) => {
                 <div className="overview-bar__item__num">
                     <CountUp duration={3} end={minutesSpent} /></div>
 
-                <div className="overview-bar__item__subtext">Minutes Studying</div>
+                <div className="overview-bar__item__subtext">Hours Studying</div>
             </div>
         </div>
     )
