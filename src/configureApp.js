@@ -23,7 +23,8 @@ import { logout } from './actions/profileActions';
 //import Premium from './components/premiumPage/Premium'
 //import PremiumDetailed from './components/premiumDetailedPage/PremiumDetailed'
 import { loadFiveCharts } from './thunks/chartThunk'
-
+import { loadSchools } from './thunks/schoolsThunk'
+import { loadFaculties } from './thunks/schoolsThunk'
 import Loader from './components/shared/Loader'
 import FullPageLoader from './components/shared/FullPageLoader'
 import Loadable from 'react-loadable';
@@ -98,6 +99,8 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
 
     if (isAuth) {
       dispatch(loadFiveCharts())
+      dispatch(loadSchools())
+      dispatch(loadFaculties())
     }
 
     function handleResize() {

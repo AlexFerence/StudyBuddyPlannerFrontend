@@ -40,6 +40,16 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     const [description, setDescription] = useState('')
     const [requestType, setRequestType] = useState('')
 
+    useEffect(() => {
+        const defaultSchool = schools.find((school) => school.value === profile.schoolId)
+        const defaultFaculty = faculties.find((faculty) => faculty.value === profile.facultyId)
+        if (defaultSchool) {
+            setSchool(defaultSchool)
+        }
+        if (defaultFaculty) {
+            setFaculty(defaultFaculty)
+        }
+    }, [])
 
     const logOutCalled = () => {
         dispatch(logout())
@@ -56,8 +66,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     lastName: lname,
                     email: email,
                     password,
-                    school: school.id,
-                    faculty: faculty.id
+                    schoolId: school.value,
+                    facultyId: faculty.value
                 }, {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -147,7 +157,47 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
+                <label className="inpLabel"
+                    style={{ marginBottom: '5px' }}
+                >School</label>
+                <Select
+                    value={school}
+                    onChange={val => setSchool(val)}
+                    placeholder="School..."
+                    options={schools}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                            ...theme.colors,
+                            text: 'black',
+                            primary25: '#bcbcbc',
+                            primary50: '#bcbcbc',
+                            primary: '#bcbcbc',
+                        },
+                    })}
+                />
+                <div style={{ height: '5px' }} />
+                <label className="inpLabel"
+                    style={{ marginBottom: '5px' }}
+                >Faculty</label>
+                <Select
+                    value={faculty}
+                    onChange={val => setFaculty(val)}
+                    placeholder="School..."
+                    options={faculties}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                            ...theme.colors,
+                            text: 'black',
+                            primary25: '#bcbcbc',
+                            primary50: '#bcbcbc',
+                            primary: '#bcbcbc',
+                        },
+                    })}
+                />
 
+                <div style={{ height: '10px' }} />
                 <button style={{ marginLeft: '0px' }} className="but">Update Profile</button>
             </form>
 
@@ -209,11 +259,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Settings)
-
-// {
-//     (profile.email === 'akaufman2000@gmail.com' || profile.email === 'alexference23@gmail.com') &&
-//     <div>
-//         <OverviewBar />
-//         <UniversitiesTable />
-//     </div>
-// }
