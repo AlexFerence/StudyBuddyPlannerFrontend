@@ -38,15 +38,47 @@
 
 .detailed-view {
  display: flex;
+ padding: 20px;
+ flex-direction: row;
 }
 
 .detailed-view__description {
- width: 100%;
  padding: 10px;
+ flex: 0.6;
 }
+
+.detailed-view__description__title {
+ font-size: 25px;
+ margin-bottom: 15px;
+}
+
+.detailed-view__description__tidbit {
+ margin-bottom: 10px;
+}
+
+.detailed-view__description__tidbit__label {
+ color: $dark-grey;
+}
+
 .detailed-view__bar-chart {
- width: 100%;
+ width: 0px;
+ flex: 1;
+ min-height: 50px;
 }
 .detailed-view__pie-chart {
- width: 100%;
+ width: 0px;
+ min-height: 50px;
+ flex: 1;
 }
+
+@media only screen and (max-width: 700px) {
+ .detailed-view {
+  flex-direction: column;
+ }
+ .detailed-view__bar-chart {
+  width: 100%;
+ }
+ .detailed-view__pie-chart {
+  width: 100%;
+ }
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */

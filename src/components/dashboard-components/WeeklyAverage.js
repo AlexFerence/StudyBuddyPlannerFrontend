@@ -27,7 +27,7 @@ const WeeklyAverage = ({ charts }) => {
                     }
                 },
                 tooltip: {
-                    trigger: 'axis',
+                    trigger: 'item',
                     axisPointer: {
                         type: 'shadow'
                     },
@@ -39,7 +39,6 @@ const WeeklyAverage = ({ charts }) => {
                             var xx = '<span>' + hoursToTimeDisplay(item.data) + '' + '</span>'
                             rez += xx;
                         });
-
                         return rez;
                     }
                 },
