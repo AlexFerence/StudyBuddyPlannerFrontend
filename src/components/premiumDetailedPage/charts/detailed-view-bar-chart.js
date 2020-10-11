@@ -37,7 +37,6 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                             rez = '<span>' + params.data.name + ' days after due date: ' + minsToHours(params.data.value) + '</span>';
                             return rez;
                         }
-
                     }
                 },
                 xAxis: {

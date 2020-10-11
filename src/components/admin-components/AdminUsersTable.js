@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { loadAllUsers } from '../../thunks/adminStatsThunk'
+import { IoMdCheckmark, IoMdClose } from 'react-icons/io'
 
 const AdminUsersTable = ({ schools = [], dispatch }) => {
 
@@ -24,6 +25,11 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                 <tr className="uni-table">
                     <th>Name</th>
                     <th>School</th>
+                    <th>Has Subjects</th>
+                    <th>Has Tasks</th>
+                    <th>Has Time</th>
+                    <th>Has Friends</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +38,21 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                         id++
                         return (
                             <tr className="admin-uni-table__tr" key={id}>
-                                <td>{user.name1}</td>
-                                <td>{user.name2}</td>
+                                <td>{user.name}</td>
+                                <td>{user.school}</td>
+                                <td>{user.hassubjects === 'yes'
+                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />
+                                }</td>
+                                <td>{user.hastasks === 'yes'
+                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}</td>
+                                <td>{user.hastime === 'yes'
+                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}</td>
+                                <td>{user.hasfriends === 'yes'
+                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}</td>
                             </tr>
                         )
                     })

@@ -45,7 +45,7 @@ const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
                                 type="text"
                                 value={newChanges.name}
                                 onChange={(e) => {
-                                    if (e.target.value < 5) {
+                                    if (e.target.value.length < 5) {
                                         setNewChanges({ ...newChanges, name: e.target.value.toUpperCase() })
                                     }
                                 }}
