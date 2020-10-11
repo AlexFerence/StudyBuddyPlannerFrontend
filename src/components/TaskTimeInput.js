@@ -32,7 +32,6 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
         console.log('submitting time ')
         const totalMins = ((parseInt(hrs) * 60) + parseInt(mins))
         if (totalMins > 0) {
-
             setMins(0)
             setHrs(0)
             await dispatch(postSessionThunk({
@@ -99,7 +98,7 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                 <Col>
                     <button
                         className="timeSubmit"
-                        style={{ backgroundColor: currentTask.color }}
+                        style={{ backgroundColor: currentTask?.color || '#FFFFFF' }}
                         onClick={() => submitTime()}
                     >Submit Time</button>
                 </Col>

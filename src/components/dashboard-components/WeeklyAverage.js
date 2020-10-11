@@ -27,12 +27,13 @@ const WeeklyAverage = ({ charts }) => {
                     }
                 },
                 tooltip: {
-                    trigger: 'item',
+                    trigger: 'axis',
                     axisPointer: {
                         type: 'shadow'
                     },
                     formatter: function (params) {
-                        let rez = '<span>' + params[0].axisValue + ' ' + '</span>';
+                        console.log('params')
+                        let rez = '<span>' + params[0].axisValue + " " + '</span>';
                         //console.log(params); //quite useful for debug
                         params.forEach(item => {
                             //console.log(item); //quite useful for debug
