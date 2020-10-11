@@ -14,65 +14,6 @@ const DetailedViewBarChart = ({ selectedTask }) => {
             return (mins + 'min.')
         }
     }
-
-    var getBarData = () => {
-        if (selectedTask.sessionItems.length >= 1) {
-            console.log('MAKING ACC')
-            var acc = []
-            //console.log(selectedTask.sessionItems)
-            const firstDay = selectedTask.sessionItems[0].dateDifference
-            const lastDay = selectedTask.sessionItems[selectedTask.sessionItems.length - 1].dateDifference
-            var index = firstDay
-            console.log(firstDay + ' ' + lastDay)
-            while (index <= lastDay) {
-                const sessionItem = selectedTask
-                    .sessionItems.find((session) => session.dateDifference === index)
-                if (sessionItem && sessionItem.dateDifference) {
-                    acc.push({
-                        name: sessionItem.dateDifference,
-                        value: sessionItem.sessionMinutes,
-                        itemStyle: {
-                            color: (sessionItem.dateDifference < 1 ? selectedTask.subjectColor : '#bcbcbc')
-                        }
-                    })
-                }
-                else {
-                    acc.push({
-                        name: index,
-                        value: 0,
-                    })
-                }
-                index++
-            }
-            console.log(selectedTask.sessionItems)
-            console.log(acc)
-            return acc
-        }
-        return []
-    }
-
-    var getBarDataXAxis = () => {
-        if (selectedTask.sessionItems.length >= 1) {
-            console.log('MAKING ACC')
-            var acc = []
-            //console.log(selectedTask.sessionItems)
-            const firstDay = selectedTask.sessionItems[0].dateDifference
-            const lastDay = selectedTask.sessionItems[selectedTask.sessionItems.length - 1].dateDifference
-            var index = firstDay
-            while (index <= lastDay) {
-                if (index > 0) {
-                    acc.push(-1 * index)
-                }
-                else {
-                    acc.push(Math.abs(index))
-                }
-                index++
-            }
-            return acc
-        }
-        return []
-    }
-
     return (
         <ReactEcharts
             style={{ height: '200px', padding: '10px' }}
@@ -84,22 +25,19 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                     left: 45
                 },
                 tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    },
+                    trigger: 'item',
                     formatter: function (params) {
                         let rez = ''
                         console.log(params)
-                        if (params.name < 1) {
-                            rez = '<span>' + Math.abs(params[0].name) + ' days untill due date: ' + minsToHours(params[0].value) + '</span>';
+                        if (params.data.name < 1) {
+                            rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + minsToHours(params.data.value) + '</span>';
                             return rez;
                         }
                         else {
-                            rez = '<span>' + params[0].name + ' days after due date: ' + minsToHours(params[0].value) + '</span>';
+                            rez = '<span>' + params.data.name + ' days after due date: ' + minsToHours(params.data.value) + '</span>';
                             return rez;
                         }
-                        return rez
+
                     }
                 },
                 xAxis: {
@@ -108,7 +46,14 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                     // nameGap: 20,
                     type: 'category',
                     boundaryGap: true,
-                    data: getBarDataXAxis()
+                    data: selectedTask.sessionItems?.map((session) => {
+                        if (session.dateDifference > 0) {
+                            return (-1 * session.dateDifference)
+                        }
+                        else {
+                            return (Math.abs(session.dateDifference))
+                        }
+                    })
                 },
                 yAxis: {
                     type: 'value',
@@ -120,19 +65,18 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                     nameGap: 35
                 },
                 series: [{
-                    data: getBarData()
-                    // selectedTask.sessionItems?.map((session) => {
-                    //     return (
-                    //         {
-                    //             name: session.dateDifference,
-                    //             value: session.sessionMinutes,
-                    //             itemStyle: {
-                    //                 color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#bcbcbc')
-                    //             }
-                    //         }
-                    //     )
-                    // })
-                    ,
+                    data: selectedTask.sessionItems?.map((session) => {
+                        return (
+                            {
+                                name: session.dateDifference,
+                                value: session.sessionMinutes,
+                                itemStyle: {
+                                    color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#bcbcbc')
+                                }
+                            }
+                        )
+                    }
+                    ),
                     type: 'bar'
                 }]
             }}
