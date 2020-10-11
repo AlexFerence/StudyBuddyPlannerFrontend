@@ -67,11 +67,11 @@ const DetailedViewBarChart = ({ selectedTask }) => {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selectedTask: state.premiumStats.selectedTask
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         selectedTask: state.premiumStats.selectedTask
+//     }
+// }
 
-export default connect(mapStateToProps)(DetailedViewBarChart)
+export default connect()(DetailedViewBarChart)
 

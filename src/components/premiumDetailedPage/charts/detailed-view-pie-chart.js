@@ -52,11 +52,11 @@ const SubjPieBreakdown = ({ selectedTask = selectedTaskDefaultState }) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selectedTask: state.premiumStats.selectedTask
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         selectedTask: state.premiumStats.selectedTask
+//     }
+// }
 
 
-export default connect(mapStateToProps)(SubjPieBreakdown)
+export default connect()(SubjPieBreakdown)

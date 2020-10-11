@@ -36,6 +36,12 @@
  }
 }
 
+.detailed-view__select-row {
+ display: flex;
+ padding: 5px;
+ justify-content: space-between;
+}
+
 .detailed-view {
  display: flex;
  padding: 20px;

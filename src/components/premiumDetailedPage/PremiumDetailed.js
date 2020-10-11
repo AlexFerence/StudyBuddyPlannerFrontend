@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
-import DetailedView from './components/DetailedView'
+import DetailedView from './components/DetailedViewList'
 
 const PremiumDetailed = ({ width, email }) => {
     if (email === 'akaufman2000@gmail.com' || email === 'alexference23@gmail.com') {
@@ -12,7 +12,7 @@ const PremiumDetailed = ({ width, email }) => {
                 <div className="rows">
                     <Row>
                         <Col onClick={() => console.log('redirect')} className="boxCol" id="quickT" md={12}>
-                            <div style={{ padding: '0px', margin: '0px' }} className="innerBoxCol">
+                            <div style={{ padding: '0px', margin: '0px', width: '100%' }}>
                                 <DetailedView />
                             </div>
                         </Col>

@@ -4,7 +4,8 @@ import { loadDetailedView } from '../../../thunks/premiumStatsThunk'
 import DetailedViewPieChart from '../charts/detailed-view-pie-chart'
 import DetailedViewBarChart from '../charts/detailed-view-bar-chart'
 import DetailedViewDescription from './DetailedViewDescription'
-
+//import DetailedViewSelectRow from './DetailedViewSelectRow'
+import { Col } from 'react-bootstrap'
 
 const DetailedView = ({ dispatch, selectedTask }) => {
 
@@ -13,28 +14,27 @@ const DetailedView = ({ dispatch, selectedTask }) => {
     }, [])
 
     return (
-        <React.Fragment>
-            <div className="detailed-view__select-row">
-
-            </div>
-            <div className="detailed-view">
-                <DetailedViewDescription selectedTask={selectedTask} />
-                <div className="detailed-view__bar-chart">
-                    <DetailedViewBarChart />
+        <Col onClick={() => console.log('redirect')} className="boxCol" id="quickT" md={12}>
+            <div style={{ padding: '0px', margin: '0px' }} className="innerBoxCol">
+                <div className="detailed-view">
+                    <DetailedViewDescription selectedTask={selectedTask} />
+                    <div className="detailed-view__bar-chart">
+                        <DetailedViewBarChart selectedTask={selectedTask} />
+                    </div>
+                    <div className="detailed-view__pie-chart">
+                        <DetailedViewPieChart selectedTask={selectedTask} />
+                    </div>
                 </div>
-                <div className="detailed-view__pie-chart">
-                    <DetailedViewPieChart />
-                </div>
             </div>
-        </React.Fragment>
+        </Col>
 
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selectedTask: state.premiumStats.selectedTask
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         selectedTask: state.premiumStats.selectedTask
+//     }
+// }
 
-export default connect(mapStateToProps)(DetailedView)
+export default connect()(DetailedView)
