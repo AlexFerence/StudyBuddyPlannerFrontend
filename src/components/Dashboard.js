@@ -100,7 +100,6 @@ const Dashboard = ({ dispatch, charts, profile,
     )
   }
 
-
   const handleJoyrideCallback = data => {
     const { action, index, status, type } = data;
 

@@ -4,19 +4,19 @@ import Select from 'react-select'
 import { setSelectedSubject, setSelectedTaskType } from '../../../actions/premiumStatsActions'
 import { loadDetailedView } from '../../../thunks/premiumStatsThunk'
 
-const taskTypeOptions = [
-    { value: '', label: 'All' },
-    { value: 'Assignment', label: 'Assignment' },
-    { value: 'Readings', label: 'Readings' },
-    { value: 'Essay', label: 'Essay' },
-    { value: 'Lab', label: 'Lab' },
-    { value: 'General Studying', label: 'General Studying' },
-    { value: 'Lecture', label: 'Lecture' },
-    { value: 'Quiz/Midterm/Exam', label: 'Quiz/Midterm/Exam' }
-]
-
-
 const DetailedViewSelectRow = ({ subjectSelect, taskTypeSelect, completedTasks, subjects, dispatch }) => {
+
+    const ttOptions = [
+        { value: '', label: 'All' },
+        { value: 'Assignment', label: 'Assignment' },
+        { value: 'Readings', label: 'Readings' },
+        { value: 'Essay', label: 'Essay' },
+        { value: 'Lab', label: 'Lab' },
+        { value: 'General Studying', label: 'General Studying' },
+        { value: 'Lecture', label: 'Lecture' },
+        { value: 'Quiz/Midterm/Exam', label: 'Quiz/Midterm/Exam' }
+    ]
+
     const subjReduce = (list, item) => {
         list.push({ value: item, label: item.name + " " + item.classCode })
         return list
@@ -59,8 +59,7 @@ const DetailedViewSelectRow = ({ subjectSelect, taskTypeSelect, completedTasks, 
                 <Select
                     value={taskTypeSelect}
                     onChange={val => taskTypeSelected(val)}
-                    placeholder="Class..."
-                    options={taskTypeOptions}
+                    options={ttOptions}
                     theme={(theme) => ({
                         ...theme,
                         colors: {

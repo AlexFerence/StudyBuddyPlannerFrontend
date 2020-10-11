@@ -19,13 +19,16 @@ const DetailedViewBarChart = ({ selectedTask }) => {
             style={{ height: '200px', padding: '10px' }}
             option={{
                 grid: {
-                    bottom: 10,
-                    top: 8
+                    bottom: 20,
+                    top: 8,
+                    right: 0,
+                    left: 45
                 },
                 tooltip: {
                     trigger: 'item',
                     formatter: function (params) {
                         let rez = ''
+                        console.log(params)
                         if (params.data.name < 1) {
                             rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + minsToHours(params.data.value) + '</span>';
                             return rez;
@@ -38,14 +41,26 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                     }
                 },
                 xAxis: {
+                    // name: 'Days Till Due',
+                    // nameLocation: 'middle',
+                    // nameGap: 20,
                     type: 'category',
+                    boundaryGap: true,
+                    data: selectedTask.sessionItems?.map((session) => {
+                        if (session.dateDifference > 0) {
+                            return (-1 * session.dateDifference)
+                        }
+                        else {
+                            return (Math.abs(session.dateDifference))
+                        }
+                    })
                 },
                 yAxis: {
                     type: 'value',
                     axisLabel: {
                         formatter: '{value}'
                     },
-                    name: 'hours',
+                    name: 'Minutes',
                     nameLocation: 'middle',
                     nameGap: 35
                 },
@@ -56,7 +71,7 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                                 name: session.dateDifference,
                                 value: session.sessionMinutes,
                                 itemStyle: {
-                                    color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#9c9c9c')
+                                    color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#bcbcbc')
                                 }
                             }
                         )

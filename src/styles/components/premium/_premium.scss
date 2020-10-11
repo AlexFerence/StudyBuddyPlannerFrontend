@@ -68,7 +68,11 @@
 }
 
 .detailed-view__description__tidbit__label {
- color: $dark-grey;
+ color: darken($color: $grey, $amount: 10);
+}
+
+.detailed-view__description__tidbit__label-icon {
+ margin-bottom: 3px;
 }
 
 .detailed-view__bar-chart {

@@ -8,33 +8,20 @@ const selectedTaskDefaultState = { sessionItems: [] }
 
 const SubjPieBreakdown = ({ selectedTask = selectedTaskDefaultState }) => {
 
-    const minsToHours = (m) => {
-        const hours = Math.floor(m / 60)
-        const mins = Math.floor(m % 60)
-        if (hours >= 1) {
-            return (hours + 'hrs., ' + mins + 'min.')
-        }
-        else {
-            return (mins + 'min.')
-        }
-    }
-
-    useEffect(() => {
-        console.log(selectedTask.sessionItems?.map((session) => {
-            return ({ name: session.dateDifference, value: session.minutePercentage })
-        }))
-    }, [])
+    // useEffect(() => {
+    //     console.log(selectedTask.sessionItems?.map((session) => {
+    //         return ({ name: session.dateDifference, value: session.minutePercentage })
+    //     }))
+    // }, [])
 
     const getColor = (color, dayDiff = 0) => {
         if (dayDiff > 0) {
-            return ('#9c9c9c')
+            return ('#bcbcbc')
         }
         const colorModel = colorString.get(color)
         const dayDiffRatio = Math.abs(dayDiff) / 30
         var c = Color(colorModel.value).lighten(dayDiffRatio)
         return (c.hex())
-
-
     }
 
     return (
@@ -47,14 +34,14 @@ const SubjPieBreakdown = ({ selectedTask = selectedTaskDefaultState }) => {
                 tooltip: {
                     trigger: 'item',
                     formatter: function (params) {
-                        //console.log(params)
+                        console.log(params)
                         let rez = ''
                         if (params.data.name < 1) {
-                            rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + minsToHours(params.data.value) + '</span>';
+                            rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + params.percent + '%' + '</span>';
                             return rez;
                         }
                         else {
-                            rez = '<span>' + params.data.name + ' days after due date: ' + minsToHours(params.data.value) + '</span>';
+                            rez = '<span>' + params.data.name + ' days after due date: ' + params.percent + '%' + '</span>';
                             return rez;
                         }
                     }
