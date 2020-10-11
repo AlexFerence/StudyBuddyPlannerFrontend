@@ -17,6 +17,17 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
         setUsers(data)
     }
 
+    const minsToHours = (m) => {
+        const hours = Math.floor(m / 60)
+        const mins = Math.floor(m % 60)
+        if (hours >= 1) {
+            return (hours + 'hrs., ' + mins + 'min.')
+        }
+        else {
+            return (mins + 'min.')
+        }
+    }
+
     var id = 100
 
     return (
@@ -29,6 +40,7 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                     <th>Has Tasks</th>
                     <th>Has Time</th>
                     <th>Has Friends</th>
+                    <th>Logged Mins</th>
 
                 </tr>
             </thead>
@@ -41,18 +53,22 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                                 <td>{user.name}</td>
                                 <td>{user.school}</td>
                                 <td>{user.hasSubjects === 'Yes'
-                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
-                                    : <IoMdClose style={{ color: 'red' }} />
-                                }</td>
+                                    ? <IoMdCheckmark style={{ color: '#4ADA33' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}
+                                </td>
                                 <td>{user.hasTasks === 'Yes'
-                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
-                                    : <IoMdClose style={{ color: 'red' }} />}</td>
+                                    ? <IoMdCheckmark style={{ color: '#4ADA33' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}
+                                </td>
                                 <td>{user.hasTime === 'Yes'
-                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
-                                    : <IoMdClose style={{ color: 'red' }} />}</td>
+                                    ? <IoMdCheckmark style={{ color: '#4ADA33' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}
+                                </td>
                                 <td>{user.hasFriends === 'Yes'
-                                    ? <IoMdCheckmark style={{ color: '#00ff00' }} />
-                                    : <IoMdClose style={{ color: 'red' }} />}</td>
+                                    ? <IoMdCheckmark style={{ color: '#4ADA33' }} />
+                                    : <IoMdClose style={{ color: 'red' }} />}
+                                </td>
+                                <td style={{ minWidth: '120px' }}>{minsToHours(user.totalLoggedMinutes)}</td>
                             </tr>
                         )
                     })
