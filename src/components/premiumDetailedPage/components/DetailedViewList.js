@@ -1,11 +1,13 @@
 import React from 'react'
 import DetailedView from './DetailedView'
 import { connect } from 'react-redux'
+import DetailedViewSelectRow from './DetailedViewSelectRow'
 
 const DetailedViewList = ({ completedTasks }) => {
     var key = 0
     return (
         <React.Fragment>
+            <DetailedViewSelectRow />
             {
                 completedTasks.map((selectedTask) => {
                     key++

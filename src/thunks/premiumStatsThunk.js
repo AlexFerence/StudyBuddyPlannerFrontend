@@ -4,14 +4,16 @@ import { updatePremiumStats } from '../actions/premiumStatsActions'
 
 export const loadDetailedView = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile } = state
+    const { profile, premiumStats } = state
     const { id, token } = profile
+    const { taskTypeSelect, subjectSelect } = premiumStats
     try {
         // error
         const res = await axios.post(url + '/api/PersonalCharts/listdetailedview',
             {
                 userId: id,
-                taskType: 'assignment'
+                taskType: taskTypeSelect.value,
+                subjectId: subjectSelect.value.id
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,
@@ -19,9 +21,8 @@ export const loadDetailedView = () => async (dispatch, getState) => {
                 'Content-Type': 'application/json'
             }
         })
-        if (res.status === 200 && res.data.length > 0) {
+        if (res.status === 200) {
             dispatch(updatePremiumStats({
-                selectedTask: res.data[0],
                 completedTasks: res.data
             }))
         }

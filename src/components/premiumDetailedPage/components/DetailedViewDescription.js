@@ -1,7 +1,6 @@
 import React from 'react'
 import moment from 'moment'
 
-
 const DetailedViewDescription = ({ selectedTask = { title: 'Select Completed Task Above', dueDate: '', description: '' } }) => {
     return (
         <div className="detailed-view__description">
@@ -11,12 +10,12 @@ const DetailedViewDescription = ({ selectedTask = { title: 'Select Completed Tas
                 {' ' + selectedTask.taskType}
             </div>
             <div className="detailed-view__description__tidbit">
+                <span className="detailed-view__description__tidbit__label">Class:</span>
+                {' ' + selectedTask.subject}
+            </div>
+            <div className="detailed-view__description__tidbit">
                 <span className="detailed-view__description__tidbit__label">Due:</span>
                 {' ' + moment(selectedTask.dueDate).format('MMM d, yyyy')}</div>
-            <div className="detailed-view__description__tidbit">
-                <span className="detailed-view__description__tidbit__label">Notes:</span>
-                {' ' + selectedTask.description}
-            </div>
         </div>
     )
 }

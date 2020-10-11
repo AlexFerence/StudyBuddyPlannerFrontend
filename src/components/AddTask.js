@@ -5,7 +5,6 @@ import url from '../environment/url'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 import { loadTasks } from '../thunks/taskThunk'
-
 import Select from 'react-select';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';

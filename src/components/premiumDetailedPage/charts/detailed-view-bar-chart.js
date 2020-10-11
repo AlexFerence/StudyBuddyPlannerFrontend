@@ -7,31 +7,34 @@ const DetailedViewBarChart = ({ selectedTask }) => {
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
         const mins = Math.floor(m % 60)
-        if (hours > 1) {
+        if (hours >= 1) {
             return (hours + 'hrs., ' + mins + 'min.')
         }
-        return (mins + 'min.')
-
+        else {
+            return (mins + 'min.')
+        }
     }
-
     return (
         <ReactEcharts
+            style={{ height: '200px', padding: '10px' }}
             option={{
-                title: {
-                    text: "Time Spent to Due Date",
-                    x: 'center',
-                    top: 20,
-                    textStyle: {
-                        fontFamily: 'Helvetica',
-                        fontWeight: 100
-                    }
+                grid: {
+                    bottom: 10,
+                    top: 8
                 },
                 tooltip: {
                     trigger: 'item',
                     formatter: function (params) {
-                        console.log(params)
-                        let rez = '<span>' + params.data.name + ' days till due: ' + minsToHours(params.data.value) + '</span>';
-                        return rez;
+                        let rez = ''
+                        if (params.data.name < 1) {
+                            rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + minsToHours(params.data.value) + '</span>';
+                            return rez;
+                        }
+                        else {
+                            rez = '<span>' + params.data.name + ' days after due date: ' + minsToHours(params.data.value) + '</span>';
+                            return rez;
+                        }
+
                     }
                 },
                 xAxis: {
@@ -53,7 +56,7 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                                 name: session.dateDifference,
                                 value: session.sessionMinutes,
                                 itemStyle: {
-                                    color: (session.dateDifference < 1 ? '#fd1259' : 'red')
+                                    color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#9c9c9c')
                                 }
                             }
                         )

@@ -1,8 +1,10 @@
-import { UPDATE__PREMIUMSTATS } from '../actions/premiumStatsActions'
+import { UPDATE__PREMIUMSTATS, SET_SELECTED_SUBJECT, SET_SELECTED_TASK_TYPE } from '../actions/premiumStatsActions'
 
 const premiumStatsReducerDefaultState = {
     selectedTask: {},
     completedTasks: [],
+    taskTypeSelect: { value: '', label: 'All' },
+    subjectSelect: { value: '', label: 'All' }
 }
 
 const facultiesReducer = (state = premiumStatsReducerDefaultState, action) => {
@@ -11,6 +13,16 @@ const facultiesReducer = (state = premiumStatsReducerDefaultState, action) => {
             return {
                 ...state,
                 ...action.updates
+            }
+        case SET_SELECTED_SUBJECT:
+            return {
+                ...state,
+                subjectSelect: action.payload
+            }
+        case SET_SELECTED_TASK_TYPE:
+            return {
+                ...state,
+                taskTypeSelect: action.payload
             }
         default:
             return state

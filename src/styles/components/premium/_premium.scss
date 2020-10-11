@@ -39,12 +39,17 @@
 .detailed-view__select-row {
  display: flex;
  padding: 5px;
- justify-content: space-between;
+ align-items: center;
+}
+
+.detailed-view__select-row__select {
+ width: 250px;
+ margin-left: 15px;
 }
 
 .detailed-view {
  display: flex;
- padding: 20px;
+ padding: 5px;
  flex-direction: row;
 }
 
