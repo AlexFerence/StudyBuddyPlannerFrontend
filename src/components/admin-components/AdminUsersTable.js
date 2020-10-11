@@ -40,17 +40,17 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                             <tr className="admin-uni-table__tr" key={id}>
                                 <td>{user.name}</td>
                                 <td>{user.school}</td>
-                                <td>{user.hassubjects === 'yes'
+                                <td>{user.hasSubjects === 'Yes'
                                     ? <IoMdCheckmark style={{ color: '#00ff00' }} />
                                     : <IoMdClose style={{ color: 'red' }} />
                                 }</td>
-                                <td>{user.hastasks === 'yes'
+                                <td>{user.hasTasks === 'Yes'
                                     ? <IoMdCheckmark style={{ color: '#00ff00' }} />
                                     : <IoMdClose style={{ color: 'red' }} />}</td>
-                                <td>{user.hastime === 'yes'
+                                <td>{user.hasTime === 'Yes'
                                     ? <IoMdCheckmark style={{ color: '#00ff00' }} />
                                     : <IoMdClose style={{ color: 'red' }} />}</td>
-                                <td>{user.hasfriends === 'yes'
+                                <td>{user.hasFriends === 'Yes'
                                     ? <IoMdCheckmark style={{ color: '#00ff00' }} />
                                     : <IoMdClose style={{ color: 'red' }} />}</td>
                             </tr>

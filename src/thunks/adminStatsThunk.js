@@ -36,7 +36,7 @@ export const loadAllUsers = () => async (dispatch, getState) => {
                 }
             })
         if (res.status === 200) {
-            return res?.data?.responseItems
+            return res?.data
         }
         else return []
 
