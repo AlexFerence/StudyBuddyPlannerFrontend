@@ -64,7 +64,7 @@ const WeeklyChart = ({ charts, dispatch }) => {
                                 type: 'shadow'
                             },
                             formatter: function (params) {
-                                console.log('params')
+                                //console.log('params')
                                 let rez = '<span>' + params[0].axisValue + " " + '</span>';
                                 //console.log(params); //quite useful for debug
                                 params.forEach(item => {
