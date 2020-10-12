@@ -18,7 +18,6 @@ const SubjPieBreakdown = ({ charts, subjects }) => {
     else {
         return (
 
-
             <ReactEcharts
                 option={{
                     title: {

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReactEcharts from 'echarts-for-react'
 import { Row, Col, Accordion } from 'react-bootstrap'
-import Select from 'react-select';
-import { loadTasks } from '../thunks/taskThunk'
 import { connect } from 'react-redux'
 import QuickTimer from './QuickTimer'
 import moment from 'moment'
@@ -73,8 +70,7 @@ const TOUR_STEPS = [
 
 const Dashboard = ({ dispatch, charts, profile,
   history, subjects, stripeStatus, tasks, width, isAuth }) => {
-  var [dropdown1, setDropdown1] = useState(true)
-  var [dropdown2, setDropdown2] = useState(true)
+
   var [steps, setSteps] = useState(TOUR_STEPS)
   var [stepIndex, setStepIndex] = useState(0)
   var [run, setRun] = useState(true);

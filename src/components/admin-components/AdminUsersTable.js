@@ -36,7 +36,7 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                 <tr className="uni-table">
                     <th>Name</th>
                     <th>School</th>
-                    <th>Has Subjects</th>
+                    <th>Has Subj</th>
                     <th>Has Tasks</th>
                     <th>Has Time</th>
                     <th>Has Friends</th>

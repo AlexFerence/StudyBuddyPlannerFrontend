@@ -2,12 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
-
+import Top5Tasks from './charts/Top5Tasks'
 
 const Premium = ({ email, width }) => {
-
     const history = useHistory()
-
     const handleNavigateToDetailed = () => {
         history.push('/premium/detailed')
     }
@@ -27,13 +25,28 @@ const Premium = ({ email, width }) => {
                     <Row>
                         <Col className="boxCol" md={6}>
                             <div className="innerBoxCol">
-                                asdf
+                                <Top5Tasks />
                             </div>
                         </Col>
                         <Col className="boxCol" md={6}>
                             <div className="innerBoxCol">
                                 asdf
                             </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="boxCol" id="quickT" md={6}>
+                            <div className="innerBoxCol">
+                                <div className="timerControl">
+                                    Component
+                                </div>
+                            </div>
+                        </Col>
+                        <Col className="boxCol" md={6} >
+                            <div className="innerBoxCol">
+                                Component
+                            </div>
+
                         </Col>
                     </Row>
                 </div>
