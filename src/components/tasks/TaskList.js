@@ -108,6 +108,16 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                         { value: 'Due Date', label: 'Due Date' },
                         { value: 'Class', label: 'Class' }
                     ]}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                            ...theme.colors,
+                            text: 'black',
+                            primary25: '#bcbcbc',
+                            primary50: '#bcbcbc',
+                            primary: '#bcbcbc',
+                        },
+                    })}
                 /></div>
 
                 <div className="completedLabel"><div>Completed</div>

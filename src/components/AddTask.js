@@ -19,15 +19,7 @@ const subjReduce = (list, item) => {
     return list
 }
 
-const options = [
-    { value: 'Assignment', label: 'Assignment' },
-    { value: 'Readings', label: 'Readings' },
-    { value: 'Essay', label: 'Essay' },
-    { value: 'Lab', label: 'Lab' },
-    { value: 'General Studying', label: 'General Studying' },
-    { value: 'Lecture', label: 'Lecture' },
-    { value: 'Quiz/Midterm/Exam', label: 'Quiz/Midterm/Exam' }
-]
+
 
 
 const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) => {
@@ -40,6 +32,16 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
     const [selectedDate, setSelectedDate] = useState(moment())
     const [calendarFocused, setCalendarFocused] = useState(null)
     const [selectedOption, setSelectedOption] = useState('')
+
+    const options = [
+        { value: 'Assignment', label: 'Assignment' },
+        { value: 'Readings', label: 'Readings' },
+        { value: 'Essay', label: 'Essay' },
+        { value: 'Lab', label: 'Lab' },
+        { value: 'General Studying', label: 'General Studying' },
+        { value: 'Lecture', label: 'Lecture' },
+        { value: 'Quiz/Midterm/Exam', label: 'Quiz/Midterm/Exam' }
+    ]
 
     useEffect(() => {
         if (subjects[0]) {

@@ -31,7 +31,7 @@ const Top5TasksFriends = ({ top5AssignmentsFriends }) => {
             <div className="top-five">
                 <div className="top-five__title-container">
                     <h2 className="top-five__title-container__title">
-                        Most Studied Tasks
+                        Friends Most Studied Tasks
                     </h2>
                 </div>
                 <ol className="top-five__list">

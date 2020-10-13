@@ -32,7 +32,7 @@ const Top5TasksChart = ({ top5DaysFriends }) => {
             <div className="top-five">
                 <div className="top-five__title-container">
                     <h2 className="top-five__title-container__title">
-                        Most Studied Day Friends
+                        Freinds Most Studied Days
                     </h2>
                 </div>
                 <ol className="top-five__list">
