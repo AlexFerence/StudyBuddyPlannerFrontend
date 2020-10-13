@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import moment from 'moment'
+import { AnimatedList } from 'react-animated-list';
 
 const Top5TasksChart = ({ top5Days }) => {
 
@@ -35,27 +36,29 @@ const Top5TasksChart = ({ top5Days }) => {
                         My Most Studied Days
                     </h2>
                 </div>
+
                 <ol className="top-five__list">
-                    {top5Days && top5Days.map((day) => {
-                        index++
-                        return (
-                            <li key={index} className="top-five__list__item">
-                                <div className="top-five__list__item__left">
-                                    <div>
-                                        <span className="top-five__list__item__num">{index}</span>
+                    <AnimatedList animation={"grow"}>
+                        {top5Days && top5Days.map((day) => {
+                            index++
+                            return (
+                                <li key={index} className="top-five__list__item">
+                                    <div className="top-five__list__item__left">
+                                        <div>
+                                            <span className="top-five__list__item__num">{index}</span>
+                                        </div>
+
+                                        <span className="top-five__list__item__title">{moment(day.bestDayDate).format('MMM D, YYYY')}</span>
+                                        <span className="top-five__list__item__title">{day.taskType}</span>
+
                                     </div>
-
-                                    <span className="top-five__list__item__title">{moment(day.bestDayDate).format('MMM D, YYYY')}</span>
-                                    <span className="top-five__list__item__title">{day.taskType}</span>
-
-                                </div>
-                                <span className="top-five__list__item__time-spent">{minsToHours(day.minutes)}</span>
-                            </li>
-                        )
-                    })}
+                                    <span className="top-five__list__item__time-spent">{minsToHours(day.minutes)}</span>
+                                </li>
+                            )
+                        })}
+                    </AnimatedList>
                 </ol>
             </div>
-
         )
     }
 }

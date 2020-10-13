@@ -20,6 +20,7 @@
   "normalize-scss": "^7.0.1",
   "persist": "^0.2.7",
   "react": "^16.13.1",
+  "react-animated-list": "^0.1.4",
   "react-autocomplete": "^1.8.1",
   "react-beforeunload": "^2.2.4",
   "react-bootstrap": "^1.0.1",

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { AnimatedList } from 'react-animated-list';
 
 const Top5TasksFriends = ({ top5AssignmentsFriends }) => {
 
@@ -35,20 +36,22 @@ const Top5TasksFriends = ({ top5AssignmentsFriends }) => {
                     </h2>
                 </div>
                 <ol className="top-five__list">
-                    {top5AssignmentsFriends && top5AssignmentsFriends.map((assignment) => {
-                        index++
-                        return (
-                            <li key={index} className="top-five__list__item">
-                                <div className="top-five__list__item__left">
-                                    <div>
-                                        <span className="top-five__list__item__num">{index}</span>
+                    <AnimatedList animation={"grow"}>
+                        {top5AssignmentsFriends && top5AssignmentsFriends.map((assignment) => {
+                            index++
+                            return (
+                                <li key={index} className="top-five__list__item">
+                                    <div className="top-five__list__item__left">
+                                        <div>
+                                            <span className="top-five__list__item__num">{index}</span>
+                                        </div>
+                                        <span className="top-five__list__item__title">{assignment.taskType + ' - ' + assignment.firstName + ' ' + assignment.lastName}</span>
                                     </div>
-                                    <span className="top-five__list__item__title">{assignment.taskType + ' - ' + assignment.firstName + ' ' + assignment.lastName}</span>
-                                </div>
-                                <span className="top-five__list__item__time-spent">{minsToHours(assignment.minutes)}</span>
-                            </li>
-                        )
-                    })}
+                                    <span className="top-five__list__item__time-spent">{minsToHours(assignment.minutes)}</span>
+                                </li>
+                            )
+                        })}
+                    </AnimatedList>
                 </ol>
             </div>
 

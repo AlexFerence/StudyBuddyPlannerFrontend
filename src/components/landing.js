@@ -9,6 +9,7 @@ import LandingNav from './LandingNavBar'
 import LandingBarChart from './landing-charts/LandingBarChart'
 import LandingLineChart from './landing-charts/LandingLineChart'
 import OverviewBar from './admin-components/OverviewBar'
+import { AnimatedList } from 'react-animated-list';
 
 import SampleFriendItem from './landing-charts/SampleFriendItem'
 
@@ -126,11 +127,8 @@ const Landing = ({ history, profile, width }) => {
                   taskType="Assignment"
                   bottom={true}
                 />
-
-
               </div>
             </Col>
-
           </Row>
         </div>
 

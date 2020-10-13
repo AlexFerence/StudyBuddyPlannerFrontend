@@ -26,7 +26,12 @@ const Premium = ({ email, width, dispatch }) => {
         dispatch(loadTop5DaysFriends())
     }, [])
 
-    if (email === 'akaufman2000@gmail.com' || email === 'alexference23@gmail.com') {
+    if (
+        email === 'akaufman2000@gmail.com'
+        || email === 'alexference23@gmail.com'
+        || email === 'vladstets18@gmail.com'
+        || email === 'maddy.eppsconn@gmail.com'
+    ) {
         return (
             <div className="dashboard" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
