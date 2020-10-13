@@ -6,6 +6,7 @@ import { setCurrentTask } from '../../actions/currentTaskActions'
 import Select from 'react-select';
 import { loadTasks } from '../../thunks/taskThunk'
 import TaskListItem from './TaskListItem'
+import { AnimatedList } from 'react-animated-list';
 
 
 const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
@@ -135,13 +136,16 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                         { color: 'grey', border: '1px solid grey' } : {}}
                 >+ Add Task</button>
             </div>
-            {
-                tasks.map((t) => {
-                    return (
-                        <TaskListItem key={t.id} blankOn={blankOn} task={t} displayOn={displayOn} />
-                    )
-                })
-            }
+            <AnimatedList animation={"grow"}>
+                {
+                    tasks.map((t) => {
+
+                        return (
+                            <TaskListItem key={t.id} blankOn={blankOn} task={t} displayOn={displayOn} />
+                        )
+                    })
+                }
+            </AnimatedList>
         </div>
     )
 }

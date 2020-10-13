@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { FaAngleDown, FaAngleUp, FaEdit } from 'react-icons/fa'
 import { connect } from 'react-redux'
 import SubjectButton from './SubjectButton'
-
-
+import { AnimatedList } from 'react-animated-list';
 import AddSemesterButton from './AddSemesterButton'
 import EditSemesterButton from './EditSemesterButton'
 
@@ -45,16 +44,18 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
             </div>
             {
                 showSubjects &&
-                <div className="listClasses">{subjects.map((item) => {
-                    if (item.semesterId === sem.id)
-                        return (
-                            <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
-                                <SubjectButton item={item} />
-                            </div>
-                        )
-                })}
+                <div className="listClasses">
+                    <AnimatedList animation={"grow"}>
+                        {subjects.map((item) => {
+                            if (item.semesterId === sem.id)
+                                return (
+                                    <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
+                                        <SubjectButton item={item} />
+                                    </div>
+                                )
+                        })}
+                    </AnimatedList>
                 </div>
-
             }
 
         </React.Fragment>
