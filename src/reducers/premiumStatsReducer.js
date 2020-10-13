@@ -4,7 +4,12 @@ const premiumStatsReducerDefaultState = {
     selectedTask: {},
     completedTasks: [],
     taskTypeSelect: { value: '', label: 'All' },
-    subjectSelect: { value: '', label: 'All' }
+    subjectSelect: { value: '', label: 'All' },
+    top5Assignments: [],
+    top5AssignmentsFriends: [],
+    top5Days: [],
+    top5DaysFriends: [],
+
 }
 
 const facultiesReducer = (state = premiumStatsReducerDefaultState, action) => {

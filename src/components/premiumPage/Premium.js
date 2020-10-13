@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
-import Top5Tasks from './charts/Top5Tasks'
+import Top5Days from './charts/Top5Days'
+import Top5Assignments from './charts/Top5Assignments'
+import Top5AssignmentsFriends from './charts/FriendsTop5Assignments'
+import {
+    loadTop5Assignments, loadTop5Days,
+    loadTop5AssignmentsFriends,
+    loadTop5DaysFriends
+} from '../../thunks/premiumStatsThunk'
+import FriendsTop5Days from './charts/FriendsTop5Days'
+import FriendsTop5Assignments from './charts/FriendsTop5Assignments'
 
-const Premium = ({ email, width }) => {
+const Premium = ({ email, width, dispatch }) => {
     const history = useHistory()
     const handleNavigateToDetailed = () => {
         history.push('/premium/detailed')
     }
+
+    useEffect(() => {
+        dispatch(loadTop5Days())
+        dispatch(loadTop5Assignments())
+        dispatch(loadTop5AssignmentsFriends())
+        dispatch(loadTop5DaysFriends())
+    }, [])
 
     if (email === 'akaufman2000@gmail.com' || email === 'alexference23@gmail.com') {
         return (
@@ -25,12 +41,12 @@ const Premium = ({ email, width }) => {
                     <Row>
                         <Col className="boxCol" md={6}>
                             <div className="innerBoxCol">
-                                <Top5Tasks />
+                                <Top5Assignments />
                             </div>
                         </Col>
                         <Col className="boxCol" md={6}>
                             <div className="innerBoxCol">
-                                asdf
+                                <Top5Days />
                             </div>
                         </Col>
                     </Row>
@@ -38,13 +54,13 @@ const Premium = ({ email, width }) => {
                         <Col className="boxCol" id="quickT" md={6}>
                             <div className="innerBoxCol">
                                 <div className="timerControl">
-                                    Component
+                                    <FriendsTop5Assignments />
                                 </div>
                             </div>
                         </Col>
                         <Col className="boxCol" md={6} >
                             <div className="innerBoxCol">
-                                Component
+                                <FriendsTop5Days />
                             </div>
 
                         </Col>

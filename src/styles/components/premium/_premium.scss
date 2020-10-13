@@ -1,99 +1,36 @@
-.detailed-view-button {
- padding: 15px;
- font-size: 20px;
- transition: 0.5s;
- cursor: pointer;
- box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
- align-items: center;
- text-align: center;
- border-radius: 2px;
-}
+$list-spacing: 25px;
 
-.detailed-view-button:hover {
- transition: 0.5s;
- box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.arrow-premium {
- &::after {
-  display: inline-block;
-  padding-left: 8px;
-  content: '\0279E'; // arrow right unicode
-  -webkit-transition: transform 0.3s ease-out;
-  -moz-transition: transform 0.3s ease-out;
-  -ms-transition: transform 0.3s ease-out;
-  -o-transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
- }
- &:hover {
-  &::after {
-   -webkit-transform: translateX(4px);
-   -moz-transform: translateX(4px);
-   -ms-transform: translateX(4px);
-   -o-transform: translateX(4px);
-   transform: translateX(4px);
-  }
- }
-}
-
-.detailed-view__select-row {
- display: flex;
- padding: 5px;
- align-items: center;
-}
-
-.detailed-view__select-row__select {
- width: 250px;
- margin-left: 15px;
-}
-
-.detailed-view {
- display: flex;
- padding: 5px;
- flex-direction: row;
-}
-
-.detailed-view__description {
+.top-five {
  padding: 10px;
- flex: 0.6;
 }
 
-.detailed-view__description__title {
- font-size: 25px;
- margin-bottom: 15px;
+.top-five__title-container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
-.detailed-view__description__tidbit {
- margin-bottom: 10px;
+.top-five__title-container__title {
+ font-size: 20px;
+ margin-top: 5px;
+ margin-bottom: $list-spacing;
 }
 
-.detailed-view__description__tidbit__label {
- color: darken($color: $grey, $amount: 10);
+.top-five__list__item {
+ display: flex;
+ justify-content: space-between;
+ margin-bottom: $list-spacing;
 }
 
-.detailed-view__description__tidbit__label-icon {
- margin-bottom: 3px;
+.top-five__list__item__left {
+ display: flex;
 }
 
-.detailed-view__bar-chart {
- width: 0px;
- flex: 1;
- min-height: 50px;
+.top-five__list__item__num {
+ background-color: $grey;
+ color: white;
+ font-weight: 600;
+ border-radius: 50%;
+ padding: 4px 10px;
+ margin-right: 10px;
 }
-.detailed-view__pie-chart {
- width: 0px;
- min-height: 50px;
- flex: 1;
-}
-
-@media only screen and (max-width: 700px) {
- .detailed-view {
-  flex-direction: column;
- }
- .detailed-view__bar-chart {
-  width: 100%;
- }
- .detailed-view__pie-chart {
-  width: 100%;
- }
-} /* max-width 640px, mobile-only styles, use when QAing mobile issues */

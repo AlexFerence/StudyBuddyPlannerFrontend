@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import moment from 'moment'
 
-const Top5TasksChart = ({ top5Days }) => {
+const isPremium = true
+
+const Top5TasksChart = ({ top5Assignments }) => {
 
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
@@ -14,7 +15,7 @@ const Top5TasksChart = ({ top5Days }) => {
             return (mins + 'min.')
         }
     }
-    if (top5Days.length === 0) {
+    if (top5Assignments.length === 0) {
         return (
             <div className="noData">
                 <div>
@@ -32,11 +33,11 @@ const Top5TasksChart = ({ top5Days }) => {
             <div className="top-five">
                 <div className="top-five__title-container">
                     <h2 className="top-five__title-container__title">
-                        Most Studied Day
+                        Most Studied Tasks
                     </h2>
                 </div>
                 <ol className="top-five__list">
-                    {top5Days && top5Days.map((day) => {
+                    {top5Assignments && top5Assignments.map((assignment) => {
                         index++
                         return (
                             <li key={index} className="top-five__list__item">
@@ -44,12 +45,11 @@ const Top5TasksChart = ({ top5Days }) => {
                                     <div>
                                         <span className="top-five__list__item__num">{index}</span>
                                     </div>
-
-                                    <span className="top-five__list__item__title">{moment(day.bestDayDate).format('MMM D, YYYY')}</span>
-                                    <span className="top-five__list__item__title">{day.taskType}</span>
+                                    <span className="top-five__list__item__title">{assignment.title + ' - '}</span>
+                                    <span className="top-five__list__item__title">{assignment.taskType}</span>
 
                                 </div>
-                                <span className="top-five__list__item__time-spent">{minsToHours(day.minutes)}</span>
+                                <span className="top-five__list__item__time-spent">{minsToHours(assignment.minutes)}</span>
                             </li>
                         )
                     })}
@@ -62,7 +62,7 @@ const Top5TasksChart = ({ top5Days }) => {
 
 const mapStateToProps = (state) => {
     return {
-        top5Days: state.premiumStats.top5Days
+        top5Assignments: state.premiumStats.top5Assignments
     }
 }
 
