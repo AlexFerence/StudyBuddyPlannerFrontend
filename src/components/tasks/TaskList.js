@@ -136,7 +136,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                         { color: 'grey', border: '1px solid grey' } : {}}
                 >+ Add Task</button>
             </div>
-            <AnimatedList animation={"grow"}>
+            <AnimatedList animation={"fade"}>
                 {
                     tasks.map((t) => {
 

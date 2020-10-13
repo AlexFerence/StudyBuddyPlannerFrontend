@@ -45,7 +45,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
             {
                 showSubjects &&
                 <div className="listClasses">
-                    <AnimatedList animation={"grow"}>
+                    <AnimatedList animation={"fade"}>
                         {subjects.map((item) => {
                             if (item.semesterId === sem.id)
                                 return (
