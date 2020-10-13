@@ -165,7 +165,7 @@ const Landing = ({ history, profile, width }) => {
               </Col>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">" It's like a fitbit for the mind "</div>
+                  <div className="textHeader">" It's like Strava but for studying "</div>
                   <div className="textPara">- StudyBuddy User</div>
                 </div>
               </Col>
