@@ -6,13 +6,15 @@ import futureplans from '../assets/futureplans.png'
 //import pencils from '../assets/video.mp4'
 import JoyRide from 'react-joyride';
 import LandingNav from './LandingNavBar'
-import LandingBarChart from './landing-charts/LandingBarChart'
 import LandingLineChart from './landing-charts/LandingLineChart'
 import OverviewBar from './admin-components/OverviewBar'
-import { AnimatedList } from 'react-animated-list';
-
+import InstagramEmbed from 'react-instagram-embed';
 import SampleFriendItem from './landing-charts/SampleFriendItem'
-
+import { loadIGFeed } from '../thunks/landingThunk'
+import EmbedContainer from 'react-oembed-container';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import "react-multi-carousel/lib/styles.css";
+import LandingCarousel from './landing-carousel'
 
 const TOUR_STEPS = [
   {
@@ -32,9 +34,7 @@ const TOUR_STEPS = [
   },
 ];
 
-const Landing = ({ history, profile, width }) => {
-
-  var [run, setRun] = useState(false)
+const Landing = ({ history, profile, dispatch, width }) => {
 
   useEffect(() => {
     if (profile.email && profile.isAuth) {
@@ -49,9 +49,7 @@ const Landing = ({ history, profile, width }) => {
   return (
     <div className="landing"
       id="#my-first-step">
-
       <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
-
       <div className="landingNav" style={{ padding: '0px' }}>
         <LandingNav />
       </div>
@@ -60,7 +58,7 @@ const Landing = ({ history, profile, width }) => {
           <source src="/videos/video2.mp4" type="video/mp4" />
           <source src="/videos/video2.mp4" type="video/ogg" />
             Your browser does not support the video tag.
-            </video>
+          </video>
       </div>
       <div id="special-overlay" className="overlay landingDisplay">
         <div style={{ height: '80px' }}></div>
@@ -156,7 +154,7 @@ const Landing = ({ history, profile, width }) => {
             <Row style={{ height: '100%' }}>
               <Col md={6} className="textCol">
                 <div className="textInner">
-                  <div className="textHeader">" It satisfies the part of the brain
+                  <div className="textHeader">" It apeases the part of the brain
                   that craves checking things off. "</div>
                   <div className="textPara">- StudyBuddy User</div>
                 </div>
@@ -167,17 +165,20 @@ const Landing = ({ history, profile, width }) => {
                   <div className="textPara">- StudyBuddy User</div>
                 </div>
               </Col>
-
-              <Col md={6} className="imageCol">
-                <div style={{ height: '100px' }}></div>
-                <button id="mainButton"
-                  className="navButtonSignUp"
-                  onClick={goToSignUp}>Sign Up</button>
-                { /* <img src={futureplans} style={{ width: '50%' }} /> */}
-              </Col>
             </Row>
           </div>
-
+          <div className="instagram-embed-row">
+            <LandingCarousel />
+          </div>
+          <Row>
+            <Col md={6} className="imageCol">
+              <div style={{ height: '100px' }}></div>
+              <button id="mainButton"
+                className="navButtonSignUp"
+                onClick={goToSignUp}>Sign Up</button>
+              { /* <img src={futureplans} style={{ width: '50%' }} /> */}
+            </Col>
+          </Row>
           <footer className="footerSection">
             <div>
               <div className="footer-copy">© StudyBuddy</div>
@@ -186,6 +187,7 @@ const Landing = ({ history, profile, width }) => {
         </div>
       </div>
     </div>
+
   )
 }
 const mapStateToProps = (state) => {
@@ -196,6 +198,34 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Landing)
+
+
+
+// <Carousel responsive={responsive}>
+//                   {instagramLinks.map((link) => {
+//                     return (
+//                       <div>
+//                         <InstagramEmbed
+//                           key={link}
+//                           url={link}
+//                           maxWidth={400}
+//                           hideCaption={true}
+//                           containerTagName='div'
+//                           protocol=''
+//                           injectScript
+//                           onLoading={() => { }}
+//                           onSuccess={() => { }}
+//                           onAfterRender={() => { }}
+//                           onFailure={() => { }}
+//                         />
+//                       </div>
+//                     )
+//                   })
+//                   }
+//                 </Carousel>
+
+
+
 
 //test
 

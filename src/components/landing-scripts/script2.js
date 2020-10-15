@@ -1,0 +1,1 @@
+window.PixleeAsyncInit = function () { Pixlee.init({ apiKey: 'gj24ij0Tm7KCI3vdLvAS' }); Pixlee.addSimpleWidget({ widgetId: '29986' }); };

@@ -12,8 +12,8 @@ const FriendActiveList = ({ dispatch, activeFriends }) => {
     }, [])
 
     return (
-        <div className="friend-active-list-holder">
 
+        <div className="friend-active-list-holder">
             {
                 activeFriends.map((friend) => {
                     return (
@@ -25,6 +25,7 @@ const FriendActiveList = ({ dispatch, activeFriends }) => {
                 <CustomOverlay message="Add Friends by hitting the + icon" />
             </div>}
         </div>
+
     )
 }
 

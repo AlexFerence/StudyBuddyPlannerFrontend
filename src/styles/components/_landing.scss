@@ -287,3 +287,17 @@
  justify-content: center;
  color: white;
 }
+
+.instagram-embed-row {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.instagram-embed-angle {
+ font-size: 30px;
+ margin: 40px;
+ color: white;
+ min-width: 30px;
+ cursor: pointer;
+}

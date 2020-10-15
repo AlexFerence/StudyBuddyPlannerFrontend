@@ -89,6 +89,11 @@ const Premium = Loadable({
   loading: FullPageLoader,
 });
 
+const Blog = Loadable({
+  loader: () => import('./components/Blog'),
+  loading: Loader,
+});
+
 
 const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
   useEffect(() => {
@@ -120,6 +125,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
       { loading && <Loader />}
       <Switch>
         <Route path='/' component={Landing} exact />
+        <Route path='/blog' component={Blog} />
         <Route path='/signup' component={SignUp} />
         <Route path='/signUpSecondary' component={SignUpSecondary} />
         <Route path='/login' exact component={LoginPage} />
@@ -127,7 +133,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
         <Route path='/resetpassword' exact component={ResetPassword} />
         <Route path='/dashboard'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Dashboard />}
-        </Route>
+        </Route>ß
         <Route path='/tasks'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Tasks />}
         </Route>
