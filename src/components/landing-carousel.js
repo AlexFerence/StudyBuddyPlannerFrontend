@@ -23,26 +23,27 @@ const LandingCarousel = () => {
         }
     };
 
-    const instagramLinks = ['https://www.instagram.com/p/CGArZRsAa3b/', 'https://www.instagram.com/p/CGAsIGXAqtf/',
-        'https://www.instagram.com/p/CGGUaXDAYii/', 'https://www.instagram.com/p/CGIy4g8AJR6/',
-        'https://www.instagram.com/p/CGIy4g8AJR6/', 'https://www.instagram.com/p/CGVziyGnP_W/']
+    const instagramLinks = ['https://www.instagram.com/p/CGVziyGnP_W/', 'https://www.instagram.com/p/CGLpaOxHOq8/',
+        'https://www.instagram.com/p/CGIy4g8AJR6/', 'https://www.instagram.com/p/CGGUaXDAYii/',
+        'https://www.instagram.com/p/CGAsIGXAqtf/', 'https://www.instagram.com/p/CGArw4TAHQI/']
 
     return (
         <div style={{
             minHeight: '200px', minWidth: '500px'
         }}>
             <Carousel
-                swipeable={false}
-                draggable={false}
+                swipeable={true}
+                draggable={true}
+                infinite={true}
                 responsive={responsive}
             >
                 {instagramLinks.map((link) => {
                     return (
-                        <div style={{ margin: '5px' }}>
+                        <div>
                             <InstagramEmbed
                                 key={link}
                                 url={link}
-                                maxWidth={326}
+                                maxWidth={450}
                                 hideCaption={true}
                                 containerTagName='div'
                                 protocol=''
