@@ -95,13 +95,6 @@ const FriendActivity = ({ waitingRequests, dispatch }) => {
                     {plusOrX()}
                 </div>
             </div>
-            <div className="friend-search__input-container">
-                <input className="friend-search__input"
-
-                    onChange={handleChangedSearch}
-                    placeholder="Search ..."
-                />
-            </div>
 
             {activityShowing ? <FriendActiveList /> : <FriendPendingSearch />}
             <button className="invite-friends" onClick={copyToClipboard}>Invite Friends</button>
