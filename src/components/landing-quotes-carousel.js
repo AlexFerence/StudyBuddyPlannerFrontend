@@ -34,7 +34,7 @@ const LandingCarousel = () => {
         },
         {
             text: '" Clean. "',
-            author: ' - Diego Dorantes-Ferreira'
+            author: ' - Diego Ferreira'
         },
         {
             text: '" It always motivates me to do that little bit more. "',
