@@ -62,11 +62,7 @@ const LandingCarousel = () => {
                 centerMode={true}
             >
                 {
-<<<<<<< Updated upstream
-                    quotes.map((link) => {
-=======
                     quotes.map((quote) => {
->>>>>>> Stashed changes
                         return (
                             <div className="textInner testimonial-card"
                                 style={{ padding: '10px', minWidth: '300px' }}
