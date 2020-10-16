@@ -30,7 +30,7 @@ const LandingCarousel = () => {
     const quotes = [
         {
             text: '"It\'s like Strava but for studying "',
-            author: ' - Alex Ference'
+            author: ' - '
         },
         {
             text: ' " Does it even count if the time isn\'t logged on StudyBuddy? "',
