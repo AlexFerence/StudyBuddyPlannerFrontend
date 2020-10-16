@@ -55,8 +55,8 @@ const Landing = ({ history, profile, dispatch, width }) => {
       </div>
       <div className="landingDisplay">
         <video id="background-video" loop autoPlay muted>
-          <source src="/videos/video2.mp4" type="video/mp4" />
-          <source src="/videos/video2.mp4" type="video/ogg" />
+          <source src="/videos/landingVideo.mp4" type="video/mp4" />
+          <source src="/videos/landingVideo.mp4" type="video/ogg" />
             Your browser does not support the video tag.
           </video>
       </div>
