@@ -33,6 +33,18 @@ const LandingCarousel = () => {
             author: ' - Maddy Epps'
         },
         {
+            text: '" Clean. "',
+            author: ' - Diego Dorantes-Ferreira'
+        },
+        {
+            text: '" It always motivates me to do that little bit more. "',
+            author: ' - Torean Vance'
+        },
+        {
+            text: '" It helps me organize everything in one place. "',
+            author: ' - Maya Nachman'
+        },
+        {
             text: ' " StudyBuddy keeps me studying for a lot longer than I used to. "',
             author: ' - Vlad Stets'
         },
