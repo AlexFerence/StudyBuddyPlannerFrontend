@@ -11,10 +11,10 @@ import OverviewBar from './admin-components/OverviewBar'
 import InstagramEmbed from 'react-instagram-embed';
 import SampleFriendItem from './landing-charts/SampleFriendItem'
 import { loadIGFeed } from '../thunks/landingThunk'
-import EmbedContainer from 'react-oembed-container';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "react-multi-carousel/lib/styles.css";
 import LandingCarousel from './landing-carousel'
+import LandingCarouselTestemonial from './landing-quotes-carousel'
 
 const TOUR_STEPS = [
   {
@@ -94,10 +94,8 @@ const Landing = ({ history, profile, dispatch, width }) => {
             <Col md={6} className="imageCol">
               <img src={laptop2} className="imageInner" />
             </Col>
-
           </Row>
         </div>
-
         <a id="premium"></a>
         <div className="rowSection" id="align-center">
           <Row style={{ height: '100%' }}>
@@ -108,7 +106,6 @@ const Landing = ({ history, profile, dispatch, width }) => {
                 are studying, and let them feel connected even when studying remotely.</div>
               </div>
             </Col>
-
             <Col md={6} className="imageCol">
               <div className="imageInner">
                 { /* put component here */}
@@ -129,46 +126,40 @@ const Landing = ({ history, profile, dispatch, width }) => {
             </Col>
           </Row>
         </div>
-
         <div className="rowSection">
-          <div className="rowSection">
-            <Row style={{ height: '100%' }}>
-              <Col md={6} className="imageCol">
-                <div className="imageInner">
-                  <LandingLineChart />
-                </div>
-              </Col>
-              <Col md={6} className="textCol">
-                <div className="textInner">
-                  <div className="textHeader">Track Your Studying</div>
-                  <div className="textPara">StudyBuddy provides various methods to easily track your study time. Our team's software then generates visually
-                  relevant and significant graphs to show the user their progress and study habits. These statistics help you break up your time and study more
-                  efficiently in the future.
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </div>
           <a id="futureplan"></a>
           <div id="align-center" className="rowSection">
-            <Row style={{ height: '100%' }}>
-              <Col md={6} className="textCol">
-                <div className="textInner">
-                  <div className="textHeader">" It apeases the part of the brain
-                  that craves checking things off. "</div>
-                  <div className="textPara">- StudyBuddy User</div>
+            {width > 500 ? <LandingCarouselTestemonial /> :
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="textInner testimonial-card">
+                  <div className="testemonial-card-inner">
+                    <div style={{ color: 'white' }} className="textHeader">
+                      " It apeases the part of the brain that craves checking things off. "
+                  </div>
+                    <div className="textPara">- StudyBuddy User</div>
+                  </div>
                 </div>
-              </Col>
-              <Col md={6} className="textCol">
-                <div className="textInner">
-                  <div className="textHeader">" It's like Strava but for studying "</div>
-                  <div className="textPara">- StudyBuddy User</div>
-                </div>
-              </Col>
-            </Row>
+              </div>
+            }
           </div>
+          <div style={{ height: '60px' }} />
           <div className="instagram-embed-row">
-            <LandingCarousel />
+            {width > 500 ? <LandingCarousel /> :
+              <InstagramEmbed
+                url='https://www.instagram.com/p/CGVziyGnP_W/'
+                maxWidth={340}
+                hideCaption={true}
+                containerTagName='div'
+                protocol=''
+                injectScript
+                onLoading={() => { }}
+                onSuccess={() => { }}
+                onAfterRender={() => { }}
+                onFailure={() => { }}
+              />
+
+            }
+
           </div>
           <Row>
             <Col md={6} className="imageCol">
@@ -198,6 +189,26 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Landing)
+
+
+// <div className="rowSection">
+//             <Row style={{ height: '100%' }}>
+//               <Col md={6} className="imageCol">
+//                 <div className="imageInner">
+//                   <LandingLineChart />
+//                 </div>
+//               </Col>
+//               <Col md={6} className="textCol">
+//                 <div className="textInner">
+//                   <div className="textHeader">Track Your Studying</div>
+//                   <div className="textPara">StudyBuddy provides various methods to easily track your study time. Our team's software then generates visually
+//                   relevant and significant graphs to show the user their progress and study habits. These statistics help you break up your time and study more
+//                   efficiently in the future.
+//                   </div>
+//                 </div>
+//               </Col>
+//             </Row>
+//           </div>
 
 
 

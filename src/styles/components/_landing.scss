@@ -301,3 +301,29 @@
  min-width: 30px;
  cursor: pointer;
 }
+
+.testimonial-card {
+ height: 300px;
+ background-color: #3a3a3a;
+ margin: 0px;
+ margin: 10px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 25px;
+
+ box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.testimonial-card-inner {
+ padding: 15px;
+ margin: 10px;
+}
+
+.carousel-item {
+ padding: 0px;
+ margin: 0px;
+}
+
+@media only screen and (max-width: 40em) {
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
