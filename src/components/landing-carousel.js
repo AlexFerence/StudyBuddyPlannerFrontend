@@ -10,19 +10,19 @@ const LandingCarousel = () => {
             items: 5
         },
         largeDesktop: {
-            breakpoint: { max: 3700, min: 2900 },
+            breakpoint: { max: 3700, min: 3500 },
             items: 4
         },
         desktop: {
-            breakpoint: { max: 2900, min: 1500 },
+            breakpoint: { max: 3500, min: 2500 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1500, min: 900 },
+            breakpoint: { max: 2500, min: 1000 },
             items: 2
         },
         mobile: {
-            breakpoint: { max: 900, min: 0 },
+            breakpoint: { max: 1000, min: 0 },
             items: 1
         }
     };
