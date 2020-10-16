@@ -34,11 +34,11 @@ const LandingCarousel = () => {
         },
         {
             text: ' " Does it even count if the time isn\'t logged on StudyBuddy? "',
-            author: ' - Alex Ference'
+            author: ' - Josh Levy'
         },
         {
             text: '" I use it every single time I study "',
-            author: ' - Ari Kaufman'
+            author: ' - Silas Chapelle'
         },
         {
             text: '" It apeases the part of the brain that craves checking things off "',
