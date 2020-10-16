@@ -16,24 +16,6 @@ import "react-multi-carousel/lib/styles.css";
 import LandingCarousel from './landing-carousel'
 import LandingCarouselTestemonial from './landing-quotes-carousel'
 
-const TOUR_STEPS = [
-  {
-    target: "#about",
-    content: "This is where you can search the dashboard.",
-    disableBeacon: true
-  },
-  {
-    target: "#features",
-    content:
-      "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
-  },
-  {
-    target: "",
-    content:
-      "Bar chart for total order. You can see beautiful graphs here, thanks to creative tim for such UI."
-  },
-];
-
 const Landing = ({ history, profile, dispatch, width }) => {
 
   useEffect(() => {
@@ -49,7 +31,6 @@ const Landing = ({ history, profile, dispatch, width }) => {
   return (
     <div className="landing"
       id="#my-first-step">
-      <JoyRide steps={TOUR_STEPS} continuous={true} showSkipButton={true} />
       <div className="landingNav" style={{ padding: '0px' }}>
         <LandingNav />
       </div>
@@ -77,7 +58,7 @@ const Landing = ({ history, profile, dispatch, width }) => {
 
 
       <div className='player-wrapper'>
-        <a id="features"></a>
+        <a id="getstarted"></a>
 
         <div className="rowSection">
           <div style={{ height: '40px' }}></div>
@@ -96,7 +77,6 @@ const Landing = ({ history, profile, dispatch, width }) => {
             </Col>
           </Row>
         </div>
-        <a id="premium"></a>
         <div className="rowSection" id="align-center">
           <Row style={{ height: '100%' }}>
             <Col md={6} className="textCol">
@@ -127,14 +107,14 @@ const Landing = ({ history, profile, dispatch, width }) => {
           </Row>
         </div>
         <div className="rowSection">
-          <a id="futureplan"></a>
+          <a id="testemonials"></a>
           <div id="align-center" className="rowSection">
             {width > 500 ? <LandingCarouselTestemonial /> :
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div className="textInner testimonial-card">
                   <div className="testemonial-card-inner">
                     <div style={{ color: 'white' }} className="textHeader">
-                      " It apeases the part of the brain that craves checking things off. "
+                      " It appeases the part of the brain that craves checking things off. "
                   </div>
                     <div className="textPara">- StudyBuddy User</div>
                   </div>

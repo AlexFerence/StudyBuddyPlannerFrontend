@@ -27,10 +27,10 @@ const LandingCarousel = () => {
         }
     };
 
-    const instagramLinks = ['"It\'s like Strava but for studying "',
-        '" It apeases the part of the brain that craves checking things off "',
+    const quotes = ['"It\'s like Strava but for studying "',
+        '" It appeases the part of the brain that craves checking things off "',
         '" I use it every single time I study "',
-        ' " Does it even count if the time isn\'t logged on StudyBuddy? "']
+        '" Does it even count if the time isn\'t logged on StudyBuddy? "']
 
     return (
         <div style={{
@@ -45,7 +45,7 @@ const LandingCarousel = () => {
                 centerMode={true}
             >
                 {
-                    instagramLinks.map((link) => {
+                    quotes.map((link) => {
                         return (
                             <div className="textInner testimonial-card"
                                 style={{ padding: '10px', minWidth: '300px' }}
