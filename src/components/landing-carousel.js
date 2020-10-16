@@ -6,19 +6,19 @@ const LandingCarousel = () => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 2500 },
+            breakpoint: { max: 4100, min: 3700 },
             items: 5
         },
         largeDesktop: {
-            breakpoint: { max: 2600, min: 1600 },
+            breakpoint: { max: 3700, min: 2900 },
             items: 4
         },
         desktop: {
-            breakpoint: { max: 1700, min: 1200 },
+            breakpoint: { max: 2900, min: 1500 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1300, min: 800 },
+            breakpoint: { max: 1500, min: 900 },
             items: 2
         },
         mobile: {
@@ -33,7 +33,7 @@ const LandingCarousel = () => {
     return (
         <div style={{
             minHeight: '200px', minWidth: '500px',
-            margin: '0px 5px'
+            margin: '15px'
         }}>
             <Carousel
                 swipeable={true}

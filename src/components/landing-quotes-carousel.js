@@ -6,19 +6,19 @@ const LandingCarousel = () => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 2500 },
+            breakpoint: { max: 4100, min: 2650 },
             items: 5
         },
         largeDesktop: {
-            breakpoint: { max: 2500, min: 1600 },
+            breakpoint: { max: 2650, min: 1750 },
             items: 4
         },
         desktop: {
-            breakpoint: { max: 1600, min: 1200 },
+            breakpoint: { max: 1750, min: 1250 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1200, min: 800 },
+            breakpoint: { max: 1250, min: 800 },
             items: 2
         },
         mobile: {
