@@ -110,22 +110,33 @@ const Landing = ({ history, profile, dispatch, width }) => {
           <a id="testemonials"></a>
           <div id="align-center" className="rowSection">
             {width > 500 ? <LandingCarouselTestemonial /> :
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div><div style={{display: 'flex',  justifyContent: 'center' }}>
                 <div className="textInner testimonial-card">
                   <div className="testemonial-card-inner">
                     <div style={{ color: 'white' }} className="textHeader">
                       " It appeases the part of the brain that craves checking things off. "
                   </div>
-                    <div className="textPara">- StudyBuddy User</div>
+                    <div className="textPara">- Havana Garcha</div>
                   </div>
                 </div>
               </div>
+                            <div style={{display: 'flex',  justifyContent: 'center' }}>
+                            <div className="textInner testimonial-card">
+                              <div className="testemonial-card-inner">
+                                <div style={{ color: 'white' }} className="textHeader">
+                                  " StudyBuddy keeps me studying for a lot longer than I used to. "
+                              </div>
+                                <div className="textPara">- Vlad Stets</div>
+                              </div>
+                            </div>
+                          </div></div>
+              
             }
           </div>
           <div style={{ height: '60px' }} />
           <div className="instagram-embed-row">
             {width > 500 ? <LandingCarousel /> :
-              <InstagramEmbed
+              <div> <InstagramEmbed
                 url='https://www.instagram.com/p/CGVziyGnP_W/'
                 maxWidth={340}
                 hideCaption={true}
@@ -137,6 +148,19 @@ const Landing = ({ history, profile, dispatch, width }) => {
                 onAfterRender={() => { }}
                 onFailure={() => { }}
               />
+
+                  <InstagramEmbed
+                url='https://www.instagram.com/p/CGVziyGnP_W/'
+                maxWidth={340}
+                hideCaption={true}
+                containerTagName='div'
+                protocol=''
+                injectScript
+                onLoading={() => { }}
+                onSuccess={() => { }}
+                onAfterRender={() => { }}
+                onFailure={() => { }}
+              /></div>
 
             }
 

@@ -18,7 +18,7 @@ const LandingCarousel = () => {
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1250, min: 900 },
+            breakpoint: { max: 1250, min: 500 },
             items: 2
         },
         mobile: {
@@ -29,19 +29,23 @@ const LandingCarousel = () => {
 
     const quotes = [
         {
-            text: '"It\'s like Strava but for studying "',
-            author: ' - '
+            text: '"It\'s like Strava but for studying. "',
+            author: ' - Maddy Epps'
         },
         {
-            text: ' " Does it even count if the time isn\'t logged on StudyBuddy? "',
-            author: ' - Josh Levy'
+            text: ' " StudyBuddy keeps me studying for a lot longer than I used to. "',
+            author: ' - Vlad Stets'
+        },
+        {
+            text: ' " I love the aesthetic and color scheme. "',
+            author: ' - Bailey Aaron'
         },
         {
             text: '" I use it every single time I study "',
-            author: ' - Silas Chapelle'
+            author: ' - Silas Chappell'
         },
         {
-            text: '" It apeases the part of the brain that craves checking things off "',
+            text: '" It appeases the part of the brain that craves checking things off "',
             author: ' - Havana Garcha'
         }]
 
