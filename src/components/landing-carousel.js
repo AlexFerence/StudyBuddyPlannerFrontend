@@ -10,19 +10,19 @@ const LandingCarousel = () => {
             items: 5
         },
         largeDesktop: {
-            breakpoint: { max: 2500, min: 1600 },
+            breakpoint: { max: 2600, min: 1600 },
             items: 4
         },
         desktop: {
-            breakpoint: { max: 1600, min: 1200 },
+            breakpoint: { max: 1700, min: 1200 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1200, min: 800 },
+            breakpoint: { max: 1300, min: 800 },
             items: 2
         },
         mobile: {
-            breakpoint: { max: 800, min: 0 },
+            breakpoint: { max: 900, min: 0 },
             items: 1
         }
     };
@@ -33,7 +33,7 @@ const LandingCarousel = () => {
     return (
         <div style={{
             minHeight: '200px', minWidth: '500px',
-            padding: '0px 0px'
+            margin: '0px 5px'
         }}>
             <Carousel
                 swipeable={true}
@@ -41,11 +41,11 @@ const LandingCarousel = () => {
                 infinite={true}
                 responsive={responsive}
                 centerMode={true}
-                style={{ paddingLeft: '60px' }}
+
             >
                 {instagramLinks.map((link) => {
                     return (
-                        <div style={{ padding: '0px', margin: '5px' }}>
+                        <div style={{ padding: '5px', margin: '5px' }}>
                             <InstagramEmbed
                                 key={link}
                                 url={link}

@@ -27,15 +27,15 @@ const LandingCarousel = () => {
         }
     };
 
-    const instagramLinks = ['Its like strava but for studying',
-        'It apeases the part of the brain that craves checking things off',
-        'I use it every single time I study',
-        'Does it even count if you didn\'t log your time on StudyBuddy']
+    const instagramLinks = ['"It\'s like Strava but for studying "',
+        '" It apeases the part of the brain that craves checking things off "',
+        '" I use it every single time I study "',
+        ' " Does it even count if the time isn\'t logged on StudyBuddy? "']
 
     return (
         <div style={{
             minHeight: '200px', minWidth: '500px',
-            paddingLeft: '70px'
+            paddingLeft: '0px'
         }}>
             <Carousel
                 swipeable={true}
@@ -48,9 +48,11 @@ const LandingCarousel = () => {
                     instagramLinks.map((link) => {
                         return (
                             <div className="textInner testimonial-card"
-
+                                style={{ padding: '10px', minWidth: '300px' }}
                             >
-                                <div className="testemonial-card-inner">
+                                <div className="testemonial-card-inner"
+                                    style={{ padding: '0px 30px' }}
+                                >
                                     <div style={{ color: 'white' }} className="textHeader">
                                         {link}
                                     </div>
