@@ -27,10 +27,25 @@ const LandingCarousel = () => {
         }
     };
 
-    const quotes = ['"It\'s like Strava but for studying "',
-        '" It appeases the part of the brain that craves checking things off "',
-        '" I use it every single time I study "',
-        '" Does it even count if the time isn\'t logged on StudyBuddy? "']
+    const quotes = [
+        {
+            text: '"It\'s like Strava but for studying "',
+            author: ' - Alex Ference'
+        },
+        {
+            text: ' " Does it even count if the time isn\'t logged on StudyBuddy? "',
+            author: ' - Alex Ference'
+        },
+        {
+            text: '" I use it every single time I study "',
+            author: ' - Ari Kaufman'
+        },
+        {
+            text: '" It apeases the part of the brain that craves checking things off "',
+            author: ' - Havana Garcha'
+        }]
+
+
 
     return (
         <div style={{
@@ -47,7 +62,11 @@ const LandingCarousel = () => {
                 centerMode={true}
             >
                 {
+<<<<<<< Updated upstream
                     quotes.map((link) => {
+=======
+                    quotes.map((quote) => {
+>>>>>>> Stashed changes
                         return (
                             <div className="textInner testimonial-card"
                                 style={{ padding: '10px', minWidth: '300px' }}
@@ -56,9 +75,9 @@ const LandingCarousel = () => {
                                     style={{ padding: '0px 30px' }}
                                 >
                                     <div style={{ color: 'white' }} className="textHeader">
-                                        {link}
+                                        {quote.text}
                                     </div>
-                                    <div className="textPara">- StudyBuddy User</div>
+                                    <div className="textPara">{quote.author}</div>
                                 </div>
                             </div>
                         )
