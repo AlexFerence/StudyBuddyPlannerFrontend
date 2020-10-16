@@ -41,6 +41,8 @@ const LandingCarousel = () => {
                 swipeable={true}
                 draggable={true}
                 infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={3000}
                 responsive={responsive}
                 centerMode={true}
             >
