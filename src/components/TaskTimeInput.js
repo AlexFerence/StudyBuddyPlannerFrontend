@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import moment from 'moment'
-import { SingleDatePicker } from 'react-dates'
+
 import { connect } from 'react-redux'
 import { postSessionThunk, getSessionsThunk } from '../thunks/sessionsThunk'
 import swal from 'sweetalert'
 import { setCurrentTaskById, loadTasks } from '../thunks/taskThunk'
 import { ANCHOR_RIGHT } from 'react-dates/constants'
 import { loadFiveCharts } from '../thunks/chartThunk'
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates'
+import 'react-dates/lib/css/_datepicker.css';
 
 
 const TimeInput = ({ color, dispatch, currentTask }) => {
@@ -91,6 +94,16 @@ const TimeInput = ({ color, dispatch, currentTask }) => {
                     hideKeyboardShortcutsPanel={true}
                     isOutsideRange={day => (moment().diff(day) < 0)}
                     anchorDirection={ANCHOR_RIGHT}
+                    theme={(theme) => ({
+                        ...theme,
+                        colors: {
+                            ...theme.colors,
+                            text: 'black',
+                            primary25: '#bcbcbc',
+                            primary50: '#bcbcbc',
+                            primary: '#bcbcbc',
+                        },
+                    })}
                 />
             </Row>
             <div style={{ height: '5px' }} />

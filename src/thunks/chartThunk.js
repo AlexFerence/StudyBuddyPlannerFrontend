@@ -100,12 +100,11 @@ export const loadHoursWeek = (date = moment()) => async (dispatch, getState) => 
                 'Content-Type': 'application/json'
             }
         })
-
         var weekList = []
         res.data.responseItems.forEach((item) => {
             weekList.push(item.value1)
         })
-
+        dispatch(modify({ streak: res.data.title }))
         dispatch(setHoursWeek(weekList))
     } catch (e) {
         console.log(e)
@@ -360,6 +359,7 @@ export const loadUACurrentUsers = () => async (dispatch, getState) => {
     }
 }
 
+
 export const comparativePersonalToAverage = (sid) => async (dispatch, getState) => {
     const state = getState()
     const { profile, } = state
@@ -422,5 +422,7 @@ export const loadFiveCharts = () => async (dispatch, getState) => {
 
     // subject pie chart
     dispatch(loadChartsThunk())
+
+    // load streak
 }
 

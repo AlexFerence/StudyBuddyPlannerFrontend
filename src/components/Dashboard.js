@@ -25,15 +25,15 @@ const TOUR_STEPS = [
     disableBeacon: true,
     disableOverlay: true
   },
-  {
-    target: "#timerSelect",
-    content:
-      "You can select a task from your list to be completed.",
-    locale: {
-      last: 'Next'
-    },
-    disableOverlay: true
-  },
+  // {
+  //   target: "#timerSelect",
+  //   content:
+  //     "You can select a task from your list to be completed.",
+  //   locale: {
+  //     last: 'Next'
+  //   },
+  //   disableOverlay: true
+  // },
   {
     target: "#timerSelect2",
     content:
@@ -43,16 +43,16 @@ const TOUR_STEPS = [
     },
     disableOverlay: true
   },
-  {
-    target: ".topRight",
-    content:
-      "Your hours per day are shown here",
-    locale: {
-      last: 'Next'
-    },
-    disableBeacon: true,
-    disableOverlay: true
-  },
+  // {
+  //   target: ".topRight",
+  //   content:
+  //     "Your hours per day are shown here",
+  //   locale: {
+  //     last: 'Next'
+  //   },
+  //   disableBeacon: true,
+  //   disableOverlay: true
+  // },
   {
     target: "#row1",
     content:

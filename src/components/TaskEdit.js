@@ -88,6 +88,16 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
                         onChange={val => setCurrentClass(val)}
                         placeholder="Class..."
                         options={subjects.reduce(subjReduce, [])}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
                     />
 
                     {/* TASK TYPE */}
@@ -106,6 +116,16 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
                             { value: 'Lecture', label: 'Lecture' },
                             { value: 'Quiz/Midterm/Exam', label: 'Quiz/Midterm/Exam' }
                         ]}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
                     />
 
 

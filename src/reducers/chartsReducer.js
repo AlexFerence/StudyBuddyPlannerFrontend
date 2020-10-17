@@ -21,6 +21,7 @@ const chartsDefaultState = {
     pieChart: {
         pieData: []
     },
+    streak: 0,
     pieColors: [],
     personalStats: {
         CurrentDay: 0, CurrentWeek: 0,

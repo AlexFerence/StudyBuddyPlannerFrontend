@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header'
 // import SignUp from './components/SignUpPage'
 // import LoginPage from './components/LoginPage'
-//import Tasks from './components/Tasks'
+import Tasks from './components/Tasks'
 //import Settings from './components/Settings'
 //import SubjectsPage from './components/Subjects'
 //import Subjects2 from './components/subjects/Subjects2'
@@ -44,10 +44,10 @@ const Settings = Loadable({
   loading: Loader,
 });
 
-const Tasks = Loadable({
-  loader: () => import('./components/Tasks'),
-  loading: Loader,
-});
+// const Tasks = Loadable({
+//   loader: () => import('./components/Tasks'),
+//   loading: Loader,
+// });
 
 const SignUpSecondary = Loadable({
   loader: () => import('./components/SignUpSecondary'),

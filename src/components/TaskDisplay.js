@@ -177,6 +177,16 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                 { value: 'Stopwatch', label: 'Stopwatch' },
                                 { value: 'Time Input', label: 'Time Input' },
                             ]}
+                            theme={(theme) => ({
+                                ...theme,
+                                colors: {
+                                    ...theme.colors,
+                                    text: 'black',
+                                    primary25: '#bcbcbc',
+                                    primary50: '#bcbcbc',
+                                    primary: '#bcbcbc',
+                                },
+                            })}
                         />
                         {timerSetting.value === 'Timer' &&
                             <Counter

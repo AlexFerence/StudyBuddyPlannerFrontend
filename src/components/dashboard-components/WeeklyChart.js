@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { loadHoursWeek } from '../../thunks/chartThunk'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { AiFillFire } from 'react-icons/ai'
 import ReactEcharts from 'echarts-for-react'
+import { AnimatedList } from 'react-animated-list';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
-const WeeklyChart = ({ charts, dispatch }) => {
+const WeeklyChart = ({ charts, dispatch, streak }) => {
 
     var [whichWeek, setWhichWeek] = useState(moment())
 
@@ -30,8 +34,24 @@ const WeeklyChart = ({ charts, dispatch }) => {
     }
 
     return (
-        <>
+        <div>
             <div className="toggleContainer">
+                <div>
+                    <Tippy content={streak + ' Consecutive Days Studying'}
+                        placement="top"
+                        allowHTML={true}
+                        animateFill={false}
+                    >
+                        <div>
+                            <div className="toggleContainer__streak">
+                                <AiFillFire className="toggleContainer__streak__icon" />
+                                {streak + ' Days'}
+                            </div>
+                        </div>
+                    </Tippy>
+
+                </div>
+
                 <div className="toggle">
                     <FaAngleLeft
                         className="arrow"
@@ -96,13 +116,14 @@ const WeeklyChart = ({ charts, dispatch }) => {
                     }}
                 />
             </div>
-        </>
+        </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        charts: state.charts
+        charts: state.charts,
+        streak: state.charts.streak
     }
 }
 
