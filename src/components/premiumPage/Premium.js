@@ -12,6 +12,7 @@ import {
 } from '../../thunks/premiumStatsThunk'
 import FriendsTop5Days from './charts/FriendsTop5Days'
 import FriendsTop5Assignments from './charts/FriendsTop5Assignments'
+import GithubCalendar from './charts/GithubCalendar'
 
 const Premium = ({ email, width, dispatch }) => {
     const history = useHistory()
@@ -44,6 +45,15 @@ const Premium = ({ email, width, dispatch }) => {
                         </Col>
                     </Row>
                     <Row>
+                        <Col className="BoxCol"
+                            style={{ padding: '10px' }}
+                            md={12}>
+                            <div className="innerBoxCol">
+                                <GithubCalendar />
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
                         <Col className="boxCol" md={6}>
                             <div className="innerBoxCol">
                                 <Top5Assignments />
@@ -71,7 +81,7 @@ const Premium = ({ email, width, dispatch }) => {
                         </Col>
                     </Row>
                 </div>
-            </div>
+            </div >
         )
     }
     else {

@@ -43,7 +43,9 @@ const Top5TasksFriends = ({ top5AssignmentsFriends }) => {
                                 <li key={index} className="top-five__list__item">
                                     <div className="top-five__list__item__left">
                                         <div>
-                                            <span className="top-five__list__item__num">{index}</span>
+                                            <span
+                                                style={{ backgroundColor: assignment.color }}
+                                                className="top-five__list__item__num">{index}</span>
                                         </div>
                                         <span className="top-five__list__item__title">{assignment.taskType + ' - ' + assignment.firstName + ' ' + assignment.lastName}</span>
                                     </div>

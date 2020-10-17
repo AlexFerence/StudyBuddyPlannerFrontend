@@ -44,11 +44,11 @@ const Top5TasksChart = ({ top5Assignments }) => {
                                 <li key={index} className="top-five__list__item">
                                     <div className="top-five__list__item__left">
                                         <div>
-                                            <span className="top-five__list__item__num">{index}</span>
+                                            <span className="top-five__list__item__num"
+                                                style={{ backgroundColor: assignment.color }}
+                                            >{index}</span>
                                         </div>
-                                        <span className="top-five__list__item__title">{assignment.title + ' - '}</span>
-                                        <span className="top-five__list__item__title">{assignment.taskType}</span>
-
+                                        <span className="top-five__list__item__title">{assignment.taskTitle + ' - ' + assignment.subjectTitle}</span>
                                     </div>
                                     <span className="top-five__list__item__time-spent">{minsToHours(assignment.minutes)}</span>
                                 </li>
@@ -57,7 +57,6 @@ const Top5TasksChart = ({ top5Assignments }) => {
                     </AnimatedList>
                 </ol>
             </div>
-
         )
     }
 }

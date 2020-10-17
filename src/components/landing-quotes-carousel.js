@@ -80,7 +80,7 @@ const LandingCarousel = () => {
                 {
                     quotes.map((quote) => {
                         return (
-                            <div className="textInner testimonial-card"
+                            <div key={quote.text} className="textInner testimonial-card"
                                 style={{ padding: '10px', minWidth: '300px' }}
                             >
                                 <div className="testemonial-card-inner"

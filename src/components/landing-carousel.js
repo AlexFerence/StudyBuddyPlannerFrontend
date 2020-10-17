@@ -45,7 +45,8 @@ const LandingCarousel = () => {
             >
                 {instagramLinks.map((link) => {
                     return (
-                        <div style={{ padding: '5px', margin: '5px' }}>
+                        <div key={link}
+                            style={{ padding: '5px', margin: '5px' }}>
                             <InstagramEmbed
                                 key={link}
                                 url={link}

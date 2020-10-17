@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 
-const LandingBarChart = () => {
+const GithubCalendar = () => {
     return (
         <ReactEcharts
             option={{
@@ -34,4 +34,4 @@ const LandingBarChart = () => {
     )
 }
 
-export default LandingBarChart
+export default GithubCalendar

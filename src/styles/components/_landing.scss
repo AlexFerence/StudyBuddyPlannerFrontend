@@ -88,10 +88,10 @@
 .navButtonSignUp {
  border: none;
  border-radius: 10px;
- padding: 10px 15px;
+ padding: 16px 16px;
  color: white;
  background-color: $brand;
- font-size: 14px;
+ font-size: 45px;
 }
 
 .navButtonSignUp:focus {
@@ -101,7 +101,7 @@
 #navButtonSignUp {
  border: none;
  border-radius: 10px;
- padding: 10px 15px;
+ padding: 10px;
  color: white;
  background-color: $brand;
  font-size: 14px;
@@ -113,8 +113,9 @@
 }
 
 #mainButton {
- margin: 15px 0px;
- font-size: 30px;
+ margin: 20px 0px;
+ font-size: 45px;
+ padding: 16px 32px;
 }
 
 .promotion {

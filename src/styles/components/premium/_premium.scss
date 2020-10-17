@@ -20,7 +20,13 @@ $list-spacing: 25px;
  display: flex;
  justify-content: space-between;
  margin-bottom: $list-spacing;
+ cursor: default;
+ //padding: 15px;
 }
+
+// .top-five__list__item:hover {
+//  background-color: $light-grey;
+// }
 
 .top-five__list__item__left {
  display: flex;
