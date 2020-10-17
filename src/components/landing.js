@@ -34,20 +34,13 @@ const Landing = ({ history, profile, dispatch, width }) => {
       <div className="landingNav" style={{ padding: '0px' }}>
         <LandingNav />
       </div>
-      {width > 600 ?
       <div className="landingDisplay">
         <video id="background-video" loop autoPlay muted>
           <source src="/videos/landingVideo.mp4" type="video/mp4" />
           <source src="/videos/landingVideo.mp4" type="video/ogg" />
             Your browser does not support the video tag.
           </video>
-      </div> : <div className="landingDisplay">
-        <video id="background-video" loop autoPlay muted>
-          <source src="/videos/landingVideoMobile.mp4" type="video/mp4" />
-          <source src="/videos/landingVideoMobile.mp4" type="video/ogg" />
-            Your browser does not support the video tag.
-          </video>
-      </div>}
+      </div>
       <div id="special-overlay" className="overlay landingDisplay">
         <div style={{ height: '80px' }}></div>
         <div>
