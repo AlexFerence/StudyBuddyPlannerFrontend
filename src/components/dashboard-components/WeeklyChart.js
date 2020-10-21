@@ -37,18 +37,23 @@ const WeeklyChart = ({ charts, dispatch, streak }) => {
         <div>
             <div className="toggleContainer">
                 <div>
-                    <Tippy content={streak + ' Consecutive Days Studying'}
-                        placement="top"
-                        allowHTML={true}
-                        animateFill={false}
-                    >
-                        <div>
-                            <div className="toggleContainer__streak">
-                                <AiFillFire className="toggleContainer__streak__icon" />
-                                {streak + ' Days'}
+                    {
+                        parseInt(streak) > 1 &&
+                        <Tippy content={streak + ' Consecutive Days Studying'}
+                            placement="top"
+                            allowHTML={true}
+                            animateFill={false}
+                        >
+                            <div>
+                                <div className="toggleContainer__streak">
+                                    <AiFillFire className="toggleContainer__streak__icon" />
+                                    {streak + ' Days'}
+                                </div>
                             </div>
-                        </div>
-                    </Tippy>
+                        </Tippy>
+
+                    }
+
 
                 </div>
 
