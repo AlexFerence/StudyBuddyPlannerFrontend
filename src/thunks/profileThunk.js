@@ -208,3 +208,23 @@ export const turnOffDashboardTour = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+export const resetPassword = (email) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/UserProfiles/resetpassword', email,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        return (res.status === 200)
+    } catch (e) {
+        console.log(e)
+    }
+}

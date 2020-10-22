@@ -2,21 +2,30 @@ import React, { useState } from 'react'
 import swal from 'sweetalert'
 import { Link } from 'react-router-dom'
 import { FaArrowLeft } from 'react-icons/fa'
+import { connect } from 'react-redux'
+import { resetPassword } from '../thunks/profileThunk'
 
-const ResetPassword = () => {
+const ResetPassword = ({ dispatch }) => {
 
     const [email, setEmail] = useState('')
     const [authError, setAuthError] = useState('')
     const [emailError, setEmailError] = useState('')
 
-    const handleResetPassword = (e) => {
+    const handleResetPassword = async (e) => {
         e.preventDefault()
-        swal({
-            title: "Reset Email Sent",
-            text: 'check your inbox',
-            icon: "success",
-            buttons: true,
-        })
+        var valid = await dispatch(resetPassword(email))
+        if (valid) {
+            swal({
+                title: "Reset Email Sent",
+                text: 'check your inbox',
+                icon: "success",
+                buttons: true,
+            })
+        }
+        else {
+            setAuthError('invalid')
+        }
+
 
     }
 
@@ -38,4 +47,4 @@ const ResetPassword = () => {
     )
 }
 
-export default ResetPassword
+export default connect()(ResetPassword)
