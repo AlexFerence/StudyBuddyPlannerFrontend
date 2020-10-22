@@ -74,7 +74,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
                     }}
                 >
                     <div>
-                        <Link className="linkAuth" to="/resetpassword">Forgot password?</Link>
+                        {false && <Link className="linkAuth" to="/resetpassword">Forgot password?</Link>}
                     </div>
                     <div>
                         Don't have an account? <Link className="linkAuth" to="/signup">Sign Up</Link>

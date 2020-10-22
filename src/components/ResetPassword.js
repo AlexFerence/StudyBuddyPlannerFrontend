@@ -25,8 +25,6 @@ const ResetPassword = ({ dispatch }) => {
         else {
             setAuthError('invalid')
         }
-
-
     }
 
     return (
