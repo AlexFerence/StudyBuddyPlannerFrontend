@@ -214,10 +214,10 @@ export const resetPassword = (email) => async (dispatch, getState) => {
     const { profile, subjects } = state
     const { id, token } = profile
     try {
-        const res = await axios.post(url + '/api/UserProfiles/resetpassword', email,
+        const res = await axios.post(url + '/api/userprofiles/resetPassword',
+        "'" + email + "'",
             {
                 headers: {
-                    'Authorization': 'bearer ' + token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }

@@ -227,7 +227,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             >Log Out</button>
             {
                 (emailProp === 'akaufman2000@gmail.com' || emailProp === 'alexference23@gmail.com' ||
-                    emailProp === 'vladstets18@gmail.com' || email === 'Vladstets18@gmail.com' || emailProp === 'maddy.eppsconn@gmail.com') &&
+                    emailProp === 'vladstets18@gmail.com' || email === 'Vladstets18@gmail.com' || emailProp === 'maddy.eppsconn@gmail.com' || emailProp === 'Sayeed.mavani@gmail.com' ) &&
                 <div>
                     <OverviewBar />
                     <AdminBar />
