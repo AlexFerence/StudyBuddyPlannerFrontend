@@ -381,3 +381,89 @@ export const removeFriend = () => async (dispatch, getState) => {
         return (e)
     }
 }
+
+export const getSuggestedFriends = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, friends } = state
+    const { token, id } = profile
+    const { selectedFriend } = friends
+    const { friendRowId } = selectedFriend
+    try {
+        const res = await axios.post(url + '/api/Friends/getlistsuggestedfriends',
+            id,
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        if (res.status === 200) {
+            dispatch(modifyFriends({
+                suggestedFriends: res.data
+            }))
+        }
+    } catch (e) {
+        return (e)
+    }
+}
+
+export const getFriendStreaks = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, friends } = state
+    const { token, id } = profile
+    const { selectedFriend } = friends
+    const { friendRowId } = selectedFriend
+    try {
+        const res = await axios.post(url + '/api/Friends/getlistfriendstreaks',
+            {
+                userId: id
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        if (res.status === 200) {
+            dispatch(modifyFriends({
+                friendStreaks: res.data
+            }))
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const getGithubCalendar = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, friends } = state
+    const { token, id } = profile
+    const { selectedFriend } = friends
+    const { friendRowId } = selectedFriend
+    try {
+        const res = await axios.post(url + '/api/personalcharts/listcalendarview',
+            {
+                userId: id
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        if (res.status === 200) {
+            let formattedDays = res.data.responseItems.map((item) => {
+                return [item.name1, item.value1]
+            })
+
+            dispatch(modifyFriends({
+                githubCalendarData: formattedDays
+            }))
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}

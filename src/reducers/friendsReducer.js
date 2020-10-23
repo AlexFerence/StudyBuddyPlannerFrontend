@@ -4,6 +4,9 @@ import {
 } from '../actions/friendActions'
 
 const friendsDefaultState = {
+    githubCalendarData: [],
+    friendStreaks: [],
+    suggestedFriends: [],
     waitingRequests: [],
     sentRequests: [],
     activeFriends: [],

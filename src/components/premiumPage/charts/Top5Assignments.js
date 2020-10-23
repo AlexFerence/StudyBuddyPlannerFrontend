@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { AnimatedList } from 'react-animated-list';
 
-
 const Top5TasksChart = ({ top5Assignments }) => {
 
     const minsToHours = (m) => {
