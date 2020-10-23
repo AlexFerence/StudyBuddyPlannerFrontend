@@ -1,2 +1,2 @@
-const url = "https://www.studybuddyplanner.com"
+const url = "https://www.studybuddyplannerapp.com"
 export default url
