@@ -13,6 +13,7 @@ import {
 import FriendsTop5Days from './charts/FriendsTop5Days'
 import FriendsTop5Assignments from './charts/FriendsTop5Assignments'
 import GithubCalendar from './charts/GithubCalendar'
+import SuggestedFriends from './charts/SuggestedFriends'
 
 const Premium = ({ email, width, dispatch }) => {
     const history = useHistory()
@@ -37,13 +38,6 @@ const Premium = ({ email, width, dispatch }) => {
             <div className="dashboard" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
                 <div className="rows">
-                    <Row>
-                        <Col onClick={handleNavigateToDetailed} className="boxCol" id="quickT" md={12}>
-                            <div className="innerBoxCol detailed-view-button arrow-premium">
-                                <span>Go to premium detailed view </span>
-                            </div>
-                        </Col>
-                    </Row>
                     <Row>
                         <Col className="BoxCol"
                             style={{ padding: '10px' }}
@@ -77,11 +71,24 @@ const Premium = ({ email, width, dispatch }) => {
                             <div className="innerBoxCol">
                                 <FriendsTop5Days />
                             </div>
-
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="boxCol" id="quickT" md={6}>
+                            <div className="innerBoxCol">
+                                <div className="timerControl">
+                                    <SuggestedFriends />
+                                </div>
+                            </div>
+                        </Col>
+                        <Col className="boxCol" md={6} >
+                            <div className="innerBoxCol">
+                                <FriendsTop5Days />
+                            </div>
                         </Col>
                     </Row>
                 </div>
-            </div >
+            </div>
         )
     }
     else {
@@ -106,3 +113,5 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(Premium)
+
+

@@ -122,7 +122,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
     <BrowserRouter history="">
       <Header />
       {width > 999 && isAuth && <FriendActivity />}
-      { loading && <Loader />}
+      { false && <Loader />}
       <Switch>
         <Route path='/' component={Landing} exact />
         <Route path='/blog' component={Blog} />

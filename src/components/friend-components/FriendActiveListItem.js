@@ -12,9 +12,7 @@ import OutsideAlerter from './OutsideAlerter'
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 
-
 const FriendActiveListItem = ({ dispatch, friend, selectedFriend, isOpen }) => {
-
     const openModal = async () => {
         dispatch(friendPopupIsLoadingOn())
         // set this friend as the selcted friend
