@@ -57,7 +57,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
                     left: 30,
                     right: 30,
                     cellSize: ['auto', 13],
-                    range: ['2020-09-1', '2020-10-31'],
+                    range: [moment().subtract(365, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
                     itemStyle: {
                         borderWidth: 0.5
                     },
