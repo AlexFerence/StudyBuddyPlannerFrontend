@@ -124,7 +124,10 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
       {width > 999 && isAuth && <FriendActivity />}
       { false && <Loader />}
       <Switch>
-        <Route path='/' component={Landing} exact />
+        <Route path='/' component={() => {
+          window.location.href = 'https://www.studybuddyplanner.com/';
+          return null;
+        }} exact />
         <Route path='/blog' component={Blog} />
         <Route path='/signup' component={SignUp} />
         <Route path='/signUpSecondary' component={SignUpSecondary} />
@@ -133,7 +136,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
         <Route path='/resetpassword' exact component={ResetPassword} />
         <Route path='/dashboard'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Dashboard />}
-        </Route>ß
+        </Route>
         <Route path='/tasks'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Tasks />}
         </Route>
