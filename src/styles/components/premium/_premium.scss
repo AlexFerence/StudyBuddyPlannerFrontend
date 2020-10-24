@@ -8,8 +8,8 @@ $list-spacing: 25px;
 
 .premium-col {
  flex: 1;
- //background: #aaa;
  overflow-y: scroll;
+ height: 100%;
 }
 
 .top-five {
@@ -20,12 +20,18 @@ $list-spacing: 25px;
  display: flex;
  justify-content: space-between;
  align-items: center;
+ margin-bottom: 15px;
 }
 
 .top-five__title-container__title {
  font-size: 20px;
- margin-top: 5px;
- margin-bottom: $list-spacing;
+ min-width: 175px;
+}
+
+.top-five__title-container__radio-container {
+ display: flex;
+ justify-content: end;
+ min-width: 178px;
 }
 
 .top-five__list__item {
@@ -68,3 +74,27 @@ $list-spacing: 25px;
 .suggested-friends__title-container__refresh {
  cursor: pointer;
 }
+
+.friend-streaks {
+ padding: 10px;
+}
+
+.friend-streaks__title-container {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ font-size: 20px;
+ margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+ .premium {
+  flex-direction: column;
+  height: 100%;
+ }
+ .premium-col {
+  flex: 1;
+  overflow-y: show;
+  height: 100%;
+ }
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */

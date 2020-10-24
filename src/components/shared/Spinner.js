@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Spinner = () => {
+const Spinner = ({ dark }) => {
     return (
-        <div className="loader"></div>
+        <div
+            style={dark ? { color: 'grey' } : {}}
+            className="loader"></div>
     )
 }
 

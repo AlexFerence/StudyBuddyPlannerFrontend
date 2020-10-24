@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
-import Top5Days from './charts/Top5Days'
-import Top5Assignments from './charts/Top5Assignments'
-import Top5AssignmentsFriends from './charts/FriendsTop5Assignments'
+import { Col } from 'react-bootstrap'
+import TopDays from './charts/TopDays'
+import TopAssignments from './charts/TopAssignments'
+import FriendStreaks from './charts/FriendsStreaks'
 import {
     loadTop5Assignments, loadTop5Days,
     loadTop5AssignmentsFriends,
     loadTop5DaysFriends
 } from '../../thunks/premiumStatsThunk'
-import FriendsTop5Days from './charts/FriendsTop5Days'
-import FriendsTop5Assignments from './charts/FriendsTop5Assignments'
 import GithubCalendar from './charts/GithubCalendar'
 import SuggestedFriends from './charts/SuggestedFriends'
 
@@ -38,36 +36,12 @@ const Premium = ({ email, width, dispatch }) => {
             <div className="premium" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
                 <div className="premium-col">
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <Top5Assignments />
-                        </div>
-                    </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <SuggestedFriends />
-                        </div>
-                    </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <FriendsTop5Assignments />
-                        </div>
-                    </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <Top5Days />
-                        </div>
-                    </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <FriendsTop5Days />
-                        </div>
-                    </Col>
+                    Feed goes here
                 </div>
                 <div className="premium-col">
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
-                            <Top5Assignments />
+                            <TopAssignments />
                         </div>
                     </Col>
                     <Col className="boxCol" id="quickT" md={12}>
@@ -77,17 +51,12 @@ const Premium = ({ email, width, dispatch }) => {
                     </Col>
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
-                            <FriendsTop5Assignments />
+                            <TopDays />
                         </div>
                     </Col>
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
-                            <Top5Days />
-                        </div>
-                    </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <FriendsTop5Days />
+                            <FriendStreaks />
                         </div>
                     </Col>
                 </div>

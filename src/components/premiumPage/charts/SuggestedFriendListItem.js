@@ -48,7 +48,7 @@ const FriendModalFriendListItem = ({ dispatch, friend, selectedFriend }) => {
         else if (pending) {
             return (
                 <div className="friend-modal-friend-list-item__pending">
-                    {spinning ? <Spinner /> :
+                    {spinning ? <Spinner dark={true} /> :
                         <div id="but-add-friend" onClick={() => handleCancelRequest(pending)} className="friend-modal-friend-list-item__add-button">
                             Cancel
                         </div>
@@ -58,7 +58,7 @@ const FriendModalFriendListItem = ({ dispatch, friend, selectedFriend }) => {
         }
         return (
             <React.Fragment>
-                {spinning ? <Spinner /> :
+                {spinning ? <Spinner dark={true} /> :
                     <div id="but-add-friend" onClick={() => addFriend()} className="friend-modal-friend-list-item__add-button">
                         + Add
                     </div>
