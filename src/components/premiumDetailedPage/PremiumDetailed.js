@@ -13,7 +13,6 @@ const PremiumDetailed = ({ width, email }) => {
         return (
             <div className="dashboard" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
-
                 <Row>
                     <Col onClick={() => console.log('redirect')} className="boxCol" id="quickT" md={12}>
                         <div style={{ padding: '0px', margin: '0px', width: '100%' }}>

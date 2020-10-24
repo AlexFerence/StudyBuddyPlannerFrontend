@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import moment from 'moment'
 import { AnimatedList } from 'react-animated-list';
+import { ButtonGroup, Button } from 'react-bootstrap'
 
 const Top5TasksChart = ({ top5Days }) => {
+
+    const [myself, setMyself] = useState(true)
 
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
@@ -35,6 +38,12 @@ const Top5TasksChart = ({ top5Days }) => {
                     <h2 className="top-five__title-container__title">
                         My Most Studied Days
                     </h2>
+                    <div style={{ display: 'flex' }}>
+                        <ButtonGroup aria-label="Basic example">
+                            <Button variant="secondary">Myself</Button>
+                            <Button variant="secondary">Friends</Button>
+                        </ButtonGroup>
+                    </div>
                 </div>
 
                 <ol className="top-five__list">

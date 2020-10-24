@@ -20,6 +20,7 @@ const SubjPieBreakdown = ({ charts, subjects }) => {
 
             <ReactEcharts
                 option={{
+
                     title: {
                         text: "Breakdown of Time by Subject",
                         x: 'center',
@@ -40,6 +41,16 @@ const SubjPieBreakdown = ({ charts, subjects }) => {
                             radius: '65%',
                             center: ['50%', '60%'],
                             selectedMode: 'single',
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: false
+                                    },
+                                    labelLine: {
+                                        show: false
+                                    }
+                                }
+                            },
                             data:
                                 isPremium ?
                                     (charts.pieChart ? charts.pieChart.pieData : []) :
@@ -55,7 +66,15 @@ const SubjPieBreakdown = ({ charts, subjects }) => {
                                 itemStyle: {
                                     shadowBlur: 10,
                                     shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                    normal: {
+                                        label: {
+                                            show: false
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        }
+                                    }
                                 }
                             }
                         }

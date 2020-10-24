@@ -71,12 +71,15 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                                 value: session.sessionMinutes,
                                 itemStyle: {
                                     color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#bcbcbc')
-                                }
+                                },
+                                color: selectedTask.subjectColor,
+                                lineStyle: { color: selectedTask.subjectColor }
                             }
                         )
                     }
                     ),
-                    type: 'bar'
+                    type: 'line',
+                    areaStyle: {}
                 }]
             }}
         />

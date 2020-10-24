@@ -70,7 +70,7 @@ export const loadFaculties = () => async (dispatch, getState) => {
 
 
         res.data.forEach((faculty) => {
-            formattedFaculties.push({ value: faculty.id, label: faculty.name })
+            formattedFaculties.push({ value: faculty.id, label: faculty.name, numStudents: faculty.numberOfStudents })
 
         })
         dispatch(setFaculties(formattedFaculties))

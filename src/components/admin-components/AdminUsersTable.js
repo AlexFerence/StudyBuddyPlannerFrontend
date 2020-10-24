@@ -41,7 +41,7 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                     <th>Has Time</th>
                     <th>Has Friends</th>
                     <th>Logged Mins</th>
-
+                    <th># Friends</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,6 +69,7 @@ const AdminUsersTable = ({ schools = [], dispatch }) => {
                                     : <IoMdClose style={{ color: 'red' }} />}
                                 </td>
                                 <td style={{ minWidth: '120px' }}>{minsToHours(user.totalLoggedMinutes)}</td>
+                                <td style={{ minWidth: '120px' }}>{user.numberOfFriends}</td>
                             </tr>
                         )
                     })

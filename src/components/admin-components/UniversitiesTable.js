@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loadSchools } from '../../thunks/schoolsThunk'
 
 const UniversitiesTable = ({ schools = [], dispatch }) => {
+
     useEffect(() => {
         dispatch(loadSchools())
     }, [])

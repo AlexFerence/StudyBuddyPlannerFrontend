@@ -12,6 +12,7 @@ import PaymentForm from './payment/PaymentModal'
 import OverviewBar from './admin-components/OverviewBar'
 import UniversitiesTable from './admin-components/UniversitiesTable'
 import AllUsersTable from './admin-components/AdminUsersTable'
+import AdminFacultiesPie from './admin-components/AdminFacultiesPie'
 import { Redirect } from 'react-router-dom'
 import AdminBar from './admin-components/AdminBar'
 
@@ -39,6 +40,9 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
     const [faculty, setFaculty] = useState({})
     const [description, setDescription] = useState('')
     const [requestType, setRequestType] = useState('')
+
+    const [uniTableOpen, setUniTableOpen] = useState(false)
+    const [usersTableOpen, setUsersTableOpen] = useState(false)
 
     useEffect(() => {
         const defaultSchool = schools.find((school) => school.value === profile.schoolId)
@@ -227,13 +231,21 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             >Log Out</button>
             {
                 (emailProp === 'akaufman2000@gmail.com' || emailProp === 'alexference23@gmail.com' ||
-                    emailProp === 'vladstets18@gmail.com' || email === 'Vladstets18@gmail.com' || emailProp === 'maddy.eppsconn@gmail.com' || emailProp === 'Sayeed.mavani@gmail.com' ) &&
+                    emailProp === 'vladstets18@gmail.com' || email === 'Vladstets18@gmail.com' || emailProp === 'maddy.eppsconn@gmail.com' || emailProp === 'Sayeed.mavani@gmail.com') &&
                 <div>
                     <OverviewBar />
                     <AdminBar />
-                    <UniversitiesTable />
+                    <AdminFacultiesPie />
+                    <button onClick={() => setUniTableOpen(true)}>Open UniversitiesTable</button>
+                    {uniTableOpen &&
+                        <UniversitiesTable />
+                    }
                     <div style={{ height: '30px' }}></div>
-                    <AllUsersTable />
+                    <button onClick={() => setUsersTableOpen(true)}>Open Users Table</button>
+                    {usersTableOpen &&
+                        <AllUsersTable />
+                    }
+
                 </div>
             }
 
