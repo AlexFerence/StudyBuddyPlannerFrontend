@@ -44,7 +44,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
                     min: 0,
                     max: 200,
                     type: 'piecewise',
-                    orient: 'horizontal',
+                    orient: 'vertical',
                     left: 'center',
                     top: 65,
                     textStyle: {
@@ -57,6 +57,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
                     left: 30,
                     right: 30,
                     cellSize: ['auto', 13],
+                    orient: 'vertical',
                     range: [moment().subtract(365, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
                     itemStyle: {
                         borderWidth: 0.5

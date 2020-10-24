@@ -35,58 +35,38 @@ const Premium = ({ email, width, dispatch }) => {
         || email === 'maddy.eppsconn@gmail.com'
     ) {
         return (
-            <div className="dashboard" style={(width < 1000) ?
+            <div className="premium" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
-                <div className="rows">
-                    <Row>
-                        <Col className="BoxCol"
-                            style={{ padding: '10px' }}
-                            md={12}>
-                            <div className="innerBoxCol">
-                                <GithubCalendar />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className="boxCol" md={6}>
-                            <div className="innerBoxCol">
-                                <Top5Assignments />
-                            </div>
-                        </Col>
-                        <Col className="boxCol" md={6}>
-                            <div className="innerBoxCol">
-                                <Top5Days />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className="boxCol" id="quickT" md={6}>
-                            <div className="innerBoxCol">
-                                <div className="timerControl">
-                                    <FriendsTop5Assignments />
-                                </div>
-                            </div>
-                        </Col>
-                        <Col className="boxCol" md={6} >
-                            <div className="innerBoxCol">
-                                <FriendsTop5Days />
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className="boxCol" id="quickT" md={6}>
-                            <div className="innerBoxCol">
-                                <div className="timerControl">
-                                    <SuggestedFriends />
-                                </div>
-                            </div>
-                        </Col>
-                        <Col className="boxCol" md={6} >
-                            <div className="innerBoxCol">
-                                <FriendsTop5Days />
-                            </div>
-                        </Col>
-                    </Row>
+                <div className="premium-col">
+
+                </div>
+                <div className="premium-col">
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <Top5Assignments />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <SuggestedFriends />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <FriendsTop5Assignments />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <Top5Days />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <FriendsTop5Days />
+                        </div>
+                    </Col>
+
                 </div>
             </div>
         )
@@ -115,3 +95,35 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Premium)
 
 
+//     < div div className = "rows" >
+// <Row>
+//     <Col className="BoxCol"
+//         style={{ padding: '10px' }}
+//         md={12}>
+//         <div className="innerBoxCol">
+//             <GithubCalendar />
+//         </div>
+//     </Col>
+// </Row>
+// <Row>
+//     <Col className="boxCol" md={6}>
+//         <div className="innerBoxCol">
+//             <Top5Assignments />
+//         </div>
+//     </Col>
+//     <Col className="boxCol" md={6}>
+//         <div className="innerBoxCol">
+//             <Top5Days />
+//         </div>
+//     </Col>
+// </Row>
+// <Row>
+//     <Col className="boxCol" id="quickT" md={6}>
+//         <div className="innerBoxCol">
+//             <div className="timerControl">
+//                 <FriendsTop5Assignments />
+//             </div>
+//         </div>
+//     </Col>
+
+// </ >
