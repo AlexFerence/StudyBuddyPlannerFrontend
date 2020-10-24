@@ -38,7 +38,31 @@ const Premium = ({ email, width, dispatch }) => {
             <div className="premium" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
                 <div className="premium-col">
-
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <Top5Assignments />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <SuggestedFriends />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <FriendsTop5Assignments />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <Top5Days />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <FriendsTop5Days />
+                        </div>
+                    </Col>
                 </div>
                 <div className="premium-col">
                     <Col className="boxCol" id="quickT" md={12}>
@@ -66,7 +90,6 @@ const Premium = ({ email, width, dispatch }) => {
                             <FriendsTop5Days />
                         </div>
                     </Col>
-
                 </div>
             </div>
         )
