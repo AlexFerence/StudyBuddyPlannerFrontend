@@ -31,6 +31,7 @@ const Premium = ({ email, width, dispatch }) => {
         || email === 'alexference23@gmail.com'
         || email === 'vladstets18@gmail.com'
         || email === 'maddy.eppsconn@gmail.com'
+        || email === 'sayeed.mavani@gmail.com'
     ) {
         return (
             <div className="premium" style={(width < 1000) ?
