@@ -17,6 +17,10 @@ const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
         console.log('myself changed ' + myself)
     }, [myself])
 
+    if (myself === 'false') {
+        top5Assignments = top5AssignmentsFriends
+    }
+
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
         const mins = Math.floor(m % 60)
@@ -37,6 +41,7 @@ const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
             </div>
         )
     }
+
 
 
     else {
@@ -61,7 +66,7 @@ const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
                     </FormControl>
                 </div>
 
-                { myself === 'true' ?
+                { true ?
                     <ol className="top-five__list">
                         <AnimatedList animation={"grow"}>
                             {top5Assignments && top5Assignments.map((assignment) => {
