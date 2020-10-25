@@ -67,7 +67,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
                 </div>
                 {authError && <span className="error">* {authError}</span>}
                 <button type="submit" className="btn btn-secondary btn-block preAuth">Log In</button>
-                <p className="forgot-password"
+                <div className="forgot-password"
                     style={{
                         display: 'flex',
                         justifyContent: 'space-between'
@@ -79,7 +79,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
                     <div>
                         Don't have an account? <Link className="linkAuth" to="/signup">Sign Up</Link>
                     </div>
-                </p>
+                </div>
             </form>
         </div>
     )

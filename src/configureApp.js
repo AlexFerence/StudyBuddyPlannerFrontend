@@ -27,7 +27,8 @@ import { loadSchools } from './thunks/schoolsThunk'
 import { loadFaculties } from './thunks/schoolsThunk'
 import Loader from './components/shared/Loader'
 import FullPageLoader from './components/shared/FullPageLoader'
-import Loadable from 'react-loadable';
+import Loadable from 'react-loadable'
+import { reAuthenticate, refreshUser } from './thunks/profileThunk'
 
 const Dashboard = Loadable({
   loader: () => import('./components/Dashboard'),
@@ -95,17 +96,23 @@ const Blog = Loadable({
 });
 
 
-const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
+const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }) => {
   useEffect(() => {
 
-    if (moment().isAfter(moment(tokenExpiry))) {
-      dispatch(logout())
-    }
+    dispatch(refreshUser())
 
     if (isAuth) {
       dispatch(loadFiveCharts())
       dispatch(loadSchools())
       dispatch(loadFaculties())
+
+      // refresh token
+      const now = moment()
+      const weekBeforeExpiry = moment(tokenExpiry).subtract(1, 'w')
+      if (now.isAfter(weekBeforeExpiry)) {
+        dispatch(reAuthenticate({ email: profile.email, password: profile.password }))
+      }
+
     }
 
     function handleResize() {
@@ -116,7 +123,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading }) => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  })
+  }, [])
 
   return (
     <BrowserRouter history="">
@@ -162,7 +169,8 @@ const mapStateToProps = (state) => {
     width: state.width,
     isAuth: state.profile.isAuth,
     tokenExpiry: state.profile.tokenExpiry,
-    loading: state.loading
+    loading: state.loading,
+    profile: state.profile
   }
 }
 

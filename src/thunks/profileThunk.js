@@ -35,6 +35,33 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
     }
 }
 
+export const reAuthenticate = ({ email, password }) => async (dispatch, getState) => {
+    try {
+        const res = await axios.post(url + '/api/userprofiles/authenticate',
+            {
+                email,
+                password
+            })
+        if (res.status === 200) {
+            //console.log(res.data)
+            dispatch(setProfile({
+                //TODO check what fields come back from res.data.email
+                email,
+                password,
+                id: res.data.id,
+                firstName: res.data.firstName,
+                lastName: res.data.lastName,
+                token: res.data.token,
+                isAuth: true,
+            }))
+            await dispatch(refreshUser());
+        }
+        return (res.status)
+    } catch (e) {
+        return (e)
+    }
+}
+
 export const signupThunk = ({ email, password, firstName, lastName }) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
@@ -215,7 +242,7 @@ export const resetPassword = (email) => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + '/api/userprofiles/resetPassword',
-        "'" + email + "'",
+            "'" + email + "'",
             {
                 headers: {
                     'Accept': 'application/json',
