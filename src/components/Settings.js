@@ -105,13 +105,11 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
         })
         setDescription('')
         setRequestType('')
-
     }
 
     if (!profile.isAuth) {
-        return (
-            <Redirect to="/" />
-        )
+        window.location.href = 'https://www.studybuddyplanner.com/';
+        return null;
     }
 
     return (
