@@ -16,9 +16,6 @@ import AdminFacultiesPie from './admin-components/AdminFacultiesPie'
 import { Redirect } from 'react-router-dom'
 import AdminBar from './admin-components/AdminBar'
 
-
-
-
 const style = {
     option: (base, state) => ({
         ...base,
@@ -57,6 +54,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
     const logOutCalled = () => {
         dispatch(logout())
+        window.location.href = 'https://www.studybuddyplanner.com/';
+        return null;
     }
 
     const onSubmit = async (e) => {
