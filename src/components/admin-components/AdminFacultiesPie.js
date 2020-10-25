@@ -16,7 +16,7 @@ const SubjPieBreakdown = ({ faculties }) => {
         <ReactEcharts
             option={{
                 title: {
-                    text: "Breakdown of Time by Subject",
+                    text: "Breakdown of Users by Faculty",
                     x: 'center',
                     top: 20,
                     textStyle: {

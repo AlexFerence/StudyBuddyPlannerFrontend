@@ -233,7 +233,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     <OverviewBar />
                     <AdminBar />
                     <AdminFacultiesPie />
-                    <button onClick={() => setUniTableOpen(true)}>Open UniversitiesTable</button>
+                    <button onClick={() => setUniTableOpen(true)}>Open Universities Table</button>
                     {uniTableOpen &&
                         <UniversitiesTable />
                     }
