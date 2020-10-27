@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import moment from 'moment'
 import { AnimatedList } from 'react-animated-list';
-
+import PremiumOverlay from '../../Overlay'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import TopAssignmentDisplay from '../fakeDisplays/TopAssignmentsFake'
+
+let notPremium = true
 
 const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
 
@@ -21,6 +24,9 @@ const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
         top5Assignments = top5AssignmentsFriends
     }
 
+    const useForceUpdate = () => useState()[1];
+    const forceUpdate = useForceUpdate();
+
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
         const mins = Math.floor(m % 60)
@@ -31,18 +37,11 @@ const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
             return (mins + 'min.')
         }
     }
-    if (false) {
+    if (notPremium) {
         return (
-            <div className="noData">
-                <div>
-                    No Data
-                  <div className="subNoData">Create </div>
-                </div>
-            </div>
+            <TopAssignmentDisplay />
         )
     }
-
-
 
     else {
         var index = 0;
@@ -55,6 +54,7 @@ const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
                     <FormControl component="fieldset">
                         <RadioGroup row className="top-five__title-container__radio-container"
                             onChange={(e) => {
+                                forceUpdate()
                                 console.log(e.target.value)
                                 setMyself(e.target.value)
                             }}

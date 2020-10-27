@@ -15,8 +15,10 @@ import NumbersOverview from './dashboard-components/NumbersOverview'
 import SubjWeeklyBreakdown from './dashboard-components/SubjWeeklyBreakdown'
 import WeeklyAverage from './dashboard-components/WeeklyAverage'
 import SubjPieBreakdown from './dashboard-components/SubjPieBreakdown'
-import { Redirect } from 'react-router-dom'
-
+import { Redirect, useHistory } from 'react-router-dom'
+import { FiArrowRight } from 'react-icons/fi'
+import { loadDetailedView } from '../thunks/premiumStatsThunk'
+import GithubCalendar from './premiumPage/charts/GithubCalendar'
 
 const TOUR_STEPS = [
   {
@@ -68,19 +70,21 @@ const TOUR_STEPS = [
 ];
 
 
-const Dashboard = ({ dispatch, charts, profile,
-  history, subjects, stripeStatus, tasks, width, isAuth }) => {
+const Dashboard = ({ dispatch, profile, tasks, width, isAuth }) => {
 
   var [steps, setSteps] = useState(TOUR_STEPS)
   var [stepIndex, setStepIndex] = useState(0)
   var [run, setRun] = useState(true);
   var [whichWeek, setWhichWeek] = useState(moment())
 
-  const isPremium = true
-  // (stripeStatus === 'active')
+  const history = useHistory()
+
+  const goToDetailed = () => {
+    dispatch(loadDetailedView())
+    history.push('/premium/detailed')
+  }
 
   useEffect(() => {
-
     dispatch(getActiveFriends())
     dispatch(getPendingFriends())
 
@@ -141,6 +145,19 @@ const Dashboard = ({ dispatch, charts, profile,
       <div className="rows">
         <Row>
           <Col className="boxCol" id="quickT" md={6}>
+            <div className="innerBoxCol dash-button">
+              Set Goals
+            </div>
+          </Col>
+          <Col className="boxCol" md={6} >
+            <div className="innerBoxCol dash-button" onClick={goToDetailed}>
+              Detailed View
+              <FiArrowRight style={{ marginLeft: '5px' }} />
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="boxCol" id="quickT" md={6}>
             <div className="innerBoxCol">
               <div className="graph">
                 <div className="timerControl">
@@ -153,7 +170,13 @@ const Dashboard = ({ dispatch, charts, profile,
             <div className="innerBoxCol">
               <WeeklyChart />
             </div>
-
+          </Col>
+        </Row>
+        <Row>
+          <Col className="boxCol" id="quickT" md={12} style={{ height: '300px' }}>
+            <div className="innerBoxCol" style={{ height: '300px' }}>
+              <GithubCalendar />
+            </div>
           </Col>
         </Row>
         <Row id="row1">

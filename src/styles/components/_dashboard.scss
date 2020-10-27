@@ -218,3 +218,20 @@
 .arrow {
  cursor: pointer;
 }
+
+.dash-button {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 15px;
+ cursor: pointer;
+ transition: all 0.7s ease;
+ font-size: 18px;
+}
+
+.dash-button:hover {
+ text-transform: bold;
+ box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+ transition: all 0.7s ease;
+ background-color: #dcdcdc;
+}

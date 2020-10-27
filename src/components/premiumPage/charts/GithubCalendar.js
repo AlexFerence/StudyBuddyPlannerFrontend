@@ -7,6 +7,17 @@ import moment from 'moment'
 
 const LandingBarChart = ({ dispatch, githubCalendarData }) => {
 
+    const minsToHours = (m) => {
+        const hours = Math.floor(m / 60)
+        const mins = Math.floor(m % 60)
+        if (hours >= 1) {
+            return (hours + 'hrs., ' + mins + 'min.')
+        }
+        else {
+            return (mins + 'min.')
+        }
+    }
+
     useEffect(() => {
         dispatch(getGithubCalendar())
         console.log(githubCalendarData)
@@ -38,13 +49,26 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
 
     return (
         <ReactEcharts
+            style={{ height: '300px' }}
+            tooltip
             option={{
-                tooltip: {},
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function (params) {
+                        let rez = ''
+                        rez = '<span>'
+                            + moment(params.data[0]).format('MMM d') + ': '
+                            + minsToHours(params.data[1]) +
+                            '</span>';
+                        return rez
+
+                    }
+                },
                 visualMap: {
                     min: 0,
                     max: 200,
                     type: 'piecewise',
-                    orient: 'vertical',
+                    orient: 'horizontal',
                     left: 'center',
                     top: 65,
                     textStyle: {
@@ -57,7 +81,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
                     left: 30,
                     right: 30,
                     cellSize: ['auto', 13],
-                    orient: 'vertical',
+
                     range: [moment().subtract(365, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
                     itemStyle: {
                         borderWidth: 0.5

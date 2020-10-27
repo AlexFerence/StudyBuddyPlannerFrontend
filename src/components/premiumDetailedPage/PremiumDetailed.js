@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap'
 import DetailedView from './components/DetailedViewList'
 
 const PremiumDetailed = ({ width, email }) => {
+
     if (email === 'akaufman2000@gmail.com'
         || email === 'alexference23@gmail.com'
         || email === 'vladstets18@gmail.com'

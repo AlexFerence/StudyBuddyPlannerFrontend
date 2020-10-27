@@ -47,6 +47,17 @@
  margin-left: 15px;
 }
 
+.detailed-view__select-row__back {
+ color: $brand;
+ display: flex;
+ align-items: center;
+ margin-right: 15px;
+}
+
+.detailed-view__select-row__back:hover {
+ color: $brand;
+}
+
 .detailed-view {
  display: flex;
  padding: 5px;

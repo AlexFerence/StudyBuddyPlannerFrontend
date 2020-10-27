@@ -25,18 +25,19 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                     left: 45
                 },
                 tooltip: {
-                    trigger: 'item',
+                    trigger: 'axis',
                     formatter: function (params) {
                         let rez = ''
-                        console.log(params)
-                        if (params.data.name < 1) {
-                            rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + minsToHours(params.data.value) + '</span>';
+                        //console.log(params)
+                        if (params[0].data.name < 1) {
+                            rez = '<span>' + Math.abs(params[0].data.name) + ' days untill due date: ' + minsToHours(params[0].data.value) + '</span>';
                             return rez;
                         }
                         else {
-                            rez = '<span>' + params.data.name + ' days after due date: ' + minsToHours(params.data.value) + '</span>';
+                            rez = '<span>' + params[0].data.name + ' days after due date: ' + minsToHours(params[0].data.value) + '</span>';
                             return rez;
                         }
+                        //return rez
                     }
                 },
                 xAxis: {
@@ -73,13 +74,17 @@ const DetailedViewBarChart = ({ selectedTask }) => {
                                     color: (session.dateDifference < 1 ? selectedTask.subjectColor : '#bcbcbc')
                                 },
                                 color: selectedTask.subjectColor,
-                                lineStyle: { color: selectedTask.subjectColor }
+
+                                itemStyle: { color: selectedTask.subjectColor },
                             }
                         )
                     }
                     ),
+                    lineStyle: { color: selectedTask.subjectColor },
                     type: 'line',
-                    areaStyle: {}
+                    areaStyle: {
+                        color: selectedTask.subjectColor
+                    }
                 }]
             }}
         />

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import moment from 'moment'
 import { AnimatedList } from 'react-animated-list';
-
+import TopDaysFake from '../fakeDisplays/TopDaysFake'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+
+var notPremium = true
 
 const Top5TasksChart = ({ top5Days, top5DaysFriends }) => {
 
@@ -27,14 +29,9 @@ const Top5TasksChart = ({ top5Days, top5DaysFriends }) => {
             return (mins + 'min.')
         }
     }
-    if (top5Days.length === 0) {
+    if (notPremium) {
         return (
-            <div className="noData">
-                <div>
-                    No Data
-                  <div className="subNoData">Create </div>
-                </div>
-            </div>
+            <TopDaysFake />
         )
     }
 

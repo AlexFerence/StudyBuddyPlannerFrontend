@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { getFriendStreaks } from '../../../thunks/friendThunk'
 import { AnimatedList } from 'react-animated-list';
 import { AiFillFire } from 'react-icons/ai'
+import FriendStreaksFake from '../fakeDisplays/FriendStreaksFake'
+
+let notPremium = true
 
 const FriendStreaks = ({ dispatch, friendStreaks = [] }) => {
 
@@ -12,6 +15,13 @@ const FriendStreaks = ({ dispatch, friendStreaks = [] }) => {
 
 
     friendStreaks.sort((a, b) => b.value1 - a.value1)
+
+    if (notPremium) {
+        return (
+            <FriendStreaksFake />
+        )
+    }
+
 
     return (
         <div className="friend-streaks">

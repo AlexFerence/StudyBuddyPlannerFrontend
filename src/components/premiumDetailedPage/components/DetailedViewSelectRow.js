@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Select from 'react-select'
 import { setSelectedSubject, setSelectedTaskType } from '../../../actions/premiumStatsActions'
 import { loadDetailedView } from '../../../thunks/premiumStatsThunk'
+import { FiArrowLeft } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 const DetailedViewSelectRow = ({ subjectSelect, taskTypeSelect, completedTasks, subjects, dispatch }) => {
 
@@ -36,6 +38,9 @@ const DetailedViewSelectRow = ({ subjectSelect, taskTypeSelect, completedTasks, 
 
     return (
         <div className="detailed-view__select-row">
+            <Link to='/dashboard' className="detailed-view__select-row__back">
+                <FiArrowLeft />Back
+            </Link>
             <div>Filter by:</div>
             <div className="detailed-view__select-row__select">
                 <Select
