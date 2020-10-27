@@ -34,7 +34,7 @@ const SubjPieBreakdown = ({ selectedTask = selectedTaskDefaultState }) => {
                 tooltip: {
                     trigger: 'item',
                     formatter: function (params) {
-                        console.log(params)
+                        //console.log(params)
                         let rez = ''
                         if (params.data.name < 1) {
                             rez = '<span>' + Math.abs(params.data.name) + ' days untill due date: ' + params.percent + '%' + '</span>';
