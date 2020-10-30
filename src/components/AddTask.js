@@ -9,11 +9,6 @@ import Select from 'react-select';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
 
-
-// TODO: make sure that the default is assignment
-// prevent cut off
-// make sure a user cant submit without setting a subject, show error
-
 const subjReduce = (list, item) => {
     list.push({ value: item, label: item.name + " " + item.classCode })
     return list

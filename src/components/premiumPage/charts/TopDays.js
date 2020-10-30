@@ -9,7 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-var notPremium = true
+var notPremium = false
 
 const Top5TasksChart = ({ top5Days, top5DaysFriends }) => {
 
