@@ -12,6 +12,7 @@ import {
 } from '../../thunks/premiumStatsThunk'
 import GithubCalendar from './charts/GithubCalendar'
 import SuggestedFriends from './charts/SuggestedFriends'
+import FeedList from './feed/FeedList'
 
 import { refreshFeed } from '../../thunks/feedThunk'
 
@@ -40,7 +41,7 @@ const Premium = ({ email, width, dispatch }) => {
             <div className="premium" style={(width < 1000) ?
                 { paddingRight: '0px' } : { paddingRight: '300px' }} >
                 <div className="premium-col">
-                    Feed goes here
+                    <FeedList />
                 </div>
                 <div className="premium-col">
                     <Col className="boxCol" id="quickT" md={12}>
