@@ -26,7 +26,7 @@ const SubjPieBreakdown = ({ faculties }) => {
                 },
                 tooltip: {
                     formatter: function (params) {
-                        console.log(params)
+                        //console.log(params)
                         let rez = '<span>' + params.data.label + ': ' + params.value + '</span>';
                         //console.log(params); //quite useful for debug
                         return rez;

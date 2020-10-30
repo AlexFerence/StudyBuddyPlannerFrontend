@@ -14,6 +14,7 @@ import widthReducer from '../reducers/widthReducer'
 import premiumStatsReducer from '../reducers/premiumStatsReducer'
 import currentSubjectReducer from '../reducers/currentSubjectReducer'
 import loadingReducer from '../reducers/loadingReducer'
+import feedReducer from '../reducers/feedReducer'
 
 
 import { persistReducer } from 'redux-persist'
@@ -40,7 +41,8 @@ const reducers = {
     width: widthReducer,
     premiumStats: premiumStatsReducer,
     currentSubject: currentSubjectReducer,
-    loading: loadingReducer
+    loading: loadingReducer,
+    feed: feedReducer
 };
 
 const persistConfig = {

@@ -13,7 +13,6 @@ const FriendStreaks = ({ dispatch, friendStreaks = [] }) => {
         dispatch(getFriendStreaks())
     }, [])
 
-
     friendStreaks.sort((a, b) => b.value1 - a.value1)
 
     if (notPremium) {
@@ -31,9 +30,8 @@ const FriendStreaks = ({ dispatch, friendStreaks = [] }) => {
             <AnimatedList animation={"grow"}>
                 {
                     friendStreaks.map((friend) => {
-
                         return (
-                            <div className="friend-modal-friend-list-item">
+                            <div key={friend.name1} className="friend-modal-friend-list-item">
                                 <div>
                                     <div style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
                                         {friend.name1}

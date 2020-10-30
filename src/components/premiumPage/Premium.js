@@ -13,6 +13,8 @@ import {
 import GithubCalendar from './charts/GithubCalendar'
 import SuggestedFriends from './charts/SuggestedFriends'
 
+import { refreshFeed } from '../../thunks/feedThunk'
+
 const Premium = ({ email, width, dispatch }) => {
     const history = useHistory()
     const handleNavigateToDetailed = () => {
@@ -24,6 +26,7 @@ const Premium = ({ email, width, dispatch }) => {
         dispatch(loadTop5Assignments())
         dispatch(loadTop5AssignmentsFriends())
         dispatch(loadTop5DaysFriends())
+        dispatch(refreshFeed())
     }, [])
 
     if (
