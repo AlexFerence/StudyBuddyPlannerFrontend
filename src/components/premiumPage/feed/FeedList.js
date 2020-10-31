@@ -6,7 +6,7 @@ import TaskSession from './TaskSession'
 const FeedList = ({ feed }) => {
     const renderFeed = () => {
         return feed.map((feedItem) => {
-            if (feedItem.displayType === 'tasksession') {
+            if (feedItem.displayType === 'tasksession' || feedItem.displayType === 'taskcompleted') {
                 return (
                     <TaskSession feedItem={feedItem} />
                 )
