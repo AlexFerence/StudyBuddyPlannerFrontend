@@ -1,0 +1,26 @@
+.feed-item {
+ padding: 5px;
+ display: flex;
+ border-bottom: 1px solid $grey;
+ line-height: 20px;
+}
+
+.feed-initials {
+ background-color: $grey;
+ border-radius: 50%;
+ height: 40px;
+ width: 50px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-right: 10px;
+ color: white;
+}
+
+.feed-description {
+ font-size: 14px;
+}
+
+.feed-description__time {
+ color: grey;
+}
