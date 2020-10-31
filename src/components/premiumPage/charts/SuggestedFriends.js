@@ -31,7 +31,7 @@ const SuggestedFriends = ({ dispatch, suggestedFriends }) => {
     return (
         <div className="suggested-friends">
             <div className='suggested-friends__title-container'>
-                <div>SuggestedFriends</div>
+                <div>Suggested Friends</div>
                 <div className='suggested-friends__title-container__refresh'>
                     <IoIosRefresh onClick={() => nextFive()} />
                 </div>

@@ -17,7 +17,7 @@ const FeedList = ({ feed }) => {
     }
 
     return (
-        <div>
+        <div className="feed-list">
             {renderFeed()}
         </div>
     )
