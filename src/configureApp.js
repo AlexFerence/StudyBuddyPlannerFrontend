@@ -31,6 +31,7 @@ import Loadable from 'react-loadable'
 import { reAuthenticate, refreshUser } from './thunks/profileThunk'
 import Modal from 'react-modal'
 import PaymentModal from './components/shared/PaymentModal'
+import CalendarDetailed from './components/premiumDetailedPage/CalendarDetailed'
 
 const Dashboard = Loadable({
   loader: () => import('./components/Dashboard'),
@@ -140,6 +141,8 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
 
     }
 
+    Notification.requestPermission()
+
     function handleResize() {
       dispatch(setWidth(window.innerWidth))
     }
@@ -148,6 +151,9 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
     return () => {
       window.removeEventListener('resize', handleResize)
     }
+
+
+
   }, [])
 
   const closePaymentModal = () => {
@@ -195,6 +201,9 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
         </Route>
         <Route path='/premium/detailed'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <PremiumDetailed />}
+        </Route>
+        <Route path='/calendar'>
+          {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <CalendarDetailed />}
         </Route>
       </Switch>
     </BrowserRouter>

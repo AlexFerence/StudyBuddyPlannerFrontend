@@ -15,6 +15,7 @@ import AllUsersTable from './admin-components/AdminUsersTable'
 import AdminFacultiesPie from './admin-components/AdminFacultiesPie'
 import { Redirect } from 'react-router-dom'
 import AdminBar from './admin-components/AdminBar'
+import PaymentModal from './payment/PaymentModal'
 
 const style = {
     option: (base, state) => ({
@@ -120,6 +121,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     '0px solid blue',
                 paddingRight: '300px'
             }}>
+
+            <PaymentModal />
 
             <div className="settings-title" style={{ paddingTop: "30px" }}>Settings</div>
             <form onSubmit={onSubmit}>

@@ -3,7 +3,6 @@
  "version": "0.1.0",
  "private": true,
  "dependencies": {
-  "@material-ui/core": "^4.11.0",
   "@stripe/react-stripe-js": "^1.1.2",
   "@stripe/stripe-js": "^1.9.0",
   "@testing-library/jest-dom": "^4.2.4",
@@ -35,6 +34,7 @@
   "react-instagram-embed": "^1.5.0",
   "react-joyride": "^2.2.1",
   "react-loadable": "^5.5.0",
+  "react-material-ui-calendar": "^0.2.3",
   "react-modal": "^3.11.2",
   "react-multi-carousel": "^2.5.5",
   "react-oembed-container": "^1.0.0",

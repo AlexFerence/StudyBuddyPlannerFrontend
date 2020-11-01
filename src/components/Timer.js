@@ -25,6 +25,29 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
     const [isRunning, setIsRunning] = useState(false);
     const [interval, setInterval] = useState(25 * 60)
 
+    function notifyMe() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification('Timer Done');
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification("Hi there!");
+                }
+            });
+        }
+    }
+
     useEffect(() => {
         //dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
@@ -96,7 +119,6 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
             minutes: Math.floor(interval / 60),
         }))
 
-
         //TODO put in new call
         dispatch(loadFiveCharts())
 
@@ -106,6 +128,8 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
         if (specialFunction) {
             dispatch(specialFunction())
         }
+
+        notifyMe()
 
     }
 
