@@ -28,7 +28,7 @@ const TopAssignmentDisplay = () => {
 
                             >1</span>
                         </div>
-                        <span className="top-five__list__item__title">Assignment - BIOL 112</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Assignment - BIOL 112</span>
                     </div>
                     <span className="top-five__list__item__time-spent">10hrs., 23mins.</span>
                 </li>
@@ -38,7 +38,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >2</span>
                         </div>
-                        <span className="top-five__list__item__title">Exam - BIOL 221</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Exam - BIOL 221</span>
                     </div>
                     <span className="top-five__list__item__time-spent">8hrs., 16mins.</span>
                 </li>
@@ -48,7 +48,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >3</span>
                         </div>
-                        <span className="top-five__list__item__title">Exam - Math 133</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Exam - Math 133</span>
                     </div>
                     <span className="top-five__list__item__time-spent">6hrs., 42mins.</span>
                 </li>
@@ -58,7 +58,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >4</span>
                         </div>
-                        <span className="top-five__list__item__title">Assignment - COMP 202</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Assignment - COMP 202</span>
                     </div>
                     <span className="top-five__list__item__time-spent">5hrs., 15mins.</span>
                 </li>
@@ -68,7 +68,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >5</span>
                         </div>
-                        <span className="top-five__list__item__title">Test - ENGL 202</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Test - ENGL 202</span>
                     </div>
                     <span className="top-five__list__item__time-spent">4hrs., 33mins.</span>
                 </li>

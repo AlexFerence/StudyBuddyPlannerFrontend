@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import echarts from 'echarts'
 import moment from 'moment'
 
-const LandingBarChart = ({ dispatch, githubCalendarData }) => {
+const LandingBarChart = ({ dispatch, githubCalendarData, semesters }) => {
+
+    const currentSemester = semesters.find((semester) => semester.active === 1)
 
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
@@ -24,18 +26,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
     }, [])
 
     function getVirtualData() {
-        // year = year || '2017';
-        // var date = +echarts.number.parseDate(year + '-01-01');
-        // var end = +echarts.number.parseDate((+year + 1) + '-01-01');
-        //var dayTime = 3600 * 24 * 1000;
         var data = [];
-        // for (var time = date; time < end; time += dayTime) {
-        //     data.push([
-        //         echarts.format.formatTime('yyyy-MM-dd', time),
-        //         Math.floor(Math.random() * 10000)
-        //     ]);
-        // }
-
         githubCalendarData.forEach((item) => {
             data.push([
                 echarts.format.formatTime('yyyy-MM-dd', item[0]),
@@ -74,7 +65,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
                     textStyle: {
                         color: '#000'
                     },
-                    inRange: { color: ['#ffffff', '#fb4033'] }
+                    inRange: { color: ['#FDCFCC', '#fb4033'] }
                 },
                 calendar: {
                     top: 120,
@@ -82,7 +73,8 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
                     right: 30,
                     cellSize: ['auto', 13],
 
-                    range: [moment().subtract(365, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
+                    range: [moment(currentSemester.startDate).format('YYYY-MM-DD'),
+                    moment(currentSemester.endDate).format('YYYY-MM-DD')],
                     itemStyle: {
                         borderWidth: 0.5
                     },
@@ -100,7 +92,8 @@ const LandingBarChart = ({ dispatch, githubCalendarData }) => {
 
 const mapStateToProps = (state) => {
     return {
-        githubCalendarData: state.friends.githubCalendarData
+        githubCalendarData: state.friends.githubCalendarData,
+        semesters: state.profile.semesters
     }
 }
 

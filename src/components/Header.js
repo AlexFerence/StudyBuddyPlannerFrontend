@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { FaCheckSquare, FaList, FaCog, FaUsers } from 'react-icons/fa'
 import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
+import { BsBellFill } from 'react-icons/bs'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import swal from 'sweetalert'
 import icon from '../assets/whiteSB.png'
@@ -77,6 +78,13 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
             </Tooltip>
         );
     }
+    const renderTooltipCompare = (props, display) => {
+        return (
+            <Tooltip id="button-tooltip" {...props}>
+                Feed
+            </Tooltip>
+        );
+    }
 
     const checkRunningDash = () => {
         if (isRunning) {
@@ -128,31 +136,34 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
                                     id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
                                 </div>
                             }
-                            {//!props.isRunning ?
-                                //     <OverlayTrigger
-                                //         placement="bottom"
-                                //         delay={{ show: 250, hide: 400 }}
-                                //         overlay={renderTooltipCompare}
-                                //     >
+                            {!isRunning ?
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltipCompare}
+                                >
+                                    <NavLink activeStyle={{ color: 'white' }} id="dashboard"
+                                        style={{ padding: 5 }} to='/premium'>
+                                        <BsBellFill />
+                                    </NavLink>
+                                </OverlayTrigger>
+                                :
+                                <div className="navbarIcon"
+                                    onClick={() => {
+                                        console.log('onSwitch')
+                                        swal({
+                                            title: "Can't switch tabs during study session",
+                                            icon: "info",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        })
 
-                                //         <NavLink activeStyle={{ color: 'white' }} id="dashboard" style={{ padding: 5 }} to="/compare"><FaUsers /></NavLink>
-                                //     </OverlayTrigger>
+                                    }}
+                                    id="tasks" style={window.location.pathname === "/premium" ?
+                                        { padding: 5, color: 'white' } : { padding: 5 }} >
+                                    <BsBellFill />
+                                </div>
 
-                                //     :
-                                //     <div className="navbarIcon"
-                                //         onClick={() => {
-                                //             console.log('onSwitch')
-                                //             swal({
-                                //                 title: "Can't switch tabs during study session",
-                                //                 icon: "info",
-                                //                 buttons: true,
-                                //                 dangerMode: true,
-                                //             })
-
-                                //         }}
-                                //         id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><IoIosSpeedometer />
-                                //     </div>
-                                // 
                             }
                             {(!isRunning && !paused) ?
                                 <OverlayTrigger
@@ -161,7 +172,8 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
                                     overlay={renderTooltipTask}
                                 >
 
-                                    <NavLink activeStyle={{ color: 'white' }} id="tasks" style={{ padding: 5 }} to="/tasks"><FaCheckSquare />
+                                    <NavLink activeStyle={{ color: 'white' }} id="tasks" style={{ padding: 5 }}
+                                        to="/tasks"><FaCheckSquare />
                                     </NavLink>
 
                                 </OverlayTrigger> :
@@ -177,7 +189,8 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
                                         })
 
                                     }}
-                                    id="tasks" style={window.location.pathname === "/tasks" ? { padding: 5, color: 'white' } : { padding: 5 }} ><FaCheckSquare />
+                                    id="tasks" style={window.location.pathname === "/tasks" ?
+                                        { padding: 5, color: 'white' } : { padding: 5 }} ><FaCheckSquare />
                                 </div>
                             }
                             {(!isRunning && !paused) ?
@@ -186,7 +199,8 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipSubj}
                                 >
-                                    <NavLink activeStyle={{ color: 'white' }} id="subjects" style={{ padding: 5 }} to="/subjects"><FaList />
+                                    <NavLink activeStyle={{ color: 'white' }} id="subjects" style={{ padding: 5 }}
+                                        to="/subjects"><FaList />
                                     </NavLink>
                                 </OverlayTrigger>
                                 :

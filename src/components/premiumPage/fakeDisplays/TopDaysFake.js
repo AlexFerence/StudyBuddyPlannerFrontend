@@ -27,10 +27,9 @@ const TopAssignmentDisplay = () => {
                     <div className="top-five__list__item__left">
                         <div>
                             <span className="top-five__list__item__num"
-
                             >1</span>
                         </div>
-                        <span className="top-five__list__item__title">Oct 25, 2020</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Oct 25, 2020</span>
                     </div>
                     <span className="top-five__list__item__time-spent">9hrs., 52mins.</span>
                 </li>
@@ -40,7 +39,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >2</span>
                         </div>
-                        <span className="top-five__list__item__title">Oct 1, 2020</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Oct 1, 2020</span>
                     </div>
                     <span className="top-five__list__item__time-spent">6hrs., 14mins.</span>
                 </li>
@@ -50,7 +49,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >3</span>
                         </div>
-                        <span className="top-five__list__item__title">Sept 30, 2020</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Sept 30, 2020</span>
                     </div>
                     <span className="top-five__list__item__time-spent">5hrs., 42mins.</span>
                 </li>
@@ -60,7 +59,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >4</span>
                         </div>
-                        <span className="top-five__list__item__title">Oct 8, 2020</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Oct 8, 2020</span>
                     </div>
                     <span className="top-five__list__item__time-spent">5hrs., 12mins.</span>
                 </li>
@@ -70,7 +69,7 @@ const TopAssignmentDisplay = () => {
                             <span className="top-five__list__item__num"
                             >5</span>
                         </div>
-                        <span className="top-five__list__item__title">Oct 14, 2020</span>
+                        <span id='fake-blur' className="top-five__list__item__title">Oct 14, 2020</span>
                     </div>
                     <span className="top-five__list__item__time-spent">3hrs., 22mins.</span>
                 </li>

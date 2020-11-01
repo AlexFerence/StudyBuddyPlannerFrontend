@@ -5,7 +5,7 @@ import { AnimatedList } from 'react-animated-list';
 import { AiFillFire } from 'react-icons/ai'
 import FriendStreaksFake from '../fakeDisplays/FriendStreaksFake'
 
-let notPremium = false
+let notPremium = true
 
 const FriendStreaks = ({ dispatch, friendStreaks = [] }) => {
 

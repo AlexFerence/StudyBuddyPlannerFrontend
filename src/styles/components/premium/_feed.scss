@@ -4,6 +4,15 @@ $line-grey: #d3d3d3;
  border-right: 1px solid $line-grey;
 }
 
+.feed-list__header {
+ padding: 15px;
+ border-bottom: 1px solid #d3d3d3;
+}
+
+.feed-list__body {
+ background-color: white;
+}
+
 .feed-item {
  padding: 7px;
  display: flex;
@@ -29,4 +38,5 @@ $line-grey: #d3d3d3;
 
 .feed-description__time {
  color: grey;
+ white-space: nowrap;
 }

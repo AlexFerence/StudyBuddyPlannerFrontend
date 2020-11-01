@@ -1,6 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import ReactEcharts from 'echarts-for-react'
+import moment from 'moment'
 
 const DetailedViewBarChart = ({ selectedTask }) => {
 
@@ -14,6 +15,21 @@ const DetailedViewBarChart = ({ selectedTask }) => {
             return (mins + 'min.')
         }
     }
+    if (selectedTask.sessionItems.length === 1) {
+        return (
+            <div className="one-day-spent">
+
+                <span className="one-day-spent__time">
+                    {minsToHours(selectedTask.sessionItems[0].sessionMinutes)}
+                </span>
+                <span className="one-day-spent__desc">
+                    Was spent {selectedTask.sessionItems[0].dateDifference} days
+                before the due date on {moment(selectedTask.sessionItems[0].dateCompleted).format('MMM d')}
+                </span>
+            </div>
+        )
+    }
+
     return (
         <ReactEcharts
             style={{ height: '200px', padding: '10px' }}

@@ -18,7 +18,8 @@ const FeedList = ({ feed }) => {
                 )
             }
 
-            else if (feedItem.displayType === 'streak') {
+            else if (feedItem.displayType === 'streak' ||
+                feedItem.displayType === 'streak5') {
                 return (
                     <Streak feedItem={feedItem} />
                 )
@@ -31,12 +32,15 @@ const FeedList = ({ feed }) => {
     return (
         <div className="feed-list">
             <h2
+                className='feed-list__header'
                 style={{
-                    padding: '15px', borderBottom: '1px solid #d3d3d3',
-                    color: 'black', fontSize: '18px'
+                    fontSize: '18px', backgroundColor: '#f9f9f9'
                 }}
             >Friend Activity</h2>
-            {renderFeed()}
+            <div className='feed-list__body'>
+                {renderFeed()}
+            </div>
+
         </div>
     )
 }

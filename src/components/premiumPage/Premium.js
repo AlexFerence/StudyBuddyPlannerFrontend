@@ -13,6 +13,8 @@ import {
 import GithubCalendar from './charts/GithubCalendar'
 import SuggestedFriends from './charts/SuggestedFriends'
 import FeedList from './feed/FeedList'
+import { FiArrowRight } from 'react-icons/fi'
+import { loadDetailedView } from '../../thunks/premiumStatsThunk'
 
 import { refreshFeed } from '../../thunks/feedThunk'
 
@@ -30,6 +32,11 @@ const Premium = ({ email, width, dispatch }) => {
         dispatch(refreshFeed())
     }, [])
 
+    const goToDetailed = () => {
+        dispatch(loadDetailedView())
+        history.push('/premium/detailed')
+    }
+
     if (
         email === 'akaufman2000@gmail.com'
         || email === 'alexference23@gmail.com'
@@ -44,6 +51,17 @@ const Premium = ({ email, width, dispatch }) => {
                     <FeedList />
                 </div>
                 <div className="premium-col">
+                    <Col className="boxCol" md={12} >
+                        <div className="innerBoxCol dash-button" onClick={goToDetailed}>
+                            Completed Tasks
+                        <FiArrowRight style={{ marginLeft: '5px' }} />
+                        </div>
+                    </Col>
+                    <Col className="boxCol" id="quickT" md={12}>
+                        <div className="innerBoxCol">
+                            <GithubCalendar />
+                        </div>
+                    </Col>
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
                             <TopAssignments />

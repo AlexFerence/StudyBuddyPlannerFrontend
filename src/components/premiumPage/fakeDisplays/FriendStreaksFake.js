@@ -12,7 +12,7 @@ const FriendStreaksFake = () => {
             </div>
             <div className="friend-modal-friend-list-item">
                 <div>
-                    <div style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
+                    <div id='fake-blur' style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
                         Friend One
                     </div>
                 </div>
@@ -23,7 +23,7 @@ const FriendStreaksFake = () => {
             </div>
             <div className="friend-modal-friend-list-item">
                 <div>
-                    <div style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
+                    <div id='fake-blur' style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
                         Friend Two
                     </div>
                 </div>
@@ -34,7 +34,7 @@ const FriendStreaksFake = () => {
             </div>
             <div className="friend-modal-friend-list-item">
                 <div>
-                    <div style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
+                    <div id='fake-blur' style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
                         Friend Three
                     </div>
                 </div>
@@ -45,7 +45,7 @@ const FriendStreaksFake = () => {
             </div>
             <div className="friend-modal-friend-list-item">
                 <div>
-                    <div style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
+                    <div id='fake-blur' style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
                         Friend Four
                     </div>
                 </div>
@@ -56,7 +56,7 @@ const FriendStreaksFake = () => {
             </div>
             <div className="friend-modal-friend-list-item">
                 <div>
-                    <div style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
+                    <div id='fake-blur' style={{ textTransform: 'capitalize' }} className="friend-modal-friend-list-item__name">
                         Friend Five
                     </div>
                 </div>

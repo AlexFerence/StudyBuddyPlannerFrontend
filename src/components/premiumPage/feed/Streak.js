@@ -4,6 +4,11 @@ import { FaUserAlt } from 'react-icons/fa'
 import { AiFillFire } from 'react-icons/ai'
 
 const Streak = ({ feedItem, friends }) => {
+
+    const wordArray = feedItem.generalDescription.split()
+
+    const getValue = wordArray
+
     const getFriendInitials = () => {
         const friend = friends.find((f) => f.id === feedItem.userId)
         if (friend) {

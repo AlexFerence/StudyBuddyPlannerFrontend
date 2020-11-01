@@ -97,6 +97,24 @@
  flex: 1;
 }
 
+.one-day-spent {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ height: 90%;
+}
+
+.one-day-spent__time {
+ font-size: 25px;
+ margin-bottom: 10px;
+}
+.one-day-spent__desc {
+ font-size: 14px;
+ color: $grey;
+ text-align: center;
+}
+
 @media only screen and (max-width: 700px) {
  .detailed-view {
   flex-direction: column;
