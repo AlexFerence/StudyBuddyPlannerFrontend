@@ -32,8 +32,8 @@ const FeedList = ({ feed }) => {
         <div className="feed-list">
             <h2
                 style={{
-                    padding: '15px', borderBottom: '1px solid #bcbcbc',
-                    backgroundColor: 'grey', color: 'white', fontSize: '18px'
+                    padding: '15px', borderBottom: '1px solid #d3d3d3',
+                    color: 'black', fontSize: '18px'
                 }}
             >Friend Activity</h2>
             {renderFeed()}

@@ -23,11 +23,12 @@ const Streak = ({ feedItem, friends }) => {
                 {getFriendInitials()}
             </div>
             <div className="feed-description">
-                <AiFillFire className="toggleContainer__streak__icon" style={{ fontSize: '15px', marginRight: '5px' }} />
+
                 {feedItem.generalDescription}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
+                <AiFillFire className="toggleContainer__streak__icon" style={{ fontSize: '15px', margin: '0px 0px 7px 5px' }} />
             </div>
         </div>
     )

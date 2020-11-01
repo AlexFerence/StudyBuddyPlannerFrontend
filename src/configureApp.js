@@ -19,7 +19,7 @@ import { setWidth } from './actions/widthActions'
 import './styles/styles.scss'
 import moment from 'moment'
 //import Dashboard from './components/Dashboard';
-import { logout } from './actions/profileActions';
+import { closePayment, logout } from './actions/profileActions';
 //import Premium from './components/premiumPage/Premium'
 //import PremiumDetailed from './components/premiumDetailedPage/PremiumDetailed'
 import { loadFiveCharts } from './thunks/chartThunk'
@@ -29,6 +29,8 @@ import Loader from './components/shared/Loader'
 import FullPageLoader from './components/shared/FullPageLoader'
 import Loadable from 'react-loadable'
 import { reAuthenticate, refreshUser } from './thunks/profileThunk'
+import Modal from 'react-modal'
+import PaymentModal from './components/shared/PaymentModal'
 
 const Dashboard = Loadable({
   loader: () => import('./components/Dashboard'),
@@ -95,6 +97,29 @@ const Blog = Loadable({
   loading: Loader,
 });
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '201'
+  }
+};
+
+const customStylesWithFriends = {
+  content: {
+    top: '50%',
+    left: 'calc(50vw - 150px)',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '201'
+  }
+};
 
 const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }) => {
   useEffect(() => {
@@ -125,8 +150,20 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
     }
   }, [])
 
+  const closePaymentModal = () => {
+    dispatch(closePayment())
+  }
+
   return (
     <BrowserRouter history="">
+      <Modal
+        isOpen={profile.paymentOpen}
+        onRequestClose={closePaymentModal}
+        style={width > 999 ? customStylesWithFriends : customStyles}
+        contentLabel="Example Modal"
+      >
+        <PaymentModal />
+      </Modal>
       <Header />
       {width > 999 && isAuth && <FriendActivity />}
       { false && <Loader />}
@@ -170,7 +207,8 @@ const mapStateToProps = (state) => {
     isAuth: state.profile.isAuth,
     tokenExpiry: state.profile.tokenExpiry,
     loading: state.loading,
-    profile: state.profile
+    profile: state.profile,
+
   }
 }
 

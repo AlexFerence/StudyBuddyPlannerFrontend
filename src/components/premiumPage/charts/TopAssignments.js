@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TopAssignmentDisplay from '../fakeDisplays/TopAssignmentsFake'
 
-let notPremium = false
+let notPremium = true
 
 const Top5TasksChart = ({ top5AssignmentsFriends, top5Assignments, }) => {
 
