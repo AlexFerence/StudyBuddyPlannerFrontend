@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { FaUserAlt } from 'react-icons/fa'
+import { AiFillFire } from 'react-icons/ai'
 
-const TaskSession = ({ feedItem, friends }) => {
-
+const Streak = ({ feedItem, friends }) => {
     const getFriendInitials = () => {
         const friend = friends.find((f) => f.id === feedItem.userId)
         if (friend) {
@@ -15,13 +15,15 @@ const TaskSession = ({ feedItem, friends }) => {
             return <span><FaUserAlt /></span>
         }
     }
-
+    // PUT FIRE ICON BIG ON THE RIGHT WITH NUMBER INSIDE
+    // GET ARI TO SEND IT TO YOU 
     return (
         <div className="feed-item" >
             <div className="active-friend__left__avatar">
                 {getFriendInitials()}
             </div>
             <div className="feed-description">
+                <AiFillFire className="toggleContainer__streak__icon" style={{ fontSize: '15px', marginRight: '5px' }} />
                 {feedItem.generalDescription}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
@@ -37,4 +39,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(TaskSession)
+export default connect(mapStateToProps)(Streak)

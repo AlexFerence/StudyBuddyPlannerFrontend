@@ -1,11 +1,13 @@
+$line-grey: #d3d3d3;
+
 .feed-list {
- border-right: 1px solid $grey;
+ border-right: 1px solid $line-grey;
 }
 
 .feed-item {
- padding: 5px;
+ padding: 7px;
  display: flex;
- border-bottom: 1px solid $grey;
+ border-bottom: 1px solid darken($color: #d3d3d3, $amount: 2);
  line-height: 20px;
 }
 
@@ -22,7 +24,7 @@
 }
 
 .feed-description {
- font-size: 14px;
+ font-size: 13px;
 }
 
 .feed-description__time {

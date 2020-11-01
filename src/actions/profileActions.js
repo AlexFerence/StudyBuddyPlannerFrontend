@@ -1,6 +1,6 @@
 
 export const ADD_PROFILE = 'ADD_PROFILE'
-export const setProfile = (profile = { email: "", password: ""}) => ({
+export const setProfile = (profile = { email: "", password: "" }) => ({
     type: ADD_PROFILE,
     profile,
 });
@@ -26,4 +26,14 @@ export const MODIFY_PROFILE = 'MODIFY_PROFILE'
 export const modifyProfile = (data) => ({
     type: MODIFY_PROFILE,
     data
+});
+
+export const OPEN_PAYMENT = 'OPEN_PAYMENT'
+export const openPayment = () => ({
+    type: OPEN_PAYMENT
+});
+
+export const CLOSE_PAYMENT = 'CLOSE_PAYMENT'
+export const closePayment = () => ({
+    type: CLOSE_PAYMENT,
 });

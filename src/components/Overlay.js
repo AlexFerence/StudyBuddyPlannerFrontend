@@ -6,7 +6,7 @@ const Overlay = ({ special }) => {
         <div className={special ? "overlay overlay-special" : "overlay"}>
             <div>
                 <div className="overlay__main"><Link className="overlay__main__link" to="/settings">Premium</Link> Feature</div>
-                <Link to="/settings" className="overlay__main__link overlay__sub">Unlock now</Link>
+                <div onClick={} className="overlay__main__link overlay__sub">Unlock now</div>
             </div>
         </div>
     )

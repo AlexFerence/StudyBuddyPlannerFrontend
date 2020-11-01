@@ -1,4 +1,4 @@
-import { ADD_PROFILE, SET_FIELDS, UPDATE, MODIFY_PROFILE } from '../actions/profileActions'
+import { ADD_PROFILE, SET_FIELDS, UPDATE, MODIFY_PROFILE, OPEN_PAYMENT, CLOSE_PAYMENT } from '../actions/profileActions'
 
 const profileReducerDefaultState = {
     email: '',
@@ -17,7 +17,8 @@ const profileReducerDefaultState = {
         stripeCustomerId: "cus_HtJ1BMgUoXQBiU",
         stripeSubscriptionId: ""
     },
-    semesters: []
+    semesters: [],
+    paymentOpen: false
 }
 
 const profileReducer = (state = profileReducerDefaultState, action) => {
@@ -39,6 +40,16 @@ const profileReducer = (state = profileReducerDefaultState, action) => {
             return {
                 ...state,
                 ...action.data
+            }
+        case OPEN_PAYMENT:
+            return {
+                ...state,
+                paymentOpen: true
+            }
+        case CLOSE_PAYMENT:
+            return {
+                ...state,
+                paymentOpen: false
             }
         default:
             return state
