@@ -5,13 +5,20 @@ import { AiFillFire } from 'react-icons/ai'
 
 const Streak = ({ feedItem, friends }) => {
 
-    const wordArray = feedItem.generalDescription.split()
+    const wordArray = feedItem.generalDescription.split(' ')
 
-    const getValue = wordArray
+    const numValue = wordArray.find((num) => parseInt(num) > 0)
 
-    const getFriendInitials = () => {
+    const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
+
+    const getFriendInitials = (name) => {
         const friend = friends.find((f) => f.id === feedItem.userId)
-        if (friend) {
+        if (name) {
+            return (
+                <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>
+            )
+        }
+        else if (friend) {
             return (
                 <span>{friend.firstName.charAt(0) + friend.lastName.charAt(0)}</span>
             )
@@ -20,20 +27,27 @@ const Streak = ({ feedItem, friends }) => {
             return <span><FaUserAlt /></span>
         }
     }
+
+
     // PUT FIRE ICON BIG ON THE RIGHT WITH NUMBER INSIDE
     // GET ARI TO SEND IT TO YOU 
     return (
         <div className="feed-item" >
             <div className="active-friend__left__avatar">
-                {getFriendInitials()}
+                {getFriendInitials(false)}
             </div>
             <div className="feed-description">
-
-                {feedItem.generalDescription}
+                {getFriendInitials(true)}
+                {' ' + shortDesc}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
-                <AiFillFire className="toggleContainer__streak__icon" style={{ fontSize: '15px', margin: '0px 0px 7px 5px' }} />
+            </div>
+            <div style={{ position: 'relative' }}>
+                <div className={{ width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                    {numValue}
+                </div>
+                <AiFillFire className="toggleContainer__streak__icon" style={{ fontSize: '25px', margin: '0px 0px 7px 5px' }} />
             </div>
         </div>
     )
