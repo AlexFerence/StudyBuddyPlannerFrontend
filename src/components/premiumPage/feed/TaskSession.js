@@ -7,7 +7,7 @@ const TaskSession = ({ feedItem, friends }) => {
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 
     const getFriendInitials = (name) => {
-        const friend = friends.find((f) => f.id === feedItem.userId)
+        var friend = friends.find((f) => f.id === feedItem.userId)
 
         if (!friend) {
             friend = { firstName: '', lastName: '' }
