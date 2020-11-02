@@ -73,8 +73,8 @@ const LandingBarChart = ({ dispatch, githubCalendarData, semesters }) => {
                     right: 30,
                     cellSize: ['auto', 13],
 
-                    range: [moment(currentSemester.startDate).format('YYYY-MM-DD'),
-                    moment(currentSemester.endDate).format('YYYY-MM-DD')],
+                    range: [moment(currentSemester?.startDate).format('YYYY-MM-DD'),
+                    moment(currentSemester?.endDate).format('YYYY-MM-DD')],
                     itemStyle: {
                         borderWidth: 0.5
                     },
