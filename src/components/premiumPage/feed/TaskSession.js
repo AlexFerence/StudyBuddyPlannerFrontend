@@ -8,14 +8,19 @@ const TaskSession = ({ feedItem, friends }) => {
 
     const getFriendInitials = (name) => {
         const friend = friends.find((f) => f.id === feedItem.userId)
+
+        if (!friend) {
+            friend = { firstName: '', lastName: '' }
+        }
+
         if (name && friend) {
             return (
-                <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>
+                <span style={{ fontWeight: '600' }}>{friend?.firstName + ' ' + friend?.lastName}</span>
             )
         }
         else if (friend) {
             return (
-                <span>{friend?.firstName?.charAt(0) + friend?.lastName?.charAt(0)}</span>
+                <span>{friend?.firstName.charAt(0) + friend?.lastName.charAt(0)}</span>
             )
         }
         else {
