@@ -46,7 +46,9 @@ const WeeklyChart = ({ charts, dispatch, streak }) => {
                         >
                             <div>
                                 <div className="toggleContainer__streak">
-                                    <AiFillFire className="toggleContainer__streak__icon" />
+                                    <AiFillFire className="toggleContainer__streak__icon"
+                                        style={{ fontSize: '20px' }}
+                                    />
                                     {streak + ' Days'}
                                 </div>
                             </div>

@@ -1,14 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FaUserAlt } from 'react-icons/fa'
+import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
 import { AiFillFire } from 'react-icons/ai'
 
-const Streak = ({ feedItem, friends }) => {
-
+const StreakLarge = ({ feedItem, friends }) => {
     const wordArray = feedItem.generalDescription.split(' ')
-
     const numValue = wordArray.find((num) => parseInt(num) > 0)
-
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 
     const getFriendInitials = (name) => {
@@ -29,22 +26,24 @@ const Streak = ({ feedItem, friends }) => {
     }
 
     return (
-        <div className="feed-item" >
-            <div className="active-friend__left__avatar">
-                {getFriendInitials(false)}
+        <div className="feed-theme">
+            <div className="feed-theme__top-row">
+                <div className="feed-theme-initials">
+                    {getFriendInitials(false)}
+                </div>
+                <div className="feed-theme__title">
+                    On Fire
+                </div>
+                <AiFillFire className="feed-theme__top-row__icon"
+                    style={{ color: '#FB4132' }}
+                />
             </div>
-            <div className="feed-description">
+            <div className="feed-theme__bottom-row">
                 {getFriendInitials(true)}
                 {' ' + shortDesc}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
-            </div>
-            <div style={{ position: 'relative' }}>
-                <AiFillFire className="toggleContainer__streak__icon" />
-                <div className="toggleContainer__streak__value">
-                    {numValue}
-                </div>
 
             </div>
         </div>
@@ -57,4 +56,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Streak)
+export default connect(mapStateToProps)(StreakLarge)
