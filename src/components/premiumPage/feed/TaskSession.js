@@ -4,7 +4,7 @@ import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
 import { BsStopwatchFill } from 'react-icons/bs'
 import { TiStopwatch } from 'react-icons/ti'
 
-const TaskCompleted = ({ feedItem, friends }) => {
+const TaskCompleted = ({ feedItem, friends, yourId }) => {
     const wordArray = feedItem.generalDescription.split(' ')
     const numValue = wordArray.find((num) => parseInt(num) > 0)
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
@@ -15,6 +15,9 @@ const TaskCompleted = ({ feedItem, friends }) => {
             return (
                 <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>
             )
+        }
+        else if (name && feedItem.userId === yourId) {
+            return ('You')
         }
         else if (friend && friend.firstName && friend.lastName) {
             return (
@@ -53,7 +56,8 @@ const TaskCompleted = ({ feedItem, friends }) => {
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.friends.activeFriends
+        friends: state.friends.activeFriends,
+        yourId: state.profile.id
     }
 }
 

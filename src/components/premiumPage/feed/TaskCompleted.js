@@ -2,10 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
 
-const TaskCompleted = ({ feedItem, friends }) => {
+const TaskCompleted = ({ feedItem, friends, yourId }) => {
     const wordArray = feedItem.generalDescription.split(' ')
     const numValue = wordArray.find((num) => parseInt(num) > 0)
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
+
+    console.log(wordArray)
 
     const getFriendInitials = (name) => {
         const friend = friends.find((f) => f.id === feedItem.userId)
@@ -13,6 +15,9 @@ const TaskCompleted = ({ feedItem, friends }) => {
             return (
                 <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>
             )
+        }
+        else if (name && feedItem.userId === yourId) {
+            return ('You')
         }
         else if (friend && friend.firstName && friend.lastName) {
             return (
@@ -51,7 +56,8 @@ const TaskCompleted = ({ feedItem, friends }) => {
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.friends.activeFriends
+        friends: state.friends.activeFriends,
+        yourId: state.profile.id
     }
 }
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { FaUserAlt } from 'react-icons/fa'
 import { AiFillFire } from 'react-icons/ai'
 
-const Streak = ({ feedItem, friends }) => {
+const Streak = ({ feedItem, friends, yourId }) => {
 
     const wordArray = feedItem.generalDescription.split(' ')
 
@@ -17,6 +17,9 @@ const Streak = ({ feedItem, friends }) => {
             return (
                 <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>
             )
+        }
+        else if (name && feedItem.userId === yourId) {
+            return ('You')
         }
         else if (friend && friend.firstName && friend.lastName) {
             return (
@@ -53,7 +56,8 @@ const Streak = ({ feedItem, friends }) => {
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.friends.activeFriends
+        friends: state.friends.activeFriends,
+        yourId: state.profile.id
     }
 }
 

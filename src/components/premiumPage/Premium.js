@@ -40,6 +40,33 @@ const Premium = ({ email, width, dispatch }) => {
         history.push('/premium/detailed')
     }
 
+    const premiumFeatures = () => (
+        <React.Fragment>
+            <Col className="boxCol" md={12} >
+                <div className="innerBoxCol dash-button" onClick={goToDetailed}>
+                    Completed Tasks
+                <FiArrowRight style={{ marginLeft: '5px' }} />
+                </div>
+            </Col>
+            <Col className="boxCol" id="quickT" md={12}>
+                <div className="innerBoxCol">
+                    <TopAssignments />
+                </div>
+            </Col>
+            <Col className="boxCol" id="quickT" md={12}>
+                <div className="innerBoxCol">
+                    <TopDays />
+                </div>
+            </Col>
+            <Col className="boxCol" id="quickT" md={12}>
+                <div className="innerBoxCol">
+                    <FriendStreaks />
+                </div>
+            </Col>
+        </React.Fragment>
+
+    )
+
     if (
         email === 'akaufman2000@gmail.com'
         || email === 'alexference23@gmail.com'
@@ -54,37 +81,20 @@ const Premium = ({ email, width, dispatch }) => {
                     <FeedList />
                 </div>
                 <div className="premium-col">
-                    <Col className="boxCol" md={12} >
-                        <div className="innerBoxCol dash-button" onClick={goToDetailed}>
-                            Completed Tasks
-                        <FiArrowRight style={{ marginLeft: '5px' }} />
-                        </div>
-                    </Col>
+
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
                             <GithubCalendar />
                         </div>
                     </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <TopAssignments />
-                        </div>
-                    </Col>
+
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
                             <SuggestedFriends />
                         </div>
                     </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <TopDays />
-                        </div>
-                    </Col>
-                    <Col className="boxCol" id="quickT" md={12}>
-                        <div className="innerBoxCol">
-                            <FriendStreaks />
-                        </div>
-                    </Col>
+
+
                 </div>
             </div>
         )

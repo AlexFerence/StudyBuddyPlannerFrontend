@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
 import { RiTimerFlashLine } from 'react-icons/ri'
 
-const FiveHoursSpent = ({ feedItem, friends }) => {
+const FiveHoursSpent = ({ feedItem, friends, yourId }) => {
     const wordArray = feedItem.generalDescription.split(' ')
     const numValue = wordArray.find((num) => parseInt(num) > 0)
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
@@ -14,6 +14,9 @@ const FiveHoursSpent = ({ feedItem, friends }) => {
             return (
                 <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>
             )
+        }
+        else if (name && feedItem.userId === yourId) {
+            return ('You')
         }
         else if (friend && friend.firstName && friend.lastName) {
             return (
@@ -52,7 +55,8 @@ const FiveHoursSpent = ({ feedItem, friends }) => {
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.friends.activeFriends
+        friends: state.friends.activeFriends,
+        yourId: state.profile.id
     }
 }
 
