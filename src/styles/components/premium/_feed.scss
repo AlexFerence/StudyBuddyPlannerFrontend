@@ -105,3 +105,29 @@ $line-grey: #d3d3d3;
  cursor: pointer;
  font-size: 12px;
 }
+
+.notification-container {
+    // height: 10px;
+    // width: 10px;
+    position: relative; 
+    //background-color: red;
+    width: 0px;
+}
+
+.notification-circle {
+    position: relative;
+    border-radius: 8px; 
+    background-color: $brand;
+    left: 18px; 
+    top: 3px; 
+    z-Index: 10;
+    font-size: 12px; 
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    height: 17px;
+    width: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

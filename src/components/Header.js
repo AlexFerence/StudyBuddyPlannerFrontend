@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -28,8 +28,33 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
+const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
 
+    const [numNotification, setNumNotifications] = useState(0)
+
+    useEffect(() => {
+        setNumNotifications(getNumNotifications())
+    }, [feed.lastSeen, feed.list])
+
+    const getNumNotifications = () => {
+        let { lastSeen = { id: 0 }, list = []
+        } = feed
+        let count = 0
+        for (var x = 0; x < list.length; x++) {
+            var item = list[x]
+            console.log(lastSeen.id)
+            console.log(item.id)
+            console.log(lastSeen.id == item.id)
+            if (lastSeen.id === item.id) {
+                console.log('SHOULD RETURN')
+                break
+            }
+            else {
+                count++
+            }
+        }
+        return count
+    }
 
     useBeforeunload((event) => {
         if (isRunning) {
@@ -134,6 +159,13 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
 
                                     }}
                                     id="tasks" style={{ padding: 5 }} ><IoIosSpeedometer />
+                                </div>
+                            }
+                            {numNotification > 0 &&
+                                <div className='notification-container'>
+                                    <div className='notification-circle'>
+                                        {numNotification}
+                                    </div>
                                 </div>
                             }
                             {!isRunning ?
@@ -267,7 +299,7 @@ const Header = ({ isRunning, width, profile, history, paused, isAuth, dispatch, 
                         </Nav>
                     </Navbar>
                 </Navbar>
-            </div>
+            </div >
         )
     }
     else {
@@ -282,6 +314,7 @@ const mapStateToProps = (state) => {
         width: state.width,
         currentTask: state.currentTask,
         paused: state.running.paused,
+        feed: state.feed
     }
 }
 export default connect(mapStateToProps)(Header)

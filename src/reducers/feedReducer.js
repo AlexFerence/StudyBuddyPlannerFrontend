@@ -22,7 +22,7 @@ const friendsReducer = (state = feedDefaultState, action) => {
             if (state.list && state.list.length > 0) {
                 return {
                     ...state,
-                    lastSeen: state.list[state.list.length - 1]
+                    lastSeen: state.list[0]
                 }
             }
         default:
