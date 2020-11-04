@@ -60,7 +60,7 @@ const FeedList = ({ feed }) => {
 
 const mapStateToProps = (state) => {
     return {
-        feed: state.feed
+        feed: state.feed.list
     }
 }
 

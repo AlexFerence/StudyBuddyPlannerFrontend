@@ -27,3 +27,4 @@ export const refreshFeed = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+

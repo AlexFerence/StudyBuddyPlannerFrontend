@@ -17,6 +17,8 @@ import { FiArrowRight } from 'react-icons/fi'
 import { loadDetailedView } from '../../thunks/premiumStatsThunk'
 
 import { refreshFeed } from '../../thunks/feedThunk'
+import { feedSeen } from '../../actions/feedActions'
+
 
 const Premium = ({ email, width, dispatch }) => {
     const history = useHistory()
@@ -30,6 +32,7 @@ const Premium = ({ email, width, dispatch }) => {
         dispatch(loadTop5AssignmentsFriends())
         dispatch(loadTop5DaysFriends())
         dispatch(refreshFeed())
+        dispatch(feedSeen())
     }, [])
 
     const goToDetailed = () => {

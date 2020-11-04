@@ -1,6 +1,10 @@
-import { SET_FEED } from '../actions/feedActions'
+import { SET_FEED, SET_LASTSEEN } from '../actions/feedActions'
 
-const feedDefaultState = []
+const feedDefaultState = {
+    list: [],
+    lastSeen: {},
+    numHaventSeen: 0,
+}
 
 const friendsReducer = (state = feedDefaultState, action) => {
     switch (action.type) {
@@ -10,7 +14,17 @@ const friendsReducer = (state = feedDefaultState, action) => {
                 console.error('Setting feed as something thats not an array')
                 return []
             }
-            return action.payload
+            return {
+                ...state,
+                list: action.payload
+            }
+        case SET_LASTSEEN:
+            if (state.list && state.list.length > 0) {
+                return {
+                    ...state,
+                    lastSeen: state.list[state.list.length - 1]
+                }
+            }
         default:
             return state
     }

@@ -12,6 +12,8 @@ import {
 
 import moment from 'moment'
 
+import { refreshFeed } from './feedThunk'
+
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
     const { profile } = state
@@ -423,6 +425,7 @@ export const loadFiveCharts = () => async (dispatch, getState) => {
     // subject pie chart
     dispatch(loadChartsThunk())
 
-    // load streak
+    // load feed
+    dispatch(refreshFeed())
 }
 
