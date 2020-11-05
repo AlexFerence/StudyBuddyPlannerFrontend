@@ -121,9 +121,9 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     '0px solid blue',
                 paddingRight: '300px'
             }}>
-
-            <PaymentModal />
-
+            {
+                false && <PaymentModal />
+            }
             <div className="settings-title" style={{ paddingTop: "30px" }}>Settings</div>
             <form onSubmit={onSubmit}>
 
