@@ -37,10 +37,10 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
     }, [feed.lastSeen, feed.list])
 
     const getNumNotifications = () => {
-        let { lastSeen = { id: 0 }, list = []
-        } = feed
+        //let { lastSeen = { id: 0 }, list = []
+        //} = feed
         let count = 0
-        for (var x = 0; x < list.length; x++) {
+        /*for (var x = 0; x < list.length; x++) {
             var item = list[x]
             console.log(lastSeen.id)
             console.log(item.id)
@@ -52,7 +52,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
             else {
                 count++
             }
-        }
+        }*/
         return count
     }
 
