@@ -44,11 +44,10 @@ const TaskCompleted = ({ feedItem, friends, yourId }) => {
             </div>
             <div className="feed-theme__bottom-row">
                 {getFriendInitials(true)}
-                {' ' + shortDesc}
+                {feedItem.userId === yourId ? feedItem.generalDescription : getFriendInitials(true) + ' ' + shortDesc}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
-
             </div>
         </div>
     )

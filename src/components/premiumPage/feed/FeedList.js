@@ -6,6 +6,7 @@ import BestDay from './BestDay'
 import FiveHoursSpent from './FiveHoursSpent'
 import StreakLarge from './StreakLarge'
 import TaskCompleted from './TaskCompleted'
+import FriendAdded from './FriendAdded'
 
 const FeedList = ({ feed }) => {
     const renderFeed = () => {
@@ -15,7 +16,6 @@ const FeedList = ({ feed }) => {
                     <TaskSession feedItem={feedItem} />
                 )
             }
-
             else if (feedItem.displayType === 'streak' ||
                 feedItem.displayType === 'streak5') {
                 return (
@@ -37,6 +37,11 @@ const FeedList = ({ feed }) => {
                     <BestDay feedItem={feedItem} />
                 )
             }
+            else if (feedItem.displayType === 'friendAccept') {
+                return (
+                    <FriendAdded feedItem={feedItem} />
+                )
+            }
 
             return <div>{feedItem.generalDescription}</div>
         })
@@ -53,7 +58,6 @@ const FeedList = ({ feed }) => {
             <div className='feed-list__body'>
                 {renderFeed()}
             </div>
-
         </div>
     )
 }

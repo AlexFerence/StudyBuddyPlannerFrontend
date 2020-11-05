@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
+import { FaUserAlt, FaMountain, FaCheck, FaUserFriends } from 'react-icons/fa'
 import { RiTimerFlashLine } from 'react-icons/ri'
 
 const FiveHoursSpent = ({ feedItem, friends, yourId }) => {
     const wordArray = feedItem.generalDescription.split(' ')
-    const numValue = wordArray.find((num) => parseInt(num) > 0)
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 
     const getFriendInitials = (name) => {
@@ -35,15 +34,15 @@ const FiveHoursSpent = ({ feedItem, friends, yourId }) => {
                     {getFriendInitials(false)}
                 </div>
                 <div className="feed-theme__title">
-                    Big Study Day
+                    Friend Added
                 </div>
-                <FaMountain className="feed-theme__top-row__icon"
-                    style={{ color: '#38B0DD' }}
+                <FaUserFriends className="feed-theme__top-row__icon"
+                    style={{ color: 'black' }}
                 />
             </div>
             <div className="feed-theme__bottom-row">
-                {getFriendInitials(true)}
-                {feedItem.userId === yourId ? feedItem.generalDescription : getFriendInitials(true) + ' ' + shortDesc}
+
+                {feedItem.generalDescription}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
