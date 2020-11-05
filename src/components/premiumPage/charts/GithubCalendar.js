@@ -56,22 +56,28 @@ const LandingBarChart = ({ dispatch, githubCalendarData, semesters }) => {
                     }
                 },
                 visualMap: {
-                    min: 0,
-                    max: 200,
+                    pieces: [
+                        // Range of a piece can be specified by property min and max,
+                        // Label of the piece can be specified.
+                        {min: 0, max: 60, label: '1hr'},
+                        {min: 60, max: 120, label: '2hr'},
+                        {min: 120, max: 180, label: '3hr'},
+                        {min: 180, max: 240, label: '4hr+'},
+                    ],
                     type: 'piecewise',
                     orient: 'horizontal',
                     left: 'center',
-                    top: 65,
+                    top: 45,
                     textStyle: {
                         color: '#000'
                     },
-                    inRange: { color: ['#FDCFCC', '#fb4033'] }
+                    inRange: { color: ['#EBEDF0', '#30C730'] }
                 },
                 calendar: {
-                    top: 120,
-                    left: 30,
-                    right: 30,
-                    cellSize: ['auto', 13],
+                    top: 110,
+                    left: 60,
+                    right: 60,
+                    cellSize: ['auto', 20],
 
                     range: [moment(currentSemester?.startDate).format('YYYY-MM-DD'),
                     moment(currentSemester?.endDate).format('YYYY-MM-DD')],
