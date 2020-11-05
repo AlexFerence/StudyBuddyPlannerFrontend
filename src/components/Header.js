@@ -168,35 +168,8 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     </div>
                                 </div>
                             }
-                            {!isRunning ?
-                                <OverlayTrigger
-                                    placement="bottom"
-                                    delay={{ show: 250, hide: 400 }}
-                                    overlay={renderTooltipCompare}
-                                >
-                                    <NavLink activeStyle={{ color: 'white' }} id="dashboard"
-                                        style={{ padding: 5 }} to='/premium'>
-                                        <BsBellFill />
-                                    </NavLink>
-                                </OverlayTrigger>
-                                :
-                                <div className="navbarIcon"
-                                    onClick={() => {
-                                        console.log('onSwitch')
-                                        swal({
-                                            title: "Can't switch tabs during study session",
-                                            icon: "info",
-                                            buttons: true,
-                                            dangerMode: true,
-                                        })
 
-                                    }}
-                                    id="tasks" style={window.location.pathname === "/premium" ?
-                                        { padding: 5, color: 'white' } : { padding: 5 }} >
-                                    <BsBellFill />
-                                </div>
 
-                            }
                             {(!isRunning && !paused) ?
                                 <OverlayTrigger
                                     placement="bottom"
@@ -299,7 +272,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                         </Nav>
                     </Navbar>
                 </Navbar>
-            </div >
+            </div>
         )
     }
     else {
@@ -318,3 +291,33 @@ const mapStateToProps = (state) => {
     }
 }
 export default connect(mapStateToProps)(Header)
+
+// {!isRunning ?
+//     <OverlayTrigger
+//         placement="bottom"
+//         delay={{ show: 250, hide: 400 }}
+//         overlay={renderTooltipCompare}
+//     >
+//         <NavLink activeStyle={{ color: 'white' }} id="dashboard"
+//             style={{ padding: 5 }} to='/premium'>
+//             <BsBellFill />
+//         </NavLink>
+//     </OverlayTrigger>
+//     :
+//     <div className="navbarIcon"
+//         onClick={() => {
+//             console.log('onSwitch')
+//             swal({
+//                 title: "Can't switch tabs during study session",
+//                 icon: "info",
+//                 buttons: true,
+//                 dangerMode: true,
+//             })
+
+//         }}
+//         id="tasks" style={window.location.pathname === "/premium" ?
+//             { padding: 5, color: 'white' } : { padding: 5 }} >
+//         <BsBellFill />
+//     </div>
+
+// }

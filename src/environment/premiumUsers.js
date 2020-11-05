@@ -1,1 +1,1 @@
-export default ['alexference23@gmail.com', 'akaufman2000@gmail.com']
+export const premiumUsers = ['alexference23@gmail.com', 'akaufman2000@gmail.com']

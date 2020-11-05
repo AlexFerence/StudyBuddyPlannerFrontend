@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import TaskSession from './TaskSession'
 import Streak from './Streak'
@@ -7,48 +7,52 @@ import FiveHoursSpent from './FiveHoursSpent'
 import StreakLarge from './StreakLarge'
 import TaskCompleted from './TaskCompleted'
 import FriendAdded from './FriendAdded'
-import InfiniteScroll from 'react-infinite-scroll-component';
+//import InfiniteScroll from 'react-infinite-scroll-component';
+import { refreshFeed } from '../../../thunks/feedThunk'
+import InfiniteScroll from 'react-infinite-scroller';
 
-const FeedList = ({ feed }) => {
+const FeedList = ({ feed, dispatch }) => {
     const renderFeed = () => {
-        return feed.map((feedItem) => {
+        return feed.map((feedItem, index) => {
             if (feedItem.displayType === 'tasksession') {
                 return (
-                    <TaskSession feedItem={feedItem} />
+                    <TaskSession key={index} feedItem={feedItem} />
                 )
             }
             else if (feedItem.displayType === 'streak' ||
                 feedItem.displayType === 'streak5') {
                 return (
-                    <StreakLarge feedItem={feedItem} />
+                    <StreakLarge key={index} feedItem={feedItem} />
                 )
             }
             else if (feedItem.displayType === 'taskcompleted') {
                 return (
-                    <TaskCompleted feedItem={feedItem} />
+                    <TaskCompleted key={index} feedItem={feedItem} />
                 )
             }
             else if (feedItem.displayType === 'fiveHoursSpent') {
                 return (
-                    <FiveHoursSpent feedItem={feedItem} />
+                    <FiveHoursSpent key={index} feedItem={feedItem} />
                 )
             }
             else if (feedItem.displayType === 'bestday') {
                 return (
-                    <BestDay feedItem={feedItem} />
+                    <BestDay key={index} feedItem={feedItem} />
                 )
             }
             else if (feedItem.displayType === 'friendAccept') {
                 return (
-                    <FriendAdded feedItem={feedItem} />
+                    <FriendAdded key={index} feedItem={feedItem} />
                 )
             }
 
-            return <div>{feedItem.generalDescription}</div>
+            return <div key={index}>{feedItem.generalDescription}</div>
         })
     }
 
-    const fetchMoreData = () => {
+
+    const fetchMoreData = async () => {
+        await dispatch(refreshFeed(20))
         console.log('Should fetch more data')
     }
 
@@ -61,17 +65,42 @@ const FeedList = ({ feed }) => {
                 }}
             >Recent Updates</h2>
             <div className='feed-list__body'>
-                <InfiniteScroll
-                    dataLength={feed.length}
-                    next={fetchMoreData}
-                    style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
-                    inverse={true} //
-                    hasMore={true}
-                    loader={<h4>Loading...</h4>}
-                    scrollableTarget="scrollableDiv"
-                >
-                    {renderFeed()}
-                </InfiniteScroll>
+
+                {feed.map((feedItem, index) => {
+                    if (feedItem.displayType === 'tasksession') {
+                        return (
+                            <TaskSession key={index} feedItem={feedItem} />
+                        )
+                    }
+                    else if (feedItem.displayType === 'streak' ||
+                        feedItem.displayType === 'streak5') {
+                        return (
+                            <StreakLarge key={index} feedItem={feedItem} />
+                        )
+                    }
+                    else if (feedItem.displayType === 'taskcompleted') {
+                        return (
+                            <TaskCompleted key={index} feedItem={feedItem} />
+                        )
+                    }
+                    else if (feedItem.displayType === 'fiveHoursSpent') {
+                        return (
+                            <FiveHoursSpent key={index} feedItem={feedItem} />
+                        )
+                    }
+                    else if (feedItem.displayType === 'bestday') {
+                        return (
+                            <BestDay key={index} feedItem={feedItem} />
+                        )
+                    }
+                    else if (feedItem.displayType === 'friendAccept') {
+                        return (
+                            <FriendAdded key={index} feedItem={feedItem} />
+                        )
+                    }
+
+                    return <div key={index}>{feedItem.generalDescription}</div>
+                })}
             </div>
         </div>
     )

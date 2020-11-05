@@ -15,9 +15,10 @@ import SuggestedFriends from './charts/SuggestedFriends'
 import FeedList from './feed/FeedList'
 import { FiArrowRight } from 'react-icons/fi'
 import { loadDetailedView } from '../../thunks/premiumStatsThunk'
-
 import { refreshFeed } from '../../thunks/feedThunk'
 import { feedSeen } from '../../actions/feedActions'
+import PremiumUsers from '../../environment/premiumUsers'
+import { premiumUsers } from '../../environment/premiumUsers'
 
 
 const Premium = ({ email, width, dispatch }) => {
@@ -68,11 +69,7 @@ const Premium = ({ email, width, dispatch }) => {
     )
 
     if (
-        email === 'akaufman2000@gmail.com'
-        || email === 'alexference23@gmail.com'
-        || email === 'vladstets18@gmail.com'
-        || email === 'maddy.eppsconn@gmail.com'
-        || email === 'sayeed.mavani@gmail.com'
+        premiumUsers.indexOf(email) !== -1
     ) {
         return (
             <div className="premium" style={(width < 1000) ?
