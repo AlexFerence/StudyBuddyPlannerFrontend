@@ -5,7 +5,6 @@ import { signupThunk } from '../thunks/profileThunk'
 import isEmail from 'validator/lib/isEmail';
 import { loadSchools } from '../thunks/schoolsThunk';
 
-
 const FormPage = ({ history, dispatch, profile }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -46,6 +45,11 @@ const FormPage = ({ history, dispatch, profile }) => {
     else {
       setPasswordError('')
     }
+
+    setFirstName(firstName.trim())
+    setLastName(lastName.trim())
+    setEmail(email.trim())
+
     if (clean) {
       dispatch(signupThunk({ firstName, lastName, email, password })).then((status) => {
         console.log(status)
