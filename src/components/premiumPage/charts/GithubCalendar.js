@@ -48,7 +48,7 @@ const LandingBarChart = ({ dispatch, githubCalendarData, semesters }) => {
                     formatter: function (params) {
                         let rez = ''
                         rez = '<span>'
-                            + moment(params.data[0]).format('MMM d') + ': '
+                            + moment(params.data[0]).format('MMM D') + ': '
                             + minsToHours(params.data[1]) +
                             '</span>';
                         return rez
