@@ -41,7 +41,6 @@ const FiveHoursSpent = ({ feedItem, friends, yourId }) => {
                 />
             </div>
             <div className="feed-theme__bottom-row">
-
                 {feedItem.generalDescription}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}

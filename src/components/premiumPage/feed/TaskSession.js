@@ -29,6 +29,13 @@ const TaskCompleted = ({ feedItem, friends, yourId }) => {
         }
     }
 
+    const getFriendDescription = () => (
+        <div>
+            {getFriendInitials(true)}
+            <span>{' ' + shortDesc}</span>
+        </div>
+    )
+
     return (
         <div className="feed-theme">
             <div className="feed-theme__top-row">
@@ -43,8 +50,7 @@ const TaskCompleted = ({ feedItem, friends, yourId }) => {
                 />
             </div>
             <div className="feed-theme__bottom-row">
-                {getFriendInitials(true)}
-                {feedItem.userId === yourId ? feedItem.generalDescription : getFriendInitials(true) + ' ' + shortDesc}
+                {feedItem.userId === yourId ? feedItem.generalDescription : getFriendDescription()}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
