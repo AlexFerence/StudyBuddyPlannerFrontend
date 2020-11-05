@@ -1,0 +1,1 @@
+export default ['alexference23@gmail.com', 'akaufman2000@gmail.com']

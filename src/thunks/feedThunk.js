@@ -2,7 +2,8 @@ import axios from 'axios';
 import url from '../environment/url';
 import { setFeed } from '../actions/feedActions'
 
-export const refreshFeed = () => async (dispatch, getState) => {
+
+export const refreshFeed = (Limit = 10) => async (dispatch, getState) => {
     const state = getState()
     const { profile } = state
     const { token, id } = profile
@@ -10,7 +11,8 @@ export const refreshFeed = () => async (dispatch, getState) => {
     try {
         const res = await axios.post(url + '/api/feeds/list',
             {
-                userId: id
+                userId: id,
+                Limit
             },
             {
                 headers: {

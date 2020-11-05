@@ -7,6 +7,7 @@ import FiveHoursSpent from './FiveHoursSpent'
 import StreakLarge from './StreakLarge'
 import TaskCompleted from './TaskCompleted'
 import FriendAdded from './FriendAdded'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const FeedList = ({ feed }) => {
     const renderFeed = () => {
@@ -47,6 +48,10 @@ const FeedList = ({ feed }) => {
         })
     }
 
+    const fetchMoreData = () => {
+        console.log('Should fetch more data')
+    }
+
     return (
         <div className="feed-list">
             <h2
@@ -56,7 +61,17 @@ const FeedList = ({ feed }) => {
                 }}
             >Recent Updates</h2>
             <div className='feed-list__body'>
-                {renderFeed()}
+                <InfiniteScroll
+                    dataLength={feed.length}
+                    next={fetchMoreData}
+                    style={{ display: 'flex', flexDirection: 'column-reverse' }} //To put endMessage and loader to the top.
+                    inverse={true} //
+                    hasMore={true}
+                    loader={<h4>Loading...</h4>}
+                    scrollableTarget="scrollableDiv"
+                >
+                    {renderFeed()}
+                </InfiniteScroll>
             </div>
         </div>
     )
