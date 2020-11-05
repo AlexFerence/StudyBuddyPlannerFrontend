@@ -17,7 +17,7 @@ const TaskCompleted = ({ feedItem, friends, yourId }) => {
             )
         }
         else if (name && feedItem.userId === yourId) {
-            return ('You')
+            return ('')
         }
         else if (friend && friend.firstName && friend.lastName) {
             return (
@@ -28,6 +28,13 @@ const TaskCompleted = ({ feedItem, friends, yourId }) => {
             return <span><FaUserAlt /></span>
         }
     }
+
+    const getFriendDescription = () => (
+        <div>
+            {getFriendInitials(true)}
+            <span>{' ' + shortDesc}</span>
+        </div>
+    )
 
     return (
         <div className="feed-theme">
@@ -43,8 +50,7 @@ const TaskCompleted = ({ feedItem, friends, yourId }) => {
                 />
             </div>
             <div className="feed-theme__bottom-row">
-                {getFriendInitials(true)}
-                {feedItem.userId === yourId ? feedItem.generalDescription : getFriendInitials(true) + ' ' + shortDesc}
+                {feedItem.userId === yourId ? feedItem.generalDescription : getFriendDescription()}
                 <span className="feed-description__time">
                     {' ' + feedItem.feedTime + ' ' + feedItem.feedUnit}
                 </span>
