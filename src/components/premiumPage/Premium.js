@@ -32,7 +32,7 @@ const Premium = ({ email, width, dispatch }) => {
         dispatch(loadTop5Assignments())
         dispatch(loadTop5AssignmentsFriends())
         dispatch(loadTop5DaysFriends())
-        dispatch(refreshFeed())
+        dispatch(refreshFeed(30))
         dispatch(feedSeen())
     }, [])
 
@@ -77,7 +77,7 @@ const Premium = ({ email, width, dispatch }) => {
                 <div className="premium-col">
                     <FeedList />
                 </div>
-                <div className="premium-col">
+                <div className="premium-col_right" style={{ overflowY: 'auto' }}>
 
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
