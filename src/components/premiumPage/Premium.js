@@ -77,7 +77,7 @@ const Premium = ({ email, width, dispatch }) => {
                 <div className="premium-col">
                     <FeedList />
                 </div>
-                <div className="premium-col_right" style={{ overflowY: 'auto' }}>
+                <div className="premium-col">
 
                     <Col className="boxCol" id="quickT" md={12}>
                         <div className="innerBoxCol">
