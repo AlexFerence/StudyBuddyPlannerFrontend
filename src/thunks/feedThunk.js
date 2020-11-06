@@ -3,7 +3,7 @@ import url from '../environment/url';
 import { setFeed } from '../actions/feedActions'
 
 
-export const refreshFeed = (Limit = 30) => async (dispatch, getState) => {
+export const refreshFeed = (Limit = 10) => async (dispatch, getState) => {
     const state = getState()
     const { profile } = state
     const { token, id } = profile

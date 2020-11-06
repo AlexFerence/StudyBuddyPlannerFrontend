@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import TaskSession from './TaskSession'
 import Streak from './Streak'
@@ -12,6 +12,7 @@ import { refreshFeed } from '../../../thunks/feedThunk'
 import Blog from './Blog'
 
 const FeedList = ({ feed, dispatch }) => {
+
     const renderFeed = () => {
         return feed.map((feedItem, index) => {
             if (feedItem.displayType === 'tasksession') {
@@ -56,7 +57,7 @@ const FeedList = ({ feed, dispatch }) => {
     }
 
     const fetchMoreData = async () => {
-        await dispatch(refreshFeed(20))
+        await dispatch(refreshFeed(feed.length + 10))
         console.log('Should fetch more data')
     }
 
@@ -73,11 +74,11 @@ const FeedList = ({ feed, dispatch }) => {
 
             <div className='feed-list__body'>
             <InfiniteScroll
-dataLength={feed.length}
-next={fetchMoreData}
-hasMore={true}
-loader={<h4>Loading...</h4>}
->
+                dataLength={feed.length}
+                scrollThreshold={0.8}
+                next={fetchMoreData}
+                hasMore={true}
+                    >
                 {renderFeed()}
                 </InfiniteScroll>
             </div>
