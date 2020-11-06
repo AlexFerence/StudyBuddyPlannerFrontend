@@ -144,8 +144,6 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
 
     }
 
-    Notification.requestPermission()
-
     function handleResize() {
       dispatch(setWidth(window.innerWidth))
     }
