@@ -9,11 +9,9 @@ const SuggestedFriends = ({ dispatch, suggestedFriends }) => {
 
     const [high, setHigh] = useState(5)
 
-    useEffect(() => {
-        dispatch(getSuggestedFriends())
-        console.log('High ' + high)
-        console.log('Low' + (high - 5))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getSuggestedFriends())
+    // }, [])
 
     const nextFive = () => {
         high === 15 ? setHigh(5) : setHigh(high + 5)

@@ -9,7 +9,7 @@ import TaskCompleted from './TaskCompleted'
 import FriendAdded from './FriendAdded'
 //import InfiniteScroll from 'react-infinite-scroll-component';
 import { refreshFeed } from '../../../thunks/feedThunk'
-import InfiniteScroll from 'react-infinite-scroller';
+import Blog from './Blog'
 
 const FeedList = ({ feed, dispatch }) => {
     const renderFeed = () => {
@@ -45,11 +45,15 @@ const FeedList = ({ feed, dispatch }) => {
                     <FriendAdded key={index} feedItem={feedItem} />
                 )
             }
+            else if (feedItem.displayType === 'blog') {
+                return (
+                    <Blog key={index} feedItem={feedItem} />
+                )
+            }
 
             return <div key={index}>{feedItem.generalDescription}</div>
         })
     }
-
 
     const fetchMoreData = async () => {
         await dispatch(refreshFeed(20))
@@ -58,12 +62,15 @@ const FeedList = ({ feed, dispatch }) => {
 
     return (
         <div className="feed-list">
+
+
             <h2
                 className='feed-list__header'
                 style={{
                     fontSize: '18px', backgroundColor: '#f9f9f9'
                 }}
             >Recent Updates</h2>
+
             <div className='feed-list__body'>
                 {renderFeed()}
             </div>

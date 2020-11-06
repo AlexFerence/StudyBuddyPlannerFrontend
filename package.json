@@ -46,6 +46,7 @@
   "react-router-sitemap": "^1.2.0",
   "react-scripts": "^3.4.3",
   "react-select": "^3.1.0",
+  "react-tiny-link": "^3.6.0",
   "redux": "^4.0.5",
   "redux-devtools-extension": "^2.13.8",
   "redux-persist": "^6.0.0",

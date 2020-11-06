@@ -32,6 +32,7 @@ import { reAuthenticate, refreshUser } from './thunks/profileThunk'
 import Modal from 'react-modal'
 import PaymentModal from './components/shared/PaymentModal'
 import CalendarDetailed from './components/premiumDetailedPage/CalendarDetailed'
+import { getSuggestedFriends } from './thunks/friendThunk';
 
 const Dashboard = Loadable({
   loader: () => import('./components/Dashboard'),
@@ -131,6 +132,8 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
       dispatch(loadFiveCharts())
       dispatch(loadSchools())
       dispatch(loadFaculties())
+      dispatch(getSuggestedFriends())
+
 
       // refresh token
       const now = moment()

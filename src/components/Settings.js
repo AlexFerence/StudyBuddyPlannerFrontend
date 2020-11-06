@@ -16,6 +16,10 @@ import AdminFacultiesPie from './admin-components/AdminFacultiesPie'
 import { Redirect } from 'react-router-dom'
 import AdminBar from './admin-components/AdminBar'
 import PaymentModal from './payment/PaymentModal'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const style = {
     option: (base, state) => ({
@@ -29,6 +33,8 @@ const style = {
 
 const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, token,
     id, history, profile, schools, faculties, width }) => {
+
+    const [pub, setPub] = useState(profile.feedPrivacy ? 'true' : 'false')
 
     const [fname, setfname] = useState(firstName)
     const [lname, setlname] = useState(lastName)
@@ -71,7 +77,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     email: email,
                     password,
                     schoolId: school.value,
-                    facultyId: faculty.value
+                    facultyId: faculty.value,
+                    feedPrivacy: pub === 'true' ? 1 : 0
                 }, {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -200,6 +207,21 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                         },
                     })}
                 />
+                <label className="inpLabel"
+                    style={{ marginBottom: '5px' }}
+                >Feed Privacy:</label>
+                <FormControl component="fieldset">
+                    <RadioGroup row className="top-five__title-container__radio-container"
+                        onChange={(e) => {
+                            setPub(e.target.value)
+                            console.log(e.target.value)
+                        }}
+                        value={pub}
+                    >
+                        <FormControlLabel style={{ marginRight: '0px', width: '100px' }} value='true' control={<Radio color="default" size="small" />} label="Private" />
+                        <FormControlLabel style={{ marginRight: '0px', width: '100px' }} value='false' control={<Radio color="default" size="small" />} label="Public" />
+                    </RadioGroup>
+                </FormControl>
 
                 <div style={{ height: '10px' }} />
                 <button style={{ marginLeft: '0px' }} className="but">Update Profile</button>
