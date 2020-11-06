@@ -57,7 +57,7 @@ const FeedList = ({ feed, dispatch }) => {
     }
 
     const fetchMoreData = async () => {
-        await dispatch(refreshFeed(feed.length + 10))
+        await dispatch(refreshFeed(feed.length + 30))
         console.log('Should fetch more data')
     }
 
@@ -73,13 +73,13 @@ const FeedList = ({ feed, dispatch }) => {
             >Recent Updates</h2>
 
             <div className='feed-list__body'>
-            <InfiniteScroll
-                dataLength={feed.length}
-                scrollThreshold={0.8}
-                next={fetchMoreData}
-                hasMore={true}
-                    >
-                {renderFeed()}
+                <InfiniteScroll
+                    dataLength={feed.length}
+                    scrollThreshold={0.8}
+                    next={fetchMoreData}
+                    hasMore={true}
+                >
+                    {renderFeed()}
                 </InfiniteScroll>
             </div>
         </div>

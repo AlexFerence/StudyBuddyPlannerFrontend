@@ -20,6 +20,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import { refreshUser } from '../thunks/profileThunk'
 
 const style = {
     option: (base, state) => ({
@@ -94,6 +95,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 ...profile,
                 ...res.data
             }))
+            dispatch(refreshUser())
             swal({
                 icon: 'success',
                 title: 'Profile Updated'
