@@ -65,42 +65,7 @@ const FeedList = ({ feed, dispatch }) => {
                 }}
             >Recent Updates</h2>
             <div className='feed-list__body'>
-
-                {feed.map((feedItem, index) => {
-                    if (feedItem.displayType === 'tasksession') {
-                        return (
-                            <TaskSession key={index} feedItem={feedItem} />
-                        )
-                    }
-                    else if (feedItem.displayType === 'streak' ||
-                        feedItem.displayType === 'streak5') {
-                        return (
-                            <StreakLarge key={index} feedItem={feedItem} />
-                        )
-                    }
-                    else if (feedItem.displayType === 'taskcompleted') {
-                        return (
-                            <TaskCompleted key={index} feedItem={feedItem} />
-                        )
-                    }
-                    else if (feedItem.displayType === 'fiveHoursSpent') {
-                        return (
-                            <FiveHoursSpent key={index} feedItem={feedItem} />
-                        )
-                    }
-                    else if (feedItem.displayType === 'bestday') {
-                        return (
-                            <BestDay key={index} feedItem={feedItem} />
-                        )
-                    }
-                    else if (feedItem.displayType === 'friendAccept') {
-                        return (
-                            <FriendAdded key={index} feedItem={feedItem} />
-                        )
-                    }
-
-                    return <div key={index}>{feedItem.generalDescription}</div>
-                })}
+                {renderFeed()}
             </div>
         </div>
     )

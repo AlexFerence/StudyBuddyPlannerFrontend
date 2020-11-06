@@ -38,7 +38,7 @@ const DetailedViewSelectRow = ({ subjectSelect, taskTypeSelect, completedTasks, 
 
     return (
         <div className="detailed-view__select-row">
-            <Link to='/premium' className="detailed-view__select-row__back">
+            <Link to='/feed' className="detailed-view__select-row__back">
                 <FiArrowLeft />Back
             </Link>
             <div>Filter by:</div>

@@ -196,7 +196,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
         <Route path='/subjects'>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <SubjectsPage />}
         </Route>
-        <Route path='/premium' exact>
+        <Route path='/feed' exact>
           {moment().isAfter(moment(tokenExpiry)) ? <Redirect to='/' /> : <Premium />}
         </Route>
         <Route path='/premium/detailed'>
