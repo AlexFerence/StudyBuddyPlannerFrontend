@@ -7,7 +7,6 @@ import FiveHoursSpent from './FiveHoursSpent'
 import StreakLarge from './StreakLarge'
 import TaskCompleted from './TaskCompleted'
 import FriendAdded from './FriendAdded'
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { refreshFeed } from '../../../thunks/feedThunk'
 import Blog from './Blog'
 
@@ -73,14 +72,7 @@ const FeedList = ({ feed, dispatch }) => {
             >Recent Updates</h2>
 
             <div className='feed-list__body'>
-                <InfiniteScroll
-                    dataLength={feed.length}
-                    scrollThreshold={0.8}
-                    next={fetchMoreData}
-                    hasMore={true}
-                >
                     {renderFeed()}
-                </InfiniteScroll>
             </div>
         </div>
     )
