@@ -67,7 +67,7 @@ const Premium = ({ email, width, dispatch }) => {
         </React.Fragment>
     )
     if (
-        premiumUsers.indexOf(email) !== -1
+        true
     ) {
         return (
             <div className="premium" style={(width < 1000) ?
@@ -90,11 +90,6 @@ const Premium = ({ email, width, dispatch }) => {
                     </Col>
                 </div>
             </div>
-        )
-    }
-    else {
-        return (
-            <Redirect to="/dashboard" />
         )
     }
 
