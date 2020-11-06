@@ -9,6 +9,7 @@ $list-spacing: 25px;
 
 .premium-col {
  flex: 1;
+ overflow-y: auto;
  height: 100%;
 }
 
