@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import echarts from 'echarts'
 import moment from 'moment'
 
-const LandingBarChart = ({ dispatch, githubCalendarData, semesters }) => {
+const LandingBarChart = ({ dispatch, githubCalendarData, semesters = [] }) => {
 
     const currentSemester = semesters.find((semester) => semester.active === 1)
 

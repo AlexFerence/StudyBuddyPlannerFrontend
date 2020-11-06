@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
 
-const TaskCompleted = ({ feedItem, friends, yourId }) => {
-    const wordArray = feedItem.generalDescription.split(' ')
-    const numValue = wordArray.find((num) => parseInt(num) > 0)
+const TaskCompleted = ({ feedItem, friends = [], yourId }) => {
+    const wordArray = feedItem.generalDescription.split(' ') || []
+    const numValue = wordArray.find((num) => parseInt(num) > 0) || []
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 
     console.log(wordArray)

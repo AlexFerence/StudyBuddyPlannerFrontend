@@ -1,16 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
-import { BsStopwatchFill } from 'react-icons/bs'
+import { FaUserAlt } from 'react-icons/fa'
 import { TiStopwatch } from 'react-icons/ti'
 
-const TaskCompleted = ({ feedItem, friends, yourId }) => {
-    const wordArray = feedItem.generalDescription.split(' ')
+const TaskCompleted = ({ feedItem, friends = [], yourId }) => {
+    const wordArray = feedItem.generalDescription.split(' ') || []
     const numValue = wordArray.find((num) => parseInt(num) > 0)
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 
     const getFriendInitials = (name) => {
-        const friend = friends.find((f) => f.id === feedItem.userId)
+        const friend = friends.find((f) => f.id === feedItem.userId) || []
         if (name && friend && friend.firstName && friend.lastName) {
             return (
                 <span style={{ fontWeight: '600' }}>{friend.firstName + ' ' + friend.lastName}</span>

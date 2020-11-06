@@ -65,9 +65,7 @@ const Premium = ({ email, width, dispatch }) => {
                 </div>
             </Col>
         </React.Fragment>
-
     )
-
     if (
         premiumUsers.indexOf(email) !== -1
     ) {
@@ -90,8 +88,6 @@ const Premium = ({ email, width, dispatch }) => {
                             <SuggestedFriends />
                         </div>
                     </Col>
-
-
                 </div>
             </div>
         )

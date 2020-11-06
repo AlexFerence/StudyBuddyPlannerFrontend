@@ -5,7 +5,7 @@ import { RiTimerFlashLine } from 'react-icons/ri'
 
 const FiveHoursSpent = ({ feedItem, friends, yourId }) => {
     const wordArray = feedItem.generalDescription.split(' ')
-    const numValue = wordArray.find((num) => parseInt(num) > 0)
+    const numValue = wordArray.find((num) => parseInt(num) > 0) || []
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 
     const getFriendInitials = (name) => {

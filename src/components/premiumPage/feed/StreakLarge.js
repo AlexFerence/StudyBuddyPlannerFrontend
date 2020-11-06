@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { FaUserAlt, FaMountain, FaCheck } from 'react-icons/fa'
 import { AiFillFire } from 'react-icons/ai'
 
-const StreakLarge = ({ feedItem, friends, yourId }) => {
-    const wordArray = feedItem.generalDescription.split(' ')
+const StreakLarge = ({ feedItem, friends = [], yourId }) => {
+    const wordArray = feedItem.generalDescription.split(' ') || []
     const numValue = wordArray.find((num) => parseInt(num) > 0)
     const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
 

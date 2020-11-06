@@ -1,12 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FaUserAlt, FaMountain, FaCheck, FaUserFriends } from 'react-icons/fa'
-import { RiTimerFlashLine } from 'react-icons/ri'
+import { FaUserAlt, FaUserFriends } from 'react-icons/fa'
 
 const FiveHoursSpent = ({ feedItem, friends, yourId }) => {
-    const wordArray = feedItem.generalDescription.split(' ')
-    const shortDesc = feedItem.generalDescription.split(' ').slice(2).join(' ');
-
     const getFriendInitials = (name) => {
         const friend = friends.find((f) => f.id === feedItem.userId)
         if (name && friend && friend.firstName && friend.lastName) {
