@@ -4,6 +4,7 @@ import { setProfile, update, modifyProfile } from '../actions/profileActions'
 import { loadFiveCharts } from './chartThunk'
 import { realoadClassesThunk } from './subjectThunk'
 import { loadTasks } from './taskThunk'
+import { getSuggestedFriends } from './friendThunk'
 
 export const loginThunk = ({ email, password }) => async (dispatch, getState) => {
     try {
@@ -28,6 +29,7 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
             dispatch(loadFiveCharts());
             dispatch(loadTasks())
             dispatch(realoadClassesThunk())
+            dispatch(getSuggestedFriends())
         }
         return (res.status)
     } catch (e) {
@@ -91,6 +93,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
                     isAuth: false
                 }))
                 await dispatch(refreshUser());
+                await dispatch(getSuggestedFriends())
             }
             return res.status
         }
