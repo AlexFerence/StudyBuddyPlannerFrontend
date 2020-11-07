@@ -4,7 +4,7 @@ import SubjectButton from './SubjectButton'
 import { setCurrentSubject } from '../../../actions/currentSubjectActions'
 import SemesterDropdown from './SemesterDropdown'
 
-const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters = [] }) => {
+const ListSubjects = ({ subjects, setDisplayMode, openAddModal, dispatch, semesters = [] }) => {
     const handleSelectedSubject = (id) => {
         setDisplayMode('display')
         const selectedSubject = subjects.find((subject) => subject.id === id)
@@ -13,7 +13,7 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters = [] }) =>
         }
     }
     const handleOpenAddModal = () => {
-        setDisplayMode('adding')
+        openAddModal()
     }
 
     return (

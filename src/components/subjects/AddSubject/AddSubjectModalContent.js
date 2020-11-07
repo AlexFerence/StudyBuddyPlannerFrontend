@@ -101,13 +101,17 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
                                 }
                                 }
                             ></input>
-                            <label className="inpLabel">Professor</label>
-                            <input
+                            {false &&
+                                <label className="inpLabel">Professor</label>
+                            }
+
+                            {false && <input
                                 className="inp"
                                 type="text"
                                 value={professor}
                                 onChange={(e) => setProfessor(e.target.value)}
-                            ></input>
+                            ></input>}
+
                         </Col>
                         <Col className="circle">
                             <CirclePicker

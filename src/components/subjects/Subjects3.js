@@ -17,6 +17,7 @@ import { useHistory } from 'react-router-dom'
 import addModalStyles from '../shared/AddModalStyles'
 //import modalStyles from '../shared / ModalStyles'
 import modalStylesCompressed from '../shared/ModalStylesCompressed'
+import { FaLessThanEqual } from 'react-icons/fa'
 
 const customStyles = {
     content: {
@@ -54,6 +55,7 @@ const TOUR_STEPS = [
 
 const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) => {
     // controls the display of the view on the right
+    const [addSubjectOpen, setAddSubjectOpen] = useState(false)
     const [displayMode, setDisplayMode] = useState('')
     var [run, setRun] = useState(true);
     var [stepIndex, setStepIndex] = useState(0)
@@ -71,12 +73,10 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     const turnOnEditing = () => setDisplayMode('editing')
 
     const closeAddModal = () => {
-        if (currentSubject?.id) {
-            setDisplayMode('display')
-        }
-        else {
-            setDisplayMode('')
-        }
+        setAddSubjectOpen(false)
+    }
+    const openAddModal = () => {
+        setAddSubjectOpen(true)
     }
 
     const renderDisplay = () => {
@@ -124,6 +124,14 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
         <Row className="subjects" style={(width < 1000) ? { paddingRight: '0px' } : {
             border: '0px solid blue', paddingRight: '300px'
         }}>
+            <Modal
+                isOpen={addSubjectOpen}
+                onRequestClose={closeAddModal}
+                style={width > 999 ? addModalStyles : modalStylesCompressed}
+                contentLabel="Add Subject Modal"
+            >
+                <AddSubjectModalContent closeAddModal={closeAddModal} />
+            </Modal>
             <Joyride steps={TOUR_STEPS}
                 continuous={true} showSkipButton={true}
                 callback={handleJoyrideCallback}
@@ -138,7 +146,7 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
                 }}
             />
             <Col style={{ padding: '0px' }} xs={12} s={12} md={12} lg={12} className="scroller main-left">
-                <ListSubjects setDisplayMode={setDisplayMode} />
+                <ListSubjects setDisplayMode={setDisplayMode} openAddModal={openAddModal} />
             </Col>
             { false && <Col style={{ padding: '0px' }} xs={12} s={12} md={6} lg={6} className="display">
                 {renderDisplay()}
@@ -157,10 +165,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Subjects3)
-
-// <Modal
-//                 isOpen={displayMode === 'adding'}
-//                 onRequestClose={closeAddModal}
-//                 style={width > 999 ? addModalStyles : modalStylesCompressed}
-//                 contentLabel="Add Subject Modal"
-//             >

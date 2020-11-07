@@ -36,9 +36,6 @@ const ListSubjects = ({ subjects, setDisplayMode, dispatch, semesters = [] }) =>
                     })
                 }
             </div>
-
-
-
         </div>
     )
 }
