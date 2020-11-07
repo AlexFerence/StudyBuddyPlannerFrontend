@@ -36,7 +36,7 @@ const AddSemesterModalContent = ({ closeModal, dispatch, semesters, sem }) => {
     }
 
     return (
-        <ModalContent closeModal={closeModal} title="Add Semester">
+        <ModalContent closeModal={closeModal} title="Edit Semester">
             <div className="add-semester-modal">
                 <div className="inpLabel">Title</div>
                 <input

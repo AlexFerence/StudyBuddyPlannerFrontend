@@ -34,7 +34,10 @@ const EditSubjectTile = ({ subject, dispatch, id, setDisplayMode, turnOffEditing
 
     const handleTurnOffEditing = () => {
         turnOffEditing()
-        setNewChanges({ ...subject })
+        setTimeout(() => {
+            setNewChanges({ ...subject })
+        }, 500)
+
     }
 
     return (
