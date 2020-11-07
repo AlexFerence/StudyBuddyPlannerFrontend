@@ -48,8 +48,6 @@ const TOUR_STEPS = [
         },
         disableOverlay: true
     },
-
-
 ];
 
 
@@ -114,7 +112,6 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
         else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             // Need to set our running state to false, so we can restart if we click start again.
             setRun(false)
-
             history.push("/tasks")
             //turn off tour locally
             dispatch(modifyProfile({ subjectTour: 1 }))
@@ -140,12 +137,12 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
                     },
                 }}
             />
-            <Col style={{ padding: '0px' }} xs={12} s={12} md={6} lg={6} className="scroller main-left">
+            <Col style={{ padding: '0px' }} xs={12} s={12} md={12} lg={12} className="scroller main-left">
                 <ListSubjects setDisplayMode={setDisplayMode} />
             </Col>
-            <Col style={{ padding: '0px' }} xs={12} s={12} md={6} lg={6} className="display">
+            { false && <Col style={{ padding: '0px' }} xs={12} s={12} md={6} lg={6} className="display">
                 {renderDisplay()}
-            </Col>
+            </Col>}
         </Row>
     )
 }

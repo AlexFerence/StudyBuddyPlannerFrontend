@@ -89,7 +89,7 @@ h3 {
 .subjects .display {
  background-color: $light-grey;
  width: 55vw;
- height: calc(100vh - #{$navbar-height} - 25px);
+ //height: calc(100vh - #{$navbar-height} - 25px);
  float: left;
  padding: 0px;
 }

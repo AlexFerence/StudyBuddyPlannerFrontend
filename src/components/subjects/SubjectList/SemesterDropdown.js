@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { FaAngleDown, FaAngleUp, FaEdit } from 'react-icons/fa'
 import { connect } from 'react-redux'
-import SubjectButton from './SubjectButton'
+//import SubjectButton from './SubjectButton'
 import { AnimatedList } from 'react-animated-list';
 import AddSemesterButton from './AddSemesterButton'
 import EditSemesterButton from './EditSemesterButton'
+import SubjectTile from './SubjectTile'
 
 const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) => {
     const [showSubjects, setShowSubjects] = useState(true)
@@ -50,7 +51,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
                             if (item.semesterId === sem.id)
                                 return (
                                     <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
-                                        <SubjectButton item={item} />
+                                        <SubjectTile subject={item} />
                                     </div>
                                 )
                         })}

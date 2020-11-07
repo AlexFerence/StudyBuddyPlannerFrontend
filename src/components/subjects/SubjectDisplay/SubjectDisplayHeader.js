@@ -6,7 +6,8 @@ import axios from 'axios'
 import url from '../../../environment/url'
 import { deleteSubject } from '../../../actions/subjectActions'
 
-const SubjectDisplay = ({ currentSubject, turnOnEditing, token, dispatch, setDisplayMode }) => {
+const SubjectDisplay = ({ subject, currentSubject, turnOnEditing, token, dispatch, setDisplayMode }) => {
+
     const handleTurnOnEditing = () => {
         turnOnEditing()
     }
@@ -50,8 +51,8 @@ const SubjectDisplay = ({ currentSubject, turnOnEditing, token, dispatch, setDis
     }
 
     return (
-        <div className="topBar" style={{ backgroundColor: currentSubject.color }} >
-            <div className="idTitle">{currentSubject.name} {currentSubject.classCode}</div>
+        <div className="topBar" style={{ backgroundColor: subject.color }} >
+            <div className="idTitle">{subject.name} {subject.classCode}</div>
             <div>
                 <button
                     className="icon"
@@ -61,7 +62,7 @@ const SubjectDisplay = ({ currentSubject, turnOnEditing, token, dispatch, setDis
                 <button
                     className="icon"
                     id="trash"
-                    onClick={() => callDelete(currentSubject.id)}
+                    onClick={() => callDelete(subject.id)}
                 ><FaTrashAlt /></button>
             </div>
         </div>

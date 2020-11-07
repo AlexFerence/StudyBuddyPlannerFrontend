@@ -5,7 +5,6 @@ import SubjectDisplayHeader from './SubjectDisplayHeader'
 import { FaCreditCard, FaTag } from 'react-icons/fa'
 import { IoMdSchool } from 'react-icons/io'
 import { Row, Col } from 'react-bootstrap'
-import { loadSubjectBreakdown } from '../../../thunks/chartThunk'
 
 const SubjectDisplayMain = ({ currentSubject, setDisplayMode, charts, turnOnEditing }) => {
     return (

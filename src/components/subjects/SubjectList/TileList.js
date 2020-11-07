@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import SubjectButton from './SubjectButton'
 import { setCurrentSubject } from '../../../actions/currentSubjectActions'
 import SemesterDropdown from './SemesterDropdown'
 
