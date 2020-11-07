@@ -34,6 +34,7 @@ import PaymentModal from './components/shared/PaymentModal'
 import CalendarDetailed from './components/premiumDetailedPage/CalendarDetailed'
 import { getSuggestedFriends } from './thunks/friendThunk';
 
+
 const Dashboard = Loadable({
   loader: () => import('./components/Dashboard'),
   loading: Loader,
@@ -58,6 +59,11 @@ const SignUpSecondary = Loadable({
   loader: () => import('./components/SignUpSecondary'),
   loading: FullPageLoader,
 });
+const SignUpThird = Loadable({
+  loader: () => import('./components/SignupThird/SignupThird'),
+  loading: FullPageLoader,
+})
+
 
 const PrivatePolicy = Loadable({
   loader: () => import('./components/PrivatePolicy'),
