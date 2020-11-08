@@ -10,7 +10,7 @@ import { getSuggestedFriends } from '../../../thunks/friendThunk';
 import { useHistory } from 'react-router-dom'
 import { modifyProfile } from '../../../actions/profileActions';
 
-const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
+const SignupThirdContent = ({ dispatch, closeAddModal }) => {
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')
     const [professor, setProfessor] = useState('')
@@ -31,8 +31,6 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         dispatch(addSubjectThunk({ subTitle, classCode, description, professor, credits, color }))
-        //closeAddModal()
-        // clear all the input fields
         setProfessor('')
         setSubTitle('')
         setClassCode('')
@@ -102,8 +100,7 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
                                     if (!isNaN(e.target.value) && e.target.value < 10) {
                                         setCredits(e.target.value)
                                     }
-                                }
-                                }
+                                }}
                             ></input>
                             {false &&
                                 <label className="inpLabel">Professor</label>
@@ -138,8 +135,7 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
                     </div>
 
                     <SuggestedFriends />
-
-                    <button className="but">Submit</button>
+                    <button style={{ width: '100%' }} className="btn">Get Started</button>
                 </form>
             </div>
         </div>
@@ -148,4 +144,4 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
     )
 }
 
-export default connect()(AddSubjectModalContent)
+export default connect()(SignupThirdContent)

@@ -26,24 +26,24 @@ const TOUR_STEPS = [
         disableBeacon: true,
         disableOverlay: true
     },
-    {
-        target: ".selectClass",
-        content:
-            "Filter by due date and subject",
-        locale: {
-            last: 'Next'
-        },
-        disableOverlay: true
-    },
-    {
-        target: ".completedLabel",
-        content:
-            "Filter by completed and non completed tasks.",
-        locale: {
-            last: 'Next'
-        },
-        disableOverlay: true
-    },
+    // {
+    //     target: ".selectClass",
+    //     content:
+    //         "Filter by due date and subject",
+    //     locale: {
+    //         last: 'Next'
+    //     },
+    //     disableOverlay: true
+    // },
+    // {
+    //     target: ".completedLabel",
+    //     content:
+    //         "Filter by completed and non completed tasks.",
+    //     locale: {
+    //         last: 'Next'
+    //     },
+    //     disableOverlay: true
+    // },
     {
         target: "#dashboard",
         content:

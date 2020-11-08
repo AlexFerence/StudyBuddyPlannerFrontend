@@ -55,16 +55,16 @@ const TOUR_STEPS = [
   //   disableBeacon: true,
   //   disableOverlay: true
   // },
-  {
-    target: "#row1",
-    content:
-      "And all your personal analytics are below for you to explore.",
-    locale: {
-      last: 'Next'
-    },
-    disableBeacon: true,
-    disableOverlay: true
-  },
+  // {
+  //   target: "#row1",
+  //   content:
+  //     "And all your personal analytics are below for you to explore.",
+  //   locale: {
+  //     last: 'Next'
+  //   },
+  //   disableBeacon: true,
+  //   disableOverlay: true
+  // },
 
 
 ];

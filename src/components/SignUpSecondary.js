@@ -93,6 +93,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
         facultytitle: faculty.label,
         isAuth: false,
       }));
+
       history.push('/signupThird')
 
       // else {
