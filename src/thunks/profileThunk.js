@@ -6,6 +6,8 @@ import { realoadClassesThunk } from './subjectThunk'
 import { loadTasks } from './taskThunk'
 import { getSuggestedFriends } from './friendThunk'
 
+//dispatch(getSuggestedFriends())
+
 export const loginThunk = ({ email, password }) => async (dispatch, getState) => {
     try {
         const res = await axios.post(url + '/api/userprofiles/authenticate',
@@ -26,10 +28,10 @@ export const loginThunk = ({ email, password }) => async (dispatch, getState) =>
                 isAuth: true,
             }))
             await dispatch(refreshUser());
-            dispatch(loadFiveCharts());
-            dispatch(loadTasks())
-            dispatch(realoadClassesThunk())
-            dispatch(getSuggestedFriends())
+            await dispatch(loadFiveCharts());
+            await dispatch(loadTasks());
+            await dispatch(realoadClassesThunk());
+            await dispatch(getSuggestedFriends());
         }
         return (res.status)
     } catch (e) {
@@ -93,7 +95,7 @@ export const signupThunk = ({ email, password, firstName, lastName }) => async (
                     isAuth: false
                 }))
                 await dispatch(refreshUser());
-                await dispatch(getSuggestedFriends())
+
             }
             return res.status
         }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { updateProfileThunk } from '../thunks/profileThunk'
+import { refreshUser, updateProfileThunk } from '../thunks/profileThunk'
 import { makeSemesterThunk } from '../thunks/semesterThunk'
 import Select from 'react-select'
 import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
 import { modifyProfile } from '../actions/profileActions'
-
+import { getSuggestedFriends } from '../thunks/friendThunk'
 
 var options = [
   { label: 'Year 1', value: 1 },
@@ -94,13 +94,10 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
         isAuth: false,
       }));
 
-      history.push('/signupThird')
+      dispatch(refreshUser())
+      dispatch(getSuggestedFriends())
 
-      // else {
-      //   dispatch(makeSemesterThunk(gpa || 0, 0))
-      //   dispatch(modifyProfile({ schoolTitle: school.label, facultytitle: faculty.label, isAuth: true }));
-      //   history.push('/subjects')
-      // }
+      history.push('/signupThird')
     }
   }
 
@@ -169,7 +166,6 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
 
           },
         })}
-      //styles={style}
       />
       <label className="inpLabel" >Major <span style={{ color: 'grey' }}>(optional)</span></label>
       <input className="inp" onChange={onChangeMajor} value={major} />
