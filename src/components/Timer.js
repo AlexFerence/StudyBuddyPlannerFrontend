@@ -198,14 +198,18 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
 
                     <div>
                         {!isRunning &&
-                            <button disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>
+                            <button id="play-button"
+                                style={{ backgroundColor: currentTask.color || 'grey' }}
+                                disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>
                         }
                         {!isRunning && paused &&
-                            <button className="but" onClick={resetCount}><IoMdClose /></button>
+                            <button style={{ backgroundColor: currentTask.color || 'grey' }}
+                                id="play-button" className="but" onClick={resetCount}><IoMdClose /></button>
 
                         }
                     </div>
-                    {isRunning && <button className="but" onClick={pauseTimer}><IoMdPause /></button>}
+                    {isRunning && <button style={{ backgroundColor: currentTask.color || 'grey' }}
+                        id="play-button" className="but" onClick={pauseTimer}><IoMdPause /></button>}
 
 
 

@@ -28,7 +28,7 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
 
   useEffect(() => {
     if (profile.email && profile.isAuth) {
-      history.push('/dashboard')
+      history.push('/subjects')
     }
     dispatch(loadSchools())
     dispatch(loadFaculties())
@@ -91,9 +91,9 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
       dispatch(modifyProfile({
         schoolTitle: school.label,
         facultytitle: faculty.label,
-        isAuth: true,
+        isAuth: false,
       }));
-      history.push('/subjects')
+      history.push('/signupThird')
 
       // else {
       //   dispatch(makeSemesterThunk(gpa || 0, 0))

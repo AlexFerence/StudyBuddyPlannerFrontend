@@ -125,8 +125,8 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
     if (profile.isAuth) {
         return (
             <div style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }}>
-                <Navbar style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }} fixed="top" expand="true">
-                    <Navbar.Brand className="title" href="/"> <img src={icon} style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" />StudyBuddy</Navbar.Brand>
+                <Navbar className="navbar-container" style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }} fixed="top" expand="true">
+                    <Navbar.Brand style={{ color: 'black' }} className="title" href="/"> <img src='/blackSB.png' style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" /><span style={{ paddingTop: '5px' }}>StudyBuddy</span></Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
                         <Nav className="mr-auto">
@@ -139,7 +139,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     overlay={renderTooltipDash}
                                 >
 
-                                    <NavLink activeStyle={{ color: 'white' }} style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
+                                    <NavLink activeStyle={{ color: 'black' }} style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
                                 </OverlayTrigger>
 
                                 :
@@ -170,7 +170,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipCompare}
                                 >
-                                    <NavLink activeStyle={{ color: 'white' }} id="dashboard"
+                                    <NavLink activeStyle={{ color: 'black' }} id="dashboard"
                                         style={{ padding: 5 }} to='/feed'>
                                         <BsBellFill />
                                     </NavLink>
@@ -202,7 +202,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     overlay={renderTooltipTask}
                                 >
 
-                                    <NavLink activeStyle={{ color: 'white' }} id="tasks" style={{ padding: 5 }}
+                                    <NavLink activeStyle={{ color: 'black' }} id="tasks" style={{ padding: 5 }}
                                         to="/tasks"><FaCheckSquare />
                                     </NavLink>
 
@@ -229,7 +229,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipSubj}
                                 >
-                                    <NavLink activeStyle={{ color: 'white' }} id="subjects" style={{ padding: 5 }}
+                                    <NavLink activeStyle={{ color: 'black' }} id="subjects" style={{ padding: 5 }}
                                         to="/subjects"><FaList />
                                     </NavLink>
                                 </OverlayTrigger>
@@ -255,7 +255,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipSet}
                                 >
-                                    <NavLink activeStyle={{ color: 'white' }} id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
+                                    <NavLink activeStyle={{ color: 'black' }} id='settings' style={{ padding: 5 }} to="/settings"><FaCog />
                                     </NavLink>
                                 </OverlayTrigger>
                                 :
@@ -278,7 +278,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                     </Navbar>
                 </Navbar>
                 <Navbar expand="true" style={{ zIndex: 0, backgroundColor: '#F9F9F9', height: '66.4px' }} >
-                    <Navbar.Brand className="title" href="/" style={{ color: '#F9F9F9' }}>StudyBuddy</Navbar.Brand>
+                    <Navbar.Brand className="title" href="/dashboard" style={{ color: '#black' }}>StudyBuddy</Navbar.Brand>
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar style={{ backgroundColor: '#F9F9F9' }} >
                         <Nav style={{ backgroundColor: '#F9F9F9' }} className="mr-auto">
@@ -323,7 +323,7 @@ export default connect(mapStateToProps)(Header)
 //         delay={{ show: 250, hide: 400 }}
 //         overlay={renderTooltipCompare}
 //     >
-//         <NavLink activeStyle={{ color: 'white' }} id="dashboard"
+//         <NavLink activeStyle={{ color: 'black' }} id="dashboard"
 //             style={{ padding: 5 }} to='/premium'>
 //             <BsBellFill />
 //         </NavLink>

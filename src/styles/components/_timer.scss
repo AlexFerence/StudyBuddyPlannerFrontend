@@ -20,3 +20,16 @@
     font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 15px;
 }
+
+#play-button {
+    background-color: #2ecc71;
+    color: white;
+    border: 0px solid white;
+}
+
+#play-button:hover {
+    background-color: lighten($color: #2ecc71, $amount: 5) ;
+    color: white;
+    border: 0px solid white;
+    transition: .1s;
+}

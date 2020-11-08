@@ -1,14 +1,12 @@
 import React from 'react'
-import AddSubject from '../subjects/AddSubject/AddSubjectModalContent'
+//import AddSubject from '../subjects/AddSubject/AddSubjectModalContent'
 import SuggestedFriends from '../premiumPage/charts/SuggestedFriends'
+import AddSubject from './components/AddSubject'
 
 const SignupThird = () => {
     return (
         <div className="container SignUpSecond">
-            <label className="inpLabel">Add Your First Subject</label>
             <AddSubject />
-            <label className="inpLabel">Add Friends</label>
-            <SuggestedFriends />
         </div>
     )
 }

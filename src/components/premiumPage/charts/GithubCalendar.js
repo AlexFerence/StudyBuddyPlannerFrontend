@@ -7,7 +7,7 @@ import moment from 'moment'
 
 const LandingBarChart = ({ dispatch, githubCalendarData, semesters = [] }) => {
 
-    const currentSemester = semesters.find((semester) => semester.active === 1)
+    const currentSemester = semesters?.find((semester) => semester.active === 1)
 
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)

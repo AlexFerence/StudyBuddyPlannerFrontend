@@ -33,6 +33,7 @@ import Modal from 'react-modal'
 import PaymentModal from './components/shared/PaymentModal'
 import CalendarDetailed from './components/premiumDetailedPage/CalendarDetailed'
 import { getSuggestedFriends } from './thunks/friendThunk';
+//import SignupThird from './components/SignupThird/SignupThird';
 
 
 const Dashboard = Loadable({
@@ -59,7 +60,7 @@ const SignUpSecondary = Loadable({
   loader: () => import('./components/SignUpSecondary'),
   loading: FullPageLoader,
 });
-const SignUpThird = Loadable({
+const SignupThird = Loadable({
   loader: () => import('./components/SignupThird/SignupThird'),
   loading: FullPageLoader,
 })
@@ -188,6 +189,7 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
         <Route path='/blog' component={Blog} />
         <Route path='/signup' component={SignUp} />
         <Route path='/signUpSecondary' component={SignUpSecondary} />
+        <Route path='/signupThird' component={SignupThird} />
         <Route path='/login' exact component={LoginPage} />
         <Route path='/privatepolicy' exact component={PrivatePolicy} />
         <Route path='/resetpassword' exact component={ResetPassword} />

@@ -98,7 +98,6 @@ const FriendActivity = ({ waitingRequests, dispatch }) => {
 
             {activityShowing ? <FriendActiveList /> : <FriendPendingSearch />}
             <button className="invite-friends" onClick={copyToClipboard}>Invite Friends</button>
-
         </div>
     )
 }

@@ -1,6 +1,6 @@
 .navbar {
  color: $light;
- background-color:#2B2B2B;
+ background-color: $light-grey;
  z-index: 10;
 }
 
@@ -16,6 +16,9 @@
 
 .navbar .title {
  text-transform: none;
+ color: black;
+ display: flex;
+ align-items: center;
 }
 
 .navbar a,
@@ -25,7 +28,7 @@
 }
 
 .navbar a:hover {
- color: lighten($color: $light, $amount: 100);
+ color: $dark-grey;
 }
 
 .navbar .navbar-brand {
@@ -48,4 +51,8 @@
 
 #backgroundNav {
  background-color: $light-grey;
+}
+
+.navbar-container {
+    border-bottom: 1px solid $grey;
 }
