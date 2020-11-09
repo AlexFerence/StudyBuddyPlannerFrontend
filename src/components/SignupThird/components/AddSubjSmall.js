@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom'
 import { modifyProfile } from '../../../actions/profileActions';
 import ColorPicker from '../../shared/ColorPicker'
 
-const SignupThirdContent = ({ dispatch, closeAddModal }) => {
+const AddSubjSmall = ({ dispatch, closeAddModal }) => {
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')
     const [professor, setProfessor] = useState('')
@@ -62,7 +62,7 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
 
             </div>
             <div className="modal-main">
-                <form onSubmit={onSubmit}>
+                <form onSubmit={() => console.log('submitting')}>
                     <div>
                         <label className="inpLabel">Subject Title (eg. BIOL, MATH, PHYS)</label>
                         <input
@@ -135,9 +135,6 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
                             onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
                     </div>
-
-                    <SuggestedFriends />
-                    <button style={{ width: '100%' }} className="btn">Get Started</button>
                 </form>
             </div>
         </div>
@@ -146,4 +143,4 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
     )
 }
 
-export default connect()(SignupThirdContent)
+export default connect()(AddSubjSmall)

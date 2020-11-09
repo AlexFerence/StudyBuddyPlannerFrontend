@@ -1,0 +1,26 @@
+.color-picker {
+
+}
+
+.color-picker__button {
+    background-color: green;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.color-picker__button__circle {
+    height: 25px;
+    width: 25px;
+    border-radius: 15px;
+    background-color: $grey;
+    
+}
+
+.color-picker__container {
+    background-color: white;
+    border: 1px solid lighten($color: $grey, $amount: 12);
+    border-radius: 5px;
+    padding: 10px;
+}
