@@ -37,11 +37,6 @@ const AddSubjSmall = ({ dispatch, closeAddModal }) => {
         setClassCode('')
         setDescription('')
         setCredits(3)
-
-        dispatch(modifyProfile({
-            isAuth: true
-        }))
-        history.push('/subjects')
     }
 
     useEffect(() => {
@@ -50,21 +45,11 @@ const AddSubjSmall = ({ dispatch, closeAddModal }) => {
 
     return (
 
-        <div>
-            <div className="modal-header" style={{
-                backgroundColor: 'transparent',
-                cursor: 'pointer',
-                boxShadow: 'none',
-                border: 'none',
-                color: 'black',
-                textTransform: 'none'
-            }}><h3>Add First Subject</h3>
-
-            </div>
-            <div className="modal-main">
-                <form onSubmit={() => console.log('submitting')}>
-                    <div>
-                        <label className="inpLabel">Subject Title (eg. BIOL, MATH, PHYS)</label>
+        <div className="add-subj-sm">
+            <div>
+                <Row>
+                    <Col>
+                        <label className="inpLabel">Subject Title (eg. PHYS)</label>
                         <input
                             className="inp"
                             required
@@ -76,70 +61,40 @@ const AddSubjSmall = ({ dispatch, closeAddModal }) => {
                                 }
                             }}
                         ></input>
-                    </div>
-                    <Row>
-                        <Col>
-                            <label className="inpLabel">Class Code (ex: 202, 141)</label>
-                            <input
-                                className="inp"
-                                required
-                                type="text"
-                                value={classCode}
-                                onChange={(e) => {
-                                    if (e.target.value.length < 7) {
-                                        setClassCode(e.target.value)
-                                    }
-                                }}
-                            ></input>
-                            <label className="inpLabel">Credits</label>
-                            <input
-                                required
-                                className="inp"
-                                type="text"
-                                value={credits}
-                                onChange={(e) => {
-                                    if (!isNaN(e.target.value) && e.target.value < 10) {
-                                        setCredits(e.target.value)
-                                    }
-                                }}
-                            ></input>
-                            {false &&
-                                <label className="inpLabel">Professor</label>
-                            }
-
-                            {false && <input
-                                className="inp"
-                                type="text"
-                                value={professor}
-                                onChange={(e) => setProfessor(e.target.value)}
-                            ></input>}
-
-                        </Col>
-                        <Col className="circle">
-                            <CirclePicker
-                                width="210px"
-                                height="30px"
-                                color={color}
-                                onChangeComplete={(c) => setColor(c)}
-                                circleSpacing={14}
-                            />
-                        </Col>
-                        <ColorPicker />
-                    </Row>
-
-                    <div>
-                        <label className="inpLabel">Description</label>
-                        <textarea className="inpArea"
+                    </Col>
+                    <div style={{ width: '20px' }} />
+                    <Col>
+                        <label className="inpLabel">Class Code (ex: 202, 141)</label>
+                        <input
+                            required
+                            className="inp"
+                            type="text"
+                            value={classCode}
+                            onChange={(e) => {
+                                if (e.target.value.length < 7) {
+                                    setClassCode(e.target.value)
+                                }
+                            }}
+                        ></input>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <label className="inpLabel">Class Summary eg: Intro to chem</label>
+                        <input
+                            required
+                            className="inp"
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                        ></textarea>
-                    </div>
-                </form>
+                        ></input>
+                    </Col>
+                </Row>
             </div>
+
+
+
         </div>
-
-
     )
 }
 

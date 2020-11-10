@@ -33,7 +33,7 @@ const ColorPicker = () => {
     }
 
     return (
-        <div className="color-picker">
+        <div className="">
             <button className="color-picker__button" onClick={handleClick}>
                 <div className="color-picker__button__circle" style={{ backgroundColor: color }}></div>
                 <GrDown />

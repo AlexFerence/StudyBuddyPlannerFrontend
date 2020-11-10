@@ -3,19 +3,20 @@
 }
 
 .color-picker__button {
-    background-color: green;
+    background-color: white;
+    border: 1px solid lighten($color: $grey, $amount: 12);
     border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 7px 15px;
 }
 
 .color-picker__button__circle {
-    height: 25px;
-    width: 25px;
-    border-radius: 15px;
+    height: 35px;
+    width: 35px;
+    border-radius: 35px;
     background-color: $grey;
-    
 }
 
 .color-picker__container {
