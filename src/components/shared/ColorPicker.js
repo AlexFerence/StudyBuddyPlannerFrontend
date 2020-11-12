@@ -2,14 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { CirclePicker, ChromePicker } from 'react-color'
 import { GrDown } from 'react-icons/gr'
 
-const ColorPicker = () => {
+const ColorPicker = ({ color = '#bbbbbb', setColor }) => {
 
     const [displayColorPicker, setDisplayColorPicker] = useState(false)
-    const [color, setColor] = useState('#bbbbbb')
-
-    useEffect(() => {
-
-    }, [])
+    //const [color, setColor] = useState('#bbbbbb')
 
 
     const handleClick = () => {
@@ -35,7 +31,8 @@ const ColorPicker = () => {
     return (
         <div className="color-picker">
             <button className="color-picker__button" onClick={handleClick}>
-                <div className="color-picker__button__circle" style={{ backgroundColor: color }}></div>
+                <div className="color-picker__button__circle" style={{ backgroundColor: color.hex }}></div>
+                <div style={{ width: '10px' }} />
                 <GrDown />
             </button>
             { displayColorPicker ? <div style={popover}>
@@ -46,8 +43,7 @@ const ColorPicker = () => {
                         height="30px"
                         color={color}
                         onChangeComplete={(c) => {
-                            console.log(c.hex)
-                            setColor(c.hex)
+                            setColor(c)
                         }}
                         circleSpacing={14}
                     />

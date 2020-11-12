@@ -15,14 +15,11 @@ import premiumStatsReducer from '../reducers/premiumStatsReducer'
 import currentSubjectReducer from '../reducers/currentSubjectReducer'
 import loadingReducer from '../reducers/loadingReducer'
 import feedReducer from '../reducers/feedReducer'
-
-
+import signupThirdReducer from '../reducers/signupThirdReducer'
 import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-
 import { DESTROY_SESSION } from '../actions/profileActions'
-
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 
@@ -42,7 +39,8 @@ const reducers = {
     premiumStats: premiumStatsReducer,
     currentSubject: currentSubjectReducer,
     loading: loadingReducer,
-    feed: feedReducer
+    feed: feedReducer,
+    signupThird: signupThirdReducer
 };
 
 const persistConfig = {
