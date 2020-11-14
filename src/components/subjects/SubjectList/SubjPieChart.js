@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import ReactEcharts from 'echarts-for-react'
 
-const SubjPieChart = ({ breakdownChart, dispatch, currentSubject, data }) => {
+const SubjPieChart = ({ breakdownChart, dispatch, currentSubject, data = [] }) => {
 
     let pieData = []
     data.forEach((item) => {
