@@ -136,9 +136,9 @@ export const submitFirstClasses = (subjId) => async (dispatch, getState) => {
     const state = getState()
     const { signupThird } = state
 
-    signupThird.forEach((subjToAdd, index) => {
+    signupThird.forEach(async (subjToAdd, index) => {
         if (subjToAdd.subTitle || subjToAdd.classCode || subjToAdd.description) {
-            dispatch(addSubjectThunk(subjToAdd))
+            await dispatch(addSubjectThunk(subjToAdd))
             dispatch(setSubjToAdd(
                 {
                     subTitle: '',
@@ -147,5 +147,6 @@ export const submitFirstClasses = (subjId) => async (dispatch, getState) => {
                 }, index)
             )
         }
+        await dispatch(realoadClassesThunk())
     })
 }
