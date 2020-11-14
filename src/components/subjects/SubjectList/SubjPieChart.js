@@ -11,9 +11,6 @@ const SubjPieChart = ({ breakdownChart, dispatch, currentSubject, data = [] }) =
             name: item.name1,
         })
     })
-    console.log('PIE DATA')
-    console.log(data)
-    console.log(pieData)
 
     return (
         <ReactEcharts

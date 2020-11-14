@@ -18,7 +18,7 @@ const SubjectTile = ({ subject, setDisplayMode, charts, turnOnEditing }) => {
     }
 
     const handleTurnOffEditing = () => {
-        console.log('stopping editing now')
+        //console.log('stopping editing now')
         setFlipped(!flipped)
     }
 

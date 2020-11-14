@@ -42,11 +42,11 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
         let count = 0
         for (var x = 0; x < list.length; x++) {
             var item = list[x]
-            console.log(lastSeen.id)
-            console.log(item.id)
-            console.log(lastSeen.id == item.id)
+            // console.log(lastSeen.id)
+            // console.log(item.id)
+            // console.log(lastSeen.id == item.id)
             if (lastSeen.id === item.id) {
-                console.log('SHOULD RETURN')
+                //console.log('SHOULD RETURN')
                 break
             }
             else {
