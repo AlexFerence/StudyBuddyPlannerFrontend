@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SubjectDisplayChart from '../SubjectDisplay/SubjectDisplayChart'
+//import SubjectDisplayChart from '../SubjectDisplay/SubjectDisplayChart'
 import { connect } from 'react-redux'
 import SubjectDisplayHeader from '../SubjectDisplay/SubjectDisplayHeader'
 import { FaCreditCard, FaTag } from 'react-icons/fa'
@@ -7,6 +7,7 @@ import { IoMdSchool } from 'react-icons/io'
 import { Row, Col } from 'react-bootstrap'
 import ReactCardFlip from 'react-card-flip'
 import EditSubjectTile from '../EditSubject/EditSubjectTile'
+import SubjPieChart from './SubjPieChart'
 
 const SubjectTile = ({ subject, setDisplayMode, charts, turnOnEditing }) => {
 
@@ -48,17 +49,16 @@ const SubjectTile = ({ subject, setDisplayMode, charts, turnOnEditing }) => {
                                         <span className="subjects__sub-text">{subject.professor}</span> <br />
                                     </div>
                                 }
-
                             </Col>
                             <Col md={6}>
-                                {charts.breakdownChart.length === 0 ?
+                                {subject.subjectBreakdown?.responseItems?.length === 0 ?
                                     <div className="noData">
                                         <div>
                                             No Data
                                 <div className="subNoData">Finish tasks to view task breakdown</div>
                                         </div>
                                     </div> :
-                                    <SubjectDisplayChart />
+                                    <SubjPieChart data={subject.subjectBreakdown?.responseItems} />
                                 }
                             </Col>
                         </Row>

@@ -94,10 +94,11 @@ export const realoadClassesThunk = () => async (dispatch, getState) => {
             }
         })
         const list = res.data
+        console.log('SUBJECTS')
+        console.log(list)
         dispatch(fillSubjects(list))
     }
     catch (e) {
-
         console.log(e)
     }
 }
