@@ -39,11 +39,11 @@ const AddSubjSmall = ({ dispatch, closeAddModal, index = 0 }) => {
                 color
             }, index)
         )
-        console.log(index)
+        //console.log(index)
     }, [subTitle, description, classCode, color])
 
     useEffect(() => {
-        console.log(subTitle)
+        //console.log(subTitle)
     }, [subTitle])
 
     return (

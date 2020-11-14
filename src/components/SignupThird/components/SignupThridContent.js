@@ -51,7 +51,6 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
                     className="add-another-subj__button"
                     onClick={addSubject}>+ Add Another Subject</button>
             </div>
-            <SuggestedFriends />
             <button
                 onClick={onSubmit}
                 style={{ width: '100%', border: '1px solid grey' }}
