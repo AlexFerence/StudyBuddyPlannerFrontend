@@ -3,6 +3,7 @@ import axios from 'axios'
 import url from '../environment/url'
 import { addSubject, fillSubjects } from '../actions/subjectActions'
 import { setSubjToAdd } from '../actions/signupThirdActions'
+import { loadTasks } from './taskThunk'
 
 export const addSubjectThunk = ({ subTitle, classCode, description, professor = '', credits = 3,
     color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
@@ -148,5 +149,6 @@ export const submitFirstClasses = (subjId) => async (dispatch, getState) => {
             )
         }
         await dispatch(realoadClassesThunk())
+        await dispatch(loadTasks())
     })
 }
