@@ -17,7 +17,7 @@ import { useHistory } from 'react-router-dom'
 import addModalStyles from '../shared/AddModalStyles'
 //import modalStyles from '../shared / ModalStyles'
 import modalStylesCompressed from '../shared/ModalStylesCompressed'
-import { FaLessThanEqual } from 'react-icons/fa'
+import { realoadClassesThunk } from '../../thunks/subjectThunk'
 
 const customStyles = {
     content: {
@@ -63,11 +63,11 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     // load new pie chart data every time current subject is changed
     useEffect(() => {
         dispatch(loadSubjectBreakdown(currentSubject.id))
-
     }, [currentSubject])
 
     useEffect(() => {
-        dispatch(refreshUser())
+        dispatch(refreshClasses)
+        dispatch(realoadClassesThunk())
     }, [])
 
     const turnOnEditing = () => setDisplayMode('editing')
