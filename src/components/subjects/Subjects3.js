@@ -66,7 +66,6 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     }, [currentSubject])
 
     useEffect(() => {
-        dispatch(refreshClasses)
         dispatch(realoadClassesThunk())
     }, [])
 
