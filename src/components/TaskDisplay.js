@@ -64,7 +64,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
         })
 
     }
-
     const handleCompleted = () => {
         if (currentTask.totalTime === "00:00:00") {
             swal({
@@ -87,8 +86,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             }
         }
     }
-
-
     const handleDeleteSession = (sessionId) => {
         swal({
             title: "Are you sure?",
@@ -111,7 +108,6 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             console.log(e)
         })
     }
-
     const returnParsedMoment = (date) => {
         var momentDay = moment(date)
         return momentDay.format("MMM D")

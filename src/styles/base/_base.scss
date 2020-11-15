@@ -220,3 +220,15 @@ ul {
  padding: 0px;
  margin: 0px;
 }
+
+#link {
+    color: $brand;
+    margin-right: 0px;
+    padding-right: 0px;
+    text-transform: none;
+    font-size: 17px;
+}
+
+#link:hover {
+   border-bottom: 1px solid $brand;
+}

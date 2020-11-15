@@ -4,7 +4,7 @@ import axios from 'axios'
 import url from '../environment/url'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
-import { loadTasks } from '../thunks/taskThunk'
+import { loadTasks, setCurrentTaskById } from '../thunks/taskThunk'
 import Select from 'react-select';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
@@ -13,8 +13,6 @@ const subjReduce = (list, item) => {
     list.push({ value: item, label: item.name + " " + item.classCode })
     return list
 }
-
-
 
 
 const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) => {
@@ -75,10 +73,14 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
                         'Content-Type': 'application/json'
                     }
                 })
-
+            console.log('adding task')
             console.log(res)
-            dispatch(loadTasks())
-            setDisplayType('')
+            await dispatch(loadTasks())
+            console.log('loading tasks')
+            await dispatch(setCurrentTaskById(res.data.id))
+            displayOn()
+            console.log('should have turned display')
+            //setDisplayType('display')
         } catch (e) {
             console.log(e)
         }

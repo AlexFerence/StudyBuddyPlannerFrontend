@@ -106,11 +106,15 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
 
 
         if (moment().isAfter(moment(profile.tokenExpiry))) {
-
             dispatch(logout())
             history.push('/')
+        }
+
+        if (currentTask.id && currentTask.subjectId && tasks.length > 0) {
+            setDisplayType('display')
 
         }
+
     }, [])
 
     const handleJoyrideCallback = data => {
