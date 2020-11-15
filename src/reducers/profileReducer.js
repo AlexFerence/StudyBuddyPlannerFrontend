@@ -32,11 +32,30 @@ const profileReducer = (state = profileReducerDefaultState, action) => {
                 email: action.email
             }
         case UPDATE:
-            return {
-                ...state,
-                ...action.updates
+            if (action.semesters === null) {
+                return {
+                    ...state,
+                    ...action.updated,
+                    semesters: state.s
+                }
             }
+            else {
+                return {
+                    ...state,
+                    ...action.updates
+                }
+
+            }
+
+
         case MODIFY_PROFILE:
+            if (action.data.semesters === null) {
+                return {
+                    ...state,
+                    ...action.data,
+                    semesters: state.semesters
+                }
+            }
             return {
                 ...state,
                 ...action.data

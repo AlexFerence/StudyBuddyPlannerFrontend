@@ -67,6 +67,7 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
 
     useEffect(() => {
         dispatch(realoadClassesThunk())
+        dispatch(refreshUser())
     }, [])
 
     const turnOnEditing = () => setDisplayMode('editing')

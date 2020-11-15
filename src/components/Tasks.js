@@ -133,9 +133,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
 
 
         }
-
         console.groupCollapsed(type);
-        // console.log(data); //eslint-disable-line no-console
         console.groupEnd();
     };
 
