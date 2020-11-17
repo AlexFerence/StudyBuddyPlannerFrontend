@@ -129,7 +129,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                 <Navbar className="navbar-container" style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }} fixed="top" expand="true">
                     <Navbar.Brand style={{ color: 'black' }} className="title" href="/"> <img src='/blackSB.png' style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" /><span style={{ paddingTop: '5px' }}>StudyBuddy</span></Navbar.Brand>
 
-                    {false && <ProgressBar />}
+                    {true && <ProgressBar />}
 
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">

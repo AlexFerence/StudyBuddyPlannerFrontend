@@ -22,6 +22,27 @@ export const loadAdminStats = () => async (dispatch, getState) => {
     }
 }
 
+export const loadSupportLog = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/supportlog/list',
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        console.log(res.data)
+        return res.data
+
+    } catch (e) {
+        return (e)
+    }
+}
+
 export const loadAllUsers = () => async (dispatch, getState) => {
     const state = getState()
     const { profile } = state

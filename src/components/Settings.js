@@ -13,6 +13,7 @@ import OverviewBar from './admin-components/OverviewBar'
 import UniversitiesTable from './admin-components/UniversitiesTable'
 import AllUsersTable from './admin-components/AdminUsersTable'
 import AdminFacultiesPie from './admin-components/AdminFacultiesPie'
+import SupportLog from './admin-components/SupportLog'
 import { Redirect } from 'react-router-dom'
 import AdminBar from './admin-components/AdminBar'
 import PaymentModal from './payment/PaymentModal'
@@ -21,6 +22,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { refreshUser } from '../thunks/profileThunk'
+
 
 const style = {
     option: (base, state) => ({
@@ -269,7 +271,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     {usersTableOpen &&
                         <AllUsersTable />
                     }
-
+                    <SupportLog />
                 </div>
             }
 
