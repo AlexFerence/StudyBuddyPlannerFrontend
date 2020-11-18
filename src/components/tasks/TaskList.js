@@ -98,7 +98,7 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
     }
 
     return (
-        <div className="task-list">
+        <div>
             <div className="classHeader">
                 <div>Tasks</div>
                 <div className="selectClass"><Select
@@ -136,17 +136,19 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
                         { color: 'grey', border: '1px solid grey' } : {}}
                 >+ Add Task</button>
             </div>
-            <AnimatedList animation={"fade"}>
-                {
-                    tasks.map((t) => {
+            <div className='task-list'>
+                <AnimatedList animation={"fade"}>
+                    {
+                        tasks.map((t) => {
 
-                        return (
-                            <TaskListItem key={t.id} blankOn={blankOn} task={t} displayOn={displayOn} />
-                        )
-                    })
-                }
-            </AnimatedList>
-        </div>
+                            return (
+                                <TaskListItem key={t.id} blankOn={blankOn} task={t} displayOn={displayOn} />
+                            )
+                        })
+                    }
+                </AnimatedList>
+            </div>
+        </div >
     )
 }
 

@@ -25,6 +25,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
     return (
         <React.Fragment>
             <div className="sem-dropdown"
+                style={{ backgroundColor: '#f9f9f9' }}
                 onMouseEnter={() => handleMouseEnter()}
                 onMouseLeave={() => handleMouseLeave()}
             >

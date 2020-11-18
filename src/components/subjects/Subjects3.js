@@ -145,7 +145,7 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
                     },
                 }}
             />
-            <Col style={{ padding: '0px' }} xs={12} s={12} md={12} lg={12} className="scroller main-left">
+            <Col style={{ padding: '0px', backgroundColor: '#f9f9f9' }} xs={12} s={12} md={12} lg={12} className="scroller main-left">
                 <ListSubjects setDisplayMode={setDisplayMode} openAddModal={openAddModal} />
             </Col>
             { false && <Col style={{ padding: '0px' }} xs={12} s={12} md={6} lg={6} className="display">

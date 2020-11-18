@@ -177,3 +177,8 @@
  font-size: 25px;
  color: white;
 }
+
+.task-list {
+    max-height: calc(98vh - 141px);
+    overflow-y: auto;
+}
