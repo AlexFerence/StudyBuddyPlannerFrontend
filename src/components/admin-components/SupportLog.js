@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { loadAdminStats } from '../../thunks/adminStatsThunk'
+import { loadAdminStats, loadSupportLog } from '../../thunks/adminStatsThunk'
 import { connect } from 'react-redux'
 import CountUp from 'react-countup'
 
@@ -9,9 +9,9 @@ const SupportLog = ({ dispatch }) => {
 
     const loadAdminData = async () => {
 
-        var data = await dispatch(loadAdminStats())
+        var data = await dispatch(loadSupportLog())
 
-        console.log(data.responseItems)
+        console.log(data)
         const list = data.responseItems
         if (data) {
             setSupportLog(data)
@@ -23,11 +23,12 @@ const SupportLog = ({ dispatch }) => {
     }, [])
 
     return (
-        <div id="overview-bar">
+        <div className='support-log'>
+            <div className='support-log__title'>Support Log</div>
             {
-                supportLog.map((log) => (
-                    <div>
-                        <div>{log.userEmail}</div>
+                supportLog.slice(0).reverse().map((log, index) => (
+                    <div className='support-log-item' key={index}>
+                        <div className='support-log-item__email'>{log.userEmail}</div>
                         <div>{log.description}</div>
                     </div>
                 ))

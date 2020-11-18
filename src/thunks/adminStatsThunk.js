@@ -28,6 +28,7 @@ export const loadSupportLog = () => async (dispatch, getState) => {
     const { id, token } = profile
     try {
         const res = await axios.post(url + '/api/supportlog/list',
+            {},
             {
                 headers: {
                     'Authorization': 'bearer ' + token,
@@ -35,10 +36,10 @@ export const loadSupportLog = () => async (dispatch, getState) => {
                     'Content-Type': 'application/json'
                 }
             })
-        console.log(res.data)
         return res.data
 
     } catch (e) {
+        console.error(e)
         return (e)
     }
 }

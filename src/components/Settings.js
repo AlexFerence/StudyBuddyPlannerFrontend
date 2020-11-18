@@ -50,6 +50,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
     const [uniTableOpen, setUniTableOpen] = useState(false)
     const [usersTableOpen, setUsersTableOpen] = useState(false)
+    const [supportLogOpen, setSupportLogOpen] = useState(false)
 
     useEffect(() => {
         const defaultSchool = schools.find((school) => school.value === profile.schoolId)
@@ -271,7 +272,10 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     {usersTableOpen &&
                         <AllUsersTable />
                     }
-                    <SupportLog />
+                    <div style={{ height: '30px' }}></div>
+                    <button onClick={() => setSupportLogOpen(true)}>Open Support Log</button>
+                    {supportLogOpen && <SupportLog />}
+
                 </div>
             }
 

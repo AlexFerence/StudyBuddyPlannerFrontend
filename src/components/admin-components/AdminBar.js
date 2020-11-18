@@ -17,7 +17,6 @@ const AdminBar = ({ dispatch }) => {
 
     const loadAdminData = async () => {
         var data = await dispatch(loadAdminStats())
-        console.log(data.responseItems)
         const list = data.responseItems
         if (data?.responseItems?.length > 3) {
             setTotalSudents(list[0]?.value1)
