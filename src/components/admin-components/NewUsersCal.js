@@ -58,16 +58,16 @@ const NewUsersCal = ({ dispatch, githubCalendarData, semesters = [] }) => {
             style={{ height: '300px' }}
             option={{
                 tooltip: {
-                    // trigger: 'item',
-                    // formatter: function (params) {
-                    //     let rez = ''
-                    //     rez = '<span>'
-                    //         + moment(params.data[0]).format('MMM D') + ': '
-                    //         + minsToHours(params.data[1]) +
-                    //         '</span>';
-                    //     return rez
+                    trigger: 'item',
+                    formatter: function (params) {
+                        let rez = ''
+                        rez = '<span>'
+                            + moment(params.data[0]).format('MMM D') + ': '
+                            + params.data[1] + ' new users' +
+                            '</span>';
+                        return rez
 
-                    // }
+                    }
                 },
                 visualMap: {
                     pieces: [
