@@ -66,3 +66,31 @@ export const loadAllUsers = () => async (dispatch, getState) => {
         return (e)
     }
 }
+
+export const loadNewUsers = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/admincharts/listnewusers',
+            {},
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        if (res.status === 200) {
+            return res.data.responseItems
+        }
+        else {
+            console.error('error getting new users')
+            return []
+        }
+
+    } catch (e) {
+        console.error(e)
+        return (e)
+    }
+}

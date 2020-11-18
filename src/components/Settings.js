@@ -22,6 +22,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { refreshUser } from '../thunks/profileThunk'
+import NewUsersCal from './admin-components/NewUsersCal'
 
 
 const style = {
@@ -258,7 +259,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             >Log Out</button>
             {
                 (emailProp === 'akaufman2000@gmail.com' || emailProp === 'alexference23@gmail.com' ||
-                    emailProp === 'vladstets18@gmail.com' || email === 'Vladstets18@gmail.com' || emailProp === 'maddy.eppsconn@gmail.com' || emailProp === 'Sayeed.mavani@gmail.com') &&
+                    emailProp === 'vladstets18@gmail.com' || email === 'Vladstets18@gmail.com' ||
+                    emailProp === 'maddy.eppsconn@gmail.com' || emailProp === 'Sayeed.mavani@gmail.com') &&
                 <div>
                     <OverviewBar />
                     <AdminBar />
@@ -275,6 +277,9 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     <div style={{ height: '30px' }}></div>
                     <button onClick={() => setSupportLogOpen(true)}>Open Support Log</button>
                     {supportLogOpen && <SupportLog />}
+                    <div style={{ height: '30px' }}></div>
+                    <button onClick={() => setSupportLogOpen(true)}>Open Support Log</button>
+                    {supportLogOpen && <NewUsersCal />}
 
                 </div>
             }
