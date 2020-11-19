@@ -109,6 +109,9 @@ export const updateProfileThunk = ({ school, major, minor, faculty, year = 0 }) 
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
+
+    console.log('ABOUT TO CALL UPDATING USER PROFILE')
+
     try {
         const res = await axios.put(url + '/api/UserProfiles/' + id,
             {
@@ -125,6 +128,9 @@ export const updateProfileThunk = ({ school, major, minor, faculty, year = 0 }) 
                 'Content-Type': 'application/json'
             }
         })
+
+        console.log('RESPONSE FROM UPDATEPROFILE')
+        console.log(res.data)
 
 
         dispatch(update({
