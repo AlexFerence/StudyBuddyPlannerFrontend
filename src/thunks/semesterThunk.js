@@ -29,6 +29,7 @@ export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (d
         if (res.status === 200) {
             dispatch(setSemesterId(res.data.id))
         }
+        return
     }
     catch (e) {
         console.log(e)
