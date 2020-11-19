@@ -127,11 +127,13 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                                 minWidth: '120px'
                             }}>
                                 <button
+                                    style={{ backgroundColor: currentTask.color, color: 'white', border: 'none' }}
                                     disabled={!currentTask.id}
                                     className="but noHover"
                                     onClick={startTimer}
                                 ><IoMdPlay /></button>
                                 {count > 1 && <button
+                                    style={{ backgroundColor: currentTask.color, color: 'white', border: 'none' }}
                                     className="but noHover"
                                     onClick={submitTime}
                                 ><IoMdCheckmark /></button>}
@@ -147,12 +149,14 @@ const Stopwatch = ({ currentTask, dispatch, id, color, isRunningRedux, paused, s
                                 minWidth: '120px'
                             }}>
                                 <button
+                                    style={{ backgroundColor: currentTask.color, color: 'white', border: 'none' }}
                                     className="but noHover"
                                     onClick={pauseTimer}
                                 >
                                     <IoMdPause />
                                 </button>
                                 <button
+                                    style={{ backgroundColor: currentTask.color, color: 'white', border: 'none' }}
                                     className="but noHover"
                                     onClick={submitTime}
                                 ><IoMdCheckmark /></button>

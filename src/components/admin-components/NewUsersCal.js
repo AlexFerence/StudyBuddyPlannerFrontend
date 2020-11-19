@@ -73,10 +73,10 @@ const NewUsersCal = ({ dispatch, githubCalendarData, semesters = [] }) => {
                     pieces: [
                         // Range of a piece can be specified by property min and max,
                         // Label of the piece can be specified.
-                        { min: 0, max: 60, label: '1hr' },
-                        { min: 60, max: 120, label: '2hr' },
-                        { min: 120, max: 180, label: '3hr' },
-                        { min: 180, max: 240, label: '4hr+' },
+                        { min: 0, max: 3, label: '< 3' },
+                        { min: 3, max: 7, label: '3-7' },
+                        { min: 8, max: 15, label: '3hr' },
+                        { min: 15, max: 240, label: '4hr+' },
                     ],
                     type: 'piecewise',
                     orient: 'horizontal',
