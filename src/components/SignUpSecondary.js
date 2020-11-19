@@ -79,6 +79,9 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
     console.log(clean);
 
     if (clean === true) {
+
+      await dispatch(makeSemesterThunk(0, gpa || 0))
+
       await dispatch(updateProfileThunk({
         ...profile,
         school: school.value,
@@ -87,16 +90,13 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
         major,
       }))
 
-      dispatch(makeSemesterThunk(0, gpa || 0))
-      dispatch(modifyProfile({
-        schoolTitle: school.label,
-        facultytitle: faculty.label,
-        isAuth: false,
-      }));
+      // await dispatch(modifyProfile({
+      //   schoolTitle: school.label,
+      //   facultytitle: faculty.label,
+      //   isAuth: false,
+      // }));
 
-      dispatch(refreshUser())
-      dispatch(getSuggestedFriends())
-
+      //dispatch(refreshUser())
       history.push('/signupThird')
     }
   }

@@ -158,9 +158,6 @@ export const refreshUser = () => async (dispatch, getState) => {
                 ...res.data
             }))
         }
-
-
-
     } catch (e) {
         console.log(e)
     }

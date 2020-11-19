@@ -36,7 +36,7 @@ const profileReducer = (state = profileReducerDefaultState, action) => {
                 return {
                     ...state,
                     ...action.updated,
-                    semesters: state.s
+                    semesters: state.semesters
                 }
             }
             else {
