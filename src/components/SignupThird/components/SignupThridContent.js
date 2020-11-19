@@ -23,7 +23,8 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
         dispatch(modifyProfile({
             isAuth: true
         }))
-        dispatch(submitFirstClasses())
+
+        await dispatch(submitFirstClasses())
 
         history.push('/subjects')
     }
