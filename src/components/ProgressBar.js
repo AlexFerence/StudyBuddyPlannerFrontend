@@ -3,12 +3,19 @@ import { withStyles } from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { turnOffProgressBar } from '../thunks/profileThunk';
 
-const ProgressBar = ({ classes, tasks, width, currentMonth = 0 }) => {
+const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth = 0 }) => {
 
     const [show, setShow] = useState(true)
 
     const renderMessage = () => {
+        if (subjects.length === 0) {
+            return (
+                <span>Add a <Link to='/subjects' id="link">Subject</Link> to complete profile!</span>
+            )
+        }
+
         if (tasks.length === 0) {
             return (
                 <span>Add a <Link to='/tasks' id="link">Task</Link> to complete profile!</span>
@@ -37,6 +44,7 @@ const ProgressBar = ({ classes, tasks, width, currentMonth = 0 }) => {
     if (tasks.length > 0 && currentMonth > 0) {
         setTimeout(() => {
             setShow(false)
+            dispatch(turnOffProgressBar())
         }, 3000);
     }
 
@@ -72,6 +80,7 @@ const styles = props => ({
 
 const mapStateToProps = (state) => {
     return {
+        subjects: state.subjects,
         width: state.width,
         tasks: state.tasks,
         currentMonth: state.charts.personalStats.currentMonth,

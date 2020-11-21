@@ -263,3 +263,28 @@ export const resetPassword = (email) => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+export const turnOffProgressBar = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.put(url + '/api/UserProfiles/' + id, {
+            ...profile,
+            progressBar: 1
+        },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+
+        dispatch(modifyProfile({
+            ...res.data
+        }))
+    } catch (e) {
+        console.log(e)
+    }
+}

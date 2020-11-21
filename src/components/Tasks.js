@@ -20,12 +20,12 @@ import { getActiveFriends, getPendingFriends } from '../thunks/friendThunk'
 
 
 const TOUR_STEPS = [
-    {
-        target: ".addTaskButton",
-        content: 'Add a task here',
-        disableBeacon: true,
-        disableOverlay: true
-    },
+    // {
+    //     target: ".addTaskButton",
+    //     content: 'Add a task here',
+    //     disableBeacon: true,
+    //     disableOverlay: true
+    // },
     // {
     //     target: ".selectClass",
     //     content:
@@ -44,16 +44,16 @@ const TOUR_STEPS = [
     //     },
     //     disableOverlay: true
     // },
-    {
-        target: "#dashboard",
-        content:
-            "Next, let's explore the dashboard...",
-        locale: {
-            last: 'Next'
-        },
-        disableBeacon: true,
-        disableOverlay: true
-    },
+    // {
+    //     target: "#dashboard",
+    //     content:
+    //         "Next, let's explore the dashboard...",
+    //     locale: {
+    //         last: 'Next'
+    //     },
+    //     disableBeacon: true,
+    //     disableOverlay: true
+    // },
 
 
 ];

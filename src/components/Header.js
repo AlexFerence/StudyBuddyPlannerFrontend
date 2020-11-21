@@ -29,7 +29,7 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
+const Header = ({ progressBar, feed, isRunning, width, profile, history, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
 
     const [numNotification, setNumNotifications] = useState(0)
 
@@ -129,7 +129,7 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                 <Navbar className="navbar-container" style={(width < 1000) ? { marginRight: '0px' } : { marginRight: '300px' }} fixed="top" expand="true">
                     <Navbar.Brand style={{ color: 'black' }} className="title" href="/"> <img src='/blackSB.png' style={{ height: '25px', width: '25px', marginRight: '5px' }} className="imageInner" /><span style={{ paddingTop: '5px' }}>StudyBuddy</span></Navbar.Brand>
 
-                    {false && <ProgressBar />}
+                    {progressBar === 0 && <ProgressBar />}
 
                     {false && <Navbar.Toggle aria-controls="basic-navbar-nav lighten-4" />}
                     <Navbar id="">
@@ -142,7 +142,6 @@ const Header = ({ feed, isRunning, width, profile, history, paused, isAuth, disp
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={renderTooltipDash}
                                 >
-
                                     <NavLink activeStyle={{ color: 'black' }} style={{ padding: 5 }} to="/dashboard"><IoIosSpeedometer /></NavLink>
                                 </OverlayTrigger>
 
@@ -316,7 +315,8 @@ const mapStateToProps = (state) => {
         width: state.width,
         currentTask: state.currentTask,
         paused: state.running.paused,
-        feed: state.feed
+        feed: state.feed,
+        progressBar: state.profile.progressBar
     }
 }
 export default connect(mapStateToProps)(Header)

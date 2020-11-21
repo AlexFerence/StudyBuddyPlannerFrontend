@@ -34,24 +34,22 @@ const customStyles = {
 };
 
 const TOUR_STEPS = [
-    {
-        target: "#addButton",
-        content: 'First, add all of your subjects for this semester.',
-        disableBeacon: true,
-        disableOverlay: true
-    },
-    {
-        target: "#tasks",
-        content:
-            "Next let's head over to tasks...",
-        locale: {
-            last: 'Next'
-        },
-        disableOverlay: true
-    },
+    // {
+    //     target: "#addButton",
+    //     content: 'First, add all of your subjects for this semester.',
+    //     disableBeacon: true,
+    //     disableOverlay: true
+    // },
+    // {
+    //     target: "#tasks",
+    //     content:
+    //         "Next let's head over to tasks...",
+    //     locale: {
+    //         last: 'Next'
+    //     },
+    //     disableOverlay: true
+    // },
 ];
-
-
 
 const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) => {
     // controls the display of the view on the right

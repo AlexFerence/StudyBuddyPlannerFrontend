@@ -21,12 +21,12 @@ import { loadDetailedView } from '../thunks/premiumStatsThunk'
 import GithubCalendar from './premiumPage/charts/GithubCalendar'
 
 const TOUR_STEPS = [
-  {
-    target: "#quickT",
-    content: 'Use the quick timer to log study sessions',
-    disableBeacon: true,
-    disableOverlay: true
-  },
+  // {
+  //   target: "#quickT",
+  //   content: 'Use the quick timer to log study sessions',
+  //   disableBeacon: true,
+  //   disableOverlay: true
+  // },
   // {
   //   target: "#timerSelect",
   //   content:
@@ -36,15 +36,15 @@ const TOUR_STEPS = [
   //   },
   //   disableOverlay: true
   // },
-  {
-    target: "#timerSelect2",
-    content:
-      "Select either timer, stopwatch or time input",
-    locale: {
-      last: 'Next'
-    },
-    disableOverlay: true
-  },
+  // {
+  //   target: "#timerSelect2",
+  //   content:
+  //     "Select either timer, stopwatch or time input",
+  //   locale: {
+  //     last: 'Next'
+  //   },
+  //   disableOverlay: true
+  // },
   // {
   //   target: ".topRight",
   //   content:
