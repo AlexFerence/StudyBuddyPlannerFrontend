@@ -30,6 +30,11 @@ const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth =
     }
 
     const getProgress = () => {
+
+        if (subjects.length === 0) {
+            return 55
+        }
+
         if (tasks.length === 0) {
             return 70
         }

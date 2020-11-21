@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { Link, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { signupThunk } from '../thunks/profileThunk'
 import isEmail from 'validator/lib/isEmail';
 import { loadSchools } from '../thunks/schoolsThunk';
 
 const FormPage = ({ history, dispatch, profile }) => {
+
+  const queryString = window.location.search
+  const urlParams = new URLSearchParams(queryString);
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -13,11 +17,15 @@ const FormPage = ({ history, dispatch, profile }) => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
+  const { param } = useParams()
+
   useEffect(() => {
     dispatch(loadSchools())
     if (profile.email && profile.isAuth) {
       history.push('/dashboard')
     }
+    console.log(param)
+    console.log(urlParams.get('param'))
   }, [])
 
   const onSubmit = async (e) => {
@@ -66,7 +74,6 @@ const FormPage = ({ history, dispatch, profile }) => {
   }
 
   return (
-
     <div className="container authContainer">
       <div className="preHeader">Sign Up</div>
       <form onSubmit={onSubmit}>
@@ -98,8 +105,6 @@ const FormPage = ({ history, dispatch, profile }) => {
             Already registered <Link className="linkAuth" to="/login">Log In</Link>
           </p>
         </div>
-
-
       </form>
     </div>
   );
