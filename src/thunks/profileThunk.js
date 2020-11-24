@@ -66,17 +66,20 @@ export const reAuthenticate = ({ email, password }) => async (dispatch, getState
     }
 }
 
-export const signupThunk = ({ email, password, firstName, lastName }) => async (dispatch, getState) => {
+export const signupThunk = ({ email, password, firstName, lastName, code = '' }) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state
     const { id, token } = profile
+    console.log('coupon code')
+    console.log(code)
     try {
         const signUpres = await axios.post(url + '/api/userprofiles/create',
             {
                 firstName,
                 lastName,
                 email,
-                password
+                password,
+                referredbycode: code ? code : ''
             })
         if (signUpres.status === 200) {
             const res = await axios.post(url + '/api/userprofiles/authenticate',

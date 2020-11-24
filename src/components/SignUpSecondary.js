@@ -6,6 +6,7 @@ import Select from 'react-select'
 import { loadSchools, loadFaculties } from '../thunks/schoolsThunk'
 import { modifyProfile } from '../actions/profileActions'
 import { getSuggestedFriends } from '../thunks/friendThunk'
+import SignUpTopBar from './shared/SignUpTopBar'
 
 var options = [
   { label: 'Year 1', value: 1 },
@@ -102,76 +103,79 @@ const SignUpSecondary = ({ dispatch, history, schools, faculties, profile }) => 
   }
 
   return (
-    <div className="container SignUpSecond">
-      <label className="inpLabel">School {schoolError && <span className="error">* {schoolError}</span>}</label>
-      <Select
-        isClearable={true}
-        className="selectedInp"
-        id="timerSelect2"
-        value={school}
-        onChange={val => setSchool(val)}
-        placeholder="Type..."
-        options={schools}
-        components={{ DropdownIndicator: () => null }}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            text: 'black',
-            primary25: '#bcbcbc',
-            primary50: '#bcbcbc',
-            primary: '#bcbcbc',
-          },
-        })}
-      />
-      <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
-      <Select
-        isClearable={true}
-        className="selectedInp"
-        id="timerSelect2"
-        value={faculty}
-        onChange={val => setFaculty(val)}
-        placeholder="Type..."
-        options={faculties}
-        components={{ DropdownIndicator: () => null }}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            text: 'black',
-            primary25: '#bcbcbc',
-            primary50: '#bcbcbc',
-            primary: '#bcbcbc',
+    <React.Fragment>
+      <SignUpTopBar />
+      <div className="container SignUpSecond">
+        <label className="inpLabel">School {schoolError && <span className="error">* {schoolError}</span>}</label>
+        <Select
+          isClearable={true}
+          className="selectedInp"
+          id="timerSelect2"
+          value={school}
+          onChange={val => setSchool(val)}
+          placeholder="Type..."
+          options={schools}
+          components={{ DropdownIndicator: () => null }}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              text: 'black',
+              primary25: '#bcbcbc',
+              primary50: '#bcbcbc',
+              primary: '#bcbcbc',
+            },
+          })}
+        />
+        <label className="inpLabel">Faculty {facultyError && <span className="error">* {facultyError}</span>} </label>
+        <Select
+          isClearable={true}
+          className="selectedInp"
+          id="timerSelect2"
+          value={faculty}
+          onChange={val => setFaculty(val)}
+          placeholder="Type..."
+          options={faculties}
+          components={{ DropdownIndicator: () => null }}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              text: 'black',
+              primary25: '#bcbcbc',
+              primary50: '#bcbcbc',
+              primary: '#bcbcbc',
 
-          },
-        })}
-      />
-      <label className="inpLabel">Year</label>
-      <Select
-        isClearable={true}
-        placeholder="Year ..."
-        className="selectedInp"
-        options={options}
-        values={[]}
-        onChange={(value) => setYear(value)}
-        components={{ DropdownIndicator: () => null }}
-        theme={(theme) => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            text: 'black',
-            primary25: '#bcbcbc',
-            primary50: '#bcbcbc',
-            primary: '#bcbcbc',
+            },
+          })}
+        />
+        <label className="inpLabel">Year</label>
+        <Select
+          isClearable={true}
+          placeholder="Year ..."
+          className="selectedInp"
+          options={options}
+          values={[]}
+          onChange={(value) => setYear(value)}
+          components={{ DropdownIndicator: () => null }}
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              text: 'black',
+              primary25: '#bcbcbc',
+              primary50: '#bcbcbc',
+              primary: '#bcbcbc',
 
-          },
-        })}
-      />
-      <label className="inpLabel" >Major <span style={{ color: 'grey' }}>(optional)</span></label>
-      <input className="inp" onChange={onChangeMajor} value={major} />
+            },
+          })}
+        />
+        <label className="inpLabel" >Major <span style={{ color: 'grey' }}>(optional)</span></label>
+        <input className="inp" onChange={onChangeMajor} value={major} />
 
-      <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
-    </div>
+        <button className="btn btn-secondary btn-block preAuth" onClick={updateProfile}>Get Started</button>
+      </div>
+    </React.Fragment>
   )
 }
 

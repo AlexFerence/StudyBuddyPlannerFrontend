@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { signupThunk } from '../thunks/profileThunk'
 import isEmail from 'validator/lib/isEmail';
 import { loadSchools } from '../thunks/schoolsThunk';
+import SignUpTopBar from './shared/SignUpTopBar'
 
 const FormPage = ({ history, dispatch, profile }) => {
 
@@ -25,7 +26,7 @@ const FormPage = ({ history, dispatch, profile }) => {
       history.push('/dashboard')
     }
     console.log(param)
-    console.log(urlParams.get('param'))
+    console.log(urlParams.get('code'))
   }, [])
 
   const onSubmit = async (e) => {
@@ -58,8 +59,13 @@ const FormPage = ({ history, dispatch, profile }) => {
     setLastName(lastName.trim())
     setEmail(email.trim())
 
+    console.log(urlParams.get('code'))
+    console.log(urlParams.get('code'))
     if (clean) {
-      dispatch(signupThunk({ firstName, lastName, email, password })).then((status) => {
+      dispatch(signupThunk({
+        firstName, lastName,
+        email, password, code: urlParams.get('code')
+      })).then((status) => {
         console.log(status)
         if (status === 200) {
           history.push("/signupSecondary")
@@ -74,39 +80,42 @@ const FormPage = ({ history, dispatch, profile }) => {
   }
 
   return (
-    <div className="container authContainer">
-      <div className="preHeader">Sign Up</div>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label className="inpLabel">First Name</label>
-          <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="inp" placeholder="First name" />
-        </div>
-        <div className="form-group">
-          <label className="inpLabel">Last Name</label>
-          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="inp" placeholder="First name" />
-        </div>
-        <div className="form-group">
-          <div className="inpLabel">Email Address {emailError && <span className="error">* {emailError}</span>}</div>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="inp" placeholder="Enter email" />
-        </div>
-        <div className="form-group">
-          <label className="inpLabel">Password {passwordError && <span className="error">* {passwordError}</span>}</label>
-          <input value={password} onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            className="inp"
-            placeholder="Enter password" />
-        </div>
-        <button type="submit" className="btn btn-secondary btn-block preAuth">Sign Up</button>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p className="forgot-password text-right">
-            By signing up you agree <br /> to our <Link className="linkAuth" to="/privatepolicy">Private Policy</Link>
-          </p>
-          <p className="forgot-password text-right">
-            Already registered <Link className="linkAuth" to="/login">Log In</Link>
-          </p>
-        </div>
-      </form>
-    </div>
+    <React.Fragment>
+      <SignUpTopBar />
+      <div className="container authContainer">
+        <div className="preHeader">Sign Up</div>
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <label className="inpLabel">First Name</label>
+            <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="inp" placeholder="First name" />
+          </div>
+          <div className="form-group">
+            <label className="inpLabel">Last Name</label>
+            <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="inp" placeholder="First name" />
+          </div>
+          <div className="form-group">
+            <div className="inpLabel">Email Address {emailError && <span className="error">* {emailError}</span>}</div>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="inp" placeholder="Enter email" />
+          </div>
+          <div className="form-group">
+            <label className="inpLabel">Password {passwordError && <span className="error">* {passwordError}</span>}</label>
+            <input value={password} onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              className="inp"
+              placeholder="Enter password" />
+          </div>
+          <button type="submit" className="btn btn-secondary btn-block preAuth">Sign Up</button>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p className="forgot-password text-right">
+              By signing up you agree <br /> to our <Link className="linkAuth" to="/privatepolicy">Private Policy</Link>
+            </p>
+            <p className="forgot-password text-right">
+              Already registered <Link className="linkAuth" to="/login">Log In</Link>
+            </p>
+          </div>
+        </form>
+      </div>
+    </React.Fragment>
   );
 }
 
