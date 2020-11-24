@@ -13,6 +13,7 @@ import {
 import moment from 'moment'
 
 import { refreshFeed } from './feedThunk'
+import { getReferredUsers } from './settingsThunk'
 
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
@@ -427,5 +428,8 @@ export const loadFiveCharts = () => async (dispatch, getState) => {
 
     // load feed
     dispatch(refreshFeed())
+
+    // load referred friends
+    dispatch(getReferredUsers())
 }
 

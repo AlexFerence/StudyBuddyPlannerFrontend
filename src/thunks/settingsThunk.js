@@ -1,6 +1,7 @@
 import axios from 'axios'
 import url from '../environment/url'
 import { fillSubscriptions } from '../actions/subscriptionActions'
+import { updateSettings } from '../actions/settingsActions'
 
 export const contactUsRequest = ({ description, requestType }) => async (dispatch, getState) => {
     const state = getState()
@@ -49,14 +50,11 @@ export const loadPaymentOptions = () => async (dispatch, getState) => {
     }
 }
 
-
 export const createSubscription = () => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects, semester, subscriptions } = state
     const { id, token, email, userBilling } = profile
     const { currentSubscription } = subscriptions
-
-
     try {
         const res = await axios.post(url + "/api/UserBilling/createsubscription",
             {
@@ -78,3 +76,29 @@ export const createSubscription = () => async (dispatch, getState) => {
         console.log(e)
     }
 }
+
+export const getReferredUsers = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/campaigns/list",
+            {
+                userId: id,
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        if (res.status === 200) {
+            dispatch(updateSettings({ referredUsers: res.data }))
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+
