@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { loginThunk } from '../thunks/profileThunk'
+import SignUpTopBar from './shared/SignUpTopBar'
 
 const LoginPage = ({ dispatch, history, profile }) => {
     useEffect(() => {
@@ -51,37 +52,41 @@ const LoginPage = ({ dispatch, history, profile }) => {
     }
 
     return (
-        <div className="container authContainer">
-            <div className="preHeader">Log In</div>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label className="inpLabel">Email {emailError && <span className="error">* {emailError}</span>}</label>
-                    <input className="inp" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
-                </div>
-                <div className="form-group">
-                    <label className="inpLabel">Password {passwordError && <span className="error">* {passwordError}</span>}</label>
-                    <input value={password} onChange={(e) => setPassword(e.target.value)}
-                        type="password"
-                        className="inp"
-                        placeholder="Enter password" />
-                </div>
-                {authError && <span className="error">* {authError}</span>}
-                <button type="submit" className="btn btn-secondary btn-block preAuth">Log In</button>
-                <div className="forgot-password"
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    <div>
-                        {<Link className="linkAuth" to="/resetpassword">Forgot password?</Link>}
+        <Fragment>
+            <SignUpTopBar />
+
+            <div className="container authContainer">
+                <div className="preHeader">Log In</div>
+                <form onSubmit={onSubmit}>
+                    <div className="form-group">
+                        <label className="inpLabel">Email {emailError && <span className="error">* {emailError}</span>}</label>
+                        <input className="inp" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
                     </div>
-                    <div>
-                        Don't have an account? <Link className="linkAuth" to="/signup">Sign Up</Link>
+                    <div className="form-group">
+                        <label className="inpLabel">Password {passwordError && <span className="error">* {passwordError}</span>}</label>
+                        <input value={password} onChange={(e) => setPassword(e.target.value)}
+                            type="password"
+                            className="inp"
+                            placeholder="Enter password" />
                     </div>
-                </div>
-            </form>
-        </div>
+                    {authError && <span className="error">* {authError}</span>}
+                    <button type="submit" className="btn btn-secondary btn-block preAuth">Log In</button>
+                    <div className="forgot-password"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                        }}
+                    >
+                        <div>
+                            {<Link className="linkAuth" to="/resetpassword">Forgot password?</Link>}
+                        </div>
+                        <div>
+                            Don't have an account? <Link className="linkAuth" to="/signup">Sign Up</Link>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </Fragment>
     )
 }
 
