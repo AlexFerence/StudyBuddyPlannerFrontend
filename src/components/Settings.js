@@ -23,6 +23,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { refreshUser } from '../thunks/profileThunk'
 import NewUsersCal from './admin-components/NewUsersCal'
+import ListReferredUsers from './Settings/ListReferredUsers'
 
 
 const style = {
@@ -138,6 +139,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             {
                 false && <PaymentModal />
             }
+            <ListReferredUsers />
             <div className="settings-title" style={{ paddingTop: "30px" }}>Settings</div>
             <form onSubmit={onSubmit}>
 

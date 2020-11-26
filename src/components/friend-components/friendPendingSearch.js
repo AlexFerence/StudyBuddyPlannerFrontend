@@ -23,6 +23,7 @@ const FriendPendingActivity = ({ dispatch, waitingRequests, sentRequests }) => {
     }, [])
 
     const debouncedSearchTerm = useDebounce(searchedPersonInput, 600);
+
     useEffect(
         () => {
             // Make sure we have a value (user has entered something in input)
