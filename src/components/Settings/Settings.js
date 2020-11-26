@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import url from '../environment/url'
-import { logout, update, modifyProfile } from '../actions/profileActions'
-import { loadSchools, loadFaculties, getSchool } from '../thunks/schoolsThunk'
+import url from '../../environment/url'
+import { logout, update, modifyProfile } from '../../actions/profileActions'
 import Select from 'react-select'
-import { contactUsRequest } from '../thunks/settingsThunk'
+import { contactUsRequest } from '../../thunks/settingsThunk'
 import swal from 'sweetalert'
-import { FaEdit } from 'react-icons/fa'
-import PaymentForm from './payment/PaymentModal'
-import OverviewBar from './admin-components/OverviewBar'
-import UniversitiesTable from './admin-components/UniversitiesTable'
-import AllUsersTable from './admin-components/AdminUsersTable'
-import AdminFacultiesPie from './admin-components/AdminFacultiesPie'
-import SupportLog from './admin-components/SupportLog'
-import { Redirect } from 'react-router-dom'
-import AdminBar from './admin-components/AdminBar'
-import PaymentModal from './payment/PaymentModal'
+import OverviewBar from '../admin-components/OverviewBar'
+import UniversitiesTable from '../admin-components/UniversitiesTable'
+import AllUsersTable from '../admin-components/AdminUsersTable'
+import AdminFacultiesPie from '../admin-components/AdminFacultiesPie'
+import SupportLog from '../admin-components/SupportLog'
+import AdminBar from '../admin-components/AdminBar'
+import PaymentModal from '../payment/PaymentModal'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import { refreshUser } from '../thunks/profileThunk'
-import NewUsersCal from './admin-components/NewUsersCal'
-import ListReferredUsers from './Settings/ListReferredUsers'
+import { refreshUser } from '../../thunks/profileThunk'
+import NewUsersCal from '../admin-components/NewUsersCal'
+import ListReferredUsers from './ListReferredUsers'
+import { IoMdPerson } from 'react-icons/io'
+import ProgressBarReferral from '../ProgressBarReferral'
 
 
 const style = {
@@ -139,10 +137,15 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             {
                 false && <PaymentModal />
             }
+            <div className="settings-title" style={{ paddingTop: "30px" }}>My Referrals</div>
+            <div style={{ height: '5px' }} />
+            <ProgressBarReferral />
+            <div style={{ height: '5px' }} />
             <ListReferredUsers />
-            <div className="settings-title" style={{ paddingTop: "30px" }}>Settings</div>
+            <div className="settings-title" style={{ paddingTop: "30px" }}>
+                <IoMdPerson style={{ fontSize: '40px' }} />
+            </div>
             <form onSubmit={onSubmit}>
-
                 <label className="inpLabel">First Name</label>
                 <input
                     className="inp"

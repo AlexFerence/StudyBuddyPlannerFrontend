@@ -47,7 +47,7 @@ const SubjectsPage = Loadable({
 });
 
 const Settings = Loadable({
-  loader: () => import('./components/Settings'),
+  loader: () => import('./components/Settings/Settings'),
   loading: Loader,
 });
 
