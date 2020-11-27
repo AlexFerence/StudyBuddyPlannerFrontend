@@ -20,7 +20,6 @@ import FormControl from '@material-ui/core/FormControl';
 import { refreshUser } from '../../thunks/profileThunk'
 import NewUsersCal from '../admin-components/NewUsersCal'
 import ListReferredUsers from './ListReferredUsers'
-import { IoMdPerson } from 'react-icons/io'
 import ProgressBarReferral from '../ProgressBarReferral'
 
 
@@ -159,16 +158,11 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                         display: 'flex',
                         justifyContent: 'center',
                         marginBottom: '30px'
-
                     }}>
-                        {url + '/signup/?code=' + campaignCode}
+                        {url + '/signup?code=' + campaignCode}
                     </div>
-
-
                 </Fragment>
             }
-
-
             <div className="settings-title">
                 Settings
             </div>

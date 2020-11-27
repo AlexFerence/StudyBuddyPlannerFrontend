@@ -46,14 +46,11 @@ const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth =
 
     return (
         <div className="init-progress-bar">
-            { show ?
-                <React.Fragment>
-                    {false && <div className="init-progress-bar__msg">{renderMessage()}</div>}
-                    <div style={{ color: 'grey' }} className="init-progress-bar__msg">Refer 5 active friends to unlock StudyBuddy Premium!</div>
-                    <LinearProgress variant="determinate" value={getProgress()} classes={{ colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary }} />
-                </React.Fragment>
-                : <div></div>
-            }
+            <React.Fragment>
+                {false && <div className="init-progress-bar__msg">{renderMessage()}</div>}
+                <div style={{ color: 'grey' }} className="init-progress-bar__msg">Refer 5 active friends to unlock StudyBuddy Premium!</div>
+                <LinearProgress variant="determinate" value={getProgress()} classes={{ colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary }} />
+            </React.Fragment>
         </div>
     )
 }

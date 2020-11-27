@@ -6,10 +6,11 @@ import { IoMdAdd, IoMdClose } from 'react-icons/io';
 import swal from 'sweetalert'
 import useDebounce from '../shared/use-debounce'
 import { searchIfExists, sendRequest, searchUsers, getPendingFriends } from '../../thunks/friendThunk'
+import url from '../../environment/url';
 //import FriendModal from './FriendModal'
 
 
-const FriendActivity = ({ waitingRequests, dispatch }) => {
+const FriendActivity = ({ waitingRequests, dispatch, campaignCode }) => {
 
     const [searchedPersonInput, setSearchedPersonInput] = useState()
     const [searchedPeople, setSearchedPeople] = useState([]);
@@ -57,10 +58,20 @@ const FriendActivity = ({ waitingRequests, dispatch }) => {
     }
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText('https://www.studybuddyplanner.com/')
+
+        const copyURL = ''
+
+        if (campaignCode) {
+            copyURL = 'https://www.studybuddyplanner.com/'
+        }
+        else {
+            copyURL = url + + '/signup/?code=' + campaignCode
+        }
+
+        navigator.clipboard.writeText(copyURL)
         swal({
             title: "Invite Link Copied to clipboard",
-            text: "https://www.studybuddyplanner.com/",
+            text: copyURL,
             icon: "success",
 
             confirmButtonColor: '#fb4033',
@@ -104,7 +115,8 @@ const FriendActivity = ({ waitingRequests, dispatch }) => {
 
 const mapStateToProps = (state) => {
     return {
-        waitingRequests: state.friends.waitingRequests
+        waitingRequests: state.friends.waitingRequests,
+        campaignCode: state.settings.campaignCode
     }
 }
 
