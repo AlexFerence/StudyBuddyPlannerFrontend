@@ -59,7 +59,7 @@ const FriendActivity = ({ waitingRequests, dispatch, campaignCode }) => {
 
     const copyToClipboard = () => {
 
-        const copyURL = ''
+        var copyURL = ''
 
         if (campaignCode) {
             copyURL = 'https://www.studybuddyplanner.com/'
