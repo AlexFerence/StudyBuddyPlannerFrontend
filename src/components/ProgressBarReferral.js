@@ -46,7 +46,7 @@ const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth =
         <div className="init-progress-bar">
             <React.Fragment>
                 {false && <div className="init-progress-bar__msg">{renderMessage()}</div>}
-                <div style={{ color: 'grey' }} className="init-progress-bar__msg">Refer 3 active friends to unlock StudyBuddy Premium!</div>
+                <div style={{ color: 'grey' }} className="init-progress-bar__msg">Refer 3 active friends to unlock StudyBuddy early access!</div>
                 <LinearProgress variant="determinate" value={getProgress()} classes={{ colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary }} />
             </React.Fragment>
         </div>
