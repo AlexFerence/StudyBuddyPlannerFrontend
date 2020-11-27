@@ -257,9 +257,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 <div style={{ height: '10px' }} />
                 <button style={{ marginLeft: '0px' }} className="but">Update Profile</button>
             </form>
-
             <div className="section contact-us">
-
                 <div className="settings-title" style={{ paddingTop: "30px", paddingBottom: "20px" }}>Contact Us</div>
                 <Select
                     isClearable={true}
