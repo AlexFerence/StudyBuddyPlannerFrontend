@@ -75,8 +75,7 @@ const LoginPage = ({ dispatch, history, profile }) => {
                         style={{
                             display: 'flex',
                             justifyContent: 'space-between'
-                        }}
-                    >
+                        }}>
                         <div>
                             {<Link className="linkAuth" to="/resetpassword">Forgot password?</Link>}
                         </div>
