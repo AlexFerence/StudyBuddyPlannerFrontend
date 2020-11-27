@@ -96,7 +96,8 @@ export const getReferredUsers = () => async (dispatch, getState) => {
         )
         if (res.status === 200) {
             dispatch(updateSettings({
-                referredUsers: res.data.referredUsers
+                referredUsers: res.data.referredUsers,
+                campaignCode: res.data.campaignCode
             }))
         }
     } catch (e) {
@@ -124,7 +125,7 @@ export const loadTop50 = () => async (dispatch, getState) => {
         if (res.status === 200) {
             dispatch(updateSettings({
                 top50: res.data,
-                campaignCode: res.data.campaignCode
+
             }))
         }
     } catch (e) {

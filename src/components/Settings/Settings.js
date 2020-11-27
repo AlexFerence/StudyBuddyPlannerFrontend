@@ -35,7 +35,7 @@ const style = {
 
 
 const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, token,
-    id, history, profile, schools, faculties, width, top50 }) => {
+    id, history, profile, schools, faculties, width, top50, campaignCode }) => {
 
     const [pub, setPub] = useState(profile.feedPrivacy ? 'true' : 'false')
 
@@ -145,11 +145,30 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     <div className="settings-title" style={{ paddingTop: "30px" }}>My Referrals</div>
                     <div style={{ height: '5px' }} />
                     <ProgressBarReferral />
+                    <div style={{ height: '5px' }} />
+                    <ListReferredUsers />
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        color: 'grey',
+                        marginBottom: '5px'
+                    }}>
+                        Your promo link:
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        marginBottom: '30px'
+
+                    }}>
+                        {url + '/signup/?code=' + campaignCode}
+                    </div>
+
+
                 </Fragment>
             }
 
-            <div style={{ height: '5px' }} />
-            <ListReferredUsers />
+
             <div className="settings-title">
                 Settings
             </div>
@@ -313,7 +332,8 @@ const mapStateToProps = (state) => {
         faculties: state.faculties,
         profile: state.profile,
         width: state.width,
-        top50: state.settings.top50
+        top50: state.settings.top50,
+        campaignCode: state.settings.campaignCode
     }
 }
 
