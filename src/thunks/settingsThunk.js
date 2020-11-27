@@ -95,10 +95,39 @@ export const getReferredUsers = () => async (dispatch, getState) => {
             }
         )
         if (res.status === 200) {
-            dispatch(updateSettings({ referredUsers: res.data }))
+            dispatch(updateSettings({
+                referredUsers: res.data.referredUsers
+            }))
         }
     } catch (e) {
         console.log(e)
     }
 }
 
+export const loadTop50 = () => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + '/api/userprofiles/list',
+            {
+                active: true
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        if (res.status === 200) {
+            dispatch(updateSettings({
+                top50: res.data,
+                campaignCode: res.data.campaignCode
+            }))
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}

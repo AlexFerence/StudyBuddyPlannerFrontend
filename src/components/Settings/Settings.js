@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import url from '../../environment/url'
@@ -35,7 +35,7 @@ const style = {
 
 
 const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, token,
-    id, history, profile, schools, faculties, width }) => {
+    id, history, profile, schools, faculties, width, top50 }) => {
 
     const [pub, setPub] = useState(profile.feedPrivacy ? 'true' : 'false')
 
@@ -126,6 +126,8 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
         return null;
     }
 
+    const inTop50 = top50.find((user) => user.email === emailProp)
+
     return (
         <div className="settings" style={(width < 1000) ? {
             paddingRight: '0px'
@@ -137,13 +139,19 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
             {
                 false && <PaymentModal />
             }
-            <div className="settings-title" style={{ paddingTop: "30px" }}>My Referrals</div>
-            <div style={{ height: '5px' }} />
-            <ProgressBarReferral />
+            {
+                inTop50 &&
+                <Fragment>
+                    <div className="settings-title" style={{ paddingTop: "30px" }}>My Referrals</div>
+                    <div style={{ height: '5px' }} />
+                    <ProgressBarReferral />
+                </Fragment>
+            }
+
             <div style={{ height: '5px' }} />
             <ListReferredUsers />
-            <div className="settings-title" style={{ paddingTop: "30px" }}>
-                <IoMdPerson style={{ fontSize: '40px' }} />
+            <div className="settings-title">
+                Settings
             </div>
             <form onSubmit={onSubmit}>
                 <label className="inpLabel">First Name</label>
@@ -154,8 +162,6 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     value={fname}
                     onChange={(e) => setfname(e.target.value)}
                 ></input>
-
-
                 <label className="inpLabel">Last Name</label>
                 <input
                     className="inp"
@@ -306,7 +312,8 @@ const mapStateToProps = (state) => {
         schools: state.schools,
         faculties: state.faculties,
         profile: state.profile,
-        width: state.width
+        width: state.width,
+        top50: state.settings.top50
     }
 }
 

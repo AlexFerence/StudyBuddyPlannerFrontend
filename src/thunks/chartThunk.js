@@ -9,11 +9,10 @@ import {
     setGpaScatter,
     modify
 } from '../actions/chartActions'
-
 import moment from 'moment'
 
 import { refreshFeed } from './feedThunk'
-import { getReferredUsers } from './settingsThunk'
+import { getReferredUsers, loadTop50 } from './settingsThunk'
 
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
@@ -431,5 +430,8 @@ export const loadFiveCharts = () => async (dispatch, getState) => {
 
     // load referred friends
     dispatch(getReferredUsers())
+
+    // load top 50 users
+    dispatch(loadTop50())
 }
 
