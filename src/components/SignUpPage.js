@@ -26,6 +26,7 @@ const FormPage = ({ history, dispatch, profile }) => {
       history.push('/dashboard')
     }
     console.log(param)
+    console.log('code')
     console.log(urlParams.get('code'))
   }, [])
 

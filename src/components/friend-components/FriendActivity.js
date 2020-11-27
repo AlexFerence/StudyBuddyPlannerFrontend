@@ -62,10 +62,10 @@ const FriendActivity = ({ waitingRequests, dispatch, campaignCode }) => {
         var copyURL = ''
 
         if (campaignCode) {
-            copyURL = 'https://www.studybuddyplanner.com/'
+            copyURL = url + '/signup/?code=' + campaignCode
         }
         else {
-            copyURL = url + + '/signup/?code=' + campaignCode
+            copyURL = 'https://www.studybuddyplanner.com/'
         }
 
         navigator.clipboard.writeText(copyURL)
