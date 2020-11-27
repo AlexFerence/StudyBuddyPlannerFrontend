@@ -96,3 +96,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(LoginPage)
+
+//pre firebase config
