@@ -36,40 +36,45 @@ const OverviewBar = ({ dispatch }) => {
         //load the data here
     }, [])
 
+    const toPercent = (num) => {
+        return ((num * 100).toFixed(1))
+    }
+
     return (
         <Fragment>
             <div id="overview-bar">
+
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
-                        {daumauRatio}
-                    </div>
-                    <div className="overview-bar__item__subtext">DAU/MAU ratio</div>
-                </div>
-                <div className="overview-bar__item">
-                    <div className="overview-bar__item__num">
-                        {dau}
+                        {toPercent(dau)}%
                     </div>
                     <div className="overview-bar__item__subtext">DAU</div>
                 </div>
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
-                        {mau}
+                        {toPercent(mau)}%
                     </div>
                     <div className="overview-bar__item__subtext">MAU</div>
+                </div>
+                <div className="overview-bar__item">
+                    <div className="overview-bar__item__num">
+                        {toPercent(daumauRatio)}%
+                    </div>
+                    <div className="overview-bar__item__subtext">DAU/MAU ratio</div>
                 </div>
             </div>
             <div id="overview-bar">
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
-                        {tenHrActivityRatio}
+                        {toPercent(zeroToTenHrActivityRatio)}%
                     </div>
-                    <div className="overview-bar__item__subtext">10hr+ Activity %</div>
+                    <div className="overview-bar__item__subtext">0hr - 10hr % active</div>
                 </div>
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
-                        {zeroToTenHrActivityRatio}
+                        {toPercent(tenHrActivityRatio)}%
                     </div>
-                    <div className="overview-bar__item__subtext">0hr - 10hr Activity Ratio</div>
+                    <div className="overview-bar__item__subtext">10hr+ % active</div>
                 </div>
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
@@ -88,15 +93,15 @@ const OverviewBar = ({ dispatch }) => {
                 </div>
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
-                        {percentUsersAddedTasksAndTime}
+                        {toPercent(percentUsersAddedTasksAndTime)}%
                     </div>
-                    <div className="overview-bar__item__subtext">% Users with TT</div>
+                    <div className="overview-bar__item__subtext">% w TT</div>
                 </div>
                 <div className="overview-bar__item">
                     <div className="overview-bar__item__num">
-                        {percentUsersAddedSubjects}
+                        {toPercent(percentUsersAddedSubjects)}%
                     </div>
-                    <div className="overview-bar__item__subtext">% Users with Subjects</div>
+                    <div className="overview-bar__item__subtext">% w Subj</div>
                 </div>
 
             </div>
