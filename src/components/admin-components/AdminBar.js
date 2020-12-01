@@ -18,13 +18,14 @@ const AdminBar = ({ dispatch }) => {
     const loadAdminData = async () => {
         var data = await dispatch(loadAdminStats())
         const list = data.responseItems
-        if (data?.responseItems?.length > 3) {
-            setTotalSudents(list[0]?.value1)
-            setTasksCompleted(data?.responseItems[4]?.value1)
-            setTotalUnis(data?.responseItems[3]?.value1)
-            setMinutesSpent(data?.responseItems[5]?.value1)
-            setStudentsWithSubj(data?.responseItems[1]?.value1)
-            setStudentsWithTT(data?.responseItems[2]?.value1)
+        console.log(data)
+        if (true) {
+            setTotalSudents(data.numberOfUsers)
+            setTasksCompleted(data?.mau)
+            setTotalUnis(data.dau)
+            // setMinutesSpent(data?.responseItems[5]?.value1)
+            // setStudentsWithSubj(data?.responseItems[1]?.value1)
+            // setStudentsWithTT(data?.responseItems[2]?.value1)
         }
     }
 

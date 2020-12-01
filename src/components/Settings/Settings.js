@@ -284,7 +284,7 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 (true) &&
                 <div>
                     <OverviewBar />
-                    <AdminBar />
+                    {false && <AdminBar />}
                     <AdminFacultiesPie />
                     <button onClick={() => setUniTableOpen(true)}>Open Universities Table</button>
                     {uniTableOpen &&
