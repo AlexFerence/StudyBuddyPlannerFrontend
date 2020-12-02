@@ -62,11 +62,8 @@ const TOUR_STEPS = [
 const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) => {
     const [displayType, setDisplayType] = useState('')
 
-
-
-    var [steps, setSteps] = useState(TOUR_STEPS)
-    var [stepIndex, setStepIndex] = useState(0)
-    var [run, setRun] = useState(true);
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString);
 
     const history = useHistory()
 
@@ -94,23 +91,20 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
         dispatch(loadTasks())
         //dispatch(setCurrentTaskById(currentTask.id))
 
-        dispatch(refreshUser()).then(() => {
-            if (moment().isAfter(moment(profile.tokenExpiry))) {
-                dispatch(logout())
-                history.push('/')
-            }
-        })
+        // dispatch(refreshUser()).then(() => {
+        //     if (moment().isAfter(moment(profile.tokenExpiry))) {
+        //         dispatch(logout())
+        //         history.push('/')
+        //     }
+        // })
 
         dispatch(getActiveFriends())
         dispatch(getPendingFriends())
 
-
-        if (moment().isAfter(moment(profile.tokenExpiry))) {
-            dispatch(logout())
-            history.push('/')
+        if (urlParams.get('action') === 'openAddTask') {
+            addingOn()
         }
-
-        if (currentTask.id && currentTask.subjectId && tasks.length > 0) {
+        else if (currentTask.id && currentTask.subjectId && tasks.length > 0) {
             setDisplayType('display')
         }
 
@@ -164,7 +158,11 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                     }
                     {
                         displayType === '' && subjects.length > 0 && tasks.length === 0 &&
-                        <CustomOverlay message="Add a task to get started" />
+                        <CustomChildrenOverlay>
+                            <button id='bigAddButton'
+                                onClick={addingOn}
+                            >+ Add Task</button>
+                        </CustomChildrenOverlay>
                     }
 
                 </Col>

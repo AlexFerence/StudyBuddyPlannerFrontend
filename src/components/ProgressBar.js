@@ -15,10 +15,9 @@ const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth =
                 <span>Add a <Link to='/subjects?action=openAddSubj' id="link">Subject</Link> to complete profile!</span>
             )
         }
-
         if (tasks.length === 0) {
             return (
-                <span>Add a <Link to='/tasks' id="link">Task</Link> to complete profile!</span>
+                <span>Add a <Link to='/tasks?action=openAddTask' id="link">Task</Link> to complete profile!</span>
             )
         }
         if (currentMonth === 0) {

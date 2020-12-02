@@ -71,7 +71,10 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
         const action = urlParams.get('action')
 
         if (action === 'openAddSubj') {
-            openAddModal()
+            setTimeout(() => {
+                openAddModal()
+            }, 100)
+
         }
 
     }, [])
