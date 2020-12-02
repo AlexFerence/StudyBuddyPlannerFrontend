@@ -23,7 +23,7 @@ const ListSubjects = ({ subjects, setDisplayMode, openAddModal, dispatch, semest
                     <div className="title">Subjects</div>
                 </div>
                 <div className="right">
-                    <button id="addButton" onClick={() => handleOpenAddModal()}>+ Add Subject</button>
+                    <button id="addButton" onClick={handleOpenAddModal}>+ Add Subject</button>
                 </div>
             </div>
             <div>
@@ -31,11 +31,14 @@ const ListSubjects = ({ subjects, setDisplayMode, openAddModal, dispatch, semest
                     // map over the semesters
                     semesters && semesters.map((sem) => {
                         return (
-                            <SemesterDropdown sem={sem} key={sem.id}
+                            <SemesterDropdown
+                                handleOpenAddModal={handleOpenAddModal}
+                                sem={sem} key={sem.id}
                                 handleSelectedSubject={handleSelectedSubject} />
                         )
                     })
                 }
+
             </div>
 
 

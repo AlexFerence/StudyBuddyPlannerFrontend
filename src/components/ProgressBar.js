@@ -12,7 +12,7 @@ const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth =
     const renderMessage = () => {
         if (subjects.length === 0) {
             return (
-                <span>Add a <Link to='/subjects' id="link">Subject</Link> to complete profile!</span>
+                <span>Add a <Link to='/subjects?action=openAddSubj' id="link">Subject</Link> to complete profile!</span>
             )
         }
 

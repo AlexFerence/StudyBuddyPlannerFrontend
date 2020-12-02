@@ -7,7 +7,7 @@ import AddSemesterButton from './AddSemesterButton'
 import EditSemesterButton from './EditSemesterButton'
 import SubjectTile from './SubjectTile'
 
-const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) => {
+const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, handleOpenAddModal }) => {
     const [showSubjects, setShowSubjects] = useState(true)
     const [showEdit, setShowEdit] = useState(false)
 
@@ -47,16 +47,30 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject }) =>
             {
                 showSubjects &&
                 <div className="listClasses">
-                    <AnimatedList animation={"fade"}>
-                        {subjects.map((item) => {
-                            if (item.semesterId === sem.id)
-                                return (
-                                    <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
-                                        <SubjectTile subject={item} />
-                                    </div>
-                                )
-                        })}
-                    </AnimatedList>
+                    {
+                        subjects.length > 0 ?
+                            <AnimatedList animation={"fade"}>
+                                {subjects.map((item) => {
+                                    if (item.semesterId === sem.id)
+                                        return (
+                                            <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
+                                                <SubjectTile subject={item} />
+                                            </div>
+                                        )
+                                })}
+                            </AnimatedList>
+                            :
+                            <div
+                                className='addButtonContainer'
+                            >
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <button onClick={handleOpenAddModal} className='no-outline' id='bigAddButton'>
+                                        + Add Subject
+                                    </button>
+                                </div>
+                            </div>
+                    }
+
                 </div>
             }
 

@@ -55,8 +55,9 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     // controls the display of the view on the right
     const [addSubjectOpen, setAddSubjectOpen] = useState(false)
     const [displayMode, setDisplayMode] = useState('')
-    var [run, setRun] = useState(true);
-    var [stepIndex, setStepIndex] = useState(0)
+
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString);
 
     // load new pie chart data every time current subject is changed
     useEffect(() => {
@@ -66,6 +67,13 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
     useEffect(() => {
         dispatch(realoadClassesThunk())
         dispatch(refreshUser())
+
+        const action = urlParams.get('action')
+
+        if (action === 'openAddSubj') {
+            openAddModal()
+        }
+
     }, [])
 
     const turnOnEditing = () => setDisplayMode('editing')
@@ -101,23 +109,6 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
 
     const history = useHistory()
 
-    const handleJoyrideCallback = data => {
-        const { action, index, status, type } = data;
-        if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-            // Update state to advance the tour
-            setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
-        }
-        else if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-            // Need to set our running state to false, so we can restart if we click start again.
-            setRun(false)
-            history.push("/tasks")
-            //turn off tour locally
-            dispatch(modifyProfile({ subjectTour: 1 }))
-            //turn off in server
-            dispatch(turnOffSubjectTour())
-        }
-    };
-
     return (
         <Row className="subjects" style={(width < 1000) ? { paddingRight: '0px' } : {
             border: '0px solid blue', paddingRight: '300px'
@@ -130,19 +121,6 @@ const Subjects3 = ({ width, subjects = [], dispatch, currentSubject, profile }) 
             >
                 <AddSubjectModalContent closeAddModal={closeAddModal} />
             </Modal>
-            <Joyride steps={TOUR_STEPS}
-                continuous={true} showSkipButton={true}
-                callback={handleJoyrideCallback}
-                run={profile.subjectTour === 0}
-                styles={{
-                    options: {
-                        primaryColor: '#fb4033'
-                    },
-                    buttonClose: {
-                        display: 'none',
-                    },
-                }}
-            />
             <Col style={{ padding: '0px', backgroundColor: '#f9f9f9' }} xs={12} s={12} md={12} lg={12} className="scroller main-left">
                 <ListSubjects setDisplayMode={setDisplayMode} openAddModal={openAddModal} />
             </Col>

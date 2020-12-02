@@ -1,191 +1,191 @@
 html {
- // font-size: 62.5%;
- scroll-behavior: smooth;
+  // font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 body {
- //background: $dark-blue;
- font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-  Arial, Helvetica, sans-serif;
- //overflow: hidden;
- font-weight: 500;
+  //background: $dark-blue;
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+    Arial, Helvetica, sans-serif;
+  //overflow: hidden;
+  font-weight: 500;
 }
 
 button {
- cursor: pointer;
+  cursor: pointer;
 }
 
 .btn:focus {
- outline: none !important;
- outline-offset: none !important;
+  outline: none !important;
+  outline-offset: none !important;
 }
 
 button:focus {
- outline: none !important;
- outline-offset: none !important;
+  outline: none !important;
+  outline-offset: none !important;
 }
 
 button:disabled {
- cursor: default;
+  cursor: default;
 }
 
 ul {
- list-style: none;
+  list-style: none;
 }
 
 .inp {
- background-color: none;
- border: none;
- border-bottom: 1px solid $grey;
- margin: 10px 0px;
- transition: 0.2s;
- width: 100%;
+  background-color: none;
+  border: none;
+  border-bottom: 1px solid $grey;
+  margin: 10px 0px;
+  transition: 0.2s;
+  width: 100%;
 }
 
 .inp:focus {
- transition: 0.2s;
- outline: none;
- padding: 5px;
- border-bottom: 1px solid black;
- margin: 5px 0px;
+  transition: 0.2s;
+  outline: none;
+  padding: 5px;
+  border-bottom: 1px solid black;
+  margin: 5px 0px;
 }
 
 .inpArea {
- width: 100%;
- border: 1px solid $grey;
- margin: 5px 0px;
- padding: 7.5px;
- line-height: 20px;
+  width: 100%;
+  border: 1px solid $grey;
+  margin: 5px 0px;
+  padding: 7.5px;
+  line-height: 20px;
 }
 
 .inpArea:focus {
- outline: none;
+  outline: none;
 }
 
 .but {
- padding: 5px 10px;
- margin: 7.5px;
+  padding: 5px 10px;
+  margin: 7.5px;
 
- background-color: $white;
- border: 1px solid $grey;
- color: $dark-grey;
- border-radius: 3px;
+  background-color: $white;
+  border: 1px solid $grey;
+  color: $dark-grey;
+  border-radius: 3px;
 }
 .but:focus {
- outline: none;
+  outline: none;
 }
 
 .but:hover {
- // background-color: $dark-grey;
- // border: 1px solid $dark-grey;
- // color: $light-grey;
- transition: 0.5s;
- border: 1px solid $dark-grey;
+  // background-color: $dark-grey;
+  // border: 1px solid $dark-grey;
+  // color: $light-grey;
+  transition: 0.5s;
+  border: 1px solid $dark-grey;
 }
 
 .row {
- width: 100%;
- margin: 0;
+  width: 100%;
+  margin: 0;
 }
 
 .col {
- margin: 0;
- padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .preAuth {
- font-size: 20px;
- background-color: transparent;
- color: $brand;
- border: 2px solid $brand;
- margin-bottom: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: $brand;
+  border: 2px solid $brand;
+  margin-bottom: 10px;
 }
 .preAuth:hover {
- background-color: $brand;
- border: 2px solid $brand;
+  background-color: $brand;
+  border: 2px solid $brand;
 }
 
 .preAuth:focus {
- background-color: $brand;
- border: 2px solid $brand;
- outline: none;
+  background-color: $brand;
+  border: 2px solid $brand;
+  outline: none;
 }
 
 .linkAuth {
- color: $brand;
- padding: 5px;
+  color: $brand;
+  padding: 5px;
 }
 
 .linkAuth:hover {
- color: $brand;
- text-decoration: none;
- border-bottom: 1px solid $brand;
+  color: $brand;
+  text-decoration: none;
+  border-bottom: 1px solid $brand;
 }
 
 .authContainer {
- padding: 30px 80px;
+  padding: 30px 80px;
 }
 
 .preHeader {
- font-size: 20px;
- //text-align: center;
- padding-bottom: 15px;
- font-weight: 700;
+  font-size: 20px;
+  //text-align: center;
+  padding-bottom: 15px;
+  font-weight: 700;
 }
 
 .error {
- color: $brand;
- font-size: 10px;
+  color: $brand;
+  font-size: 10px;
 }
 
 .green {
- color: lighten($color: green, $amount: 5);
+  color: lighten($color: green, $amount: 5);
 }
 
 .icon {
- background-color: transparent;
- outline: none;
- border: none;
- color: white;
- font-size: 20px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 20px;
 }
 
 .icon:hover {
- background-color: lighten($color: transparent, $amount: 10);
+  background-color: lighten($color: transparent, $amount: 10);
 }
 
 .navbarIcon {
- text-decoration: none;
- color: $light;
- font-weight: 300;
- text-transform: uppercase;
- position: relative;
- font-size: 22.5px;
- padding-right: 20px;
+  text-decoration: none;
+  color: $light;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: relative;
+  font-size: 22.5px;
+  padding-right: 20px;
 }
 .full-width {
- width: 100%;
+  width: 100%;
 }
 
 .white {
- color: white;
- border: 5px solid red;
+  color: white;
+  border: 5px solid red;
 }
 
 .col-md-6 {
- padding: 0px;
+  padding: 0px;
 }
 
 .left {
- border-right: 0px solid white;
+  border-right: 0px solid white;
 }
 
 .noHover:hover {
- border: 1px solid grey;
+  border: 1px solid grey;
 }
 
 // set z-index higher than .tether-element
@@ -201,34 +201,44 @@ ul {
 // }
 
 .tippy-content {
- z-index: 501;
+  z-index: 501;
 }
 
 #trash:hover {
- color: #f7444a;
+  color: #f7444a;
 }
 
 #check-hover:hover {
- color: #90ee90;
+  color: #90ee90;
 }
 
 #edit-hover:hover {
- color: lighten($color: $grey, $amount: 15);
+  color: lighten($color: $grey, $amount: 15);
 }
 
 #no-padding {
- padding: 0px;
- margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 #link {
-    color: $brand;
-    margin-right: 0px;
-    padding-right: 0px;
-    text-transform: none;
-    font-size: 17px;
+  color: $brand;
+  margin-right: 0px;
+  padding-right: 0px;
+  text-transform: none;
+  font-size: 17px;
 }
 
 #link:hover {
-   border-bottom: 1px solid $brand;
+  border-bottom: 1px solid $brand;
+}
+
+#addButton {
+  background-color: $brand;
+  color: white;
+}
+
+#bigAddButton {
+  background-color: $brand;
+  color: white;
 }

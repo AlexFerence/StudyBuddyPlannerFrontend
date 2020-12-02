@@ -132,15 +132,12 @@ const customStylesWithFriends = {
 
 const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }) => {
   useEffect(() => {
-
     dispatch(refreshUser())
-
     if (isAuth) {
       dispatch(loadFiveCharts())
       dispatch(loadSchools())
       dispatch(loadFaculties())
       dispatch(getSuggestedFriends())
-
 
       // refresh token
       const now = moment()
@@ -159,9 +156,6 @@ const ConfigureApp = ({ dispatch, width, isAuth, tokenExpiry, loading, profile }
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-
-
-
   }, [])
 
   const closePaymentModal = () => {

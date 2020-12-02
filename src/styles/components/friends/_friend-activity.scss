@@ -1,93 +1,93 @@
 .friend-activity {
- //border: 1px solid $grey;
- display: flex;
- flex-direction: column;
- width: 300px;
- position: fixed;
- right: 0;
- top: 0;
- z-index: 10;
- height: 100%;
- background-color: $dark-grey;
- color: $grey;
- //overflow: scroll;
+  //border: 1px solid $grey;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  background-color: $dark-grey;
+  color: $grey;
+  //overflow: scroll;
 }
 
 .friend-activity__header {
- color: white;
- margin: 15px;
- font-size: 20px;
- padding: 14px;
- border-bottom: 1px solid $grey;
- display: flex;
- justify-content: space-between;
- align-items: center;
+  color: white;
+  margin: 15px;
+  font-size: 20px;
+  padding: 14px;
+  border-bottom: 1px solid $grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .friend-activity__header__bell {
- font-size: 20px;
+  font-size: 20px;
 }
 
 .friend-search {
- padding: 10px;
- input {
-  border: 1px solid grey;
-  padding: 7.5px;
-  background-color: $light-grey;
-  width: 100%;
- }
- input:focus {
-  outline: none;
- }
+  padding: 10px;
+  input {
+    border: 1px solid grey;
+    padding: 7.5px;
+    background-color: $light-grey;
+    width: 100%;
+  }
+  input:focus {
+    outline: none;
+  }
 }
 
 .suggest-person {
- padding: 10px;
- //border: 1px solid red;
- display: flex;
- justify-content: space-between;
- align-items: center;
- width: 100%;
- background-color: lighten($color: $dark-grey, $amount: 3);
- border: '1px solid grey';
- border-top: 'none';
- //border: 1px solid grey;
- //background-color: darken($color: $light-grey, $amount: 10);
+  padding: 10px;
+  //border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: lighten($color: $dark-grey, $amount: 3);
+  border: '1px solid grey';
+  border-top: 'none';
+  //border: 1px solid grey;
+  //background-color: darken($color: $light-grey, $amount: 10);
 }
 
 .suggest-person__name {
- font-size: 18px;
- color: white;
- text-transform: capitalize;
+  font-size: 18px;
+  color: white;
+  text-transform: capitalize;
 }
 
 .suggest-person__email {
- font-size: 12px;
- color: darken($color: $grey, $amount: 30);
+  font-size: 12px;
+  color: darken($color: $grey, $amount: 30);
 }
 
 .plus-container:hover {
- border-radius: 50%;
- background-color: lighten($color: $dark-grey, $amount: 10);
+  border-radius: 50%;
+  background-color: lighten($color: $dark-grey, $amount: 10);
 }
 
 .badge {
- position: absolute;
- top: 15px;
- right: 15px;
- padding: 4px 8px;
- border-radius: 50%;
- background-color: $brand;
- color: white;
- z-index: 1;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 4px 8px;
+  border-radius: 50%;
+  background-color: $brand;
+  color: white;
+  z-index: 1;
 }
 
 .invite-friends {
- margin: 10px 10px;
- padding: 20px;
- font-size: 20px;
- color: white;
- background-color: $brand;
- border-radius: 3px;
- border: none;
+  margin: 10px 10px;
+  padding: 20px;
+  font-size: 20px;
+  color: white;
+  background-color: $grey;
+  border-radius: 3px;
+  border: none;
 }

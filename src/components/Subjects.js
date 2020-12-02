@@ -21,21 +21,7 @@ import swal from 'sweetalert'
 import { useHistory } from 'react-router-dom'
 
 const TOUR_STEPS = [
-    {
-        target: "#addButton",
-        content: 'First, add all of your subjects for this semester.',
-        disableBeacon: true,
-        disableOverlay: true
-    },
-    {
-        target: "#tasks",
-        content:
-            "Next let's head over to tasks...",
-        locale: {
-            last: 'Next'
-        },
-        disableOverlay: true
-    },
+
 ];
 
 

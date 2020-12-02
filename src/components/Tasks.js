@@ -112,53 +112,16 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
 
         if (currentTask.id && currentTask.subjectId && tasks.length > 0) {
             setDisplayType('display')
-
         }
 
     }, [])
 
-    const handleJoyrideCallback = data => {
-        const { action, index, status, type } = data;
-
-        //console.log(STATUS);
-
-        if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-            // Update state to advance the tour
-            setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1))
-        }
-        else if ([STATUS.FINISHED, STATUS.PAUSED, STATUS.SKIPPED].includes(status)) {
-            // Need to set our running state to false, so we can restart if we click start again.
-            setRun(false)
-            history.push("/dashboard")
-            //locally turn off the tour
-            dispatch(modifyProfile({ taskTour: 1 }))
-            //send back to server to turn off tour
-            dispatch(turnOffTaskTour())
-
-
-        }
-        console.groupCollapsed(type);
-        console.groupEnd();
-    };
-
+    const handleGoToSubjects = () => {
+        history.push('/subjects?action=openAddSubj')
+    }
 
     return (
         <div>
-            <Joyride steps={TOUR_STEPS}
-                continuous={true} showSkipButton={true}
-                callback={handleJoyrideCallback}
-                run={profile.taskTour === 0}
-                styles={{
-                    options: {
-                        primaryColor: '#fb4033'
-                    },
-                    buttonClose: {
-                        display: 'none',
-                    },
-
-                }}
-            />
-
             <Row className="tasks" style={(width < 1000) ? {
                 paddingRight: '0px'
             } : {
@@ -166,7 +129,6 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                         '0px solid blue',
                     paddingRight: '300px'
                 }}>
-
                 <Col
                     style={{ padding: '0px' }}
                     xs={12} s={12} md={6} lg={6} className="scroller" s={6}>
@@ -194,9 +156,10 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                     {displayType === '' && subjects.length === 0 &&
                         <CustomChildrenOverlay>
                             <div style={{ color: 'black' }}>Before you can add a task</div>
-                            <Link to="/subjects" style={{
-                                color: '#fb4033'
-                            }}><div>Add a subject</div></Link>
+                            <button id='bigAddButton'
+                                style={{ marginTop: '20px' }}
+                                onClick={handleGoToSubjects}
+                            >+ Add Subject</button>
                         </CustomChildrenOverlay>
                     }
                     {
