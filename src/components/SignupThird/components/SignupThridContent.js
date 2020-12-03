@@ -24,9 +24,17 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
             isAuth: true
         }))
 
-        await dispatch(submitFirstClasses())
+        const subjWasAdded = await dispatch(submitFirstClasses())
 
-        history.push('/subjects')
+        if (subjWasAdded) {
+            history.push('/tasks')
+        }
+        else {
+            history.push('/subjects')
+        }
+
+
+
     }
 
     useEffect(() => {

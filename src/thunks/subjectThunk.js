@@ -4,6 +4,8 @@ import url from '../environment/url'
 import { addSubject, fillSubjects } from '../actions/subjectActions'
 import { setSubjToAdd } from '../actions/signupThirdActions'
 import { loadTasks } from './taskThunk'
+import { addTaskThunk } from './taskThunk'
+import moment from 'moment'
 
 export const addSubjectThunk = ({ subTitle, classCode, description, professor = '', credits = 3,
     color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
@@ -38,10 +40,24 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor = 
                     }
                 }
             )
+            console.log('add subj res')
             console.log(res)
             if (res.status === 200) {
-                dispatch(addSubject(res.data))
-                dispatch(realoadClassesThunk())
+                await dispatch(addSubject(res.data))
+                await dispatch(realoadClassesThunk())
+
+                await dispatch(addTaskThunk({
+                    taskType: 'General Studying',
+                    title: 'General Studying',
+                    dueDate: moment().add(1, 'months').format("YYYY-MM-DD"),
+                    description: '',
+                    subjectId: res.data.id
+                }))
+
+                console.log('SUBJ ID')
+                console.log(res.data.id)
+
+
             }
         } catch (e) {
             console.log(e)
@@ -136,9 +152,10 @@ export const getClassName = (subjId) => async (dispatch, getState) => {
 export const submitFirstClasses = (subjId) => async (dispatch, getState) => {
     const state = getState()
     const { signupThird } = state
-
+    let subjWasAdded = false
     signupThird.forEach(async (subjToAdd, index) => {
         if (subjToAdd.subTitle || subjToAdd.classCode || subjToAdd.description) {
+            subjWasAdded = true
             await dispatch(addSubjectThunk(subjToAdd))
             dispatch(setSubjToAdd(
                 {
@@ -147,8 +164,10 @@ export const submitFirstClasses = (subjId) => async (dispatch, getState) => {
                     description: ''
                 }, index)
             )
+
         }
-        await dispatch(realoadClassesThunk())
-        await dispatch(loadTasks())
     })
+    await dispatch(realoadClassesThunk())
+    await dispatch(loadTasks())
+    return (subjWasAdded)
 }

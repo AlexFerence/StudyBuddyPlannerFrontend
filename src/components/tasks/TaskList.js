@@ -26,13 +26,6 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
     }
 
     useEffect(() => {
-        // On every page load refresh Active users
-
-
-    }, [])
-
-    useEffect(() => {
-
         dispatch(
             loadTasks((filterBy.value === 'Due Date' ? true : false), filterByCompleted)
         )
@@ -97,6 +90,9 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
         setFilterByCompleted(!filterByCompleted)
     }
 
+    console.log('tasks')
+    console.log(tasks)
+
     return (
         <div>
             <div className="classHeader">
@@ -139,16 +135,15 @@ const TaskList = ({ currentTask, tasks, subjects, addingOn, displayOn,
             <div className='task-list'>
                 <AnimatedList animation={"fade"}>
                     {
-                        tasks.map((t) => {
-
+                        tasks.map((t, index) => {
                             return (
-                                <TaskListItem key={t.id} blankOn={blankOn} task={t} displayOn={displayOn} />
+                                <TaskListItem key={index} blankOn={blankOn} task={t} displayOn={displayOn} />
                             )
                         })
                     }
                 </AnimatedList>
             </div>
-        </div >
+        </div>
     )
 }
 

@@ -53,18 +53,17 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) =
             return
         }
 
-
         try {
             const res = await axios.post(url + '/api/Tasks/create',
                 {
-                    "taskType": taskType.value,
-                    "title": taskTitle,
-                    "description": taskDesc,
-                    "hours": 0,
-                    "subjectId": currentClass.value.id,
-                    "dueDate": selectedDate.format("YYYY-MM-DD"),
-                    "userId": id,
-                    "isDone": 0
+                    taskType: taskType.value,
+                    title: taskTitle,
+                    description: taskDesc,
+                    hours: 0,
+                    subjectId: currentClass.value.id,
+                    dueDate: selectedDate.format("YYYY-MM-DD"),
+                    userId: id,
+                    isDone: 0
                 },
                 {
                     headers: {

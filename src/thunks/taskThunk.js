@@ -3,6 +3,46 @@ import url from '../environment/url'
 import { fillTasks } from '../actions/taskActions'
 import { setCurrentTask } from '../actions/currentTaskActions'
 
+export const addTaskThunk = ({ dueDate, subjectId, title, description, taskType }) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile, subjects } = state
+    const { id, token } = profile
+
+    console.log('adding task')
+    try {
+        const res = await axios.post(url + '/api/Tasks/create',
+            {
+                taskType,
+                title,
+                description,
+                hours: 0,
+                subjectId,
+                dueDate,
+                userId: id,
+                isDone: 0
+            },
+            {
+                headers: {
+                    'Authorization': 'bearer ' + token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+
+
+        console.log('adding task')
+        console.log(res)
+        await dispatch(loadTasks())
+        console.log('loading tasks')
+        await dispatch(setCurrentTaskById(res.data.id))
+        console.log('should have turned display')
+        //setDisplayType('display')
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
 export const loadTasks = (filterBy = true, completed = true) => async (dispatch, getState) => {
     const state = getState()
     const { profile, subjects } = state

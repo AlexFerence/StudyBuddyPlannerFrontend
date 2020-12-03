@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Counter from './Timer'
 import 'react-circular-progressbar/dist/styles.css';
@@ -17,8 +17,6 @@ import { FaAngleDown, FaLock, FaAngleUp } from 'react-icons/fa'
 import swal from 'sweetalert'
 import { getSessionsThunk, deleteSessionThunk } from '../thunks/sessionsThunk'
 
-
-
 const hoursToTimeDisplay = (h) => {
     var hours = Math.floor(h)
     var decimalMins = (h - hours) * 60
@@ -27,7 +25,6 @@ const hoursToTimeDisplay = (h) => {
         returnMins = "0" + returnMins
     }
     return (hours + ":" + returnMins)
-
 }
 
 const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask, dispatch, blankOn }) => {
@@ -139,7 +136,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
             </div>
             <div className="display-task-body">
                 <Row>
-                    <Col md={6}>
+                    {false && <Col md={6}>
                         <div className="d-flex align-items-end info">
                             <span className="calendarIcon"><FaCalendarAlt /></span>  Due: {moment(currentTask.dueDate).format("MMMM DD")}
                         </div>
@@ -160,8 +157,8 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         </div>
 
 
-                    </Col>
-                    <Col md={6}>
+                    </Col>}
+                    <Col md={12}>
                         <Select
                             className="timerSelect"
                             value={timerSetting}
@@ -208,7 +205,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         <div>
                             {
                                 false &&
-                                <>
+                                <Fragment>
                                     <button
                                         className="but complete"
                                         onClick={handleCompleted}
@@ -218,7 +215,7 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                                         id="trash"
                                         className="but complete"
                                     ><FaTrashAlt /></button>
-                                </>
+                                </Fragment>
                             }
 
                         </div>
