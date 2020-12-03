@@ -196,6 +196,25 @@ const TaskDisplay = ({ currentTask, editingOn, isRunning, paused, setCurrentTask
                         }
                     </Col>
                 </Row>
+                <div style={{ marginTop: '15px', color: 'grey' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                        <div className="d-flex align-items-end info">
+                            <span className="calendarIcon"><FaCalendarAlt style={{ color: 'grey' }} /></span>  Due: {moment(currentTask.dueDate).format("MMMM DD")}
+                        </div>
+                        <div className="d-flex align-items-end info">
+                            <span className="calendarIcon"><FaGraduationCap style={{ color: 'grey' }} /></span>  Class: {currentTask.subjectTitle}
+                        </div>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                        <div className="d-flex align-items-end info">
+                            <span className="calendarIcon"><IoMdTime style={{ color: 'grey' }} /></span>  Total: {currentTask.totalTime.substring(0, currentTask.totalTime.length - 3) || 0}
+                        </div>
+                        <div className="d-flex align-items-end info">
+                            <span className="calendarIcon"><FaPencilAlt style={{ color: 'grey' }} /></span>   Type: {currentTask.taskType}
+                        </div>
+                    </div>
+
+                </div>
                 <div>
                     <div className="taskSessionsBar">
                         <button className="but" onClick={() => {

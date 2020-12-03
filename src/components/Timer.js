@@ -184,28 +184,27 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
                             </div>
                     }
 
-
-
-
                     {(isRunning || paused) &&
                         <div className="inside d-flex justify-content-center align-items-center">
                             <span className="timeDisplay">{timeDisplay(interval - count)}</span>
                         </div>
-
-
-
                     }
 
                     <div>
-                        {!isRunning &&
+
+                        {(!isRunning && paused) &&
                             <button id="play-button"
                                 style={{ backgroundColor: currentTask.color || 'grey' }}
                                 disabled={!currentTask.id} className="but" onClick={startTimer}><IoMdPlay /></button>
                         }
+                        {(!isRunning && !paused) &&
+                            <button id="play-button"
+                                style={{ backgroundColor: currentTask.color || 'grey', fontSize: '22px' }}
+                                disabled={!currentTask.id} className="but" onClick={startTimer}>Start Timer</button>
+                        }
                         {!isRunning && paused &&
                             <button style={{ backgroundColor: currentTask.color || 'grey' }}
                                 id="play-button" className="but" onClick={resetCount}><IoMdClose /></button>
-
                         }
                     </div>
                     {isRunning && <button style={{ backgroundColor: currentTask.color || 'grey' }}
