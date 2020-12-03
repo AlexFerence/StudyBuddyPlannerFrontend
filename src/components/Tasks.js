@@ -7,7 +7,7 @@ import TaskEdit from './TaskEdit'
 import CustomOverlay from './CustomOverlay'
 import CustomChildrenOverlay from './CustomChildrenOverlay'
 import { Row, Col } from 'react-bootstrap'
-import { loadTasks } from '../thunks/taskThunk'
+import { loadTasks, setCurrentTaskById } from '../thunks/taskThunk'
 import Joyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import { modifyProfile } from '../actions/profileActions'
 import { turnOffTaskTour, refreshUser } from '../thunks/profileThunk'
@@ -104,6 +104,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
         if (urlParams.get('action') === 'openAddTask') {
             addingOn()
         }
+
         else if (currentTask.id && currentTask.subjectId && tasks.length > 0) {
             setDisplayType('display')
         }

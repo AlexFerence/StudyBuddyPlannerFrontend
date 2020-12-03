@@ -281,7 +281,9 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                 style={{ marginBottom: "30px" }}
             >Log Out</button>
             {
-                (true) &&
+                (emailProp === 'alexference23@gmail.com'
+                    || emailProp === 'akaufman2000@gmail.com'
+                ) &&
                 <div>
                     <OverviewBar />
                     {false && <AdminBar />}
