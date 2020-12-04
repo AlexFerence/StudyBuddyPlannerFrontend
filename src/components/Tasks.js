@@ -101,6 +101,11 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
         dispatch(getActiveFriends())
         dispatch(getPendingFriends())
 
+        console.log('trio')
+        console.log(currentTask.id)
+        console.log(currentTask.subjectId)
+        console.log(tasks.length)
+
         if (urlParams.get('action') === 'openAddTask') {
             addingOn()
         }
@@ -110,6 +115,12 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
         }
 
     }, [])
+
+    useEffect(() => {
+        if (currentTask.id && currentTask.subjectId && tasks.length > 0) {
+            setDisplayType('display')
+        }
+    }, [currentTask, tasks])
 
     const handleGoToSubjects = () => {
         history.push('/subjects?action=openAddSubj')
@@ -134,7 +145,7 @@ const TasksPage = ({ subjects, currentTask, dispatch, profile, width, tasks }) =
                         blankOn={blankOn}
                     />
                 </Col>
-                <Col xs={12} s={12} md={6} lg={6} style={{ overflow: 'hidden' }} className="main-right">
+                <Col xs={12} s={12} md={6} lg={6} style={{ overflowY: 'auto' }} className="main-right">
                     {displayType === 'adding' && <AddTask
                         displayOn={displayOn}
                         setDisplayType={setDisplayType}

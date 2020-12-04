@@ -25,6 +25,9 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
     const [isRunning, setIsRunning] = useState(false);
     const [interval, setInterval] = useState(25 * 60)
 
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString);
+
     function notifyMe() {
         // Let's check if the browser supports notifications
 
@@ -33,6 +36,10 @@ const Counter = ({ subjects, tasks, currentTask, dispatch, id, color, isRunningR
     useEffect(() => {
         //dispatch(runningOffThunk())
         dispatch(pausedReduxOff())
+
+        if (urlParams.get('action') === 'startTimer') {
+            startTimer()
+        }
 
         return () => {
             setIsRunning(false)

@@ -21,7 +21,9 @@ const ProgressBar = ({ subjects, dispatch, classes, tasks, width, currentMonth =
             )
         }
         if (currentMonth === 0) {
-            return ('Start a timer to complete profile!')
+            return (
+                <span>Start a <Link to='/tasks?action=startTimer' id="link">Timer</Link> to complete profile!</span>
+            )
         }
         else {
             return ('Profile complete!')

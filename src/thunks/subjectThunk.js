@@ -53,11 +53,8 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor = 
                     description: '',
                     subjectId: res.data.id
                 }))
-
                 console.log('SUBJ ID')
                 console.log(res.data.id)
-
-
             }
         } catch (e) {
             console.log(e)
