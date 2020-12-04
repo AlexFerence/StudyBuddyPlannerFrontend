@@ -305,8 +305,6 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
                     {newUsersCal && <NewUsersCal />}
                 </div>
             }
-
-
         </div>
     )
 }
