@@ -71,6 +71,12 @@ const Settings = ({ dispatch, firstName, lastName, emailProp, passwordProp, toke
 
     const onSubmit = async (e) => {
         e.preventDefault()
+
+        if (!school.value || !faculty.value) {
+            alert('Error updating profile, please update profile')
+            return
+        }
+
         try {
             console.log(token)
             const res = await axios.put(url + '/api/userprofiles/' + id,

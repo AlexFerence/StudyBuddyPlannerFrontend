@@ -129,19 +129,7 @@ const Dashboard = ({ dispatch, profile, tasks, width, isAuth }) => {
           '0px solid blue',
         paddingRight: '300px'
       }} >
-      <Joyride steps={TOUR_STEPS}
-        continuous={true} showSkipButton={true}
-        callback={handleJoyrideCallback}
-        run={profile.dashboardTour === 0}
-        styles={{
-          options: {
-            primaryColor: '#fb4033'
-          },
-          buttonClose: {
-            display: 'none',
-          },
-        }}
-      />
+
       <div className="rows">
         <Row>
           <Col className="boxCol" id="quickT" md={6}>
@@ -160,13 +148,13 @@ const Dashboard = ({ dispatch, profile, tasks, width, isAuth }) => {
           </Col>
         </Row>
         <Row id="row1">
-          <Col className="boxCol" md={6} style={{
-            minHeight: "360px"
-          }}>
-            <NumbersOverview />
+          <Col className="boxCol" md={6}>
+            <div className="innerBoxCol">
+              <SubjPieBreakdown />
+            </div>
           </Col>
           <Col className="boxCol" md={6}>
-            <div className="innerBoxCol extra-top-padding">
+            <div className="innerBoxCol">
               <SubjWeeklyBreakdown />
             </div>
           </Col>
@@ -177,10 +165,11 @@ const Dashboard = ({ dispatch, profile, tasks, width, isAuth }) => {
               <WeeklyAverage />
             </div>
           </Col>
-          <Col className="boxCol" md={6}>
-            <div className="innerBoxCol">
-              <SubjPieBreakdown />
-            </div>
+
+          <Col className="boxCol" md={6} style={{
+            minHeight: "360px"
+          }}>
+            <NumbersOverview />
           </Col>
         </Row>
       </div>

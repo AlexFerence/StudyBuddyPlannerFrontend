@@ -1,12 +1,31 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import ReactEcharts from 'echarts-for-react'
-import CustomChildrenOverlay from '../CustomChildrenOverlay'
 import GraphCoverUp from '../shared/GraphCoverUp';
+import Select from 'react-select';
+import { loadPieChartWithId } from '../../thunks/chartThunk';
 
 const isPremium = true
 
-const SubjPieBreakdown = ({ charts, subjects }) => {
+const semestersReduce = (list, semester) => {
+    list.push({ value: semester.id, label: semester.title })
+    return list
+}
+
+const SubjPieBreakdown = ({ dispatch, charts, subjects, semesters }) => {
+
+    const activeSemester = semesters.find((semester) => semester.active === 1)
+
+    const [semester, setSemester] = useState({
+        value: activeSemester.id,
+        label: activeSemester.title
+    })
+
+    useEffect(() => {
+        console.log(semester)
+        dispatch(loadPieChartWithId(semester.value))
+    }, [semester])
+
     if (subjects.length === 0) {
         return (
             <div className="noData">
@@ -20,6 +39,25 @@ const SubjPieBreakdown = ({ charts, subjects }) => {
     else {
         return (
             <Fragment>
+                <div style={{ marginTop: '10px', marginLeft: '10px', marginRight: '10px' }}>
+                    <Select
+                        value={semester}
+                        onChange={val => setSemester(val)}
+                        placeholder="Select Term"
+                        options={semesters.reduce(semestersReduce, [])}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
+                    />
+                </div>
+
                 {
                     (charts.pieChart && charts.pieChart.pieData && charts.pieChart.pieData.length > 0) ?
                         <ReactEcharts
@@ -99,6 +137,7 @@ const mapStateToProps = (state) => {
     return {
         charts: state.charts,
         subjects: state.subjects,
+        semesters: state.profile.semesters
     }
 }
 

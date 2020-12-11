@@ -49,16 +49,16 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, hand
                 <div className="listClasses">
                     {
                         subjects.length > 0 ?
-                            <AnimatedList animation={"fade"}>
-                                {subjects.map((item) => {
+                            <div>
+                                {subjects.map((item, index) => {
                                     if (item.semesterId === sem.id)
                                         return (
-                                            <div onClick={() => handleSelectedSubject(item.id)} key={item.id}>
+                                            <div onClick={() => handleSelectedSubject(item.id)} key={index}>
                                                 <SubjectTile subject={item} />
                                             </div>
                                         )
                                 })}
-                            </AnimatedList>
+                            </div>
                             :
                             <div
                                 className='addButtonContainer'

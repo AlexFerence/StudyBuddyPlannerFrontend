@@ -22,7 +22,44 @@ export const loadChartsThunk = () => async (dispatch, getState) => {
         // error
         const res = await axios.post(url + '/api/PersonalCharts/listsubjecttotalhours',
             {
+                userId: id
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (res.status === 200) {
+            var pieData = []
+            var pieColors = []
+            res.data.responseItems.forEach((item) => {
+                //console.log(item)
+                pieData.push({
+                    value: item.value1,
+                    name: item.name1,
+                })
+                pieColors.push(item.name2)
+            })
+            //console.log(pieData)
+            dispatch(setPieChart({ pieData }))
+            dispatch(modify({ pieColors }))
+        }
+    } catch (e) {
+        return (e)
+    }
+}
+export const loadPieChartWithId = (semesterId) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        // error
+        const res = await axios.post(url + '/api/PersonalCharts/listsubjecttotalhours',
+            {
                 userId: id,
+                semesterId
             }, {
             headers: {
                 'Authorization': 'bearer ' + token,
