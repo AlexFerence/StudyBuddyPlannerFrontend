@@ -39,25 +39,6 @@ const SubjPieBreakdown = ({ dispatch, charts, subjects, semesters }) => {
     else {
         return (
             <Fragment>
-                <div style={{ marginTop: '10px', marginLeft: '10px', marginRight: '10px' }}>
-                    <Select
-                        value={semester}
-                        onChange={val => setSemester(val)}
-                        placeholder="Select Term"
-                        options={semesters.reduce(semestersReduce, [])}
-                        theme={(theme) => ({
-                            ...theme,
-                            colors: {
-                                ...theme.colors,
-                                text: 'black',
-                                primary25: '#bcbcbc',
-                                primary50: '#bcbcbc',
-                                primary: '#bcbcbc',
-                            },
-                        })}
-                    />
-                </div>
-
                 {
                     (charts.pieChart && charts.pieChart.pieData && charts.pieChart.pieData.length > 0) ?
                         <ReactEcharts

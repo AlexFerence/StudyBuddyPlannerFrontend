@@ -21,28 +21,6 @@ const SubjWeeklyBreakdown = ({ charts }) => {
 
     return (
         <Fragment>
-            <div style={{ marginTop: '10px', marginLeft: '10px', marginRight: '10px' }}>
-                <Select
-                    value={semester}
-                    onChange={val => setSemester(val)}
-                    placeholder="Select Term"
-                    options={[
-                        { value: 129, label: 'Winter 2021' },
-                        { value: 130, label: 'Fall 2020' }
-                    ]}
-                    theme={(theme) => ({
-                        ...theme,
-                        colors: {
-                            ...theme.colors,
-                            text: 'black',
-                            primary25: '#bcbcbc',
-                            primary50: '#bcbcbc',
-                            primary: '#bcbcbc',
-                        },
-                    })}
-                />
-            </div>
-
             {charts.hoursPerWeekSubjBeakdown ?
 
                 <ReactEcharts style={{ margin: 'auto 0px' }}

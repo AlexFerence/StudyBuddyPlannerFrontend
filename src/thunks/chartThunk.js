@@ -305,6 +305,60 @@ export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
     }
 }
 
+export const loadTaskHoursPerWeekById = (semesterId) => async (dispatch, getState) => {
+    const state = getState()
+    const { profile } = state
+    const { id, token } = profile
+    try {
+        const res = await axios.post(url + "/api/PersonalCharts/listhourspermonth",
+            {
+                userId: id,
+                semesterId
+            }, {
+            headers: {
+                'Authorization': 'bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        var formattedWeekData = []
+
+
+        var hoursPerWeekColors = []
+        var hoursPerWeekSubjBeakdownXAxis = []
+        var firstTime = true
+
+        res.data.forEach((subj) => {
+            var title = subj.title
+            var individlList = []
+
+            //hoursPerWeekColors.push(subj.color)
+            subj.responseItems.forEach((item) => {
+                individlList.push(item.value1)
+                if (firstTime) {
+
+                    hoursPerWeekSubjBeakdownXAxis.push(moment(item.name1).format("MMM D"))
+                }
+            })
+
+            firstTime = false
+
+            formattedWeekData.push({
+                name: title,
+                type: 'line',
+                color: subj.color,
+                data: individlList
+            })
+        })
+        var hoursPerWeekSubjBeakdown = formattedWeekData
+        dispatch(modify({ hoursPerWeekSubjBeakdown }))
+        dispatch(modify({ hoursPerWeekColors }))
+        dispatch(modify({ hoursPerWeekSubjBeakdownXAxis }))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export const loadPersonalStats = () => async (dispatch, getState) => {
     const state = getState()
     const { profile } = state
