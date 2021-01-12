@@ -5,39 +5,36 @@ import { connect } from 'react-redux'
 import { CirclePicker } from 'react-color'
 import { addSubjectThunk } from '../../../thunks/subjectThunk'
 import { IoMdClose } from 'react-icons/io'
+import Select from 'react-select';
 
+const semestersReduce = (list, semester) => {
+    list.push({ value: semester.id, label: semester.title })
+    return list
+}
 
-const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
+const AddSubjectModalContent = ({ dispatch, closeAddModal, semesters }) => {
+
+    const activeSemester = semesters.find((semester) => semester.active === 1)
+
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')
     const [professor, setProfessor] = useState('')
     const [credits, setCredits] = useState(3)
     const [description, setDescription] = useState('')
     const [color, setColor] = useState({ hex: '#bcbcbc' })
+    const [semester, setSemester] = useState({
+        value: activeSemester.id,
+        label: activeSemester.title
+    })
 
     const handleClose = () => {
         closeAddModal()
     }
 
-    // const customStyles = {
-    //     content: {
-    //         top: '50%',
-    //         left: '40%',
-    //         right: 'auto',
-    //         bottom: 'auto',
-    //         transform: 'translate(-50%, -50%)',
-    //         background: '#ffffff',
-    //         padding: 'none',
-    //         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-    //         minWidth: '500px'
-    //     }
-    // };
-
     const onSubmit = async (e) => {
         e.preventDefault()
-        dispatch(addSubjectThunk({ subTitle, classCode, description, professor, credits, color }))
+        dispatch(addSubjectThunk({ semesterId: semester.value, subTitle, classCode, description, professor, credits, color }))
         closeAddModal()
-        // clear all the input fields
         setProfessor('')
         setSubTitle('')
         setClassCode('')
@@ -88,7 +85,7 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
                                     }
                                 }}
                             ></input>
-                            <label className="inpLabel">Credits</label>
+
                             <input
                                 required
                                 className="inp"
@@ -101,16 +98,23 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
                                 }
                                 }
                             ></input>
-                            {false &&
-                                <label className="inpLabel">Professor</label>
-                            }
-
-                            {false && <input
-                                className="inp"
-                                type="text"
-                                value={professor}
-                                onChange={(e) => setProfessor(e.target.value)}
-                            ></input>}
+                            <label className="inpLabel">Semester</label>
+                            <Select
+                                value={semester}
+                                onChange={val => setSemester(val)}
+                                placeholder="Select Term"
+                                options={semesters.reduce(semestersReduce, [])}
+                                theme={(theme) => ({
+                                    ...theme,
+                                    colors: {
+                                        ...theme.colors,
+                                        text: 'black',
+                                        primary25: '#bcbcbc',
+                                        primary50: '#bcbcbc',
+                                        primary: '#bcbcbc',
+                                    },
+                                })}
+                            />
 
                         </Col>
                         <Col className="circle">
@@ -141,4 +145,10 @@ const AddSubjectModalContent = ({ dispatch, closeAddModal }) => {
     )
 }
 
-export default connect()(AddSubjectModalContent)
+const mapStateToProps = (state) => {
+    return {
+        semesters: state.profile.semesters
+    }
+}
+
+export default connect(mapStateToProps)(AddSubjectModalContent)

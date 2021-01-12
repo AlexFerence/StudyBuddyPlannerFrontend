@@ -8,7 +8,8 @@ import EditSemesterButton from './EditSemesterButton'
 import SubjectTile from './SubjectTile'
 
 const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, handleOpenAddModal }) => {
-    const [showSubjects, setShowSubjects] = useState(true)
+
+    const [showSubjects, setShowSubjects] = useState(sem.title === 'Winter 2021')
     const [showEdit, setShowEdit] = useState(false)
 
     const handleMouseEnter = () => {

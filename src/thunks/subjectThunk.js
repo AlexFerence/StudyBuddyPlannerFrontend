@@ -7,7 +7,7 @@ import { loadTasks } from './taskThunk'
 import { addTaskThunk } from './taskThunk'
 import moment from 'moment'
 
-export const addSubjectThunk = ({ subTitle, classCode, description, professor = '', credits = 3,
+export const addSubjectThunk = ({ semesterId, subTitle, classCode, description, professor = '', credits = 3,
     color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
         const state = getState()
         const { profile } = state
@@ -30,7 +30,7 @@ export const addSubjectThunk = ({ subTitle, classCode, description, professor = 
                     Credits: credits,
                     UserId: id,
                     color: color.hex || "#656565",
-                    semesterId: activeSemester?.id
+                    semesterId
                 },
                 {
                     headers: {

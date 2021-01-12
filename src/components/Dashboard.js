@@ -20,17 +20,22 @@ const semestersReduce = (list, semester) => {
 
 const Dashboard = ({ dispatch, tasks, width, isAuth, semesters }) => {
 
-  const activeSemester = semesters.find((semester) => semester.active === 1)
+  const activeSemester = semesters.find((semester) => semester.title === 'Winter 2021')
 
   const [semester, setSemester] = useState({
     value: activeSemester.id,
     label: activeSemester.title
   })
 
+  const setCharts = async () => {
+    await dispatch(loadPieChartWithId(semester.value))
+    await dispatch(loadTaskHoursPerWeekById(semester.value))
+    console.log('charts have been set')
+  }
+
   useEffect(() => {
     console.log(semester)
-    dispatch(loadPieChartWithId(semester.value))
-    dispatch(loadTaskHoursPerWeekById(semester.value))
+    setCharts()
   }, [semester])
 
   const history = useHistory()

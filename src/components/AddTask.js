@@ -15,7 +15,10 @@ const subjReduce = (list, item) => {
 }
 
 
-const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType }) => {
+const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType, semesters }) => {
+
+    const activeSemester = semesters.find((semester) => semester.active === 1)
+
     const [currentSubjectID, setCurrentSubjectID] = useState('')
     const [currentClass, setCurrentClass] = useState()
     const [currentClassError, setCurrentClassError] = useState()
@@ -165,7 +168,8 @@ const mapStateToProps = (state) => {
         tasks: state.tasks,
         token: state.profile.token,
         id: state.profile.id,
-        subjects: state.subjects
+        subjects: state.subjects,
+        semesters: state.profile.semesters
     }
 }
 
