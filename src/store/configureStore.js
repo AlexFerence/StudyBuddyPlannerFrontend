@@ -23,6 +23,7 @@ import { DESTROY_SESSION } from '../actions/profileActions'
 import storage from 'redux-persist/lib/storage'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import settingsReducer from '../reducers/settingsReducer'
+import selectedSemesterReducer from '../reducers/selectedSemesterReducer'
 
 const reducers = {
     profile: profileReducer,
@@ -42,7 +43,8 @@ const reducers = {
     loading: loadingReducer,
     feed: feedReducer,
     signupThird: signupThirdReducer,
-    settings: settingsReducer
+    settings: settingsReducer,
+    selectedSemester: selectedSemesterReducer
 };
 
 const persistConfig = {

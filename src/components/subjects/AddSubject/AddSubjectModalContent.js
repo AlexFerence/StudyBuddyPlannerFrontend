@@ -14,7 +14,7 @@ const semestersReduce = (list, semester) => {
 
 const AddSubjectModalContent = ({ dispatch, closeAddModal, semesters }) => {
 
-    const activeSemester = semesters.find((semester) => semester.active === 1)
+    const activeSemester = semesters.find((semester) => semester.title === 'Winter 2021')
 
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')

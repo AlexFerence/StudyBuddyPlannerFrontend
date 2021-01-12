@@ -34,16 +34,14 @@ const SuggestedFriends = ({ dispatch, suggestedFriends }) => {
                     <IoIosRefresh onClick={() => nextFive()} />
                 </div>
             </div>
-            <AnimatedList animation={"grow"}>
-                {
-                    sfFiltered.map((friend) => {
-                        return (
-                            <SuggestedFriendListItem key={friend.id} friend={friend} />
-                        )
-                        index++
-                    })
-                }
-            </AnimatedList>
+            {
+                sfFiltered.map((friend) => {
+                    return (
+                        <SuggestedFriendListItem key={friend.id} friend={friend} />
+                    )
+                    index++
+                })
+            }
         </div>
     )
 }

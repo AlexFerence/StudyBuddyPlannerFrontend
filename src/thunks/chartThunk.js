@@ -16,8 +16,15 @@ import { getReferredUsers, loadTop50 } from './settingsThunk'
 
 export const loadChartsThunk = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile } = state
+    const { profile, selectedSemester } = state
     const { id, token } = profile
+
+    const selectedSemesterId = selectedSemester.id
+    if (selectedSemesterId > 0) {
+        dispatch(loadPieChartWithId(selectedSemesterId))
+        return
+    }
+
     try {
         // error
         const res = await axios.post(url + '/api/PersonalCharts/listsubjecttotalhours',
@@ -254,8 +261,16 @@ export const loadMarksScatter = () => async (dispatch, getState) => {
 
 export const loadTaskHoursPerWeek = () => async (dispatch, getState) => {
     const state = getState()
-    const { profile } = state
+    const { profile, selectedSemester } = state
     const { id, token } = profile
+    const selectedSemesterId = selectedSemester.id
+
+    if (selectedSemesterId > 0) {
+        dispatch(loadTaskHoursPerWeekById(selectedSemesterId))
+        return
+    }
+
+
     try {
         const res = await axios.post(url + "/api/PersonalCharts/listhourspermonth",
             {

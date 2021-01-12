@@ -12,6 +12,7 @@ import SubjPieBreakdown from './dashboard-components/SubjPieBreakdown'
 import { Redirect, useHistory } from 'react-router-dom'
 import Select from 'react-select';
 import { loadPieChartWithId, loadTaskHoursPerWeekById } from '../thunks/chartThunk';
+import { setSelectedSemester } from '../actions/selectedSemesterActions';
 
 const semestersReduce = (list, semester) => {
   list.push({ value: semester.id, label: semester.title })
@@ -30,10 +31,18 @@ const Dashboard = ({ dispatch, tasks, width, isAuth, semesters }) => {
   const setCharts = async () => {
     await dispatch(loadPieChartWithId(semester.value))
     await dispatch(loadTaskHoursPerWeekById(semester.value))
+    dispatch(setSelectedSemester({
+      id: semester.value,
+      title: semester.title
+    }))
     console.log('charts have been set')
   }
 
   useEffect(() => {
+    dispatch(setSelectedSemester({
+      id: semester.value,
+      title: semester.title
+    }))
     console.log(semester)
     setCharts()
   }, [semester])
