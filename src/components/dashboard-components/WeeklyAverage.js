@@ -16,7 +16,7 @@ const WeeklyAverage = ({ charts }) => {
         return (hours + ":" + returnMins)
     }
 
-    const timeExists = charts.averageByDayOfWeek.find((time) => time > 0)
+    const timeExists = charts.averageByDayOfWeek?.find((time) => time > 0)
 
     return (
         <Fragment>
