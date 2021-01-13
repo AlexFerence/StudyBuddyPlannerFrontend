@@ -99,7 +99,6 @@ const SemesterDropdown = ({ semesters, sem, subjects, dispatch, handleSelectedSu
 const mapStateToProps = (state) => {
     return {
         subjects: state.subjects,
-
         semesters: state.profile.semesters
     }
 }

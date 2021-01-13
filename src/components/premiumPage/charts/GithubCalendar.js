@@ -5,9 +5,24 @@ import { connect } from 'react-redux'
 import echarts from 'echarts'
 import moment from 'moment'
 
-const LandingBarChart = ({ dispatch, githubCalendarData, semesters = [] }) => {
+const GithubCalendar = ({ dispatch, githubCalendarData, semesters = [] }) => {
 
-    const currentSemester = semesters?.find((semester) => semester.active === 1)
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        if (activeSemester) {
+            return activeSemester
+        }
+        if (semesters[0]) {
+            return semesters[0]
+        }
+    }
+
+    const currentSemester = findActiveSemester()
 
     const minsToHours = (m) => {
         const hours = Math.floor(m / 60)
@@ -103,4 +118,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(LandingBarChart)
+export default connect(mapStateToProps)(GithubCalendar)

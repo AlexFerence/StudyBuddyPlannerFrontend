@@ -16,14 +16,13 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask,
 
     const [timerSetting, setTimerSetting] = useState({ value: 'Timer', label: 'Timer' })
     const [localTasks, setLocalTasks] = useState([])
-    const [localTask, setLocalTask] = useState({})
 
     useEffect(() => {
         dispatch(realoadClassesThunk)
         setLocalTasks(makeTasks(tasks))
         if (tasks.length > 0) {
             console.log('setting task')
-            setCurrentTaskById(tasks[0].id)
+            dispatch(setCurrentTaskById(tasks[0].id))
         }
     }, [])
 
@@ -56,10 +55,9 @@ const QuickTimer = ({ dispatch, isRunning, paused, currentTask,
                         value={{ ...currentTask, label: currentTask.title }}
                         onChange={val => {
                             console.log("changed value" + val)
-
                             dispatch(setCurrentTaskById(val.value.id))
                         }}
-                        placeholder="Task..."
+                        placeholder="Selectz Task..."
                         isDisabled={isRunning || paused}
                         options={
                             localTasks
