@@ -6,13 +6,26 @@ import EditSubjectHeader from './EditSubjectHeader'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
 
-const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
+import Select from 'react-select';
+
+const semestersReduce = (list, semester) => {
+    list.push({ value: semester.id, label: semester.title })
+    return list
+}
+
+const EditSubject = ({ semesters, currentSubject, dispatch, id, setDisplayMode }) => {
 
     var [newChanges, setNewChanges] = useState({ ...currentSubject })
 
+    const activeSemester = semesters.find((semester) => semester.title === 'Winter 2021')
+
+    const [semester, setSemester] = useState({
+        value: activeSemester.id,
+        label: activeSemester.title
+    })
+
     const submitEdits = async (e) => {
         e.preventDefault()
-
         // submit edits
         dispatch(editSubjectThunk({
             Name: newChanges.name.toUpperCase().trim(),
@@ -22,14 +35,12 @@ const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
             Credits: newChanges.credits,
             UserId: id,
             color: newChanges.color,
-        }, currentSubject))
 
+        }, currentSubject))
         // set current subject with new edits
         dispatch(setCurrentSubject(newChanges))
-
         // turn off editing
         setDisplayMode('display')
-
     }
 
     return (
@@ -81,7 +92,6 @@ const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
                             />
                         </Col>
                     </Row>
-
                     <label className="inpLabel">Description:</label>
                     <input
                         className="inp"
@@ -89,6 +99,22 @@ const EditSubject = ({ currentSubject, dispatch, id, setDisplayMode }) => {
                         value={newChanges.description}
                         onChange={(e) => setNewChanges({ ...newChanges, description: e.target.value })}
                     /> <br />
+                    <Select
+                        value={semester}
+                        onChange={val => setSemester(val)}
+                        placeholder="Select Term"
+                        options={semesters.reduce(semestersReduce, [])}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
+                    />
                     <label className="inpLabel">Professor: (optional)</label>
                     <input
                         className="inp"
@@ -109,8 +135,10 @@ const mapStateToProps = (state) => {
     return {
         currentSubject: state.currentSubject,
         id: state.profile.id,
-        currentSubject: state.currentSubject
+        currentSubject: state.currentSubject,
+        semesters: state.profile.semesters
     }
 }
+
 
 export default connect(mapStateToProps)(EditSubject)

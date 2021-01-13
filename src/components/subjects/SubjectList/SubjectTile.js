@@ -27,7 +27,7 @@ const SubjectTile = ({ subject, setDisplayMode, charts, turnOnEditing }) => {
         <Col style={{ padding: '0px' }} xs={12} s={12} md={6} lg={6} className="display">
             <ReactCardFlip isFlipped={flipped}>
                 <EditSubjectTile turnOffEditing={handleTurnOffEditing} subject={subject} />
-                <div className="innerDisplay" style={{ height: '393px' }}>
+                <div className="innerDisplay" style={{ height: '457px' }}>
                     <SubjectDisplayHeader subject={subject} setDisplayMode={setDisplayMode} turnOnEditing={handleTurnOnEditing} />
                     <div className="mainSection">
                         <Row>

@@ -72,8 +72,7 @@ export const editSubjectThunk = (newData, classSelection) => async (dispatch, ge
     try {
         const res = await axios.put(url + '/api/subjects/' + classSelection.id,
             {
-                ...newData,
-                semesterId: activeSemester.id
+                ...newData
             },
             {
                 headers: {

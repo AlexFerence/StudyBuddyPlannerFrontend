@@ -5,10 +5,23 @@ import { connect } from 'react-redux'
 import EditSubjectHeader from './EditSubjectTileHeader'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
+import Select from 'react-select';
 
-const EditSubjectTile = ({ subject, dispatch, id, setDisplayMode, turnOffEditing }) => {
+const semestersReduce = (list, semester) => {
+    list.push({ value: semester.id, label: semester.title })
+    return list
+}
+
+const EditSubjectTile = ({ semesters, subject, dispatch, id, setDisplayMode, turnOffEditing }) => {
 
     var [newChanges, setNewChanges] = useState({ ...subject })
+
+    const activeSemester = semesters.find((semester) => semester.id === subject.semesterId)
+
+    const [semester, setSemester] = useState({
+        value: activeSemester.id,
+        label: activeSemester.title
+    })
 
     const submitEdits = async (e) => {
         e.preventDefault()
@@ -22,6 +35,7 @@ const EditSubjectTile = ({ subject, dispatch, id, setDisplayMode, turnOffEditing
             Credits: newChanges.credits,
             UserId: id,
             color: newChanges.color,
+            semesterId: semester.value
         }, subject))
 
         // set current subject with new edits
@@ -41,7 +55,7 @@ const EditSubjectTile = ({ subject, dispatch, id, setDisplayMode, turnOffEditing
     }
 
     return (
-        <div className="innerDisplay" style={{ height: '393px' }}>
+        <div className="innerDisplay" style={{ height: '457px' }}>
             <EditSubjectHeader setDisplayMode={setDisplayMode}
                 turnOffEditing={handleTurnOffEditing}
                 color={newChanges.color} />
@@ -99,8 +113,24 @@ const EditSubjectTile = ({ subject, dispatch, id, setDisplayMode, turnOffEditing
                         value={newChanges.description}
                         onChange={(e) => setNewChanges({ ...newChanges, description: e.target.value })}
                     />
-                    <br />
-                    <button className="but">Submit</button>
+                    <label className="inpLabel">Semester:</label>
+                    <Select
+                        value={semester}
+                        onChange={val => setSemester(val)}
+                        placeholder="Select Term"
+                        options={semesters.reduce(semestersReduce, [])}
+                        theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                                ...theme.colors,
+                                text: 'black',
+                                primary25: '#bcbcbc',
+                                primary50: '#bcbcbc',
+                                primary: '#bcbcbc',
+                            },
+                        })}
+                    />
+                    <button style={{ marginLeft: 0 }} className="but">Submit</button>
                 </form>
             </div>
         </div>
@@ -111,7 +141,8 @@ const mapStateToProps = (state) => {
     return {
         currentSubject: state.currentSubject,
         id: state.profile.id,
-        currentSubject: state.currentSubject
+        currentSubject: state.currentSubject,
+        semesters: state.profile.semesters
     }
 }
 

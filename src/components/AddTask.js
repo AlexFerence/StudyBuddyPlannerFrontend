@@ -9,15 +9,37 @@ import Select from 'react-select';
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css';
 
-const subjReduce = (list, item) => {
-    list.push({ value: item, label: item.name + " " + item.classCode })
-    return list
-}
+
 
 
 const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType, semesters }) => {
 
-    const activeSemester = semesters.find((semester) => semester.active === 1)
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        return activeSemester
+    }
+
+    const subjReduce = (list = [], item) => {
+        const activeSemester = findActiveSemester()
+        console.log(activeSemester)
+        console.log(list)
+        console.log(item.semesterId)
+        console.log(activeSemester.id)
+        console.log(activeSemester.id === item.semesterId)
+
+        if (item.semesterId === activeSemester.id) {
+            list.push({ value: item, label: item.name + " " + item.classCode })
+        }
+        return list
+
+    }
+
+    //const activeSemester = semesters.find((semester) => semester.active === 1)
 
     const [currentSubjectID, setCurrentSubjectID] = useState('')
     const [currentClass, setCurrentClass] = useState()
@@ -28,6 +50,10 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType, sem
     const [selectedDate, setSelectedDate] = useState(moment())
     const [calendarFocused, setCalendarFocused] = useState(null)
     const [selectedOption, setSelectedOption] = useState('')
+
+    useEffect(() => {
+        console.log(findActiveSemester())
+    }, [])
 
     const options = [
         { value: 'Assignment', label: 'Assignment' },
