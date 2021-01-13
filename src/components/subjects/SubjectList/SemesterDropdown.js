@@ -31,7 +31,7 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, hand
                 onMouseLeave={() => handleMouseLeave()}
             >
                 <div className="sem-dropdown__title" >
-                    <div onClick={() => handleDropdownClick()}> {sem.title}</div>
+                    <div onClick={() => handleDropdownClick()}>{sem.title}</div>
                     {showEdit &&
                         <React.Fragment>
                             <EditSemesterButton sem={sem} />
@@ -71,10 +71,8 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, hand
                                 </div>
                             </div>
                     }
-
                 </div>
             }
-
         </React.Fragment>
 
     )

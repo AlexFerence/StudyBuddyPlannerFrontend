@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { setCurrentTask } from '../actions/currentTaskActions'
 import { loadTasks, updateTask, setCurrentTaskById } from '../thunks/taskThunk'
 
-const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
+const TaskEdit = ({ semesters, subjects, dispatch, displayOn, currentTask }) => {
 
     const getClassString = (id) => {
         const subj = subjects.find((subject) => subject.id === id)
@@ -35,9 +35,34 @@ const TaskEdit = ({ subjects, dispatch, displayOn, currentTask }) => {
         currentTaskCopy = { ...currentTask }
     }, [])
 
-    const subjReduce = (list, item) => {
-        list.push({ value: item, label: item.name + " " + item.classCode })
+    // const subjReduce = (list, item) => {
+    //     list.push({ value: item, label: item.name + " " + item.classCode })
+    //     return list
+    // }
+
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        return activeSemester
+    }
+
+    const subjReduce = (list = [], item) => {
+        const activeSemester = findActiveSemester()
+        console.log(activeSemester)
+        console.log(list)
+        console.log(item.semesterId)
+        console.log(activeSemester.id)
+        console.log(activeSemester.id === item.semesterId)
+
+        if (item.semesterId === activeSemester.id) {
+            list.push({ value: item, label: item.name + " " + item.classCode })
+        }
         return list
+
     }
 
 
@@ -181,7 +206,8 @@ const mapStateToProps = (state) => {
         token: state.profile.token,
         id: state.profile.id,
         subjects: state.subjects,
-        currentTask: state.currentTask
+        currentTask: state.currentTask,
+        semesters: state.profile.semesters
     }
 }
 

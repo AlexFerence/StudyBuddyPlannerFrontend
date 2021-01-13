@@ -5,6 +5,7 @@
   padding: 1px;
   background-color: $light-grey;
   border-bottom: 0.1px solid lighten($color: $grey, $amount: 20%);
+  min-width: 100%;
 }
 
 .sem-dropdown__title {
