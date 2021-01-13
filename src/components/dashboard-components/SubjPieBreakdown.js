@@ -4,6 +4,7 @@ import ReactEcharts from 'echarts-for-react'
 import GraphCoverUp from '../shared/GraphCoverUp';
 import Select from 'react-select';
 import { loadPieChartWithId } from '../../thunks/chartThunk';
+import moment from 'moment'
 
 const isPremium = true
 
@@ -14,7 +15,24 @@ const semestersReduce = (list, semester) => {
 
 const SubjPieBreakdown = ({ dispatch, charts, subjects, semesters }) => {
 
-    const activeSemester = semesters.find((semester) => semester.active === 1)
+    //const activeSemester = semesters.find((semester) => semester.active === 1)
+
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        if (activeSemester) {
+            return activeSemester
+        }
+        if (semesters[0]) {
+            return semesters[0]
+        }
+    }
+
+    const activeSemester = findActiveSemester()
 
     const [semester, setSemester] = useState({
         value: activeSemester.id,

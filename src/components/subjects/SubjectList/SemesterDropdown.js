@@ -6,10 +6,28 @@ import { AnimatedList } from 'react-animated-list';
 import AddSemesterButton from './AddSemesterButton'
 import EditSemesterButton from './EditSemesterButton'
 import SubjectTile from './SubjectTile'
+import moment from 'moment'
 
-const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, handleOpenAddModal }) => {
+const SemesterDropdown = ({ semesters, sem, subjects, dispatch, handleSelectedSubject, handleOpenAddModal }) => {
 
-    const [showSubjects, setShowSubjects] = useState(sem.title === 'Winter 2021')
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        if (activeSemester) {
+            return activeSemester
+        }
+        if (semesters[0]) {
+            return semesters[0]
+        }
+    }
+
+    const activeSemester = findActiveSemester()
+
+    const [showSubjects, setShowSubjects] = useState(sem.id === activeSemester.id)
     const [showEdit, setShowEdit] = useState(false)
 
     const handleMouseEnter = () => {
@@ -80,7 +98,9 @@ const SemesterDropdown = ({ sem, subjects, dispatch, handleSelectedSubject, hand
 
 const mapStateToProps = (state) => {
     return {
-        subjects: state.subjects
+        subjects: state.subjects,
+
+        semesters: state.profile.semesters
     }
 }
 

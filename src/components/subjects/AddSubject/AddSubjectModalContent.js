@@ -6,6 +6,7 @@ import { CirclePicker } from 'react-color'
 import { addSubjectThunk } from '../../../thunks/subjectThunk'
 import { IoMdClose } from 'react-icons/io'
 import Select from 'react-select';
+import moment from 'moment'
 
 const semestersReduce = (list, semester) => {
     list.push({ value: semester.id, label: semester.title })
@@ -14,7 +15,22 @@ const semestersReduce = (list, semester) => {
 
 const AddSubjectModalContent = ({ dispatch, closeAddModal, semesters }) => {
 
-    const activeSemester = semesters.find((semester) => semester.title === 'Winter 2021')
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        if (activeSemester) {
+            return activeSemester
+        }
+        if (semesters[0]) {
+            return semesters[0]
+        }
+    }
+
+    const activeSemester = findActiveSemester()
 
     const [subTitle, setSubTitle] = useState('')
     const [classCode, setClassCode] = useState('')

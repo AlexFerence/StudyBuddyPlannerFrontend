@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import EditSubjectHeader from './EditSubjectHeader'
 import { Row, Col } from 'react-bootstrap'
 import { CirclePicker } from 'react-color'
+import moment from 'moment'
 
 import Select from 'react-select';
 
@@ -17,7 +18,22 @@ const EditSubject = ({ semesters, currentSubject, dispatch, id, setDisplayMode }
 
     var [newChanges, setNewChanges] = useState({ ...currentSubject })
 
-    const activeSemester = semesters.find((semester) => semester.title === 'Winter 2021')
+    const findActiveSemester = () => {
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        if (activeSemester) {
+            return activeSemester
+        }
+        if (semesters[0]) {
+            return semesters[0]
+        }
+    }
+
+    const activeSemester = findActiveSemester()
 
     const [semester, setSemester] = useState({
         value: activeSemester.id,

@@ -13,6 +13,7 @@ import { Redirect, useHistory } from 'react-router-dom'
 import Select from 'react-select';
 import { loadPieChartWithId, loadTaskHoursPerWeekById } from '../thunks/chartThunk';
 import { setSelectedSemester } from '../actions/selectedSemesterActions';
+import moment from 'moment'
 
 const semestersReduce = (list, semester) => {
   list.push({ value: semester.id, label: semester.title })
@@ -21,7 +22,22 @@ const semestersReduce = (list, semester) => {
 
 const Dashboard = ({ dispatch, tasks, width, isAuth, semesters }) => {
 
-  const activeSemester = semesters.find((semester) => semester.title === 'Winter 2021')
+  const findActiveSemester = () => {
+    const currentDay = moment()
+    const activeSemester = semesters.find((semester) => {
+      const isAfterStartDate = currentDay.isAfter(semester.startDate)
+      const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+      return isAfterStartDate && isBeforeEndDate
+    })
+    if (activeSemester) {
+      return activeSemester
+    }
+    if (semesters[0]) {
+      return semesters[0]
+    }
+  }
+
+  const activeSemester = findActiveSemester()
 
   const [semester, setSemester] = useState({
     value: activeSemester.id,
