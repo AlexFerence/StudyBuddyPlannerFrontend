@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Navbar, Nav, } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { FaCheckSquare, FaList, FaCog, FaUsers } from 'react-icons/fa'
 import { IoIosSpeedometer, IoMdList } from 'react-icons/io'
 import { BsBellFill } from 'react-icons/bs'
@@ -29,9 +29,11 @@ const TOUR_STEPS = [
 ];
 
 
-const Header = ({ progressBar, feed, isRunning, width, profile, history, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
+const Header = ({ progressBar, feed, isRunning, width, profile, paused, isAuth, dispatch, currentTask = { id: 0 } }) => {
 
     const [numNotification, setNumNotifications] = useState(0)
+
+    const history = useHistory()
 
     useEffect(() => {
         setNumNotifications(getNumNotifications())
