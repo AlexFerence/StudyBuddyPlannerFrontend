@@ -32,9 +32,6 @@ const SignupThirdContent = ({ dispatch, closeAddModal }) => {
         else {
             history.push('/subjects')
         }
-
-
-
     }
 
     useEffect(() => {

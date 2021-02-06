@@ -41,10 +41,14 @@ const TaskEdit = ({ semesters, subjects, dispatch, displayOn, currentTask }) => 
     // }
 
     const findActiveSemester = () => {
+        console.log('Semesters')
+        console.log(semesters)
         const currentDay = moment()
         const activeSemester = semesters.find((semester) => {
             const isAfterStartDate = currentDay.isAfter(semester.startDate)
-            const isBeforeEndDate = currentDay.isBefore(semester.endDate)
+            const isBeforeEndDate = currentDay.isBefore(moment(semester.endDate))
+            console.log('isBeforeEndDate ' + isBeforeEndDate)
+            console.log('isAfterStartDate ' + isAfterStartDate)
             return isAfterStartDate && isBeforeEndDate
         })
         return activeSemester
@@ -52,20 +56,15 @@ const TaskEdit = ({ semesters, subjects, dispatch, displayOn, currentTask }) => 
 
     const subjReduce = (list = [], item) => {
         const activeSemester = findActiveSemester()
+        console.log('Active semester')
         console.log(activeSemester)
-        console.log(list)
-        console.log(item.semesterId)
-        console.log(activeSemester.id)
-        console.log(activeSemester.id === item.semesterId)
-
-        if (item.semesterId === activeSemester.id) {
-            list.push({ value: item, label: item.name + " " + item.classCode })
+        if (activeSemester && activeSemester.id) {
+            if (item.semesterId === activeSemester.id) {
+                list.push({ value: item, label: item.name + " " + item.classCode })
+            }
         }
         return list
-
     }
-
-
 
     const onSubmit = async (e) => {
         e.preventDefault()

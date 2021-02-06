@@ -7,7 +7,7 @@ import { loadTasks } from './taskThunk'
 import { addTaskThunk } from './taskThunk'
 import moment from 'moment'
 
-export const addSubjectThunk = ({ semesterId, subTitle, classCode, description, professor = '', credits = 3,
+export const addSubjectThunk = ({ semesterId, subTitle = '', classCode, description, professor = '', credits = 3,
     color = { hex: "#2B2B2B" } }) => async (dispatch, getState) => {
         const state = getState()
         const { profile } = state
@@ -147,19 +147,46 @@ export const getClassName = (subjId) => async (dispatch, getState) => {
 
 export const submitFirstClasses = (subjId) => async (dispatch, getState) => {
     const state = getState()
-    const { signupThird } = state
+    const { signupThird, profile } = state
+    const { semesters } = profile
     let subjWasAdded = false
+
+    const findActiveSemesterId = () => {
+        console.log('Semesters')
+        console.log(semesters)
+        const currentDay = moment()
+        const activeSemester = semesters.find((semester) => {
+            const isAfterStartDate = currentDay.isAfter(semester.startDate)
+            const isBeforeEndDate = currentDay.isBefore(moment(semester.endDate))
+            console.log('isBeforeEndDate ' + isBeforeEndDate)
+            console.log('isAfterStartDate ' + isAfterStartDate)
+            return isAfterStartDate && isBeforeEndDate
+        })
+        return activeSemester.id
+    }
+
     signupThird.forEach(async (subjToAdd, index) => {
         if (subjToAdd.subTitle || subjToAdd.classCode || subjToAdd.description) {
             subjWasAdded = true
-            await dispatch(addSubjectThunk(subjToAdd))
-            dispatch(setSubjToAdd(
-                {
-                    subTitle: '',
-                    classCode: '',
-                    description: ''
-                }, index)
-            )
+            const semesterId = findActiveSemesterId()
+
+            //         ({ semesterId, subTitle = '', classCode, description, professor = '', credits = 3,
+            // color = { hex: "#2B2B2B" } })
+
+            if (semesterId) {
+                await dispatch(addSubjectThunk({ ...subjToAdd, semesterId }))
+                dispatch(setSubjToAdd(
+                    {
+                        subTitle: '',
+                        classCode: '',
+                        description: '',
+                        semesterId
+                    }, index)
+                )
+            }
+            else {
+                console.error('cannot find semester id when checking subjects')
+            }
 
         }
     })

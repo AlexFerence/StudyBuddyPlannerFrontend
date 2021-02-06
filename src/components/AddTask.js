@@ -26,14 +26,10 @@ const AddTask = ({ subjects, displayOn, token, id, dispatch, setDisplayType, sem
 
     const subjReduce = (list = [], item) => {
         const activeSemester = findActiveSemester()
-        console.log(activeSemester)
-        console.log(list)
-        console.log(item.semesterId)
-        console.log(activeSemester.id)
-        console.log(activeSemester.id === item.semesterId)
-
-        if (item.semesterId === activeSemester.id) {
-            list.push({ value: item, label: item.name + " " + item.classCode })
+        if (activeSemester && activeSemester.id) {
+            if (item.semesterId === activeSemester.id) {
+                list.push({ value: item, label: item.name + " " + item.classCode })
+            }
         }
         return list
 

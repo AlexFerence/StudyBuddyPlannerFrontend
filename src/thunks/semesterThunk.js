@@ -16,7 +16,7 @@ export const makeSemesterThunk = (startGpa = 0, startPercentage = 0) => async (d
                 startPercentage,
                 active: 1,
                 startDate: "2021-01-04",
-                endDate: "2020-04-29",
+                endDate: "2021-04-29",
                 title: 'Winter 2021'
             }, {
             headers: {
