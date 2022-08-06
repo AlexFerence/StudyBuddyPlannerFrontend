@@ -41,14 +41,20 @@ Finally, below we see the feed. This would allow users to see their study streak
 
 
 # Technical Specifics
-The frontend was made with javascrip
+The frontend was made with React.js and Redux. The primary challenges faced on the frontend were local and global state management and creating the components to be as reusable as possible. The state management was broken up into local and global state manageement and using redux-thunk as a middleware to handle api functionallity.
 
 The backend was coded in C#, using DotNetCore. Classes were broken up based on the database structure, whereby each object would correspond to a data table in the mySQL database. Each of these classes would offer a CRUD stack along with listing methods.
 
 The file structure of the API was broken up into 3 layers. The controller layer, the domain layer, and the data access layer. The data access layer would purely be responsible for data retrieival, and would contain the sql statements that would be passed into the database. The domain layer would be the communication point between stacks. For instance, if another stack (for instance the charting service) required information from other data tables, the communication would be done on the domain layer. Finally, the controller layer would surface all routes that would be available to the front end. This layer would also be responsible for all logic surrounding the swagger, and any authorization flags that would be reuqired to call each respective route.
 
 ## Technical Diagrams
-To better illustrate the technologies used in this API, the following diagrams were created to communicate some key components of the design:
+To better illustrate the technologies used, the following diagrams were created to display the key aspects of the app
+
+### Global State Management
+Redux was used to manage the global state management following a structure as shown below
+
+![Tech Stack](Images/redux.png)
+
 
 ### Tech Stack
 The first diagram, shown below, illustrates the entire tech stack of the application. It shows all languages and services used for the implementation, for both the front end (seperate repo), and back end (the current repo).
