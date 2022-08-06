@@ -41,6 +41,8 @@ Finally, below we see the feed. This would allow users to see their study streak
 
 
 # Technical Specifics
+The frontend was made with javascrip
+
 The backend was coded in C#, using DotNetCore. Classes were broken up based on the database structure, whereby each object would correspond to a data table in the mySQL database. Each of these classes would offer a CRUD stack along with listing methods.
 
 The file structure of the API was broken up into 3 layers. The controller layer, the domain layer, and the data access layer. The data access layer would purely be responsible for data retrieival, and would contain the sql statements that would be passed into the database. The domain layer would be the communication point between stacks. For instance, if another stack (for instance the charting service) required information from other data tables, the communication would be done on the domain layer. Finally, the controller layer would surface all routes that would be available to the front end. This layer would also be responsible for all logic surrounding the swagger, and any authorization flags that would be reuqired to call each respective route.
@@ -52,33 +54,6 @@ To better illustrate the technologies used in this API, the following diagrams w
 The first diagram, shown below, illustrates the entire tech stack of the application. It shows all languages and services used for the implementation, for both the front end (seperate repo), and back end (the current repo).
 
 ![Tech Stack](Images/TechStack.png)
-
-### Class Diagram
-The following diagram, is a class diagram. The API is far too large to include the specifics of every stack. Therefore, this diagram illustrates one section of the API. it shows the relation between UserProfiles, Subjects, and Tasks. 
-
-![Class Diagram](Images/ClassDiagram.png)
-
-There are a few key takeaways from this diagram. Namely:
-* The data flows from parent to child object, along the domain layer. This avoids circular dependencies.
-* Interfaces are used to expose the correct methods at each level.
-* Classes are mirrored at every level of depth, and the mapping interface provides communication between each level. This leads to better data protection.
-
-### Stripe Integration Process Flow
-There were many integrations used in the implementation of this API. Most notably, a key integration was with Stripe to help serve the premium user functionality. As a startup, my co-founder and I were uncomfortable storing sensitive credit card information and user data in our local database. The effort that would be spent to ensure security was not time best spent.
-
-Thus, we decided to leverage Stripe's open API and services to store sensitive user billing data, for those who wished to sign up for premium features. The process flow diagram illustrates a low fidelity flow of the integration. The flow shows two key processes: the creation of the user database rows and how the the foreign keys are stored, along with the initialization of a subscription itself.
-
-![Stripe Process Flow](Images/StripeProcessFlow.png)
-
-### AWS Infrastructure
-AWS was used to host both the backend and front end deployments.
-* Route 53 was used as the DNS web service to handle incoming requests from the internet and client. All CNAME records would be defined here, and any routing specifications.
-* An automatic load balancer is then used to handle requests to the EC2 instance. given our size, the EC2 instance was never upgraded, and more were never added. If usage increased past a certain point, more EC2 instances would've been added, and the ALB structure would've accomodated for that.
-* The EC2 was used as the cloud computing platform. With remote desktop, I was able to enter the EC2 instance and deploy both the backend and frontend repos to be hosted.
-* Finally, all the prod data was stored in an RDS.
-
-The full diagram can be seen below.
-![AWS Structure](Images/AWSStructure.png)
 
 
 
