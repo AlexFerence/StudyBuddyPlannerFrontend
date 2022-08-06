@@ -1,5 +1,4 @@
-![White Text](Images/WhiteText.png#gh-dark-mode-only)
-![Black Text](Images/BlackText.png#gh-light-mode-only)
+![WhiteText](https://user-images.githubusercontent.com/40876788/183257624-1c9b3c8e-83e2-475c-8305-d5d3bc29772b.png)
 
 # Table of Contents
 [1 Product Gallery](#Product-Gallery)  
