@@ -4,10 +4,10 @@
 # Table of Contents
 [1 Product Gallery](#Product-Gallery)  
 [2 Technical Specifics](#Technical-Specifics)  
-[2.1 Technical Diagrams](#Technical-Diagrams)  
-[2.2 Swagger Screenshots](#Swagger-Screenshots)  
+[2.1 Technical Diagrams](#Technical-Diagrams) 
 [3 Business Case](#Business-Case)  
 [3.1 Video Pitch](#Video-Pitch)  
+[4 Avaliable Scripts](#Avaliable-scripts)
 
 # Overview
 
@@ -77,7 +77,7 @@ Hope you enjoy!
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
