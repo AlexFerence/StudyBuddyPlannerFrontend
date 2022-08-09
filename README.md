@@ -62,6 +62,18 @@ The first diagram, shown below, illustrates the entire tech stack of the applica
 ![Tech Stack](Images/TechStack.png)
 
 
+# Business Case
+## Video Pitch
+Below, is a video pitch we presented at the QSS Startup Summit. Within this video, all details regarding our business case are thoroughly explained.
+
+Access this pitch recording using the link below:
+
+[![StudyBuddy Demo](Images/Thumbnail.png)](https://www.youtube.com/watch?v=sSAh3a2N_yQ)
+
+https://www.youtube.com/watch?v=sSAh3a2N_yQ
+
+Hope you enjoy!
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
